@@ -10,6 +10,7 @@ public class CameraFollow : MonoBehaviour
 
     [SerializeField]
     private int m_number = 0;
+    private Vector3 m_new_Pos;
 
     // Use this for initialization
     void Start()

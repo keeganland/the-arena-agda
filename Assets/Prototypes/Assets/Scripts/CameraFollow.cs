@@ -22,6 +22,7 @@ public class CameraFollow : MonoBehaviour
     { 
         if (target)
         {
+            //transform.position = Vector3.Lerp(transform.position, targets[m_number].position, m_speed * Time.deltaTime);
             transform.position = Vector3.Lerp(transform.position, targets[m_number].position, m_speed*Time.deltaTime) + new Vector3(0, 10f, 0);
             ChangeCharacters();
         }

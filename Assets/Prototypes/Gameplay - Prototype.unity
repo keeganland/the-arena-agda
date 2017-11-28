@@ -1238,7 +1238,6 @@ GameObject:
   - component: {fileID: 1527770592}
   - component: {fileID: 1527770594}
   - component: {fileID: 1527770595}
-  - component: {fileID: 1527770593}
   m_Layer: 0
   m_Name: Boy
   m_TagString: Player
@@ -1371,19 +1370,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_currentPlayer: 1
---- !u!114 &1527770593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1527770584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4774106dfc4972344aaa8611c9c637ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageToGiveRange: 0
-  enterExit: 0
 --- !u!114 &1527770594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1418,6 +1404,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1818955581}
   - component: {fileID: 1818955582}
+  - component: {fileID: 1818955583}
+  - component: {fileID: 1818955584}
   m_Layer: 0
   m_Name: sword_01
   m_TagString: Untagged
@@ -1431,13 +1419,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1818955580}
-  m_LocalRotation: {x: -0.6314612, y: 0.028235074, z: 0.29608145, w: 0.7160973}
-  m_LocalPosition: {x: 0.41, y: 0.12, z: -0.08}
+  m_LocalRotation: {x: 0.16143669, y: 0.7039911, z: 0.67783886, w: 0.13736509}
+  m_LocalPosition: {x: 0.4, y: 0.54, z: 0.2}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1527770590}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -67.087006, y: -58.932003, z: 85.996}
+  m_LocalEulerAnglesHint: {x: -65.51, y: 96, z: 85.996}
 --- !u!212 &1818955582
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1480,6 +1468,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1818955583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1818955580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4774106dfc4972344aaa8611c9c637ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageToGiveRange: 2
+  enterExit: 0
+--- !u!65 &1818955584
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1818955580}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.84, y: 10.14, z: 0.20000088}
+  m_Center: {x: -0.0000002611385, y: 5.4, z: -0.0000021762014}
 --- !u!1 &1897462041
 GameObject:
   m_ObjectHideFlags: 0

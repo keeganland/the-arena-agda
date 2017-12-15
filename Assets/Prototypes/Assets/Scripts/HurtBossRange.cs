@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HurtBossRange : MonoBehaviour {
     public int damageToGiveRange;
-    public bool enterExit;
+    public bool enterExit; //Used for collision. Otherwise hit detection occurs every single frame
 
 	// Use this for initialization
 	void Start () {

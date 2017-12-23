@@ -10,11 +10,13 @@ public class CameraFollow : MonoBehaviour
 
     [SerializeField]
     private int m_number = 0;
+    private Vector3 m_new_Pos;
 
     // Use this for initialization
     void Start()
     {
         target = targets[m_number];
+
     }
 
     // Update is called once per frame
@@ -22,7 +24,10 @@ public class CameraFollow : MonoBehaviour
     { 
         if (target)
         {
-            transform.position = Vector3.Lerp(transform.position, targets[m_number].position, m_speed*Time.deltaTime) + new Vector3(0, 10f, 0);
+
+            m_new_Pos =new Vector3(targets[m_number].position.x, this.transform.position.y, targets[m_number].position.z);
+
+            transform.position = Vector3.Lerp(transform.position, m_new_Pos, m_speed*Time.deltaTime);
             ChangeCharacters();
         }
 

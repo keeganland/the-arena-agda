@@ -16,6 +16,7 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         target = targets[m_number];
+
     }
 
     // Update is called once per frame
@@ -30,6 +31,12 @@ public class CameraFollow : MonoBehaviour
 
         if (target)
         {
+<<<<<<< HEAD
+
+            m_new_Pos =new Vector3(targets[m_number].position.x, this.transform.position.y, targets[m_number].position.z);
+
+            transform.position = Vector3.Lerp(transform.position, m_new_Pos, m_speed*Time.deltaTime);
+=======
             //TODO: Cleanup
             //Earlier incorrect line:
             //transform.position = Vector3.Lerp(transform.position, targets[m_number].position, m_speed*Time.deltaTime) + new Vector3(0, 10f, 0);
@@ -41,6 +48,7 @@ public class CameraFollow : MonoBehaviour
 
             transform.position = Vector3.Lerp(transform.position, m_new_Pos, m_speed * Time.deltaTime);
             
+>>>>>>> 6c4162fe8b59ac49e9b313b6df0e0b1330356797
             ChangeCharacters();
         }
 

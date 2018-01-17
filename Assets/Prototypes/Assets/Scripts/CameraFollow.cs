@@ -30,15 +30,13 @@ public class CameraFollow : MonoBehaviour
 
         if (target)
         {
-<<<<<<< HEAD
+
 
 
             m_new_Pos =new Vector3(targets[m_number].position.x, this.transform.position.y, targets[m_number].position.z);
 
             transform.position = Vector3.Lerp(transform.position, m_new_Pos, m_speed*Time.deltaTime);
 
-=======
->>>>>>> d6ea835b5a5c34707e3c30ffc52c092f9278fe23
             //TODO: Cleanup
             //Earlier incorrect line:
             //transform.position = Vector3.Lerp(transform.position, targets[m_number].position, m_speed*Time.deltaTime) + new Vector3(0, 10f, 0);
@@ -50,10 +48,6 @@ public class CameraFollow : MonoBehaviour
 
             transform.position = Vector3.Lerp(transform.position, m_new_Pos, m_speed * Time.deltaTime);
             
-<<<<<<< HEAD
-
-=======
->>>>>>> d6ea835b5a5c34707e3c30ffc52c092f9278fe23
             ChangeCharacters();
         }
 

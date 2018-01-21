@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 657219891}
   - component: {fileID: 657219890}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: TextBoxManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -816,6 +816,7 @@ MonoBehaviour:
   textLines: []
   currentLine: 0
   endAtLine: 3
+  isActive: 1
 --- !u!4 &657219891
 Transform:
   m_ObjectHideFlags: 0

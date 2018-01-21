@@ -33,6 +33,8 @@ public class TextBoxManager : MonoBehaviour
     //gamesplusjames has a PlayerController data type here. But his player char obviously works pretty different?
     //he even explicitly says. It will be in there to prevent the player from moving during dialogue
 
+    public bool isActive; //if active, the player may use enter to increment lines and other ways of interacting with the text box
+
     // Use this for initialization
     void Start()
     {
@@ -53,6 +55,12 @@ public class TextBoxManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(!isActive)
+        {
+            return;
+        }
+
         boxContent.text = textLines[currentLine];
 
         if(Input.GetKeyDown(KeyCode.Return))
@@ -65,5 +73,15 @@ public class TextBoxManager : MonoBehaviour
                 currentLine = 0;
             }
         }
+    }
+
+    public void EnableTextBox()
+    {
+        textBox.SetActive(true);
+    }
+
+    public void DisableTextBox()
+    {
+        textBox.SetActive(false);
     }
 }

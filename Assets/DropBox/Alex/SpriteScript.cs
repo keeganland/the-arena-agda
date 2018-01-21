@@ -22,19 +22,19 @@ public class SpriteScript : MonoBehaviour {
         
         if (System.Math.Abs(_Agent.velocity.z) >= System.Math.Abs(_Agent.velocity.x) && _Agent.velocity.z > 0)
         {
-            m_anim.SetInteger("Direction", 1);    
+            m_anim.SetInteger("Direction", 2);    
         }
         else if (System.Math.Abs(_Agent.velocity.z) > System.Math.Abs(_Agent.velocity.x) && _Agent.velocity.z < 0)
         {
-            m_anim.SetInteger("Direction", 2);
+            m_anim.SetInteger("Direction", 3);
         }
         else if (System.Math.Abs(_Agent.velocity.x) >= System.Math.Abs(_Agent.velocity.z) && _Agent.velocity.x > 0)
         {
-            m_anim.SetInteger("Direction", 3);
+            m_anim.SetInteger("Direction", 4);
         }
         else if (System.Math.Abs(_Agent.velocity.x) > System.Math.Abs(_Agent.velocity.z) && _Agent.velocity.x < 0)
         {
-            m_anim.SetInteger("Direction", 4);
+            m_anim.SetInteger("Direction", 1);
         }
         else
         {
@@ -48,6 +48,7 @@ public class SpriteScript : MonoBehaviour {
         float m_newx = _Target.position.x;
         float m_newy = _Target.position.z;
 
-        transform.position = new Vector3(m_newx, 0 , m_newy);
+        transform.position = new Vector3(m_newx, 12.68052f, m_newy);
+        transform.eulerAngles = new Vector3(90, -90, 0);
 	}
 }

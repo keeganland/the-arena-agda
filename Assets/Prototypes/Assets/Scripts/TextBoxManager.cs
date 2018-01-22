@@ -65,12 +65,10 @@ public class TextBoxManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            if (currentLine < endAtLine)
+            currentLine += 1; //the way things work at the moment is just increment through the array
+            if (currentLine > endAtLine)
             {
-                currentLine += 1; //the way things work at the moment is just increment through the array
-            }
-            else {
-                currentLine = 0;
+                DisableTextBox();
             }
         }
     }
@@ -78,10 +76,12 @@ public class TextBoxManager : MonoBehaviour
     public void EnableTextBox()
     {
         textBox.SetActive(true);
+        isActive = true;
     }
 
     public void DisableTextBox()
     {
         textBox.SetActive(false);
+        isActive = false;
     }
 }

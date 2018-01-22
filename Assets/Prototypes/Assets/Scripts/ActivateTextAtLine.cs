@@ -28,7 +28,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        /*
+
         if((other.name == "Girl") || (other.name == "Boy"))
         {
             theTextManager.ReloadScript(theText);
@@ -41,6 +41,5 @@ public class ActivateTextAtLine : MonoBehaviour {
                 Destroy(gameObject);
             }
         }
-        */
     }
 }

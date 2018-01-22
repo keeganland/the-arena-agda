@@ -844,6 +844,7 @@ MonoBehaviour:
   currentLine: 0
   endAtLine: 3
   isActive: 1
+  stopPlayerMovement: 0
 --- !u!4 &657219891
 Transform:
   m_ObjectHideFlags: 0
@@ -1529,6 +1530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1378389759}
   - component: {fileID: 1378389760}
+  - component: {fileID: 1378389761}
   m_Layer: 0
   m_Name: NPCShoutZone
   m_TagString: Untagged
@@ -1561,6 +1563,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1378389761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1378389758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84401544bdf582e4583a30d8b13a8dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theText: {fileID: 4900000, guid: 3a5d05e62fb54f84ea38784d4f9f3d32, type: 3}
+  startLine: 0
+  endLine: 0
+  theTextManager: {fileID: 657219890}
+  destroyWhenActivated: 1
 --- !u!1 &1379570824
 GameObject:
   m_ObjectHideFlags: 0

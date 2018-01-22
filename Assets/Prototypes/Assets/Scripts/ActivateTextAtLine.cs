@@ -17,8 +17,6 @@ public class ActivateTextAtLine : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         theTextManager = FindObjectOfType<TextBoxManager>();
-
-
 	}
 	
 	// Update is called once per frame
@@ -26,10 +24,10 @@ public class ActivateTextAtLine : MonoBehaviour {
 		
 	}
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-
-        if((other.name == "Girl") || (other.name == "Boy"))
+        if((other.name == "Girl") || (other.name == "Boy") || (other.name == "Momo"))
+        //if (other.CompareTag("Player"))
         {
             theTextManager.ReloadScript(theText);
             theTextManager.currentLine = startLine;

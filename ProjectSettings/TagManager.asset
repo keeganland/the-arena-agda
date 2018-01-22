@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Targets
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -42,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Weapon in Front
+    uniqueID: 2357502201
     locked: 0

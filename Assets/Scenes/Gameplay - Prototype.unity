@@ -300,7 +300,7 @@ MonoBehaviour:
   - {fileID: 1157349921}
   - {fileID: 1527770590}
   m_speed: 1
-  target: {fileID: 0}
+  target: {fileID: 1157349921}
   m_number: 0
 --- !u!1 &236094129
 GameObject:

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class HealthControler : MonoBehaviour
+public class HealthController : MonoBehaviour
 {
 
     public int totalHealth = 100;
@@ -46,7 +46,7 @@ public class HealthControler : MonoBehaviour
     {
         currentHealth -= damage;
 
-        if (currentHealth <= 0f && GameObject.Find("Cube-Spawn").GetComponent<HealthControler>().currentHealth > 0)
+        if (currentHealth <= 0f && GameObject.Find("Cube-Spawn").GetComponent<HealthController>().currentHealth > 0)
         {
             currentHealth = 0;
 

@@ -11,6 +11,10 @@ public class ActivateTextAtLine : MonoBehaviour {
 
     public TextBoxManager theTextManager;
 
+    public bool requireButtonPress;
+    private bool waitForPress;
+
+
     public bool destroyWhenActivated;
 
 
@@ -21,8 +25,20 @@ public class ActivateTextAtLine : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+		if (waitForPress && Input.GetKeyDown(KeyCode.Return))
+        {
+            theTextManager.ReloadScript(theText);
+            theTextManager.currentLine = startLine;
+            theTextManager.endAtLine = endLine;
+            theTextManager.EnableTextBox();
+
+            if (destroyWhenActivated)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -38,6 +54,14 @@ public class ActivateTextAtLine : MonoBehaviour {
             {
                 Destroy(gameObject);
             }
+        }
+    }
+
+    void OnTriggerExist(Collider other)
+    {
+        if(other.name == "Boy")
+        {
+            waitForPress = false;
         }
     }
 }

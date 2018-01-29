@@ -68,16 +68,12 @@ public class ActivateTextAtLine : MonoBehaviour {
             }
         }
     }
-    /*
+    
     void OnTriggerExit(Collider other)
     {
-        Debug.Log(other.name + " Trigger Exit");
-
-        if(other.name == "Boy")
+        if (other.CompareTag("Player"))
         {
             waitForPress = false;
-            Debug.Log("waitForPress = " + waitForPress);
-            //textStarted = false; //not sure where would be a better place for this, probably not here though.
         }
-    }*/
+    }
 }

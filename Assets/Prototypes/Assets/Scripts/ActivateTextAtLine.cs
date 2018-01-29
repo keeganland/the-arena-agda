@@ -12,7 +12,7 @@ public class ActivateTextAtLine : MonoBehaviour {
     public TextBoxManager theTextManager;
 
     public bool requireButtonPress;
-    private bool waitForPress;
+    public bool waitForPress;
 
 
     public bool destroyWhenActivated;
@@ -42,9 +42,15 @@ public class ActivateTextAtLine : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if((other.name == "Girl") || (other.name == "Boy") || (other.name == "Momo"))
+        if(other.name == "Boy")
         //if (other.CompareTag("Player"))
         {
+            if(requireButtonPress)
+            {
+                waitForPress = true;
+                return;
+            }
+
             theTextManager.ReloadScript(theText);
             theTextManager.currentLine = startLine;
             theTextManager.endAtLine = endLine;
@@ -57,7 +63,7 @@ public class ActivateTextAtLine : MonoBehaviour {
         }
     }
 
-    void OnTriggerExist(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if(other.name == "Boy")
         {

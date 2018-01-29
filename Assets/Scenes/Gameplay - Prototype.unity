@@ -400,6 +400,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a26086712ea3f4b93b052a92d8cc15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Target: {fileID: 1157349921}
+  _Agent: {fileID: 1157349917}
 --- !u!1 &325008029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,7 +1330,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1157349915}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1

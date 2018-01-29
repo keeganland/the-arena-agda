@@ -11,6 +11,10 @@ public class ActivateTextAtLine : MonoBehaviour {
 
     public TextBoxManager theTextManager;
 
+    public bool requireButtonPress;
+    public bool waitForPress;
+
+
     public bool destroyWhenActivated;
 
 
@@ -21,14 +25,32 @@ public class ActivateTextAtLine : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+		if (waitForPress && Input.GetKeyDown(KeyCode.Return))
+        {
+            theTextManager.ReloadScript(theText);
+            theTextManager.currentLine = startLine;
+            theTextManager.endAtLine = endLine;
+            theTextManager.EnableTextBox();
+
+            if (destroyWhenActivated)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+    }
 
     void OnTriggerEnter(Collider other)
     {
-        if((other.name == "Girl") || (other.name == "Boy") || (other.name == "Momo"))
+        if(other.name == "Boy")
         //if (other.CompareTag("Player"))
         {
+            if(requireButtonPress)
+            {
+                waitForPress = true;
+                return;
+            }
+
             theTextManager.ReloadScript(theText);
             theTextManager.currentLine = startLine;
             theTextManager.endAtLine = endLine;
@@ -38,6 +60,14 @@ public class ActivateTextAtLine : MonoBehaviour {
             {
                 Destroy(gameObject);
             }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.name == "Boy")
+        {
+            waitForPress = false;
         }
     }
 }

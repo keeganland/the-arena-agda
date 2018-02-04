@@ -34,20 +34,27 @@ public class NPCMovement : MonoBehaviour {
 
             if (transform.position == m_newpos)
             {
-                StartCoroutine(Move(m_i));
+                StartCoroutine(Move());
             }
    
         }
 	}
 
-    private IEnumerator Move(int i)
+    private IEnumerator Move()
     {
         m_coroutinestarted = true;
 
         Debug.Log("here2");
-        yield return new WaitForSeconds(_Timers[i]);
+        yield return new WaitForSeconds(_Timers[m_i]);
 
-        m_i += 1;
+        if(this.CompareTag("NPC")){
+            m_i = Random.Range(0,_Waypoints.Count);
+            Debug.Log(m_i);
+        }
+        else
+        {
+            m_i += 1;
+        }
 
         m_coroutinestarted = false;
     }

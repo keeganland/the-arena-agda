@@ -29,16 +29,10 @@ public class TextBoxManager : MonoBehaviour
     public int currentLine;
     public int endAtLine;
 
-    //gamesplusjames has a PlayerController data type here. But his player char obviously works pretty different?
-    //he even explicitly says. It will be in there to prevent the player from moving during dialogue
+    public MovementManager movementManager;
 
-    public bool isActive; //if active, the player may use enter to increment lines and other ways of interacting with the text box
-    public bool stopPlayerMovement; //not going to use this until I figure out how to deal with there being two players
-
-    /**
-     * Necessary for stopping player movement:
-     * Modifications to the Player_Movement.cs file. We need some reference to the player IN this file
-     */
+    public bool isActive; //if active, the player may use enter to increment lines and other ways of interacting with the text box. Maybe switch to private
+    public bool stopPlayerMovement;
 
     // Use this for initialization
     void Start()
@@ -91,13 +85,10 @@ public class TextBoxManager : MonoBehaviour
         textBox.SetActive(true);
         isActive = true;
 
-        /**
-         * Pseudocode
-         * 
-         * if (stopPlayerMovement) {
-         *  player . canMove = false
-         * }
-         */
+        if (stopPlayerMovement)
+        {
+            movementManager.StopPlayerMovement();
+        }
 
     }
 
@@ -106,9 +97,7 @@ public class TextBoxManager : MonoBehaviour
         textBox.SetActive(false);
         isActive = false;
 
-        /**
-         * player. canMove = true
-         */
+        movementManager.StartPlayerMovement();
     }
 
     public void ReloadScript(TextAsset theText)

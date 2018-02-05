@@ -18,6 +18,7 @@ public class ActivateTextAtLine : MonoBehaviour {
     public string activatedByTag;
 
     private bool textStarted; // If the text box has been activated, player should scroll through it before they get to end.
+    private Player_Movement playerMover;
 
     // Use this for initialization
     void Start () {
@@ -52,6 +53,14 @@ public class ActivateTextAtLine : MonoBehaviour {
     {
         if (other.CompareTag(activatedByTag))
         {
+            /*
+            if(activatedByTag == "Player")
+            {
+                playerMover = other.GetComponent<Player_Movement>();
+                playerMover.stopMoving = true;
+            }
+            */
+
             if(requireButtonPress)
             {
                 waitForPress = true;

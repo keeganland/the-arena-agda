@@ -7,6 +7,7 @@ public class Player_Movement : MonoBehaviour {
 
     private NavMeshAgent m_agent;
     public bool m_currentPlayer = false;
+    public bool stopMoving = false;
     
 	// Use this for initialization
 	void Start () {
@@ -18,9 +19,10 @@ public class Player_Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (m_currentPlayer == gameObject.GetComponent<Player_switch>()._Switchplayer)
+        if (m_currentPlayer == gameObject.GetComponent<Player_switch>()._Switchplayer && !stopMoving)
         {
 
+            //Debug.Log("stopMoving = " + stopMoving);
             if (Input.GetMouseButtonDown(1))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

@@ -7,7 +7,7 @@ TagManager:
   - Ground
   - Targets
   - Enemy
-  - AttackRange
+  - NPC
   layers:
   - Default
   - TransparentFX

@@ -16,7 +16,6 @@ using UnityEngine.UI; //Need this for UI object types (such as Text) from Unity 
 
 public class TextBoxManager : MonoBehaviour
 {
-    //As of yet most of these are unused.
 
     //these are game objects and unity stuff
     public GameObject textBox;
@@ -24,9 +23,9 @@ public class TextBoxManager : MonoBehaviour
 
     //these exist for the management of the external .txt file
     public TextAsset textFile;
-    public string[] textLines;
+    public string[] textLines; //Keegan NTS: wait why not just use a queue for this hm
 
-    //these refer to particular lines in the text file
+    //these refer to particular lines in the text file because we're using a string array for some dumb reason
     public int currentLine;
     public int endAtLine;
 

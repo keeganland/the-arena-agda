@@ -9,6 +9,8 @@ public class NPCMovement : MonoBehaviour {
     public List<GameObject> _Waypoints;
     public List<float> _Timers;
 
+    public bool stop;
+
     private NavMeshAgent m_agent;
     private int m_i = 0;
     private bool m_coroutinestarted;
@@ -23,6 +25,11 @@ public class NPCMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (stop)
+        {
+            return;
+        }
 
         if (m_coroutinestarted != true)
         {

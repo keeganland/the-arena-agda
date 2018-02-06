@@ -17,7 +17,8 @@ public class SwordAttack : MonoBehaviour {
         }*/
 
         //if (collision.gameObject == m_target)//need to generate target according to how we attack
-        if (m_target.CompareTag ("Enemy"))
+
+        if (m_target.CompareTag("Enemy"))
         {
             DamageData dmgData = new DamageData();
             dmgData.damage = damage;

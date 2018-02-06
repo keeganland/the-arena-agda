@@ -7,17 +7,12 @@ public class SwordAttack : MonoBehaviour {
     GameObject m_attacker;
     public int damage;
 
-	// Use this for initialization
-	void Start () {
-        //this section is trying to assign something to target. THIS WILL NOT WORK
-       /* RaycastHit hit;
-        if(hit.collider.tag == "Enemy")
-        {
-            hit.collider = m_target;
-        }*/
+    // Use this for initialization
+    void Start() {
+    }
 
         //if (collision.gameObject == m_target)//need to generate target according to how we attack
-        if (m_target.CompareTag("Enemy"))
+    public void Damages()
         {
             DamageData dmgData = new DamageData();
             dmgData.damage = damage;
@@ -31,4 +26,4 @@ public class SwordAttack : MonoBehaviour {
 
         }
     }
-}
+

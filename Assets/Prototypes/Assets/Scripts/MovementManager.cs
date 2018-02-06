@@ -14,29 +14,23 @@ public class MovementManager : MonoBehaviour {
     
     // Update is called once per frame
     void Update() {
-        //Debug.Log("boyMover.stopMoving = " + boyMover.stopMoving);
-        //Debug.Log("girlMover.stopMoving = " + girlMover.stopMoving);
     }
 
     // Call to stop whichever player happens to be controlled right now.
     public void StopPlayerMovement()
     {
 
-        if (boyMover.m_currentPlayer)
+        if (boyMover.isTheBoy && boyMover.boyActive)
         {
             boyMover.stopMoving = true;
-            Debug.Log("boyMover.stopMoving set to " + boyMover.stopMoving);
-
+            boyMover.CancelMovement();
         }
-
-        if (girlMover.m_currentPlayer)
+        else if (!(girlMover.isTheBoy) && !(girlMover.boyActive))
         {
             girlMover.stopMoving = true;
-            Debug.Log("girlMover.stopMoving set to " + girlMover.stopMoving);
+            girlMover.CancelMovement();
         }
 
-        Debug.Log("boyMover.m_CurrentPlayer = " + boyMover.m_currentPlayer);
-        Debug.Log("girlMover.m_CurrentPlayer = " + girlMover.m_currentPlayer);
 
     }
 

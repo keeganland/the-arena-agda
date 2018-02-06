@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿//Deprecated. Delete once we're sure references to this script are gone!
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_switch : MonoBehaviour {
 
-    public bool _Switchplayer = false;
+    public bool boyActive = false;
 
     private void Update()
     {
@@ -16,6 +18,6 @@ public class Player_switch : MonoBehaviour {
 
     private void ChangePlayer()
     {
-        _Switchplayer = !_Switchplayer;
+        boyActive = !boyActive;
     }
 }

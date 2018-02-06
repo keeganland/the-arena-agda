@@ -1856,7 +1856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30d0747adcef6649949b686b3dfc0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Switchplayer: 0
+  boyActive: 0
 --- !u!114 &1157349923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1868,8 +1868,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2785076f3cdb14d9874c1b15ebaa08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_currentPlayer: 0
+  isTheBoy: 0
   stopMoving: 0
+  boyActive: 0
 --- !u!114 &1157349926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2346,7 +2347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30d0747adcef6649949b686b3dfc0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Switchplayer: 0
+  boyActive: 0
 --- !u!114 &1527770592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2358,8 +2359,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2785076f3cdb14d9874c1b15ebaa08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_currentPlayer: 1
+  isTheBoy: 1
   stopMoving: 0
+  boyActive: 0
 --- !u!114 &1527770594
 MonoBehaviour:
   m_ObjectHideFlags: 0

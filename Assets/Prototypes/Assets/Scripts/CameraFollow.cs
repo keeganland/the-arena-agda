@@ -58,11 +58,11 @@ public class CameraFollow : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if (GameObject.FindWithTag("Player").GetComponent<Player_switch>()._Switchplayer == true)
+            if (GameObject.FindWithTag("Player").GetComponent<Player_Movement>().boyActive == true)
             {
                 m_number = 0;
             }
-            else if (GameObject.FindWithTag("Player").GetComponent<Player_switch>()._Switchplayer == false)
+            else if (GameObject.FindWithTag("Player").GetComponent<Player_Movement>().boyActive == false)
             {
                 m_number = 1;
             }

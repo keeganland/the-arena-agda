@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ActivateTextAtLine : MonoBehaviour {
 
+    public string activatedByTag;
+    public string activatedByName;
+
     public TextAsset theText;
 
     public int startLine;
@@ -14,8 +17,7 @@ public class ActivateTextAtLine : MonoBehaviour {
     public bool requireButtonPress;
     public bool waitForPress;
     public bool destroyWhenActivated;
-
-    public string activatedByTag;
+    //public bool tagTriggersText = true; //I'm thinking of trying to get it to trigger with the collider's name instead of tag. Is this feasible?
 
     private bool textStarted; // If the text box has been activated, player should scroll through it before they get to end.
     private Player_Movement playerMover;
@@ -31,11 +33,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 		if (waitForPress && Input.GetKeyDown(KeyCode.Return) && !textStarted)
         {
             textStarted = true;
-
-            theTextManager.ReloadScript(theText);
-            theTextManager.currentLine = startLine;
-            theTextManager.endAtLine = endLine;
-            theTextManager.EnableTextBox();
+            DisplayText();
 
             if (destroyWhenActivated)
             {
@@ -53,30 +51,19 @@ public class ActivateTextAtLine : MonoBehaviour {
     {
         if (other.CompareTag(activatedByTag))
         {
-            /*
-            if(activatedByTag == "Player")
-            {
-                playerMover = other.GetComponent<Player_Movement>();
-                playerMover.stopMoving = true;
-            }
-            */
-
             if(requireButtonPress)
             {
                 waitForPress = true;
                 return;
             }
 
-            theTextManager.ReloadScript(theText);
-            theTextManager.currentLine = startLine;
-            theTextManager.endAtLine = endLine;
-            theTextManager.EnableTextBox();
+            DisplayText();
 
-            if(destroyWhenActivated)
+            if (destroyWhenActivated)
             {
                 Destroy(gameObject);
             }
-        }
+        } 
     }
     
     void OnTriggerExit(Collider other)
@@ -85,5 +72,13 @@ public class ActivateTextAtLine : MonoBehaviour {
         {
             waitForPress = false;
         }
+    }
+
+    private void DisplayText()
+    {
+        theTextManager.ReloadScript(theText);
+        theTextManager.currentLine = startLine;
+        theTextManager.endAtLine = endLine;
+        theTextManager.EnableTextBox();
     }
 }

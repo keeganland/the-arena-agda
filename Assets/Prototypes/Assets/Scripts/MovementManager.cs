@@ -36,7 +36,6 @@ public class MovementManager : MonoBehaviour {
 
     public void StartPlayerMovement()
     {
-        Debug.Log("the game should now be unfreezing the player");
         boyMover.stopMoving = false;
         girlMover.stopMoving = false;
     }

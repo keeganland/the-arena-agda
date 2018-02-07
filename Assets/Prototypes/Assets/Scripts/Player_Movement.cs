@@ -9,6 +9,7 @@ public class Player_Movement : MonoBehaviour {
     public bool isTheBoy = false;
     public bool stopMoving = false;
     public bool boyActive = false;
+    public GameObject curTarget;
     
 	// Use this for initialization
 	void Start () {
@@ -39,6 +40,11 @@ public class Player_Movement : MonoBehaviour {
                     if (hit.collider.tag == "Ground")
                     {
                         m_agent.SetDestination(hit.point);
+                    }
+                    if(hit.collider.tag == "Enemy")
+                    {
+                        curTarget = hit.collider.gameObject;
+                        Target(curTarget);
                     }
                 }
             }

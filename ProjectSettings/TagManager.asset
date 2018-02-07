@@ -8,6 +8,7 @@ TagManager:
   - Targets
   - Enemy
   - NPC
+  - Fader
   layers:
   - Default
   - TransparentFX

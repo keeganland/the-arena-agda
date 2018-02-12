@@ -1096,6 +1096,7 @@ MonoBehaviour:
   movementManager: {fileID: 1261543226}
   isActive: 0
   stopPlayerMovement: 1
+  typeSpeed: 0.05
 --- !u!4 &657219891
 Transform:
   m_ObjectHideFlags: 0
@@ -2129,7 +2130,7 @@ MonoBehaviour:
   theTextManager: {fileID: 657219890}
   requireButtonPress: 0
   waitForPress: 0
-  destroyWhenActivated: 0
+  destroyWhenActivated: 1
 --- !u!1 &1379570824
 GameObject:
   m_ObjectHideFlags: 0

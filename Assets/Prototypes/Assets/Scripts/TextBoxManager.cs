@@ -34,6 +34,11 @@ public class TextBoxManager : MonoBehaviour
     public bool isActive; //if active, the player may use enter to increment lines and other ways of interacting with the text box. Maybe switch to private
     public bool stopPlayerMovement;
 
+    private bool isTyping = false;
+    private bool cancelTyping = false;
+
+    public float typeSpeed;
+
     // Use this for initialization
     void Start()
     {
@@ -68,17 +73,46 @@ public class TextBoxManager : MonoBehaviour
             return;
         }
 
-        boxContent.text = textLines[currentLine];
-
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            currentLine += 1; //the way things work at the moment is just increment through the array
-            if (currentLine > endAtLine)
+
+            if (!isTyping)
             {
-                DisableTextBox();
+                currentLine += 1; //the way things work at the moment is just increment through the array. should sooner or later be replaced with a queue
+                if (currentLine > endAtLine)
+                {
+                    DisableTextBox();
+                }
+                else
+                {
+                    StartCoroutine(TextScroll(textLines[currentLine]));
+                }
+            }
+
+            else if (isTyping && !cancelTyping)
+            {
+                cancelTyping = true;
             }
         }
     }
+
+    private IEnumerator TextScroll (string lineOfText)
+    {
+        int letter = 0;
+        boxContent.text = "";
+        isTyping = true;
+        cancelTyping = false;
+        while (isTyping && !cancelTyping && (letter < lineOfText.Length - 1))
+        {
+            boxContent.text += lineOfText[letter];
+            letter += 1;
+            yield return new WaitForSeconds(typeSpeed);
+        }
+        boxContent.text = lineOfText; //when the update loop breaks the while loop by making cancelTyping false, we want to make sure that the whole text line is displayed
+        isTyping = false;
+        cancelTyping = false;
+    }
+
 
     public void EnableTextBox()
     {
@@ -89,7 +123,7 @@ public class TextBoxManager : MonoBehaviour
         {
             movementManager.StopPlayerMovement();
         }
-
+        StartCoroutine(TextScroll(textLines[currentLine]));
     }
 
     public void DisableTextBox()

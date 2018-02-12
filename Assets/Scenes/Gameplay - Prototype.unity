@@ -1088,6 +1088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBox: {fileID: 337486078}
+  interactivityCue: {fileID: 1373747052}
   boxContent: {fileID: 1107638620}
   textFile: {fileID: 4900000, guid: 4b254365abf4b1e4ebd01c770c027b91, type: 3}
   textLines: []
@@ -1095,6 +1096,7 @@ MonoBehaviour:
   endAtLine: 3
   movementManager: {fileID: 1261543226}
   isActive: 0
+  cueActive: 0
   stopPlayerMovement: 1
   typeSpeed: 0.05
 --- !u!4 &657219891

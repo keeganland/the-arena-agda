@@ -19,6 +19,7 @@ public class TextBoxManager : MonoBehaviour
 
     //these are game objects and unity stuff
     public GameObject textBox;
+    public GameObject interactivityCue;
     public Text boxContent;
 
     //these exist for the management of the external .txt file
@@ -32,6 +33,7 @@ public class TextBoxManager : MonoBehaviour
     public MovementManager movementManager;
 
     public bool isActive; //if active, the player may use enter to increment lines and other ways of interacting with the text box. Maybe switch to private
+    public bool cueActive;
     public bool stopPlayerMovement;
 
     private bool isTyping = false;
@@ -59,6 +61,15 @@ public class TextBoxManager : MonoBehaviour
         else
         {
             DisableTextBox();
+        }
+
+        if (cueActive)
+        {
+            EnableCue();
+        }
+        else
+        {
+            DisableCue();
         }
     }
 
@@ -139,5 +150,17 @@ public class TextBoxManager : MonoBehaviour
             textLines = new string[1];
             textLines = (theText.text.Split('\n'));
         }
+    }
+
+    public void EnableCue()
+    {
+        interactivityCue.SetActive(true);
+        cueActive = true;
+    }
+
+    public void DisableCue()
+    {
+        interactivityCue.SetActive(false);
+        cueActive = false;
     }
 }

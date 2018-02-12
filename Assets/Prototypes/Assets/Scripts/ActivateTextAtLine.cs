@@ -49,6 +49,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("OnTriggerEnter activated by: " + other.tag);
         if (other.CompareTag(activatedByTag))
         {
             if(requireButtonPress)
@@ -68,6 +69,7 @@ public class ActivateTextAtLine : MonoBehaviour {
     
     void OnTriggerExit(Collider other)
     {
+        Debug.Log("OnTriggerExit activated by: " + other.tag);
         if (other.CompareTag(activatedByTag))
         {
             waitForPress = false;

@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - NPC
   - Fader
+  - AttackRange
+  - TalkCue
   layers:
   - Default
   - TransparentFX

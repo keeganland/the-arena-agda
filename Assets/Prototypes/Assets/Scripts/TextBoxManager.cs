@@ -42,8 +42,6 @@ public class TextBoxManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //todo: initialize player variable HERE if we're going to do things like freeze the player during dialogue
-
         if (textFile != null) //ensure that the text file actually exists
         {
             textLines = (textFile.text.Split('\n')); //Keegan NTS: weird this is valid syntax- i have never used round brackets () like that?

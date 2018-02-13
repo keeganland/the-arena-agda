@@ -48,11 +48,11 @@ public class Player_Movement : MonoBehaviour {
 
                         //this should chase enemy if enemy is not currently in range
                         //need to fix InRange call for this to work
-                        /*if (GetComponent<RangeChecker>.(InRange(curTarget))==false)
+                        if (this.GetComponent<RangeChecker>().InRange(curTarget) == false)
                         {
                             m_agent.SetDestination(hit.point);
                             //OnTriggerEnter should stop character once target is within range
-                        }*/
+                        }
                     }
                 }
             }

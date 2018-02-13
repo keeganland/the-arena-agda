@@ -44,7 +44,7 @@ public class TargetManager : MonoBehaviour
                 return curTarget;
             }
         }
-
+        //returned null to provide output for all inputs
         return null;
     }
 }

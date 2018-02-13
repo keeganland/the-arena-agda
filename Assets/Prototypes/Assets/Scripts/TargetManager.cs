@@ -10,6 +10,9 @@ public class TargetManager : MonoBehaviour
     //ShootingSystem m_shooter;
     RangeChecker m_range;
 
+    //set this up to get rid of error. would like to pass this into targetmanager instead
+    public GameObject curTarget=null;
+
     // Use this for initialization
     void Start()
     {
@@ -21,6 +24,7 @@ public class TargetManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //check to make sure there's something in range. Should probably switch to if(curtarget==null)
         if (/*!m_tracker || !m_shooter ||*/ !m_range)
             return;
 
@@ -28,9 +32,12 @@ public class TargetManager : MonoBehaviour
     }
     public GameObject Target(GameObject curTarget)
     {
+        //getting list of targets
         List<GameObject> validTargets = m_range.GetValidTargets();
 
-        for(int i = 0; i < m_range.Count; i++)
+        //return curTarget as target if within range
+        //why did I do this? Is this to check if it's within range?
+        for (int i = 0; i < validTargets.Count; i++)
         {
             if (curTarget == validTargets[i])
             {
@@ -38,8 +45,13 @@ public class TargetManager : MonoBehaviour
             }
         }
 
+        return null;
+    }
+}
+
+
         
 
         //m_tracker.SetTarget(curTarget);
-        //m_shooter.SetTarget(curTarget);
-        }
+        /*m_shooter.SetTarget(curTarget);*/
+        

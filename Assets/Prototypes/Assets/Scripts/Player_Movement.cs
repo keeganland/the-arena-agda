@@ -44,7 +44,7 @@ public class Player_Movement : MonoBehaviour {
                     if(hit.collider.tag == "Enemy")
                     {
                         curTarget = hit.collider.gameObject;
-                        Target(curTarget);
+                        //Target(curTarget);
                     }
                 }
             }

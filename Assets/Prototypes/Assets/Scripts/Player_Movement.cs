@@ -21,7 +21,7 @@ public class Player_Movement : MonoBehaviour {
 	void Update () {
 
         //For switching player characters
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             boyActive = !boyActive;
         }

@@ -15,7 +15,6 @@ public class Wind_Control : MonoBehaviour {
     private void Start()
     {
         m_isCoroutine = new List<bool>(new bool[_Winds.Count]);
-        Debug.Log(m_isCoroutine.Count);
     }
     private void Update()
     {

@@ -1085,6 +1085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBox: {fileID: 337486078}
+  interactivityCue: {fileID: 1373747052}
   boxContent: {fileID: 1107638620}
   textFile: {fileID: 4900000, guid: 4b254365abf4b1e4ebd01c770c027b91, type: 3}
   textLines: []
@@ -1092,7 +1093,9 @@ MonoBehaviour:
   endAtLine: 3
   movementManager: {fileID: 1261543226}
   isActive: 0
+  cueActive: 0
   stopPlayerMovement: 1
+  typeSpeed: 0.05
 --- !u!4 &657219891
 Transform:
   m_ObjectHideFlags: 0
@@ -1742,7 +1745,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2008,7 +2011,7 @@ GameObject:
   - component: {fileID: 1373747054}
   m_Layer: 5
   m_Name: TextCue
-  m_TagString: Untagged
+  m_TagString: TalkCue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2126,7 +2129,7 @@ MonoBehaviour:
   theTextManager: {fileID: 657219890}
   requireButtonPress: 0
   waitForPress: 0
-  destroyWhenActivated: 0
+  destroyWhenActivated: 1
 --- !u!1 &1379570824
 GameObject:
   m_ObjectHideFlags: 0
@@ -2294,7 +2297,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

@@ -1,0 +1,6 @@
+﻿1>------ Build started: Project: The Wall 2, Configuration: Debug Any CPU ------
+1>C:\Users\patri\Desktop\The Wall\The Wall 2\Assets\Prototypes\Assets\Scripts\Player_Movement.cs(50,29,50,36): error CS0103: The name 'InRange' does not exist in the current context
+1>C:\Users\patri\Desktop\The Wall\The Wall 2\Assets\Prototypes\Assets\Scripts\SwordAttack.cs(7,16,7,26): warning CS0649: Field 'SwordAttack.m_attacker' is never assigned to, and will always have its default value null
+1>C:\Users\patri\Desktop\The Wall\The Wall 2\Assets\Prototypes\Assets\Scripts\ActivateTextAtLine.cs(23,29,23,40): warning CS0169: The field 'ActivateTextAtLine.playerMover' is never used
+1>C:\Users\patri\Desktop\The Wall\The Wall 2\Assets\Prototypes\Assets\Scripts\SwordAttack.cs(6,16,6,24): warning CS0649: Field 'SwordAttack.m_target' is never assigned to, and will always have its default value null
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========

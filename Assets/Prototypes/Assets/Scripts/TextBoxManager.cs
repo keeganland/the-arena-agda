@@ -19,6 +19,7 @@ public class TextBoxManager : MonoBehaviour
 
     //these are game objects and unity stuff
     public GameObject textBox;
+    public GameObject interactivityCue;
     public Text boxContent;
 
     //these exist for the management of the external .txt file
@@ -32,13 +33,17 @@ public class TextBoxManager : MonoBehaviour
     public MovementManager movementManager;
 
     public bool isActive; //if active, the player may use enter to increment lines and other ways of interacting with the text box. Maybe switch to private
+    public bool cueActive;
     public bool stopPlayerMovement;
+
+    private bool isTyping = false;
+    private bool cancelTyping = false;
+
+    public float typeSpeed;
 
     // Use this for initialization
     void Start()
     {
-        //todo: initialize player variable HERE if we're going to do things like freeze the player during dialogue
-
         if (textFile != null) //ensure that the text file actually exists
         {
             textLines = (textFile.text.Split('\n')); //Keegan NTS: weird this is valid syntax- i have never used round brackets () like that?
@@ -57,6 +62,15 @@ public class TextBoxManager : MonoBehaviour
         {
             DisableTextBox();
         }
+
+        if (cueActive)
+        {
+            EnableCue();
+        }
+        else
+        {
+            DisableCue();
+        }
     }
 
     // Update is called once per frame
@@ -68,17 +82,46 @@ public class TextBoxManager : MonoBehaviour
             return;
         }
 
-        boxContent.text = textLines[currentLine];
-
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            currentLine += 1; //the way things work at the moment is just increment through the array
-            if (currentLine > endAtLine)
+
+            if (!isTyping)
             {
-                DisableTextBox();
+                currentLine += 1; //the way things work at the moment is just increment through the array. should sooner or later be replaced with a queue
+                if (currentLine > endAtLine)
+                {
+                    DisableTextBox();
+                }
+                else
+                {
+                    StartCoroutine(TextScroll(textLines[currentLine]));
+                }
+            }
+
+            else if (isTyping && !cancelTyping)
+            {
+                cancelTyping = true;
             }
         }
     }
+
+    private IEnumerator TextScroll (string lineOfText)
+    {
+        int letter = 0;
+        boxContent.text = "";
+        isTyping = true;
+        cancelTyping = false;
+        while (isTyping && !cancelTyping && (letter < lineOfText.Length - 1))
+        {
+            boxContent.text += lineOfText[letter];
+            letter += 1;
+            yield return new WaitForSeconds(typeSpeed);
+        }
+        boxContent.text = lineOfText; //when the update loop breaks the while loop by making cancelTyping false, we want to make sure that the whole text line is displayed
+        isTyping = false;
+        cancelTyping = false;
+    }
+
 
     public void EnableTextBox()
     {
@@ -89,7 +132,7 @@ public class TextBoxManager : MonoBehaviour
         {
             movementManager.StopPlayerMovement();
         }
-
+        StartCoroutine(TextScroll(textLines[currentLine]));
     }
 
     public void DisableTextBox()
@@ -107,5 +150,17 @@ public class TextBoxManager : MonoBehaviour
             textLines = new string[1];
             textLines = (theText.text.Split('\n'));
         }
+    }
+
+    public void EnableCue()
+    {
+        interactivityCue.SetActive(true);
+        cueActive = true;
+    }
+
+    public void DisableCue()
+    {
+        interactivityCue.SetActive(false);
+        cueActive = false;
     }
 }

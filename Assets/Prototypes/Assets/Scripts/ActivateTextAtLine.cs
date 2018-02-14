@@ -20,7 +20,7 @@ public class ActivateTextAtLine : MonoBehaviour {
     //public bool tagTriggersText = true; //I'm thinking of trying to get it to trigger with the collider's name instead of tag. Is this feasible?
 
     private bool textStarted; // If the text box has been activated, player should scroll through it before they get to end.
-    private Player_Movement playerMover;
+    //private Player_Movement playerMover;
 
     // Use this for initialization
     void Start () {
@@ -49,10 +49,12 @@ public class ActivateTextAtLine : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        //Debug.Log("OnTriggerEnter activated by: " + other.tag);
         if (other.CompareTag(activatedByTag))
         {
             if(requireButtonPress)
             {
+                theTextManager.EnableCue();
                 waitForPress = true;
                 return;
             }
@@ -68,8 +70,10 @@ public class ActivateTextAtLine : MonoBehaviour {
     
     void OnTriggerExit(Collider other)
     {
+        //Debug.Log("OnTriggerExit activated by: " + other.tag);
         if (other.CompareTag(activatedByTag))
         {
+            theTextManager.DisableCue();
             waitForPress = false;
         }
     }

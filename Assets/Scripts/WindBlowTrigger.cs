@@ -10,7 +10,6 @@ public class WindBlowTrigger : MonoBehaviour {
     {
         if (collision.transform.CompareTag("Player"))
         {
-            Debug.Log("here");
             _Anim.CrossFadeInFixedTime("Leaves", 0.1f);
         }
     }

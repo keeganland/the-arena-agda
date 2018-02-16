@@ -8,11 +8,10 @@ public class Player_Movement : MonoBehaviour
 
     private NavMeshAgent m_agent;
     public bool m_currentPlayer = false;
-
-    // Use this for initialization
-    void Start()
-    {
-
+    public bool stopMoving = false;
+    
+	// Use this for initialization
+	void Start () {
         m_agent = GetComponent<NavMeshAgent>();
 
     }
@@ -21,9 +20,10 @@ public class Player_Movement : MonoBehaviour
     void Update()
     {
 
-        if (m_currentPlayer == gameObject.GetComponent<Player_switch>()._Switchplayer)
+        if (m_currentPlayer == gameObject.GetComponent<Player_switch>()._Switchplayer && !stopMoving)
         {
 
+            //Debug.Log("stopMoving = " + stopMoving);
             if (Input.GetMouseButtonDown(1))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

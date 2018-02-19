@@ -77,9 +77,7 @@ public class CameraFollow : MonoBehaviour
 
             targets.ForEach(x =>                                                   //hard to explain but basically an if function in a foreach loop... it triggers the movement if one target in not in view
             { if (IsInView(m_cam.gameObject, x.gameObject) == false)                //DOESN'T work if two targets are on screen but one is out of view (it will move no matter what).
-                    transform.position = new Vector3(targets[m_number].position.x,
-                    this.transform.position.y, targets[m_number].position.z);
-                
+                    transform.position = new Vector3(targets[m_number].position.x, this.transform.position.y, targets[m_number].position.z);  
             });
         }
     }

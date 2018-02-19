@@ -33,7 +33,7 @@ public class TextBoxManager : MonoBehaviour
     public MovementManager movementManager;
 
     public bool isActive; //if active, the player may use enter to increment lines and other ways of interacting with the text box. Maybe switch to private
-    public bool cueActive;
+    public bool cueActive = false;
     public bool stopPlayerMovement;
 
     private bool isTyping = false;
@@ -81,6 +81,16 @@ public class TextBoxManager : MonoBehaviour
         {
             return;
         }
+
+        /*
+        if (cueActive)
+        {
+            EnableCue();
+        }
+        else
+        (
+            DisableCue();
+        )*/
 
         if(Input.GetKeyDown(KeyCode.Return))
         {

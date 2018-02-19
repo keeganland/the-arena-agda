@@ -12,8 +12,10 @@ public class ActivateTextAtLine : MonoBehaviour {
     public TextBoxManager theTextManager;
 
     public bool requireButtonPress;
-    public bool waitForPress;
     public bool destroyWhenActivated;
+
+    private bool waitForPress = false;
+    //public bool tagTriggersText = true; //I'm thinking of trying to get it to trigger with the collider's name instead of tag. Is this feasible?
 
     public string activatedByTag;
 

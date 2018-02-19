@@ -68,9 +68,13 @@ public class TextBoxManager : MonoBehaviour
             return;
         }
 
+<<<<<<< HEAD
+        if(Input.GetKeyDown(KeyCode.Return)) //Keegan's NTS: get rid of this garbage, idiot!!!
+=======
         boxContent.text = textLines[currentLine];
 
         if(Input.GetKeyDown(KeyCode.Return))
+>>>>>>> fcd092c27a787f485ab4c4d273777d8a18f63002
         {
             currentLine += 1; //the way things work at the moment is just increment through the array
             if (currentLine > endAtLine)

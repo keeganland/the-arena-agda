@@ -82,7 +82,7 @@ public class TextBoxManager : MonoBehaviour
             return;
         }
 
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Return)) //Keegan's NTS: get rid of this garbage, idiot!!!
         {
 
             if (!isTyping)

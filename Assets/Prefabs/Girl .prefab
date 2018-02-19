@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_currentPlayer: 0
+  stopMoving: 0
 --- !u!135 &135058609531925658
 SphereCollider:
   m_ObjectHideFlags: 1

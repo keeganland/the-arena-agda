@@ -1997,7 +1997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30d0747adcef6649949b686b3dfc0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Switchplayer: 0
+  boyActive: 0
 --- !u!114 &1157349923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2549,7 +2549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30d0747adcef6649949b686b3dfc0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Switchplayer: 0
+  boyActive: 0
 --- !u!114 &1527770592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2847,6 +2847,14 @@ Prefab:
     - target: {fileID: 4465581536315268, guid: c1faf040da6f97e4ca66862eac828702, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052260542716694, guid: c1faf040da6f97e4ca66862eac828702, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1457514420494718, guid: c1faf040da6f97e4ca66862eac828702, type: 2}
+      propertyPath: m_TagString
+      value: NPC
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114158207507477920, guid: c1faf040da6f97e4ca66862eac828702, type: 2}
@@ -3320,6 +3328,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Target: {fileID: 83446348}
   _Agent: {fileID: 83446343}
+--- !u!65 &1946224584
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1946224579}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.92, y: 1.4500004, z: 0.20000005}
+  m_Center: {x: 0.0000009536743, y: 0.0000009536743, z: 0.0000009536743}
 --- !u!1 &1973402766
 GameObject:
   m_ObjectHideFlags: 0

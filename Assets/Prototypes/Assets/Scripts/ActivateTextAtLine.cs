@@ -53,6 +53,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("ActivateTextAtLine's OnTriggerEnter triggered by: " + other.name);
         if (other.CompareTag(activatedByTag))
         {
             /*
@@ -65,6 +66,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 
             if(requireButtonPress)
             {
+                theTextManager.EnableCue();
                 waitForPress = true;
                 return;
             }
@@ -83,8 +85,10 @@ public class ActivateTextAtLine : MonoBehaviour {
     
     void OnTriggerExit(Collider other)
     {
+        Debug.Log("ActivateTextAtLine's OnTriggerEnter triggered by: " + other.name);
         if (other.CompareTag(activatedByTag))
         {
+            theTextManager.DisableCue();
             waitForPress = false;
         }
     }

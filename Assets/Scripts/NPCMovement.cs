@@ -16,6 +16,7 @@ public class NPCMovement : MonoBehaviour {
     private bool m_coroutinestarted;
     private Vector3 m_newpos;
 
+	// Use this for initialization
 	void Start () {
 
         m_agent = GetComponent<NavMeshAgent>();

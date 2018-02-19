@@ -1,3 +1,0 @@
-﻿1>------ Build started: Project: The Wall 2, Configuration: Debug Any CPU ------
-1>C:\Users\patri\Desktop\The Wall\The Wall 2\Assets\Prototypes\Assets\Scripts\TargetManager.cs(11,5,11,17): error CS0246: The type or namespace name 'RangeChecker' could not be found (are you missing a using directive or an assembly reference?)
-========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========

@@ -7,6 +7,9 @@ public class MovementManager : MonoBehaviour {
     public Player_Movement boyMover;
     public Player_Movement girlMover;
 
+    private bool playerIsBoy = false;
+    private bool playerIsGirl = false;
+
 
     // Use this for initialization
     void Start() {
@@ -14,35 +17,30 @@ public class MovementManager : MonoBehaviour {
     
     // Update is called once per frame
     void Update() {
-        //Debug.Log("boyMover.stopMoving = " + boyMover.stopMoving);
-        //Debug.Log("girlMover.stopMoving = " + girlMover.stopMoving);
+        playerIsBoy = (boyMover.isTheBoy && boyMover.boyActive);
+        playerIsGirl = (!(girlMover.isTheBoy) && !(girlMover.boyActive)); //redundant? could just use !playerIsBoy in normal gameplay. Is there any disadvantage to this? does this prevent any bugs?
     }
 
     // Call to stop whichever player happens to be controlled right now.
     public void StopPlayerMovement()
     {
 
-        if (boyMover.m_currentPlayer)
+        if (playerIsBoy)
         {
             boyMover.stopMoving = true;
-            Debug.Log("boyMover.stopMoving set to " + boyMover.stopMoving);
-
+            boyMover.CancelMovement();
         }
-
-        if (girlMover.m_currentPlayer)
+        else if (playerIsGirl)
         {
             girlMover.stopMoving = true;
-            Debug.Log("girlMover.stopMoving set to " + girlMover.stopMoving);
+            girlMover.CancelMovement();
         }
 
-        Debug.Log("boyMover.m_CurrentPlayer = " + boyMover.m_currentPlayer);
-        Debug.Log("girlMover.m_CurrentPlayer = " + girlMover.m_currentPlayer);
 
     }
 
     public void StartPlayerMovement()
     {
-        Debug.Log("the game should now be unfreezing the player");
         boyMover.stopMoving = false;
         girlMover.stopMoving = false;
     }

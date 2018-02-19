@@ -13,13 +13,11 @@ public class ActivateTextAtLine : MonoBehaviour {
 
     public bool requireButtonPress;
     public bool destroyWhenActivated;
-<<<<<<< HEAD
+
     private bool waitForPress = false;
     //public bool tagTriggersText = true; //I'm thinking of trying to get it to trigger with the collider's name instead of tag. Is this feasible?
-=======
 
     public string activatedByTag;
->>>>>>> fcd092c27a787f485ab4c4d273777d8a18f63002
 
     private bool textStarted; // If the text box has been activated, player should scroll through it before they get to end.
     private Player_Movement playerMover;

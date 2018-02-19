@@ -9,14 +9,12 @@ public class SpriteScript : MonoBehaviour {
     public NavMeshAgent _Agent;
 
     private Animator m_anim;
-    private AudioSource m_audio;
-    private bool m_audioPlaying;
 
 	// Use this for initialization
 	void Start () {
 
         m_anim = GetComponent<Animator>();
-        m_audio = GetComponent<AudioSource>();
+
 	}
 
     private void Update()
@@ -43,7 +41,6 @@ public class SpriteScript : MonoBehaviour {
             m_anim.SetInteger("Direction", 0);
         }
 
-        FootSteps();
     }
     // Update is called once per frame
     void LateUpdate () {
@@ -54,18 +51,4 @@ public class SpriteScript : MonoBehaviour {
         transform.position = new Vector3(m_newx, 0, m_newy);
 
 	}
-
-    private void FootSteps()
-    {
-        if (m_anim.GetInteger("Direction")>0 && !m_audioPlaying)
-        {
-            m_audio.Play();
-            m_audioPlaying = true;
-        }
-        else if(m_anim.GetInteger("Direction") == 0)
-        {
-            m_audio.Stop();
-            m_audioPlaying = false;
-        }
-    }
 }

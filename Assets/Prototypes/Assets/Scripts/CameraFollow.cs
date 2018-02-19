@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -73,10 +74,16 @@ public class CameraFollow : MonoBehaviour
                 m_number = 1;
             }
             target = targets[m_number];
-            transform.position = new Vector3(targets[m_number].position.x, this.transform.position.y, targets[m_number].position.z);
-        }
 
+            targets.ForEach(x =>                                                   //hard to explain but basically an if function in a foreach loop... it triggers the movement if one target in not in view
+            { if (IsInView(m_cam.gameObject, x.gameObject) == false)                //DOESN'T work if two targets are on screen but one is out of view (it will move no matter what).
+                    transform.position = new Vector3(targets[m_number].position.x,
+                    this.transform.position.y, targets[m_number].position.z);
+                
+            });
+        }
     }
+
 
     void AutomaticCamera()
     {
@@ -88,7 +95,7 @@ public class CameraFollow : MonoBehaviour
 
                 if (m_isinview == true && !m_currentcameraTargets.Contains(m_potentialcameraTargets[i].gameObject)) //if yes, add then to current targets
                 {
-                    m_currentcameraTargets.Add(m_potentialcameraTargets[i].gameObject);
+                    m_currentcameraTargets.Add(m_potentialcameraTargets[i].gameObject);                
                 }
                 else if (m_isinview == false && m_currentcameraTargets.Contains(m_potentialcameraTargets[i].gameObject)) //if no, remove them from current targets
                 {
@@ -106,6 +113,7 @@ public class CameraFollow : MonoBehaviour
                     if (isFar == true && !m_currentcameraTargetsTooFar.Contains(m_currentcameraTargets[i])) //if at least one of them is too far, add them to the "Far" array
                     {
                         m_currentcameraTargetsTooFar.Add(m_currentcameraTargets[i]);
+
                     }
                     else if(isFar == false && m_currentcameraTargetsTooFar.Contains(m_currentcameraTargets[i])) //if not, remove them from the "Far" array
                     {
@@ -206,7 +214,15 @@ public class CameraFollow : MonoBehaviour
         CameraNewpos.x /= currentTargets.Count;
         CameraNewpos.z /= currentTargets.Count;
 
-        transform.position = Vector3.Lerp(transform.position, CameraNewpos, _Speed * Time.deltaTime);
+        if (m_currentcameraTargets.Count == 0)
+        {
+            Vector3 m_pos = new Vector3(targets[m_number].transform.position.x, this.transform.position.y, targets[m_number].transform.position.z);
+            transform.position = m_pos;
+        }
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, CameraNewpos, _Speed * Time.deltaTime);
+        }
     }
 
     private IEnumerator ChangeFieldofView(float _FieldofViewValue) //Coroutine to zoom in or out

@@ -13,4 +13,8 @@ public class WindBlowTrigger : MonoBehaviour {
             _Anim.CrossFadeInFixedTime("Leaves", 0.1f);
         }
     }
+
+    private void AnimationComplete()
+    {
+    }
 }

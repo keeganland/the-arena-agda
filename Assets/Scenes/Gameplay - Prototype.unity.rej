@@ -1,0 +1,10 @@
+diff a/Assets/Scenes/Gameplay - Prototype.unity b/Assets/Scenes/Gameplay - Prototype.unity	(rejected hunks)
+@@ -42,7 +42,7 @@
+ --- !u!157 &3
+ LightmapSettings:
+   m_ObjectHideFlags: 0
+-  serializedVersion: 9
++  serializedVersion: 11
+   m_GIWorkflowMode: 1
+   m_GISettings:
+     serializedVersion: 2

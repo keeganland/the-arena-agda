@@ -8,10 +8,10 @@ public class SwordAttack : MonoBehaviour {
     public int damage;
 
     // Use this for initialization
-    void Start() {
-    }
+
 
         //if (collision.gameObject == m_target)//need to generate target according to how we attack
+
     public void Damages()
         {
             DamageData dmgData = new DamageData();

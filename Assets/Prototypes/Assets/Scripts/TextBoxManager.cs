@@ -92,6 +92,7 @@ public class TextBoxManager : MonoBehaviour
                 currentLine += 1; //the way things work at the moment is just increment through the array. should sooner or later be replaced with a queue
                 if (currentLine > endAtLine)
                 {
+                    Debug.Log("Time to disable the textbox!");
                     DisableTextBox();
                 }
                 else
@@ -146,8 +147,15 @@ public class TextBoxManager : MonoBehaviour
         textBox.SetActive(false);
         isActive = false;
 
-        movementManager.StartPlayerMovement();
-        theNPCMovementManager.StartNPCMovement();
+        if (movementManager != null)
+        {
+            movementManager.StartPlayerMovement();
+        }
+        if (theNPCMovementManager != null)
+        {
+            theNPCMovementManager.StartNPCMovement();
+            Debug.Log("NPC Movement SHOULD start again...");
+        }
     }
 
     public void ReloadScript(TextAsset theText)

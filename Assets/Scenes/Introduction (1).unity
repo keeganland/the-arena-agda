@@ -1171,7 +1171,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 151927604}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1179,7 +1179,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6ec88b2981cf3be4092a24574dbffb25, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1367,7 +1367,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 173364085}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -7835,7 +7835,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 872458437}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -12379,6 +12379,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1194361041}
+  - component: {fileID: 1194361043}
+  - component: {fileID: 1194361042}
   m_Layer: 0
   m_Name: Ali_Waypoint 1
   m_TagString: Untagged
@@ -12392,13 +12394,45 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1194361040}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 4.66, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1000, z: 1}
   m_Children: []
   m_Father: {fileID: 1614248490}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1194361042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1194361040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84401544bdf582e4583a30d8b13a8dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theText: {fileID: 4900000, guid: 3168db62563efa448badaff52b964e34, type: 3}
+  startLine: 0
+  endLine: 3
+  theTextManager: {fileID: 1255256481}
+  requireButtonPress: 0
+  destroyWhenActivated: 0
+  tagTriggersText: 0
+  activatedByTag: NPC
+  activatedByName: Ali_Agent
+--- !u!65 &1194361043
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1194361040}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1195136726
 GameObject:
   m_ObjectHideFlags: 0
@@ -12628,7 +12662,7 @@ MonoBehaviour:
   isActive: 0
   cueActive: 0
   stopPlayerMovement: 0
-  stopNPCMovement: 0
+  stopNPCMovement: 1
   typeSpeed: 0
 --- !u!4 &1255256482
 Transform:
@@ -12773,7 +12807,9 @@ MonoBehaviour:
   theTextManager: {fileID: 1255256481}
   requireButtonPress: 0
   destroyWhenActivated: 0
+  tagTriggersText: 1
   activatedByTag: NPC
+  activatedByName: 
 --- !u!1 &1272474803
 GameObject:
   m_ObjectHideFlags: 0
@@ -18345,7 +18381,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1610624159}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -18632,7 +18668,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1656378915}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -19422,7 +19458,9 @@ MonoBehaviour:
   theTextManager: {fileID: 1255256481}
   requireButtonPress: 0
   destroyWhenActivated: 0
+  tagTriggersText: 1
   activatedByTag: NPC
+  activatedByName: 
 --- !u!1 &1790620357
 GameObject:
   m_ObjectHideFlags: 0
@@ -19816,7 +19854,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1849291992}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -20071,7 +20109,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 360539914
+  randomSeed: 1996373045
   InitialModule:
     serializedVersion: 3
     enabled: 1

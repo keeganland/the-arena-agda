@@ -30,6 +30,8 @@ public class NPCMovement : MonoBehaviour {
 
         if (stop)
         {
+            //Debug.Log("Stopping!");
+            m_agent.SetDestination(m_agent.transform.position);
             return;
         }
 
@@ -54,10 +56,11 @@ public class NPCMovement : MonoBehaviour {
 
         yield return new WaitForSeconds(_Timers[m_i]);
 
-        if(this.CompareTag("NPC")){
+        if(this.CompareTag("NPCRandomWalker")){
             m_i = Random.Range(0,_Waypoints.Count);
 
         }
+
         else
         {
             m_i += 1;

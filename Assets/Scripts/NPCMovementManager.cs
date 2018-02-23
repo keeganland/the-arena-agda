@@ -13,12 +13,16 @@ public class NPCMovementManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        //Debug.Log(isNPCMovementAllowed());
 		
 	}
 
     public void StartNPCMovement()
     {
         NPCMovementAllowed = true;
+        Debug.Log("StartNPCMovement was called");
+        Debug.Log("NPCMovementAllowed == " + NPCMovementAllowed);
     }
 
     public void StopNPCMovement()

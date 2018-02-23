@@ -191,7 +191,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &99057760
 MeshFilter:
@@ -1952,6 +1952,7 @@ GameObject:
   - component: {fileID: 1157349923}
   - component: {fileID: 1157349926}
   - component: {fileID: 1157349924}
+  - component: {fileID: 1157349925}
   m_Layer: 0
   m_Name: 'Girl '
   m_TagString: Player
@@ -2097,6 +2098,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15735eca183be8a4ea3235ac11629433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1157349925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1157349915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83474762b3006fa4eb4a031e25b414f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags:
+  - Enemy
 --- !u!114 &1157349926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2934,7 +2948,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1457514420494718, guid: c1faf040da6f97e4ca66862eac828702, type: 2}
       propertyPath: m_TagString
-      value: NPC
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 114408544831405156, guid: c1faf040da6f97e4ca66862eac828702,
         type: 2}

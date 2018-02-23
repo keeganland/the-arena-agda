@@ -10,7 +10,7 @@ public class HealthController : MonoBehaviour
     public int currentHealth;
     public GameObject enemy;
 
-    NavMeshAgent agent;
+    NavMeshAgent agent; //Why is this here?
     public bool isTargeted;
 
     MessageHandler m_messageHandler;
@@ -18,7 +18,7 @@ public class HealthController : MonoBehaviour
     private void Start()
     {
         currentHealth = totalHealth;
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>(); //?????
         m_messageHandler = GetComponent<MessageHandler>();
 
         if (m_messageHandler)
@@ -60,8 +60,9 @@ public class HealthController : MonoBehaviour
             }
 
             agent.enabled = false;
-           // transform.position = enemy.GetComponent<enermy_movement>().spawnPoint.position;
+            // transform.position = enemy.GetComponent<enermy_movement>().spawnPoint.position;
 
+            //should probably take this out to avoid respawning enemy immediately
             currentHealth = totalHealth;
             agent.enabled = true;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPCMovementManager : MonoBehaviour {
 
-    public bool NPCMovementAllowed = true;
+    private bool NPCMovementAllowed = true;
 
 	// Use this for initialization
 	void Start () {
@@ -15,4 +15,19 @@ public class NPCMovementManager : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void StartNPCMovement()
+    {
+        NPCMovementAllowed = true;
+    }
+
+    public void StopNPCMovement()
+    {
+        NPCMovementAllowed = false;
+    }
+
+    public bool isNPCMovementAllowed()
+    {
+        return NPCMovementAllowed;
+    }
 }

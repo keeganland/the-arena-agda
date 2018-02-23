@@ -1,0 +1,4 @@
+Ali: Hi, I'm Ali
+Ali: I'm at my first waypoint, and everyone should have stopped moving for the moment
+Ali: No one should start again until you're done reading this dialog
+Ali: And.... go!

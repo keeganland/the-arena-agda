@@ -26,6 +26,7 @@ public class RangeChecker : MonoBehaviour
             return;
 
         m_targets.Add(other.gameObject);
+        Debug.Log("Added " + other.name);
     }
 
     //removes targets that exit the attack range

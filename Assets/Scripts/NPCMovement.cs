@@ -8,6 +8,7 @@ public class NPCMovement : MonoBehaviour {
     public float speed = 1;
     public List<GameObject> _Waypoints;
     public List<float> _Timers;
+    public NPCMovementManager movementMananger; //not sure if I should ultimately use the MovementManager as NPCMovementManager
 
     public bool stop;
 
@@ -25,8 +26,12 @@ public class NPCMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        stop = !movementMananger.isNPCMovementAllowed();
+
         if (stop)
         {
+            //Debug.Log("Stopping!");
+            m_agent.SetDestination(m_agent.transform.position);
             return;
         }
 
@@ -51,10 +56,11 @@ public class NPCMovement : MonoBehaviour {
 
         yield return new WaitForSeconds(_Timers[m_i]);
 
-        if(this.CompareTag("NPC")){
+        if(this.CompareTag("NPCRandomWalker")){
             m_i = Random.Range(0,_Waypoints.Count);
 
         }
+
         else
         {
             m_i += 1;

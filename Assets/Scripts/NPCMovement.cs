@@ -8,6 +8,7 @@ public class NPCMovement : MonoBehaviour {
     public float speed = 1;
     public List<GameObject> _Waypoints;
     public List<float> _Timers;
+    public NPCMovementManager movementMananger;
 
     public bool stop;
 

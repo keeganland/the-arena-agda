@@ -15,9 +15,10 @@ public class ActivateTextAtLine : MonoBehaviour {
     public bool destroyWhenActivated;
 
     private bool waitForPress = false;
-    //public bool tagTriggersText = true; //I'm thinking of trying to get it to trigger with the collider's name instead of tag. Is this feasible?
+    public bool tagTriggersText = true; //I'm thinking of trying to get it to trigger with the collider's name instead of tag. Is this feasible?
 
     public string activatedByTag;
+    public string activatedByName;
 
     private bool textStarted; // If the text box has been activated, player should scroll through it before they get to end.
     private Player_Movement playerMover;
@@ -34,10 +35,7 @@ public class ActivateTextAtLine : MonoBehaviour {
         {
             textStarted = true;
 
-            theTextManager.ReloadScript(theText);
-            theTextManager.currentLine = startLine;
-            theTextManager.endAtLine = endLine;
-            theTextManager.EnableTextBox();
+            this.Activate();
 
             if (destroyWhenActivated)
             {
@@ -54,16 +52,8 @@ public class ActivateTextAtLine : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("ActivateTextAtLine's OnTriggerEnter triggered by: " + other.name);
-        if (other.CompareTag(activatedByTag))
+        if (other.name == activatedByName || (tagTriggersText && other.CompareTag(activatedByTag)))
         {
-            /*
-            if(activatedByTag == "Player")
-            {
-                playerMover = other.GetComponent<Player_Movement>();
-                playerMover.stopMoving = true;
-            }
-            */
-
             if(requireButtonPress)
             {
                 theTextManager.EnableCue();
@@ -71,10 +61,7 @@ public class ActivateTextAtLine : MonoBehaviour {
                 return;
             }
 
-            theTextManager.ReloadScript(theText);
-            theTextManager.currentLine = startLine;
-            theTextManager.endAtLine = endLine;
-            theTextManager.EnableTextBox();
+            this.Activate();
 
             if(destroyWhenActivated)
             {
@@ -91,5 +78,13 @@ public class ActivateTextAtLine : MonoBehaviour {
             theTextManager.DisableCue();
             waitForPress = false;
         }
+    }
+
+    private void Activate()
+    {
+        theTextManager.ReloadScript(theText);
+        theTextManager.currentLine = startLine;
+        theTextManager.endAtLine = endLine;
+        theTextManager.EnableTextBox();
     }
 }

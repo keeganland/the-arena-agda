@@ -30,6 +30,7 @@ public class NPCMovement : MonoBehaviour {
 
         if (stop)
         {
+            //Debug.Log("Stopping!");
             return;
         }
 

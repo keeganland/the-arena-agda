@@ -31,10 +31,12 @@ public class TextBoxManager : MonoBehaviour
     public int endAtLine;
 
     public MovementManager movementManager;
+    public NPCMovementManager theNPCMovementManager;
 
     public bool isActive; //if active, the player may use enter to increment lines and other ways of interacting with the text box. Maybe switch to private
     public bool cueActive = false;
     public bool stopPlayerMovement;
+    public bool stopNPCMovement;
 
     private bool isTyping = false;
     private bool cancelTyping = false;
@@ -77,21 +79,11 @@ public class TextBoxManager : MonoBehaviour
     void Update()
     {
 
-        if(!isActive)
+        if (!isActive)
         {
             return;
         }
-
-        /*
-        if (cueActive)
-        {
-            EnableCue();
-        }
-        else
-        (
-            DisableCue();
-        )*/
-
+        
         if(Input.GetKeyDown(KeyCode.Return))
         {
 
@@ -142,6 +134,10 @@ public class TextBoxManager : MonoBehaviour
         {
             movementManager.StopPlayerMovement();
         }
+        if (stopNPCMovement)
+        {
+            theNPCMovementManager.StopNPCMovement();
+        }
         StartCoroutine(TextScroll(textLines[currentLine]));
     }
 
@@ -151,6 +147,7 @@ public class TextBoxManager : MonoBehaviour
         isActive = false;
 
         movementManager.StartPlayerMovement();
+        theNPCMovementManager.StartNPCMovement();
     }
 
     public void ReloadScript(TextAsset theText)

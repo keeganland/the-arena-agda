@@ -8,6 +8,7 @@ public class NPCMovement : MonoBehaviour {
     public float speed = 1;
     public List<GameObject> _Waypoints;
     public List<float> _Timers;
+    public NPCMovementManager movementMananger; //not sure if I should ultimately use the MovementManager as NPCMovementManager
 
     public bool stop;
 
@@ -24,6 +25,8 @@ public class NPCMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        stop = !movementMananger.isNPCMovementAllowed();
 
         if (stop)
         {

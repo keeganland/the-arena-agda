@@ -44,12 +44,13 @@ public class Player_Movement : MonoBehaviour {
                     if(hit.collider.tag == "Enemy")
                     {
                         curTarget = hit.collider.gameObject;
-                        Debug.Log("Target is" + curTarget.name);
+                        Debug.Log("Target is " + curTarget.name);
                         //need to pass this information somewhere to do something with it
 
                         //this should chase enemy if enemy is not currently in range
                         if (this.GetComponent<RangeChecker>().InRange(curTarget) == false)
                         {
+                            //Debug.Log("in range: " + curTarget.name);
                             m_agent.SetDestination(hit.point);
                             //OnTriggerEnter should stop character once target is within range
                         }
@@ -83,9 +84,9 @@ public class Player_Movement : MonoBehaviour {
     //commented out to try to avoid errors for now, will implement later *Patric
     private void OnTriggerEnter(Collider other)
     {
-        if (other == curTarget)
+        if (other == curTarget.GetComponent<Collider>())
         {
-            Debug.Log("Target in Range" + curTarget.name);
+            //Debug.Log("Target in Range " + curTarget.name);
             CancelMovement();
             //Pass attack function here?
         }
@@ -95,11 +96,11 @@ public class Player_Movement : MonoBehaviour {
     private void OnTriggerExit(Collider other)
     {
         //Debug.Log("TriggerExit" + other.name);
-        if(other == curTarget)
+        if(other == curTarget.GetComponent<Collider>())
         {
             //will have player chase target once target leaves attack range trigger
             m_agent.SetDestination(curTarget.transform.position);
-            Debug.Log("Target out of range " + curTarget.name);
+            //Debug.Log("Target out of range " + curTarget.name);
 
         }
     }

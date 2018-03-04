@@ -9,7 +9,7 @@ public class Player_Movement : MonoBehaviour {
     public bool isTheBoy = false;
     public bool stopMoving = false;
     public bool boyActive = false;
-    public GameObject curTarget;
+    public GameObject curTarget; //Need this to be public but don't want to have to manually assign it. How can I manage this?
     
 	// Use this for initialization
 	void Start () {

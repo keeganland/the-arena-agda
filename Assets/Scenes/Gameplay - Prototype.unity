@@ -1187,9 +1187,11 @@ MonoBehaviour:
   currentLine: 0
   endAtLine: 3
   movementManager: {fileID: 1261543226}
+  theNPCMovementManager: {fileID: 0}
   isActive: 0
   cueActive: 0
   stopPlayerMovement: 1
+  stopNPCMovement: 0
   typeSpeed: 0
 --- !u!4 &657219891
 Transform:
@@ -1954,6 +1956,7 @@ GameObject:
   - component: {fileID: 1157349926}
   - component: {fileID: 1157349924}
   - component: {fileID: 1157349925}
+  - component: {fileID: 1157349927}
   m_Layer: 0
   m_Name: 'Girl '
   m_TagString: Player
@@ -2088,6 +2091,7 @@ MonoBehaviour:
   isTheBoy: 0
   stopMoving: 0
   boyActive: 0
+  curTarget: {fileID: 0}
 --- !u!114 &1157349924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2125,6 +2129,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageToGiveRange: 2
   enterExit: 0
+--- !u!114 &1157349927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1157349915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20677a3efa872244aa6dccdf3ce2355e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages: 000000000100000002000000
 --- !u!1 &1199692046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2366,7 +2382,9 @@ MonoBehaviour:
   theTextManager: {fileID: 657219890}
   requireButtonPress: 0
   destroyWhenActivated: 1
+  tagTriggersText: 1
   activatedByTag: Player
+  activatedByName: 
 --- !u!1 &1379570824
 GameObject:
   m_ObjectHideFlags: 0
@@ -2518,6 +2536,7 @@ GameObject:
   - component: {fileID: 1527770594}
   - component: {fileID: 1527770595}
   - component: {fileID: 1527770593}
+  - component: {fileID: 1527770596}
   m_Layer: 0
   m_Name: Boy
   m_TagString: Player
@@ -2653,6 +2672,7 @@ MonoBehaviour:
   isTheBoy: 1
   stopMoving: 0
   boyActive: 0
+  curTarget: {fileID: 0}
 --- !u!114 &1527770593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2689,6 +2709,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1527770596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1527770584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20677a3efa872244aa6dccdf3ce2355e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages: 000000000100000002000000
 --- !u!1 &1571198717
 GameObject:
   m_ObjectHideFlags: 0
@@ -3039,7 +3071,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1818955581}
   - component: {fileID: 1818955582}
-  - component: {fileID: 1818955583}
   - component: {fileID: 1818955584}
   m_Layer: 0
   m_Name: sword_01
@@ -3103,19 +3134,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &1818955583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1818955580}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4774106dfc4972344aaa8611c9c637ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageToGiveRange: 2
-  enterExit: 0
 --- !u!65 &1818955584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3575,7 +3593,9 @@ MonoBehaviour:
   theTextManager: {fileID: 657219890}
   requireButtonPress: 0
   destroyWhenActivated: 1
+  tagTriggersText: 1
   activatedByTag: NPC
+  activatedByName: 
 --- !u!65 &1989683117
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3811,7 +3831,9 @@ MonoBehaviour:
   theTextManager: {fileID: 657219890}
   requireButtonPress: 1
   destroyWhenActivated: 0
+  tagTriggersText: 1
   activatedByTag: Player
+  activatedByName: 
 --- !u!65 &2146381509
 BoxCollider:
   m_ObjectHideFlags: 0

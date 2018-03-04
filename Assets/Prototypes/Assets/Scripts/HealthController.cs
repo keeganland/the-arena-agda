@@ -46,6 +46,7 @@ public class HealthController : MonoBehaviour
     {
         currentHealth -= damage;
 
+        //Will need to change this if statement, pretty sure I need to remove the spawn part
         if (currentHealth <= 0f && GameObject.Find("Cube-Spawn").GetComponent<HealthController>().currentHealth > 0)
         {
             currentHealth = 0;

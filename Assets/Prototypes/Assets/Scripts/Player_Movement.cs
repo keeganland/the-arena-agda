@@ -9,7 +9,7 @@ public class Player_Movement : MonoBehaviour {
     public bool isTheBoy = false;
     public bool stopMoving = false;
     public bool boyActive = false;
-    private GameObject curTarget;
+    public GameObject curTarget;
     
 	// Use this for initialization
 	void Start () {
@@ -81,7 +81,7 @@ public class Player_Movement : MonoBehaviour {
         m_agent.SetDestination(m_agent.transform.position);
     }
 
-    //commented out to try to avoid errors for now, will implement later *Patric
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other == curTarget.GetComponent<Collider>())

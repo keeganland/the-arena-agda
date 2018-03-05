@@ -24,7 +24,8 @@ public class TextBoxManager : MonoBehaviour
 
     //these exist for the management of the external .txt file
     public TextAsset textFile;
-    public string[] textLines; //Keegan NTS: wait why not just use a queue for this hm
+	public string[] textLines;
+	public Queue<string> textQueue;
 
     //these refer to particular lines in the text file because we're using a string array for some dumb reason
     public int currentLine;
@@ -46,10 +47,26 @@ public class TextBoxManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
+		/**
+		 * Keegan NTS: Initialize the script. Lots of redundancy with the Reload method. Revisit plz
+		 */
+
+		textQueue = new Queue<string> ();
+
+		//to be replaced with something that parses XML
         if (textFile != null) //ensure that the text file actually exists
         {
-            textLines = (textFile.text.Split('\n')); //Keegan NTS: weird this is valid syntax- i have never used round brackets () like that?
+            textLines = (textFile.text.Split('\n')); //Keegan NTS: weird that this is valid syntax- i have never used round brackets () like that?
         }
+			
+		for (int i = 0; i < textLines.Length; i++) {
+			textQueue.Enqueue(textLines[i]);
+		}
+		/**
+		 * Done
+		 */
+
 
         if (endAtLine == 0)
         {
@@ -90,14 +107,15 @@ public class TextBoxManager : MonoBehaviour
             if (!isTyping)
             {
                 currentLine += 1; //the way things work at the moment is just increment through the array. should sooner or later be replaced with a queue
-                if (currentLine > endAtLine)
+                //if (currentLine > endAtLine)
+				if((textQueue.Count == 0) || (currentLine > endAtLine))
                 {
-                    Debug.Log("Time to disable the textbox!");
                     DisableTextBox();
                 }
                 else
                 {
-                    StartCoroutine(TextScroll(textLines[currentLine]));
+                    //StartCoroutine(TextScroll(textLines[currentLine]));
+					StartCoroutine(TextScroll(textQueue.Dequeue()));
                 }
             }
 
@@ -139,7 +157,9 @@ public class TextBoxManager : MonoBehaviour
         {
             theNPCMovementManager.StopNPCMovement();
         }
-        StartCoroutine(TextScroll(textLines[currentLine]));
+ 
+		//StartCoroutine(TextScroll(textLines[currentLine]));
+		StartCoroutine(TextScroll(textQueue.Dequeue()));
     }
 
     public void DisableTextBox()
@@ -165,7 +185,13 @@ public class TextBoxManager : MonoBehaviour
             textLines = new string[1];
             textLines = (theText.text.Split('\n'));
         }
-    }
+
+		textQueue.Clear();
+		for (int i = 0; i < textLines.Length; i++) 
+		{
+			textQueue.Enqueue(textLines[i]);
+		}	
+	}
 
     public void EnableCue()
     {

@@ -13,7 +13,6 @@ using UnityEngine;
 using UnityEngine.UI; //Need this for UI object types (such as Text) from Unity 5+
 
 public class TextImporter : MonoBehaviour {
-    //As of yet most of these are unused.
 
     public GameObject textBox;
 

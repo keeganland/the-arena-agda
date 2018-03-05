@@ -21,9 +21,11 @@ public class TextBoxManager : MonoBehaviour
     public GameObject textBox;
     public GameObject interactivityCue;
     public Text boxContent;
+	public Text NPCNameBox;
 
     //these exist for the management of the external .txt file
     public TextAsset textFile;
+	public string NPCName;
 	public string[] textLines;
 	public Queue<string> textQueue;
 
@@ -147,6 +149,7 @@ public class TextBoxManager : MonoBehaviour
     public void EnableTextBox()
     {
         textBox.SetActive(true);
+		NPCNameBox.text = NPCName;
         isActive = true;
 
         if (stopPlayerMovement)
@@ -191,6 +194,11 @@ public class TextBoxManager : MonoBehaviour
 		{
 			textQueue.Enqueue(textLines[i]);
 		}	
+	}
+
+	public void SetNPCName(string newName)
+	{
+		NPCName = newName;
 	}
 
     public void EnableCue()

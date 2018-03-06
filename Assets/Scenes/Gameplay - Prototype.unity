@@ -968,6 +968,7 @@ GameObject:
   - component: {fileID: 541421584}
   - component: {fileID: 541421585}
   - component: {fileID: 541421586}
+  - component: {fileID: 541421587}
   m_Layer: 0
   m_Name: Ennemy
   m_TagString: Enemy
@@ -1124,6 +1125,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15735eca183be8a4ea3235ac11629433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &541421587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541421577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20677a3efa872244aa6dccdf3ce2355e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages: 0000000002000000
 --- !u!1 &567286974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,7 +1195,9 @@ MonoBehaviour:
   textBox: {fileID: 337486078}
   interactivityCue: {fileID: 2007499883}
   boxContent: {fileID: 1107638620}
+  NPCNameBox: {fileID: 0}
   textFile: {fileID: 4900000, guid: 4b254365abf4b1e4ebd01c770c027b91, type: 3}
+  NPCName: 
   textLines: []
   currentLine: 0
   endAtLine: 3
@@ -1957,6 +1972,7 @@ GameObject:
   - component: {fileID: 1157349924}
   - component: {fileID: 1157349925}
   - component: {fileID: 1157349927}
+  - component: {fileID: 1157349928}
   m_Layer: 0
   m_Name: 'Girl '
   m_TagString: Player
@@ -2141,6 +2157,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages: 000000000100000002000000
+--- !u!114 &1157349928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1157349915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14379e63c8ef1f4ca8eed0adb1ee835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 2
+  AttackSpeed: 2
+  target: {fileID: 0}
 --- !u!1 &1199692046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2376,6 +2406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84401544bdf582e4583a30d8b13a8dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NPCName: 
   theText: {fileID: 4900000, guid: 93d6b5fea51d5dc468e977c24f7d1f13, type: 3}
   startLine: 0
   endLine: 1
@@ -3469,6 +3500,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Target: {fileID: 83446348}
   _Agent: {fileID: 83446343}
+--- !u!114 &1946224582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1946224579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20677a3efa872244aa6dccdf3ce2355e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages: 000000000100000002000000
 --- !u!65 &1946224584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3587,6 +3630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84401544bdf582e4583a30d8b13a8dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NPCName: 
   theText: {fileID: 4900000, guid: 706aaaf352d490f4eb8d0516c3a17586, type: 3}
   startLine: 0
   endLine: 3
@@ -3825,6 +3869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84401544bdf582e4583a30d8b13a8dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NPCName: 
   theText: {fileID: 4900000, guid: 3a5d05e62fb54f84ea38784d4f9f3d32, type: 3}
   startLine: 0
   endLine: 1

@@ -44,7 +44,7 @@ public class Player_Movement : MonoBehaviour {
                     if(hit.collider.tag == "Enemy")
                     {
                         curTarget = hit.collider.gameObject;
-                        Debug.Log("Target is " + curTarget.name);
+                        //Debug.Log("Target is " + curTarget.name);
                         //need to pass this information somewhere to do something with it
 
                         //this should chase enemy if enemy is not currently in range

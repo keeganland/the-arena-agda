@@ -9,7 +9,7 @@ public class Player_Movement : MonoBehaviour {
     public bool isTheBoy = false;
     public bool stopMoving = false;
     public bool boyActive = false;
-    public GameObject curTarget; //Need this to be public but don't want to have to manually assign it. How can I manage this?
+    private GameObject curTarget; //Need this to be public but don't want to have to manually assign it. How can I manage this?
     
 	// Use this for initialization
 	void Start () {
@@ -44,6 +44,7 @@ public class Player_Movement : MonoBehaviour {
                     if(hit.collider.tag == "Enemy")
                     {
                         curTarget = hit.collider.gameObject;
+                        this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
                         //Debug.Log("Target is " + curTarget.name);
                         //need to pass this information somewhere to do something with it
 

@@ -40,6 +40,7 @@ public class Player_Movement : MonoBehaviour {
                     if (hit.collider.tag == "Ground")
                     {
                         m_agent.SetDestination(hit.point);
+                        curTarget = null;
                     }
                     if(hit.collider.tag == "Enemy")
                     {

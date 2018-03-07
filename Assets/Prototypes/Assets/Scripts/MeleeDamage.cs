@@ -16,10 +16,9 @@ public class MeleeDamage : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //This script doesn't seem to be working... Why not.................?
-        Debug.Log("MeleeDamage: Damage Target" + m_target.name);
+        //Debug.Log("MeleeDamage: Damage Target" + m_target.name);
         AttackTimer += Time.deltaTime; //including this although I'm not sure I have to. Should the animation Timer do this for me?
-        if(AttackTimer >= AttackSpeed && (this.GetComponent<RangeChecker>().InRange(m_target)))
+        if(AttackTimer >= AttackSpeed && (this.GetComponent<RangeChecker>().InRange(m_target)) && m_target!=null)
         {
             DamageData dmgData = new DamageData();
             dmgData.damage = Damage;

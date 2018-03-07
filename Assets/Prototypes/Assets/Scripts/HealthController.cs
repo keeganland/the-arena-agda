@@ -60,10 +60,12 @@ public class HealthController : MonoBehaviour
                 m_messageHandler.GiveMessage(MessageTypes.DIED, gameObject, deathData);
             }
 
-            agent.enabled = false;
+            Destroy(this.gameObject);//This works
+
+            //agent.enabled = false; //this is from the original script. Don't think it's remotely related
             // transform.position = enemy.GetComponent<enermy_movement>().spawnPoint.position;
 
-            //should probably take this out to avoid respawning enemy immediately
+            //Think this is related to respawn?
             /*currentHealth = totalHealth;
             agent.enabled = true;*/
 

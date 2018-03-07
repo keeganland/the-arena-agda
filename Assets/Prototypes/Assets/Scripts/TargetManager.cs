@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class TargetManager : MonoBehaviour
 {
+    public enum TargetOptions { WEAKEST, STRONGEST, NEAREST, FARTHEST, RANDOM }
+    public TargetOptions targetOption = TargetOptions.NEAREST;
 
-
-    //TrackingSystem m_tracker;
-    //ShootingSystem m_shooter;
     RangeChecker m_range;
 
     //set this up to get rid of error. would like to pass this into targetmanager instead
-    public GameObject curTarget=null;
+    private GameObject curTarget = null;
 
     // Use this for initialization
     void Start()
     {
-        //m_tracker = GetComponent<TrackingSystem>();
-        //m_shooter = GetComponent<ShootingSystem>();
         m_range = GetComponent<RangeChecker>();
     }
 
@@ -28,30 +25,111 @@ public class TargetManager : MonoBehaviour
         if (/*!m_tracker || !m_shooter ||*/ !m_range)
             return;
 
-        Target(curTarget);
+        switch (targetOption)
+        {
+            case TargetOptions.FARTHEST:
+                curTarget = TargetFarthest();
+                this.GetComponent<EnemyMovement>().TargetSet(curTarget);
+                break;
+            case TargetOptions.NEAREST:
+                curTarget = TargetNearest();
+                this.GetComponent<EnemyMovement>().TargetSet(curTarget);
+                break;
+            case TargetOptions.RANDOM:
+                curTarget = TargetRandom(curTarget);
+                this.GetComponent<EnemyMovement>().TargetSet(curTarget);
+                break;
+            case TargetOptions.STRONGEST:
+                curTarget = TargetStrongest();
+                this.GetComponent<EnemyMovement>().TargetSet(curTarget);
+                break;
+            case TargetOptions.WEAKEST:
+                curTarget = TargetWeakest();
+                this.GetComponent<EnemyMovement>().TargetSet(curTarget);
+                break;
+        }
     }
-    public GameObject Target(GameObject curTarget)
+    private GameObject TargetFarthest()
     {
-        //getting list of targets
         List<GameObject> validTargets = m_range.GetValidTargets();
 
-        //return curTarget as target if within range
-        //why did I do this? Is this to check if it's within range?
-        for (int i = 0; i < validTargets.Count; i++)
+        GameObject curTarget = null;
+        float farthestDistance = 0.0f;
+
+        for(int i = 0; i < validTargets.Count; i++)
         {
-            if (curTarget == validTargets[i])
+            float dist = Vector3.Distance(transform.position, validTargets[i].transform.position);
+            if(!curTarget || dist > farthestDistance)
             {
-                return curTarget;
+                curTarget = validTargets[i];
+                farthestDistance = dist;
             }
         }
-        //returned null to provide output for all inputs
-        return null;
+        return curTarget;
+    }
+    private GameObject TargetNearest()
+    {
+        List<GameObject> validTargets = m_range.GetValidTargets();
+
+        GameObject curTarget = null;
+        float closestDistance = 0.0f;
+
+        for (int i = 0; i < validTargets.Count; i++)
+        {
+            float dist = Vector3.Distance(transform.position, validTargets[i].transform.position);
+            if (!curTarget || dist < closestDistance)
+            {
+                curTarget = validTargets[i];
+                closestDistance = dist;
+            }
+        }
+        return curTarget;
+    }
+    private GameObject TargetRandom(GameObject go)
+    {
+        if (go = null)
+        {
+            List<GameObject> validTargets = m_range.GetValidTargets();
+            int num = Random.Range(0, validTargets.Count);
+            GameObject curTarget = validTargets[num];
+        }
+        return curTarget;
+    }
+    private GameObject TargetStrongest()
+    {
+        List<GameObject> validTargets = m_range.GetValidTargets();
+
+        GameObject curTarget = null;
+        int highestHealth = 0;
+
+        for(int i = 0; i < validTargets.Count; i++)
+        {
+            int hp = validTargets[i].GetComponent<HealthController>().totalHealth;
+            if(!curTarget || hp > highestHealth)
+            {
+                highestHealth = hp;
+                curTarget = validTargets[i];
+            }
+        }
+        return curTarget;
+    }
+    private GameObject TargetWeakest()
+    {
+        List<GameObject> validTargets = m_range.GetValidTargets();
+
+        GameObject curTarget = null;
+        int lowestHealth = 0;
+
+        for (int i = 0; i < validTargets.Count; i++)
+        {
+            int hp = validTargets[i].GetComponent<HealthController>().totalHealth;
+            if (!curTarget || hp < lowestHealth)
+            {
+                lowestHealth = hp;
+                curTarget = validTargets[i];
+            }
+        }
+        return curTarget;
     }
 }
-
-
-        
-
-        //m_tracker.SetTarget(curTarget);
-        /*m_shooter.SetTarget(curTarget);*/
         

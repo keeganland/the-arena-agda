@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.844, b: 0.078510895, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -542,7 +542,7 @@ MonoBehaviour:
   - {fileID: 1157349921}
   - {fileID: 1527770590}
   _Speed: 1
-  target: {fileID: 1157349921}
+  target: {fileID: 0}
   _FieldOfViewMin: 9
   _FieldOfViewMax: 12
   m_number: 0
@@ -965,10 +965,11 @@ GameObject:
   - component: {fileID: 541421579}
   - component: {fileID: 541421578}
   - component: {fileID: 541421583}
-  - component: {fileID: 541421584}
   - component: {fileID: 541421585}
   - component: {fileID: 541421586}
   - component: {fileID: 541421587}
+  - component: {fileID: 541421588}
+  - component: {fileID: 541421584}
   m_Layer: 0
   m_Name: Ennemy
   m_TagString: Enemy
@@ -1094,11 +1095,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 541421577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe35863a0c82fb64099b9c58f6429622, type: 3}
+  m_Script: {fileID: 11500000, guid: ac70f7a93cfe5294cad0fb0476fc34bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BossMaxHealth: 100
-  BossCurrentHealth: 0
+  totalHealth: 100
+  currentHealth: 0
+  enemy: {fileID: 0}
+  isTargeted: 0
 --- !u!208 &541421585
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1137,6 +1140,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages: 0000000002000000
+--- !u!114 &541421588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541421577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31800219e0acb5345ae6b67a729ca56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1871238895}
 --- !u!1 &567286974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,7 +1603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.553}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1968,11 +1983,12 @@ GameObject:
   - component: {fileID: 1157349916}
   - component: {fileID: 1157349922}
   - component: {fileID: 1157349923}
-  - component: {fileID: 1157349926}
   - component: {fileID: 1157349924}
   - component: {fileID: 1157349925}
   - component: {fileID: 1157349927}
   - component: {fileID: 1157349928}
+  - component: {fileID: 1157349929}
+  - component: {fileID: 1157349926}
   m_Layer: 0
   m_Name: 'Girl '
   m_TagString: Player
@@ -2107,7 +2123,6 @@ MonoBehaviour:
   isTheBoy: 0
   stopMoving: 0
   boyActive: 0
-  curTarget: {fileID: 0}
 --- !u!114 &1157349924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2140,11 +2155,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1157349915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4774106dfc4972344aaa8611c9c637ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 31800219e0acb5345ae6b67a729ca56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageToGiveRange: 2
-  enterExit: 0
+  slider: {fileID: 0}
 --- !u!114 &1157349927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2168,9 +2182,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14379e63c8ef1f4ca8eed0adb1ee835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 2
+  Damage: 10
   AttackSpeed: 2
-  target: {fileID: 0}
+--- !u!114 &1157349929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1157349915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac70f7a93cfe5294cad0fb0476fc34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalHealth: 100
+  currentHealth: 0
+  enemy: {fileID: 0}
+  isTargeted: 0
 --- !u!1 &1199692046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2703,7 +2731,6 @@ MonoBehaviour:
   isTheBoy: 1
   stopMoving: 0
   boyActive: 0
-  curTarget: {fileID: 0}
 --- !u!114 &1527770593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3341,7 +3368,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 209274841}
   m_HandleRect: {fileID: 0}
-  m_Direction: 1
+  m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0

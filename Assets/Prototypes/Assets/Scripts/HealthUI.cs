@@ -15,6 +15,8 @@ public class HealthUI : MonoBehaviour
         {
             msgHandler.RegisterDelegate(RecieveMessage);
         }
+
+        UpdateUi(1, 1);
     }
 
  
@@ -33,7 +35,7 @@ public class HealthUI : MonoBehaviour
         }
     }
 
-    void UpdateUi(int maxHealth, int curHealth)
+    public void UpdateUi(int maxHealth, int curHealth)
     {
         slider.value = (1.0f / maxHealth) * curHealth;
     }

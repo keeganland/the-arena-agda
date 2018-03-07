@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ActivateTextAtLine : MonoBehaviour {
 
+	public string NPCName;
     public TextAsset theText;
 
     public int startLine;
@@ -82,6 +83,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 
     private void Activate()
     {
+		theTextManager.SetNPCName (NPCName);
         theTextManager.ReloadScript(theText);
         theTextManager.currentLine = startLine;
         theTextManager.endAtLine = endLine;

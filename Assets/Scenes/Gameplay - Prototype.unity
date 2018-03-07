@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.844, b: 0.078510895, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -542,7 +542,7 @@ MonoBehaviour:
   - {fileID: 1157349921}
   - {fileID: 1527770590}
   _Speed: 1
-  target: {fileID: 1157349921}
+  target: {fileID: 0}
   _FieldOfViewMin: 9
   _FieldOfViewMax: 12
   m_number: 0
@@ -568,9 +568,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 231951968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.3, y: 0, z: -5.2}
+  m_LocalPosition: {x: -10.3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1989683115}
   m_Father: {fileID: 1779850714}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -964,9 +965,11 @@ GameObject:
   - component: {fileID: 541421579}
   - component: {fileID: 541421578}
   - component: {fileID: 541421583}
-  - component: {fileID: 541421584}
   - component: {fileID: 541421585}
   - component: {fileID: 541421586}
+  - component: {fileID: 541421587}
+  - component: {fileID: 541421588}
+  - component: {fileID: 541421584}
   m_Layer: 0
   m_Name: Ennemy
   m_TagString: Enemy
@@ -1092,11 +1095,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 541421577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe35863a0c82fb64099b9c58f6429622, type: 3}
+  m_Script: {fileID: 11500000, guid: ac70f7a93cfe5294cad0fb0476fc34bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BossMaxHealth: 100
-  BossCurrentHealth: 0
+  totalHealth: 100
+  currentHealth: 0
+  enemy: {fileID: 0}
+  isTargeted: 0
 --- !u!208 &541421585
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1123,6 +1128,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15735eca183be8a4ea3235ac11629433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &541421587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541421577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20677a3efa872244aa6dccdf3ce2355e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages: 0000000002000000
+--- !u!114 &541421588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541421577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31800219e0acb5345ae6b67a729ca56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1871238895}
 --- !u!1 &567286974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,14 +1210,18 @@ MonoBehaviour:
   textBox: {fileID: 337486078}
   interactivityCue: {fileID: 2007499883}
   boxContent: {fileID: 1107638620}
+  NPCNameBox: {fileID: 0}
   textFile: {fileID: 4900000, guid: 4b254365abf4b1e4ebd01c770c027b91, type: 3}
+  NPCName: 
   textLines: []
   currentLine: 0
   endAtLine: 3
   movementManager: {fileID: 1261543226}
+  theNPCMovementManager: {fileID: 0}
   isActive: 0
   cueActive: 0
   stopPlayerMovement: 1
+  stopNPCMovement: 0
   typeSpeed: 0
 --- !u!4 &657219891
 Transform:
@@ -1570,7 +1603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.553}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1950,9 +1983,12 @@ GameObject:
   - component: {fileID: 1157349916}
   - component: {fileID: 1157349922}
   - component: {fileID: 1157349923}
-  - component: {fileID: 1157349926}
   - component: {fileID: 1157349924}
   - component: {fileID: 1157349925}
+  - component: {fileID: 1157349927}
+  - component: {fileID: 1157349928}
+  - component: {fileID: 1157349929}
+  - component: {fileID: 1157349926}
   m_Layer: 0
   m_Name: 'Girl '
   m_TagString: Player
@@ -2119,11 +2155,50 @@ MonoBehaviour:
   m_GameObject: {fileID: 1157349915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4774106dfc4972344aaa8611c9c637ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 31800219e0acb5345ae6b67a729ca56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageToGiveRange: 2
-  enterExit: 0
+  slider: {fileID: 0}
+--- !u!114 &1157349927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1157349915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20677a3efa872244aa6dccdf3ce2355e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages: 000000000100000002000000
+--- !u!114 &1157349928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1157349915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14379e63c8ef1f4ca8eed0adb1ee835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 10
+  AttackSpeed: 2
+--- !u!114 &1157349929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1157349915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac70f7a93cfe5294cad0fb0476fc34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalHealth: 100
+  currentHealth: 0
+  enemy: {fileID: 0}
+  isTargeted: 0
 --- !u!1 &1199692046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2359,13 +2434,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84401544bdf582e4583a30d8b13a8dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NPCName: 
   theText: {fileID: 4900000, guid: 93d6b5fea51d5dc468e977c24f7d1f13, type: 3}
   startLine: 0
   endLine: 1
   theTextManager: {fileID: 657219890}
   requireButtonPress: 0
   destroyWhenActivated: 1
+  tagTriggersText: 1
   activatedByTag: Player
+  activatedByName: 
 --- !u!1 &1379570824
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,6 +2595,7 @@ GameObject:
   - component: {fileID: 1527770594}
   - component: {fileID: 1527770595}
   - component: {fileID: 1527770593}
+  - component: {fileID: 1527770596}
   m_Layer: 0
   m_Name: Boy
   m_TagString: Player
@@ -2688,6 +2767,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1527770596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1527770584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20677a3efa872244aa6dccdf3ce2355e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages: 000000000100000002000000
 --- !u!1 &1571198717
 GameObject:
   m_ObjectHideFlags: 0
@@ -3038,7 +3129,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1818955581}
   - component: {fileID: 1818955582}
-  - component: {fileID: 1818955583}
   - component: {fileID: 1818955584}
   m_Layer: 0
   m_Name: sword_01
@@ -3102,19 +3192,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &1818955583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1818955580}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4774106dfc4972344aaa8611c9c637ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageToGiveRange: 2
-  enterExit: 0
 --- !u!65 &1818955584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3291,7 +3368,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 209274841}
   m_HandleRect: {fileID: 0}
-  m_Direction: 1
+  m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
@@ -3450,6 +3527,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Target: {fileID: 83446348}
   _Agent: {fileID: 83446343}
+--- !u!114 &1946224582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1946224579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20677a3efa872244aa6dccdf3ce2355e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages: 000000000100000002000000
 --- !u!65 &1946224584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3527,6 +3616,69 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 61.690002, y: 0, z: 0}
+--- !u!1 &1989683114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1989683115}
+  - component: {fileID: 1989683117}
+  - component: {fileID: 1989683116}
+  m_Layer: 0
+  m_Name: NPCShoutZone1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1989683115
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1989683114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 231951969}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1989683116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1989683114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84401544bdf582e4583a30d8b13a8dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCName: 
+  theText: {fileID: 4900000, guid: 706aaaf352d490f4eb8d0516c3a17586, type: 3}
+  startLine: 0
+  endLine: 3
+  theTextManager: {fileID: 657219890}
+  requireButtonPress: 0
+  destroyWhenActivated: 1
+  tagTriggersText: 1
+  activatedByTag: NPC
+  activatedByName: 
+--- !u!65 &1989683117
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1989683114}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1000, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1993920196 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4634301004684150, guid: 01d36d0a53eea7d4195de850d0b68eca,
@@ -3683,6 +3835,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCoroutineStarted: 0
+--- !u!1 &2139741990 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1867800592429050, guid: c1faf040da6f97e4ca66862eac828702,
+    type: 2}
+  m_PrefabInternal: {fileID: 1772920046}
+--- !u!54 &2139741995
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2139741990}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2146381506
 GameObject:
   m_ObjectHideFlags: 0
@@ -3724,13 +3896,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84401544bdf582e4583a30d8b13a8dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NPCName: 
   theText: {fileID: 4900000, guid: 3a5d05e62fb54f84ea38784d4f9f3d32, type: 3}
   startLine: 0
   endLine: 1
   theTextManager: {fileID: 657219890}
   requireButtonPress: 1
   destroyWhenActivated: 0
+  tagTriggersText: 1
   activatedByTag: Player
+  activatedByName: 
 --- !u!65 &2146381509
 BoxCollider:
   m_ObjectHideFlags: 0

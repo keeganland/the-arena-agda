@@ -46,7 +46,8 @@ public class HealthController : MonoBehaviour
     {
         currentHealth -= damage;
 
-        if (currentHealth <= 0f && GameObject.Find("Cube-Spawn").GetComponent<HealthController>().currentHealth > 0)
+        //Will need to change this if statement, pretty sure I need to remove the spawn part
+        if (currentHealth <= 0f /*&& GameObject.Find("Cube-Spawn").GetComponent<HealthController>().currentHealth > 0*/)
         {
             currentHealth = 0;
 
@@ -59,17 +60,23 @@ public class HealthController : MonoBehaviour
                 m_messageHandler.GiveMessage(MessageTypes.DIED, gameObject, deathData);
             }
 
-            agent.enabled = false;
+            Destroy(this.gameObject);//This works
+
+            //agent.enabled = false; //this is from the original script. Don't think it's remotely related
             // transform.position = enemy.GetComponent<enermy_movement>().spawnPoint.position;
 
-            //should probably take this out to avoid respawning enemy immediately
-            currentHealth = totalHealth;
-            agent.enabled = true;
+            //Think this is related to respawn?
+            /*currentHealth = totalHealth;
+            agent.enabled = true;*/
 
         }
         else if (currentHealth <= 0f && enemy.tag != ("Enemy Boss"))
         {
             Destroy(gameObject);
+        }
+        else if(currentHealth >= 0f && currentHealth <= totalHealth)
+        {
+            this.GetComponent<HealthUI>().UpdateUi(totalHealth, currentHealth);
         }
 
         if (m_messageHandler)

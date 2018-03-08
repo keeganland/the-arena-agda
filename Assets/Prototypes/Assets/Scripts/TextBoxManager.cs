@@ -21,11 +21,6 @@ public class TextBoxManager : MonoBehaviour
     public GameObject textBox;
     public GameObject interactivityCue;
 
-	/**
-	 * Actually, wait. Is this the best place for this? ActivateTextAtLine.cs might be a better place. 
-	public GameObject talkBubble; //todo: make it so more than one of these can be activated. For now, just working on making the one appear/disappear
-	 */
-
     public Text boxContent;
 	public Text NPCNameBox;
 
@@ -42,13 +37,16 @@ public class TextBoxManager : MonoBehaviour
     public MovementManager movementManager;
     public NPCMovementManager theNPCMovementManager;
 
-    public bool isActive; //if active, the player may use enter to increment lines and other ways of interacting with the text box. Maybe switch to private
+    //public bool isActive;
     public bool cueActive = false;
     public bool stopPlayerMovement;
     public bool stopNPCMovement;
 
     private bool isTyping = false;
     private bool cancelTyping = false;
+	private bool isActive = false;
+	//if active, the player may use enter to increment lines and other ways of interacting with the text box. Maybe switch to private
+	private string lastTriggeredBy = "";
 
     public float typeSpeed;
 
@@ -185,7 +183,6 @@ public class TextBoxManager : MonoBehaviour
         if (theNPCMovementManager != null)
         {
             theNPCMovementManager.StartNPCMovement();
-            Debug.Log("NPC Movement SHOULD start again...");
         }
     }
 
@@ -204,7 +201,7 @@ public class TextBoxManager : MonoBehaviour
 		}	
 	}
 
-	public void SetNPCName(string newName)
+	public void setNPCName(string newName)
 	{
 		NPCName = newName;
 	}
@@ -221,15 +218,19 @@ public class TextBoxManager : MonoBehaviour
         cueActive = false;
     }
 
-	/*
-	public void EnableTalkBubble()
+	public bool getIsActive()
 	{
-		
+		return isActive;
 	}
 
-	public void DisableTalkBubble()
+	public void setLastTriggered(string gameObjName)
 	{
-		
+		Debug.Log (gameObjName + " triggered the TextBoxManager");
+		lastTriggeredBy = gameObjName;
 	}
-	*/
+
+	public string getLastTriggered()
+	{
+		return lastTriggeredBy;
+	}
 }

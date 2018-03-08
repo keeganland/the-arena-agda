@@ -10,7 +10,7 @@ public class NPCMovement : MonoBehaviour {
     public List<float> _Timers;
     public NPCMovementManager movementMananger; //not sure if I should ultimately use the MovementManager as NPCMovementManager
 
-    public bool stop;
+    public bool stop = false;
 
     private NavMeshAgent m_agent;
     private int m_i = 0;
@@ -25,8 +25,9 @@ public class NPCMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        stop = !movementMananger.isNPCMovementAllowed();
+		if (movementMananger != null) {
+			stop = !movementMananger.isNPCMovementAllowed ();
+		}
 
         if (stop)
         {

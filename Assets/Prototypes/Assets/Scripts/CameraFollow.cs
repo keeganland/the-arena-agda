@@ -85,7 +85,7 @@ public class CameraFollow : MonoBehaviour
 
     void AutomaticCamera()
     {
-        Debug.Log("here");
+        //Debug.Log("here");
         if (!m_manualCamera)
         {
             for (int i = 0; i < m_potentialcameraTargets.Length; i++) //for each potential enemies, check if they are in view.

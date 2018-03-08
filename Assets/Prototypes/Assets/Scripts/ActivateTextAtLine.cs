@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class ActivateTextAtLine : MonoBehaviour {
 
+	/**
+	 * Oh boy this one is getting messy.  
+	 * 
+	 */
+
+
 	public string NPCName;
     public TextAsset theText;
 
@@ -11,6 +17,7 @@ public class ActivateTextAtLine : MonoBehaviour {
     public int endLine;
 
     public TextBoxManager theTextManager;
+	public GameObject talkBubble;
 
     public bool requireButtonPress;
     public bool destroyWhenActivated;
@@ -28,6 +35,11 @@ public class ActivateTextAtLine : MonoBehaviour {
     void Start () {
         theTextManager = FindObjectOfType<TextBoxManager>();
         textStarted = false;
+
+		if (talkBubble != null) {
+			talkBubble.SetActive (false);
+		}
+
 	}
 	
 	// Update is called once per frame
@@ -43,11 +55,17 @@ public class ActivateTextAtLine : MonoBehaviour {
                 Destroy(gameObject);
             }
         }
-
+			
+		//Refactor to take into account the queue structure!!!
         if(theTextManager.currentLine > theTextManager.endAtLine)
         {
             textStarted = false;
         }
+
+		//Normally it's stupid that I'm even making this a seperate if-block, but in the short/medium term I want to get rid of the condition of the previous if-block and change what flips textStarted
+		if (textStarted == false && talkBubble != null) {
+			talkBubble.SetActive (false);
+		}
     }
 
     void OnTriggerEnter(Collider other)
@@ -83,6 +101,14 @@ public class ActivateTextAtLine : MonoBehaviour {
 
     private void Activate()
     {
+		Debug.Log ("entered ActivateTextAtLine's Activate() method");
+
+		if (talkBubble != null) {
+			Debug.Log ("talkBubble should activate");
+			talkBubble.SetActive (true);
+			Debug.Log (talkBubble.name + " active?");
+		}
+
 		theTextManager.SetNPCName (NPCName);
         theTextManager.ReloadScript(theText);
         theTextManager.currentLine = startLine;

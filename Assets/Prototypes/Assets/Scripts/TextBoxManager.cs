@@ -20,6 +20,12 @@ public class TextBoxManager : MonoBehaviour
     //these are game objects and unity stuff
     public GameObject textBox;
     public GameObject interactivityCue;
+
+	/**
+	 * Actually, wait. Is this the best place for this? ActivateTextAtLine.cs might be a better place. 
+	public GameObject talkBubble; //todo: make it so more than one of these can be activated. For now, just working on making the one appear/disappear
+	 */
+
     public Text boxContent;
 	public Text NPCNameBox;
 
@@ -149,7 +155,9 @@ public class TextBoxManager : MonoBehaviour
     public void EnableTextBox()
     {
         textBox.SetActive(true);
-		NPCNameBox.text = NPCName;
+		if (NPCNameBox != null) {
+			NPCNameBox.text = NPCName;
+		}
         isActive = true;
 
         if (stopPlayerMovement)
@@ -212,4 +220,16 @@ public class TextBoxManager : MonoBehaviour
         interactivityCue.SetActive(false);
         cueActive = false;
     }
+
+	/*
+	public void EnableTalkBubble()
+	{
+		
+	}
+
+	public void DisableTalkBubble()
+	{
+		
+	}
+	*/
 }

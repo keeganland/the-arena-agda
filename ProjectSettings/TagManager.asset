@@ -12,6 +12,7 @@ TagManager:
   - AttackRange
   - TalkCue
   - NPCRandomWalker
+  - TargetRange
   layers:
   - Default
   - TransparentFX

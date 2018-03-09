@@ -5,101 +5,122 @@ using UnityEngine;
 public class TargetManager : MonoBehaviour
 {
     public enum TargetOptions { WEAKEST, STRONGEST, NEAREST, FARTHEST, RANDOM }
-    public TargetOptions targetOption = TargetOptions.NEAREST;
+    public TargetOptions targetOption /*= TargetOptions.NEAREST*/;//This was in the example script, don't think I need it
 
     RangeChecker m_range;
+    EnemyMovement m_enemyM;
+    float closestDistance = 0.0f;
+    float farthestDistance = 0.0f;
 
     //set this up to get rid of error. would like to pass this into targetmanager instead
-    private GameObject curTarget = null;
+    //this should be private, making public to try to fix error in enemymovement
+    public GameObject curTarget = null;
 
     // Use this for initialization
     void Start()
     {
-        m_range = GetComponent<RangeChecker>();
+        m_range = GetComponentInChildren<RangeChecker>();
+        m_enemyM = GetComponent<EnemyMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //check to make sure there's something in range. Should probably switch to if(curtarget==null)
-        if (/*!m_tracker || !m_shooter ||*/ !m_range)
+        //check to make sure there's something in range.
+        if (!m_range)
             return;
 
         switch (targetOption)
         {
             case TargetOptions.FARTHEST:
-                curTarget = TargetFarthest();
-                this.GetComponent<EnemyMovement>().TargetSet(curTarget);
+                TargetFarthest();
                 break;
             case TargetOptions.NEAREST:
-                curTarget = TargetNearest();
-                this.GetComponent<EnemyMovement>().TargetSet(curTarget);
+                TargetNearest();
                 break;
             case TargetOptions.RANDOM:
-                curTarget = TargetRandom(curTarget);
-                this.GetComponent<EnemyMovement>().TargetSet(curTarget);
+                TargetRandom(curTarget);
                 break;
             case TargetOptions.STRONGEST:
-                curTarget = TargetStrongest();
-                this.GetComponent<EnemyMovement>().TargetSet(curTarget);
+                TargetStrongest();
                 break;
             case TargetOptions.WEAKEST:
-                curTarget = TargetWeakest();
-                this.GetComponent<EnemyMovement>().TargetSet(curTarget);
+                TargetWeakest();
                 break;
         }
     }
-    private GameObject TargetFarthest()
+    private void TargetFarthest()
     {
         List<GameObject> validTargets = m_range.GetValidTargets();
+        bool curTargetinRange;
 
-        GameObject curTarget = null;
-        float farthestDistance = 0.0f;
-
+        for(int i =0; i<validTargets.Count; i++)
+        {
+            curTargetinRange = false;
+            if(validTargets[i] == curTarget)
+            {
+                curTargetinRange = true;
+                break;
+            }
+            if(curTargetinRange == false)
+            {
+                curTarget = null;
+            }
+        }
+        if(validTargets.Count == 0)
+        {
+            curTarget = null;
+        }
         for(int i = 0; i < validTargets.Count; i++)
         {
             float dist = Vector3.Distance(transform.position, validTargets[i].transform.position);
-            if(!curTarget || dist > farthestDistance)
+            if(!curTarget || dist > farthestDistance || curTarget == validTargets[i])
             {
                 curTarget = validTargets[i];
                 farthestDistance = dist;
             }
         }
-        return curTarget;
+        m_enemyM.TargetSet(curTarget);
+        Debug.Log("TargetManager/FarthestTarget: " + curTarget.name);
     }
-    private GameObject TargetNearest()
+    private void TargetNearest()
     {
         List<GameObject> validTargets = m_range.GetValidTargets();
-
-        GameObject curTarget = null;
-        float closestDistance = 0.0f;
 
         for (int i = 0; i < validTargets.Count; i++)
         {
             float dist = Vector3.Distance(transform.position, validTargets[i].transform.position);
-            if (!curTarget || dist < closestDistance)
+           // Debug.Log(dist);
+            if (!curTarget || dist < closestDistance || curTarget == validTargets[i])
             {
+                //Debug.Log("in loop");
                 curTarget = validTargets[i];
                 closestDistance = dist;
+                Debug.Log(closestDistance);
             }
         }
-        return curTarget;
+        m_enemyM.TargetSet(curTarget);
+        //Debug.Log("TargetManager/NearestTarget: " + curTarget.name);
+        //Debug.Log(validTargets.Count);
     }
-    private GameObject TargetRandom(GameObject go)
+    private void TargetRandom(GameObject go)
     {
-        if (go = null)
+        if (!go)
         {
-            List<GameObject> validTargets = m_range.GetValidTargets();
+            List<GameObject> validTargets = m_range.GetValidTargets();//only want trigger stay on this one
             int num = Random.Range(0, validTargets.Count);
-            GameObject curTarget = validTargets[num];
+            curTarget = validTargets[num];
         }
-        return curTarget;
+        m_enemyM.TargetSet(curTarget);
+        if (curTarget != null)
+        {
+            Debug.Log("TargetManager/RandomTarget: " + curTarget.name);
+        }
     }
-    private GameObject TargetStrongest()
+    private void TargetStrongest()
     {
         List<GameObject> validTargets = m_range.GetValidTargets();
 
-        GameObject curTarget = null;
         int highestHealth = 0;
 
         for(int i = 0; i < validTargets.Count; i++)
@@ -111,13 +132,13 @@ public class TargetManager : MonoBehaviour
                 curTarget = validTargets[i];
             }
         }
-        return curTarget;
+        m_enemyM.TargetSet(curTarget);
+        Debug.Log("TargetManager/StrongestTarget: " + curTarget.name);
     }
-    private GameObject TargetWeakest()
+    private void TargetWeakest()
     {
         List<GameObject> validTargets = m_range.GetValidTargets();
 
-        GameObject curTarget = null;
         int lowestHealth = 0;
 
         for (int i = 0; i < validTargets.Count; i++)
@@ -129,7 +150,8 @@ public class TargetManager : MonoBehaviour
                 curTarget = validTargets[i];
             }
         }
-        return curTarget;
+        m_enemyM.TargetSet(curTarget);
+        Debug.Log("TargetManager/WeakestTarget: " + curTarget.name);
     }
 }
         

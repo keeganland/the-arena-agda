@@ -26,7 +26,7 @@ public class RangeChecker : MonoBehaviour
             return;
 
         m_targets.Add(other.gameObject);
-        //Debug.Log("Added " + other.name);
+        //Debug.Log("RangeChecker/Added " + other.name);
     }
 
     //removes targets that exit the attack range
@@ -39,6 +39,22 @@ public class RangeChecker : MonoBehaviour
                 m_targets.Remove(other.gameObject);
                 return;
             }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        bool InList = false;
+        for (int i = 0; i < m_targets.Count; i++)
+        {
+            if(other == m_targets[i])
+            {
+                InList = true;
+            }
+        }
+        if (InList == false && other.CompareTag(tags[0])) //we must only have 1 tag
+        {
+            m_targets.Add(other.gameObject);
         }
     }
 

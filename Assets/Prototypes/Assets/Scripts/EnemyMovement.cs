@@ -16,11 +16,13 @@ public class EnemyMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        m_target = GetComponent<TargetManager>().curTarget;
+
         if (this.GetComponent<RangeChecker>().InRange(m_target) == false)
         {
             m_agent.SetDestination(m_target.transform.position);
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,7 +30,8 @@ public class EnemyMovement : MonoBehaviour {
         if (other == m_target.GetComponent<Collider>())
         {
             //Debug.Log("EnemyTarget in Range " + curTarget.name);
-            this.GetComponent<Player_Movement>().CancelMovement();
+            //need to fix this
+            //this.GetComponent<EnemyMovement>().CancelMovement();
             //Pass attack function here?
         }
         else return;

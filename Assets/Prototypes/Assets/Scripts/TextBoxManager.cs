@@ -19,10 +19,11 @@ public class TextBoxManager : MonoBehaviour
 
     //these are game objects and unity stuff
     public GameObject textBox;
+    public GameObject namePlate;
     public GameObject interactivityCue;
 
     public Text boxContent;
-	public Text NPCNameBox;
+	public Text NPCNameTag;
 
     //these exist for the management of the external .txt file
     public TextAsset textFile;
@@ -153,8 +154,15 @@ public class TextBoxManager : MonoBehaviour
     public void EnableTextBox()
     {
         textBox.SetActive(true);
-		if (NPCNameBox != null) {
-			NPCNameBox.text = NPCName;
+		if (NPCNameTag != null) {
+
+            NPCNameTag.text = NPCName;
+
+            //The nameplate background for the name text only shows up if it exists as a gameobject, obviously, but also only if the NPC name isn't a blank string
+            if (namePlate != null && NPCNameTag.text != "")
+            {
+                namePlate.SetActive(true);
+            }
 		}
         isActive = true;
 
@@ -175,7 +183,10 @@ public class TextBoxManager : MonoBehaviour
     {
         textBox.SetActive(false);
         isActive = false;
-
+        if (namePlate != null)
+        {
+            namePlate.SetActive(false);
+        }
         if (movementManager != null)
         {
             movementManager.StartPlayerMovement();

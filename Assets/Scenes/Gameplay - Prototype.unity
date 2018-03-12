@@ -651,11 +651,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &223353465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 223353459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9c293584b4d74b49818875981c68e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetOption: 4
+  curTarget: {fileID: 0}
 --- !u!4 &223353466 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4465581536315268, guid: c1faf040da6f97e4ca66862eac828702,
     type: 2}
   m_PrefabInternal: {fileID: 1904027004}
+--- !u!114 &223353467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 223353459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d533e617c9ffe764a8d8bef137c753a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &231951968
 GameObject:
   m_ObjectHideFlags: 0
@@ -1832,12 +1856,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 921670398}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -8.467762, z: 0}
+  m_LocalScale: {x: 7.168973, y: 2.1712222, z: 5.169293}
   m_Children: []
-  m_Father: {fileID: 1001743680}
-  m_RootOrder: 2
+  m_Father: {fileID: 223353466}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &921670400
 SphereCollider:
@@ -1849,7 +1873,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 30
   m_Center: {x: 0, y: 4, z: 0}
 --- !u!114 &921670401
 MonoBehaviour:
@@ -1859,7 +1883,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 921670398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83474762b3006fa4eb4a031e25b414f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a86f80193c4d0249858461871cc53e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tags:
@@ -2101,12 +2125,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1457514420494718, guid: c1faf040da6f97e4ca66862eac828702,
     type: 2}
   m_PrefabInternal: {fileID: 1904027004}
---- !u!4 &1001743680 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4109086879781804, guid: c1faf040da6f97e4ca66862eac828702,
-    type: 2}
-  m_PrefabInternal: {fileID: 1904027004}
---- !u!114 &1001743681
+--- !u!114 &1001743683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2114,22 +2133,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1001743679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d533e617c9ffe764a8d8bef137c753a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 20677a3efa872244aa6dccdf3ce2355e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1001743682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1001743679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9c293584b4d74b49818875981c68e30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetOption: 4
-  curTarget: {fileID: 0}
+  messages: 000000000100000002000000
 --- !u!1 &1042962104
 GameObject:
   m_ObjectHideFlags: 0
@@ -2532,18 +2539,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1052260542716694, guid: c1faf040da6f97e4ca66862eac828702,
     type: 2}
   m_PrefabInternal: {fileID: 1904027004}
---- !u!114 &1198719347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1198719345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20677a3efa872244aa6dccdf3ce2355e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messages: 000000000100000002000000
 --- !u!114 &1198719348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2813,6 +2808,7 @@ MonoBehaviour:
   talkBubble: {fileID: 1515332234}
   requireButtonPress: 0
   destroyWhenActivated: 1
+  destroyWhenFinished: 0
   tagTriggersText: 1
   activatedByTag: Player
   activatedByName: 
@@ -3873,6 +3869,61 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &1872911685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1872911686}
+  - component: {fileID: 1872911688}
+  - component: {fileID: 1872911687}
+  m_Layer: 0
+  m_Name: Attack Range
+  m_TagString: AttackRange
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1872911686
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1872911685}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -8.467762, z: 0}
+  m_LocalScale: {x: 7.168973, y: 2.1712222, z: 5.169293}
+  m_Children: []
+  m_Father: {fileID: 223353466}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1872911687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1872911685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83474762b3006fa4eb4a031e25b414f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags:
+  - Player
+--- !u!135 &1872911688
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1872911685}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 4, z: 0}
 --- !u!1 &1885441369
 GameObject:
   m_ObjectHideFlags: 0
@@ -4479,6 +4530,7 @@ MonoBehaviour:
   talkBubble: {fileID: 1785999215}
   requireButtonPress: 0
   destroyWhenActivated: 1
+  destroyWhenFinished: 0
   tagTriggersText: 1
   activatedByTag: NPC
   activatedByName: 
@@ -4720,6 +4772,7 @@ MonoBehaviour:
   talkBubble: {fileID: 1515332234}
   requireButtonPress: 1
   destroyWhenActivated: 0
+  destroyWhenFinished: 0
   tagTriggersText: 1
   activatedByTag: Player
   activatedByName: 

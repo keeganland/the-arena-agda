@@ -1,27 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour {
 
     TargetManager m_targetM;
-    private GameObject m_target = null;
-    private UnityEngine.AI.NavMeshAgent m_agent;
+    private GameObject m_target = null; 
+    private NavMeshAgent m_agent;
 
 
     // Use this for initialization
     void Start () {
-		
-	}
+        m_targetM = GetComponent<TargetManager>();
+        m_agent = GetComponentInChildren<NavMeshAgent>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
-        m_target = GetComponent<TargetManager>().curTarget;
+        m_target = m_targetM.curTarget;
+        //Debug.Log("[EnemyMovement] set target as " + m_target.name);
 
-        if (this.GetComponent<RangeChecker>().InRange(m_target) == false)
+        if (this.GetComponentInChildren<RangeChecker>().InRange(m_target) == false && m_target != null)
         {
+            Debug.Log("[EnemyMovement] set destination1 for " + m_target.name);
             m_agent.SetDestination(m_target.transform.position);
+        Debug.Log("position is" + m_target.transform.position);//WTF is going on, only worked after adding this debug????
+            Debug.Log("[EnemyMovement] set destination2 for " + m_target.name);
         }
     }
 
@@ -31,7 +37,7 @@ public class EnemyMovement : MonoBehaviour {
         {
             //Debug.Log("EnemyTarget in Range " + curTarget.name);
             //need to fix this
-            //this.GetComponent<EnemyMovement>().CancelMovement();
+            CancelMovement();
             //Pass attack function here?
         }
         else return;
@@ -44,9 +50,14 @@ public class EnemyMovement : MonoBehaviour {
         {
             //will have player chase target once target leaves attack range trigger
             m_agent.SetDestination(m_target.transform.position);
-            //Debug.Log("Target out of range " + curTarget.name);
+            Debug.Log("Target out of range " + m_target.name);
 
         }
+    }
+
+    public void CancelMovement()
+    {
+        m_agent.SetDestination(m_agent.transform.position);
     }
 
     public void TargetSet(GameObject target)

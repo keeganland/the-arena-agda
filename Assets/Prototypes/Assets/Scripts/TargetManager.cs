@@ -7,7 +7,7 @@ public class TargetManager : MonoBehaviour
     public enum TargetOptions { WEAKEST, STRONGEST, NEAREST, FARTHEST, RANDOM }
     public TargetOptions targetOption /*= TargetOptions.NEAREST*/;//This was in the example script, don't think I need it
 
-    RangeChecker m_range;
+    TargetRangeChecker m_range;
     EnemyMovement m_enemyM;
     float closestDistance = 0.0f;
     float farthestDistance = 0.0f;
@@ -19,7 +19,7 @@ public class TargetManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        m_range = GetComponentInChildren<RangeChecker>();
+        m_range = GetComponentInChildren<TargetRangeChecker>();
         m_enemyM = GetComponent<EnemyMovement>();
     }
 
@@ -154,4 +154,17 @@ public class TargetManager : MonoBehaviour
         Debug.Log("TargetManager/WeakestTarget: " + curTarget.name);
     }
 }
-        
+
+
+//Need to revamp this is order to include the Aggro in the Enemy target settings
+//First need to create aggro. What makes it?
+//      Attacks, healing, abilities
+//          Therefore needs to be some kind of a slider(?) value
+//          Order is (from most affect to least): Abilities, Healing, Attacks
+//          Note: more powerful Attacks do more damage
+//          Should only be implemented ince we have abilities set up?
+//Each attack increases Aggro of that enemy on that player
+//How should healing work? Increases Aggro for all players?
+//Abilities to affect Aggro of all enemies and only some enemies?
+//Will this make it too complicated?
+//  Either for the player or for us as developers

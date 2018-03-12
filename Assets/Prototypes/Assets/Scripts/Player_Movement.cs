@@ -9,7 +9,7 @@ public class Player_Movement : MonoBehaviour {
     public bool isTheBoy = false;
     public bool stopMoving = false;
     public bool boyActive = false;
-    private GameObject curTarget; //Need this to be public but don't want to have to manually assign it. How can I manage this?
+    private GameObject curTarget;
     
 	// Use this for initialization
 	void Start () {
@@ -47,10 +47,9 @@ public class Player_Movement : MonoBehaviour {
                         curTarget = hit.collider.gameObject;
                         this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
                         //Debug.Log("Target is " + curTarget.name);
-                        //need to pass this information somewhere to do something with it
 
                         //this should chase enemy if enemy is not currently in range
-                        if (this.GetComponent<RangeChecker>().InRange(curTarget) == false)
+                        if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
                         {
                             //Debug.Log("in range: " + curTarget.name);
                             m_agent.SetDestination(hit.point);

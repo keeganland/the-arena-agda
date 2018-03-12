@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangeChecker : MonoBehaviour
-{
+public class TargetRangeChecker : MonoBehaviour {
 
     public List<string> tags;
 
@@ -42,13 +41,12 @@ public class RangeChecker : MonoBehaviour
         }
     }
 
-    //Good idea, and ideally we could implement it. But with it on every character it overwhelms the processor, perhaps possible to use if we can simplify it
-    /*private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         bool InList = false;
         for (int i = 0; i < m_targets.Count; i++)
         {
-            if(other == m_targets[i])
+            if (other == m_targets[i])
             {
                 InList = true;
             }
@@ -57,7 +55,7 @@ public class RangeChecker : MonoBehaviour
         {
             m_targets.Add(other.gameObject);
         }
-    }*/
+    }
 
     //fetches list of targets
     public List<GameObject> GetValidTargets()
@@ -66,16 +64,13 @@ public class RangeChecker : MonoBehaviour
     }
 
     //checks if a specific target is within the attack range list
-    public bool InRange(GameObject go)
+    public bool InTargetRange(GameObject go)
     {
-        Debug.Log("[RangeChecker][InRange] checking1 for: " + go.name);
         for (int i = 0; i < m_targets.Count; i++)
         {
-            Debug.Log("[RangeChecker][InRange] checking2 for: " + go.name);
             if (go == m_targets[i])
                 return true;
         }
-        Debug.Log("[RangeChecker][InRange] returning false for " + go.name);
         return false;
     }
 }

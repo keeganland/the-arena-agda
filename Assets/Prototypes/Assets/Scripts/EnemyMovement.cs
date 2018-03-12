@@ -24,10 +24,10 @@ public class EnemyMovement : MonoBehaviour {
 
         if (this.GetComponentInChildren<RangeChecker>().InRange(m_target) == false && m_target != null)
         {
-            Debug.Log("[EnemyMovement] set destination1 for " + m_target.name);
+            //Debug.Log("[EnemyMovement] set destination1 for " + m_target.name);
             m_agent.SetDestination(m_target.transform.position);
-        Debug.Log("position is" + m_target.transform.position);//WTF is going on, only worked after adding this debug????
-            Debug.Log("[EnemyMovement] set destination2 for " + m_target.name);
+        //Debug.Log("position is" + m_target.transform.position);//WTF is going on, only worked after adding this debug????
+            //Debug.Log("[EnemyMovement] set destination2 for " + m_target.name);
         }
     }
 

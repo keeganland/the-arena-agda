@@ -68,14 +68,14 @@ public class RangeChecker : MonoBehaviour
     //checks if a specific target is within the attack range list
     public bool InRange(GameObject go)
     {
-        Debug.Log("[RangeChecker][InRange] checking1 for: " + go.name);
+        //Debug.Log("[RangeChecker][InRange] checking1 for: " + go.name);
         for (int i = 0; i < m_targets.Count; i++)
         {
-            Debug.Log("[RangeChecker][InRange] checking2 for: " + go.name);
+            //Debug.Log("[RangeChecker][InRange] checking2 for: " + go.name);
             if (go == m_targets[i])
                 return true;
         }
-        Debug.Log("[RangeChecker][InRange] returning false for " + go.name);
+        //Debug.Log("[RangeChecker][InRange] returning false for " + go.name);
         return false;
     }
 }

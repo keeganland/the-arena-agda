@@ -167,4 +167,13 @@ public class TargetManager : MonoBehaviour
 //How should healing work? Increases Aggro for all players?
 //Abilities to affect Aggro of all enemies and only some enemies?
 //Will this make it too complicated?
-//  Either for the player or for us as developers
+//      Either for the player or for us as developers
+//Should probably just count up and not bother counting down at all
+//May run into problems regarding enemies alternating back and forth between two players if they are far apart and never attacking
+//Maybe better to call it threat/hate to avoid blatantly copying FF14
+//Need to decide how we want to show enmity (if we do at all)
+//FF14: 1 point damage = 1 point enmity, 1 point healed = 1.5 point enmity, skill use = 1 enmity
+//      Overhealing might generate up to 6 points enmity per 1 point healed
+//          Probs not true but interesting mechanic
+//      Some enemies will attack target regardless of enmity
+//      

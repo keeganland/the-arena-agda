@@ -172,8 +172,26 @@ public class TargetManager : MonoBehaviour
 //May run into problems regarding enemies alternating back and forth between two players if they are far apart and never attacking
 //Maybe better to call it threat/hate to avoid blatantly copying FF14
 //Need to decide how we want to show enmity (if we do at all)
-//FF14: 1 point damage = 1 point enmity, 1 point healed = 1.5 point enmity, skill use = 1 enmity
+//      Probably don't (hidden mechanic, not core to gameplay)
+//Could be an interesting mechanic to summon a dummy with high emnity/threat but low HP which would only last for a while
+//Interesting to add held items beyond just armour which impact/increase threat
+//FF14: 1 point damage = 1 point enmity, 1 point healed = 0.5 point enmity, skill use = 1 enmity
 //      Overhealing might generate up to 6 points enmity per 1 point healed
 //          Probs not true but interesting mechanic
 //      Some enemies will attack target regardless of enmity
-//      
+//Dragon Age Inquisition Mechanics:
+//      When players are seen, all have base threat of 10
+//          Heavy armour increases threat by 10
+//          Light armour increases threat by 5
+//      After initial threat, distance threat is added
+//          Closer = more threat
+//          Threat change per distance is marginally smaller at closer distances
+//              Makes sense as this slightly limits the advantage of ranged characters
+//      Then begin drawing threat
+//          Damage threat:
+//              Threat increase = 100 * damagedealt/maxhealth of enemy
+//              Less effective against bosses with 1000s of health points
+//      Includes a threat decay of 0.5 threat per second
+//      Has max distance of 60m, beyond which there is no threat given
+//      At 20% health, enemies have a 50% chance of not switching to a higher threat opponent
+//          90% chance for less than 10% health

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class CameraFollow : MonoBehaviour
+public class BetterCameraFollow : MonoBehaviour
 {
     public List<Transform> targets;
     public float _Speed = 1.0f;
@@ -63,23 +63,23 @@ public class CameraFollow : MonoBehaviour
     void ChangeCharacters()
     {
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (GameObject.FindWithTag("Player").GetComponent<Player_Movement>().boyActive == true)
-            {
-                m_number = 0;
-            }
-            else if (GameObject.FindWithTag("Player").GetComponent<Player_Movement>().boyActive == false)
-            {
-                m_number = 1;
-            }
-            target = targets[m_number];
-
-            targets.ForEach(x =>                                                   //hard to explain but basically an if function in a foreach loop... it triggers the movement if one target in not in view
-            { if (IsInView(m_cam.gameObject, x.gameObject) == false)                //DOESN'T work if two targets are on screen but one is out of view (it will move no matter what).
-                    transform.position = new Vector3(targets[m_number].position.x, this.transform.position.y, targets[m_number].position.z);  
-            });
+            m_number = 0;
         }
+
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            m_number = 1;
+        }
+
+        target = targets[m_number];
+
+        targets.ForEach(x =>                                                   //hard to explain but basically an if function in a foreach loop... it triggers the movement if one target in not in view
+        { if (IsInView(m_cam.gameObject, x.gameObject) == false)                //DOESN'T work if two targets are on screen but one is out of view (it will move no matter what).
+                transform.position = new Vector3(targets[m_number].position.x, this.transform.position.y, targets[m_number].position.z);  
+        });
+       
     }
 
 

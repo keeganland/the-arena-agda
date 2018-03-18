@@ -37,8 +37,10 @@ public class Player_Movement : MonoBehaviour {
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
+                    Debug.Log(hit);
                     if (hit.collider.tag == "Ground")
                     {
+                        Debug.Log(hit.collider.tag);
                         m_agent.SetDestination(hit.point);
                         curTarget = null;
                     }

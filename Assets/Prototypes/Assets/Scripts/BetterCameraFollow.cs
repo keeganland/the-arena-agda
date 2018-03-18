@@ -34,7 +34,9 @@ public class BetterCameraFollow : MonoBehaviour
 
     void Update()
     {
-        /**
+
+        Debug.Log(m_potentialcameraTargets.Length);
+        /*
          *  Keegan's NTS: 
          *  Alex's intention with this if-block is "if the target is the player, etc" so that the behaviour in the block only takes place during normal gameplay circumstances.
          *  It will not behave as such during e.g. a cutscene.
@@ -47,6 +49,8 @@ public class BetterCameraFollow : MonoBehaviour
             ChangeCharacters();
             AutomaticCamera();
 
+
+            Debug.Log(m_currentcameraTargetsTooFar.Count);
             if (m_currentcameraTargetsTooFar.Count >=1) //if more at least 1 enemy is too far from the center
             {
                 StartCoroutine(ChangeFieldofView(_FieldOfViewMax));//Zoom out, needs to be in Update as "Mathf.Lerp" has to be updated every frame
@@ -66,28 +70,30 @@ public class BetterCameraFollow : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             m_number = 0;
+            TargetChangeInRange();
         }
 
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             m_number = 1;
+            TargetChangeInRange();
         }
 
         target = targets[m_number];
-
-        targets.ForEach(x =>                                                   //hard to explain but basically an if function in a foreach loop... it triggers the movement if one target in not in view
-        { if (IsInView(m_cam.gameObject, x.gameObject) == false)                //DOESN'T work if two targets are on screen but one is out of view (it will move no matter what).
-                transform.position = new Vector3(targets[m_number].position.x, this.transform.position.y, targets[m_number].position.z);  
-        });
-       
     }
 
+    void TargetChangeInRange()
+    {
+        targets.ForEach(x =>                                                   //hard to explain but basically an if function in a foreach loop... it triggers the movement if one target in not in view
+        { if (IsInView(m_cam.gameObject, x.gameObject) == false)                //DOESN'T work if two targets are on screen but one is out of view (it will move no matter what).
+               transform.position = new Vector3(targets[m_number].position.x, this.transform.position.y, targets[m_number].position.z);  
+        });
+    }
 
     void AutomaticCamera()
     {
         //Debug.Log("here");
-        if (!m_manualCamera)
-        {
+
             for (int i = 0; i < m_potentialcameraTargets.Length; i++) //for each potential enemies, check if they are in view.
             {
                 bool m_isinview = IsInView(m_cam.gameObject, m_potentialcameraTargets[i].gameObject);
@@ -102,25 +108,8 @@ public class BetterCameraFollow : MonoBehaviour
                 }
             }
             AdjustCamera(m_currentcameraTargets);
-
-            if (m_currentcameraTargets.Count >= 2) //if there is a least two current targets
-            {
-                for (int i = 0; i < m_currentcameraTargets.Count; i++)
-                {
-                    bool isFar = IsTooFar(m_cam.gameObject, m_currentcameraTargets[i]);
-
-                    if (isFar == true && !m_currentcameraTargetsTooFar.Contains(m_currentcameraTargets[i])) //if at least one of them is too far, add them to the "Far" array
-                    {
-                        m_currentcameraTargetsTooFar.Add(m_currentcameraTargets[i]);
-
-                    }
-                    else if(isFar == false && m_currentcameraTargetsTooFar.Contains(m_currentcameraTargets[i])) //if not, remove them from the "Far" array
-                    {
-                        m_currentcameraTargetsTooFar.Remove(m_currentcameraTargets[i]);
-                    }
-                }
-            }
-        }
+            ClearTargetTooFar();
+        
     }
 
     void ManualCamera()
@@ -128,20 +117,6 @@ public class BetterCameraFollow : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             m_manualCamera = true;
-            m_new_Pos = new Vector3(targets[m_number].position.x, this.transform.position.y, targets[m_number].position.z);
-
-            transform.position = Vector3.Lerp(transform.position, m_new_Pos, _Speed * Time.deltaTime);
-
-            //TODO: Cleanup
-            //Earlier incorrect line:
-            //transform.position = Vector3.Lerp(transform.position, targets[m_number].position, m_speed*Time.deltaTime) + new Vector3(0, 10f, 0);
-            //Slight modification
-            //transform.position = Vector3.Lerp(transform.position, targets[m_number].position, m_speed * Time.deltaTime);
-            //Alex's proposed fix:
-
-            //m_new_Pos = new Vector3(targets[m_number].position.x, this.transform.position.y, targets[m_number].position.z);
-
-            //transform.position = Vector3.Lerp(transform.position, m_new_Pos, m_speed * Time.deltaTime);
         }
 
         else if (Input.GetKeyUp(KeyCode.Space)) //cancel the lock in for the camera and switch back to automatic camera
@@ -189,7 +164,6 @@ public class BetterCameraFollow : MonoBehaviour
         if ((pointOnScreen.x < Screen.width * 0.15f) || (pointOnScreen.x > Screen.width * 0.85f) || //if the enemy if within 10% on the edge of the screen, return "too far"
             (pointOnScreen.y < Screen.height * 0.15f) || (pointOnScreen.y > Screen.height * 0.85f))
         {
-            Debug.Log("Istoofar: " + toCheck.name);
             return true;
         }
         else if((pointOnScreen.x > Screen.width * 0.3f) && (pointOnScreen.x < Screen.width * 0.70f) && //if the enemy if within 75% inside the screen, return "no too far"
@@ -204,7 +178,7 @@ public class BetterCameraFollow : MonoBehaviour
     {
         Vector3 CameraNewpos = new Vector3(0, this.transform.position.y, 0);
 
-        for (int i = 0; i < currentTargets.Count; i++)  
+        for (int i = 0; i < currentTargets.Count; i++)
         {
             CameraNewpos.x += currentTargets[i].transform.position.x;
             CameraNewpos.z += currentTargets[i].transform.position.z;
@@ -213,10 +187,12 @@ public class BetterCameraFollow : MonoBehaviour
         CameraNewpos.x /= currentTargets.Count;
         CameraNewpos.z /= currentTargets.Count;
 
-        if (m_currentcameraTargets.Count == 0)
+        if (m_currentcameraTargets.Count == 0 || m_manualCamera == true)
         {
+            Debug.Log("here");
             Vector3 m_pos = new Vector3(targets[m_number].transform.position.x, this.transform.position.y, targets[m_number].transform.position.z);
-            transform.position = m_pos;
+            transform.position = Vector3.Lerp(transform.position, m_pos, _Speed* Time.deltaTime);
+            return;
         }
         else
         {
@@ -230,5 +206,26 @@ public class BetterCameraFollow : MonoBehaviour
         m_cam.orthographicSize = Mathf.Lerp(m_cam.orthographicSize, _FieldofViewValue, _Speed * Time.fixedDeltaTime);
         yield return new WaitWhile(() => ((m_cam.orthographicSize <= .9f * _FieldofViewValue || m_cam.orthographicSize>= 1.1f*_FieldofViewValue))); //Wait a certain "value" before canceling reuturning 
         //we can't wait the size to feet perfectly the new value because Mathf.Lerp will never reach it (but tend to reach it... thanks taylor series...).
+    }
+
+    private void ClearTargetTooFar()
+    {
+        if (m_currentcameraTargets.Count >= 2) //if there is a least two current targets
+        {
+            for (int i = 0; i < m_currentcameraTargets.Count; i++)
+            {
+                bool isFar = IsTooFar(m_cam.gameObject, m_currentcameraTargets[i]);
+
+                if (isFar == true && !m_currentcameraTargetsTooFar.Contains(m_currentcameraTargets[i])) //if at least one of them is too far, add them to the "Far" array
+                {
+                    m_currentcameraTargetsTooFar.Add(m_currentcameraTargets[i]);
+
+                }
+                else if (isFar == false && m_currentcameraTargetsTooFar.Contains(m_currentcameraTargets[i])) //if not, remove them from the "Far" array
+                {
+                    m_currentcameraTargetsTooFar.Remove(m_currentcameraTargets[i]);
+                }
+            }
+        }
     }
 }

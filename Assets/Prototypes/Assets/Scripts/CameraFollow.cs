@@ -49,6 +49,7 @@ public class CameraFollow : MonoBehaviour
 
             if (m_currentcameraTargetsTooFar.Count >=1) //if more at least 1 enemy is too far from the center
             {
+                Debug.Log(m_currentcameraTargetsTooFar);
                 StartCoroutine(ChangeFieldofView(_FieldOfViewMax));//Zoom out, needs to be in Update as "Mathf.Lerp" has to be updated every frame
                 targetsTooFar = true; //changes the boolian that carries in the "neutral area" to true.
             }

@@ -666,10 +666,10 @@ RectTransform:
   m_Father: {fileID: 768778095}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.015413684, y: 0}
-  m_AnchorMax: {x: 0.9861898, y: 0}
-  m_AnchoredPosition: {x: 0, y: 107}
-  m_SizeDelta: {x: 55, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 10, y: 107}
+  m_SizeDelta: {x: 715, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &395009041
 MonoBehaviour:
@@ -692,18 +692,22 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 35
+    m_FontSize: 29
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1.2
-  m_Text: Hello World
+    m_LineSpacing: 1.04
+  m_Text: 'Hello My Baby
+
+    Hello My Darlin''
+
+    Hello My Ragtime Gal'
 --- !u!222 &395009042
 CanvasRenderer:
   m_ObjectHideFlags: 0

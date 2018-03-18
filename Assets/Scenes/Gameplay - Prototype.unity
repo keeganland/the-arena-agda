@@ -361,7 +361,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1684630263900376, guid: 01d36d0a53eea7d4195de850d0b68eca, type: 2}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114502459668579580, guid: 01d36d0a53eea7d4195de850d0b68eca, type: 2}
@@ -1886,8 +1886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a86f80193c4d0249858461871cc53e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags:
-  - Player
 --- !u!1 &926724217
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class MessageData { };
-public enum MessageTypes { DAMAGED, HEALTHCHANGED, DIED };
+public enum MessageTypes { DAMAGED, HEALTHCHANGED, DIED, AGGROCHANGED};
 public delegate void MessageDelegate(MessageTypes msgType, GameObject go, MessageData data);
 
 public class MessageHandler : MonoBehaviour
@@ -57,4 +57,10 @@ public class HealthData : MessageData
 {
     public int maxHealth;
     public int curHealth;
+}
+public class AggroData : MessageData
+{
+    public GameObject attacker;
+    public GameObject attacked;
+    public int AggroChange;
 }

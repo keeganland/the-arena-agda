@@ -15,13 +15,16 @@ using UnityEngine.UI;
 
 public class XMLImporter : MonoBehaviour {
 
+    public Queue<string> textQueue;
+
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        textQueue = new Queue<string>();
+        LoadSceneData();
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
@@ -31,5 +34,12 @@ public class XMLImporter : MonoBehaviour {
         XmlDocument xmlDocument = new XmlDocument();
         xmlDocument.LoadXml(textAsset.text);
 
+        foreach(XmlNode xmlNode in xmlDocument["scenes"].ChildNodes)
+        {
+            foreach(XmlNode line in xmlNode["lines"].ChildNodes)
+            {
+                textQueue.Enqueue(line.InnerText);
+            }
+        }
     }
 }

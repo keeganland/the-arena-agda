@@ -613,8 +613,10 @@ MonoBehaviour:
   boxContent: {fileID: 395009041}
   NPCNameTag: {fileID: 500523755}
   textFile: {fileID: 0}
+  xmlDialogFile: {fileID: 0}
   NPCName: Bob
   textLines: []
+  useXml: 1
   currentLine: 0
   endAtLine: 0
   movementManager: {fileID: 1594264140}
@@ -1041,8 +1043,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84401544bdf582e4583a30d8b13a8dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useXml: 1
   NPCName: A White Sphere
   theText: {fileID: 4900000, guid: 3a5d05e62fb54f84ea38784d4f9f3d32, type: 3}
+  theXml: {fileID: 4900000, guid: 8e46a69fabddc444ab638737160804fc, type: 3}
   useSpeechBubble: 1
   startLine: 0
   endLine: 1
@@ -1272,8 +1276,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84401544bdf582e4583a30d8b13a8dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useXml: 0
   NPCName: Someone
   theText: {fileID: 4900000, guid: 93d6b5fea51d5dc468e977c24f7d1f13, type: 3}
+  theXml: {fileID: 0}
   useSpeechBubble: 1
   startLine: 0
   endLine: 1
@@ -1537,8 +1543,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84401544bdf582e4583a30d8b13a8dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useXml: 0
   NPCName: A White Sphere
   theText: {fileID: 4900000, guid: 3a5d05e62fb54f84ea38784d4f9f3d32, type: 3}
+  theXml: {fileID: 0}
   useSpeechBubble: 1
   startLine: 0
   endLine: 1
@@ -1615,6 +1623,8 @@ MonoBehaviour:
   totalHealth: 100
   currentHealth: 0
   enemy: {fileID: 0}
+  AggroBoy: 0
+  AggroGirl: 0
   isTargeted: 0
 --- !u!114 &1412580306
 MonoBehaviour:
@@ -2430,8 +2440,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84401544bdf582e4583a30d8b13a8dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useXml: 0
   NPCName: Someone
   theText: {fileID: 4900000, guid: 93d6b5fea51d5dc468e977c24f7d1f13, type: 3}
+  theXml: {fileID: 0}
   useSpeechBubble: 1
   startLine: 0
   endLine: 1
@@ -2455,3 +2467,43 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2043299565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2043299567}
+  - component: {fileID: 2043299566}
+  m_Layer: 0
+  m_Name: XMLImporter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2043299566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2043299565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 447e71c5b4e88ae4fbb6c201b96acf36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2043299567
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2043299565}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 206.15002, y: 155.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

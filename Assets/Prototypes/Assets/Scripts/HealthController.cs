@@ -10,6 +10,9 @@ public class HealthController : MonoBehaviour
     public int currentHealth;
     public GameObject enemy;
 
+    public int AggroBoy = 0;
+    public int AggroGirl = 0;
+
     NavMeshAgent agent; //Why is this here?
     public bool isTargeted;
 
@@ -39,6 +42,20 @@ public class HealthController : MonoBehaviour
                     ApplyDamage(dmgData.damage, go);
                 }
                 break;
+             case MessageTypes.AGGROCHANGED:
+                //Debug.Log("HealthController: changing Aggro");
+                AggroData aggroData = msgData as AggroData;
+                //Debug.Log("Healthcontroller: AGGROCHANGED: go = " + go.name);
+
+                if (aggroData.attacker.name == "Boy")
+                {
+                    AggroBoy += aggroData.aggro; //Need to establish Aggro for each character on all enemies
+                }
+                else if(aggroData.attacker.name == "Girl")
+                {
+                    AggroGirl += aggroData.aggro;
+                }
+                 break;
         }
     }
 

@@ -62,5 +62,5 @@ public class AggroData : MessageData
 {
     public GameObject attacker;
     public GameObject attacked;
-    public int AggroChange;
+    public int aggro;
 }

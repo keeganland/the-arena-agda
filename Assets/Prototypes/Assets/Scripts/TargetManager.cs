@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TargetManager : MonoBehaviour
 {
-    public enum TargetOptions { WEAKEST, STRONGEST, NEAREST, FARTHEST, RANDOM }
+    public enum TargetOptions { WEAKEST, STRONGEST, NEAREST, FARTHEST, RANDOM, AGGRO }
     public TargetOptions targetOption /*= TargetOptions.NEAREST*/;//This was in the example script, don't think I need it
 
     TargetRangeChecker m_range;
@@ -152,6 +152,22 @@ public class TargetManager : MonoBehaviour
         }
         m_enemyM.TargetSet(curTarget);
         Debug.Log("TargetManager/WeakestTarget: " + curTarget.name);
+    }
+    private void TargetAggro()
+    {
+        List<GameObject> validTargets = m_range.GetValidTargets();
+
+        int highestAggro = 0;
+
+        for(int i = 0; i <validTargets.Count; i++)
+        {
+            int Aggro = 1; /*something here to pull Aggro of players*/
+            if(!curTarget || Aggro > highestAggro)
+            {
+                highestAggro = Aggro;
+                curTarget = validTargets[i];
+            }
+        }
     }
 }
 

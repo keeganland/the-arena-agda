@@ -5,6 +5,7 @@ using UnityEngine;
 public class MeleeDamage : MonoBehaviour {
 
     public int Damage;
+    public int Aggro;
     public float AttackSpeed;
     private float AttackTimer;
     private GameObject m_target;
@@ -25,12 +26,18 @@ public class MeleeDamage : MonoBehaviour {
 
             Debug.Log("MeleeDamage: deal damage to " + m_target.name);
 
+            /*AggroData aggroData = new AggroData();
+            aggroData.aggro = Aggro;*/
+            //Debug.Log("MeleeDamage: change Aggro of " + m_target.name);
+
             //Really need to make sure MessageHandler is on all enemies and players
             MessageHandler msgHandler = m_target.GetComponent<MessageHandler>();
 
             if (msgHandler)
             {
-                msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject/*will this work?*/, dmgData);
+                msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
+                //msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, this.gameObject, aggroData);
+                Debug.Log("MeleeDamage: this = " + this.name);
             }
             AttackTimer = 0.0f;
         }

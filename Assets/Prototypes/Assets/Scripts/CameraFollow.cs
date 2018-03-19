@@ -189,7 +189,7 @@ public class CameraFollow : MonoBehaviour
         if ((pointOnScreen.x < Screen.width * 0.15f) || (pointOnScreen.x > Screen.width * 0.85f) || //if the enemy if within 10% on the edge of the screen, return "too far"
             (pointOnScreen.y < Screen.height * 0.15f) || (pointOnScreen.y > Screen.height * 0.85f))
         {
-            Debug.Log("Istoofar: " + toCheck.name);
+            //Debug.Log("Istoofar: " + toCheck.name);
             return true;
         }
         else if((pointOnScreen.x > Screen.width * 0.3f) && (pointOnScreen.x < Screen.width * 0.70f) && //if the enemy if within 75% inside the screen, return "no too far"

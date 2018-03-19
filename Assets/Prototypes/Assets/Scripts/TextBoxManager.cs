@@ -236,7 +236,7 @@ public class TextBoxManager : MonoBehaviour
 
 	public void setLastTriggered(string gameObjName)
 	{
-		Debug.Log (gameObjName + " triggered the TextBoxManager");
+		//Debug.Log (gameObjName + " triggered the TextBoxManager");
 		lastTriggeredBy = gameObjName;
 	}
 

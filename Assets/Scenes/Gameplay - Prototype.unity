@@ -1378,6 +1378,8 @@ MonoBehaviour:
   totalHealth: 100
   currentHealth: 0
   enemy: {fileID: 0}
+  AggroBoy: 0
+  AggroGirl: 0
   isTargeted: 0
 --- !u!208 &541421585
 NavMeshObstacle:
@@ -1416,7 +1418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20677a3efa872244aa6dccdf3ce2355e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages: 0000000002000000
+  messages: 00000000020000000100000003000000
 --- !u!114 &541421588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2516,6 +2518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 10
+  Aggro: 2
   AttackSpeed: 2
 --- !u!114 &1157349929
 MonoBehaviour:
@@ -2531,6 +2534,8 @@ MonoBehaviour:
   totalHealth: 100
   currentHealth: 0
   enemy: {fileID: 0}
+  AggroBoy: 0
+  AggroGirl: 0
   isTargeted: 0
 --- !u!1 &1198719345 stripped
 GameObject:

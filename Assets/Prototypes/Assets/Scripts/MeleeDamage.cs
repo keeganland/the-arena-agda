@@ -8,7 +8,11 @@ public class MeleeDamage : MonoBehaviour {
     public int Aggro;
     public float AttackSpeed;
     private float AttackTimer;
-    private GameObject m_target;
+    public GameObject m_target;
+
+    //-----------------Alex Modifications-----------//
+    [SerializeField]
+    private GameObject[] spellPrefab;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +27,8 @@ public class MeleeDamage : MonoBehaviour {
         {
             DamageData dmgData = new DamageData();
             dmgData.damage = Damage;
+            CastSpell();
+            
 
             Debug.Log("MeleeDamage: deal damage to " + m_target.name);
 
@@ -46,5 +52,10 @@ public class MeleeDamage : MonoBehaviour {
     public void TargetChanges(GameObject target)
     {
         m_target = target;
+    }
+
+    public void CastSpell()
+    {
+        Instantiate(spellPrefab[0], transform.position, Quaternion.identity);
     }
 }

@@ -34,8 +34,6 @@ public class BetterCameraFollow : MonoBehaviour
 
     void Update()
     {
-
-        Debug.Log(m_potentialcameraTargets.Length);
         /*
          *  Keegan's NTS: 
          *  Alex's intention with this if-block is "if the target is the player, etc" so that the behaviour in the block only takes place during normal gameplay circumstances.
@@ -50,7 +48,6 @@ public class BetterCameraFollow : MonoBehaviour
             AutomaticCamera();
 
 
-            Debug.Log(m_currentcameraTargetsTooFar.Count);
             if (m_currentcameraTargetsTooFar.Count >=1) //if more at least 1 enemy is too far from the center
             {
                 StartCoroutine(ChangeFieldofView(_FieldOfViewMax));//Zoom out, needs to be in Update as "Mathf.Lerp" has to be updated every frame
@@ -189,7 +186,6 @@ public class BetterCameraFollow : MonoBehaviour
 
         if (m_currentcameraTargets.Count == 0 || m_manualCamera == true)
         {
-            Debug.Log("here");
             Vector3 m_pos = new Vector3(targets[m_number].transform.position.x, this.transform.position.y, targets[m_number].transform.position.z);
             transform.position = Vector3.Lerp(transform.position, m_pos, _Speed* Time.deltaTime);
             return;

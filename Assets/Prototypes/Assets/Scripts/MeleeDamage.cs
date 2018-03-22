@@ -56,6 +56,7 @@ public class MeleeDamage : MonoBehaviour {
 
     public void CastSpell()
     {
-        Instantiate(spellPrefab[0], transform.position, Quaternion.identity);
+        GameObject go = Instantiate(spellPrefab[0], transform.position, Quaternion.identity);
+        go.gameObject.GetComponent<Spell>().SetTarget(m_target);
     }
 }

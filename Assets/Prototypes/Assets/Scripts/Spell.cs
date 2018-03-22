@@ -14,13 +14,10 @@ public class Spell : MonoBehaviour {
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        spellCaster = GameObject.Find("Girl ");
-        Debug.Log(spellCaster);
     }
+
     private void FixedUpdate()
     {
-        target = spellCaster.GetComponent<MeleeDamage>().m_target;
-
         Vector3 direction = target.transform.position - transform.position;
 
          transform.position = Vector3.Lerp(this.transform.position, target.transform.position ,speed * Time.fixedDeltaTime);
@@ -30,4 +27,11 @@ public class Spell : MonoBehaviour {
 
         transform.eulerAngles = new Vector3(0, -angle, 0);
     }
+
+    public void SetTarget(GameObject passedTarget)
+    {
+        target = passedTarget;
+    }
 }
+
+

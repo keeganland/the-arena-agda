@@ -100,7 +100,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1873394234482290}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.17, y: 0.069999695, z: -0}
+  m_LocalPosition: {x: 2.5, y: 0.069999695, z: -0}
   m_LocalScale: {x: 1.0000005, y: 1, z: 1.0000005}
   m_Children: []
   m_Father: {fileID: 4772198191188986}
@@ -177,11 +177,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1295723877484022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6785ef66d8831148bb7b452c221630c, type: 3}
+  m_Script: {fileID: 11500000, guid: 493a3c3964e674848ba28a63ac4f2dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  target: {fileID: 0}
 --- !u!114 &114868993781176364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,9 +188,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1295723877484022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 853fbd4a4e05b9c48b3e9ea84467a19f, type: 3}
+  m_Script: {fileID: 11500000, guid: 62ae58d77def447c5804125e75277cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
+  target: {fileID: 0}
 --- !u!198 &198511350727765398
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -200,7 +200,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1873394234482290}
   serializedVersion: 5
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   looping: 1
   prewarm: 1
@@ -213,28 +213,52 @@ ParticleSystem:
     minScalar: 0
     maxCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     minCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -386190811
+  randomSeed: 2103905720
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 3
-      minScalar: 0.5
+      scalar: 1.5
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -274,7 +298,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 7
+      scalar: 0.6701784
       minScalar: 4
       maxCurve:
         serializedVersion: 2
@@ -670,7 +694,7 @@ ParticleSystem:
     serializedVersion: 4
     enabled: 1
     type: 4
-    angle: 0.2
+    angle: 0.19999334
     length: 5
     boxX: 1
     boxY: 1
@@ -3249,20 +3273,44 @@ ParticleSystem:
     minScalar: 0
     maxCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     minCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 972314300
+  randomSeed: -228722902
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5481,7 +5529,7 @@ ParticleSystem:
   LightsModule:
     enabled: 1
     ratio: 1
-    light: {fileID: 108050004986441914, guid: 96b4542c8a9ee2c438c31302718d453e, type: 2}
+    light: {fileID: 108611513158677494}
     randomDistribution: 1
     color: 1
     range: 1
@@ -6261,8 +6309,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 600ddec133438cf4ba7972f68ac2a919, type: 2}
-  - {fileID: 2100000, guid: 600ddec133438cf4ba7972f68ac2a919, type: 2}
+  - {fileID: 2100000, guid: fd18aa660cf7748c585e0bf7c3633972, type: 2}
+  - {fileID: 2100000, guid: fd18aa660cf7748c585e0bf7c3633972, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6312,8 +6360,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 37e7578329d5db84c9d0e7be04d9ee55, type: 2}
-  - {fileID: 2100000, guid: 37e7578329d5db84c9d0e7be04d9ee55, type: 2}
+  - {fileID: 2100000, guid: e81d8d8188a454824b203f11c06ab235, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -71,7 +71,6 @@ GameObject:
   - component: {fileID: 4832931000020784}
   - component: {fileID: 198605324057014662}
   - component: {fileID: 199546984333949380}
-  - component: {fileID: 114186454416784844}
   - component: {fileID: 65553884258107418}
   m_Layer: 0
   m_Name: FireBall
@@ -183,17 +182,6 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114186454416784844
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1992497183883304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 853fbd4a4e05b9c48b3e9ea84467a19f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!198 &198442113683992886
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -251,7 +239,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 892590832
+  randomSeed: 1203199335
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3311,7 +3299,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1777678031
+  randomSeed: 471950906
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5530,7 +5518,7 @@ ParticleSystem:
   LightsModule:
     enabled: 1
     ratio: 1
-    light: {fileID: 108050004986441914, guid: 96b4542c8a9ee2c438c31302718d453e, type: 2}
+    light: {fileID: 108173861082737608}
     randomDistribution: 1
     color: 1
     range: 1
@@ -6353,7 +6341,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1772910955
+  randomSeed: -621687319
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9370,8 +9358,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 600ddec133438cf4ba7972f68ac2a919, type: 2}
-  - {fileID: 2100000, guid: 600ddec133438cf4ba7972f68ac2a919, type: 2}
+  - {fileID: 2100000, guid: fd18aa660cf7748c585e0bf7c3633972, type: 2}
+  - {fileID: 2100000, guid: fd18aa660cf7748c585e0bf7c3633972, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9421,8 +9409,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: a3a736161845fed4eb85af75692532ca, type: 2}
-  - {fileID: 2100000, guid: a3a736161845fed4eb85af75692532ca, type: 2}
+  - {fileID: 2100000, guid: 806c7cdc820dc4f91b7040b2997dfa89, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9472,8 +9460,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 600ddec133438cf4ba7972f68ac2a919, type: 2}
-  - {fileID: 2100000, guid: 600ddec133438cf4ba7972f68ac2a919, type: 2}
+  - {fileID: 2100000, guid: fd18aa660cf7748c585e0bf7c3633972, type: 2}
+  - {fileID: 2100000, guid: fd18aa660cf7748c585e0bf7c3633972, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

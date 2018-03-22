@@ -7,11 +7,12 @@ public class BattleEnemy : MonoBehaviour {
 
     private float m_timer = 0;
 
-    public List<GameObject> Attacks;
+
     public List<float> _Attacktimers;
-    public float _CooldownTimer;
 
     private TargetRangeChecker m_range;
+    private GameObject[] spellPrefab;
+    private float cooldown;
 
     public void Start()
     {
@@ -23,6 +24,12 @@ public class BattleEnemy : MonoBehaviour {
             msgHandler.RegisterDelegate(RecieveMessage);
         }
 
+    }
+
+    private void Update()
+    {
+        cooldown += Time.deltaTime;
+        Debug.Log((int) cooldown);
     }
 
     void RecieveMessage(MessageTypes msgType, GameObject go, MessageData msgData)
@@ -78,5 +85,4 @@ public class BattleEnemy : MonoBehaviour {
     {
         return (x % n) == 0;
     }
-
 }

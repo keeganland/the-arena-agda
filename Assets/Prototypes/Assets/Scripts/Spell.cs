@@ -23,8 +23,6 @@ public class Spell : MonoBehaviour {
          transform.position = Vector3.Lerp(this.transform.position, target.transform.position ,speed * Time.fixedDeltaTime);
 
         float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
-        Debug.Log(angle);
-
         transform.eulerAngles = new Vector3(0, -angle, 0);
     }
 

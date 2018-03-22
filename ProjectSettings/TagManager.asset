@@ -13,6 +13,7 @@ TagManager:
   - TalkCue
   - NPCRandomWalker
   - TargetRange
+  - wall
   layers:
   - Default
   - TransparentFX

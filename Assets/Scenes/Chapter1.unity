@@ -5114,7 +5114,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1526638041
+  randomSeed: -2061820894
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -8136,7 +8136,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 818969498}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -11809,7 +11809,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4677134033069730, guid: e7634ed684b69fb4da3c00e11239e200, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.09
+      value: 12.8
       objectReference: {fileID: 0}
     - target: {fileID: 4677134033069730, guid: e7634ed684b69fb4da3c00e11239e200, type: 2}
       propertyPath: m_LocalPosition.y
@@ -11817,7 +11817,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4677134033069730, guid: e7634ed684b69fb4da3c00e11239e200, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 29.5
+      value: -0.23
       objectReference: {fileID: 0}
     - target: {fileID: 4677134033069730, guid: e7634ed684b69fb4da3c00e11239e200, type: 2}
       propertyPath: m_LocalRotation.x

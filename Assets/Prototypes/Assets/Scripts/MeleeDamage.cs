@@ -70,7 +70,6 @@ public class MeleeDamage : MonoBehaviour {
         }
         else if (0 <= transform.eulerAngles.y && transform.eulerAngles.y < 45)
         {
-            Debug.Log("here");
             rotation = 1;
         }
         else if (225 <= transform.eulerAngles.y && transform.eulerAngles.y < 315)
@@ -88,6 +87,7 @@ public class MeleeDamage : MonoBehaviour {
         }
         GameObject go = Instantiate(spellPrefab[0], transform.position, Quaternion.Euler(0, -angle, 0));
         go.gameObject.GetComponent<Spell>().SetTarget(m_target);
+        go.gameObject.GetComponent<Bullet>().SpellFlare(angle);
     }
 
     

@@ -5,14 +5,23 @@ using UnityEngine.UI;
 
 public class BattleEnemy : MonoBehaviour {
 
-    public int[] _Attacktimers;
     public GameObject[] _Targets;
 
     private TargetRangeChecker m_range;
-    private float cooldownSpellA;
-    private int cooldownMax = 1;
-    private bool isSpellACasting;
 
+    [Header("Different Spells")]
+    private float cooldownSpellA;
+    private float cooldownSpellB;
+    private float cooldownSpellC;
+    private bool isSpellACasting;
+    private bool isSpellBCasting;
+    private bool isSpellCCasting;
+
+
+    private int cooldownMax = 1;
+
+    [Header("Spell Data")]
+    public int[] _Attacktimers;
     public GameObject spellTargetPosition;
     public GameObject _WarningbeforeSpell;
 
@@ -42,9 +51,12 @@ public class BattleEnemy : MonoBehaviour {
     private void Update()
     {
         cooldownSpellA += Time.deltaTime;
+        cooldownSpellB += Time.deltaTime;
+        cooldownSpellC += Time.deltaTime;
 
         NormalAttackGirl();
         NormalAttackBoy();
+        ChangeColor();
     }
 
     void RecieveMessage(MessageTypes msgType, GameObject go, MessageData msgData)
@@ -57,7 +69,7 @@ public class BattleEnemy : MonoBehaviour {
                 if (hpData != null)
                 {
                     UltimateAttack(hpData.curHealth, hpData.maxHealth);
-                    ChangeColor(hpData.curHealth);
+                    ChangeColor();
                 }
                 break;
         }   
@@ -69,16 +81,20 @@ public class BattleEnemy : MonoBehaviour {
         {
             if (!isSpellACasting)
             {
-                StartCoroutine(CastSpell());
+                StartCoroutine(CastSpellA());
             }
         }
     }
 
     void NormalAttackBoy()
     {
-        if(IsDivisble((int) 2, 15))
+         if( cooldownSpellB >= _Attacktimers[1])
         {
-            
+           // Debug.Log((int) cooldownSpellB);
+            if (!isSpellBCasting)
+            {
+                StartCoroutine(CastSpellB());
+            }
         }
     }
 
@@ -92,7 +108,7 @@ public class BattleEnemy : MonoBehaviour {
                                                                                                 
     }
 
-    void ChangeColor(int currhealth)
+    void ChangeColor()
     {
         
     }
@@ -113,6 +129,7 @@ public class BattleEnemy : MonoBehaviour {
             newTargetPosition.x = _Targets[i].transform.position.x - transform.position.x;
             newTargetPosition.z = _Targets[i].transform.position.z - transform.position.z;
 
+            Debug.Log(_Targets[i]);
 
             spellTargetPosition.transform.position += newTargetPosition * 10;
 
@@ -121,15 +138,24 @@ public class BattleEnemy : MonoBehaviour {
         }
     }
 
-    private IEnumerator CastSpell()
+    private IEnumerator CastSpellA()
     {
         isSpellACasting = true;
 
         this.GetComponent<Rigidbody>().isKinematic = true;
-        StorePosition(0);
 
-        transform.LookAt(storedPositions[0].transform);
-        Vector3 direction = storedPositions[0].transform.position - transform.position;
+        int pos = Random.Range(0, 2);
+        if(!_Targets[pos])
+        {
+            if (pos == 1)
+                pos = 0;
+            else pos = 1;
+        }
+        Debug.Log(pos + "is pos");
+        StorePosition(pos); // FIX : WHEN GIRL DIE, BOSS DOESNT ATTACK ANYMORE
+                     
+        transform.LookAt(storedPositions[pos].transform);
+        Vector3 direction = storedPositions[pos].transform.position - transform.position;
         float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
 
         GameObject warning = Instantiate(_WarningbeforeSpell, transform.position, transform.rotation);
@@ -137,12 +163,12 @@ public class BattleEnemy : MonoBehaviour {
         yield return new WaitForSeconds(2);
 
         GameObject go = Instantiate(spellPrefab[0], transform.position, transform.rotation);
-        go.gameObject.GetComponent<Spell>().SetTarget(storedPositions[0]);
+        go.gameObject.GetComponent<Spell>().SetTarget(storedPositions[pos]);
 
         cooldownSpellA = 0;
 
         Destroy(warning);
-        storedPositions[0] = null;
+        storedPositions[pos] = null;
 
         yield return new WaitForSeconds(0.5f);
 
@@ -151,4 +177,29 @@ public class BattleEnemy : MonoBehaviour {
 
         isSpellACasting = false;      
     }
+
+    private IEnumerator CastSpellB()
+    {
+        isSpellBCasting = true;
+
+        Instantiate(spellPrefab[1],transform.position, Quaternion.identity);
+
+        yield return new WaitForSeconds(4);
+
+        cooldownSpellB = 0;
+
+        isSpellBCasting = false;
+    }
+
+    private IEnumerator CastSpellC()
+    {
+        isSpellCCasting = true;
+
+        yield return new WaitForSeconds(4);
+
+        cooldownSpellC = 0;
+
+        isSpellCCasting = false;
+    }
 }
+

@@ -57,7 +57,6 @@ public class SpriteScript2 : MonoBehaviour
 
     public void ForcePlayerRotation(int direction)
     {
-        Debug.Log(direction);
 
         if(direction == 1)
         {

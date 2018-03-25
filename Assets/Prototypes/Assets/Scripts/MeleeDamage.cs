@@ -14,7 +14,6 @@ public class MeleeDamage : MonoBehaviour {
     //-----------------Alex Modifications-----------//
     [SerializeField]
     private GameObject[] spellPrefab;
-
 	// Use this for initialization
 	void Start () {
 
@@ -70,7 +69,6 @@ public class MeleeDamage : MonoBehaviour {
         }
         else if (0 <= transform.eulerAngles.y && transform.eulerAngles.y < 45)
         {
-            Debug.Log("here");
             rotation = 1;
         }
         else if (225 <= transform.eulerAngles.y && transform.eulerAngles.y < 315)
@@ -86,9 +84,14 @@ public class MeleeDamage : MonoBehaviour {
         {
             _Sprite.GetComponent<SpriteScript2>().ForcePlayerRotation(rotation);
         }
+
         GameObject go = Instantiate(spellPrefab[0], transform.position, Quaternion.Euler(0, -angle, 0));
+
+
         go.gameObject.GetComponent<Spell>().SetTarget(m_target);
+        go.gameObject.GetComponent<Bullet>().SpellFlare(angle);
+        go.gameObject.GetComponent<Bullet>().GetSpellCaster(this.gameObject);
     }
 
-    
+
 }

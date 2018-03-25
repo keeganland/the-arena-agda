@@ -10,6 +10,8 @@ public class HealthController : MonoBehaviour
     public int currentHealth;
     public GameObject enemy;
 
+    public GameObject Sprite;
+
     public int AggroBoy = 0;
     public int AggroGirl = 0;
 
@@ -77,7 +79,9 @@ public class HealthController : MonoBehaviour
                 m_messageHandler.GiveMessage(MessageTypes.DIED, gameObject, deathData);
             }
 
-            Destroy(this.gameObject);//This works
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<BetterCameraFollow>().FindNewTargets();
+            this.gameObject.SetActive(false);//This works
+            Sprite.SetActive(false);
 
             //agent.enabled = false; //this is from the original script. Don't think it's remotely related
             // transform.position = enemy.GetComponent<enermy_movement>().spawnPoint.position;
@@ -87,10 +91,7 @@ public class HealthController : MonoBehaviour
             agent.enabled = true;*/
 
         }
-        else if (currentHealth <= 0f && enemy.tag != ("Enemy Boss"))
-        {
-            Destroy(gameObject);
-        }
+
         else if(currentHealth >= 0f && currentHealth <= totalHealth)
         {
             this.GetComponent<HealthUI>().UpdateUi(totalHealth, currentHealth);

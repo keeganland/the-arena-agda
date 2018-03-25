@@ -196,6 +196,7 @@ MonoBehaviour:
   Damage: 10
   _SpellFlare: {fileID: 1817176013969130, guid: 8d13197a64926e0439b1404402080278,
     type: 2}
+  _SpellCaster: {fileID: 0}
 --- !u!198 &198511350727765398
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -6334,7 +6335,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0

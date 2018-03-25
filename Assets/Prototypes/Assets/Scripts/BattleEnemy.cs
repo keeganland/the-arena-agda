@@ -28,6 +28,8 @@ public class BattleEnemy : MonoBehaviour {
     [SerializeField]
     private GameObject[] spellPrefab;
     public GameObject[] storedPositions;
+    public GameObject _Mouth;
+    public GameObject _Body;
 
     public void Start()
     {
@@ -158,11 +160,11 @@ public class BattleEnemy : MonoBehaviour {
         Vector3 direction = storedPositions[pos].transform.position - transform.position;
         float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
 
-        GameObject warning = Instantiate(_WarningbeforeSpell, transform.position, transform.rotation);
+        GameObject warning = Instantiate(_WarningbeforeSpell, _Mouth.transform.position, transform.rotation);
 
         yield return new WaitForSeconds(2);
 
-        GameObject go = Instantiate(spellPrefab[0], transform.position, transform.rotation);
+        GameObject go = Instantiate(spellPrefab[0], _Mouth.transform.position, transform.rotation);
         go.gameObject.GetComponent<Spell>().SetTarget(storedPositions[pos]);
 
         cooldownSpellA = 0;
@@ -182,7 +184,7 @@ public class BattleEnemy : MonoBehaviour {
     {
         isSpellBCasting = true;
 
-        Instantiate(spellPrefab[1],transform.position, Quaternion.identity);
+        Instantiate(spellPrefab[1],_Body.transform.position, Quaternion.identity);
 
         yield return new WaitForSeconds(4);
 

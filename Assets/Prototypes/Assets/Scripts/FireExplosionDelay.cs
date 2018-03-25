@@ -18,12 +18,12 @@ public class FireExplosionDelay : MonoBehaviour {
 	void Update () {
         if (timer >= 2.6f)
         {
-            _Collider.radius = Mathf.Lerp(_Collider.radius, 100f, _Speed * Time.deltaTime);
+            _Collider.radius = Mathf.Lerp(_Collider.radius, 110f, _Speed * Time.deltaTime);
         }
 
         timer += Time.deltaTime;
 
-        if (_Collider.radius >= 99f)
+        if (_Collider.radius >= 109f)
         {
             _Collider.enabled = false;
             Destroy(gameObject, 1.5f);

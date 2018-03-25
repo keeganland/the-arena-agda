@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 4265111433469874}
   - component: {fileID: 198025490805390280}
   - component: {fileID: 199107535275814682}
+  - component: {fileID: 114268402722663250}
   m_Layer: 0
   m_Name: FlareForBoyAttack
   m_TagString: Untagged
@@ -103,6 +104,17 @@ Transform:
   m_Father: {fileID: 4265111433469874}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114268402722663250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117421902368200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4284bf8c9c9ad042bcf56562faa941f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198025490805390280
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -110,7 +122,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117421902368200}
   serializedVersion: 5
-  lengthInSec: 0.1
+  lengthInSec: 0.3
   simulationSpeed: 1
   looping: 0
   prewarm: 0
@@ -249,8 +261,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.6985294, g: 0.6985294, b: 0.6985294, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      minColor: {r: 0, g: 0.6275863, b: 1, a: 1}
+      maxColor: {r: 1, g: 0, b: 0.76551723, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9397,9 +9409,9 @@ ParticleSystemRenderer:
   m_ReceiveShadows: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
+  m_ReflectionProbeUsage: 2
   m_Materials:
-  - {fileID: 2100000, guid: 9f3080141f1f64197825663e067f94f8, type: 2}
+  - {fileID: 2100000, guid: 1afa9f1de58463948b80a6b76e0f1fa3, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -9450,7 +9462,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: f63c576739a709747a1a571260d4fabd, type: 2}
+  - {fileID: 2100000, guid: 68de369a12f125a459668ab4d3915db8, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0

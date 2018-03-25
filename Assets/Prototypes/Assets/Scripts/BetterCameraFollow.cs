@@ -225,4 +225,9 @@ public class BetterCameraFollow : MonoBehaviour
             }
         }
     }
+
+    public void FindNewTargets()
+    {
+        m_potentialcameraTargets = (CameraTarget[])Object.FindObjectsOfType(typeof(CameraTarget));
+    }
 }

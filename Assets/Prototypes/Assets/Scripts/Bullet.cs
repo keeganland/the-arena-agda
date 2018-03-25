@@ -6,18 +6,21 @@ public class Bullet : MonoBehaviour {
 
     public int Damage;
     public GameObject _SpellFlare;
+  
 
     private Vector3 m_angle;
+    [SerializeField]
+    private GameObject _SpellCaster;
+    
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         if (other.gameObject.CompareTag("AttackRange"))
         {
             return;
         }
-        if (other.gameObject.CompareTag("Player"))
-        {
+        if (other.gameObject.CompareTag("Player") && !_SpellCaster)
+        {                              
             DamageData dmgData = new DamageData();
             dmgData.damage = Damage;
 
@@ -40,7 +43,7 @@ public class Bullet : MonoBehaviour {
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("wall"))
         {
             DestroyObject();
-            DoSpellFlare(collision);
+            DoSpellFlare();
           
         }
     }
@@ -60,7 +63,12 @@ public class Bullet : MonoBehaviour {
         }
     }
 
-    private void DoSpellFlare(Collision col)
+    public void GetSpellCaster (GameObject caster)
+    {
+        _SpellCaster = caster;
+    }
+
+    private void DoSpellFlare()
     {
         GameObject _Spell = Instantiate(_SpellFlare, transform.position, Quaternion.Euler(m_angle));
     }

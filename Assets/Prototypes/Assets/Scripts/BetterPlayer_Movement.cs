@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class BetterPlayer_Movement : MonoBehaviour {
+
+    public Image _BoySelected;
+    public Image _GirlSelected;
+    public GameObject Boy;
+    public GameObject Girl;
 
     private NavMeshAgent m_agent;
     public bool isTheBoy = false;
@@ -24,11 +30,21 @@ public class BetterPlayer_Movement : MonoBehaviour {
         //For switching player characters
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            boyActive = true;
+            if (Boy.activeSelf == true)
+            {
+                boyActive = true;
+                _BoySelected.enabled = true;
+                _GirlSelected.enabled = false;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            boyActive = false;
+            if (Girl.activeSelf == true)
+            {
+                boyActive = false;
+                _BoySelected.enabled = false;
+                _GirlSelected.enabled = true;
+            }
         }
 
         //For stopping the player character - whichever one that happens to be

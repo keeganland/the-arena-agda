@@ -26,8 +26,8 @@ public class MeleeDamage : MonoBehaviour {
 
             Debug.Log("MeleeDamage: deal damage to " + m_target.name);
 
-            /*AggroData aggroData = new AggroData();
-            aggroData.aggro = Aggro;*/
+            AggroData aggroData = new AggroData();
+            aggroData.aggro = Aggro;
             //Debug.Log("MeleeDamage: change Aggro of " + m_target.name);
 
             //Really need to make sure MessageHandler is on all enemies and players
@@ -36,10 +36,14 @@ public class MeleeDamage : MonoBehaviour {
             if (msgHandler)
             {
                 msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
-                //msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, this.gameObject, aggroData);
+                //msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, this.gameObject, aggroData); //If placed here enemy dies instantly. Not sure why
                 Debug.Log("MeleeDamage: this = " + this.name);
             }
             AttackTimer = 0.0f;
+            if (msgHandler)
+            {
+                msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, this.gameObject, aggroData); //Putting it here means it doesn't OHKO the enemy
+            }
         }
     }
 

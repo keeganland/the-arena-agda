@@ -10,8 +10,8 @@ public class HealthController : MonoBehaviour
     public int currentHealth;
     public GameObject enemy;
 
-    public int AggroBoy = 0;
-    public int AggroGirl = 0;
+    public int AggroBoy;
+    public int AggroGirl;
 
     NavMeshAgent agent; //Why is this here?
     public bool isTargeted;
@@ -20,6 +20,8 @@ public class HealthController : MonoBehaviour
 
     private void Start()
     {
+        AggroBoy = 0;
+        AggroGirl = 0;
         currentHealth = totalHealth;
         agent = GetComponent<NavMeshAgent>(); //?????
         m_messageHandler = GetComponent<MessageHandler>();
@@ -43,19 +45,21 @@ public class HealthController : MonoBehaviour
                 }
                 break;
              case MessageTypes.AGGROCHANGED:
-                //Debug.Log("HealthController: changing Aggro");
+                Debug.Log("HealthController: changing Aggro");
                 AggroData aggroData = msgData as AggroData;
-                //Debug.Log("Healthcontroller: AGGROCHANGED: go = " + go.name);
-
-                if (aggroData.attacker.name == "Boy")
+                Debug.Log("HealthController: Aggro"); //This isn't working. - Works when I remove the "+ aggroData.attacker.name" part
+                //issue is within how I'm calling from aggroData
+                if (aggroData.attacker.tag == "Player") //should be .name and "Boy", but this isn't activating
                 {
-                    AggroBoy += aggroData.aggro; //Need to establish Aggro for each character on all enemies
+                    AggroBoy += aggroData.aggro;
+                    Debug.Log(AggroBoy);
                 }
                 else if(aggroData.attacker.name == "Girl")
                 {
                     AggroGirl += aggroData.aggro;
                 }
-                 break;
+                AggroBoy += aggroData.aggro;//This doesn't work in itself. Need to change within if statements
+                break;
         }
     }
 

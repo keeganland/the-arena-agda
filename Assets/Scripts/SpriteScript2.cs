@@ -54,4 +54,25 @@ public class SpriteScript2 : MonoBehaviour
         transform.position = new Vector3(m_newx, 15, m_newy);
 
     }
+
+    public void ForcePlayerRotation(int direction)
+    {
+
+        if(direction == 1)
+        {
+            m_anim.Play("6 idle up");
+        }
+        else if (direction == 2)
+        {
+            m_anim.Play("6 idle down");
+        }
+        else if (direction == 3)
+        {
+            m_anim.Play("6 idle right");
+        }
+        else if(direction == 4)
+        {
+            m_anim.Play("6 idle left");
+        }
+    }
 }

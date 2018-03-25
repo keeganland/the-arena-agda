@@ -180,6 +180,7 @@ SpriteRenderer:
   m_Size: {x: 95.71, y: 68.33}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
 --- !u!1 &39215141
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,6 +524,7 @@ SpriteRenderer:
   m_Size: {x: 7.71, y: 15.67}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
 --- !u!1 &132937703
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,20 +626,44 @@ ParticleSystem:
     minScalar: 0
     maxCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     minCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -982653697
+  randomSeed: 561415025
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3872,7 +3898,7 @@ Prefab:
     - target: {fileID: 23570108802860768, guid: 493e38eaf03b0e9409d8013601fcfcf7,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4590965737642928, guid: 493e38eaf03b0e9409d8013601fcfcf7, type: 2}
       propertyPath: m_LocalScale.x
@@ -3940,7 +3966,7 @@ Prefab:
     - target: {fileID: 23570108802860768, guid: 493e38eaf03b0e9409d8013601fcfcf7,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4590965737642928, guid: 493e38eaf03b0e9409d8013601fcfcf7, type: 2}
       propertyPath: m_LocalScale.x
@@ -4331,6 +4357,7 @@ SpriteRenderer:
   m_Size: {x: 29.54, y: 12.46}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
 --- !u!1 &473331576
 GameObject:
   m_ObjectHideFlags: 0
@@ -4577,7 +4604,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 574108051}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -4780,7 +4807,7 @@ Prefab:
     - target: {fileID: 23570108802860768, guid: 493e38eaf03b0e9409d8013601fcfcf7,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4590965737642928, guid: 493e38eaf03b0e9409d8013601fcfcf7, type: 2}
       propertyPath: m_LocalScale.x
@@ -5050,20 +5077,44 @@ ParticleSystem:
     minScalar: 0
     maxCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     minCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -373754325
+  randomSeed: -2061820894
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -8085,7 +8136,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 818969498}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -8274,6 +8325,7 @@ SpriteRenderer:
   m_Size: {x: 3.6, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
 --- !u!1 &852718036
 GameObject:
   m_ObjectHideFlags: 0
@@ -8627,20 +8679,44 @@ ParticleSystem:
     minScalar: 0
     maxCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     minCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1668984826
+  randomSeed: 1516000195
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11733,7 +11809,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4677134033069730, guid: e7634ed684b69fb4da3c00e11239e200, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.09
+      value: 12.8
       objectReference: {fileID: 0}
     - target: {fileID: 4677134033069730, guid: e7634ed684b69fb4da3c00e11239e200, type: 2}
       propertyPath: m_LocalPosition.y
@@ -11741,7 +11817,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4677134033069730, guid: e7634ed684b69fb4da3c00e11239e200, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 29.5
+      value: -0.23
       objectReference: {fileID: 0}
     - target: {fileID: 4677134033069730, guid: e7634ed684b69fb4da3c00e11239e200, type: 2}
       propertyPath: m_LocalRotation.x
@@ -12085,7 +12161,7 @@ Prefab:
     - target: {fileID: 23570108802860768, guid: 493e38eaf03b0e9409d8013601fcfcf7,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4590965737642928, guid: 493e38eaf03b0e9409d8013601fcfcf7, type: 2}
       propertyPath: m_LocalScale.x
@@ -12153,7 +12229,7 @@ Prefab:
     - target: {fileID: 23570108802860768, guid: 493e38eaf03b0e9409d8013601fcfcf7,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4590965737642928, guid: 493e38eaf03b0e9409d8013601fcfcf7, type: 2}
       propertyPath: m_LocalScale.x
@@ -12497,7 +12573,7 @@ Prefab:
     - target: {fileID: 23570108802860768, guid: 493e38eaf03b0e9409d8013601fcfcf7,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4590965737642928, guid: 493e38eaf03b0e9409d8013601fcfcf7, type: 2}
       propertyPath: m_LocalScale.x
@@ -12592,6 +12668,7 @@ SpriteRenderer:
   m_Size: {x: 170.16, y: 73.560005}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
 --- !u!1001 &1352114840
 Prefab:
   m_ObjectHideFlags: 0
@@ -12734,6 +12811,7 @@ SpriteRenderer:
   m_Size: {x: 1.33, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
 --- !u!1 &1391034820
 GameObject:
   m_ObjectHideFlags: 0
@@ -12803,6 +12881,7 @@ SpriteRenderer:
   m_Size: {x: 15, y: 7.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
 --- !u!1 &1420310043
 GameObject:
   m_ObjectHideFlags: 0
@@ -13065,6 +13144,7 @@ SpriteRenderer:
   m_Size: {x: 1.33, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
 --- !u!1001 &1574681584
 Prefab:
   m_ObjectHideFlags: 0
@@ -13552,7 +13632,7 @@ Prefab:
     - target: {fileID: 23570108802860768, guid: 493e38eaf03b0e9409d8013601fcfcf7,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4590965737642928, guid: 493e38eaf03b0e9409d8013601fcfcf7, type: 2}
       propertyPath: m_LocalScale.x

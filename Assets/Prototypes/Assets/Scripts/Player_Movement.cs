@@ -43,6 +43,7 @@ public class Player_Movement : MonoBehaviour {
                         //Debug.Log(hit.collider.tag);
                         m_agent.SetDestination(hit.point);
                         curTarget = null;
+                        this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
                     }
                     if(hit.collider.tag == "Enemy")
                     {

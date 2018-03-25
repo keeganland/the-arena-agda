@@ -13,8 +13,10 @@ public class ActivateTextAtLine : MonoBehaviour
 	 */
 
 
+    public bool useXml;
     public string NPCName;
     public TextAsset theText;
+    public TextAsset theXml;
     public bool useSpeechBubble;
 
     public int startLine;
@@ -53,6 +55,7 @@ public class ActivateTextAtLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(gameObject.name + "'s useXml == " + useXml);
 
         if (waitForPress && Input.GetKeyDown(KeyCode.Return) && !textWasManuallyActivated)
         {
@@ -76,7 +79,7 @@ public class ActivateTextAtLine : MonoBehaviour
 
         if (talkBubble != null && useSpeechBubble && (gameObject.name == theTextManager.getLastTriggered()))
         {
-            Debug.Log("The text box is active, was last triggered by " + theTextManager.getLastTriggered() + ", so let's turn on the talk bubble");
+            //Debug.Log("The text box is active, was last triggered by " + theTextManager.getLastTriggered() + ", so let's turn on the talk bubble");
             talkBubble.SetActive(theTextManager.getIsActive());
         }
 
@@ -134,7 +137,7 @@ public class ActivateTextAtLine : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("ActivateTextAtLine's OnTriggerEnter triggered by: " + other.name);
+        //Debug.Log("ActivateTextAtLine's OnTriggerEnter triggered by: " + other.name);
         if (other.CompareTag(activatedByTag))
         {
             theTextManager.DisableCue();
@@ -144,9 +147,20 @@ public class ActivateTextAtLine : MonoBehaviour
 
     private void Activate()
     {
+        //Debug.Log("In ActivateTextAtLine.cs's Activate function");
         theTextManager.setLastTriggered(gameObject.name);
         theTextManager.setNPCName(NPCName);
-        theTextManager.ReloadScript(theText);
+
+        //Debug.Log("useXml == " + useXml);
+        if (useXml)
+        {
+            theTextManager.ReloadScriptXML(theXml);
+        }
+        else
+        {
+            theTextManager.ReloadScript(theText);
+        }
+        
         theTextManager.currentLine = startLine;
         theTextManager.endAtLine = endLine;
         theTextManager.EnableTextBox();

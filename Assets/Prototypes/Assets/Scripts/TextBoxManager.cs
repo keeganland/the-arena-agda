@@ -11,6 +11,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.UI; //Need this for UI object types (such as Text) from Unity 5+
 
@@ -27,9 +28,11 @@ public class TextBoxManager : MonoBehaviour
 
     //these exist for the management of the external .txt file
     public TextAsset textFile;
+    public TextAsset xmlDialogFile;
 	public string NPCName;
 	public string[] textLines;
 	public Queue<string> textQueue;
+    public bool useXml;
 
     //these refer to particular lines in the text file because we're using a string array for some dumb reason
     public int currentLine;
@@ -62,22 +65,27 @@ public class TextBoxManager : MonoBehaviour
 		textQueue = new Queue<string> ();
 
 		//to be replaced with something that parses XML
-        if (textFile != null) //ensure that the text file actually exists
+
+        if (useXml)
         {
-            textLines = (textFile.text.Split('\n')); //Keegan NTS: weird that this is valid syntax- i have never used round brackets () like that?
+            ReloadScriptXML(xmlDialogFile);
         }
-			
-		for (int i = 0; i < textLines.Length; i++) {
-			textQueue.Enqueue(textLines[i]);
-		}
-		/**
-		 * Done
-		 */
-
-
-        if (endAtLine == 0)
+        else //deprecate once xml is firmly in place
         {
-            endAtLine = textLines.Length - 1;
+            if (textFile != null) //ensure that the text file actually exists
+            {
+                textLines = (textFile.text.Split('\n')); //Keegan NTS: weird that this is valid syntax- i have never used round brackets () like that?
+            }
+
+            if (endAtLine == 0)
+            {
+                endAtLine = textLines.Length - 1;
+            }
+
+            for (int i = 0; i < textLines.Length; i++)
+            {
+                textQueue.Enqueue(textLines[i]);
+            }
         }
 
         if (isActive)
@@ -114,14 +122,12 @@ public class TextBoxManager : MonoBehaviour
             if (!isTyping)
             {
                 currentLine += 1; //the way things work at the moment is just increment through the array. should sooner or later be replaced with a queue
-                //if (currentLine > endAtLine)
 				if((textQueue.Count == 0) || (currentLine > endAtLine))
                 {
                     DisableTextBox();
                 }
                 else
                 {
-                    //StartCoroutine(TextScroll(textLines[currentLine]));
 					StartCoroutine(TextScroll(textQueue.Dequeue()));
                 }
             }
@@ -149,7 +155,6 @@ public class TextBoxManager : MonoBehaviour
         isTyping = false;
         cancelTyping = false;
     }
-
 
     public void EnableTextBox()
     {
@@ -244,4 +249,23 @@ public class TextBoxManager : MonoBehaviour
 	{
 		return lastTriggeredBy;
 	}
+
+    public void ReloadScriptXML(TextAsset xmlFile)
+    {
+        textQueue.Clear();
+        if (xmlFile != null)
+        {
+            XmlDocument xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(xmlFile.text);
+
+            foreach (XmlNode xmlNode in xmlDocument["scenes"].ChildNodes)
+            {
+                foreach (XmlNode line in xmlNode["lines"].ChildNodes)
+                {
+                    Debug.Log("Enqueuing line: " + line.InnerText);
+                    textQueue.Enqueue(line.InnerText);
+                }
+            }
+        }
+    }
 }

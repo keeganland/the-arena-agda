@@ -45,6 +45,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                     {
                         m_agent.SetDestination(hit.point);
                         curTarget = null;
+                        this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
                     }
                     if(hit.collider.tag == "Enemy")
                     {

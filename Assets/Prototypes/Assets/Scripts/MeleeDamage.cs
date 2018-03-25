@@ -7,8 +7,13 @@ public class MeleeDamage : MonoBehaviour {
     public int Damage;
     public int Aggro;
     public float AttackSpeed;
+    public GameObject _Sprite;
     private float AttackTimer;
-    private GameObject m_target;
+    public GameObject m_target;
+
+    //-----------------Alex Modifications-----------//
+    [SerializeField]
+    private GameObject[] spellPrefab;
 
 	// Use this for initialization
 	void Start () {
@@ -23,8 +28,10 @@ public class MeleeDamage : MonoBehaviour {
         {
             DamageData dmgData = new DamageData();
             dmgData.damage = Damage;
+            CastSpell();
+            
 
-            Debug.Log("MeleeDamage: deal damage to " + m_target.name);
+            //Debug.Log("MeleeDamage: deal damage to " + m_target.name);
 
             AggroData aggroData = new AggroData();
             aggroData.aggro = Aggro;
@@ -36,8 +43,13 @@ public class MeleeDamage : MonoBehaviour {
             if (msgHandler)
             {
                 msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
+<<<<<<< HEAD
                 //msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, this.gameObject, aggroData); //If placed here enemy dies instantly. Not sure why
                 Debug.Log("MeleeDamage: this = " + this.name);
+=======
+                //msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, this.gameObject, aggroData);
+                //Debug.Log("MeleeDamage: this = " + this.name);
+>>>>>>> 378a1dd7bf443cf2c78edb56f27103c2dd8b44a6
             }
             AttackTimer = 0.0f;
             if (msgHandler)
@@ -51,4 +63,41 @@ public class MeleeDamage : MonoBehaviour {
     {
         m_target = target;
     }
+    
+    public void CastSpell()
+    {
+        Vector3 direction = m_target.transform.position - transform.position;
+        float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
+
+        transform.LookAt(m_target.transform);
+
+        int rotation = 0;
+
+        if ( 45 <= transform.eulerAngles.y && transform.eulerAngles.y < 135 )
+        {
+            rotation = 3;
+        }
+        else if (0 <= transform.eulerAngles.y && transform.eulerAngles.y < 45)
+        {
+            rotation = 1;
+        }
+        else if (225 <= transform.eulerAngles.y && transform.eulerAngles.y < 315)
+        {
+            rotation = 4;
+        }
+        else
+        {
+            rotation = 2;
+        }
+
+        if (rotation != 0)
+        {
+            _Sprite.GetComponent<SpriteScript2>().ForcePlayerRotation(rotation);
+        }
+        GameObject go = Instantiate(spellPrefab[0], transform.position, Quaternion.Euler(0, -angle, 0));
+        go.gameObject.GetComponent<Spell>().SetTarget(m_target);
+        go.gameObject.GetComponent<Bullet>().SpellFlare(angle);
+    }
+
+    
 }

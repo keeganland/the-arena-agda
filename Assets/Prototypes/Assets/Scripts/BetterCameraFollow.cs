@@ -34,8 +34,6 @@ public class BetterCameraFollow : MonoBehaviour
 
     void Update()
     {
-
-        Debug.Log(m_potentialcameraTargets.Length);
         /*
          *  Keegan's NTS: 
          *  Alex's intention with this if-block is "if the target is the player, etc" so that the behaviour in the block only takes place during normal gameplay circumstances.
@@ -50,7 +48,6 @@ public class BetterCameraFollow : MonoBehaviour
             AutomaticCamera();
 
 
-            Debug.Log(m_currentcameraTargetsTooFar.Count);
             if (m_currentcameraTargetsTooFar.Count >=1) //if more at least 1 enemy is too far from the center
             {
                 StartCoroutine(ChangeFieldofView(_FieldOfViewMax));//Zoom out, needs to be in Update as "Mathf.Lerp" has to be updated every frame
@@ -114,15 +111,15 @@ public class BetterCameraFollow : MonoBehaviour
 
     void ManualCamera()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            m_manualCamera = true;
-        }
+            if (Input.GetKey(KeyCode.Space))
+            {
+                m_manualCamera = true;
+            }
 
-        else if (Input.GetKeyUp(KeyCode.Space)) //cancel the lock in for the camera and switch back to automatic camera
-        {
-            m_manualCamera = false;
-        }
+            else if (Input.GetKeyUp(KeyCode.Space)) //cancel the lock in for the camera and switch back to automatic camera
+            {
+                m_manualCamera = false;
+            }
     }
 
     private bool IsInView(GameObject origin, GameObject toCheck) //check if the enemy is viewed in the screen, return a bool.
@@ -176,28 +173,28 @@ public class BetterCameraFollow : MonoBehaviour
 
     private void AdjustCamera(List<GameObject> currentTargets) //set the camera in the middle of all "viewed enemies" (using vector calculations)
     {
-        Vector3 CameraNewpos = new Vector3(0, this.transform.position.y, 0);
 
-        for (int i = 0; i < currentTargets.Count; i++)
-        {
-            CameraNewpos.x += currentTargets[i].transform.position.x;
-            CameraNewpos.z += currentTargets[i].transform.position.z;
-        }
+            Vector3 CameraNewpos = new Vector3(0, this.transform.position.y, 0);
 
-        CameraNewpos.x /= currentTargets.Count;
-        CameraNewpos.z /= currentTargets.Count;
+            for (int i = 0; i < currentTargets.Count; i++)
+            {
+                CameraNewpos.x += currentTargets[i].transform.position.x;
+                CameraNewpos.z += currentTargets[i].transform.position.z;
+            }
 
-        if (m_currentcameraTargets.Count == 0 || m_manualCamera == true)
-        {
-            Debug.Log("here");
-            Vector3 m_pos = new Vector3(targets[m_number].transform.position.x, this.transform.position.y, targets[m_number].transform.position.z);
-            transform.position = Vector3.Lerp(transform.position, m_pos, _Speed* Time.deltaTime);
-            return;
-        }
-        else
-        {
-            transform.position = Vector3.Lerp(transform.position, CameraNewpos, _Speed * Time.deltaTime);
-        }
+            CameraNewpos.x /= currentTargets.Count;
+            CameraNewpos.z /= currentTargets.Count;
+
+            if (m_currentcameraTargets.Count == 0 || m_manualCamera == true)
+            {
+                Vector3 m_pos = new Vector3(targets[m_number].transform.position.x, this.transform.position.y, targets[m_number].transform.position.z);
+                transform.position = Vector3.Lerp(transform.position, m_pos, _Speed * Time.deltaTime);
+                return;
+            }
+            else
+            {
+                transform.position = Vector3.Lerp(transform.position, CameraNewpos, _Speed * Time.deltaTime);
+            }
     }
 
     private IEnumerator ChangeFieldofView(float _FieldofViewValue) //Coroutine to zoom in or out

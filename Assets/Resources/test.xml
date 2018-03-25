@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<scenes>
+	<scene name="Prototype">
+		<lines>
+			<line speaker="Narrator">Test test 1 2 3</line>
+			<line speaker="Narrator">Hello world!</line>
+		</lines>
+	</scene>
+</scenes>

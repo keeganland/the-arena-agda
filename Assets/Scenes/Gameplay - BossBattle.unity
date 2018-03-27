@@ -3482,11 +3482,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 21
       objectReference: {fileID: 0}
-    - target: {fileID: 224982450521482968, guid: e55b9fa933ca4084d930b4905ca0de71,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e55b9fa933ca4084d930b4905ca0de71, type: 2}
   m_IsPrefabParent: 0
@@ -4135,7 +4130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f15cd3a6e95d4146bd0fb053cd90107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 250
+  Damage: 50
   Aggro: 0
   AttackSpeed: 5
   _Sprite: {fileID: 280362881}

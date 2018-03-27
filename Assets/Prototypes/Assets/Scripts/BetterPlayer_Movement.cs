@@ -83,6 +83,13 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
         m_agent.isStopped = stopMoving;
 
+        //this should chase enemy if enemy is not currently in range
+        if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
+        {
+            //Debug.Log("in range: " + curTarget.name);
+            m_agent.SetDestination(curTarget.transform.position);
+        }
+
         /*
         //The above is a more concise way of putting this more readable code:
 
@@ -96,7 +103,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
             m_agent.isStopped = false;
         }
         */
-	}
+    }
 
     public void CancelMovement()
     {

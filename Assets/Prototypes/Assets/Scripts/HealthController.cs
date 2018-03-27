@@ -46,13 +46,13 @@ public class HealthController : MonoBehaviour
              case MessageTypes.AGGROCHANGED:
                 //Debug.Log("HealthController: changing Aggro");
                 AggroData aggroData = msgData as AggroData;
-                //Debug.Log("Healthcontroller: AGGROCHANGED: go = " + go.name);
+                Debug.Log("Healthcontroller: AGGROCHANGED: go = " + go.name);
 
-                if (aggroData.attacker.name == "Boy")
+                if (go.name == "Boy")
                 {
                     AggroBoy += aggroData.aggro; //Need to establish Aggro for each character on all enemies
                 }
-                else if(aggroData.attacker.name == "Girl")
+                else if(go.name == "Girl")
                 {
                     AggroGirl += aggroData.aggro;
                 }

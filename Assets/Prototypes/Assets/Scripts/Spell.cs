@@ -7,6 +7,7 @@ public class Spell : MonoBehaviour {
     private Rigidbody rb;
     private GameObject spellCaster;
     private bool isCollided;
+    private int AggroValue;
 
     [SerializeField]
     private float speed;

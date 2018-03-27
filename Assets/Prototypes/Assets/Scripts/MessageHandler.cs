@@ -60,7 +60,7 @@ public class HealthData : MessageData
 }
 public class AggroData : MessageData
 {
-    public GameObject attacker;
-    public GameObject attacked;
+    //public GameObject attacker;
+    //public GameObject attacked;
     public int aggro;
 }

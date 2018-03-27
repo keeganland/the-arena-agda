@@ -96,7 +96,7 @@ public class BattleEnemy : MonoBehaviour {
                 {                
                     m_currenthp = hpData.curHealth;
                     m_maxhp = hpData.maxHealth;
-                    Debug.Log((float) m_currenthp / (float)m_maxhp);
+                    //Debug.Log((float) m_currenthp / (float)m_maxhp);
                 }
                 break;
         }   

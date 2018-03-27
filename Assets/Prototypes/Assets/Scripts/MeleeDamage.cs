@@ -25,8 +25,13 @@ public class MeleeDamage : MonoBehaviour {
         AttackTimer += Time.deltaTime; //including this although I'm not sure I have to. Should the animation Timer do this for me?
         if(AttackTimer >= AttackSpeed && (this.GetComponentInChildren<RangeChecker>().InRange(m_target)) && m_target!=null)
         {
+            if(m_target.GetComponent<HealthController>().currentHealth <= 0)
+            {
+                return;
+            }
             DamageData dmgData = new DamageData();
             dmgData.damage = Damage;
+
             CastSpell();
             
 
@@ -38,14 +43,23 @@ public class MeleeDamage : MonoBehaviour {
 
             //Really need to make sure MessageHandler is on all enemies and players
             MessageHandler msgHandler = m_target.GetComponent<MessageHandler>();
+            AttackTimer = 0.0f;
 
             if (msgHandler)
             {
+                if(m_target.GetComponent<BattleEnemy>())
+                {
+                    if(m_target.GetComponent<BattleEnemy>().isInvincible == true)
+                    {
+                        return;
+                    }
+                }
+
                 msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
                 //msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, this.gameObject, aggroData);
                 //Debug.Log("MeleeDamage: this = " + this.name);
             }
-            AttackTimer = 0.0f;
+
         }
     }
 

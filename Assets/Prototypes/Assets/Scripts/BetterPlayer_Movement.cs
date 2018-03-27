@@ -106,24 +106,29 @@ public class BetterPlayer_Movement : MonoBehaviour {
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other == curTarget.GetComponent<Collider>())
+        if (curTarget)
         {
-            //Debug.Log("Target in Range " + curTarget.name);
-            CancelMovement();
-            //Pass attack function here?
+            if (other == curTarget.GetComponent<Collider>())
+            {
+                //Debug.Log("Target in Range " + curTarget.name);
+                CancelMovement();
+                //Pass attack function here?
+            }
+            else return;
         }
-        else return;
     }
     
     private void OnTriggerExit(Collider other)
     {
-        //Debug.Log("TriggerExit" + other.name);
-        if(other == curTarget.GetComponent<Collider>())
+        if (curTarget)
         {
-            //will have player chase target once target leaves attack range trigger
-            m_agent.SetDestination(curTarget.transform.position);
-            //Debug.Log("Target out of range " + curTarget.name);
-
+            //Debug.Log("TriggerExit" + other.name);
+            if (other == curTarget.GetComponent<Collider>())
+            {          
+                //will have player chase target once target leaves attack range trigger
+                m_agent.SetDestination(curTarget.transform.position);
+                //Debug.Log("Target out of range " + curTarget.name);
+            }
         }
     }
     

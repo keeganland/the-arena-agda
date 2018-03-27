@@ -7,29 +7,40 @@ public class BattleEnemy : MonoBehaviour {
 
     public GameObject[] _Targets;
 
+    [Header("BossData")]
     private TargetRangeChecker m_range;
+    private int m_currenthp;
+    private int m_maxhp;
 
     [Header("Different Spells")]
     private float cooldownSpellA;
     private float cooldownSpellB;
     private float cooldownSpellC;
+
     private bool isSpellACasting;
     private bool isSpellBCasting;
     private bool isSpellCCasting;
+    private bool isSpellDCasting;
 
+    public bool isInvincible;
 
-    private int cooldownMax = 1;
 
     [Header("Spell Data")]
     public int[] _Attacktimers;
     public GameObject spellTargetPosition;
     public GameObject _WarningbeforeSpell;
+    public GameObject _ShowTotemPos;
+    private GameObject m_shield;
+    private GameObject m_totem = null;
+    private GameObject m_showtotempos = null;
 
     [SerializeField]
     private GameObject[] spellPrefab;
     public GameObject[] storedPositions;
     public GameObject _Mouth;
     public GameObject _Body;
+    public GameObject _Totem;
+    public GameObject[] _ChevreSpawn;
 
     public void Start()
     {
@@ -39,11 +50,6 @@ public class BattleEnemy : MonoBehaviour {
         if (msgHandler)
         {
             msgHandler.RegisterDelegate(RecieveMessage);
-        }
-
-       for(int i = 0; i < _Attacktimers.Length; i++)
-        {
-            cooldownMax *= _Attacktimers[i];
         }
 
         spellTargetPosition = Instantiate(spellTargetPosition as GameObject);
@@ -58,7 +64,25 @@ public class BattleEnemy : MonoBehaviour {
 
         NormalAttackGirl();
         NormalAttackBoy();
-        ChangeColor();
+        Shield();
+        SpawnChevre();
+        IsnotInvincible();
+    }
+
+    public void IsnotInvincible()
+    {
+        if (m_totem)
+        {
+            if (m_totem.GetComponent<TotemDestroyed>()._IsDestroyed == true)
+            {
+                isInvincible = false;
+                isSpellCCasting = false;
+                cooldownSpellC = 0;
+                Destroy(m_shield, 1f);
+                Destroy(m_totem, 1f);
+                Destroy(m_showtotempos, 1f);
+            }
+        }
     }
 
     void RecieveMessage(MessageTypes msgType, GameObject go, MessageData msgData)
@@ -69,12 +93,36 @@ public class BattleEnemy : MonoBehaviour {
                 HealthData hpData = msgData as HealthData;
 
                 if (hpData != null)
-                {
-                    UltimateAttack(hpData.curHealth, hpData.maxHealth);
-                    ChangeColor();
+                {                
+                    m_currenthp = hpData.curHealth;
+                    m_maxhp = hpData.maxHealth;
+                    Debug.Log((float) m_currenthp / (float)m_maxhp);
                 }
                 break;
         }   
+    }
+
+    void Shield()
+    {
+        if(cooldownSpellC >= _Attacktimers[2] && (float) m_currenthp / (float) m_maxhp <= 0.5f)
+        {
+            if (!isSpellCCasting)
+            {
+                StartCoroutine(CastSpellC());
+            }
+        }
+    }
+    
+    void SpawnChevre()
+    {
+        if((float)m_currenthp / (float)m_maxhp <= 0.5f)
+        {
+            if (!isSpellDCasting)
+            {
+                StartCoroutine(CastSpellD());
+            }
+        }
+
     }
 
     void NormalAttackGirl()
@@ -90,7 +138,7 @@ public class BattleEnemy : MonoBehaviour {
 
     void NormalAttackBoy()
     {
-         if( cooldownSpellB >= _Attacktimers[1])
+         if( cooldownSpellB >= _Attacktimers[1] && !isInvincible)
         {
            // Debug.Log((int) cooldownSpellB);
             if (!isSpellBCasting)
@@ -98,21 +146,6 @@ public class BattleEnemy : MonoBehaviour {
                 StartCoroutine(CastSpellB());
             }
         }
-    }
-
-    void UltimateAttack(int currhealth, int maxhealth)
-    {
-        if ((float)currhealth/(float)maxhealth > 0.4 && (float) currhealth / (float)maxhealth < 0.55
-            ||  (float) currhealth / (float)maxhealth > 0.10 && (float)currhealth / (float)maxhealth < 0.15)
-        {
-            
-        }
-                                                                                                
-    }
-
-    void ChangeColor()
-    {
-        
     }
 
     public bool IsDivisble(int x, int n)
@@ -133,7 +166,7 @@ public class BattleEnemy : MonoBehaviour {
 
             Debug.Log(_Targets[i]);
 
-            spellTargetPosition.transform.position += newTargetPosition * 10;
+            spellTargetPosition.transform.position += newTargetPosition * 6f;
 
             storedPositions[i] = spellTargetPosition;
 
@@ -196,12 +229,30 @@ public class BattleEnemy : MonoBehaviour {
     private IEnumerator CastSpellC()
     {
         isSpellCCasting = true;
+        isInvincible = true;
+
+        transform.LookAt(_Totem.transform);
+        GameObject showtotempos = Instantiate(_ShowTotemPos, _Body.transform.position, transform.rotation);
+        GameObject shield = Instantiate(spellPrefab[2], _Body.transform.position, Quaternion.identity);
+        GameObject totem = Instantiate(spellPrefab[3], _Totem.transform.position, Quaternion.identity);
+        m_shield = shield;
+        m_totem = totem;
+        m_showtotempos = showtotempos;
 
         yield return new WaitForSeconds(4);
+    }
 
-        cooldownSpellC = 0;
+    private IEnumerator CastSpellD()
+    {
+        isSpellDCasting = true;
 
-        isSpellCCasting = false;
+        int i = Random.Range(0, _ChevreSpawn.Length);
+
+        Instantiate(spellPrefab[4], _ChevreSpawn[i].transform.position, Quaternion.identity);
+
+        yield return new WaitForSeconds(_Attacktimers[3]);
+
+        isSpellDCasting = false;
     }
 }
 

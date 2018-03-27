@@ -168,7 +168,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1102624521007006}
   m_LocalRotation: {x: 0.6532815, y: 0.27059805, z: -0.27059805, w: 0.6532815}
-  m_LocalPosition: {x: 15, y: 0, z: 0}
+  m_LocalPosition: {x: 10, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4822118300245284}
@@ -186,7 +186,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1272247912726944}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.118854, y: 20.53, z: -4.8078923}
+  m_LocalPosition: {x: 7.478135, y: 20.35, z: 11.5098915}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4312563321513732}
@@ -394,7 +394,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -685375528
+  randomSeed: 1059267044
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3436,7 +3436,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -730115965
+  randomSeed: 2144132501
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6483,7 +6483,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1007595527
+  randomSeed: -1915650949
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9530,7 +9530,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 253949516
+  randomSeed: -753224198
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -12601,7 +12601,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1527642416
+  randomSeed: -847857156
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -15660,7 +15660,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1003664224
+  randomSeed: -1411694556
   InitialModule:
     serializedVersion: 3
     enabled: 1

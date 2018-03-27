@@ -47,9 +47,6 @@ public class TargetManager : MonoBehaviour
             case TargetOptions.WEAKEST:
                 TargetWeakest();
                 break;
-            case TargetOptions.AGGRO:
-                TargetAggro();
-                break;
         }
     }
     private void TargetFarthest()

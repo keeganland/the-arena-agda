@@ -23,7 +23,6 @@ public class HealthController : MonoBehaviour
     private void Start()
     {
         currentHealth = totalHealth;
-        agent = GetComponent<NavMeshAgent>(); //?????
         m_messageHandler = GetComponent<MessageHandler>();
 
         if (m_messageHandler)
@@ -64,6 +63,7 @@ public class HealthController : MonoBehaviour
     public void ApplyDamage(int damage, GameObject go)
     {
         currentHealth -= damage;
+        
 
         //Will need to change this if statement, pretty sure I need to remove the spawn part
         if (currentHealth <= 0f /*&& GameObject.Find("Cube-Spawn").GetComponent<HealthController>().currentHealth > 0*/)
@@ -79,7 +79,13 @@ public class HealthController : MonoBehaviour
                 m_messageHandler.GiveMessage(MessageTypes.DIED, gameObject, deathData);
             }
 
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<BetterCameraFollow>().FindNewTargets();
+            if(transform.parent != null)
+            {
+                if (gameObject.GetComponentInParent<TotemDestroyed>())
+                {
+                    gameObject.GetComponentInParent<TotemDestroyed>()._IsDestroyed = true;
+                }
+            }
             this.gameObject.SetActive(false);//This works
             Sprite.SetActive(false);
 
@@ -100,7 +106,6 @@ public class HealthController : MonoBehaviour
         if (m_messageHandler)
         {
             HealthData hpData = new HealthData();
-
             hpData.maxHealth = totalHealth;
             hpData.curHealth = currentHealth;
 

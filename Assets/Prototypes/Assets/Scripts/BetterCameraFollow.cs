@@ -59,6 +59,7 @@ public class BetterCameraFollow : MonoBehaviour
                 targetsTooFar = false;
             }
         }
+
     }
 
     void ChangeCharacters()

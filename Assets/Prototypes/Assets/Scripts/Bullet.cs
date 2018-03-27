@@ -33,13 +33,16 @@ public class Bullet : MonoBehaviour {
                 //Debug.Log("MeleeDamage: this = " + this.name);
             }
         }
-        if(other.gameObject.CompareTag("wall"))
+        if (other.gameObject.CompareTag("wall"))
         {
+
             DestroyObject();
         }
+        else return;
     }
     void OnCollisionEnter (Collision collision)
     {
+
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("wall"))
         {
             DestroyObject();
@@ -70,6 +73,9 @@ public class Bullet : MonoBehaviour {
 
     private void DoSpellFlare()
     {
-        GameObject _Spell = Instantiate(_SpellFlare, transform.position, Quaternion.Euler(m_angle));
+        if (_SpellFlare)
+        {
+            GameObject _Spell = Instantiate(_SpellFlare, transform.position, Quaternion.Euler(m_angle));
+        }
     }
 }

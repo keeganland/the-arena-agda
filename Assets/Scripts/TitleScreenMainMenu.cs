@@ -10,5 +10,25 @@ public class TitleScreenMainMenu : MonoBehaviour {
         SceneManager.LoadScene("Introduction (1)");
     }
 
+    public void PlayCh1()
+    {
+        SceneManager.LoadScene("Chapter1");
+    }
+
+    public void PlayBoss()
+    {
+        SceneManager.LoadScene("Gameplay - BossBattle");
+    }
+
+    public void PlayNPC()
+    {
+        SceneManager.LoadScene("Dialog - Prototype");
+    }
+
+    public void QuitGame ()
+    {
+        Debug.Log("Game Quit!");
+        Application.Quit();
+    }
 
 }

@@ -65,6 +65,13 @@ public class Player_Movement : MonoBehaviour {
 
         m_agent.isStopped = stopMoving;
 
+        //Should allow chasing target regardless of range
+        if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
+        {
+            //Debug.Log("in range: " + curTarget.name);
+            m_agent.SetDestination(curTarget.transform.position);
+        }
+
         /*
         //The above is a more concise way of putting this more readable code:
 
@@ -78,7 +85,7 @@ public class Player_Movement : MonoBehaviour {
             m_agent.isStopped = false;
         }
         */
-	}
+    }
 
     public void CancelMovement()
     {

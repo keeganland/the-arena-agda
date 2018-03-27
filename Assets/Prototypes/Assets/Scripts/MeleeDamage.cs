@@ -37,8 +37,8 @@ public class MeleeDamage : MonoBehaviour {
 
             //Debug.Log("MeleeDamage: deal damage to " + m_target.name);
 
-            /*AggroData aggroData = new AggroData();
-            aggroData.aggro = Aggro;*/
+            AggroData aggroData = new AggroData();
+            aggroData.aggro = Aggro;
             //Debug.Log("MeleeDamage: change Aggro of " + m_target.name);
 
             //Really need to make sure MessageHandler is on all enemies and players
@@ -56,7 +56,7 @@ public class MeleeDamage : MonoBehaviour {
                 }
 
                 msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
-                //msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, this.gameObject, aggroData);
+                msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, this.gameObject, aggroData);
                 //Debug.Log("MeleeDamage: this = " + this.name);
             }
 
@@ -103,6 +103,7 @@ public class MeleeDamage : MonoBehaviour {
 
 
         go.gameObject.GetComponent<Spell>().SetTarget(m_target);
+        go.gameObject.GetComponent<Spell>().GetAggro(Aggro);
         go.gameObject.GetComponent<Bullet>().SpellFlare(angle);
         go.gameObject.GetComponent<Bullet>().GetSpellCaster(this.gameObject);
     }

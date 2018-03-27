@@ -3422,7 +3422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac70f7a93cfe5294cad0fb0476fc34bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 10000
+  totalHealth: 100
   currentHealth: 0
   enemy: {fileID: 0}
   Sprite: {fileID: 750984601}
@@ -4338,7 +4338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac70f7a93cfe5294cad0fb0476fc34bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 15000
+  totalHealth: 150
   currentHealth: 0
   enemy: {fileID: 0}
   Sprite: {fileID: 280362881}

@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour {
     private Vector3 m_angle;
     [SerializeField]
     private GameObject _SpellCaster;
+    private int AggroValue;
     
 
     private void OnTriggerEnter(Collider other)
@@ -23,13 +24,15 @@ public class Bullet : MonoBehaviour {
         {                              
             DamageData dmgData = new DamageData();
             dmgData.damage = Damage;
+            AggroData aggroData = new AggroData();
+            aggroData.aggro = AggroValue;
 
             MessageHandler msgHandler = other.GetComponent<MessageHandler>();
 
             if (msgHandler)
             {
                 msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
-                //msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, this.gameObject, aggroData);
+                msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, _SpellCaster, aggroData);
                 //Debug.Log("MeleeDamage: this = " + this.name);
             }
         }
@@ -77,5 +80,11 @@ public class Bullet : MonoBehaviour {
         {
             GameObject _Spell = Instantiate(_SpellFlare, transform.position, Quaternion.Euler(m_angle));
         }
+    }
+
+    public void GetAggro(int Aggro)
+    {
+        AggroValue = Aggro;
+        //Debug.Log("Bullet: changed Aggro");
     }
 }

@@ -45,24 +45,11 @@ public class Spell : MonoBehaviour {
             isCollided = true;
             transform.SetParent(collision.transform);
         }
-        AggroData aggroData = new AggroData();
-        aggroData.aggro = AggroValue;
-
-        MessageHandler msgHandler = target.GetComponent<MessageHandler>();
-        if (msgHandler)
-        {
-            msgHandler.GiveMessage(MessageTypes.AGGROCHANGED,spellCaster, aggroData);
-        }
     }
 
     public void SetTarget(GameObject passedTarget)
     {
         target = passedTarget;
-    }
-
-    public void GetAggro(int Aggro)
-    {
-        AggroValue = Aggro;
     }
 }
 

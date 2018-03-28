@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("BULLET: _SpellCaster = " + _SpellCaster.name);
         if (other.gameObject.CompareTag("AttackRange"))
         {
             return;
@@ -33,7 +34,8 @@ public class Bullet : MonoBehaviour {
             {
                 msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
                 msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, _SpellCaster, aggroData);
-                //Debug.Log("MeleeDamage: this = " + this.name);
+                Debug.Log("Bullet: this = " + this.name);
+                //Debug.Log("BULLET: _SpellCaster = " + _SpellCaster.name);
             }
         }
         if (other.gameObject.CompareTag("wall"))

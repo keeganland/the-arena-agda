@@ -164,7 +164,7 @@ public class BattleEnemy : MonoBehaviour {
             newTargetPosition.x = _Targets[i].transform.position.x - transform.position.x;
             newTargetPosition.z = _Targets[i].transform.position.z - transform.position.z;
 
-            Debug.Log(_Targets[i]);
+            //Debug.Log(_Targets[i]);
 
             spellTargetPosition.transform.position += newTargetPosition * 6f;
 
@@ -186,7 +186,7 @@ public class BattleEnemy : MonoBehaviour {
                 pos = 0;
             else pos = 1;
         }
-        Debug.Log(pos + "is pos");
+        //Debug.Log(pos + "is pos");
         StorePosition(pos); // FIX : WHEN GIRL DIE, BOSS DOESNT ATTACK ANYMORE
                      
         transform.LookAt(storedPositions[pos].transform);

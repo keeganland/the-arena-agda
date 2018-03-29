@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 114866800305391462}
   - component: {fileID: 95019128265651000}
   - component: {fileID: 114245273878641102}
+  - component: {fileID: 111981347069297402}
   m_Layer: 0
   m_Name: DamageDisplayText
   m_TagString: Untagged
@@ -152,6 +153,7 @@ GameObject:
   - component: {fileID: 135285954498406304}
   - component: {fileID: 114899042159671340}
   - component: {fileID: 23284190966074260}
+  - component: {fileID: 82839741762036626}
   m_Layer: 0
   m_Name: ChevreMonster-Agent
   m_TagString: Enemy
@@ -326,6 +328,86 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!82 &82839741762036626
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1649306402452828}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95019128265651000
 Animator:
   serializedVersion: 3
@@ -360,6 +442,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!111 &111981347069297402
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1636914414969630}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 7d8dd2eb0f7a04c4a9634a8be741ff7b, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 7d8dd2eb0f7a04c4a9634a8be741ff7b, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114010142889147092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -520,6 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_text: {fileID: 114866800305391462}
+  m_anim: {fileID: 0}
   _Color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114411036164983716
 MonoBehaviour:
@@ -532,9 +630,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac70f7a93cfe5294cad0fb0476fc34bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 16
+  totalHealth: 18
   currentHealth: 0
   enemy: {fileID: 0}
+  _DeathSound: {fileID: 0}
   Sprite: {fileID: 1501803346374306}
   AggroBoy: 0
   AggroGirl: 0
@@ -662,6 +761,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47055cf730bb4ea479baf0b8fd525537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _AudioClip:
+  - {fileID: 8300000, guid: 17a2a6ce26b0b4d7e9f033e1f5ed14bd, type: 3}
+  - {fileID: 8300000, guid: e18472f62987f4645a3a80fb241fd2f4, type: 3}
   Damage: 15
   Aggro: 0
   AttackSpeed: 2
@@ -701,7 +803,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.04
-  m_Speed: 1
+  m_Speed: 2.5
   m_Acceleration: 1
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -719,7 +821,7 @@ NavMeshObstacle:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1649306402452828}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
   m_Extents: {x: 0.05, y: 0.25, z: 0.05}
@@ -768,6 +870,7 @@ SpriteRenderer:
   m_Size: {x: 0.48, y: 0.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
 --- !u!222 &222568621326237626
 CanvasRenderer:
   m_ObjectHideFlags: 1

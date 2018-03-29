@@ -10,6 +10,10 @@ public class HealthController : MonoBehaviour
     public int currentHealth;
     public GameObject enemy;
 
+    public AudioClip _DeathSound;
+
+    private AudioSource m_audioSource;
+
     public GameObject Sprite;
 
     public int AggroBoy = 0;
@@ -29,6 +33,8 @@ public class HealthController : MonoBehaviour
         {
             m_messageHandler.RegisterDelegate(RecieveMessage);
         }
+
+        m_audioSource = GetComponent<AudioSource>();
     }
 
     void RecieveMessage(MessageTypes msgType, GameObject go, MessageData msgData)
@@ -47,14 +53,16 @@ public class HealthController : MonoBehaviour
                 //Debug.Log("HealthController: changing Aggro");
                 AggroData aggroData = msgData as AggroData;
                 //Debug.Log("Healthcontroller: AGGROCHANGED: go = " + go.name);
-                Debug.Log("Healthcontroller: AGGROCHANGED on: " + this.name);
-
+                //Debug.Log("Healthcontroller: AGGROCHANGED on: " + this.name);
+                //Debug.Log(aggroData.aggro);
+                //Debug.Log("Healthcontroller: go name is" + go.name);
                 if (go.name == "Boy")
                 {
                     AggroBoy += aggroData.aggro; //Need to establish Aggro for each character on all enemies
                 }
                 else if(go.name == "Girl")
                 {
+                    //Debug.Log("here");
                     AggroGirl += aggroData.aggro;
                 }
                  break;
@@ -69,6 +77,7 @@ public class HealthController : MonoBehaviour
         //Will need to change this if statement, pretty sure I need to remove the spawn part
         if (currentHealth <= 0f /*&& GameObject.Find("Cube-Spawn").GetComponent<HealthController>().currentHealth > 0*/)
         {
+            PlaySoundOnKill();
             currentHealth = 0;
 
             if (m_messageHandler)
@@ -111,6 +120,14 @@ public class HealthController : MonoBehaviour
             hpData.curHealth = currentHealth;
 
             m_messageHandler.GiveMessage(MessageTypes.HEALTHCHANGED, gameObject, hpData);
+        }
+    }
+
+    private void PlaySoundOnKill()
+    {
+        if (_DeathSound)
+        {
+            m_audioSource.PlayOneShot(_DeathSound);
         }
     }
 }

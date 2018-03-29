@@ -1,11 +1,23 @@
-﻿using System.Collections;
+﻿/*
+ * First order of business for refactorings
+ */
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementManager : MonoBehaviour {
 
-    public Player_Movement boyMover;
-    public Player_Movement girlMover;
+    //lets get ready to fuck some shit up i guess!!!
+    public BetterPlayer_Movement boyMover;
+    public BetterPlayer_Movement girlMover;
+
+    //public Player_Movement boyMover;
+    //public Player_Movement girlMover;
+
+    //public BetterPlayer_Movement bBoyMover;
+    //public BetterPlayer_Movement bGirlMover;
 
     private bool playerIsBoy = false;
     private bool playerIsGirl = false;

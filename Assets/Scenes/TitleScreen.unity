@@ -1535,7 +1535,13 @@ MonoBehaviour:
     have given them a different instruction.
 
 
-    Press 1, 2 keys to select which character you currently control.'
+    Press 1, 2 keys to select which character you currently control.
+
+
+    Press Enter to interact with NPCs and scroll through text.
+
+
+    Press Esc open the pause menu.'
 --- !u!222 &1324746208
 CanvasRenderer:
   m_ObjectHideFlags: 0

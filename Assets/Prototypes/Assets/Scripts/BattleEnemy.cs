@@ -21,6 +21,7 @@ public class BattleEnemy : MonoBehaviour {
     private bool isSpellBCasting;
     private bool isSpellCCasting;
     private bool isSpellDCasting;
+    private bool isShieldPlaying;
 
     public bool isInvincible;
 
@@ -36,16 +37,20 @@ public class BattleEnemy : MonoBehaviour {
 
     [SerializeField]
     private GameObject[] spellPrefab;
+    private AudioSource m_audioSource;
+
     public GameObject[] storedPositions;
     public GameObject _Mouth;
     public GameObject _Body;
     public GameObject _Totem;
     public GameObject[] _ChevreSpawn;
+    public AudioClip[] _SpellAudio;
 
     public void Start()
     {
         m_range = GetComponent<TargetRangeChecker>();
         MessageHandler msgHandler = GetComponent<MessageHandler>();
+        m_audioSource = GetComponent<AudioSource>();
 
         if (msgHandler)
         {
@@ -54,6 +59,7 @@ public class BattleEnemy : MonoBehaviour {
 
         spellTargetPosition = Instantiate(spellTargetPosition as GameObject);
 
+        cooldownSpellC = 180;
     }
 
     private void Update()
@@ -67,6 +73,18 @@ public class BattleEnemy : MonoBehaviour {
         Shield();
         SpawnChevre();
         IsnotInvincible();
+
+        if(isSpellCCasting == true && !isShieldPlaying)
+        {
+            StartCoroutine(PlayAudioShield());
+        }
+    }
+    private IEnumerator PlayAudioShield()
+    {
+        isShieldPlaying = true;
+        m_audioSource.PlayOneShot(_SpellAudio[4]);
+        yield return new WaitForSeconds(_SpellAudio[4].length);
+        isShieldPlaying = false;
     }
 
     public void IsnotInvincible()
@@ -180,6 +198,7 @@ public class BattleEnemy : MonoBehaviour {
         this.GetComponent<Rigidbody>().isKinematic = true;
 
         int pos = Random.Range(0, 2);
+        Debug.Log(pos);
         if(!_Targets[pos])
         {
             if (pos == 1)
@@ -194,12 +213,15 @@ public class BattleEnemy : MonoBehaviour {
         float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
 
         GameObject warning = Instantiate(_WarningbeforeSpell, _Mouth.transform.position, transform.rotation);
+        m_audioSource.PlayOneShot(_SpellAudio[0]);
+
 
         yield return new WaitForSeconds(2);
 
         GameObject go = Instantiate(spellPrefab[0], _Mouth.transform.position, transform.rotation);
         go.GetComponent<Spell>().SetTarget(storedPositions[pos]);
         go.GetComponent<Bullet>().GetSpellCaster(this.gameObject);
+        m_audioSource.PlayOneShot(_SpellAudio[1]);
 
         cooldownSpellA = 0;
 
@@ -218,9 +240,11 @@ public class BattleEnemy : MonoBehaviour {
     {
         isSpellBCasting = true;
 
+        m_audioSource.PlayOneShot(_SpellAudio[2]);
         Instantiate(spellPrefab[1],_Body.transform.position, Quaternion.identity);
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2.5f);
+        m_audioSource.PlayOneShot(_SpellAudio[3]);
 
         cooldownSpellB = 0;
 

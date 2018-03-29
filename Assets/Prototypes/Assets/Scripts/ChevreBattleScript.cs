@@ -11,10 +11,16 @@ public class ChevreBattleScript : MonoBehaviour {
 
     private GameObject[] _Targets;
     private bool m_isChevreSpell;
+    private float m_soundFX;
+
+    private AudioSource m_audioSource;
+    public AudioClip[] _AudioClip;
 
 
 	// Use this for initialization
 	void Start () {
+
+        m_audioSource = GetComponent<AudioSource>();
         _Targets = GameObject.FindGameObjectsWithTag("Player");
         m_nav = GetComponent<NavMeshAgent>();
         i = Random.Range(0, 2);
@@ -22,6 +28,7 @@ public class ChevreBattleScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        m_soundFX += Time.deltaTime;
         if (!isCollided)
         {
             if (_Targets[i])
@@ -47,6 +54,13 @@ public class ChevreBattleScript : MonoBehaviour {
                 StartCoroutine(CastChevreSpell());
             }
         }
+
+        if (m_soundFX > 10)
+        {
+            m_audioSource.PlayOneShot(_AudioClip[1]);
+            m_soundFX = 0;
+        }
+
     }
 
     private void CancelChevreMovement()
@@ -137,6 +151,7 @@ public class ChevreBattleScript : MonoBehaviour {
         dmgData.damage = Damage;
 
         MessageHandler msgHandler = _Targets[i].GetComponent<MessageHandler>();
+        m_audioSource.PlayOneShot(_AudioClip[0]);
 
         if (msgHandler)
         {

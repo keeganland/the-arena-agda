@@ -69,10 +69,10 @@ public class Bullet : MonoBehaviour {
         if(msgHandler || collision.gameObject.CompareTag("Enemy"))
         {
             msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, _SpellCaster, aggroData);
-            Debug.Log("Bullet: gave AGGRO message");
-            Debug.Log("BULLET: _Spellcaster is : " + _SpellCaster.name);
-            Debug.Log("BULLET: aggroData is: " + aggroData.aggro);
-            Debug.Log("BULLET: collision with: " + collision.gameObject.name);
+          //  Debug.Log("Bullet: gave AGGRO message");
+           // Debug.Log("BULLET: _Spellcaster is : " + _SpellCaster.name);
+          //  Debug.Log("BULLET: aggroData is: " + aggroData.aggro);
+          //  Debug.Log("BULLET: collision with: " + collision.gameObject.name);
         }
     }
 

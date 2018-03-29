@@ -196,7 +196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 132631933}
   m_Layer: 5
-  m_Name: Tutorial
+  m_Name: Tutorial Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,7 +301,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &166223225
 GameObject:
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 166223228}
   - component: {fileID: 166223227}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Introduction Cutscene Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 209631193}
   - component: {fileID: 209631192}
   m_Layer: 5
-  m_Name: Game Title
+  m_Name: Game Title Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -573,7 +573,7 @@ GameObject:
   - component: {fileID: 318374321}
   - component: {fileID: 318374320}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Title Screen Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -649,7 +649,7 @@ RectTransform:
   - {fileID: 981872788}
   - {fileID: 209631191}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -668,7 +668,7 @@ GameObject:
   - component: {fileID: 437053770}
   - component: {fileID: 437053769}
   m_Layer: 5
-  m_Name: Button (5)
+  m_Name: Quit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1070,7 +1070,7 @@ GameObject:
   - component: {fileID: 981872790}
   - component: {fileID: 981872789}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Background Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1215,7 +1215,7 @@ GameObject:
   - component: {fileID: 1045496240}
   - component: {fileID: 1045496239}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Boss Demo Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1337,7 +1337,7 @@ GameObject:
   - component: {fileID: 1150655630}
   - component: {fileID: 1150655629}
   m_Layer: 5
-  m_Name: Button (4)
+  m_Name: How to Play Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1628,7 +1628,7 @@ GameObject:
   - component: {fileID: 1595020868}
   - component: {fileID: 1595020867}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: NPC Demo Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1949,7 +1949,7 @@ GameObject:
   - component: {fileID: 1920208010}
   - component: {fileID: 1920208009}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Chapter 1 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

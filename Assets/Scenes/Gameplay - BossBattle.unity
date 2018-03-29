@@ -181,7 +181,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 40
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -3000,20 +3000,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 40
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 45
+    m_MaxSize: 300
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-'
+  m_Text: 
 --- !u!222 &871445727
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3118,34 +3116,9 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114520718702887546, guid: 12fb990f35400b14d96147e6240b2895,
-        type: 2}
-      propertyPath: m_Text
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12fb990f35400b14d96147e6240b2895, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &875959644 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1575771097652014, guid: 12fb990f35400b14d96147e6240b2895,
-    type: 2}
-  m_PrefabInternal: {fileID: 875959643}
---- !u!111 &875959645
-Animation:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 875959644}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 7d8dd2eb0f7a04c4a9634a8be741ff7b, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 7d8dd2eb0f7a04c4a9634a8be741ff7b, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &910153242
 GameObject:
   m_ObjectHideFlags: 0
@@ -3953,7 +3926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac70f7a93cfe5294cad0fb0476fc34bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 10000
+  totalHealth: 200
   currentHealth: 0
   enemy: {fileID: 0}
   _DeathSound: {fileID: 8300000, guid: 155a348761daa47fabc4c9b8e26ab75f, type: 3}
@@ -4826,7 +4799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f15cd3a6e95d4146bd0fb053cd90107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 250
+  Damage: 50
   Aggro: 20
   AttackSpeed: 5
   _Sprite: {fileID: 280362881}
@@ -4859,7 +4832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac70f7a93cfe5294cad0fb0476fc34bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 15000
+  totalHealth: 250
   currentHealth: 0
   enemy: {fileID: 0}
   _DeathSound: {fileID: 8300000, guid: 73f32e1e08a724fc1a04594ef95c1f66, type: 3}

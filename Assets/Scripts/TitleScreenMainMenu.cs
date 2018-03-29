@@ -46,5 +46,4 @@ public class TitleScreenMainMenu : MonoBehaviour {
         Debug.Log("Game Quit!");
         Application.Quit();
     }
-
 }

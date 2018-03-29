@@ -13,6 +13,8 @@ using UnityEngine.SceneManagement;
 public class AnyManager : MonoBehaviour {
 
     public static AnyManager anyManager;
+    public static string sceneToBeActive;
+
     private bool gameStart = false;
 
     private void Awake()
@@ -26,7 +28,7 @@ public class AnyManager : MonoBehaviour {
             gameStart = true;
         }
     }
-
+    
     /*
      * Returns the whole game to the title screen.
      */

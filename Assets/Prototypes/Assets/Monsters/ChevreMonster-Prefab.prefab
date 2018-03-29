@@ -630,7 +630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac70f7a93cfe5294cad0fb0476fc34bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 16
+  totalHealth: 18
   currentHealth: 0
   enemy: {fileID: 0}
   _DeathSound: {fileID: 0}

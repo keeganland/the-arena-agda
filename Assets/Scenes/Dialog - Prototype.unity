@@ -1583,13 +1583,13 @@ GameObject:
   - component: {fileID: 1412580314}
   - component: {fileID: 1412580313}
   - component: {fileID: 1412580312}
-  - component: {fileID: 1412580310}
   - component: {fileID: 1412580309}
   - component: {fileID: 1412580308}
   - component: {fileID: 1412580307}
   - component: {fileID: 1412580306}
   - component: {fileID: 1412580305}
   - component: {fileID: 1412580304}
+  - component: {fileID: 1412580310}
   m_Layer: 0
   m_Name: 'Girl '
   m_TagString: Player
@@ -1682,9 +1682,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1412580303}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae2785076f3cdb14d9874c1b15ebaa08, type: 3}
+  m_Script: {fileID: 11500000, guid: 804f592262d633b48af165beb98b952e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _BoySelected: {fileID: 0}
+  _GirlSelected: {fileID: 0}
+  Boy: {fileID: 1563467533}
+  Girl: {fileID: 1412580303}
   isTheBoy: 0
   stopMoving: 0
   boyActive: 1
@@ -1804,11 +1808,11 @@ GameObject:
   - component: {fileID: 1563467542}
   - component: {fileID: 1563467541}
   - component: {fileID: 1563467540}
-  - component: {fileID: 1563467538}
   - component: {fileID: 1563467537}
   - component: {fileID: 1563467536}
   - component: {fileID: 1563467535}
   - component: {fileID: 1563467534}
+  - component: {fileID: 1563467538}
   m_Layer: 0
   m_Name: Boy
   m_TagString: Player
@@ -1872,9 +1876,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1563467533}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae2785076f3cdb14d9874c1b15ebaa08, type: 3}
+  m_Script: {fileID: 11500000, guid: 804f592262d633b48af165beb98b952e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _BoySelected: {fileID: 0}
+  _GirlSelected: {fileID: 0}
+  Boy: {fileID: 1563467533}
+  Girl: {fileID: 1412580303}
   isTheBoy: 1
   stopMoving: 0
   boyActive: 1

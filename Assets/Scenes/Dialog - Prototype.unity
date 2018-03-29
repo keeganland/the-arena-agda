@@ -1115,7 +1115,7 @@ MonoBehaviour:
   useXml: 1
   NPCName: A White Sphere
   theText: {fileID: 4900000, guid: 3a5d05e62fb54f84ea38784d4f9f3d32, type: 3}
-  theXml: {fileID: 4900000, guid: 11d95a0458c9d964791c91d3e3db2dba, type: 3}
+  theXml: {fileID: 4900000, guid: d04f14157d708ac4f9a75529f1e39f9a, type: 3}
   useSpeechBubble: 1
   startLine: 0
   endLine: 1
@@ -1710,7 +1710,7 @@ MonoBehaviour:
   useXml: 1
   NPCName: A White Sphere
   theText: {fileID: 4900000, guid: 3a5d05e62fb54f84ea38784d4f9f3d32, type: 3}
-  theXml: {fileID: 4900000, guid: 11d95a0458c9d964791c91d3e3db2dba, type: 3}
+  theXml: {fileID: 4900000, guid: d04f14157d708ac4f9a75529f1e39f9a, type: 3}
   useSpeechBubble: 1
   startLine: 0
   endLine: 1

@@ -27,6 +27,11 @@ public class BetterPlayer_Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (PauseMenu.gameIsPaused)
+        {
+            return;
+        }
+
         //For switching player characters
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -82,16 +87,6 @@ public class BetterPlayer_Movement : MonoBehaviour {
         }
 
         m_agent.isStopped = stopMoving;
-
-        //this should chase enemy if enemy is not currently in range
-        if (curTarget) {
-            if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
-            {
-                //Debug.Log("in range: " + curTarget.name);
-                m_agent.SetDestination(curTarget.transform.position);
-            }
-        }
-
         /*
         //The above is a more concise way of putting this more readable code:
 
@@ -105,6 +100,14 @@ public class BetterPlayer_Movement : MonoBehaviour {
             m_agent.isStopped = false;
         }
         */
+
+        //this should chase enemy if enemy is not currently in range
+        if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
+        {
+            //Debug.Log("in range: " + curTarget.name);
+            m_agent.SetDestination(curTarget.transform.position);
+        }
+
     }
 
     public void CancelMovement()

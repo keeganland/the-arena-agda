@@ -62,7 +62,7 @@ public class SpriteScript : MonoBehaviour {
             m_audio.Play();
             m_audioPlaying = true;
         }
-        else if(m_anim.GetInteger("Direction") == 0)
+        else if(m_anim.GetInteger("Direction") == 0 || PauseMenu.gameIsPaused)
         {
             m_audio.Stop();
             m_audioPlaying = false;

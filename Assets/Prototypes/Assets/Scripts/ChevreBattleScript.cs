@@ -31,18 +31,19 @@ public class ChevreBattleScript : MonoBehaviour {
         m_soundFX += Time.deltaTime;
         if (!isCollided)
         {
+            if (i == 1 && _Targets[i].GetComponent<HealthController>().currentHealth == 0 )
+            {
+                i = 0;
+            }
+            else if (i == 0 && _Targets[i].GetComponent<HealthController>().currentHealth == 0)
+            {
+                i = 1;
+            }
             if (_Targets[i])
             {
                 m_nav.SetDestination(_Targets[i].transform.position);
             }
-            if( i == 1 && !_Targets[i])
-            {
-                i = 0;
-            }
-            else if( i == 0 && !_Targets[i])
-            {
-                i = 1;
-            }
+
         }
 
         //Debug.Log("MeleeDamage: Damage Target" + m_target.name);

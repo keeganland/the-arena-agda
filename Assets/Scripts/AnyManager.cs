@@ -28,6 +28,35 @@ public class AnyManager : MonoBehaviour {
     }
 
     /*
+     * Returns the whole game to the title screen.
+     */
+
+    public void ResetGame()
+    {
+        //Ugh. Buggy.
+
+        /*
+        Debug.Log("Resetting game!");
+
+        int c = SceneManager.sceneCount;
+        Debug.Log("There are " + c + " scenes total");
+
+        //Start at i = 1, because we never want 0 to be unloaded
+        for (int i = 0; i < c; i++)
+        {
+            Debug.Log("For lop iteration " + i);
+            if (SceneManager.GetSceneAt(i).name != "NeverUnload")
+            {
+                Debug.Log("About to unload " + SceneManager.GetSceneAt(i).name);
+                SceneManager.UnloadSceneAsync(i);
+            }
+        }
+        SceneManager.LoadSceneAsync("TitleScreen", LoadSceneMode.Additive);
+
+        */
+    }
+
+    /*
     //Seems unnecessary with current version of Unity
 
     public void UnloadScene(int scene)

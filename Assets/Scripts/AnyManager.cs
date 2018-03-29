@@ -33,9 +33,8 @@ public class AnyManager : MonoBehaviour {
 
     public void ResetGame()
     {
-        //Ugh. Buggy.
-
-        /*
+        //Not sure why this works better than what I had before, but I'll take it!
+        
         Debug.Log("Resetting game!");
 
         int c = SceneManager.sceneCount;
@@ -44,16 +43,14 @@ public class AnyManager : MonoBehaviour {
         //Start at i = 1, because we never want 0 to be unloaded
         for (int i = 0; i < c; i++)
         {
-            Debug.Log("For lop iteration " + i);
-            if (SceneManager.GetSceneAt(i).name != "NeverUnload")
+            Scene scene = SceneManager.GetSceneAt(i);
+
+            if (scene.name != "NeverUnload")
             {
-                Debug.Log("About to unload " + SceneManager.GetSceneAt(i).name);
-                SceneManager.UnloadSceneAsync(i);
+                SceneManager.UnloadSceneAsync(scene);
             }
         }
         SceneManager.LoadSceneAsync("TitleScreen", LoadSceneMode.Additive);
-
-        */
     }
 
     /*

@@ -17,8 +17,5 @@ public class OnAnimationComplete : MonoBehaviour {
     public void OnanimationComplete()
     {
         m_text.text = null;
-        m_anim.SetBool("DisplayDamage", false);
-
-
     }
 }

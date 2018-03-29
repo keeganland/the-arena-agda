@@ -119,8 +119,8 @@ GameObject:
   - component: {fileID: 28816436}
   - component: {fileID: 28816440}
   - component: {fileID: 28816439}
-  - component: {fileID: 28816438}
   - component: {fileID: 28816437}
+  - component: {fileID: 28816441}
   m_Layer: 0
   m_Name: DamageDisplayText
   m_TagString: Untagged
@@ -159,24 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1fb8cf1e2fde9740a99bcd4e14082f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &28816438
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 95681914689887530, guid: 12fb990f35400b14d96147e6240b2895,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 28816435}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a29065ce1b9c8714d9d36deba88f936d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &28816439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +192,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: '
+
+'
 --- !u!222 &28816440
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -218,6 +202,21 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 28816435}
+--- !u!111 &28816441
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 28816435}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 7d8dd2eb0f7a04c4a9634a8be741ff7b, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 7d8dd2eb0f7a04c4a9634a8be741ff7b, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &59480991
 GameObject:
   m_ObjectHideFlags: 0
@@ -2711,8 +2710,8 @@ GameObject:
   - component: {fileID: 871445723}
   - component: {fileID: 871445727}
   - component: {fileID: 871445726}
-  - component: {fileID: 871445725}
   - component: {fileID: 871445724}
+  - component: {fileID: 871445725}
   m_Layer: 0
   m_Name: DamageDisplayText
   m_TagString: Untagged
@@ -2751,24 +2750,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1fb8cf1e2fde9740a99bcd4e14082f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &871445725
-Animator:
-  serializedVersion: 3
+--- !u!111 &871445725
+Animation:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 95681914689887530, guid: 12fb990f35400b14d96147e6240b2895,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 871445722}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a29065ce1b9c8714d9d36deba88f936d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 7d8dd2eb0f7a04c4a9634a8be741ff7b, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 7d8dd2eb0f7a04c4a9634a8be741ff7b, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &871445726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2917,6 +2913,26 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12fb990f35400b14d96147e6240b2895, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &875959644 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1575771097652014, guid: 12fb990f35400b14d96147e6240b2895,
+    type: 2}
+  m_PrefabInternal: {fileID: 875959643}
+--- !u!111 &875959645
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 875959644}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 7d8dd2eb0f7a04c4a9634a8be741ff7b, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 7d8dd2eb0f7a04c4a9634a8be741ff7b, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &910153242
 GameObject:
   m_ObjectHideFlags: 0
@@ -3133,6 +3149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_text: {fileID: 871445726}
+  m_anim: {fileID: 0}
   _Color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1003272293
 GameObject:
@@ -3248,6 +3265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_text: {fileID: 239680210}
+  m_anim: {fileID: 0}
   _Color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1021745033
 GameObject:
@@ -4022,7 +4040,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1024428554415944, guid: e55b9fa933ca4084d930b4905ca0de71, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e55b9fa933ca4084d930b4905ca0de71, type: 2}
@@ -5499,6 +5517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_text: {fileID: 28816439}
+  m_anim: {fileID: 0}
   _Color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &1993920196 stripped
 Transform:

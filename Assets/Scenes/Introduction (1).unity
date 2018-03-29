@@ -886,7 +886,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &122830493
 RectTransform:
@@ -12494,8 +12494,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84401544bdf582e4583a30d8b13a8dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useXml: 0
   NPCName: Test Test Test
   theText: {fileID: 4900000, guid: 9c62ff36bcda2e143999b242083afd12, type: 3}
+  theXml: {fileID: 0}
   useSpeechBubble: 1
   startLine: 0
   endLine: 3
@@ -12742,8 +12744,10 @@ MonoBehaviour:
   boxContent: {fileID: 1754493470}
   NPCNameTag: {fileID: 1969122651}
   textFile: {fileID: 0}
+  xmlDialogFile: {fileID: 0}
   NPCName: 
   textLines: []
+  useXml: 0
   currentLine: 0
   endAtLine: 0
   movementManager: {fileID: 0}
@@ -19656,8 +19660,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84401544bdf582e4583a30d8b13a8dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useXml: 0
   NPCName: 
   theText: {fileID: 4900000, guid: 9c62ff36bcda2e143999b242083afd12, type: 3}
+  theXml: {fileID: 0}
   useSpeechBubble: 0
   startLine: 4
   endLine: 12

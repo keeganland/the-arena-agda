@@ -7,13 +7,14 @@ public class DamageDisplayScript : MonoBehaviour {
 
     [SerializeField]
     public Text m_text;
-    private Animator m_anim;
+    public Animation m_anim;
 
+ 
     public Color _Color;
 	// Use this for initialization
 
 	void Start () {
-        m_anim = GetComponentInChildren<Animator>();
+        m_anim = GetComponentInChildren<Animation>();
 	}
 	
     public void GetDamageText(Color color, int text)
@@ -21,6 +22,6 @@ public class DamageDisplayScript : MonoBehaviour {
         _Color = color;
         m_text.color = color;
         m_text.text = text.ToString();
-        m_anim.SetBool("DisplayDamage", true);
+        m_anim.PlayQueued("DamageDisplay", QueueMode.PlayNow);
     }
 }

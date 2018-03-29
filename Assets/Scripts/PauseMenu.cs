@@ -43,6 +43,12 @@ public class PauseMenu : MonoBehaviour {
         gameIsPaused = true;
     }
 
+    public void ResetGame()
+    {
+        AnyManager.anyManager.ResetGame();
+        this.Resume();
+    }
+
     public void QuitGame()
     {
         Debug.Log("Game Quit!");

@@ -19,10 +19,10 @@ public class Bullet : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
+        //Debug.Log(other.name);
         if (_SpellCaster)
         {
-            Debug.Log("BULLET: _SpellCaster = " + _SpellCaster.name);
+            //Debug.Log("BULLET: _SpellCaster = " + _SpellCaster.name);
         }
         if (other.gameObject.CompareTag("AttackRange"))
         {
@@ -32,16 +32,16 @@ public class Bullet : MonoBehaviour {
         {
             DamageData dmgData = new DamageData();
             dmgData.damage = Damage;
-            AggroData aggroData = new AggroData();
-            aggroData.aggro = AggroValue;
+            /*AggroData aggroData = new AggroData();
+            aggroData.aggro = AggroValue;*/
             DisplayDamage(other.gameObject, _DamageColor, Damage);
             MessageHandler msgHandler = other.GetComponent<MessageHandler>();
 
             if (msgHandler)
             {
                 msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
-                msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, _SpellCaster, aggroData);
-                Debug.Log("Bullet: this = " + this.name);
+                //msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, _SpellCaster, aggroData);
+                //Debug.Log("Bullet: this = " + this.name);
                 //Debug.Log("BULLET: _SpellCaster = " + _SpellCaster.name);
             }
         }
@@ -53,6 +53,9 @@ public class Bullet : MonoBehaviour {
     }
     void OnCollisionEnter (Collision collision)
     {
+        AggroData aggroData = new AggroData();
+        aggroData.aggro = AggroValue;
+        MessageHandler msgHandler = collision.gameObject.GetComponent<MessageHandler>();
 
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("wall"))
         {
@@ -62,6 +65,14 @@ public class Bullet : MonoBehaviour {
             {
                 DisplayDamage(collision.gameObject, _DamageColor, Damage);
             }
+        }
+        if(msgHandler || collision.gameObject.CompareTag("Enemy"))
+        {
+            msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, _SpellCaster, aggroData);
+            Debug.Log("Bullet: gave AGGRO message");
+            Debug.Log("BULLET: _Spellcaster is : " + _SpellCaster.name);
+            Debug.Log("BULLET: aggroData is: " + aggroData.aggro);
+            Debug.Log("BULLET: collision with: " + collision.gameObject.name);
         }
     }
 

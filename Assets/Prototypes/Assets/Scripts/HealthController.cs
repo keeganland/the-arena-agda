@@ -46,8 +46,8 @@ public class HealthController : MonoBehaviour
              case MessageTypes.AGGROCHANGED:
                 //Debug.Log("HealthController: changing Aggro");
                 AggroData aggroData = msgData as AggroData;
-                Debug.Log("Healthcontroller: AGGROCHANGED: go = " + go.name);
-                Debug.Log("Healthcontroller: AGGROCHANGED on: " + this.name);
+                //Debug.Log("Healthcontroller: AGGROCHANGED: go = " + go.name);
+                //Debug.Log("Healthcontroller: AGGROCHANGED on: " + this.name);
 
                 if (go.name == "Boy")
                 {

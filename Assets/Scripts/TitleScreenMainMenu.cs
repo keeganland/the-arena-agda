@@ -37,7 +37,7 @@ public class TitleScreenMainMenu : MonoBehaviour {
         //SceneManager.LoadScene("Dialog - Prototype");
         SceneManager.UnloadSceneAsync("TitleScreen");
         //SceneManager.UnloadSceneAsync("NeverUnload");
-        SceneManager.LoadSceneAsync("Dialog - Prototype", LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync("Dialog - Prototype", LoadSceneMode.Additive);
         
     }
 

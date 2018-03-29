@@ -527,7 +527,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 50
   _SpellFlare: {fileID: 0}
+  _DamageColor: {r: 1, g: 0.53676474, b: 0.53676474, a: 1}
   _SpellCaster: {fileID: 0}
+  AggroValue: 0
 --- !u!135 &135540630578969490
 SphereCollider:
   m_ObjectHideFlags: 1

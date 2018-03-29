@@ -226,7 +226,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 35
   _SpellFlare: {fileID: 0}
+  _DamageDisplay: {fileID: 1573126156894220, guid: 12fb990f35400b14d96147e6240b2895,
+    type: 2}
+  _DamageColor: {r: 1, g: 0.007352948, b: 0.007352948, a: 0.284}
   _SpellCaster: {fileID: 0}
+  AggroValue: 0
 --- !u!198 &198442113683992886
 ParticleSystem:
   m_ObjectHideFlags: 1

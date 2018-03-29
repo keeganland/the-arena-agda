@@ -323,7 +323,11 @@ MonoBehaviour:
   Damage: 50
   _SpellFlare: {fileID: 1117421902368200, guid: 8f92896d7ee3f0548b76613be2f7caf5,
     type: 2}
+  _DamageDisplay: {fileID: 1573126156894220, guid: 12fb990f35400b14d96147e6240b2895,
+    type: 2}
+  _DamageColor: {r: 1, g: 0.2794118, b: 0.98012185, a: 0.784}
   _SpellCaster: {fileID: 0}
+  AggroValue: 0
 --- !u!114 &114925995445192542
 MonoBehaviour:
   m_ObjectHideFlags: 1

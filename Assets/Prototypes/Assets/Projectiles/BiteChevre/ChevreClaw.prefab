@@ -175,7 +175,9 @@ MonoBehaviour:
   Damage: 15
   _SpellFlare: {fileID: 1798383808837490, guid: ce5795694f39f1a41b1564948305849c,
     type: 2}
+  _DamageColor: {r: 1, g: 0.7241379, b: 0, a: 1}
   _SpellCaster: {fileID: 0}
+  AggroValue: 0
 --- !u!198 &198221486828360016
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -10,6 +10,7 @@ public class MeleeDamage : MonoBehaviour {
     public GameObject _Sprite;
     private float AttackTimer;
     public GameObject m_target;
+    public Color _Color;
 
     //-----------------Alex Modifications-----------//
     [SerializeField]
@@ -33,8 +34,13 @@ public class MeleeDamage : MonoBehaviour {
             dmgData.damage = Damage;
 
             CastSpell();
-            
 
+            if (_Color != new Color(0,0,0,0))
+            {
+                GameObject sprite = m_target.GetComponent<HealthController>().Sprite;
+                Canvas canvas = sprite.GetComponentInChildren<Canvas>();
+                canvas.GetComponentInChildren<DamageDisplayScript>().GetDamageText(_Color, Damage);
+            }
             //Debug.Log("MeleeDamage: deal damage to " + m_target.name);
 
             AggroData aggroData = new AggroData();

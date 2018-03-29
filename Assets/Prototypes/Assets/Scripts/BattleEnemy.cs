@@ -198,7 +198,8 @@ public class BattleEnemy : MonoBehaviour {
         yield return new WaitForSeconds(2);
 
         GameObject go = Instantiate(spellPrefab[0], _Mouth.transform.position, transform.rotation);
-        go.gameObject.GetComponent<Spell>().SetTarget(storedPositions[pos]);
+        go.GetComponent<Spell>().SetTarget(storedPositions[pos]);
+        go.GetComponent<Bullet>().GetSpellCaster(this.gameObject);
 
         cooldownSpellA = 0;
 

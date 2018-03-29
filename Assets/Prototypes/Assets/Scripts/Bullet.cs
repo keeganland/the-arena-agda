@@ -1,33 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bullet : MonoBehaviour {
 
     public int Damage;
     public GameObject _SpellFlare;
+    public Color _DamageColor;
   
 
     private Vector3 m_angle;
     [SerializeField]
     private GameObject _SpellCaster;
+    [SerializeField]
     private int AggroValue;
     
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("BULLET: _SpellCaster = " + _SpellCaster.name);
+        Debug.Log(other.name);
+        if (_SpellCaster)
+        {
+            Debug.Log("BULLET: _SpellCaster = " + _SpellCaster.name);
+        }
         if (other.gameObject.CompareTag("AttackRange"))
         {
             return;
         }
-        if (other.gameObject.CompareTag("Player") && !_SpellCaster)
-        {                              
+        if (other.gameObject.CompareTag("Player") && _SpellCaster != other.gameObject)
+        {
             DamageData dmgData = new DamageData();
             dmgData.damage = Damage;
             AggroData aggroData = new AggroData();
             aggroData.aggro = AggroValue;
-
+            DisplayDamage(other.gameObject, _DamageColor, Damage);
             MessageHandler msgHandler = other.GetComponent<MessageHandler>();
 
             if (msgHandler)
@@ -40,7 +47,6 @@ public class Bullet : MonoBehaviour {
         }
         if (other.gameObject.CompareTag("wall"))
         {
-
             DestroyObject();
         }
         else return;
@@ -52,14 +58,16 @@ public class Bullet : MonoBehaviour {
         {
             DestroyObject();
             DoSpellFlare();
-          
+            if (collision.gameObject.CompareTag("Enemy") && _SpellCaster != collision.gameObject)
+            {
+                DisplayDamage(collision.gameObject, _DamageColor, Damage);
+            }
         }
     }
 
     void DestroyObject()
     {     
-          Destroy(gameObject, 2.5f);
-            
+          Destroy(gameObject, 2.5f);     
     }    
 
     public void SpellFlare(float angle)
@@ -88,5 +96,12 @@ public class Bullet : MonoBehaviour {
     {
         AggroValue = Aggro;
         //Debug.Log("Bullet: changed Aggro");
+    }
+
+    private void DisplayDamage(GameObject targetdisplay, Color damageColor, int damageText)
+    {
+            GameObject go = targetdisplay.GetComponent<HealthController>().Sprite;
+            Canvas canvas = go.GetComponentInChildren<Canvas>();
+            canvas.GetComponentInChildren<DamageDisplayScript>().GetDamageText(damageColor, damageText);
     }
 }

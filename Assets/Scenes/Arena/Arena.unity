@@ -149,7 +149,6 @@ GameObject:
   m_Component:
   - component: {fileID: 35792643}
   - component: {fileID: 35792642}
-  - component: {fileID: 35792641}
   m_Layer: 0
   m_Name: MusicAudio
   m_TagString: Untagged
@@ -157,19 +156,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &35792641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 35792640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d789e05606484baeb38a026401496c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _BackgroundMusicIntro: {fileID: 8300000, guid: 753e3a9c8f40a4f5f8db69eae3dadd6e,
-    type: 3}
 --- !u!82 &35792642
 AudioSource:
   m_ObjectHideFlags: 0
@@ -261,7 +247,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &79884606
 GameObject:
@@ -275,8 +261,8 @@ GameObject:
   - component: {fileID: 79884610}
   - component: {fileID: 239680210}
   - component: {fileID: 79884609}
-  - component: {fileID: 79884608}
   - component: {fileID: 79884607}
+  - component: {fileID: 79884608}
   m_Layer: 0
   m_Name: DamageDisplayText
   m_TagString: Untagged
@@ -303,13 +289,12 @@ Animation:
 --- !u!114 &79884608
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114596145000956006, guid: 12fb990f35400b14d96147e6240b2895,
-    type: 2}
-  m_PrefabInternal: {fileID: 875959643}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 79884606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1fb8cf1e2fde9740a99bcd4e14082f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 45c7ccc2e9191034f95a161bf8833961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!95 &79884609
@@ -428,11 +413,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 99057756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83474762b3006fa4eb4a031e25b414f2, type: 3}
+  m_Script: {fileID: 11500000, guid: c7ffb16128e02254c90c187e853b8646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tags:
-  - 456e656d79
+  - Enemy
 --- !u!1001 &183677799
 Prefab:
   m_ObjectHideFlags: 0
@@ -615,11 +600,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 192541166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83474762b3006fa4eb4a031e25b414f2, type: 3}
+  m_Script: {fileID: 11500000, guid: c7ffb16128e02254c90c187e853b8646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tags:
-  - 456e656d79
+  - Enemy
 --- !u!1 &212615128
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,7 +703,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 212615128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a2118b520f00984ab16b6009db8e16d, type: 3}
+  m_Script: {fileID: 11500000, guid: 972339860537cb34c9df2c1be5d60bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targets:
@@ -1579,7 +1564,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 657219889}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf62452b87deedf4d8d56c619799f727, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ee870e03927b89449258ec420e3ac90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textBox: {fileID: 337486078}
@@ -1593,7 +1578,7 @@ MonoBehaviour:
   textLines: []
   useXml: 0
   currentLine: 0
-  endAtLine: 3
+  endAtLine: 0
   movementManager: {fileID: 0}
   theNPCMovementManager: {fileID: 0}
   cueActive: 0
@@ -1963,7 +1948,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 871445722}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1fb8cf1e2fde9740a99bcd4e14082f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 45c7ccc2e9191034f95a161bf8833961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!111 &871445725
@@ -2119,7 +2104,8 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 12fb990f35400b14d96147e6240b2895, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &999025513
@@ -2232,16 +2218,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 999025513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7bcfef045bdaf0419b8dec6690e5ab6, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ee1ecb3d19ba27419bb74ed5199c1cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_text: {fileID: 871445726}
   m_anim: {fileID: 0}
-  _Color:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
+  _Color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1003272293
 GameObject:
   m_ObjectHideFlags: 0
@@ -2352,16 +2334,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1003272293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7bcfef045bdaf0419b8dec6690e5ab6, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ee1ecb3d19ba27419bb74ed5199c1cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_text: {fileID: 239680210}
+  m_text: {fileID: 871445726}
   m_anim: {fileID: 0}
-  _Color:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
+  _Color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1042962104
 GameObject:
   m_ObjectHideFlags: 0
@@ -2527,7 +2505,6 @@ GameObject:
   - component: {fileID: 1157349918}
   - component: {fileID: 1157349917}
   - component: {fileID: 1157349916}
-  - component: {fileID: 1157349922}
   - component: {fileID: 1157349924}
   - component: {fileID: 1157349927}
   - component: {fileID: 1157349929}
@@ -2536,6 +2513,7 @@ GameObject:
   - component: {fileID: 1157349923}
   - component: {fileID: 1157349925}
   - component: {fileID: 1157349930}
+  - component: {fileID: 1157349922}
   m_Layer: 0
   m_Name: Girl
   m_TagString: Player
@@ -2652,19 +2630,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1157349915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f30d0747adcef6649949b686b3dfc0ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boyActive: 0
---- !u!114 &1157349923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1157349915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 804f592262d633b48af165beb98b952e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fda3001a3ba0ec4bb13800e2a08e9f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _BoySelected: {fileID: 218239358}
@@ -2674,6 +2640,18 @@ MonoBehaviour:
   isTheBoy: 0
   stopMoving: 0
   boyActive: 0
+--- !u!114 &1157349923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1157349915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e996327358191419b3d09f1bd07f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 750984602}
 --- !u!114 &1157349924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2705,10 +2683,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1157349915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31800219e0acb5345ae6b67a729ca56b, type: 3}
+  m_Script: {fileID: 11500000, guid: 35005b91990a057409d730e9a0e9fd0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 750984602}
+  Damage: 10
+  Aggro: 5
+  AttackSpeed: 1.5
+  _Sprite: {fileID: 750984601}
+  m_target: {fileID: 0}
+  _Color: {r: 0, g: 0, b: 0, a: 0}
+  _SpellAudio: {fileID: 8300000, guid: 8019e196601cafe4082da0c3f9f2e0fd, type: 3}
+  _InvinsibleSFX: {fileID: 8300000, guid: 8887c955d27975240a0d75e19b2cd1c9, type: 3}
+  spellPrefab:
+  - {fileID: 1295723877484022, guid: 8eaf6f50b96824e449b628001eb7a044, type: 2}
 --- !u!114 &1157349927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2717,10 +2704,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1157349915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20677a3efa872244aa6dccdf3ce2355e, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a0b8845e413481498b1b79ab46538b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages: 000000000100000002000000
+  boyActive: 0
 --- !u!114 &1157349928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2729,23 +2716,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1157349915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f15cd3a6e95d4146bd0fb053cd90107, type: 3}
+  m_Script: {fileID: 11500000, guid: 01d5333bd0f304e4cb08c61dcb194b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 10
-  Aggro: 5
-  AttackSpeed: 1.5
-  _Sprite: {fileID: 750984601}
-  m_target: {fileID: 0}
-  _Color:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  _SpellAudio: {fileID: 8300000, guid: de0a837546ab74ef8892c754476a478b, type: 3}
-  _InvinsibleSFX: {fileID: 8300000, guid: 4b2ed0a396ea84602a93acb90e623937, type: 3}
-  spellPrefab:
-  - {fileID: 1295723877484022, guid: d9e2b1269bfa2c34b998dd1ddbab0315, type: 2}
+  totalHealth: 400
+  currentHealth: 0
+  enemy: {fileID: 0}
+  _DeathSound: {fileID: 8300000, guid: dc19616d39559be4cb2349abb317568a, type: 3}
+  Sprite: {fileID: 750984601}
+  AggroBoy: 0
+  AggroGirl: 0
+  isTargeted: 0
 --- !u!114 &1157349929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2754,17 +2735,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1157349915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac70f7a93cfe5294cad0fb0476fc34bb, type: 3}
+  m_Script: {fileID: 11500000, guid: df02fa5ac9d818b4c805c4e7ae9d6b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 5000
-  currentHealth: 0
-  enemy: {fileID: 0}
-  _DeathSound: {fileID: 8300000, guid: 155a348761daa47fabc4c9b8e26ab75f, type: 3}
-  Sprite: {fileID: 750984601}
-  AggroBoy: 0
-  AggroGirl: 0
-  isTargeted: 0
+  messages: 000000000100000002000000
 --- !u!82 &1157349930
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3267,15 +3241,15 @@ GameObject:
   - component: {fileID: 1527770586}
   - component: {fileID: 1527770585}
   - component: {fileID: 1527770591}
-  - component: {fileID: 1527770594}
   - component: {fileID: 1527770593}
-  - component: {fileID: 1527770596}
-  - component: {fileID: 1527770592}
   - component: {fileID: 1527770595}
-  - component: {fileID: 1527770597}
-  - component: {fileID: 1527770598}
   - component: {fileID: 1527770599}
   - component: {fileID: 1527770600}
+  - component: {fileID: 1527770598}
+  - component: {fileID: 1527770597}
+  - component: {fileID: 1527770596}
+  - component: {fileID: 1527770594}
+  - component: {fileID: 1527770592}
   m_Layer: 0
   m_Name: Boy
   m_TagString: Player
@@ -3393,7 +3367,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1527770584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f30d0747adcef6649949b686b3dfc0ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a0b8845e413481498b1b79ab46538b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   boyActive: 0
@@ -3405,16 +3379,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1527770584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 804f592262d633b48af165beb98b952e, type: 3}
+  m_Script: {fileID: 11500000, guid: 35005b91990a057409d730e9a0e9fd0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _BoySelected: {fileID: 218239358}
-  _GirlSelected: {fileID: 1330285371}
-  Boy: {fileID: 1527770584}
-  Girl: {fileID: 1157349915}
-  isTheBoy: 1
-  stopMoving: 0
-  boyActive: 0
+  Damage: 50
+  Aggro: 20
+  AttackSpeed: 5
+  _Sprite: {fileID: 280362881}
+  m_target: {fileID: 0}
+  _Color: {r: 0, g: 0, b: 0, a: 0}
+  _SpellAudio: {fileID: 8300000, guid: 0ce742af79f66fe47a8d140c40257e90, type: 3}
+  _InvinsibleSFX: {fileID: 8300000, guid: 5d0d6fb1118cf41f889bb350f7568cd2, type: 3}
+  spellPrefab:
+  - {fileID: 1272247912726944, guid: 8e9a74328bacffc498ec119cfdef47bc, type: 2}
 --- !u!114 &1527770593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3434,11 +3411,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1527770584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a13d578fd5fa6db4dbbc97d74cb25199, type: 3}
+  m_Script: {fileID: 11500000, guid: 54e996327358191419b3d09f1bd07f67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMaxHealth: 20
-  playerCurrentHealth: 0
+  slider: {fileID: 1248004439}
 --- !u!114 &1527770595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3447,23 +3423,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1527770584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f15cd3a6e95d4146bd0fb053cd90107, type: 3}
+  m_Script: {fileID: 11500000, guid: df02fa5ac9d818b4c805c4e7ae9d6b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 500
-  Aggro: 20
-  AttackSpeed: 5
-  _Sprite: {fileID: 280362881}
-  m_target: {fileID: 0}
-  _Color:
-    r: 0.5735294
-    g: 0.046388417
-    b: 0.55898774
-    a: 1
-  _SpellAudio: {fileID: 8300000, guid: 3e0e68ef6fa2b4c5eaa406a9969fa407, type: 3}
-  _InvinsibleSFX: {fileID: 8300000, guid: 5d0d6fb1118cf41f889bb350f7568cd2, type: 3}
-  spellPrefab:
-  - {fileID: 1272247912726944, guid: 8e9a74328bacffc498ec119cfdef47bc, type: 2}
+  messages: 000000000100000002000000
 --- !u!114 &1527770596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3472,10 +3435,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1527770584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20677a3efa872244aa6dccdf3ce2355e, type: 3}
+  m_Script: {fileID: 11500000, guid: 01d5333bd0f304e4cb08c61dcb194b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages: 000000000100000002000000
+  totalHealth: 400
+  currentHealth: 0
+  enemy: {fileID: 0}
+  _DeathSound: {fileID: 8300000, guid: c5e1c7a9bef26df4c81e70f9eb197bae, type: 3}
+  Sprite: {fileID: 280362881}
+  AggroBoy: 0
+  AggroGirl: 0
+  isTargeted: 0
 --- !u!114 &1527770597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3484,17 +3454,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1527770584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac70f7a93cfe5294cad0fb0476fc34bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fda3001a3ba0ec4bb13800e2a08e9f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 5000
-  currentHealth: 0
-  enemy: {fileID: 0}
-  _DeathSound: {fileID: 8300000, guid: 73f32e1e08a724fc1a04594ef95c1f66, type: 3}
-  Sprite: {fileID: 280362881}
-  AggroBoy: 0
-  AggroGirl: 0
-  isTargeted: 0
+  _BoySelected: {fileID: 218239358}
+  _GirlSelected: {fileID: 1330285371}
+  Boy: {fileID: 1527770584}
+  Girl: {fileID: 1157349915}
+  isTheBoy: 1
+  stopMoving: 0
+  boyActive: 0
 --- !u!114 &1527770598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3503,10 +3472,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1527770584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31800219e0acb5345ae6b67a729ca56b, type: 3}
+  m_Script: {fileID: 11500000, guid: 15735eca183be8a4ea3235ac11629433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 1248004439}
 --- !u!65 &1527770599
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4033,47 +4001,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2007499883}
---- !u!1 &2036895382
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 2036895384}
-  - component: {fileID: 2036895383}
-  m_Layer: 0
-  m_Name: SceneActivator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2036895383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2036895382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 486438056657d2f4e923a96da696a87b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SceneToBeActive: Gameplay - BossBattle
---- !u!4 &2036895384
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2036895382}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.76, y: 12.935377, z: -4.990248}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2094135422
 GameObject:
   m_ObjectHideFlags: 0

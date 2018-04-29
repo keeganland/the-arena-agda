@@ -33,7 +33,7 @@ public class TargetManager : MonoBehaviour
         switch (targetOption)
         {
             case TargetOptions.FARTHEST:
-                TargetFarthest();
+                TargetFarthest(); 
                 break;
             case TargetOptions.NEAREST:
                 TargetNearest();

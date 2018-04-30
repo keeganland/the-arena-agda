@@ -42,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 9
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 9
+    serializedVersion: 8
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -87,7 +87,7 @@ LightmapSettings:
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_ShadowMaskMode: 2
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -107,11 +107,7 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-<<<<<<< HEAD
-  m_NavMeshData: {fileID: 23800000, guid: 4cc8ee2777b4e9d479a24fbd03b6f1ad, type: 2}
-=======
   m_NavMeshData: {fileID: 23800000, guid: 06eed87adb203a0409d1a392213def23, type: 2}
->>>>>>> adb27ec215463f2cb686afe85d8e705c55bf89d5
 --- !u!1 &32907615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,8 +1221,6 @@ SpriteRenderer:
   m_Size: {x: 20, y: 20}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!4 &462430267
 Transform:
   m_ObjectHideFlags: 0
@@ -1803,8 +1797,6 @@ SpriteRenderer:
   m_Size: {x: 0.48, y: 0.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!224 &750984609
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2578,11 +2570,7 @@ GameObject:
   - component: {fileID: 1157349923}
   - component: {fileID: 1157349925}
   - component: {fileID: 1157349930}
-<<<<<<< HEAD
-  - component: {fileID: 1157349931}
-=======
   - component: {fileID: 1157349922}
->>>>>>> adb27ec215463f2cb686afe85d8e705c55bf89d5
   m_Layer: 0
   m_Name: Girl
   m_TagString: Player
@@ -2776,11 +2764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0b8845e413481498b1b79ab46538b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  messages: 00000000010000000200000004000000
-=======
   boyActive: 0
->>>>>>> adb27ec215463f2cb686afe85d8e705c55bf89d5
 --- !u!114 &1157349928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2892,18 +2876,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &1157349931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1157349915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 503f6b4b384e86f489b62f7a1f1515f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Healing: 0
 --- !u!1 &1248004437
 GameObject:
   m_ObjectHideFlags: 0
@@ -3250,8 +3222,6 @@ SpriteRenderer:
   m_Size: {x: 2.32, y: 12.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!1 &1427794626
 GameObject:
   m_ObjectHideFlags: 0
@@ -3332,15 +3302,11 @@ GameObject:
   - component: {fileID: 1527770595}
   - component: {fileID: 1527770599}
   - component: {fileID: 1527770600}
-<<<<<<< HEAD
-  - component: {fileID: 1527770601}
-=======
   - component: {fileID: 1527770598}
   - component: {fileID: 1527770597}
   - component: {fileID: 1527770596}
   - component: {fileID: 1527770594}
   - component: {fileID: 1527770592}
->>>>>>> adb27ec215463f2cb686afe85d8e705c55bf89d5
   m_Layer: 0
   m_Name: Boy
   m_TagString: Player
@@ -3529,9 +3495,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d5333bd0f304e4cb08c61dcb194b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  messages: 00000000010000000200000004000000
-=======
   totalHealth: 400
   currentHealth: 0
   enemy: {fileID: 0}
@@ -3540,7 +3503,6 @@ MonoBehaviour:
   AggroBoy: 0
   AggroGirl: 0
   isTargeted: 0
->>>>>>> adb27ec215463f2cb686afe85d8e705c55bf89d5
 --- !u!114 &1527770597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3662,18 +3624,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &1527770601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1527770584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 503f6b4b384e86f489b62f7a1f1515f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Healing: 0
 --- !u!1 &1696134852
 GameObject:
   m_ObjectHideFlags: 0
@@ -3839,8 +3789,6 @@ SpriteRenderer:
   m_Size: {x: 1.88, y: 11.91}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!65 &1818955584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3924,8 +3872,6 @@ SpriteRenderer:
   m_Size: {x: 2.32, y: 12.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
-  m_MaskInteraction: 0
 --- !u!95 &1861774061
 Animator:
   serializedVersion: 3

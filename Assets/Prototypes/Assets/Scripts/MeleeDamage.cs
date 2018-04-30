@@ -27,7 +27,7 @@ public class MeleeDamage : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Debug.Log("MeleeDamage: Damage Target" + m_target.name);
-        AttackTimer += Time.deltaTime; //including this although I'm not sure I have to. Should the animation Timer do this for me?
+        AttackTimer += Time.deltaTime; 
         if(AttackTimer >= AttackSpeed && (this.GetComponentInChildren<RangeChecker>().InRange(m_target)) && m_target!=null)
         {
             if(m_target.GetComponent<HealthController>().currentHealth <= 0)
@@ -36,7 +36,7 @@ public class MeleeDamage : MonoBehaviour {
             }
             DamageData dmgData = new DamageData();
             dmgData.damage = Damage;
-
+4
             CastSpell();
 
             if (_Color != new Color(0,0,0,0))

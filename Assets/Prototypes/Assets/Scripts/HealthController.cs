@@ -9,6 +9,7 @@ public class HealthController : MonoBehaviour
     public int totalHealth = 100;
     public int currentHealth;
     public GameObject enemy;
+    private int tempHealth;
 
     public AudioClip _DeathSound;
 
@@ -19,7 +20,7 @@ public class HealthController : MonoBehaviour
     public int AggroBoy = 0;
     public int AggroGirl = 0;
 
-    NavMeshAgent agent; //Why is this here?
+    NavMeshAgent agent; //Why is this here? (it doesn't seem to be used)
     public bool isTargeted;
 
     MessageHandler m_messageHandler;
@@ -66,6 +67,13 @@ public class HealthController : MonoBehaviour
                     AggroGirl += aggroData.aggro;
                 }
                  break;
+            case MessageTypes.HEALED: //for healing character
+                RecoverData recoverData = msgData as RecoverData;
+                if(recoverData != null)
+                {
+                    RecoverHealth(recoverData.HP_up, go);
+                }
+                break;
         }
     }
 
@@ -131,6 +139,19 @@ public class HealthController : MonoBehaviour
         if (_DeathSound)
         {
             m_audioSource.PlayOneShot(_DeathSound);
+        }
+    }
+
+    public void RecoverHealth(int HP_up, GameObject go) //Applies healing to character
+    {
+        tempHealth = HP_up + currentHealth;
+        if(tempHealth > totalHealth) //checks to make sure character doesn't go over max health
+        {
+            currentHealth = totalHealth;
+        }
+        else if(tempHealth <= totalHealth) //applies healing if health is still below max health
+        {
+            currentHealth = tempHealth;
         }
     }
 }

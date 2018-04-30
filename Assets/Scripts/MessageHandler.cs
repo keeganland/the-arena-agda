@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class MessageData { };
-public enum MessageTypes { DAMAGED, HEALTHCHANGED, DIED, AGGROCHANGED};
+public enum MessageTypes { DAMAGED, HEALTHCHANGED, DIED, AGGROCHANGED, HEALED};
 public delegate void MessageDelegate(MessageTypes msgType, GameObject go, MessageData data);
 
 public class MessageHandler : MonoBehaviour
@@ -52,7 +52,6 @@ public class DeathData : MessageData
     public GameObject attacker;
     public GameObject attacked;
 }
-
 public class HealthData : MessageData
 {
     public int maxHealth;
@@ -60,7 +59,9 @@ public class HealthData : MessageData
 }
 public class AggroData : MessageData
 {
-    //public GameObject attacker;
-    //public GameObject attacked;
     public int aggro;
+}
+public class RecoverData : MessageData //use to heal character
+{
+    public int HP_up; //amount to heal
 }

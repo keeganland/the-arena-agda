@@ -510,7 +510,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1485644691210680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 910da0d92c8e2d84d9621550aae35e63, type: 3}
+  m_Script: {fileID: 11500000, guid: 81e81ed662f36b14a98d2be673191380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Speed: 8
@@ -522,12 +522,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1485644691210680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 853fbd4a4e05b9c48b3e9ea84467a19f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1aebffe0f26dd243bd8f154c65c5ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 50
   _SpellFlare: {fileID: 0}
-  _DamageColor: {r: 1, g: 0.53676474, b: 0.53676474, a: 1}
+  _DamageColor: {r: 1, g: 0.45588237, b: 0.45588237, a: 1}
   _SpellCaster: {fileID: 0}
   AggroValue: 0
 --- !u!135 &135540630578969490

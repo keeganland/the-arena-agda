@@ -507,7 +507,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1186130132064186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31800219e0acb5345ae6b67a729ca56b, type: 3}
+  m_Script: {fileID: 11500000, guid: 54e996327358191419b3d09f1bd07f67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 114425406019383182}
@@ -519,7 +519,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1024428554415944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ecd5937b80bea345a65560d9d0d940b, type: 3}
+  m_Script: {fileID: 11500000, guid: 79fd279820450e247989facb31bf1c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _IsDestroyed: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1186130132064186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20677a3efa872244aa6dccdf3ce2355e, type: 3}
+  m_Script: {fileID: 11500000, guid: df02fa5ac9d818b4c805c4e7ae9d6b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   messages: 000000000200000001000000
@@ -554,13 +554,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1186130132064186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac70f7a93cfe5294cad0fb0476fc34bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 01d5333bd0f304e4cb08c61dcb194b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 200
   currentHealth: 0
   enemy: {fileID: 0}
-  _DeathSound: {fileID: 8300000, guid: f3e9a79aa78e34564a5f4c290d818b82, type: 3}
+  _DeathSound: {fileID: 8300000, guid: 034d3fb221f754448b986502291e5b60, type: 3}
   Sprite: {fileID: 1184451982328500}
   AggroBoy: 0
   AggroGirl: 0
@@ -589,7 +589,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1385149227167814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7bcfef045bdaf0419b8dec6690e5ab6, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ee1ecb3d19ba27419bb74ed5199c1cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_text: {fileID: 114523102908089050}
@@ -774,7 +774,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1088536065165972}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1fb8cf1e2fde9740a99bcd4e14082f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 45c7ccc2e9191034f95a161bf8833961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &135566209394081038
@@ -879,7 +879,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1825511344
+  randomSeed: -1742867094
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3939,7 +3939,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1039421673
+  randomSeed: 1158081491
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6981,7 +6981,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1218191588
+  randomSeed: 2043853011
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10023,7 +10023,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2115694522
+  randomSeed: 481950616
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13240,7 +13240,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 600ddec133438cf4ba7972f68ac2a919, type: 2}
+  - {fileID: 2100000, guid: 541666611bb8feb408f56a7888d739b9, type: 2}
   - {fileID: 2100000, guid: fb52d7a46de012540bc9407bf2b1b8f6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -13332,7 +13332,6 @@ SpriteRenderer:
   m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
 --- !u!222 &222016447377978546
 CanvasRenderer:
   m_ObjectHideFlags: 1

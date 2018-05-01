@@ -36,7 +36,7 @@ public class MeleeDamage : MonoBehaviour {
             }
             DamageData dmgData = new DamageData();
             dmgData.damage = Damage;
-4
+
             CastSpell();
 
             if (_Color != new Color(0,0,0,0))

@@ -145,7 +145,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1919202666365878}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4284bf8c9c9ad042bcf56562faa941f, type: 3}
+  m_Script: {fileID: 11500000, guid: e3c51982fa4f46b47aabb484689f183b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114513435166409468
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1919202666365878}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6785ef66d8831148bb7b452c221630c, type: 3}
+  m_Script: {fileID: 11500000, guid: fded19c78888faf47b5783e99093fedb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
@@ -169,13 +169,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1919202666365878}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 853fbd4a4e05b9c48b3e9ea84467a19f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1aebffe0f26dd243bd8f154c65c5ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 15
-  _SpellFlare: {fileID: 1798383808837490, guid: ce5795694f39f1a41b1564948305849c,
+  _SpellFlare: {fileID: 1798383808837490, guid: f26deab828edb4444a9ecd6202f33e87,
     type: 2}
-  _DamageColor: {r: 1, g: 0.7241379, b: 0, a: 1}
+  _DamageColor: {r: 1, g: 0.64117646, b: 0.102941155, a: 1}
   _SpellCaster: {fileID: 0}
   AggroValue: 0
 --- !u!198 &198221486828360016
@@ -235,7 +235,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 341680828
+  randomSeed: -1233740464
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3277,7 +3277,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -736914183
+  randomSeed: -251206791
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6312,7 +6312,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0

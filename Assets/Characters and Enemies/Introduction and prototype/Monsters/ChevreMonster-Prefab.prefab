@@ -465,7 +465,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1649306402452828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20677a3efa872244aa6dccdf3ce2355e, type: 3}
+  m_Script: {fileID: 11500000, guid: df02fa5ac9d818b4c805c4e7ae9d6b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   messages: 000000000200000001000000
@@ -586,7 +586,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1636914414969630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1fb8cf1e2fde9740a99bcd4e14082f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 45c7ccc2e9191034f95a161bf8833961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114254725439636898
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1004040993735096}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7bcfef045bdaf0419b8dec6690e5ab6, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ee1ecb3d19ba27419bb74ed5199c1cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_text: {fileID: 114866800305391462}
@@ -627,7 +627,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1649306402452828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac70f7a93cfe5294cad0fb0476fc34bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 01d5333bd0f304e4cb08c61dcb194b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 18
@@ -684,7 +684,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1187828523785800}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83474762b3006fa4eb4a031e25b414f2, type: 3}
+  m_Script: {fileID: 11500000, guid: c7ffb16128e02254c90c187e853b8646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tags:
@@ -697,11 +697,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1649306402452828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83474762b3006fa4eb4a031e25b414f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 249edda872eafdf499cfecbe372c8573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags:
-  - Player
+  _AudioClip:
+  - {fileID: 8300000, guid: f582422ffc86a5b4e8a980f4fce1593c, type: 3}
+  - {fileID: 8300000, guid: c1ef312bf7e9ce94aa457eb783488216, type: 3}
+  Damage: 15
+  Aggro: 0
+  AttackSpeed: 2
+  _Sprite: {fileID: 1501803346374306}
+  spellPrefab:
+  - {fileID: 1919202666365878, guid: 4ba1252289dbec84c961a24f47d825ec, type: 2}
 --- !u!114 &114865120501173372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -710,10 +717,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1649306402452828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31800219e0acb5345ae6b67a729ca56b, type: 3}
+  m_Script: {fileID: 11500000, guid: c7ffb16128e02254c90c187e853b8646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 114132399634272510}
+  tags:
+  - Player
 --- !u!114 &114866800305391462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -758,18 +766,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1649306402452828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47055cf730bb4ea479baf0b8fd525537, type: 3}
+  m_Script: {fileID: 11500000, guid: 54e996327358191419b3d09f1bd07f67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _AudioClip:
-  - {fileID: 8300000, guid: 17a2a6ce26b0b4d7e9f033e1f5ed14bd, type: 3}
-  - {fileID: 8300000, guid: e18472f62987f4645a3a80fb241fd2f4, type: 3}
-  Damage: 15
-  Aggro: 0
-  AttackSpeed: 2
-  _Sprite: {fileID: 1501803346374306}
-  spellPrefab:
-  - {fileID: 1919202666365878, guid: 4ba1252289dbec84c961a24f47d825ec, type: 2}
+  slider: {fileID: 114132399634272510}
 --- !u!135 &135125997407187992
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -870,7 +870,6 @@ SpriteRenderer:
   m_Size: {x: 0.48, y: 0.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
 --- !u!222 &222568621326237626
 CanvasRenderer:
   m_ObjectHideFlags: 1

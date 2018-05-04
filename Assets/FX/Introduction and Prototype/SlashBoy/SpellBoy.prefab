@@ -306,9 +306,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1272247912726944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4284bf8c9c9ad042bcf56562faa941f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1aebffe0f26dd243bd8f154c65c5ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Damage: 50
+  _SpellFlare: {fileID: 1117421902368200, guid: b1c953e837bf323479eeb12891348078,
+    type: 2}
+  _DamageColor: {r: 1, g: 0.051470578, b: 0.97383386, a: 0.816}
+  _SpellCaster: {fileID: 0}
+  AggroValue: 0
 --- !u!114 &114892243272263064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -317,17 +323,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1272247912726944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 853fbd4a4e05b9c48b3e9ea84467a19f, type: 3}
+  m_Script: {fileID: 11500000, guid: fded19c78888faf47b5783e99093fedb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 50
-  _SpellFlare: {fileID: 1117421902368200, guid: 8f92896d7ee3f0548b76613be2f7caf5,
-    type: 2}
-  _DamageDisplay: {fileID: 1573126156894220, guid: 12fb990f35400b14d96147e6240b2895,
-    type: 2}
-  _DamageColor: {r: 1, g: 0.2794118, b: 0.98012185, a: 0.784}
-  _SpellCaster: {fileID: 0}
-  AggroValue: 0
+  speed: 0
+  target: {fileID: 0}
 --- !u!114 &114925995445192542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -336,11 +336,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1272247912726944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6785ef66d8831148bb7b452c221630c, type: 3}
+  m_Script: {fileID: 11500000, guid: e3c51982fa4f46b47aabb484689f183b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  target: {fileID: 0}
 --- !u!198 &198292619104881190
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -42,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 11
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 8
+    serializedVersion: 9
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -87,7 +87,7 @@ LightmapSettings:
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_ShadowMaskMode: 2
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1221,6 +1221,8 @@ SpriteRenderer:
   m_Size: {x: 20, y: 20}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!4 &462430267
 Transform:
   m_ObjectHideFlags: 0
@@ -1797,6 +1799,8 @@ SpriteRenderer:
   m_Size: {x: 0.48, y: 0.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!4 &750984609
 Transform:
   m_ObjectHideFlags: 0
@@ -2566,6 +2570,7 @@ GameObject:
   - component: {fileID: 1157349925}
   - component: {fileID: 1157349930}
   - component: {fileID: 1157349922}
+  - component: {fileID: 1157349931}
   m_Layer: 0
   m_Name: Girl
   m_TagString: Player
@@ -2790,7 +2795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df02fa5ac9d818b4c805c4e7ae9d6b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages: 000000000100000002000000
+  messages: 00000000010000000200000004000000
 --- !u!82 &1157349930
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2871,6 +2876,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1157349931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1157349915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503f6b4b384e86f489b62f7a1f1515f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Healing: 20
 --- !u!1 &1248004437
 GameObject:
   m_ObjectHideFlags: 0
@@ -3217,6 +3234,8 @@ SpriteRenderer:
   m_Size: {x: 2.32, y: 12.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1427794626
 GameObject:
   m_ObjectHideFlags: 0
@@ -3302,6 +3321,7 @@ GameObject:
   - component: {fileID: 1527770596}
   - component: {fileID: 1527770594}
   - component: {fileID: 1527770592}
+  - component: {fileID: 1527770601}
   m_Layer: 0
   m_Name: Boy
   m_TagString: Player
@@ -3478,7 +3498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df02fa5ac9d818b4c805c4e7ae9d6b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages: 000000000100000002000000
+  messages: 00000000010000000200000004000000
 --- !u!114 &1527770596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3619,6 +3639,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1527770601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1527770584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503f6b4b384e86f489b62f7a1f1515f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Healing: 0
 --- !u!1 &1696134852
 GameObject:
   m_ObjectHideFlags: 0
@@ -3784,6 +3816,8 @@ SpriteRenderer:
   m_Size: {x: 1.88, y: 11.91}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!65 &1818955584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3867,6 +3901,8 @@ SpriteRenderer:
   m_Size: {x: 2.32, y: 12.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
 --- !u!95 &1861774061
 Animator:
   serializedVersion: 3

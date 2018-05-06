@@ -711,8 +711,8 @@ MonoBehaviour:
   - {fileID: 1157349921}
   _Speed: 1
   target: {fileID: 0}
-  _FieldOfViewMin: 9
-  _FieldOfViewMax: 12
+  _FieldOfViewMin: 12
+  _FieldOfViewMax: 15
   m_number: 0
 --- !u!1 &218239356
 GameObject:

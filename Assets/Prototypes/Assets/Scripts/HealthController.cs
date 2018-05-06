@@ -97,6 +97,7 @@ public class HealthController : MonoBehaviour
                 }
             }
             VictoryScreen.youWon = true;
+            Debug.Log("This is HealthController.cs, youWon should have just flipped");
             this.gameObject.SetActive(false);//This works
             Sprite.SetActive(false);
 
@@ -106,8 +107,6 @@ public class HealthController : MonoBehaviour
             //Think this is related to respawn?
             /*currentHealth = totalHealth;
             agent.enabled = true;*/
-
-            VictoryScreen.youWon = true;
 
         }
 

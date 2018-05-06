@@ -46,6 +46,15 @@ public class BattleEnemy : MonoBehaviour {
     public GameObject[] _ChevreSpawn;
     public AudioClip[] _SpellAudio;
 
+    /*
+     * Keegan To-Do of 2018-05-05:
+     * This start function must play several roles:
+     * 1) Load spells into a data structure of some sort.
+     * 1.1) Todo: Create a spell class. From the above, we can see that spells require at minimum a cooldown float and an is casting bool
+     * 2) Initialize message handler crap for the health co-routine
+     *  
+     */
+
     public void Start()
     {
         m_range = GetComponent<TargetRangeChecker>();
@@ -61,6 +70,17 @@ public class BattleEnemy : MonoBehaviour {
 
         cooldownSpellC = 180;
     }
+
+    /* 
+     * Keegan To-Do of 2018-05-05:
+     * Main game loop:
+     * From the enemy's available abilities, select the best to use.
+     * 
+     * Cooldowns are to be moved to spell class.
+     * 
+     * Spell availability is to 
+     * 
+     */
 
     private void Update()
     {
@@ -86,6 +106,11 @@ public class BattleEnemy : MonoBehaviour {
         yield return new WaitForSeconds(_SpellAudio[4].length);
         isShieldPlaying = false;
     }
+
+    /*
+     * Keegan To-Do of 2018-05-05:
+     * Give this a better name once I understand it better
+     */
 
     public void IsnotInvincible()
     {

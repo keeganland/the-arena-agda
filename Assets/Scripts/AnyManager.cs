@@ -14,12 +14,13 @@ public class AnyManager : MonoBehaviour {
 
     public static AnyManager anyManager;
     public static string sceneToBeActive;
+    public bool normalGameplay;
 
     private bool gameStart = false;
 
     private void Awake()
     {
-        if (!gameStart)
+        if (!gameStart && normalGameplay)
         {
             anyManager = this;
 

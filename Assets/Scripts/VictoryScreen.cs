@@ -18,6 +18,7 @@ public class VictoryScreen : MonoBehaviour {
 
         if (youWon)
         {
+            Debug.Log("VictoryScreen should have just entered you won conditional");
             Pause();
         }
 
@@ -35,7 +36,7 @@ public class VictoryScreen : MonoBehaviour {
 
     }
 
-    void Resume()
+    public void Resume()
     {
         victoryMenuUI.SetActive(false);
         Time.timeScale = 1f;
@@ -43,7 +44,7 @@ public class VictoryScreen : MonoBehaviour {
         youWon = false;
     }
 
-    void Pause()
+    public void Pause()
     {
         victoryMenuUI.SetActive(true);
         Time.timeScale = 0f;

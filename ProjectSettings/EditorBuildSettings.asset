@@ -13,13 +13,16 @@ EditorBuildSettings:
     guid: 5734405796eeb5944bf4469105e1e773
   - enabled: 1
     path: Assets/Scenes/Introduction (1).unity
-    guid: 2602fb0daf4bef54ca30c652a4196d51
+    guid: 1dbdde31da294014caeaa7a5837d258f
   - enabled: 1
     path: Assets/Scenes/Chapter1.unity
-    guid: a2488dad494f93941a347f872bcdfbcf
+    guid: 51382177656294c4090c4fd27a3e4713
   - enabled: 1
     path: Assets/Scenes/Gameplay - BossBattle.unity
-    guid: 83755b6abe1f2894aa786bf68ac2e915
+    guid: 60090d8e9f797c54cbd07047f032503a
   - enabled: 1
     path: Assets/Scenes/Dialog - Prototype.unity
-    guid: 94cb0900304b72042bc1305340e2a0b9
+    guid: 9377f17f71c01b84a8cfe7c6c68b79cd
+  - enabled: 1
+    path: Assets/Scenes/KeeganPrototype.unity
+    guid: 31c73d95a4545fd4da3bcee293015d0c

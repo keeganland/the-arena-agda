@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * Keegan Todo:
+ * 
+ * We might want this to be an abstract class for different types of spells. 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

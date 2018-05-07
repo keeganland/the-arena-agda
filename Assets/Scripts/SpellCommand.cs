@@ -6,6 +6,8 @@ public class SpellCommand : MonoBehaviour {
     /*NEED TO INCORPORATE TIMER*/
     private int player_number;//variable used to hold value of which character is casting a spell
     public int Healing;
+    public GameObject Shield;
+    public GameObject AOE;
 
 	// Use this for initialization
 	void Start () {
@@ -37,6 +39,8 @@ public class SpellCommand : MonoBehaviour {
             if (this.gameObject.name == "Boy") //checks if boy is casting and if this gamebobject is the boy
             {
                 //Spell goes here
+                //Click for shield or shield appears in front of boy?
+                Instantiate(Shield as GameObject);// This creates a shield in the place that I originally placed it in scene
             }
             else
             {
@@ -88,6 +92,8 @@ public class SpellCommand : MonoBehaviour {
             if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
             {
                 //Spell goes here
+                Instantiate(AOE as GameObject);
+                AOE.GetComponent<AOETrigger>().SetAOETimer(0.0);
             }
             else
             {

@@ -92,8 +92,9 @@ public class SpellCommand : MonoBehaviour {
             if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
             {
                 //Spell goes here
+                //This will need a lot of effort to work
+                AOE.GetComponent<AOETrigger>().SetAOETimer(0);
                 Instantiate(AOE as GameObject);
-                AOE.GetComponent<AOETrigger>().SetAOETimer(0.0);
             }
             else
             {

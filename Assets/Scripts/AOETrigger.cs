@@ -23,7 +23,7 @@ public class AOETrigger : MonoBehaviour {
         {
             return;
         }
-        else if (other.gameObject.tag == "Enemy")
+        else //if (other.gameObject.tag == "Enemy")
         {
             DamageData dmgData = new DamageData();
             dmgData.damage = AOEDamage;

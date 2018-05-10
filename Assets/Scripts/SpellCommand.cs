@@ -18,7 +18,7 @@ public class SpellCommand : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        AOEpos = new GameObject();
+        AOEpos = new GameObject("AOEpos");
     }
 	
 	// Update is called once per frame

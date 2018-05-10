@@ -1504,7 +1504,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 67b1f862cea7a204493c0acd2484fb8a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2627,7 +2627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ee1ecb3d19ba27419bb74ed5199c1cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_text: {fileID: 871445726}
+  m_text: {fileID: 239680210}
   m_anim: {fileID: 0}
   _Color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1042962104
@@ -3565,7 +3565,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 67b1f862cea7a204493c0acd2484fb8a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4517,7 +4517,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.5
   m_Range: 132.12904
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -4549,13 +4549,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1973402766}
-  m_LocalRotation: {x: 0.5127148, y: -0, z: -0, w: 0.858559}
-  m_LocalPosition: {x: -8.168694, y: 106.93285, z: -42.47827}
+  m_LocalRotation: {x: 0.33687794, y: -0.06593093, z: -0.023655068, w: 0.9389392}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 460692626}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 61.690002, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 39.013, y: -10.361, z: -6.5660005}
 --- !u!4 &1993920196 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4634301004684150, guid: 01d36d0a53eea7d4195de850d0b68eca,

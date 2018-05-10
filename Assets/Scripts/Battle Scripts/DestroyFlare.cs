@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class DestroyFlare : MonoBehaviour {
 
+    public int _Time;
+
 	// Use this for initialization
 	void Start () {
-        Destroy(gameObject, 4f);
+        Destroy(gameObject, _Time);
 	}
 }

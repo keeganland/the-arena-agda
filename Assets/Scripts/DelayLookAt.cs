@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashBossTrackingSystem : MonoBehaviour {
+public class DelayLookAt : MonoBehaviour {
 
 	public float speed = 100.0f;
 

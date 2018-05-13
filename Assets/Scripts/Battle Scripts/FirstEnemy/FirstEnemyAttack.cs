@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FirstEnemyAttack : MonoBehaviour {
 
+    private Transform m_targetpos;
+
     [Header("Targeting and Attacks Data")]
     public Transform[] _Target;
     public int _BoyOrGirl;
@@ -32,6 +34,7 @@ public class FirstEnemyAttack : MonoBehaviour {
         lineRenderer.SetWidth(.45f, .45f);
         lineRenderer.SetVertexCount(2);
         lineRenderer.sortingOrder = 10;
+
     }
 	
 	// Update is called once per frame
@@ -39,34 +42,40 @@ public class FirstEnemyAttack : MonoBehaviour {
     {
 		if (!m_isAttacking && m_timer >= _AttackCD)
         {
-            TrackingSystem();
             m_isAttacking = true;
             StartCoroutine("DashAttack");
         }
 
         if (m_linedrawing)
         {
-                //get the unit vector in the desired direction, multiply by the desired length and add the starting point
-                //Vector3 pointAlongLine = x * Vector3.Normalize(pointB - pointA) + pointA;
-
-                lineRenderer.SetPosition(0, transform.position);
-                lineRenderer.SetPosition(1, _Target[_BoyOrGirl].transform.position);
-                Debug.Log(_Target[_BoyOrGirl].transform.position);
+            //get the unit vector in the desired direction, multiply by the desired length and add the starting point
+            //Vector3 pointAlongLine = x * Vector3.Normalize(pointB - pointA) + pointA;
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, m_targetpos.position);
         }
 	}
 
     private void TrackingSystem ()
     {
+           Debug.Log("here");
            _BoyOrGirl = Random.Range(0, 2);
+           m_targetpos = _Target[_BoyOrGirl].transform;
+
     }
 
     private IEnumerator DashAttack()
     {
+        Debug.Log("Coroutine");
+        TrackingSystem();
+
+        lineRenderer.enabled = true;
+
         //Look toward target and draw "warning" line
         transform.LookAt(_Target[_BoyOrGirl]);
         m_linedrawing = true;
 
         yield return new WaitForSeconds(_WarningtoAttackCD); 
+
     }
 }
 

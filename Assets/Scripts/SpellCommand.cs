@@ -5,14 +5,21 @@ using UnityEngine;
 public class SpellCommand : MonoBehaviour {
     /*NEED TO INCORPORATE TIMER*/
     private int player_number;//variable used to hold value of which character is casting a spell
+    private bool isWspell;
+    private bool isQspell;
+    private GameObject AOEpos;
+
     public int Healing;
     public GameObject Shield;
     public GameObject AOE;
+    public GameObject RangeIndicatorAOE;
+    public GameObject AttackIndicatorAOE;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+
+        AOEpos = new GameObject("AOEpos");
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -21,13 +28,14 @@ public class SpellCommand : MonoBehaviour {
             //Debug.Log("SpellCommand: Q pressed");
             CastSpellQ();
         }
-
         if (Input.GetKeyDown(KeyCode.W))
         {
             //Debug.Log("SpellCommand: W pressed");
-            CastSpellW();
+            isWspell = true;
+            
         }
-	}
+        CastSpellW();
+    }
 
     private void CastSpellQ() //used to call the spells connected to "Q"
     {
@@ -71,36 +79,58 @@ public class SpellCommand : MonoBehaviour {
 
     private void CastSpellW() ///used to call spells connected to "W"
     {
-        player_number = CharacterSelect();
-        //Debug.Log("SpellCommand: W/player_number = " + player_number);
-        //Boy spell called by W (Stun)
-        if (player_number == 0)
+        if (isWspell)
         {
-            if(this.gameObject.name == "Boy") //checks if boy is casting and if this gamebobject is the boy
+            player_number = CharacterSelect();
+            //Debug.Log("SpellCommand: W/player_number = " + player_number);
+            //Boy spell called by W (Stun)
+            if (player_number == 0)
             {
-                //Spell goes here
+                if (this.gameObject.name == "Boy") //checks if boy is casting and if this gamebobject is the boy
+                {
+                    //Spell goes here
+                }
+                else
+                {
+                    return;
+                }
+                Debug.Log("SpellCommand: Boy cast W");
             }
-            else
+            //Girl spell called by W (AOE)
+            if (player_number == 1)
             {
-                return;
+                if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
+                {
+                    RangeIndicatorAOE.SetActive(true);
+
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        if (hit.collider.tag == "RangeIndicator")
+                        {
+                            AttackIndicatorAOE.SetActive(true);
+                            AttackIndicatorAOE.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                AOEpos.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
+                                Instantiate(AOE, AOEpos.transform);
+                                CancelAOEAttack();
+                            }
+                 
+                        }
+                        if (hit.collider.tag == "Ground")
+                        {
+                            AttackIndicatorAOE.SetActive(false);
+                        }
+                    }
+                }
+                else
+                {
+                    return;
+                }
+                Debug.Log("SpellCommand: Girl cast W");
             }
-            Debug.Log("SpellCommand: Boy cast W");
-        }
-        //Girl spell called by W (AOE)
-        if (player_number == 1)
-        {
-            if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
-            {
-                //Spell goes here
-                //This will need a lot of effort to work
-                AOE.GetComponent<AOETrigger>().SetAOETimer(0);
-                Instantiate(AOE as GameObject);
-            }
-            else
-            {
-                return;
-            }
-            Debug.Log("SpellCommand: Girl cast W");
         }
     }
 
@@ -119,4 +149,12 @@ public class SpellCommand : MonoBehaviour {
             return 2;
         }
     }
+
+    public void CancelAOEAttack()
+    {
+        isWspell = false;
+        RangeIndicatorAOE.SetActive(false);
+        AttackIndicatorAOE.SetActive(false);
+    }
+        
 }

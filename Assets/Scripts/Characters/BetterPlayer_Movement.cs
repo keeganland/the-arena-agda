@@ -58,13 +58,16 @@ public class BetterPlayer_Movement : MonoBehaviour {
             if (Input.GetMouseButtonDown(1))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    if (hit.collider.tag == "Ground")
+                    if (hit.collider.tag == "Ground" || hit.collider.tag == "RangeIndicator")
                     {
-                        m_agent.SetDestination(hit.point);
+                        this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
+
+
+                        Vector3 newpos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+                        m_agent.SetDestination(newpos);
                         curTarget = null;
                         this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
                     }

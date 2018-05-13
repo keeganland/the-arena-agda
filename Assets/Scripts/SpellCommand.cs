@@ -153,7 +153,9 @@ public class SpellCommand : MonoBehaviour {
     public void CancelAOEAttack()
     {
         isWspell = false;
+        if(RangeIndicatorAOE)
         RangeIndicatorAOE.SetActive(false);
+        if(AttackIndicatorAOE)
         AttackIndicatorAOE.SetActive(false);
     }
         

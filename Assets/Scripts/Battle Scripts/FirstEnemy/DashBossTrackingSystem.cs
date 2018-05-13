@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Take2 : MonoBehaviour {
+public class DashBossTrackingSystem : MonoBehaviour {
 
-	public Transform[] target = {0, 1};
+    public Transform[] target;
 
 	public int boyOrGirl = (int)Random.Range(0, 1);
 	
@@ -12,11 +12,13 @@ public class Take2 : MonoBehaviour {
 	void Update () {
 
 		if (boyOrGirl == 0) {
-			transform.LookAt (target[1]);
+			transform.LookAt (target[0]);
 		} else {
-			transform.LookAt (target[2]);
+			transform.LookAt (target[1]);
 		}
 
 		boyOrGirl = (int)Random.Range(0, 1);
 	}
+
+
 }

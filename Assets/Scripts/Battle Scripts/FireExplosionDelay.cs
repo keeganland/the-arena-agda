@@ -5,9 +5,12 @@ using UnityEngine;
 public class FireExplosionDelay : MonoBehaviour {
 
     public float _Speed;
+    public int _Radius = 110;
+    public float _Delay;
 
     SphereCollider _Collider;
     float timer = 0;
+    bool iscollider;
 
 	// Use this for initialization
 	void Start () {
@@ -16,17 +19,23 @@ public class FireExplosionDelay : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (timer >= 2.6f)
+        if (timer >= _Delay)
         {
-            _Collider.radius = Mathf.Lerp(_Collider.radius, 110f, _Speed * Time.deltaTime);
+            if (!_Collider.enabled && !iscollider)
+            {
+                _Collider.enabled = true;
+                iscollider = true;
+            }
+
+            _Collider.radius = Mathf.Lerp(_Collider.radius, _Radius, _Speed * Time.deltaTime);
         }
 
         timer += Time.deltaTime;
 
-        if (_Collider.radius >= 109f)
+        if (_Collider.radius >= _Radius - 1)
         {
-            _Collider.enabled = false;
-            Destroy(gameObject, 1.5f);
+           _Collider.enabled = false;
+           Destroy(gameObject, 1.5f);
         }
 	}
 }

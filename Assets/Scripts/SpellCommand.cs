@@ -8,10 +8,11 @@ public class SpellCommand : MonoBehaviour {
     public int Healing;
     public GameObject Shield;
     public GameObject AOE;
+    private bool AOECheck;
 
 	// Use this for initialization
 	void Start () {
-		
+        AOECheck = false;
 	}
 	
 	// Update is called once per frame
@@ -27,7 +28,24 @@ public class SpellCommand : MonoBehaviour {
             //Debug.Log("SpellCommand: W pressed");
             CastSpellW();
         }
-	}
+
+        if (Input.GetMouseButtonDown(0)) //This successfully spawns the AOE on left click after hotkey click
+        {
+            if (AOECheck == true)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    Instantiate(AOE, hit.transform.position, transform.rotation);
+                }
+            }
+            AOECheck = false;
+
+        }
+
+    }
 
     private void CastSpellQ() //used to call the spells connected to "Q"
     {
@@ -92,9 +110,12 @@ public class SpellCommand : MonoBehaviour {
             if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
             {
                 //Spell goes here
+                //Click button -> set variable
+                //Click left mouse -> check variable -> do spell -> reset variable
                 //This will need a lot of effort to work
-                AOE.GetComponent<AOETrigger>().SetAOETimer(0);
-                Instantiate(AOE as GameObject);
+                AOECheck = true;
+                /*AOE.GetComponent<AOETrigger>().SetAOETimer(0);
+                Instantiate(AOE as GameObject);*/
             }
             else
             {

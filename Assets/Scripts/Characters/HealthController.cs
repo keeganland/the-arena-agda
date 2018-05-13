@@ -104,7 +104,7 @@ public class HealthController : MonoBehaviour
                     gameObject.GetComponentInParent<TotemDestroyed>()._IsDestroyed = true;
                 }
             }
-            VictoryScreen.youWon = true;
+            //VictoryScreen.youWon = true;
             Debug.Log("This is HealthController.cs, youWon should have just flipped");
             this.gameObject.SetActive(false);//This works
             Sprite.SetActive(false);

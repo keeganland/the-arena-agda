@@ -5,6 +5,7 @@ using UnityEngine;
 public class FirstEnemyAttack : MonoBehaviour {
 
     public Vector3 m_targetpos;
+	public Rigidbody enemy;
 
     [Header("Targeting and Attacks Data")]
     public Transform[] _Target;
@@ -75,7 +76,8 @@ public class FirstEnemyAttack : MonoBehaviour {
         yield return new WaitForSeconds(_WarningtoAttackCD); 
 
         //Start the Attack
-
+		enemy.AddForce(transform.forward * 750);
+		enemy.AddForce(transform.forward * 0);
     }
 }
 

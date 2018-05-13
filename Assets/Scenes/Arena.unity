@@ -4534,6 +4534,7 @@ GameObject:
   - component: {fileID: 1933496339}
   - component: {fileID: 1933496340}
   - component: {fileID: 1933496334}
+  - component: {fileID: 1933496338}
   m_Layer: 0
   m_Name: Enemy1-Charge
   m_TagString: Untagged
@@ -4620,13 +4621,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1933496332}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1933496338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1933496332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15735eca183be8a4ea3235ac11629433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!120 &1933496339
 LineRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1933496332}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 0

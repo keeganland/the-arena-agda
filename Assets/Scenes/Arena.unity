@@ -4728,13 +4728,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b143fdb6a2d8d34a82ad78405764b93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_targetpos: {x: 0, y: 0, z: 0}
   _Target:
   - {fileID: 1993920196}
   - {fileID: 750984609}
   _BoyOrGirl: 0
-  _AttackCD: 0
+  _AttackCD: 1
   _WarningtoAttackCD: 0
-  lineDrawSpeed: 6
+  lineDrawSpeed: 1
 --- !u!1 &1973402766
 GameObject:
   m_ObjectHideFlags: 0

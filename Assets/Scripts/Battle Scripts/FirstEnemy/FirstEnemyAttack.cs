@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FirstEnemyAttack : MonoBehaviour {
 
-    private Transform m_targetpos;
+    public Vector3 m_targetpos;
 
     [Header("Targeting and Attacks Data")]
     public Transform[] _Target;
@@ -31,7 +31,7 @@ public class FirstEnemyAttack : MonoBehaviour {
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetWidth(.45f, .45f);
+        lineRenderer.SetWidth(2f, 2f);
         lineRenderer.SetVertexCount(2);
         lineRenderer.sortingOrder = 10;
 
@@ -42,6 +42,7 @@ public class FirstEnemyAttack : MonoBehaviour {
     {
 		if (!m_isAttacking && m_timer >= _AttackCD)
         {
+            Debug.Log("here");
             m_isAttacking = true;
             StartCoroutine("DashAttack");
         }
@@ -51,23 +52,20 @@ public class FirstEnemyAttack : MonoBehaviour {
             //get the unit vector in the desired direction, multiply by the desired length and add the starting point
             //Vector3 pointAlongLine = x * Vector3.Normalize(pointB - pointA) + pointA;
             lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, m_targetpos.position);
+            lineRenderer.SetPosition(1, m_targetpos);
         }
+        m_timer += Time.deltaTime;
 	}
-
-    private void TrackingSystem ()
-    {
-           Debug.Log("here");
-           _BoyOrGirl = Random.Range(0, 2);
-           m_targetpos = _Target[_BoyOrGirl].transform;
-
-    }
 
     private IEnumerator DashAttack()
     {
-        Debug.Log("Coroutine");
-        TrackingSystem();
+        Debug.Log("Coroutine Started");
 
+        //We select the position for the spell
+        _BoyOrGirl = Random.Range(0, 2);
+        m_targetpos = _Target[_BoyOrGirl].position;
+
+        Debug.Log(m_targetpos);
         lineRenderer.enabled = true;
 
         //Look toward target and draw "warning" line
@@ -75,6 +73,8 @@ public class FirstEnemyAttack : MonoBehaviour {
         m_linedrawing = true;
 
         yield return new WaitForSeconds(_WarningtoAttackCD); 
+
+        //Start the Attack
 
     }
 }

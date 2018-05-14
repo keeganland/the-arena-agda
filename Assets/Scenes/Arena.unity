@@ -4831,6 +4831,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114435487592517024, guid: 1995caa99e65f4d4b8d4519cf2b09028,
+        type: 2}
+      propertyPath: Healing
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1995caa99e65f4d4b8d4519cf2b09028, type: 2}
   m_IsPrefabParent: 0

@@ -20,16 +20,23 @@ public class AnyManager : MonoBehaviour {
 
     private void Awake()
     {
+
+        anyManager = this;
+    }
+
+
+    private void Start()
+    {
+        Debug.Log("AnyManager Start function");
         if (!gameStart && normalGameplay)
         {
-            anyManager = this;
-
+            Debug.Log("The game has not started, and we are doing normal gameplay. Let's stasr ");
             SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
-
             gameStart = true;
         }
     }
-    
+
+
     /*
      * Returns the whole game to the title screen.
      */

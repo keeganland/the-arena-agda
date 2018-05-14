@@ -18,6 +18,7 @@ public class SpellCommand : MonoBehaviour {
     public GameObject AttackIndicatorHeal;
     public GameObject RangeIndicatorHeal;
     public GameObject Heal;
+    public GameObject RangeIndicatorShield;
 
 	// Use this for initialization
 	void Start () {
@@ -55,8 +56,22 @@ public class SpellCommand : MonoBehaviour {
                 if (this.gameObject.name == "Boy") //checks if boy is casting and if this gamebobject is the boy
                 {
                     //Spell goes here
-                    //Click for shield or shield appears in front of boy?
-                    Instantiate(Shield as GameObject);// This creates a shield in the place that I originally placed it in scene
+                    //shield appears in front of boy in direction of mouse click (doesn't move)
+                    RangeIndicatorShield.SetActive(true);
+
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        if (hit.collider.tag == "RangeIndicator")
+                        {
+                            Vector3 direction = hit.transform.position - this.transform.position;
+                            //this.transform.LookAt(hit.transform, direction);
+                            //Instantiate(Shield as GameObject);// This creates a shield in the place that I originally placed it in scene
+                            //Shield.SetActive(true);
+                        }
+                        
+                    }
                 }
                 else
                 {
@@ -90,12 +105,6 @@ public class SpellCommand : MonoBehaviour {
                             {
                                 AttackIndicatorHeal.SetActive(false);
                             }
-                            /*RecoverData rcvrData = new RecoverData();
-                            rcvrData.HP_up = Healing;
-
-                            MessageHandler msgHandler = this.GetComponent<MessageHandler>(); // edit "this" so we can select target
-
-                            msgHandler.GiveMessage(MessageTypes.HEALED, this.gameObject, rcvrData);*/
                         }
                     }
                 }

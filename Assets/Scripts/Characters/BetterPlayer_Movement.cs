@@ -61,10 +61,9 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    if (hit.collider.tag == "Ground" || hit.collider.tag == "RangeIndicator" )
+                    if (hit.collider.tag == "Ground" || hit.collider.tag == "RangeIndicator")
                     {
                         this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
-                        this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
 
 
                         Vector3 newpos = new Vector3(hit.point.x, transform.position.y, hit.point.z);

@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class FirstEnemyAttack2 : MonoBehaviour {
 
-    public Vector3 m_targetpos;
 	private Rigidbody m_rbEnemy;
 
     [Header("Targeting and Attacks Data")]
@@ -15,21 +14,22 @@ public class FirstEnemyAttack2 : MonoBehaviour {
     public float _AttackCD;
     public float _WarningtoAttackCD;
 
-    private bool m_isAttacking;
     private float m_timer; 
 
 	NavMeshAgent m_nav;
-	int i;
 	bool isCollided;
 	private bool m_isDashAttack;
 
 	public GameObject _WarningDash;
+    public GameObject _DashSpell;
+    public GameObject _TeleportPosition;
 
     private void Start()
     {
         m_rbEnemy = GetComponent<Rigidbody>();
         m_nav = GetComponent<NavMeshAgent>();
         _BoyOrGirl = Random.Range(0, 2);
+        m_timer = 15;
     }
 
     // Update is called once per frame
@@ -37,28 +37,20 @@ public class FirstEnemyAttack2 : MonoBehaviour {
     {
 		if (!isCollided)
 		{
-			if (i == 1 && _Target[i].GetComponent<HealthController>().currentHealth == 0 )
+			if (_BoyOrGirl == 1 && _Target[_BoyOrGirl].GetComponent<HealthController>().currentHealth == 0 )
 			{
-				i = 0;
+                _BoyOrGirl = 0;
 			}
-			else if (i == 0 && _Target[i].GetComponent<HealthController>().currentHealth == 0)
+			else if (_BoyOrGirl == 0 && _Target[_BoyOrGirl].GetComponent<HealthController>().currentHealth == 0)
 			{
-				i = 1;
+                _BoyOrGirl = 1;
 			}
-			if (_Target[i])
+			if (_Target[_BoyOrGirl] && !m_isDashAttack)
 			{
 				m_nav.SetDestination(_Target[_BoyOrGirl].transform.position);
 			}
 
 		}
-		
-		if (!m_isAttacking && m_timer >= _AttackCD)
-        {
-            Debug.Log("here");
-            m_isAttacking = true;
-            StartCoroutine("DashAttack");
-        }
-
         m_timer += Time.deltaTime;
 	}
 
@@ -74,15 +66,38 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 		{
 			if (other == _Target[_BoyOrGirl].GetComponent<Collider>())
 			{
-				//Debug.Log("Target in Range " + curTarget.name);
-				CancelDashMovement();
-				//Pass attack function here?
-			}
+				//Debug.Log("Target in Range " + curTarget.name)
+                if (!m_isDashAttack && m_timer >= _AttackCD)
+                {
+                    Debug.Log("here");
+                    CancelDashMovement();
+                    StartCoroutine("DashAttack");
+                }
+            }
 			else return;
 		}
 	}
 
-	private void OnTriggerExit(Collider other)
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log(other.name);
+        if (_Target[_BoyOrGirl])
+        {
+            if (other == _Target[_BoyOrGirl].GetComponent<Collider>())
+            {
+                CancelDashMovement();
+                //Debug.Log("Target in Range " + curTarget.name)
+                if (!m_isDashAttack && m_timer >= _AttackCD)
+                {
+                    transform.LookAt(_Target[_BoyOrGirl]);                  
+                    StartCoroutine("DashAttack");
+                }
+            }
+            else return;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
 	{
 		if (_Target[_BoyOrGirl])
 		{
@@ -98,20 +113,16 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 
 	public int Damage;
 	public int Aggro;
-	public float AttackSpeed;
 	public GameObject _Sprite;
-	private float AttackTimer;
 
     private IEnumerator DashAttack()
     {
 		m_isDashAttack = true;
 
-		yield return new WaitForSeconds(1);
-
-		Vector3 direction = _Target[i].transform.position - transform.position;
+		Vector3 direction = _Target[_BoyOrGirl].transform.position - transform.position;
 		float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
 
-		transform.LookAt(_Target[i].transform);
+		transform.LookAt(_Target[_BoyOrGirl].transform);
 
 		int rotation = 0;
 
@@ -138,38 +149,30 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 			_Sprite.GetComponent<SpriteScript2>().ForcePlayerRotation(rotation);
 		}
 
-		_WarningDash.SetActive(true);
-
-		DamageData dmgData = new DamageData();
-		dmgData.damage = Damage;
-
-		MessageHandler msgHandler = _Target[_BoyOrGirl].GetComponent<MessageHandler>();
-
-		if (msgHandler)
-		{
-			msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
-		}
-		AttackTimer = 0.0f;
-
-		m_isDashAttack = false;
-
-
-        Debug.Log("Coroutine Started");
-
-        //We select the position for the spell
-        _BoyOrGirl = Random.Range(0, 2);
-        m_targetpos = _Target[_BoyOrGirl].position;
-
-
         //Look toward target and draw "warning" line
-        transform.LookAt(_Target[_BoyOrGirl]);
         _WarningDash.SetActive(true);
 
+        yield return new WaitForSeconds(_WarningtoAttackCD);
 
-        yield return new WaitForSeconds(_WarningtoAttackCD); 
-
+        _WarningDash.SetActive(false);
         //Start the Attack
-		m_rbEnemy.AddForce(transform.forward * 750);
+        GameObject go = Instantiate(_DashSpell, this.transform.position,Quaternion.identity);
+        go.GetComponent<DashCollider>().SetTarget(_TeleportPosition);
+        go.GetComponent<Bullet>().GetSpellCaster(this.gameObject);
+
+        yield return new WaitForSeconds(_WarningtoAttackCD);
+        //Reset Enemy
+
+        transform.position = _TeleportPosition.transform.position;
+        m_nav.SetDestination(transform.position);
+
+        yield return new WaitForSeconds(_WarningtoAttackCD);
+
+        _BoyOrGirl = Random.Range(0, 2);
+
+        m_timer = 0;
+        isCollided = false;
+        m_isDashAttack = false;
     }
 }
 

@@ -2226,6 +2226,11 @@ Transform:
   m_Father: {fileID: 1897462042}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &749349282 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1806499089600312, guid: 6af7ebfd3cf111c43aa1ad9946e40601,
+    type: 2}
+  m_PrefabInternal: {fileID: 1133559075}
 --- !u!1 &750984601
 GameObject:
   m_ObjectHideFlags: 0
@@ -5457,7 +5462,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1881716616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b143fdb6a2d8d34a82ad78405764b93, type: 3}
+  m_Script: {fileID: 11500000, guid: 4674a973f5cce854692d0619bd8522ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetpos: {x: 0, y: 0, z: 0}
@@ -5466,13 +5471,12 @@ MonoBehaviour:
   - {fileID: 1157349921}
   _BoyOrGirl: 0
   _AttackCD: 0
-  _WarningtoAttackCD: 0
-  _AudioClip: []
+  _WarningtoAttackCD: 5
+  _WarningDash: {fileID: 749349282}
   Damage: 23
   Aggro: 0
   AttackSpeed: 0
   _Sprite: {fileID: 0}
-  spellPrefab: []
 --- !u!195 &1881716623
 NavMeshAgent:
   m_ObjectHideFlags: 0

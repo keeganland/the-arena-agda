@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class FirstEnemyAttack2 : MonoBehaviour {
 
     public Vector3 m_targetpos;
-	public Rigidbody enemy;
+	private Rigidbody enemy;
 
     [Header("Targeting and Attacks Data")]
     public Transform[] _Target;
@@ -33,18 +33,6 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 	private bool m_isDashAttack;
 
 	public GameObject _WarningDash;
-
-
-    // Use this for initialization
-    void Start ()
-    {
-        lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetWidth(2f, 2f);
-        lineRenderer.SetVertexCount(2);
-        lineRenderer.sortingOrder = 10;
-
-    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -72,14 +60,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
             m_isAttacking = true;
             StartCoroutine("DashAttack");
         }
-
-        if (m_linedrawing)
-        {
-            //get the unit vector in the desired direction, multiply by the desired length and add the starting point
-            //Vector3 pointAlongLine = x * Vector3.Normalize(pointB - pointA) + pointA;
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, m_targetpos);
-        }
+			
         m_timer += Time.deltaTime;
 	}
 
@@ -158,7 +139,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 			_Sprite.GetComponent<SpriteScript2>().ForcePlayerRotation(rotation);
 		}
 
-		_WarningDash.SetActive(true);
+
 
 		DamageData dmgData = new DamageData();
 		dmgData.damage = Damage;
@@ -181,11 +162,10 @@ public class FirstEnemyAttack2 : MonoBehaviour {
         m_targetpos = _Target[_BoyOrGirl].position;
 
         Debug.Log(m_targetpos);
-        lineRenderer.enabled = true;
 
         //Look toward target and draw "warning" line
         transform.LookAt(_Target[_BoyOrGirl]);
-        m_linedrawing = true;
+		_WarningDash.SetActive(true);
 
         yield return new WaitForSeconds(_WarningtoAttackCD); 
 

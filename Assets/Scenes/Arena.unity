@@ -5525,7 +5525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetpos: {x: 0, y: 0, z: 0}
-  enemy: {fileID: 1881716629}
+  enemy: {fileID: 0}
   _Target:
   - {fileID: 1527770590}
   - {fileID: 1157349921}
@@ -5534,7 +5534,7 @@ MonoBehaviour:
   _WarningtoAttackCD: 0
   lineDrawSpeed: 6
   _WarningDash: {fileID: 749349282}
-  Damage: 23
+  Damage: 0
   Aggro: 0
   AttackSpeed: 0
   _Sprite: {fileID: 0}

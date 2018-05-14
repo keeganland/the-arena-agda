@@ -5,9 +5,13 @@ using UnityEngine.UI;
 
 public class Bullet : MonoBehaviour {
 
+    public bool isHeal;
     public int Damage;
     public GameObject _SpellFlare;
     public Color _DamageColor;
+    public Color _HealColor;
+    public int Healing;
+
   
 
     private Vector3 m_angle;
@@ -30,19 +34,28 @@ public class Bullet : MonoBehaviour {
         }
         if (other.gameObject.CompareTag("Player") && _SpellCaster != other.gameObject)
         {
-            DamageData dmgData = new DamageData();
-            dmgData.damage = Damage;
-            /*AggroData aggroData = new AggroData();
-            aggroData.aggro = AggroValue;*/
-            DisplayDamage(other.gameObject, _DamageColor, Damage);
             MessageHandler msgHandler = other.GetComponent<MessageHandler>();
-
-            if (msgHandler)
+            if (!isHeal)
             {
-                msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
-                //msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, _SpellCaster, aggroData);
-                //Debug.Log("Bullet: this = " + this.name);
-                //Debug.Log("BULLET: _SpellCaster = " + _SpellCaster.name);
+                DamageData dmgData = new DamageData();
+                dmgData.damage = Damage;
+                if (msgHandler)
+                {
+                    msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
+                    DisplayDamage(other.gameObject, _DamageColor, Damage);
+                }
+            }
+
+            if (isHeal)
+            {
+               // Debug.Log("Bullet: isHeal = true");
+                RecoverData rcvrData = new RecoverData();
+                rcvrData.HP_up = Healing;
+                if (msgHandler)
+                {
+                    msgHandler.GiveMessage(MessageTypes.HEALED, this.gameObject, rcvrData);
+                    DisplayHealing(other.gameObject, _HealColor, Healing);
+                }
             }
         }
         if (other.gameObject.CompareTag("wall"))
@@ -114,5 +127,12 @@ public class Bullet : MonoBehaviour {
             GameObject go = targetdisplay.GetComponent<HealthController>().Sprite;
             Canvas canvas = go.GetComponentInChildren<Canvas>();
             canvas.GetComponentInChildren<DamageDisplayScript>().GetDamageText(damageColor, damageText);
+    }
+
+    private void DisplayHealing(GameObject targetdisplay, Color healingColor, int healingText)
+    {
+        GameObject go = targetdisplay.GetComponent<HealthController>().Sprite;
+        Canvas canvas = go.GetComponentInChildren<Canvas>();
+        canvas.GetComponentInChildren<DamageDisplayScript>().GetDamageText(healingColor, healingText);
     }
 }

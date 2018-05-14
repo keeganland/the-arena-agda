@@ -8,17 +8,22 @@ public class SpellCommand : MonoBehaviour {
     private bool isWspell;
     private bool isQspell;
     private GameObject AOEpos;
+    private GameObject Healpos;
 
     public int Healing;
     public GameObject Shield;
     public GameObject AOE;
     public GameObject RangeIndicatorAOE;
     public GameObject AttackIndicatorAOE;
+    public GameObject AttackIndicatorHeal;
+    public GameObject RangeIndicatorHeal;
+    public GameObject Heal;
 
 	// Use this for initialization
 	void Start () {
 
         AOEpos = new GameObject("AOEpos");
+        Healpos = new GameObject("Healpos");
     }
 	
 	// Update is called once per frame
@@ -26,7 +31,7 @@ public class SpellCommand : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Q)) //could switch to GetButtonDown laster to allow player to customise controls
         {
             //Debug.Log("SpellCommand: Q pressed");
-            CastSpellQ();
+            isQspell = true;
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -35,46 +40,72 @@ public class SpellCommand : MonoBehaviour {
             
         }
         CastSpellW();
+        CastSpellQ();
     }
 
     private void CastSpellQ() //used to call the spells connected to "Q"
     {
-        player_number = CharacterSelect();
-        //Debug.Log("SpellCommand: Q/player_number = " + player_number);
-        //Boy spell called by Q (Shield)
-        if (player_number == 0)
+        if (isQspell)
         {
-            if (this.gameObject.name == "Boy") //checks if boy is casting and if this gamebobject is the boy
+            player_number = CharacterSelect();
+            //Debug.Log("SpellCommand: Q/player_number = " + player_number);
+            //Boy spell called by Q (Shield)
+            if (player_number == 0)
             {
-                //Spell goes here
-                //Click for shield or shield appears in front of boy?
-                Instantiate(Shield as GameObject);// This creates a shield in the place that I originally placed it in scene
+                if (this.gameObject.name == "Boy") //checks if boy is casting and if this gamebobject is the boy
+                {
+                    //Spell goes here
+                    //Click for shield or shield appears in front of boy?
+                    Instantiate(Shield as GameObject);// This creates a shield in the place that I originally placed it in scene
+                }
+                else
+                {
+                    return;
+                }
+                Debug.Log("SpellCommand: Boy cast Q");
             }
-            else
+            //Girl spell called by Q (Heal)
+            if (player_number == 1)
             {
-                return;
+                if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
+                {
+                    //Spell goes here
+                    RangeIndicatorHeal.SetActive(true);
+
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        if (hit.collider.tag == "RangeIndicator")
+                        {
+                            AttackIndicatorHeal.SetActive(true);
+                            AttackIndicatorHeal.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                Healpos.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
+                                Instantiate(Heal, Healpos.transform);
+                                CancelHealAttack();
+                            }
+                            if (hit.collider.tag == "Ground")
+                            {
+                                AttackIndicatorHeal.SetActive(false);
+                            }
+                            /*RecoverData rcvrData = new RecoverData();
+                            rcvrData.HP_up = Healing;
+
+                            MessageHandler msgHandler = this.GetComponent<MessageHandler>(); // edit "this" so we can select target
+
+                            msgHandler.GiveMessage(MessageTypes.HEALED, this.gameObject, rcvrData);*/
+                        }
+                    }
+                }
+                else
+                {
+                    return;
+                }
+                Debug.Log("SpellCommand: Girl cast Q");
             }
-            Debug.Log("SpellCommand: Boy cast Q");
         }
-        //Girl spell called by Q (Heal)
-        if(player_number == 1)
-        {
-            if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
-            {
-                //Spell goes here
-                RecoverData rcvrData = new RecoverData();
-                rcvrData.HP_up = Healing;
-
-                MessageHandler msgHandler = this.GetComponent<MessageHandler>(); // edit "this" so we can select target
-
-                msgHandler.GiveMessage(MessageTypes.HEALED, this.gameObject, rcvrData);
-            }
-            else
-            {
-                return;
-            }
-            Debug.Log("SpellCommand: Girl cast Q");
-        }   
     }
 
     private void CastSpellW() ///used to call spells connected to "W"
@@ -158,5 +189,14 @@ public class SpellCommand : MonoBehaviour {
         if(AttackIndicatorAOE)
         AttackIndicatorAOE.SetActive(false);
     }
-        
+
+    public void CancelHealAttack()
+    {
+        isQspell = false;
+        if (RangeIndicatorHeal)
+            RangeIndicatorHeal.SetActive(false);
+        if (AttackIndicatorHeal)
+            AttackIndicatorHeal.SetActive(false);
+    }
+
 }

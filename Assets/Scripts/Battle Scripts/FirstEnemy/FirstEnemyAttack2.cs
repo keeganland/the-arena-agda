@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class FirstEnemyAttack2 : MonoBehaviour {
 
     public Vector3 m_targetpos;
-	public Rigidbody enemy;
+	private Rigidbody m_rbEnemy;
 
     [Header("Targeting and Attacks Data")]
     public Transform[] _Target;
@@ -18,15 +18,6 @@ public class FirstEnemyAttack2 : MonoBehaviour {
     private bool m_isAttacking;
     private float m_timer; 
 
-    [Header("Linerenderers Variables")]
-
-    private LineRenderer lineRenderer;
-    private float counter;
-    private float dist;
-    private bool m_linedrawing;
-
-    public float lineDrawSpeed = 6f;
-
 	NavMeshAgent m_nav;
 	int i;
 	bool isCollided;
@@ -34,20 +25,15 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 
 	public GameObject _WarningDash;
 
-
-    // Use this for initialization
-    void Start ()
+    private void Start()
     {
-        lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetWidth(2f, 2f);
-        lineRenderer.SetVertexCount(2);
-        lineRenderer.sortingOrder = 10;
-
+        m_rbEnemy = GetComponent<Rigidbody>();
+        m_nav = GetComponent<NavMeshAgent>();
+        _BoyOrGirl = Random.Range(0, 2);
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update ()
     {
 		if (!isCollided)
 		{
@@ -61,7 +47,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 			}
 			if (_Target[i])
 			{
-				m_nav.SetDestination(_Target[i].transform.position);
+				m_nav.SetDestination(_Target[_BoyOrGirl].transform.position);
 			}
 
 		}
@@ -73,13 +59,6 @@ public class FirstEnemyAttack2 : MonoBehaviour {
             StartCoroutine("DashAttack");
         }
 
-        if (m_linedrawing)
-        {
-            //get the unit vector in the desired direction, multiply by the desired length and add the starting point
-            //Vector3 pointAlongLine = x * Vector3.Normalize(pointB - pointA) + pointA;
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, m_targetpos);
-        }
         m_timer += Time.deltaTime;
 	}
 
@@ -91,9 +70,9 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (_Target[i])
+		if (_Target[_BoyOrGirl])
 		{
-			if (other == _Target[i].GetComponent<Collider>())
+			if (other == _Target[_BoyOrGirl].GetComponent<Collider>())
 			{
 				//Debug.Log("Target in Range " + curTarget.name);
 				CancelDashMovement();
@@ -105,10 +84,10 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 
 	private void OnTriggerExit(Collider other)
 	{
-		if (_Target[i])
+		if (_Target[_BoyOrGirl])
 		{
 			//Debug.Log("TriggerExit" + other.name);
-			if (other == _Target[i].GetComponent<Collider>())
+			if (other == _Target[_BoyOrGirl].GetComponent<Collider>())
 			{
 				isCollided = false;
 				//will have player chase target once target leaves attack range trigger
@@ -155,6 +134,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 
 		if (rotation != 0)
 		{
+            if(_Sprite)
 			_Sprite.GetComponent<SpriteScript2>().ForcePlayerRotation(rotation);
 		}
 
@@ -163,7 +143,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 		DamageData dmgData = new DamageData();
 		dmgData.damage = Damage;
 
-		MessageHandler msgHandler = _Target[i].GetComponent<MessageHandler>();
+		MessageHandler msgHandler = _Target[_BoyOrGirl].GetComponent<MessageHandler>();
 
 		if (msgHandler)
 		{
@@ -180,17 +160,16 @@ public class FirstEnemyAttack2 : MonoBehaviour {
         _BoyOrGirl = Random.Range(0, 2);
         m_targetpos = _Target[_BoyOrGirl].position;
 
-        Debug.Log(m_targetpos);
-        lineRenderer.enabled = true;
 
         //Look toward target and draw "warning" line
         transform.LookAt(_Target[_BoyOrGirl]);
-        m_linedrawing = true;
+        _WarningDash.SetActive(true);
+
 
         yield return new WaitForSeconds(_WarningtoAttackCD); 
 
         //Start the Attack
-		enemy.AddForce(transform.forward * 750);
+		m_rbEnemy.AddForce(transform.forward * 750);
     }
 }
 

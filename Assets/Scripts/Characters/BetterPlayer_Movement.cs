@@ -61,7 +61,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    if (hit.collider.tag == "Ground" )
+                    if (hit.collider.tag == "Ground" || hit.collider.tag == "RangeIndicator")
                     {
                         this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
 

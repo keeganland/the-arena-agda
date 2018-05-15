@@ -33,6 +33,8 @@ public class FirstEnemyAttack2 : MonoBehaviour {
         m_nav = GetComponent<NavMeshAgent>();
         _BoyOrGirl = Random.Range(0, 2);
         m_timer = 15;
+
+        m_targetPos = new GameObject();
     }
 
     // Update is called once per frame
@@ -57,7 +59,20 @@ public class FirstEnemyAttack2 : MonoBehaviour {
         m_timer += Time.deltaTime;
 	}
 
-	private void CancelDashMovement()
+    private GameObject m_targetPos;
+    private bool m_dashingAnim;
+
+    public float _DashSpeed = 4;
+
+    private void FixedUpdate()
+    {
+        if (m_dashingAnim)
+        {
+            transform.position = Vector3.Lerp(transform.position, m_targetPos.transform.position, _DashSpeed * Time.fixedDeltaTime);
+        }
+    }
+
+    private void CancelDashMovement()
 	{
 		isCollided = true;
 		m_nav.SetDestination(m_nav.transform.position);
@@ -118,6 +133,8 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 	public int Aggro;
 	public GameObject _Sprite;
 
+    public GameObject _DashFX;
+
     private IEnumerator DashAttack()
     {
 		m_isDashAttack = true;
@@ -160,13 +177,18 @@ public class FirstEnemyAttack2 : MonoBehaviour {
         _WarningDash.SetActive(false);
         //Start the Attack
         GameObject go = Instantiate(_DashSpell, this.transform.position,Quaternion.identity);
+        GameObject fx = Instantiate(_DashFX, this.transform.position, Quaternion.identity);
         go.GetComponent<DashCollider>().SetTarget(_TeleportPosition);
         go.GetComponent<Bullet>().GetSpellCaster(this.gameObject);
+
+        m_targetPos.transform.position = _TeleportPosition.transform.position;
+        m_dashingAnim = true;
 
         yield return new WaitForSeconds(_WarningtoAttackCD);
         //Reset Enemy
 
-        transform.position = _TeleportPosition.transform.position;
+        m_dashingAnim = false;
+
         m_nav.SetDestination(transform.position);
 
         yield return new WaitForSeconds(_WarningtoAttackCD);

@@ -8,7 +8,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 	private Rigidbody m_rbEnemy;
 
     [Header("Targeting and Attacks Data")]
-    public Transform[] _Target;
+    private Transform[] _Target;
     public int _BoyOrGirl;
 
     public float _AttackCD;

@@ -3894,7 +3894,7 @@ MonoBehaviour:
   _SpellAudio: {fileID: 8300000, guid: 0ce742af79f66fe47a8d140c40257e90, type: 3}
   _InvinsibleSFX: {fileID: 8300000, guid: 5d0d6fb1118cf41f889bb350f7568cd2, type: 3}
   spellPrefab:
-  - {fileID: 1272247912726944, guid: 8e9a74328bacffc498ec119cfdef47bc, type: 2}
+  - {fileID: 1687814447947090, guid: 6ad3571874aa6a5459a6a7dcf8d428e9, type: 2}
 --- !u!114 &1762563031
 MonoBehaviour:
   m_ObjectHideFlags: 0

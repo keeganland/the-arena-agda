@@ -525,7 +525,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 7d8dd2eb0f7a04c4a9634a8be741ff7b, type: 2}
+  m_Motion: {fileID: 0}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -536,7 +536,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 6 walk right
+  m_Name: walk right
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -563,7 +563,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 6 idle up
+  m_Name: idle up
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -587,7 +587,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 6 walk left
+  m_Name: walk left
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -614,7 +614,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 6 idle down
+  m_Name: idle down
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -638,7 +638,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 6 walk down
+  m_Name: walk down
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -665,7 +665,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 6 walk up
+  m_Name: walk up
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -692,7 +692,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 6 idle left
+  m_Name: idle left
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -716,7 +716,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 6 idle right
+  m_Name: idle right
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

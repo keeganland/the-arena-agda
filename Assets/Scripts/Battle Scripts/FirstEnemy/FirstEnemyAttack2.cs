@@ -33,8 +33,6 @@ public class FirstEnemyAttack2 : MonoBehaviour {
         m_nav = GetComponent<NavMeshAgent>();
         _BoyOrGirl = Random.Range(0, 2);
         m_timer = 15;
-
-        m_targetPos = new GameObject();
     }
 
     // Update is called once per frame
@@ -59,7 +57,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
         m_timer += Time.deltaTime;
 	}
 
-    private GameObject m_targetPos;
+    private Vector3 m_targetPos;
     private bool m_dashingAnim;
 
     public float _DashSpeed = 4;
@@ -68,7 +66,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
     {
         if (m_dashingAnim)
         {
-            transform.position = Vector3.Lerp(transform.position, m_targetPos.transform.position, _DashSpeed * Time.fixedDeltaTime);
+            transform.position = Vector3.Lerp(transform.position, m_targetPos, _DashSpeed * Time.fixedDeltaTime);
         }
     }
 
@@ -182,7 +180,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
         go.GetComponent<DashCollider>().SetTarget(_TeleportPosition);
         go.GetComponent<Bullet>().GetSpellCaster(this.gameObject);
 
-        m_targetPos.transform.position = _TeleportPosition.transform.position;
+        m_targetPos = _TeleportPosition.transform.position;
         m_dashingAnim = true;
 
         yield return new WaitForSeconds(_WarningtoAttackCD);

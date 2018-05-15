@@ -513,7 +513,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Idle1 right
+  m_Name: idle right
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -606,7 +606,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Idle 1 up
+  m_Name: idle up
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -630,7 +630,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Idle1 down
+  m_Name: idle down
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -677,7 +677,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 1 walk right
+  m_Name: walk right
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -727,7 +727,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 1 walk left
+  m_Name: walk left
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -777,7 +777,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 1 walk down
+  m_Name: walk down
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -804,7 +804,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 1 walk up
+  m_Name: walk up
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -831,7 +831,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Idle1 left
+  m_Name: idle left
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

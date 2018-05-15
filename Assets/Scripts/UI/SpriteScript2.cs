@@ -57,22 +57,24 @@ public class SpriteScript2 : MonoBehaviour
 
     public void ForcePlayerRotation(int direction)
     {
-
-        if(direction == 1)
+        if (gameObject.name == "Bella")
         {
-            m_anim.Play("6 idle up");
-        }
-        else if (direction == 2)
-        {
-            m_anim.Play("6 idle down");
-        }
-        else if (direction == 3)
-        {
-            m_anim.Play("6 idle right");
-        }
-        else if(direction == 4)
-        {
-            m_anim.Play("6 idle left");
+            if (direction == 1)
+            {
+                m_anim.Play("idle up");
+            }
+            else if (direction == 2)
+            {
+                m_anim.Play("idle down");
+            }
+            else if (direction == 3)
+            {
+                m_anim.Play("idle right");
+            }
+            else if (direction == 4)
+            {
+                m_anim.Play("idle left");
+            }
         }
     }
 }

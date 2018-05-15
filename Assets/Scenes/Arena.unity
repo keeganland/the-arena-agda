@@ -4719,6 +4719,52 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1107638618}
+--- !u!1001 &1115201818
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4402702184042566, guid: 8e9a74328bacffc498ec119cfdef47bc, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402702184042566, guid: 8e9a74328bacffc498ec119cfdef47bc, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 20.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402702184042566, guid: 8e9a74328bacffc498ec119cfdef47bc, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -11.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402702184042566, guid: 8e9a74328bacffc498ec119cfdef47bc, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402702184042566, guid: 8e9a74328bacffc498ec119cfdef47bc, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402702184042566, guid: 8e9a74328bacffc498ec119cfdef47bc, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402702184042566, guid: 8e9a74328bacffc498ec119cfdef47bc, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402702184042566, guid: 8e9a74328bacffc498ec119cfdef47bc, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272247912726944, guid: 8e9a74328bacffc498ec119cfdef47bc, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 8e9a74328bacffc498ec119cfdef47bc, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1120550523
 Prefab:
   m_ObjectHideFlags: 0
@@ -5805,7 +5851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d5333bd0f304e4cb08c61dcb194b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 18
+  totalHealth: 200
   currentHealth: 0
   enemy: {fileID: 0}
   _DeathSound: {fileID: 0}

@@ -15,13 +15,10 @@ public class TitleScreenMainMenu : MonoBehaviour {
         SceneManager.LoadSceneAsync("Introduction (1)", LoadSceneMode.Additive);
     }
 
-    public void PlayCh1()
+    public void PlayArena()
     {
-        SceneManager.LoadScene("Chapter1");
-        /*
         SceneManager.UnloadSceneAsync("TitleScreen");
-        SceneManager.LoadSceneAsync("Chapter1", LoadSceneMode.Additive);
-        */
+        SceneManager.LoadSceneAsync("Arena", LoadSceneMode.Additive);
     }
 
     public void PlayBoss()

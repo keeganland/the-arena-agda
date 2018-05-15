@@ -8,7 +8,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 	private Rigidbody m_rbEnemy;
 
     [Header("Targeting and Attacks Data")]
-    public Transform[] _Target;
+    private Transform[] _Target = new Transform[2];
     public int _BoyOrGirl;
 
     public float _AttackCD;
@@ -26,6 +26,9 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 
     private void Start()
     {
+        _Target[0] = GameObject.Find("Boy").GetComponent<Transform>();
+        _Target[1] = GameObject.Find("Girl").GetComponent<Transform>();
+
         m_rbEnemy = GetComponent<Rigidbody>();
         m_nav = GetComponent<NavMeshAgent>();
         _BoyOrGirl = Random.Range(0, 2);
@@ -69,7 +72,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 				//Debug.Log("Target in Range " + curTarget.name)
                 if (!m_isDashAttack && m_timer >= _AttackCD)
                 {
-                    Debug.Log("here");
+                    //Debug.Log("here");
                     CancelDashMovement();
                     StartCoroutine("DashAttack");
                 }
@@ -80,7 +83,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log(other.name);
+        //Debug.Log(other.name);
         if (_Target[_BoyOrGirl])
         {
             if (other == _Target[_BoyOrGirl].GetComponent<Collider>())

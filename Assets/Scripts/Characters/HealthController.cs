@@ -71,6 +71,7 @@ public class HealthController : MonoBehaviour
                 RecoverData recoverData = msgData as RecoverData;
                 if(recoverData != null)
                 {
+                    //Debug.Log("HealthController: case HEALED");
                     RecoverHealth(recoverData.HP_up, go);
                 }
                 break;
@@ -104,6 +105,13 @@ public class HealthController : MonoBehaviour
                     gameObject.GetComponentInParent<TotemDestroyed>()._IsDestroyed = true;
                 }
             }
+
+            /*
+             * Keegan NTS:
+             * 
+             * The stuff below is a temporary bandaid for setting off the victory condition. We are to 
+             */
+
             //VictoryScreen.youWon = true;
             Debug.Log("This is HealthController.cs, youWon should have just flipped");
             this.gameObject.SetActive(false);//This works
@@ -144,13 +152,17 @@ public class HealthController : MonoBehaviour
     public void RecoverHealth(int HP_up, GameObject go) //Applies healing to character
     {
         tempHealth = HP_up + currentHealth;
-        if(tempHealth > totalHealth) //checks to make sure character doesn't go over max health
+        if (tempHealth > totalHealth) //checks to make sure character doesn't go over max health
         {
             currentHealth = totalHealth;
         }
         else if(tempHealth <= totalHealth) //applies healing if health is still below max health
         {
             currentHealth = tempHealth;
+        }
+        if (currentHealth >= 0f && currentHealth <= totalHealth)
+        {
+            this.GetComponent<HealthUI>().UpdateUi(totalHealth, currentHealth);
         }
     }
 }

@@ -20,30 +20,34 @@ public class AnyManager : MonoBehaviour {
 
     private void Awake()
     {
-        if (!gameStart && normalGameplay)
+
+        anyManager = this;
+    }
+
+
+    private void Start()
+    {
+        Debug.Log("AnyManager Start function");
+        if (!gameStart && normalGameplay || (SceneManager.sceneCount == 1))
         {
-            anyManager = this;
-
+            Debug.Log("The game has not started, and we are doing normal gameplay, or else ONLY NeverUnload is loaded. Let's start things up by going to the title screen!");
             SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
-
             gameStart = true;
         }
     }
-    
+
+
     /*
      * Returns the whole game to the title screen.
      */
 
     public void ResetGame()
-    {
-        //Not sure why this works better than what I had before, but I'll take it!
-        
+    {       
         Debug.Log("Resetting game!");
 
         int c = SceneManager.sceneCount;
         Debug.Log("There are " + c + " scenes total");
 
-        //Start at i = 1, because we never want 0 to be unloaded
         for (int i = 0; i < c; i++)
         {
             Scene scene = SceneManager.GetSceneAt(i);
@@ -54,6 +58,14 @@ public class AnyManager : MonoBehaviour {
             }
         }
         SceneManager.LoadSceneAsync("TitleScreen", LoadSceneMode.Additive);
+    }
+
+    /*
+     * The only function that should ever unload NeverUnload. Hard resets the entire game, as if it were just initialized for the first time ever.
+     */
+    public void ResetGameHard()
+    {
+        SceneManager.LoadScene("NeverUnload");
     }
 
     /*

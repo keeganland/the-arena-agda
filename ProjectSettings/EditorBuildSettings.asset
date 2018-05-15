@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Introduction (1).unity
     guid: 1dbdde31da294014caeaa7a5837d258f
   - enabled: 1
+    path: Assets/Scenes/Arena.unity
+    guid: 02e6cc1038153664682a36c47acbd6d9
+  - enabled: 0
     path: Assets/Scenes/Chapter1.unity
     guid: 51382177656294c4090c4fd27a3e4713
   - enabled: 1
@@ -23,6 +26,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dialog - Prototype.unity
     guid: 9377f17f71c01b84a8cfe7c6c68b79cd
-  - enabled: 1
-    path: Assets/Scenes/KeeganPrototype.unity
-    guid: 31c73d95a4545fd4da3bcee293015d0c
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000

@@ -49,6 +49,12 @@ public class PauseMenu : MonoBehaviour {
         this.Resume();
     }
 
+
+    public void HardReset()
+    {
+        AnyManager.anyManager.ResetGameHard();
+    }
+
     public void QuitGame()
     {
         Debug.Log("Game Quit!");

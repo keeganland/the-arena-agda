@@ -398,15 +398,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1057248475072104, guid: 591f18b4b7c4b9d479bd4f15d70c2fb8, type: 2}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4707399473609298, guid: 591f18b4b7c4b9d479bd4f15d70c2fb8, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 1.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 4707399473609298, guid: 591f18b4b7c4b9d479bd4f15d70c2fb8, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.58
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 591f18b4b7c4b9d479bd4f15d70c2fb8, type: 2}
@@ -481,7 +473,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 262576806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -4.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2068974075}
@@ -595,7 +587,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 627640712
+  randomSeed: 511327666
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -1041,9 +1033,9 @@ ParticleSystem:
     type: 5
     angle: 25
     length: 5
-    boxX: 82.05
+    boxX: 61.835754
     boxY: 1
-    boxZ: 48.5
+    boxZ: 57.074524
     radius:
       value: 1
       mode: 0

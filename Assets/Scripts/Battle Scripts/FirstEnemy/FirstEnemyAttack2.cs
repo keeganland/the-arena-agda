@@ -176,8 +176,9 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 
         _WarningDash.SetActive(false);
         //Start the Attack
+        Quaternion m_dashRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 180, transform.rotation.eulerAngles.z);
         GameObject go = Instantiate(_DashSpell, this.transform.position,Quaternion.identity);
-        GameObject fx = Instantiate(_DashFX, this.transform.position, Quaternion.identity);
+        GameObject fx = Instantiate(_DashFX, this.transform.position, m_dashRotation);
         go.GetComponent<DashCollider>().SetTarget(_TeleportPosition);
         go.GetComponent<Bullet>().GetSpellCaster(this.gameObject);
 
@@ -192,6 +193,8 @@ public class FirstEnemyAttack2 : MonoBehaviour {
         m_nav.SetDestination(transform.position);
 
         yield return new WaitForSeconds(_WarningtoAttackCD);
+
+        Destroy(fx);
 
         _BoyOrGirl = Random.Range(0, 2);
 

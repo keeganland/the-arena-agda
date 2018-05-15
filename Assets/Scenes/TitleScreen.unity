@@ -1936,7 +1936,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Chapter 1
+  m_Text: Arena
 --- !u!222 &1784653899
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1955,12 +1955,12 @@ GameObject:
   - component: {fileID: 1920208010}
   - component: {fileID: 1920208009}
   m_Layer: 5
-  m_Name: Chapter 1 Button
+  m_Name: Arena Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1920208008
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2018,7 +2018,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1920208010}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1686626927}
+        m_MethodName: PlayArena
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1920208010

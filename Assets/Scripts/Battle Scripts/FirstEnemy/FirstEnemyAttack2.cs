@@ -8,7 +8,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 	private Rigidbody m_rbEnemy;
 
     [Header("Targeting and Attacks Data")]
-    public Transform[] _Target;
+    private Transform[] _Target = new Transform[2];
     public int _BoyOrGirl;
 
     public float _AttackCD;
@@ -26,6 +26,9 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 
     private void Start()
     {
+        _Target[0] = GameObject.Find("Boy").GetComponent<Transform>();
+        _Target[1] = GameObject.Find("Girl").GetComponent<Transform>();
+
         m_rbEnemy = GetComponent<Rigidbody>();
         m_nav = GetComponent<NavMeshAgent>();
         _BoyOrGirl = Random.Range(0, 2);
@@ -54,7 +57,20 @@ public class FirstEnemyAttack2 : MonoBehaviour {
         m_timer += Time.deltaTime;
 	}
 
-	private void CancelDashMovement()
+    private Vector3 m_targetPos;
+    private bool m_dashingAnim;
+
+    public float _DashSpeed = 4;
+
+    private void FixedUpdate()
+    {
+        if (m_dashingAnim)
+        {
+            transform.position = Vector3.Lerp(transform.position, m_targetPos, _DashSpeed * Time.fixedDeltaTime);
+        }
+    }
+
+    private void CancelDashMovement()
 	{
 		isCollided = true;
 		m_nav.SetDestination(m_nav.transform.position);
@@ -69,7 +85,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 				//Debug.Log("Target in Range " + curTarget.name)
                 if (!m_isDashAttack && m_timer >= _AttackCD)
                 {
-                    Debug.Log("here");
+                    //Debug.Log("here");
                     CancelDashMovement();
                     StartCoroutine("DashAttack");
                 }
@@ -80,7 +96,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log(other.name);
+        //Debug.Log(other.name);
         if (_Target[_BoyOrGirl])
         {
             if (other == _Target[_BoyOrGirl].GetComponent<Collider>())
@@ -114,6 +130,8 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 	public int Damage;
 	public int Aggro;
 	public GameObject _Sprite;
+
+    public GameObject _DashFX;
 
     private IEnumerator DashAttack()
     {
@@ -156,17 +174,25 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 
         _WarningDash.SetActive(false);
         //Start the Attack
+        Quaternion m_dashRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 180, transform.rotation.eulerAngles.z);
         GameObject go = Instantiate(_DashSpell, this.transform.position,Quaternion.identity);
+        GameObject fx = Instantiate(_DashFX, this.transform.position, m_dashRotation);
         go.GetComponent<DashCollider>().SetTarget(_TeleportPosition);
         go.GetComponent<Bullet>().GetSpellCaster(this.gameObject);
+
+        m_targetPos = _TeleportPosition.transform.position;
+        m_dashingAnim = true;
 
         yield return new WaitForSeconds(_WarningtoAttackCD);
         //Reset Enemy
 
-        transform.position = _TeleportPosition.transform.position;
+        m_dashingAnim = false;
+
         m_nav.SetDestination(transform.position);
 
         yield return new WaitForSeconds(_WarningtoAttackCD);
+
+        Destroy(fx);
 
         _BoyOrGirl = Random.Range(0, 2);
 

@@ -7,8 +7,8 @@ public class SpellCommand : MonoBehaviour {
     private int player_number;//variable used to hold value of which character is casting a spell
     private bool isWspell;
     private bool isQspell;
-    private GameObject AOEpos;
-    private GameObject Healpos;
+    private Vector3 AOEpos;
+    private Vector3 Healpos;
 
     public int Healing;
     public GameObject Shield;
@@ -20,12 +20,6 @@ public class SpellCommand : MonoBehaviour {
     public GameObject Heal;
     public GameObject RangeIndicatorShield;
 
-	// Use this for initialization
-	void Start () {
-
-        AOEpos = new GameObject("AOEpos");
-        Healpos = new GameObject("Healpos");
-    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -97,8 +91,8 @@ public class SpellCommand : MonoBehaviour {
                             AttackIndicatorHeal.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
                             if (Input.GetMouseButtonDown(0))
                             {
-                                Healpos.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
-                                Instantiate(Heal, Healpos.transform);
+                                Healpos = new Vector3(hit.point.x, 1, hit.point.z);
+                                Instantiate(Heal, Healpos, Quaternion.identity);
                                 CancelHealAttack();
                             }
                             if (hit.collider.tag == "Ground")
@@ -153,8 +147,8 @@ public class SpellCommand : MonoBehaviour {
                             AttackIndicatorAOE.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
                             if (Input.GetMouseButtonDown(0))
                             {
-                                AOEpos.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
-                                Instantiate(AOE, AOEpos.transform);
+                                AOEpos = new Vector3(hit.point.x, 1, hit.point.z);
+                                Instantiate(AOE, AOEpos, Quaternion.identity);
                                 CancelAOEAttack();
                             }
                  

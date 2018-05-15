@@ -111,6 +111,7 @@ public class MeleeDamage : MonoBehaviour {
         }
 
         GameObject go = Instantiate(spellPrefab[0], transform.position, Quaternion.Euler(0, -angle, 0));
+        Debug.Log("here");
         m_audioSource.PlayOneShot(_SpellAudio);
 
         go.gameObject.GetComponent<Spell>().SetTarget(m_target);

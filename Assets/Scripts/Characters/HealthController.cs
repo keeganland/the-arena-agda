@@ -25,6 +25,8 @@ public class HealthController : MonoBehaviour
 
     MessageHandler m_messageHandler;
 
+    public bool isBoss; //KeeganNTS: temporary victory conditions. Deprecate with later design
+
     private void Start()
     {
         currentHealth = totalHealth;
@@ -36,6 +38,15 @@ public class HealthController : MonoBehaviour
         }
 
         m_audioSource = GetComponent<AudioSource>();
+
+    }
+
+    private void Update()
+    {
+        if (isBoss && (currentHealth <= 0))
+        {
+            //Keegan NTS: victory shenanigans
+        }
     }
 
     void RecieveMessage(MessageTypes msgType, GameObject go, MessageData msgData)

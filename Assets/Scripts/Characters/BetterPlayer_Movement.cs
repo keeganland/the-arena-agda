@@ -36,9 +36,11 @@ public class BetterPlayer_Movement : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (Boy.activeSelf == true)
-            {
+            {         
                 boyActive = true;
                 _BoySelected.enabled = true;
+                this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
+                this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
                 _GirlSelected.enabled = false;
             }
         }
@@ -64,6 +66,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                     if (hit.collider.tag == "Ground" || hit.collider.tag == "RangeIndicator")
                     {
                         this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
+                        this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
 
 
                         Vector3 newpos = new Vector3(hit.point.x, transform.position.y, hit.point.z);

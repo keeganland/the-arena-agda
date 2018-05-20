@@ -1,40 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class VictoryReferee : MonoBehaviour {
 
-    private bool youWon = false;
+
+    private UnityAction victoryAction;
     public GameObject victoryUI;
-    public static bool gameIsPaused = false;
     public VictoryCondition vc;
 
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (vc.getYouWon())
-        {
-            Pause();
-        }
+    void Awake()
+    {
+        victoryAction = new UnityAction(Victory);
+    }
+    void OnEnable()
+    {
+        EventManager.StartListening("victory", victoryAction);
+    }
+    void OnDisable()
+    {
+        EventManager.StopListening("victory", victoryAction);
     }
 
-    /*
-    private void Resume()
+    public void Victory()
+    {
+        Debug.Log("You won!");
+        victoryUI.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void ResetGame()
     {
         victoryUI.SetActive(false);
         Time.timeScale = 1f;
-        gameIsPaused = false;
-    }*/
 
-    private void Pause()
-    {
-        victoryUI.SetActive(true);
-        Time.timeScale = 0f;
-        gameIsPaused = true;
+        AnyManager.anyManager.ResetGame();
     }
 }

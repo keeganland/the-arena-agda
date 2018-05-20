@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VictoryCondition : MonoBehaviour {
+public class VictoryTester : MonoBehaviour {
 
-    public GameObject boss;
+	// Use this for initialization
+	void Start () {
+		
+	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (boss.activeSelf == false)
+        if (Input.GetKeyDown("v"))
         {
-            Debug.Log("boss was killed!");
             EventManager.TriggerEvent("victory");
         }
 	}

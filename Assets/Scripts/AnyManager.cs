@@ -44,6 +44,7 @@ public class AnyManager : MonoBehaviour {
     public void ResetGame()
     {       
         Debug.Log("Resetting game!");
+        EventManager.TriggerEvent("cleanup");
 
         int c = SceneManager.sceneCount;
         Debug.Log("There are " + c + " scenes total");

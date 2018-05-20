@@ -124,7 +124,7 @@ public class HealthController : MonoBehaviour
              */
 
             //VictoryScreen.youWon = true;
-            Debug.Log("This is HealthController.cs, youWon should have just flipped");
+            //Debug.Log("This is HealthController.cs, youWon should have just flipped");
             this.gameObject.SetActive(false);//This works
             Sprite.SetActive(false);
 

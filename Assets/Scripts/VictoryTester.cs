@@ -14,6 +14,6 @@ public class VictoryTester : MonoBehaviour {
         if (Input.GetKeyDown("v"))
         {
             EventManager.TriggerEvent("victory");
-        }		
+        }
 	}
 }

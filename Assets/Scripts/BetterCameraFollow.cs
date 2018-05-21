@@ -36,7 +36,7 @@ public class BetterCameraFollow : MonoBehaviour
     public void OnDisable()
     {
         EventManager.StopListening("cleanup", ReinitializePotentialTargets);
-        EventManager.StartListening("setup", ReinitializePotentialTargets);
+        EventManager.StopListening("setup", ReinitializePotentialTargets);
 
     }
 

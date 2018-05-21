@@ -18,15 +18,34 @@ public class BetterCameraFollow : MonoBehaviour
 
     private CameraTarget[] m_potentialcameraTargets; //Array that carry all potential targets in the scene at the start (won't count spawned enemies)
 
+    public List<CameraTarget> potentialCameraTargetList;
+
+
     private List<GameObject> m_currentcameraTargets = new List<GameObject>(); //Array that carry the "actual" targets
     private List<GameObject> m_currentcameraTargetsTooFar = new List<GameObject>(); //Array that carry the targets that are not centered
     private Camera m_cam;
     private bool targetsTooFar; //variable created to carry the "neutral area" value
 
+    public void OnEnable()
+    {
+        EventManager.StartListening("cleanup", ReinitializePotentialTargets);
+        EventManager.StartListening("setup", ReinitializePotentialTargets);
+
+    }
+
+    public void OnDisable()
+    {
+        EventManager.StopListening("cleanup", ReinitializePotentialTargets);
+        EventManager.StartListening("setup", ReinitializePotentialTargets);
+
+    }
 
     void Start()
     {
         m_potentialcameraTargets = (CameraTarget[])Object.FindObjectsOfType(typeof(CameraTarget));
+
+        ReinitializePotentialTargets();
+
         target = targets[m_number];
         m_cam = GetComponent<Camera>();
     }
@@ -90,8 +109,8 @@ public class BetterCameraFollow : MonoBehaviour
 
     void AutomaticCamera()
     {
-        //Debug.Log("here");
-
+        //Alex's old version.
+        /*
             for (int i = 0; i < m_potentialcameraTargets.Length; i++) //for each potential enemies, check if they are in view.
             {
                 bool m_isinview = IsInView(m_cam.gameObject, m_potentialcameraTargets[i].gameObject);
@@ -105,9 +124,32 @@ public class BetterCameraFollow : MonoBehaviour
                     m_currentcameraTargets.Remove(m_potentialcameraTargets[i].gameObject);
                 }
             }
-            AdjustCamera(m_currentcameraTargets);
-            ClearTargetTooFar();
+        */
         
+        //KEEGAN WIP: REPLICATE ALEX'S CODE ABOVE
+        foreach (CameraTarget ct in potentialCameraTargetList)
+        {
+            if (ct == null)
+            {
+                break;
+            }
+
+            Debug.Log(ct.name);
+            bool m_isinview = IsInView(m_cam.gameObject, ct.gameObject);
+
+            if (m_isinview == true && !m_currentcameraTargets.Contains(ct.gameObject))
+            {
+                m_currentcameraTargets.Add(ct.gameObject);
+            }
+            else if (m_isinview == false && m_currentcameraTargets.Contains(ct.gameObject))
+            {
+                m_currentcameraTargets.Remove(ct.gameObject);
+            }
+        }
+
+        AdjustCamera(m_currentcameraTargets);
+        ClearTargetTooFar();
+
     }
 
     void ManualCamera()
@@ -230,5 +272,20 @@ public class BetterCameraFollow : MonoBehaviour
     public void FindNewTargets()
     {
         m_potentialcameraTargets = (CameraTarget[])Object.FindObjectsOfType(typeof(CameraTarget));
+    }
+
+    /* Creates a LIST (not an array) of every potential target
+     * 
+     * Not especially space efficient but shouldn't be a huge issue.
+     * Takes advantage of the fact that FindObjectsOfType is an existing library func that returns arrays. Just reallocates the 
+     */
+    public void ReinitializePotentialTargets()
+    {
+        CameraTarget[] potentialCameraTargetArray = (CameraTarget[])Object.FindObjectsOfType(typeof(CameraTarget));
+        potentialCameraTargetList = new List<CameraTarget>();
+        for (int i = 0; i < potentialCameraTargetArray.Length; i++)
+        {
+            potentialCameraTargetList.Add(potentialCameraTargetArray[i]);
+        }
     }
 }

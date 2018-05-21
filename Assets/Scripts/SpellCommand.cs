@@ -20,40 +20,40 @@ public class SpellCommand : MonoBehaviour {
     public GameObject RangeIndicatorShield;
 
     /*Timer variables:*/
-    public int AOE_Cooldown;
-    private float AOE_Cooldown_Timer = 0;
-    public int AOE_UI_Timer; //for Alex
-    public int Heal_Cooldown;
-    private float Heal_Cooldown_Timer = 0;
-    public int Heal_UI_Timer; //for Alex
-    public int Shield_Cooldown;
-    private float Shield_Cooldown_Timer = 0;
-    public int Shield_UI_Timer; //for Alex
-    public int Stun_Cooldown;
-    private float Stun_Cooldown_Timer = 0;
-    public int Stun_UI_Timer; //for Alex
+    public int _AOECooldown;
+    private float _AOECooldownTimer = 0;
+    public int _AOEUITimer; //for Alex
+    public int _HealCooldown;
+    private float _HealCooldownTimer = 0;
+    public int _HealUITimer; //for Alex
+    public int _ShieldCooldown;
+    private float _ShieldCooldownTimer = 0;
+    public int _ShieldUITimer; //for Alex
+    public int _StunCooldown;
+    private float _StunCooldownTimer = 0;
+    public int _StunUITimer; //for Alex
 
     private void Start() //This is purely error handling
     {
-        if(AOE_Cooldown == 0)
+        if(_AOECooldown == 0)
         {
-            Debug.Log("SpellCommand: Set AOE_Cooldown on " + this.name);
-            AOE_Cooldown = 3;
+            Debug.Log("SpellCommand: Set _AOECooldown on " + this.name);
+            _AOECooldown = 3;
         }
-        if(Heal_Cooldown == 0)
+        if(_HealCooldown == 0)
         {
-            Debug.Log("SpellCommand: Set Heal_Cooldown on " + this.name);
-            Heal_Cooldown = 3;
+            Debug.Log("SpellCommand: Set _HealCooldown on " + this.name);
+            _HealCooldown = 3;
         }
-        if(Shield_Cooldown == 0)
+        if(_ShieldCooldown == 0)
         {
-            Debug.Log("SpellCommand: Set Shield_Cooldown on " + this.name);
-            Shield_Cooldown = 5;
+            Debug.Log("SpellCommand: Set _ShieldCooldown on " + this.name);
+            _ShieldCooldown = 5;
         }
-        if(Stun_Cooldown == 0)
+        if(_StunCooldown == 0)
         {
-            Debug.Log("SpellCommand: Set Stun_Cooldown on " + this.name);
-            Stun_Cooldown = 5;
+            Debug.Log("SpellCommand: Set _StunCooldown on " + this.name);
+            _StunCooldown = 5;
         }
     }
 
@@ -62,11 +62,11 @@ public class SpellCommand : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Q)) //could switch to GetButtonDown laster to allow player to customise controls
         {
             //Debug.Log("SpellCommand: Q pressed");
-            if (this.name == "Girl" && Heal_Cooldown_Timer ==0)
+            if (this.name == "Girl" && _HealCooldownTimer ==0)
             {
                 isQspell = true;
             }
-            if(this.name == "Boy" && Shield_Cooldown_Timer == 0)
+            if(this.name == "Boy" && _ShieldCooldownTimer == 0)
             {
                 isQspell = true;
             }
@@ -76,11 +76,11 @@ public class SpellCommand : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.W))
         {
             //Debug.Log("SpellCommand: W pressed");
-            if (this.name == "Girl" && AOE_Cooldown_Timer == 0)
+            if (this.name == "Girl" && _AOECooldownTimer == 0)
             {
                 isWspell = true;
             }
-            if(this.name == "Boy" && Stun_Cooldown_Timer == 0)
+            if(this.name == "Boy" && _StunCooldownTimer == 0)
             {
                 isWspell = true;
             }
@@ -92,44 +92,44 @@ public class SpellCommand : MonoBehaviour {
 
         //Cooldown timers to follow:
         //AOE Cooldown:
-        if(AOE_Cooldown_Timer < 0)
+        if(_AOECooldownTimer < 0)
         {
-            AOE_Cooldown_Timer = 0;
+            _AOECooldownTimer = 0;
         }
-        if(AOE_Cooldown_Timer > 0)
+        if(_AOECooldownTimer > 0)
         {
-            AOE_Cooldown_Timer -= Time.deltaTime;
-            AOE_UI_Timer = (int)AOE_Cooldown_Timer;
+            _AOECooldownTimer -= Time.deltaTime;
+            _AOEUITimer = (int)_AOECooldownTimer;
         }
         //Heal Cooldown
-        if (Heal_Cooldown_Timer < 0)
+        if (_HealCooldownTimer < 0)
         {
-            Heal_Cooldown_Timer = 0;
+            _HealCooldownTimer = 0;
         }
-        if (Heal_Cooldown_Timer > 0)
+        if (_HealCooldownTimer > 0)
         {
-            Heal_Cooldown_Timer -= Time.deltaTime;
-            Heal_UI_Timer = (int)Heal_Cooldown_Timer;
+            _HealCooldownTimer -= Time.deltaTime;
+            _HealUITimer = (int)_HealCooldownTimer;
         }
         //Stun Cooldown
-        if (Stun_Cooldown_Timer < 0)
+        if (_StunCooldownTimer < 0)
         {
-            Stun_Cooldown_Timer = 0;
+            _StunCooldownTimer = 0;
         }
-        if (Stun_Cooldown_Timer > 0)
+        if (_StunCooldownTimer > 0)
         {
-            Stun_Cooldown_Timer -= Time.deltaTime;
-            Stun_UI_Timer = (int)Stun_Cooldown_Timer;
+            _StunCooldownTimer -= Time.deltaTime;
+            _StunUITimer = (int)_StunCooldownTimer;
         }
         //Shield Cooldown
-        if (Shield_Cooldown_Timer < 0)
+        if (_ShieldCooldownTimer < 0)
         {
-            Shield_Cooldown_Timer = 0;
+            _ShieldCooldownTimer = 0;
         }
-        if (Shield_Cooldown_Timer > 0)
+        if (_ShieldCooldownTimer > 0)
         {
-            Shield_Cooldown_Timer -= Time.deltaTime;
-            Shield_UI_Timer = (int)Shield_Cooldown_Timer;
+            _ShieldCooldownTimer -= Time.deltaTime;
+            _ShieldUITimer = (int)_ShieldCooldownTimer;
         }
 
     }
@@ -148,16 +148,16 @@ public class SpellCommand : MonoBehaviour {
                 {
                     //Spell goes here
                     //shield appears in front of boy in direction of mouse click (doesn't move)
-                    RangeIndicatorShield.SetActive(true);
-                    Debug.Log("SpellCommend: RangeindicatorShield should be on");
+                   // RangeIndicatorShield.SetActive(true);
+
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit))
                     {
-                        Vector3 directiondifference = hit.transform.position - this.transform.position;
-                        Debug.Log("SpellCommand: Boy Q");
-                        //RangeIndicatorShield.transform.rotation = Quaternion.LookRotation(directiondifference, new Vector3(0,1,0));
-                        RangeIndicatorShield.transform.rotation = Quaternion.FromToRotation(Vector3.forward, directiondifference);
+                        if (hit.collider.tag == "RangeIndicator")
+                        {
+                            Vector3 directiondifference = hit.transform.position - this.transform.position;
+                            //this.transform.LookAt(hit.transform, direction);
                             //Instantiate(Shield as GameObject);// This creates a shield in the place that I originally placed it in scene
                             //Shield.SetActive(true);
                             /* Notes:
@@ -165,6 +165,7 @@ public class SpellCommand : MonoBehaviour {
                              * Then spawn shield in the direction of the arrow on second click
                              * Leave shield where it is, don't need to move it
                              */
+                        }
                     }
                 }
                 else
@@ -174,7 +175,7 @@ public class SpellCommand : MonoBehaviour {
                 Debug.Log("SpellCommand: Boy cast Q");
             }
             //Girl spell called by Q (Heal)
-            if (player_number == 1 && Heal_Cooldown_Timer == 0)
+            if (player_number == 1 && _HealCooldownTimer == 0)
             {
                 if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
                 {                 
@@ -195,7 +196,7 @@ public class SpellCommand : MonoBehaviour {
                                 Healpos = new Vector3(hit.point.x, 1, hit.point.z);
                                 Instantiate(Heal, Healpos, Quaternion.identity);
                                 CancelHealAttack();
-                                Heal_Cooldown_Timer = Heal_Cooldown;
+                                _HealCooldownTimer = _HealCooldown;
                             }
                             if (hit.collider.tag == "Ground")
                             {
@@ -234,7 +235,7 @@ public class SpellCommand : MonoBehaviour {
                 Debug.Log("SpellCommand: Boy cast W");
             }
             //Girl spell called by W (AOE)
-            if (player_number == 1 && AOE_Cooldown_Timer ==0)
+            if (player_number == 1 && _AOECooldownTimer ==0)
             {
                 
                 if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
@@ -255,7 +256,7 @@ public class SpellCommand : MonoBehaviour {
                                 AOEpos = new Vector3(hit.point.x, 1, hit.point.z);
                                 Instantiate(AOE, AOEpos, Quaternion.identity);
                                 CancelAOEAttack();
-                                AOE_Cooldown_Timer = AOE_Cooldown;
+                                _AOECooldownTimer = _AOECooldown;
                             }
                  
                         }

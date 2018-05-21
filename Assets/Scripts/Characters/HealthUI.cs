@@ -7,8 +7,13 @@ public class HealthUI : MonoBehaviour
 {
     public Slider slider;
 
+    public int m_curHealth;
+    public int m_maxHealth;
+
     void Start()
     {
+        m_maxHealth = this.gameObject.GetComponent<HealthController>().totalHealth;
+        m_curHealth = m_maxHealth;
         MessageHandler msgHandler = GetComponent<MessageHandler>();
 
         if (msgHandler)
@@ -19,7 +24,6 @@ public class HealthUI : MonoBehaviour
         UpdateUi(1, 1);
     }
 
- 
     void RecieveMessage(MessageTypes msgType, GameObject go, MessageData msgData)
     {
         switch (msgType)
@@ -30,6 +34,8 @@ public class HealthUI : MonoBehaviour
                 if (hpData != null)
                 {
                     UpdateUi(hpData.maxHealth, hpData.curHealth);
+                    m_curHealth = hpData.curHealth;
+                    m_maxHealth = hpData.maxHealth;
                 }
                 break;
         }
@@ -39,4 +45,5 @@ public class HealthUI : MonoBehaviour
     {
         slider.value = (1.0f / maxHealth) * curHealth;
     }
+    
 }

@@ -13,12 +13,14 @@ public class TitleScreenMainMenu : MonoBehaviour {
          */
         SceneManager.UnloadSceneAsync("TitleScreen");
         SceneManager.LoadSceneAsync("Introduction (1)", LoadSceneMode.Additive);
+        EventManager.TriggerEvent("setup");
     }
 
     public void PlayArena()
     {
         SceneManager.UnloadSceneAsync("TitleScreen");
         SceneManager.LoadSceneAsync("Arena", LoadSceneMode.Additive);
+        EventManager.TriggerEvent("setup");
     }
 
     public void PlayBoss()
@@ -26,7 +28,7 @@ public class TitleScreenMainMenu : MonoBehaviour {
         //SceneManager.LoadScene("Gameplay - BossBattle");
         SceneManager.UnloadSceneAsync("TitleScreen");
         SceneManager.LoadSceneAsync("Gameplay - BossBattle", LoadSceneMode.Additive);
-
+        EventManager.TriggerEvent("setup");
     }
 
     public void PlayNPC()
@@ -35,7 +37,7 @@ public class TitleScreenMainMenu : MonoBehaviour {
         SceneManager.UnloadSceneAsync("TitleScreen");
         //SceneManager.UnloadSceneAsync("NeverUnload");
         SceneManager.LoadSceneAsync("Dialog - Prototype", LoadSceneMode.Additive);
-        
+        EventManager.TriggerEvent("setup");
     }
 
     public void QuitGame ()

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class BetterPlayer_Movement : MonoBehaviour {
 
+    public UISpellSwap _UISpells;
+
     public Image _BoySelected;
     public Image _GirlSelected;
     public GameObject Boy;
@@ -41,6 +43,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 _BoySelected.enabled = true;
                 this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
                 this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
+                _UISpells.BoySpellActive();
                 _GirlSelected.enabled = false;
             }
         }
@@ -51,6 +54,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 boyActive = false;
                 _BoySelected.enabled = false;
                 _GirlSelected.enabled = true;
+                _UISpells.GirlActive();
             }
         }
 

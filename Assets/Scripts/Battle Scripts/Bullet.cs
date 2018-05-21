@@ -19,51 +19,47 @@ public class Bullet : MonoBehaviour {
     private GameObject _SpellCaster;
     [SerializeField]
     private int AggroValue;
-    
+
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(other.name);
-        if (_SpellCaster)
-        {
-            //Debug.Log("BULLET: _SpellCaster = " + _SpellCaster.name);
-        }
         if (other.gameObject.CompareTag("AttackRange"))
         {
             return;
         }
-        if (other.gameObject.CompareTag("Player") && _SpellCaster != other.gameObject)
-        {
-            MessageHandler msgHandler = other.GetComponent<MessageHandler>();
-            if (!isHeal)
+            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy"))
             {
-                DamageData dmgData = new DamageData();
-                dmgData.damage = Damage;
-                if (msgHandler)
+                MessageHandler msgHandler = other.GetComponent<MessageHandler>();
+                if (!isHeal)
                 {
-                    msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
-                    DisplayDamage(other.gameObject, _DamageColor, Damage);
+                    DamageData dmgData = new DamageData();
+                    dmgData.damage = Damage;
+                    if (msgHandler)
+                    {
+                        msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
+                        DisplayDamage(other.gameObject, _DamageColor, Damage);
+                    }
                 }
-            }
 
-            if (isHeal)
-            {
-               // Debug.Log("Bullet: isHeal = true");
-                RecoverData rcvrData = new RecoverData();
-                rcvrData.HP_up = Healing;
-                if (msgHandler)
+                if (isHeal)
                 {
-                    msgHandler.GiveMessage(MessageTypes.HEALED, this.gameObject, rcvrData);
-                    DisplayHealing(other.gameObject, _HealColor, Healing);
+                    // Debug.Log("Bullet: isHeal = true");
+                    RecoverData rcvrData = new RecoverData();
+                    rcvrData.HP_up = Healing;
+                    if (msgHandler)
+                    {
+                        msgHandler.GiveMessage(MessageTypes.HEALED, this.gameObject, rcvrData);
+                        DisplayHealing(other.gameObject, _HealColor, Healing);
+                    }
                 }
             }
-        }
-        if (other.gameObject.CompareTag("wall"))
-        {
-            DestroyObject();
-        }
-        else return;
+            if (other.gameObject.CompareTag("wall"))
+            {
+                DestroyObject();
+            }
+            else return;
     }
+   
     void OnCollisionEnter (Collision collision)
     {
         AggroData aggroData = new AggroData();

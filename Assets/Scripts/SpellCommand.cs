@@ -27,19 +27,24 @@ public class SpellCommand : MonoBehaviour {
         {
             //Debug.Log("SpellCommand: Q pressed");
             isQspell = true;
+            CancelAOEAttack();
+
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
             //Debug.Log("SpellCommand: W pressed");
             isWspell = true;
-            
+            CancelHealAttack();
+
         }
         CastSpellW();
         CastSpellQ();
+
     }
 
     private void CastSpellQ() //used to call the spells connected to "Q"
     {
+       
         if (isQspell)
         {
             player_number = CharacterSelect();
@@ -77,7 +82,8 @@ public class SpellCommand : MonoBehaviour {
             if (player_number == 1)
             {
                 if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
-                {
+                {                 
+                  
                     //Spell goes here
                     RangeIndicatorHeal.SetActive(true);
 
@@ -101,6 +107,7 @@ public class SpellCommand : MonoBehaviour {
                             }
                         }
                     }
+                    
                 }
                 else
                 {
@@ -133,8 +140,10 @@ public class SpellCommand : MonoBehaviour {
             //Girl spell called by W (AOE)
             if (player_number == 1)
             {
+                
                 if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
                 {
+                    
                     RangeIndicatorAOE.SetActive(true);
 
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -186,11 +195,12 @@ public class SpellCommand : MonoBehaviour {
 
     public void CancelAOEAttack()
     {
+        
         isWspell = false;
         if(RangeIndicatorAOE)
-        RangeIndicatorAOE.SetActive(false);
+            RangeIndicatorAOE.SetActive(false);
         if(AttackIndicatorAOE)
-        AttackIndicatorAOE.SetActive(false);
+            AttackIndicatorAOE.SetActive(false);
     }
 
     public void CancelHealAttack()
@@ -201,5 +211,4 @@ public class SpellCommand : MonoBehaviour {
         if (AttackIndicatorHeal)
             AttackIndicatorHeal.SetActive(false);
     }
-
 }

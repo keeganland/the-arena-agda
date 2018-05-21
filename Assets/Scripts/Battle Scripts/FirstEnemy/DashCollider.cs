@@ -11,31 +11,24 @@ public class DashCollider : MonoBehaviour {
 
     [SerializeField]
     private float speed;
-    public GameObject target;
+    public Vector3 target;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
-    {
-        if (target.activeSelf == false)
-        {
-            Destroy(gameObject, 1);
-        }
-    }
     private void FixedUpdate()
     {
         if (!isCollided)
         {
-            Vector3 direction = target.transform.position - transform.position;
-            transform.position = Vector3.Lerp(this.transform.position, target.transform.position, speed * Time.fixedDeltaTime);
+            Vector3 direction = target - transform.position;
+            transform.position = Vector3.Lerp(this.transform.position, target, speed * Time.fixedDeltaTime);
        
         }
     }
 
-    public void SetTarget(GameObject passedTarget)
+    public void SetTarget(Vector3 passedTarget)
     {
         target = passedTarget;
     }

@@ -247,7 +247,6 @@ public class SpellCommand : MonoBehaviour {
                 {
                     return;
                 }
-                Debug.Log("SpellCommand: Girl cast W");
             }
         }
     }

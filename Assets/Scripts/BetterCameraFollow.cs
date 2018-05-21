@@ -133,8 +133,6 @@ public class BetterCameraFollow : MonoBehaviour
             {
                 break;
             }
-
-            Debug.Log(ct.name);
             bool m_isinview = IsInView(m_cam.gameObject, ct.gameObject);
 
             if (m_isinview == true && !m_currentcameraTargets.Contains(ct.gameObject))

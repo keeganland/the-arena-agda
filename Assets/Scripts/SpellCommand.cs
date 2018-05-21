@@ -19,42 +19,44 @@ public class SpellCommand : MonoBehaviour {
     public GameObject Heal;
     public GameObject RangeIndicatorShield;
 
+    public ParticleSystem _Qselected;
+    public ParticleSystem _Wselected;
+
     /*Timer variables:*/
-    public int _AOECooldown;
+    public float _AOECooldown;
     private float _AOECooldownTimer = 0;
-    public int _AOEUITimer; //for Alex
-    public int _HealCooldown;
+    public float _AOEUITimer = 8; //for Alex
+    public float _HealCooldown;
     private float _HealCooldownTimer = 0;
-    public int _HealUITimer; //for Alex
-    public int _ShieldCooldown;
+    public float _HealUITimer; //for Alex
+    public float _ShieldCooldown;
     private float _ShieldCooldownTimer = 0;
-    public int _ShieldUITimer; //for Alex
-    public int _StunCooldown;
+    public float _ShieldUITimer; //for Alex
+    public float _StunCooldown;
     private float _StunCooldownTimer = 0;
-    public int _StunUITimer; //for Alex
+    public float _StunUITimer; //for Alex
 
     private void Start() //This is purely error handling
     {
         if(_AOECooldown == 0)
         {
-            Debug.Log("SpellCommand: Set _AOECooldown on " + this.name);
             _AOECooldown = 3;
         }
         if(_HealCooldown == 0)
         {
-            Debug.Log("SpellCommand: Set _HealCooldown on " + this.name);
             _HealCooldown = 3;
         }
         if(_ShieldCooldown == 0)
         {
-            Debug.Log("SpellCommand: Set _ShieldCooldown on " + this.name);
             _ShieldCooldown = 5;
         }
         if(_StunCooldown == 0)
         {
-            Debug.Log("SpellCommand: Set _StunCooldown on " + this.name);
             _StunCooldown = 5;
         }
+
+        _Qselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        _Wselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
     // Update is called once per frame
@@ -64,11 +66,16 @@ public class SpellCommand : MonoBehaviour {
             //Debug.Log("SpellCommand: Q pressed");
             if (this.name == "Girl" && _HealCooldownTimer ==0)
             {
+             
                 isQspell = true;
+                if (_Qselected)
+                    _Qselected.Play();
             }
             if(this.name == "Boy" && _ShieldCooldownTimer == 0)
             {
-                isQspell = true;
+                isWspell = true;
+                if (_Wselected)
+                    _Wselected.Play();
             }
             CancelAOEAttack();
 
@@ -78,11 +85,16 @@ public class SpellCommand : MonoBehaviour {
             //Debug.Log("SpellCommand: W pressed");
             if (this.name == "Girl" && _AOECooldownTimer == 0)
             {
+                Debug.Log("here");
                 isWspell = true;
+                if (_Qselected)
+                    _Qselected.Play();
             }
             if(this.name == "Boy" && _StunCooldownTimer == 0)
             {
                 isWspell = true;
+                if (_Wselected)
+                    _Wselected.Play();  
             }
             CancelHealAttack();
 
@@ -99,7 +111,7 @@ public class SpellCommand : MonoBehaviour {
         if(_AOECooldownTimer > 0)
         {
             _AOECooldownTimer -= Time.deltaTime;
-            _AOEUITimer = (int)_AOECooldownTimer;
+            _AOEUITimer = _AOECooldownTimer;
         }
         //Heal Cooldown
         if (_HealCooldownTimer < 0)
@@ -109,7 +121,7 @@ public class SpellCommand : MonoBehaviour {
         if (_HealCooldownTimer > 0)
         {
             _HealCooldownTimer -= Time.deltaTime;
-            _HealUITimer = (int)_HealCooldownTimer;
+            _HealUITimer = _HealCooldownTimer;
         }
         //Stun Cooldown
         if (_StunCooldownTimer < 0)
@@ -119,7 +131,7 @@ public class SpellCommand : MonoBehaviour {
         if (_StunCooldownTimer > 0)
         {
             _StunCooldownTimer -= Time.deltaTime;
-            _StunUITimer = (int)_StunCooldownTimer;
+            _StunUITimer = _StunCooldownTimer;
         }
         //Shield Cooldown
         if (_ShieldCooldownTimer < 0)
@@ -129,7 +141,7 @@ public class SpellCommand : MonoBehaviour {
         if (_ShieldCooldownTimer > 0)
         {
             _ShieldCooldownTimer -= Time.deltaTime;
-            _ShieldUITimer = (int)_ShieldCooldownTimer;
+            _ShieldUITimer = _ShieldCooldownTimer;
         }
 
     }
@@ -294,7 +306,9 @@ public class SpellCommand : MonoBehaviour {
     {
         
         isWspell = false;
-        if(RangeIndicatorAOE)
+        if(_Wselected)
+        _Wselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        if (RangeIndicatorAOE)
             RangeIndicatorAOE.SetActive(false);
         if(AttackIndicatorAOE)
             AttackIndicatorAOE.SetActive(false);
@@ -303,7 +317,9 @@ public class SpellCommand : MonoBehaviour {
     public void CancelHealAttack()
     {
         isQspell = false;
-        if (RangeIndicatorHeal)
+        if(_Qselected)
+    _Qselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+    if (RangeIndicatorHeal)
             RangeIndicatorHeal.SetActive(false);
         if (AttackIndicatorHeal)
             AttackIndicatorHeal.SetActive(false);

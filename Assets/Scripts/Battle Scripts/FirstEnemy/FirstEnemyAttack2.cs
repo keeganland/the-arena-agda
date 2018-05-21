@@ -186,15 +186,14 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 
         yield return new WaitForSeconds(_WarningtoAttackCD);
         //Reset Enemy
-
+        Destroy(go);
         m_dashingAnim = false;
 
         m_nav.SetDestination(transform.position);
 
         yield return new WaitForSeconds(_WarningtoAttackCD);
 
-        Destroy(fx);
-        Destroy(go);
+        Destroy(fx);        
 
         _BoyOrGirl = Random.Range(0, 2);
 

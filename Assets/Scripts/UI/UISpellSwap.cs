@@ -27,6 +27,23 @@ public class UISpellSwap : MonoBehaviour {
     public HealthUI _GirlHealthUI;
     public HealthUI _BoyHealthUI;
 
+    public SpellCommand _GirlSpellCommandScript;
+
+    public Text _BigQCooldowntext;
+    public Text _BigWCooldowntext;
+    public Text _SmallQCooldowntext;
+    public Text _SmallWCooldowntext;
+
+    public Image _CooldownBigQImage;
+    public Image _CooldownBigWImage;
+    public Image _CooldownSmallQImage;
+    public Image _CooldownSmallWImage;
+
+    private int m_bigQcooldowntext;
+    private int m_bigWcooldowntext;
+    private int m_smallQcooldowntext;
+    private int m_smallWcooldowntext;
+
     private bool m_isBoy;
 
     private void Update()
@@ -57,17 +74,89 @@ public class UISpellSwap : MonoBehaviour {
 
         _BigPicture.sprite = _GirlSprite;
         _SmallPicture.sprite = _BoySprite;
-
     }
 
     private void GirlSlider()
     {
         _BigSlider.value = (1.0f / _GirlHealthUI.m_maxHealth) * _GirlHealthUI.m_curHealth;
         _SmallSlider.value = (1.0f / _BoyHealthUI.m_maxHealth) * _BoyHealthUI.m_curHealth;
+
+        m_smallQcooldowntext = (int) _GirlSpellCommandScript._ShieldUITimer;
+        m_smallWcooldowntext = (int)_GirlSpellCommandScript._StunUITimer;
+        m_bigQcooldowntext = (int)_GirlSpellCommandScript._HealUITimer;
+        m_bigWcooldowntext = (int)_GirlSpellCommandScript._AOEUITimer;
+
+        if (m_smallQcooldowntext == 0)
+        {
+            _SmallQCooldowntext.text = "";
+        }
+        else
+            _SmallQCooldowntext.text = m_smallQcooldowntext.ToString();
+        if (m_smallWcooldowntext == 0)
+        {
+            _SmallWCooldowntext.text = "";
+        }
+        else
+            _SmallWCooldowntext.text = m_smallWcooldowntext.ToString();
+        if (m_bigQcooldowntext == 0)
+        {
+            _BigQCooldowntext.text = "";
+        }
+        else
+            _BigQCooldowntext.text = m_bigQcooldowntext.ToString();
+        if (m_bigWcooldowntext == 0)
+        {
+            _BigWCooldowntext.text = "";
+        }
+        else
+            _BigWCooldowntext.text = m_bigWcooldowntext.ToString();
+
+        _CooldownSmallQImage.fillAmount = _GirlSpellCommandScript._ShieldUITimer/_GirlSpellCommandScript._ShieldCooldown;
+        _CooldownSmallWImage.fillAmount = _GirlSpellCommandScript._StunUITimer / _GirlSpellCommandScript._StunCooldown;
+        _CooldownBigQImage.fillAmount = _GirlSpellCommandScript._HealUITimer / _GirlSpellCommandScript._HealCooldown;
+        _CooldownBigWImage.fillAmount = _GirlSpellCommandScript._AOEUITimer / _GirlSpellCommandScript._AOECooldown;
+
     }
     private void BoySlider()
     {
         _BigSlider.value = (1.0f / _BoyHealthUI.m_maxHealth) * _BoyHealthUI.m_curHealth;
         _SmallSlider.value = (1.0f / _GirlHealthUI.m_maxHealth) * _GirlHealthUI.m_curHealth;
+
+        m_smallQcooldowntext = (int)_GirlSpellCommandScript._HealUITimer;
+        m_smallWcooldowntext = (int)_GirlSpellCommandScript._AOEUITimer;
+        m_bigQcooldowntext = (int)_GirlSpellCommandScript._ShieldUITimer;
+        m_bigWcooldowntext = (int)_GirlSpellCommandScript._StunUITimer;
+
+        if (m_bigQcooldowntext == 0)
+        {
+            _BigQCooldowntext.text = "";
+        }
+        else
+        {
+            _BigQCooldowntext.text = m_bigQcooldowntext.ToString();
+        }
+        if (m_bigWcooldowntext == 0)
+        {
+            _BigWCooldowntext.text = "";
+        }
+        else
+            _BigWCooldowntext.text = m_bigWcooldowntext.ToString();
+        if (m_smallQcooldowntext == 0)
+        {
+            _SmallQCooldowntext.text = "";
+        }
+        else
+            _SmallQCooldowntext.text = m_smallQcooldowntext.ToString();
+        if (m_smallWcooldowntext == 0)
+        {
+            _SmallWCooldowntext.text = "";
+        }
+        else
+            _SmallWCooldowntext.text = m_smallWcooldowntext.ToString();
+
+        _CooldownBigQImage.fillAmount = _GirlSpellCommandScript._ShieldUITimer / _GirlSpellCommandScript._ShieldCooldown;
+        _CooldownBigWImage.fillAmount = _GirlSpellCommandScript._StunUITimer / _GirlSpellCommandScript._StunCooldown;
+        _CooldownSmallQImage.fillAmount = _GirlSpellCommandScript._HealUITimer / _GirlSpellCommandScript._HealCooldown;
+        _CooldownSmallWImage.fillAmount = _GirlSpellCommandScript._AOEUITimer / _GirlSpellCommandScript._AOECooldown;
     }
 }

@@ -62,6 +62,8 @@ public class Bullet : MonoBehaviour {
    
     void OnCollisionEnter (Collision collision)
     {
+        Debug.Log(collision.gameObject.name);
+            
         AggroData aggroData = new AggroData();
         aggroData.aggro = AggroValue;
         MessageHandler msgHandler = collision.gameObject.GetComponent<MessageHandler>();
@@ -121,8 +123,13 @@ public class Bullet : MonoBehaviour {
     private void DisplayDamage(GameObject targetdisplay, Color damageColor, int damageText)
     {
             GameObject go = targetdisplay.GetComponent<HealthController>().Sprite;
-            Canvas canvas = go.GetComponentInChildren<Canvas>();
-            canvas.GetComponentInChildren<DamageDisplayScript>().GetDamageText(damageColor, damageText);
+            Canvas[] canvas = go.GetComponentsInChildren<Canvas>();
+
+        for (int i = 0; i < canvas.Length; i++)
+        {
+            if(canvas[i].GetComponentInChildren<DamageDisplayScript>())
+            canvas[i].GetComponentInChildren<DamageDisplayScript>().GetDamageText(damageColor, damageText);
+        }
     }
 
     private void DisplayHealing(GameObject targetdisplay, Color healingColor, int healingText)

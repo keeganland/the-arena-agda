@@ -45,5 +45,4 @@ public class HealthUI : MonoBehaviour
     {
         slider.value = (1.0f / maxHealth) * curHealth;
     }
-    
 }

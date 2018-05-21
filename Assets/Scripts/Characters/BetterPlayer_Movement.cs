@@ -10,6 +10,8 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
     public Image _BoySelected;
     public Image _GirlSelected;
+    public ParticleSystem _BoySelectedParticle;
+    public ParticleSystem _GirlSelectedParticle;
     public GameObject Boy;
     public GameObject Girl;
 
@@ -44,7 +46,10 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
                 this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
                 _UISpells.BoySpellActive();
+                _BoySelected.enabled = true;
                 _GirlSelected.enabled = false;
+                _BoySelectedParticle.Play();
+                _GirlSelectedParticle.Stop();
             }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -55,6 +60,8 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 _BoySelected.enabled = false;
                 _GirlSelected.enabled = true;
                 _UISpells.GirlActive();
+                _BoySelectedParticle.Stop();
+                _GirlSelectedParticle.Play();
             }
         }
 

@@ -5765,6 +5765,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 702611257}
+  m_curHealth: 0
+  m_maxHealth: 0
 --- !u!135 &1881716621
 SphereCollider:
   m_ObjectHideFlags: 0

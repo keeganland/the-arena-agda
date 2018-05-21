@@ -22,11 +22,6 @@ public class VictoryReferee : MonoBehaviour {
         EventManager.StopListening("victory", victoryAction);
     }
 
-    public void Update()
-    {
-        Debug.Log("victoryUI is active? == " + victoryUI.activeSelf);
-    }
-
     public void Victory()
     {
         victoryUI.SetActive(true);

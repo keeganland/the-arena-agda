@@ -12,7 +12,7 @@ public class VictoryCondition : MonoBehaviour {
 		if (boss.activeSelf == false && youWon == false)
         {
             youWon = true;
-            Debug.Log("boss was killed!");
+            //Debug.Log("boss was killed!");
             EventManager.TriggerEvent("victory");
         }
 	}

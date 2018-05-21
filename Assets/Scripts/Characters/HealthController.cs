@@ -175,5 +175,13 @@ public class HealthController : MonoBehaviour
         {
             this.GetComponent<HealthUI>().UpdateUi(totalHealth, currentHealth);
         }
+        if (m_messageHandler)
+        {
+            HealthData hpData = new HealthData();
+            hpData.maxHealth = totalHealth;
+            hpData.curHealth = currentHealth;
+
+            m_messageHandler.GiveMessage(MessageTypes.HEALTHCHANGED, gameObject, hpData);
+        }
     }
 }

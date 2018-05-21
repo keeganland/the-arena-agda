@@ -148,16 +148,16 @@ public class SpellCommand : MonoBehaviour {
                 {
                     //Spell goes here
                     //shield appears in front of boy in direction of mouse click (doesn't move)
-                   // RangeIndicatorShield.SetActive(true);
-
+                    RangeIndicatorShield.SetActive(true);
+                    Debug.Log("SpellCommend: RangeindicatorShield should be on");
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit))
                     {
-                        if (hit.collider.tag == "RangeIndicator")
-                        {
-                            Vector3 directiondifference = hit.transform.position - this.transform.position;
-                            //this.transform.LookAt(hit.transform, direction);
+                        Vector3 directiondifference = hit.transform.position - this.transform.position;
+                        Debug.Log("SpellCommand: Boy Q");
+                        //RangeIndicatorShield.transform.rotation = Quaternion.LookRotation(directiondifference, new Vector3(0,1,0));
+                        RangeIndicatorShield.transform.rotation = Quaternion.FromToRotation(Vector3.forward, directiondifference);
                             //Instantiate(Shield as GameObject);// This creates a shield in the place that I originally placed it in scene
                             //Shield.SetActive(true);
                             /* Notes:
@@ -165,7 +165,6 @@ public class SpellCommand : MonoBehaviour {
                              * Then spawn shield in the direction of the arrow on second click
                              * Leave shield where it is, don't need to move it
                              */
-                        }
                     }
                 }
                 else

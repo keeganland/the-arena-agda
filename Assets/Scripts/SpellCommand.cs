@@ -33,9 +33,32 @@ public class SpellCommand : MonoBehaviour {
     private float Stun_Cooldown_Timer = 0;
     public int Stun_UI_Timer; //for Alex
 
-	
-	// Update is called once per frame
-	void Update () {
+    private void Start() //This is purely error handling
+    {
+        if(AOE_Cooldown == 0)
+        {
+            Debug.Log("SpellCommand: Set AOE_Cooldown on " + this.name);
+            AOE_Cooldown = 3;
+        }
+        if(Heal_Cooldown == 0)
+        {
+            Debug.Log("SpellCommand: Set Heal_Cooldown on " + this.name);
+            Heal_Cooldown = 3;
+        }
+        if(Shield_Cooldown == 0)
+        {
+            Debug.Log("SpellCommand: Set Shield_Cooldown on " + this.name);
+            Shield_Cooldown = 5;
+        }
+        if(Stun_Cooldown == 0)
+        {
+            Debug.Log("SpellCommand: Set Stun_Cooldown on " + this.name);
+            Stun_Cooldown = 5;
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (Input.GetKeyDown(KeyCode.Q)) //could switch to GetButtonDown laster to allow player to customise controls
         {
             //Debug.Log("SpellCommand: Q pressed");

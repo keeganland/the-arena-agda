@@ -8,7 +8,6 @@ public class VictoryReferee : MonoBehaviour {
 
     private UnityAction victoryAction;
     public GameObject victoryUI;
-    public VictoryCondition vc;
 
     void Awake()
     {
@@ -23,9 +22,13 @@ public class VictoryReferee : MonoBehaviour {
         EventManager.StopListening("victory", victoryAction);
     }
 
+    public void Update()
+    {
+        Debug.Log("victoryUI is active? == " + victoryUI.activeSelf);
+    }
+
     public void Victory()
     {
-        Debug.Log("You won!");
         victoryUI.SetActive(true);
         Time.timeScale = 0f;
     }
@@ -34,7 +37,6 @@ public class VictoryReferee : MonoBehaviour {
     {
         victoryUI.SetActive(false);
         Time.timeScale = 1f;
-
         AnyManager.anyManager.ResetGame();
     }
 }

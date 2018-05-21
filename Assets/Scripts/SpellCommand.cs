@@ -22,16 +22,16 @@ public class SpellCommand : MonoBehaviour {
     /*Timer variables:*/
     public int AOE_Cooldown;
     private float AOE_Cooldown_Timer = 0;
-    private int AOE_UI_Timer; //for Alex
+    public int AOE_UI_Timer; //for Alex
     public int Heal_Cooldown;
     private float Heal_Cooldown_Timer = 0;
-    private int Heal_UI_Timer; //for Alex
+    public int Heal_UI_Timer; //for Alex
     public int Shield_Cooldown;
     private float Shield_Cooldown_Timer = 0;
-    private int Shield_UI_Timer; //for Alex
+    public int Shield_UI_Timer; //for Alex
     public int Stun_Cooldown;
     private float Stun_Cooldown_Timer = 0;
-    private int Stun_UI_Timer; //for Alex
+    public int Stun_UI_Timer; //for Alex
 
 	
 	// Update is called once per frame
@@ -39,14 +39,28 @@ public class SpellCommand : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Q)) //could switch to GetButtonDown laster to allow player to customise controls
         {
             //Debug.Log("SpellCommand: Q pressed");
-            isQspell = true;
+            if (this.name == "Girl" && Heal_Cooldown_Timer ==0)
+            {
+                isQspell = true;
+            }
+            if(this.name == "Boy" && Shield_Cooldown_Timer == 0)
+            {
+                isQspell = true;
+            }
             CancelAOEAttack();
 
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
             //Debug.Log("SpellCommand: W pressed");
-            isWspell = true;
+            if (this.name == "Girl" && AOE_Cooldown_Timer == 0)
+            {
+                isWspell = true;
+            }
+            if(this.name == "Boy" && Stun_Cooldown_Timer == 0)
+            {
+                isWspell = true;
+            }
             CancelHealAttack();
 
         }

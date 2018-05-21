@@ -30,14 +30,12 @@ public class BetterCameraFollow : MonoBehaviour
     {
         EventManager.StartListening("cleanup", ReinitializePotentialTargets);
         EventManager.StartListening("setup", ReinitializePotentialTargets);
-
     }
 
     public void OnDisable()
     {
         EventManager.StopListening("cleanup", ReinitializePotentialTargets);
         EventManager.StopListening("setup", ReinitializePotentialTargets);
-
     }
 
     void Start()
@@ -131,6 +129,7 @@ public class BetterCameraFollow : MonoBehaviour
         {
             if (ct == null)
             {
+                Debug.Log("null element in potentialCameraTargetList???");
                 break;
             }
             bool m_isinview = IsInView(m_cam.gameObject, ct.gameObject);

@@ -49,7 +49,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 _BoySelected.enabled = true;
                 _GirlSelected.enabled = false;
                 _BoySelectedParticle.Play();
-                _GirlSelectedParticle.Stop();
+                _GirlSelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -60,7 +60,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 _BoySelected.enabled = false;
                 _GirlSelected.enabled = true;
                 _UISpells.GirlActive();
-                _BoySelectedParticle.Stop();
+                _BoySelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
                 _GirlSelectedParticle.Play();
             }
         }

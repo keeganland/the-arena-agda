@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class UISpellSwap : MonoBehaviour {
 
+    public Text _BigTextHP;
+    public Text _SmallTextHP;
+
     public Image _BigSpellQ;
     public Image _BigSpellW;
     public Image _SmallSpellQ;
@@ -74,12 +77,16 @@ public class UISpellSwap : MonoBehaviour {
 
         _BigPicture.sprite = _GirlSprite;
         _SmallPicture.sprite = _BoySprite;
+     
     }
 
     private void GirlSlider()
     {
         _BigSlider.value = (1.0f / _GirlHealthUI.m_maxHealth) * _GirlHealthUI.m_curHealth;
         _SmallSlider.value = (1.0f / _BoyHealthUI.m_maxHealth) * _BoyHealthUI.m_curHealth;
+
+        _BigTextHP.text = "HP : " + _GirlHealthUI.m_curHealth.ToString() + " /  " + _GirlHealthUI.m_maxHealth.ToString();
+        _SmallTextHP.text = "HP : " + _BoyHealthUI.m_curHealth.ToString() + " /  " + _BoyHealthUI.m_maxHealth.ToString();
 
         m_smallQcooldowntext = (int) _GirlSpellCommandScript._ShieldUITimer;
         m_smallWcooldowntext = (int)_GirlSpellCommandScript._StunUITimer;
@@ -121,6 +128,9 @@ public class UISpellSwap : MonoBehaviour {
     {
         _BigSlider.value = (1.0f / _BoyHealthUI.m_maxHealth) * _BoyHealthUI.m_curHealth;
         _SmallSlider.value = (1.0f / _GirlHealthUI.m_maxHealth) * _GirlHealthUI.m_curHealth;
+
+        _SmallTextHP.text = "HP : " + _GirlHealthUI.m_curHealth.ToString() + " /  " + _GirlHealthUI.m_maxHealth.ToString();
+        _BigTextHP.text = "HP : " + _BoyHealthUI.m_curHealth.ToString() + " /  " + _BoyHealthUI.m_maxHealth.ToString();
 
         m_smallQcooldowntext = (int)_GirlSpellCommandScript._HealUITimer;
         m_smallWcooldowntext = (int)_GirlSpellCommandScript._AOEUITimer;

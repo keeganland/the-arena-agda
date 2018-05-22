@@ -209,11 +209,11 @@ public class SpellCommand : MonoBehaviour {
                                 Instantiate(Heal, Healpos, Quaternion.identity);
                                 CancelHealAttack();
                                 _HealCooldownTimer = _HealCooldown;
-                            }
-                            if (hit.collider.tag == "Ground")
-                            {
-                                AttackIndicatorHeal.SetActive(false);
-                            }
+                            }                                                
+                        }
+                        if (hit.collider.tag == "Ground")
+                        {
+                            AttackIndicatorHeal.SetActive(false);
                         }
                     }
                     

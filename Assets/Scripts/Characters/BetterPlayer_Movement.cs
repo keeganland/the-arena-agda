@@ -40,33 +40,36 @@ public class BetterPlayer_Movement : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (Boy.activeSelf == true)
-            {         
-                boyActive = true;
-                _BoySelected.enabled = true;
-                this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
-                this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
-                _UISpells.BoySpellActive();
-                _BoySelected.enabled = true;
-                _GirlSelected.enabled = false;
-                _BoySelectedParticle.Play();
-                _GirlSelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            {
+                SwapBoy();
             }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             if (Girl.activeSelf == true)
             {
-                boyActive = false;
-                _BoySelected.enabled = false;
-                _GirlSelected.enabled = true;
-                _UISpells.GirlActive();
-                _BoySelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-                _GirlSelectedParticle.Play();
+                SwapGirl();
             }
         }
 
-        //For stopping the player character - whichever one that happens to be
-        if (isTheBoy == boyActive && !stopMoving)
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if(hit.collider.name == "Boy")
+                {
+                    SwapBoy();
+                }
+                if (hit.collider.name == "Girl")
+                {
+                    SwapGirl();
+                }
+            }
+        }
+            //For stopping the player character - whichever one that happens to be
+            if (isTheBoy == boyActive && !stopMoving)
         {
             if (Input.GetMouseButtonDown(1))
             {
@@ -128,6 +131,29 @@ public class BetterPlayer_Movement : MonoBehaviour {
             }
         }
 
+    }
+
+    private void SwapBoy()
+    {
+        boyActive = true;
+        _BoySelected.enabled = true;
+        this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
+        this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
+        _UISpells.BoySpellActive();
+        _BoySelected.enabled = true;
+        _GirlSelected.enabled = false;
+        _BoySelectedParticle.Play();
+        _GirlSelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+    }
+
+    private void SwapGirl()
+    {
+        boyActive = false;
+        _BoySelected.enabled = false;
+        _GirlSelected.enabled = true;
+        _UISpells.GirlActive();
+        _BoySelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        _GirlSelectedParticle.Play();
     }
 
     public void CancelMovement()

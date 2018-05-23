@@ -42,12 +42,15 @@ public class UISpellSwap : MonoBehaviour {
     public Image _CooldownSmallQImage;
     public Image _CooldownSmallWImage;
 
+    public SpellCommand _SpellCommand;
+
     private int m_bigQcooldowntext;
     private int m_bigWcooldowntext;
     private int m_smallQcooldowntext;
     private int m_smallWcooldowntext;
 
     private bool m_isBoy;
+
 
     private void Update()
     {
@@ -168,5 +171,44 @@ public class UISpellSwap : MonoBehaviour {
         _CooldownBigWImage.fillAmount = _GirlSpellCommandScript._StunUITimer / _GirlSpellCommandScript._StunCooldown;
         _CooldownSmallQImage.fillAmount = _GirlSpellCommandScript._HealUITimer / _GirlSpellCommandScript._HealCooldown;
         _CooldownSmallWImage.fillAmount = _GirlSpellCommandScript._AOEUITimer / _GirlSpellCommandScript._AOECooldown;
+    }
+
+    public void BigQisCastedWithMouse()
+    {
+      
+        if (m_isBoy)
+        {
+            _SpellCommand.CastSpellQBoy();
+        }
+        else _SpellCommand.CastSpellQGirl();
+    }
+
+    public void BigWisCastedWithMouse()
+    {
+        if (m_isBoy)
+        {
+            _SpellCommand.CastSpellWBoy();
+        }
+        else _SpellCommand.CastSpellWGirl();
+    }
+
+    public void SmallQisCastedWithMouse()
+    {
+
+        if (m_isBoy)
+        {
+            _SpellCommand.CastSpellQGirl();
+        }
+        else _SpellCommand.CastSpellQBoy();
+    }
+
+    public void SmallWisCastedWithMouse()
+    {
+
+        if (m_isBoy)
+        {
+            _SpellCommand.CastSpellWGirl();
+        }
+        else _SpellCommand.CastSpellWBoy();
     }
 }

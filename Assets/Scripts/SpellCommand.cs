@@ -9,6 +9,9 @@ public class SpellCommand : MonoBehaviour {
     private Vector3 AOEpos;
     private Vector3 Healpos;
 
+    private bool isQGirlforced;
+    private bool isWGirlforced;
+
     public int Healing;
     public GameObject Shield;
     public GameObject AOE;
@@ -85,7 +88,6 @@ public class SpellCommand : MonoBehaviour {
             //Debug.Log("SpellCommand: W pressed");
             if (this.name == "Girl" && _AOECooldownTimer == 0)
             {
-                Debug.Log("here");
                 isWspell = true;
                 if (_Qselected)
                     _Qselected.Play();
@@ -182,17 +184,17 @@ public class SpellCommand : MonoBehaviour {
                 }
                 else
                 {
-                    return;
+                  
                 }
                 Debug.Log("SpellCommand: Boy cast Q");
             }
             //Girl spell called by Q (Heal)
-            if (player_number == 1 && _HealCooldownTimer == 0)
+            if ((player_number == 1 || isQGirlforced) && _HealCooldownTimer == 0 )
             {
-                if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
-                {                 
-                  
-                    //Spell goes here
+                if (this.gameObject.name == "Girl" ) //checks if girl is casting and if this gamebobject is the girl
+                {
+
+                    //Spell goes here                  
                     RangeIndicatorHeal.SetActive(true);
 
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -209,14 +211,13 @@ public class SpellCommand : MonoBehaviour {
                                 Instantiate(Heal, Healpos, Quaternion.identity);
                                 CancelHealAttack();
                                 _HealCooldownTimer = _HealCooldown;
-                            }                                                
+                            }
                         }
                         if (hit.collider.tag == "Ground")
                         {
                             AttackIndicatorHeal.SetActive(false);
                         }
                     }
-                    
                 }
                 else
                 {
@@ -239,20 +240,20 @@ public class SpellCommand : MonoBehaviour {
                 if (this.gameObject.name == "Boy") //checks if boy is casting and if this gamebobject is the boy
                 {
                     //Spell goes here
+                   
                 }
                 else
                 {
-                    return;
+                   
                 }
                 Debug.Log("SpellCommand: Boy cast W");
             }
             //Girl spell called by W (AOE)
-            if (player_number == 1 && _AOECooldownTimer ==0)
+            if ((player_number == 1 && _AOECooldownTimer ==0) || (isWGirlforced && _AOECooldownTimer == 0))
             {
                 
                 if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
                 {
-                    
                     RangeIndicatorAOE.SetActive(true);
 
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -270,7 +271,7 @@ public class SpellCommand : MonoBehaviour {
                                 CancelAOEAttack();
                                 _AOECooldownTimer = _AOECooldown;
                             }
-                 
+
                         }
                         if (hit.collider.tag == "Ground")
                         {
@@ -304,7 +305,7 @@ public class SpellCommand : MonoBehaviour {
 
     public void CancelAOEAttack()
     {
-        
+        isWGirlforced = false;
         isWspell = false;
         if(_Wselected)
         _Wselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
@@ -316,6 +317,7 @@ public class SpellCommand : MonoBehaviour {
 
     public void CancelHealAttack()
     {
+        isQGirlforced = false;
         isQspell = false;
         if(_Qselected)
     _Qselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
@@ -323,5 +325,28 @@ public class SpellCommand : MonoBehaviour {
             RangeIndicatorHeal.SetActive(false);
         if (AttackIndicatorHeal)
             AttackIndicatorHeal.SetActive(false);
+    }
+
+    public void CastSpellQGirl()
+    {
+        isQGirlforced = true;
+        isQspell = true;
+    }
+
+    public void CastSpellWGirl()
+    {
+        isWGirlforced = true;
+        Debug.Log(isWGirlforced);
+        isWspell = true;
+    }
+
+    public void CastSpellQBoy()
+    {
+
+    }
+
+    public void CastSpellWBoy()
+    {
+
     }
 }

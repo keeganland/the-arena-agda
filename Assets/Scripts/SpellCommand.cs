@@ -77,8 +77,8 @@ public class SpellCommand : MonoBehaviour {
             if(this.name == "Boy" && _ShieldCooldownTimer == 0)
             {
                 isWspell = true;
-                if (_Wselected)
-                    _Wselected.Play();
+                if (_Qselected)
+                    _Qselected.Play();
             }
             CancelAOEAttack();
 
@@ -89,8 +89,8 @@ public class SpellCommand : MonoBehaviour {
             if (this.name == "Girl" && _AOECooldownTimer == 0)
             {
                 isWspell = true;
-                if (_Qselected)
-                    _Qselected.Play();
+                if (_Wselected)
+                    _Wselected.Play();
             }
             if(this.name == "Boy" && _StunCooldownTimer == 0)
             {
@@ -330,7 +330,10 @@ public class SpellCommand : MonoBehaviour {
     public void CastSpellQGirl()
     {
         isQGirlforced = true;
-        isQspell = true;
+        isQspell = true;       
+        CancelAOEAttack();
+        _Qselected.Play();
+     
     }
 
     public void CastSpellWGirl()
@@ -338,6 +341,8 @@ public class SpellCommand : MonoBehaviour {
         isWGirlforced = true;
         Debug.Log(isWGirlforced);
         isWspell = true;
+        _Wselected.Play();
+        CancelHealAttack();
     }
 
     public void CastSpellQBoy()

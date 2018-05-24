@@ -133,20 +133,19 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
     }
 
-    private void SwapBoy()
+    public void SwapBoy()
     {
         boyActive = true;
         _BoySelected.enabled = true;
         this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
         this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
         _UISpells.BoySpellActive();
-        _BoySelected.enabled = true;
         _GirlSelected.enabled = false;
         _BoySelectedParticle.Play();
         _GirlSelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
-    private void SwapGirl()
+    public void SwapGirl()
     {
         boyActive = false;
         _BoySelected.enabled = false;

@@ -31,6 +31,7 @@ public class UISpellSwap : MonoBehaviour {
     public HealthUI _BoyHealthUI;
 
     public SpellCommand _GirlSpellCommandScript;
+    public SpellCommand _SpellCommand;
 
     public Text _BigQCooldowntext;
     public Text _BigWCooldowntext;
@@ -42,7 +43,8 @@ public class UISpellSwap : MonoBehaviour {
     public Image _CooldownSmallQImage;
     public Image _CooldownSmallWImage;
 
-    public SpellCommand _SpellCommand;
+    public BetterPlayer_Movement _GirlMovementScript;
+    public BetterPlayer_Movement _BoyMovementScript;
 
     private int m_bigQcooldowntext;
     private int m_bigWcooldowntext;
@@ -204,11 +206,27 @@ public class UISpellSwap : MonoBehaviour {
 
     public void SmallWisCastedWithMouse()
     {
-
         if (m_isBoy)
         {
             _SpellCommand.CastSpellWGirl();
         }
         else _SpellCommand.CastSpellWBoy();
+    }
+
+    public void PressSmallPicture()
+    {
+        Debug.Log("here");
+        if (m_isBoy)
+        {
+            GirlActive();
+            _GirlMovementScript.SwapGirl();
+            _BoyMovementScript.SwapGirl();
+        }
+        else
+        {
+            BoySpellActive();
+            _BoyMovementScript.SwapBoy();
+            _GirlMovementScript.SwapBoy();
+        }
     }
 }

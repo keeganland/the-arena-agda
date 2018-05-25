@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class FirstEnemyAttack2 : MonoBehaviour {
 
@@ -23,6 +24,13 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 	public GameObject _WarningDash;
     public GameObject _DashSpell;
     public GameObject _TeleportPosition;
+
+    public Slider _CastSpellSlider;
+    public GameObject _CastSpellGameobject;
+    public Text _SpellCasttimer;
+
+    private float m_warningCastTime;
+    public bool m_warningCastTimeBool;
 
     private void Start()
     {
@@ -55,6 +63,16 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 
 		}
         m_timer += Time.deltaTime;
+
+        if (m_warningCastTimeBool == true)
+        {
+            if (m_warningCastTime < _WarningtoAttackCD) {
+                m_warningCastTime += Time.deltaTime;
+            }
+            _CastSpellSlider.value = m_warningCastTime / _WarningtoAttackCD;
+            _SpellCasttimer.text = System.Math.Round((float)(_WarningtoAttackCD - m_warningCastTime), 2).ToString();
+   
+        }
 	}
 
     private Vector3 m_targetPos;
@@ -170,7 +188,20 @@ public class FirstEnemyAttack2 : MonoBehaviour {
         //Look toward target and draw "warning" line
         _WarningDash.SetActive(true);
 
+        //Slider
+        m_warningCastTime = 0;
+        _CastSpellGameobject.SetActive(true);
+        _SpellCasttimer.enabled = true;
+        //   _SpellCasttimer.text = string.Format("0.00", );
+        //_SpellCasttimer.text = (_WarningtoAttackCD - m_warningCastTime).ToString("F2");
+        _SpellCasttimer.text =  System.Math.Round((float)(_WarningtoAttackCD), 2).ToString();
+        m_warningCastTimeBool = true;
+
         yield return new WaitForSeconds(_WarningtoAttackCD);
+
+        m_warningCastTimeBool = false;
+        _SpellCasttimer.enabled = false;
+        _CastSpellGameobject.SetActive(false);
 
         _WarningDash.SetActive(false);
         //Start the Attack
@@ -183,8 +214,9 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 
        
         m_dashingAnim = true;
-
+   
         yield return new WaitForSeconds(_WarningtoAttackCD);
+       
         //Reset Enemy
         Destroy(go);
         m_dashingAnim = false;

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SpellCommand : MonoBehaviour {
     private int player_number;//variable used to hold value of which character is casting a spell
-    private bool isWspell;
-    private bool isQspell;
+    private bool isWspell = false;
+    private bool isQspell = false;
     private Vector3 AOEpos;
     private Vector3 Healpos;
 
@@ -76,7 +76,7 @@ public class SpellCommand : MonoBehaviour {
             }
             if(this.name == "Boy" && _ShieldCooldownTimer == 0)
             {
-                isWspell = true;
+                isQspell = true;
                 if (_Qselected)
                     _Qselected.Play();
             }
@@ -184,12 +184,12 @@ public class SpellCommand : MonoBehaviour {
                 }
                 else
                 {
-                  
+                    return;
                 }
                 Debug.Log("SpellCommand: Boy cast Q");
             }
             //Girl spell called by Q (Heal)
-            if ((player_number == 1 || isQGirlforced) && _HealCooldownTimer == 0 )
+            if ((player_number == 1 || isQGirlforced) && _HealCooldownTimer == 0 ) //What is "isQGirlForeced" and is the _HealCooldownTimer == 0 part necessary? This is checked in update
             {
                 if (this.gameObject.name == "Girl" ) //checks if girl is casting and if this gamebobject is the girl
                 {
@@ -240,6 +240,7 @@ public class SpellCommand : MonoBehaviour {
                 if (this.gameObject.name == "Boy") //checks if boy is casting and if this gamebobject is the boy
                 {
                     //Spell goes here
+                    isWspell = false;
                    
                 }
                 else
@@ -249,7 +250,7 @@ public class SpellCommand : MonoBehaviour {
                 Debug.Log("SpellCommand: Boy cast W");
             }
             //Girl spell called by W (AOE)
-            if ((player_number == 1 && _AOECooldownTimer ==0) || (isWGirlforced && _AOECooldownTimer == 0))
+            if ((player_number == 1 && _AOECooldownTimer ==0) || (isWGirlforced && _AOECooldownTimer == 0)) //What is "isWGirlforced"? And again, the timer is checked in update
             {
                 
                 if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
@@ -327,10 +328,10 @@ public class SpellCommand : MonoBehaviour {
             AttackIndicatorHeal.SetActive(false);
     }
 
-    public void CastSpellQGirl()
+    public void CastSpellQGirl() //When is this used? What does this do?
     {
         isQGirlforced = true;
-        isQspell = true;       
+        isQspell = true;   //This is done in update?     
         CancelAOEAttack();
         _Qselected.Play();
      

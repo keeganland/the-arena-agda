@@ -22,17 +22,6 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
     private float m_warningCastTime;
     public bool m_warningCastTimeBool;
 
-    private void Start()
-    {
-        _Target[0] = GameObject.Find("Boy").GetComponent<Transform>();
-        _Target[1] = GameObject.Find("Girl").GetComponent<Transform>();
-
-        m_rbEnemy = GetComponent<Rigidbody>();
-        m_nav = GetComponent<NavMeshAgent>();
-        _BoyOrGirl = Random.Range(0, 2);
-        m_timer = 15;
-    }
-
     // Update is called once per frame
     void Update ()
     {

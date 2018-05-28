@@ -2,32 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellCommand : MonoBehaviour {
-    private int player_number;//variable used to hold value of which character is casting a spell
-    private bool isWspell = false;
-    private bool isQspell = false;
+public class SpellCommand : PlayerSpells {
+
     private Vector3 AOEpos;
     private Vector3 Healpos;
 
-    private bool isQGirlforced;
-    private bool isWGirlforced;
-
     public int Healing;
     public GameObject Shield;
+
     public GameObject AOE;
     public GameObject RangeIndicatorAOE;
+
     public GameObject AttackIndicatorAOE;
     public GameObject AttackIndicatorHeal;
     public GameObject RangeIndicatorHeal;
     public GameObject Heal;
     public GameObject RangeIndicatorShield;
 
-    public ParticleSystem _Qselected;
-    public ParticleSystem _Wselected;
+   
 
     /*Timer variables:*/
     public float _AOECooldown;
     private float _AOECooldownTimer = 0;
+
     public float _AOEUITimer = 8; //for Alex
     public float _HealCooldown;
     private float _HealCooldownTimer = 0;
@@ -57,14 +54,12 @@ public class SpellCommand : MonoBehaviour {
         {
             _StunCooldown = 5;
         }
-
-        _Qselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-        _Wselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
     // Update is called once per frame
-    void Update () {
-        if (Input.GetKeyDown(KeyCode.Q)) //could switch to GetButtonDown laster to allow player to customise controls
+    void Update () 
+    {
+        if (Input.GetKeyDown(KeyCode.Q)) //could switch to GetButtonDown later to allow player to customise controls
         {
             //Debug.Log("SpellCommand: Q pressed");
             if (this.name == "Girl" && _HealCooldownTimer ==0)
@@ -76,7 +71,7 @@ public class SpellCommand : MonoBehaviour {
             }
             if(this.name == "Boy" && _ShieldCooldownTimer == 0)
             {
-                isQspell = true;
+                isWspell = true;
                 if (_Qselected)
                     _Qselected.Play();
             }
@@ -184,12 +179,12 @@ public class SpellCommand : MonoBehaviour {
                 }
                 else
                 {
-                    return;
+                  
                 }
                 Debug.Log("SpellCommand: Boy cast Q");
             }
             //Girl spell called by Q (Heal)
-            if ((player_number == 1 || isQGirlforced) && _HealCooldownTimer == 0 ) //What is "isQGirlForeced" and is the _HealCooldownTimer == 0 part necessary? This is checked in update
+            if ((player_number == 1 || isQGirlforced) && _HealCooldownTimer == 0 )
             {
                 if (this.gameObject.name == "Girl" ) //checks if girl is casting and if this gamebobject is the girl
                 {
@@ -240,7 +235,6 @@ public class SpellCommand : MonoBehaviour {
                 if (this.gameObject.name == "Boy") //checks if boy is casting and if this gamebobject is the boy
                 {
                     //Spell goes here
-                    isWspell = false;
                    
                 }
                 else
@@ -250,7 +244,7 @@ public class SpellCommand : MonoBehaviour {
                 Debug.Log("SpellCommand: Boy cast W");
             }
             //Girl spell called by W (AOE)
-            if ((player_number == 1 && _AOECooldownTimer ==0) || (isWGirlforced && _AOECooldownTimer == 0)) //What is "isWGirlforced"? And again, the timer is checked in update
+            if ((player_number == 1 && _AOECooldownTimer ==0) || (isWGirlforced && _AOECooldownTimer == 0))
             {
                 
                 if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
@@ -288,21 +282,7 @@ public class SpellCommand : MonoBehaviour {
         }
     }
 
-    private int CharacterSelect()//Determines which character is active
-    {
-        if (GameObject.FindWithTag("Player").GetComponent<BetterPlayer_Movement>().boyActive == true)
-        {
-            return 0;
-        }
-        else if (GameObject.FindWithTag("Player").GetComponent<BetterPlayer_Movement>().boyActive == false)
-        {
-            return 1;
-        }
-        else
-        {
-            return 2;
-        }
-    }
+
 
     public void CancelAOEAttack()
     {
@@ -328,10 +308,10 @@ public class SpellCommand : MonoBehaviour {
             AttackIndicatorHeal.SetActive(false);
     }
 
-    public void CastSpellQGirl() //When is this used? What does this do?
+    public void CastSpellQGirl()
     {
         isQGirlforced = true;
-        isQspell = true;   //This is done in update?     
+        isQspell = true;       
         CancelAOEAttack();
         _Qselected.Play();
      

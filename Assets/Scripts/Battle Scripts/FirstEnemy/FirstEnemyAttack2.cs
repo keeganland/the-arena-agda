@@ -123,35 +123,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
     {
 		m_isDashAttack = true;
 
-		Vector3 direction = _Target[_BoyOrGirl].transform.position - transform.position;
-		float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
-
-		transform.LookAt(_Target[_BoyOrGirl].transform);
-
-		int rotation = 0;
-
-		if (45 <= transform.eulerAngles.y && transform.eulerAngles.y < 135)
-		{
-			rotation = 3;
-		}
-		else if (0 <= transform.eulerAngles.y && transform.eulerAngles.y < 45)
-		{
-			rotation = 1;
-		}
-		else if (225 <= transform.eulerAngles.y && transform.eulerAngles.y < 315)
-		{
-			rotation = 4;
-		}
-		else
-		{
-			rotation = 2;
-		}
-
-		if (rotation != 0)
-		{
-            if(_Sprite)
-			_Sprite.GetComponent<SpriteScript2>().ForcePlayerRotation(rotation);
-		}
+		
 
         //Look toward target and draw "warning" line
         _WarningDash.SetActive(true);

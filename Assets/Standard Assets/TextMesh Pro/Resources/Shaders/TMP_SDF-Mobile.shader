@@ -84,6 +84,8 @@ SubShader {
 		#pragma shader_feature __ OUTLINE_ON
 		#pragma shader_feature __ UNDERLAY_ON UNDERLAY_INNER
 
+		#pragma multi_compile __ UNITY_UI_ALPHACLIP
+
 		#include "UnityCG.cginc"
 		#include "UnityUI.cginc"
 		#include "TMPro_Properties.cginc"
@@ -210,7 +212,9 @@ SubShader {
 			c *= input.texcoord1.z;
 		#endif
 
+		#if UNITY_UI_ALPHACLIP
 			clip(c.a - 0.001);
+		#endif
 
 			return c;
 		}

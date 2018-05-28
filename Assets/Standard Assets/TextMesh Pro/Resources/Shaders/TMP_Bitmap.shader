@@ -49,6 +49,9 @@ SubShader{
 		#pragma vertex vert
 		#pragma fragment frag
 
+		#pragma multi_compile __ UNITY_UI_ALPHACLIP
+
+
 		#include "UnityCG.cginc"
 
 		struct appdata_t {
@@ -125,6 +128,9 @@ SubShader{
 			half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(i.mask.xy)) * i.mask.zw);
 			c *= m.x * m.y;
 
+			#if UNITY_UI_ALPHACLIP
+				clip(c.a - 0.001);
+			#endif
 
 			return c;
 		}

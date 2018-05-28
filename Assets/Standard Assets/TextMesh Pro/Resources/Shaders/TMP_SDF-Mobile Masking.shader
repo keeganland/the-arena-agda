@@ -88,7 +88,9 @@ SubShader {
 		#pragma fragment PixShader
 		#pragma shader_feature __ OUTLINE_ON
 		#pragma shader_feature __ UNDERLAY_ON UNDERLAY_INNER
-		//#pragma shader_feature __ ALPHA_MASK_ON
+
+		#pragma multi_compile __ UNITY_UI_ALPHACLIP
+
 
 		#include "UnityCG.cginc"
 		#include "UnityUI.cginc"
@@ -216,16 +218,18 @@ SubShader {
 		half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(input.mask.xy)) * input.mask.zw);
 		c *= m.x * m.y;
 
-		//#if ALPHA_MASK_ON
 		float a = abs(_MaskInverse - tex2D(_MaskTex, input.texcoord0.zw).a);
 		float t = a + (1 - _MaskWipeControl) * _MaskEdgeSoftness - _MaskWipeControl;
 		a = saturate(t / _MaskEdgeSoftness);
 		c.rgb = lerp(_MaskEdgeColor.rgb*c.a, c.rgb, a);
 		c *= a;
-		//#endif
 
 		#if (UNDERLAY_ON | UNDERLAY_INNER)
 			c *= input.texcoord1.z;
+		#endif
+
+    #if UNITY_UI_ALPHACLIP
+			clip(c.a - 0.001);
 		#endif
 
 			return c;

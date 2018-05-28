@@ -6,6 +6,7 @@
 /[Tt]he[Ww]all_[Dd]ata/
 /[Tt]he[Ww]all.app/
 /Assets/AssetStoreTools*
+/Assets/Standard Assets/TextMesh Pro/
 
 # Visual Studio 2015 cache directory
 /.vs/

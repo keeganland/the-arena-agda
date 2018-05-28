@@ -74,7 +74,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
 		m_nav.SetDestination(m_nav.transform.position);
 	}
 
-	private void OnTriggerEnter(Collider other)
+	public override void OnTriggerEnter(Collider other)
 	{
 		if (_Target[_BoyOrGirl])
 		{
@@ -125,9 +125,8 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
 		}
 	}
 
-	public int Damage;
+	
 	public int Aggro;
-	public GameObject _Sprite;
 
     public GameObject _DashFX;
 

@@ -15,8 +15,10 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
 
     public GameObject attackWarning;
     public int _BoyOrGirl;
+    public GameObject _Sprite;
+    public int Damage;
 
-	private void Start()
+	private void Start() //initialize player objects in all enemies
 	{
         _Target[0] = GameObject.Find("Boy").GetComponent<Transform>();
         _Target[1] = GameObject.Find("Girl").GetComponent<Transform>();
@@ -35,7 +37,7 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
         m_timer += Time.deltaTime;
 	}
 
-    void ChooseTarget () 
+    void ChooseTarget () //enemy will choose target based on random integer
     {
         
         if (!isCollided)
@@ -50,6 +52,9 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
             }
         }
     }
+
+    //abstract methods
+    abstract public void OnTriggerEnter(Collider other);
 
     abstract public void OnTriggerStay(Collider other);
 

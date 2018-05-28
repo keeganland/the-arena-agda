@@ -89,6 +89,7 @@ SubShader {
 		#pragma shader_feature __ OUTLINE_ON
 		#pragma shader_feature __ UNDERLAY_ON UNDERLAY_INNER
 
+		#pragma multi_compile __ UNITY_UI_CLIP_RECT
 		#pragma multi_compile __ UNITY_UI_ALPHACLIP
 
 
@@ -215,8 +216,10 @@ SubShader {
 		#endif
 
 		// Alternative implementation to UnityGet2DClipping with support for softness.
-		half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(input.mask.xy)) * input.mask.zw);
-		c *= m.x * m.y;
+		#if UNITY_UI_CLIP_RECT	
+			half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(input.mask.xy)) * input.mask.zw);
+			c *= m.x * m.y;
+		#endif
 
 		float a = abs(_MaskInverse - tex2D(_MaskTex, input.texcoord0.zw).a);
 		float t = a + (1 - _MaskWipeControl) * _MaskEdgeSoftness - _MaskWipeControl;

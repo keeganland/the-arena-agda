@@ -49,6 +49,7 @@ SubShader {
 		#pragma fragment frag
 		#pragma fragmentoption ARB_precision_hint_fastest
 
+		#pragma multi_compile __ UNITY_UI_CLIP_RECT
 		#pragma multi_compile __ UNITY_UI_ALPHACLIP
 
 
@@ -108,8 +109,10 @@ SubShader {
 			fixed4 c = fixed4(i.color.rgb, i.color.a * tex2D(_MainTex, i.texcoord0).a);
 
 			// Alternative implementation to UnityGet2DClipping with support for softness.
-			half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(i.mask.xy)) * i.mask.zw);
-			c *= m.x * m.y;
+			#if UNITY_UI_CLIP_RECT
+				half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(i.mask.xy)) * i.mask.zw);
+				c *= m.x * m.y;
+			#endif
 			
 			#if UNITY_UI_ALPHACLIP
 				clip(c.a - 0.001);

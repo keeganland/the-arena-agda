@@ -4,21 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class FirstEnemyAttack2 : MonoBehaviour {
-
-	private Rigidbody m_rbEnemy;
-
-    [Header("Targeting and Attacks Data")]
-    private Transform[] _Target = new Transform[2];
-    public int _BoyOrGirl;
+public class FirstEnemyAttack2 : BasicEnemyBehaviour {
 
     public float _AttackCD;
     public float _WarningtoAttackCD;
 
-    private float m_timer; 
-
-	NavMeshAgent m_nav;
-	bool isCollided;
 	private bool m_isDashAttack;
 
 	public GameObject _WarningDash;
@@ -46,23 +36,13 @@ public class FirstEnemyAttack2 : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-		if (!isCollided)
-		{
-			if (_BoyOrGirl == 1 && _Target[_BoyOrGirl].GetComponent<HealthController>().currentHealth == 0 )
-			{
-                _BoyOrGirl = 0;
-			}
-			else if (_BoyOrGirl == 0 && _Target[_BoyOrGirl].GetComponent<HealthController>().currentHealth == 0)
-			{
-                _BoyOrGirl = 1;
-			}
-			if (_Target[_BoyOrGirl] && !m_isDashAttack)
-			{
-				m_nav.SetDestination(_Target[_BoyOrGirl].transform.position);
-			}
-
-		}
-        m_timer += Time.deltaTime;
+        if (!isCollided)
+        {
+          if (_Target[_BoyOrGirl] && !m_isDashAttack)
+          {
+              m_nav.SetDestination(_Target[_BoyOrGirl].transform.position);
+          }
+        }
 
         if (m_warningCastTimeBool == true)
         {
@@ -94,7 +74,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 		m_nav.SetDestination(m_nav.transform.position);
 	}
 
-	private void OnTriggerEnter(Collider other)
+	public override void OnTriggerEnter(Collider other)
 	{
 		if (_Target[_BoyOrGirl])
 		{
@@ -112,7 +92,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 		}
 	}
 
-    private void OnTriggerStay(Collider other)
+    public override void OnTriggerStay(Collider other)
     {
         //Debug.Log(other.name);
         if (_Target[_BoyOrGirl])
@@ -131,7 +111,7 @@ public class FirstEnemyAttack2 : MonoBehaviour {
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public override void OnTriggerExit(Collider other)
 	{
 		if (_Target[_BoyOrGirl])
 		{
@@ -145,9 +125,8 @@ public class FirstEnemyAttack2 : MonoBehaviour {
 		}
 	}
 
-	public int Damage;
+	
 	public int Aggro;
-	public GameObject _Sprite;
 
     public GameObject _DashFX;
 

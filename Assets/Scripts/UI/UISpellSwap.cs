@@ -182,24 +182,25 @@ public class UISpellSwap : MonoBehaviour {
         {
             _SpellCommand.CastSpellQBoy();
         }
-        else _SpellCommand.CastSpellQGirl();
+        else _SpellCommand.CastSpellQGirl(true);
     }
 
     public void BigWisCastedWithMouse()
     {
+        
         if (m_isBoy)
         {
             _SpellCommand.CastSpellWBoy();
         }
-        else _SpellCommand.CastSpellWGirl();
+        else _SpellCommand.CastSpellWGirl(true);
     }
 
     public void SmallQisCastedWithMouse()
     {
-
         if (m_isBoy)
         {
-            _SpellCommand.CastSpellQGirl();
+            
+            _SpellCommand.CastSpellQGirl(false);
         }
         else _SpellCommand.CastSpellQBoy();
     }
@@ -208,14 +209,13 @@ public class UISpellSwap : MonoBehaviour {
     {
         if (m_isBoy)
         {
-            _SpellCommand.CastSpellWGirl();
+            _SpellCommand.CastSpellWGirl(false);
         }
         else _SpellCommand.CastSpellWBoy();
     }
 
     public void PressSmallPicture()
     {
-        Debug.Log("here");
         if (m_isBoy)
         {
             GirlActive();

@@ -6176,7 +6176,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4674a973f5cce854692d0619bd8522ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackWarning: {fileID: 0}
   _BoyOrGirl: 0
+  _Sprite: {fileID: 898819545}
+  Damage: 23
   _AttackCD: 5
   _WarningtoAttackCD: 2
   _WarningDash: {fileID: 749349282}
@@ -6187,9 +6190,7 @@ MonoBehaviour:
   _SpellCasttimer: {fileID: 1874844592}
   m_warningCastTimeBool: 0
   _DashSpeed: 4
-  Damage: 23
   Aggro: 0
-  _Sprite: {fileID: 898819545}
   _DashFX: {fileID: 1057248475072104, guid: 591f18b4b7c4b9d479bd4f15d70c2fb8, type: 2}
 --- !u!195 &1881716623
 NavMeshAgent:
@@ -6230,10 +6231,16 @@ MonoBehaviour:
   enemy: {fileID: 0}
   _DeathSound: {fileID: 0}
   Sprite: {fileID: 898819545}
+  _Slider: {fileID: 0}
+  _DeathAnim: {fileID: 0}
   AggroBoy: 0
   AggroGirl: 0
   isTargeted: 0
   isBoss: 0
+  _CastReviveGameobject: {fileID: 0}
+  _ReviveSlider: {fileID: 0}
+  _ReviveTextTimer: {fileID: 0}
+  _ReviveCD: 0
 --- !u!114 &1881716626
 MonoBehaviour:
   m_ObjectHideFlags: 0

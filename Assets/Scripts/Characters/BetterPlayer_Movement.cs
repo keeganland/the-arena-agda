@@ -60,11 +60,13 @@ public class BetterPlayer_Movement : MonoBehaviour {
             {
                 if(hit.collider.name == "Boy")
                 {
-                    SwapBoy();
+                    if(hit.collider.GetComponent<HealthController>().currentHealth > 0)
+                        SwapBoy();
                 }
                 if (hit.collider.name == "Girl")
                 {
-                    SwapGirl();
+                    if (hit.collider.GetComponent<HealthController>().currentHealth > 0)
+                        SwapGirl();
                 }
             }
         }

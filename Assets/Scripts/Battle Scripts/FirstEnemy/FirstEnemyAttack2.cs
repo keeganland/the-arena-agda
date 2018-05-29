@@ -42,6 +42,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
             _SpellCasttimer.text = System.Math.Round((float)(_WarningtoAttackCD - m_warningCastTime), 2).ToString();
    
         }
+        m_timer += Time.deltaTime;
 	}
 
     private Vector3 m_targetPos;
@@ -91,7 +92,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
                 CancelDashMovement();
                 //Debug.Log("Target in Range " + curTarget.name)
                 if (!m_isDashAttack && m_timer >= _AttackCD)
-                {
+                {                 
                     transform.LookAt(_Target[_BoyOrGirl]);                  
                     StartCoroutine("DashAttack");
                 }

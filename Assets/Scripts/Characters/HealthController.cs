@@ -16,9 +16,20 @@ public class HealthController : MonoBehaviour
 
     private AudioSource m_audioSource;
 
-    public GameObject Sprite;
-    public GameObject _Slider;
-    public GameObject _DeathAnim;
+    public bool m_reviveCoroutine;
+    private bool m_reviveCoroutineisStarted;
+    private float m_castTime;
+    private bool isReviving;
+
+    public GameObject _CastReviveGameobject; //specific for both/girl only
+    public Slider _ReviveSlider;//specific for both/girl only
+    public Text _ReviveTextTimer;
+
+    public int _ReviveCD;
+
+    public GameObject Sprite; // not in Public variable holder as everyone's different
+    public GameObject _Slider; //same
+    public GameObject _DeathAnim; //same
 
     public int AggroBoy = 0;
     public int AggroGirl = 0;
@@ -230,17 +241,6 @@ public class HealthController : MonoBehaviour
         }
     }
 
-    private bool m_reviveCoroutine;
-    private bool m_reviveCoroutineisStarted;
-    private float m_castTime;
-    private bool isReviving;
-
-    public GameObject _CastReviveGameobject;
-    public Slider _ReviveSlider;
-    public Text _ReviveTextTimer;
-
-    public int _ReviveCD;
-
     private IEnumerator ReviveByClicking()
     {
         m_reviveCoroutineisStarted = true;
@@ -273,6 +273,7 @@ public class HealthController : MonoBehaviour
         {
             StartCoroutine("ReviveByClicking");
         }
+
         if (isReviving == true)
         {
             if (m_castTime < _ReviveCD)
@@ -283,10 +284,5 @@ public class HealthController : MonoBehaviour
             _ReviveTextTimer.text = System.Math.Round((float)(_ReviveCD - m_castTime), 2).ToString();
 
         }
-    }
-    public void StartReviveCoroutine()
-    {
-        Debug.Log("Here");
-        m_reviveCoroutine = true;
     }
 }

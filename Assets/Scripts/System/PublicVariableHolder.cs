@@ -5,6 +5,15 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class PublicVariableHolder : MonoBehaviour {
+    [Header("NeverUnload/Characters : BetterPlayer_Movement")]
+    public UISpellSwap _UISpells; //Goes with "PlayerUI" (neverUnload)
+    public Image _BoySelected; //Goes with "BoySelected" (neverUnload)
+    public Image _GirlSelected; //Goes with "GirlSelected" (neverUnload)
+    public ParticleSystem _BoySelectedParticle; //Goes with "BoySelected" (neverUnload)
+    public ParticleSystem _GirlSelectedParticle; //Goes with "GirlSelected" (neverUnload) 
+    public GameObject Boy; //Goes with "Boy" (neverUnload)
+    public GameObject Girl; //Goes with "Girl" (neverUnload)
+
 
     [Header("NeverUnload/PlayerUI : UISpellSwap")]
     public Text _BigTextHP; //Goes with "BigTextHP" (neverUnload)
@@ -48,13 +57,7 @@ public class PublicVariableHolder : MonoBehaviour {
     public BetterPlayer_Movement _GirlMovementScript; //Goes with "Girl" (neverUnload)
     public BetterPlayer_Movement _BoyMovementScript; //Goes with "Boy" (neverUnload)
 
-    void NeverUnload()
-    {
 
-    }
-
-
-	
 	// Update is called once per frame
 	void Update () {
 		

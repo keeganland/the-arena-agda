@@ -61,9 +61,7 @@ public class Bullet : MonoBehaviour {
     }
    
     void OnCollisionEnter (Collision collision)
-    {
-        Debug.Log(collision.gameObject.name);
-            
+    {           
         AggroData aggroData = new AggroData();
         aggroData.aggro = AggroValue;
         MessageHandler msgHandler = collision.gameObject.GetComponent<MessageHandler>();

@@ -8159,7 +8159,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &317858245
 GameObject:
@@ -8251,7 +8251,7 @@ RectTransform:
   - {fileID: 1441697052}
   - {fileID: 704959505}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -25841,7 +25841,7 @@ RectTransform:
   - {fileID: 437550840}
   - {fileID: 628403910}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -40047,7 +40047,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &831381374
 MonoBehaviour:
@@ -40579,7 +40579,7 @@ RectTransform:
   - {fileID: 183107206}
   - {fileID: 1047253410}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -40597,36 +40597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d6f4ee5a491e74ba84f3d5be6db7ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _BigTextHP: {fileID: 70685846}
-  _SmallTextHP: {fileID: 990381428}
-  _BigSpellQ: {fileID: 654530963}
-  _BigSpellW: {fileID: 183161738}
-  _SmallSpellQ: {fileID: 899100125}
-  _SmallSpellW: {fileID: 85112308}
-  _HealImage: {fileID: 21300000, guid: 1686ebaf6fc75c94d9c09baab641679f, type: 3}
-  _ExplosionImage: {fileID: 21300000, guid: 7c5b95148de95de42bd66dad9ecfdb24, type: 3}
-  _ShieldImage: {fileID: 21300000, guid: dfe02519dc4418746b5b9935b7226882, type: 3}
-  _StunImage: {fileID: 21300000, guid: 088eaddc5bc112643a7cca0ec82f4a86, type: 3}
-  _BigPicture: {fileID: 998288602}
-  _SmallPicture: {fileID: 1863681174}
-  _BoySprite: {fileID: 21300002, guid: 4ac5081fab47a034c9ec94d6cf56e90e, type: 3}
-  _GirlSprite: {fileID: 21300104, guid: 4ac5081fab47a034c9ec94d6cf56e90e, type: 3}
-  _SmallSlider: {fileID: 954810400}
-  _BigSlider: {fileID: 976907537}
-  _GirlHealthUI: {fileID: 765572586}
-  _BoyHealthUI: {fileID: 1762563031}
-  _GirlSpellCommandScript: {fileID: 765572582}
-  _SpellCommand: {fileID: 765572582}
-  _BigQCooldowntext: {fileID: 817161660}
-  _BigWCooldowntext: {fileID: 724197719}
-  _SmallQCooldowntext: {fileID: 36121024}
-  _SmallWCooldowntext: {fileID: 1352279389}
-  _CooldownBigQImage: {fileID: 1538236885}
-  _CooldownBigWImage: {fileID: 1490288274}
-  _CooldownSmallQImage: {fileID: 1477576243}
-  _CooldownSmallWImage: {fileID: 209904520}
-  _GirlMovementScript: {fileID: 765572583}
-  _BoyMovementScript: {fileID: 1762563033}
+  _PublicVariableHolder: {fileID: 1546493861}
 --- !u!1 &934019311
 GameObject:
   m_ObjectHideFlags: 0
@@ -47607,7 +47578,7 @@ GameObject:
   - component: {fileID: 998288603}
   - component: {fileID: 998288602}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BigPictureImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47694,7 +47665,7 @@ Transform:
   - {fileID: 1899480619}
   - {fileID: 765572581}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1019480477
 GameObject:
@@ -54454,7 +54425,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -70945,7 +70916,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1413735966
 MonoBehaviour:
@@ -74620,6 +74591,76 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1538236883}
+--- !u!1 &1546493860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1546493862}
+  - component: {fileID: 1546493861}
+  m_Layer: 0
+  m_Name: PublicVariableHolderNeverUnload
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1546493861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1546493860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29e1b88143d2114ea06d0dfbda42739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _BigTextHP: {fileID: 70685846}
+  _SmallTextHP: {fileID: 990381428}
+  _BigSpellQ: {fileID: 654530963}
+  _BigSpellW: {fileID: 183161738}
+  _SmallSpellQ: {fileID: 899100125}
+  _SmallSpellW: {fileID: 85112308}
+  _HealImage: {fileID: 21300000, guid: 1686ebaf6fc75c94d9c09baab641679f, type: 3}
+  _ExplosionImage: {fileID: 21300000, guid: 7c5b95148de95de42bd66dad9ecfdb24, type: 3}
+  _ShieldImage: {fileID: 21300000, guid: dfe02519dc4418746b5b9935b7226882, type: 3}
+  _StunImage: {fileID: 21300000, guid: 088eaddc5bc112643a7cca0ec82f4a86, type: 3}
+  _BigPicture: {fileID: 998288602}
+  _SmallPicture: {fileID: 1863681174}
+  _BoySprite: {fileID: 21300002, guid: 4ac5081fab47a034c9ec94d6cf56e90e, type: 3}
+  _GirlSprite: {fileID: 21300104, guid: 4ac5081fab47a034c9ec94d6cf56e90e, type: 3}
+  _SmallSlider: {fileID: 954810400}
+  _BigSlider: {fileID: 976907537}
+  _GirlHealthUI: {fileID: 765572586}
+  _BoyHealthUI: {fileID: 1762563031}
+  _GirlSpellCommandScript: {fileID: 765572582}
+  _SpellCommand: {fileID: 765572582}
+  _BigQCooldowntext: {fileID: 817161660}
+  _BigWCooldowntext: {fileID: 724197719}
+  _SmallQCooldowntext: {fileID: 36121024}
+  _SmallWCooldowntext: {fileID: 1352279389}
+  _CooldownBigQImage: {fileID: 1538236885}
+  _CooldownBigWImage: {fileID: 1490288274}
+  _CooldownSmallQImage: {fileID: 1477576243}
+  _CooldownSmallWImage: {fileID: 209904520}
+  _GirlMovementScript: {fileID: 765572583}
+  _BoyMovementScript: {fileID: 1762563033}
+--- !u!4 &1546493862
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1546493860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.265132, y: -5.476345, z: -9.676667}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1612125459
 GameObject:
   m_ObjectHideFlags: 0
@@ -78356,7 +78397,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -85643,7 +85684,7 @@ GameObject:
   - component: {fileID: 1863681175}
   - component: {fileID: 1863681174}
   m_Layer: 5
-  m_Name: Image
+  m_Name: SmallPictureImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

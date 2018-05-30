@@ -5,46 +5,48 @@ using UnityEngine.UI;
 
 public class UISpellSwap : MonoBehaviour {
 
-    public Text _BigTextHP;
-    public Text _SmallTextHP;
+    public PublicVariableHolder _PublicVariableHolder;
 
-    public Image _BigSpellQ;
-    public Image _BigSpellW;
-    public Image _SmallSpellQ;
-    public Image _SmallSpellW;
+    private Text _BigTextHP;
+    private Text _SmallTextHP;
 
-    public Sprite _HealImage;
-    public Sprite _ExplosionImage;
-    public Sprite _ShieldImage;
-    public Sprite _StunImage;
+    private Image _BigSpellQ;
+    private Image _BigSpellW;
+    private Image _SmallSpellQ;
+    private Image _SmallSpellW;
 
-    public Image _BigPicture;
-    public Image _SmallPicture;
+    private Sprite _HealImage;
+    private Sprite _ExplosionImage;
+    private Sprite _ShieldImage;
+    private Sprite _StunImage;
 
-    public Sprite _BoySprite;
-    public Sprite _GirlSprite;
+    private Image _BigPicture;
+    private Image _SmallPicture;
 
-    public Slider _SmallSlider;
-    public Slider _BigSlider;
+    private Sprite _BoySprite;
+    private Sprite _GirlSprite;
 
-    public HealthUI _GirlHealthUI;
-    public HealthUI _BoyHealthUI;
+    private Slider _SmallSlider;
+    private Slider _BigSlider;
 
-    public SpellCommand _GirlSpellCommandScript;
-    public SpellCommand _SpellCommand;
+    private HealthUI _GirlHealthUI;
+    private HealthUI _BoyHealthUI;
 
-    public Text _BigQCooldowntext;
-    public Text _BigWCooldowntext;
-    public Text _SmallQCooldowntext;
-    public Text _SmallWCooldowntext;
+    private SpellCommand _GirlSpellCommandScript;
+    private SpellCommand _SpellCommand;
 
-    public Image _CooldownBigQImage;
-    public Image _CooldownBigWImage;
-    public Image _CooldownSmallQImage;
-    public Image _CooldownSmallWImage;
+    private Text _BigQCooldowntext;
+    private Text _BigWCooldowntext;
+    private Text _SmallQCooldowntext;
+    private Text _SmallWCooldowntext;
 
-    public BetterPlayer_Movement _GirlMovementScript;
-    public BetterPlayer_Movement _BoyMovementScript;
+    private Image _CooldownBigQImage;
+    private Image _CooldownBigWImage;
+    private Image _CooldownSmallQImage;
+    private Image _CooldownSmallWImage;
+
+    private BetterPlayer_Movement _GirlMovementScript;
+    private BetterPlayer_Movement _BoyMovementScript;
 
     private int m_bigQcooldowntext;
     private int m_bigWcooldowntext;
@@ -53,6 +55,49 @@ public class UISpellSwap : MonoBehaviour {
 
     private bool m_isBoy;
 
+    private void Start()
+    {
+        _BigTextHP = _PublicVariableHolder._BigTextHP;
+        _SmallTextHP = _PublicVariableHolder._SmallTextHP;
+
+        _BigSpellQ = _PublicVariableHolder._BigSpellQ;
+        _BigSpellW = _PublicVariableHolder._BigSpellW;
+        _SmallSpellQ = _PublicVariableHolder._SmallSpellQ;
+        _SmallSpellW = _PublicVariableHolder._SmallSpellW;
+
+        _HealImage = _PublicVariableHolder._HealImage;
+        _ExplosionImage = _PublicVariableHolder._ExplosionImage;
+        _ShieldImage = _PublicVariableHolder._ShieldImage;
+        _StunImage = _PublicVariableHolder._StunImage;
+
+        _BigPicture = _PublicVariableHolder._BigPicture;
+        _SmallPicture = _PublicVariableHolder._SmallPicture;
+
+        _BoySprite = _PublicVariableHolder._BoySprite;
+        _GirlSprite = _PublicVariableHolder._GirlSprite;
+
+        _SmallSlider = _PublicVariableHolder._SmallSlider;
+        _BigSlider = _PublicVariableHolder._BigSlider;
+
+        _GirlHealthUI = _PublicVariableHolder._GirlHealthUI;
+        _BoyHealthUI = _PublicVariableHolder._BoyHealthUI;
+
+        _GirlSpellCommandScript = _PublicVariableHolder._GirlSpellCommandScript;
+        _SpellCommand = _PublicVariableHolder._SpellCommand;
+
+        _BigQCooldowntext = _PublicVariableHolder._BigQCooldowntext;
+        _BigWCooldowntext = _PublicVariableHolder._BigWCooldowntext;
+        _SmallQCooldowntext = _PublicVariableHolder._SmallQCooldowntext;
+        _SmallWCooldowntext = _PublicVariableHolder._SmallWCooldowntext;
+
+        _CooldownBigQImage = _PublicVariableHolder._CooldownBigQImage;
+        _CooldownBigWImage = _PublicVariableHolder._CooldownBigWImage;
+        _CooldownSmallQImage = _PublicVariableHolder._CooldownSmallQImage;
+        _CooldownSmallWImage = _PublicVariableHolder._CooldownSmallWImage;
+
+        _GirlMovementScript = _PublicVariableHolder._GirlMovementScript;
+        _BoyMovementScript = _PublicVariableHolder._BoyMovementScript;
+    }
 
     private void Update()
     {

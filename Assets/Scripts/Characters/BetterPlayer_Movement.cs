@@ -71,16 +71,25 @@ public class BetterPlayer_Movement : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
+               
                 if(hit.collider.name == "Boy")
                 {
                     Debug.Log("Click");
                     if(hit.collider.GetComponent<HealthController>().currentHealth > 0)
                         SwapBoy();
+                    else if(hit.collider.GetComponent<HealthController>().currentHealth <= 0)
+                    {
+                        Death();
+                    }
                 }
                 if (hit.collider.name == "Girl")
                 {
                     if (hit.collider.GetComponent<HealthController>().currentHealth > 0)
                         SwapGirl();
+                    else if (hit.collider.GetComponent<HealthController>().currentHealth <= 0)
+                    {
+                        Death();
+                    }
                 }
             }
         }
@@ -97,7 +106,6 @@ public class BetterPlayer_Movement : MonoBehaviour {
                     {
                         this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
                         this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
-
 
                         Vector3 newpos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
                         m_agent.SetDestination(newpos);
@@ -118,6 +126,10 @@ public class BetterPlayer_Movement : MonoBehaviour {
                             //OnTriggerEnter should stop character once target is within range
                         }
                     }
+                }
+                if (gameObject.GetComponent<HealthController>().m_reviveCoroutine == true)
+                {
+                    gameObject.GetComponent<HealthController>().StopReviveCoroutine();
                 }
             }
         }
@@ -231,7 +243,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
         }
     }
 
-    public void Death()
+    private void Death()
     {
         Debug.Log("Revive");
         if(gameObject.name == "Girl")

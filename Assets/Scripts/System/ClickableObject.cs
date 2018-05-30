@@ -4,7 +4,6 @@ using UnityEngine.EventSystems;
 
 public class ClickableObject : MonoBehaviour, IPointerClickHandler
 {
-
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)

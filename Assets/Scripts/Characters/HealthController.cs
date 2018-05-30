@@ -241,7 +241,7 @@ public class HealthController : MonoBehaviour
         }
     }
 
-    private IEnumerator ReviveByClicking()
+    public IEnumerator ReviveByClicking()
     {
         m_reviveCoroutineisStarted = true;
         m_castTime = 0;
@@ -284,5 +284,16 @@ public class HealthController : MonoBehaviour
             _ReviveTextTimer.text = System.Math.Round((float)(_ReviveCD - m_castTime), 2).ToString();
 
         }
+    }
+
+    public void StopReviveCoroutine()
+    {
+        StopCoroutine("ReviveByClicking");
+
+        isReviving = false;
+        _CastReviveGameobject.SetActive(false);
+        _ReviveTextTimer.enabled = false;
+        m_reviveCoroutineisStarted = false;
+        m_reviveCoroutine = false;
     }
 }

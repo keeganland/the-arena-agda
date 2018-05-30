@@ -222,7 +222,6 @@ public class UISpellSwap : MonoBehaviour {
 
     public void BigQisCastedWithMouse()
     {
-      
         if (m_isBoy)
         {
             _SpellCommand.CastSpellQBoy();
@@ -232,7 +231,6 @@ public class UISpellSwap : MonoBehaviour {
 
     public void BigWisCastedWithMouse()
     {
-        
         if (m_isBoy)
         {
             _SpellCommand.CastSpellWBoy();

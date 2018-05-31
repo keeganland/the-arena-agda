@@ -74,19 +74,20 @@ public class BetterPlayer_Movement : MonoBehaviour {
                
                 if(hit.collider.name == "Boy")
                 {
-                    Debug.Log("Click");
-                    if(hit.collider.GetComponent<HealthController>().currentHealth > 0)
-                        SwapBoy();
-                    else if(hit.collider.GetComponent<HealthController>().currentHealth <= 0)
+                    
+                    SwapBoy();
+
+                    if(hit.collider.GetComponent<HealthController>().currentHealth <= 0)
                     {
                         Death();
                     }
                 }
                 if (hit.collider.name == "Girl")
                 {
-                    if (hit.collider.GetComponent<HealthController>().currentHealth > 0)
-                        SwapGirl();
-                    else if (hit.collider.GetComponent<HealthController>().currentHealth <= 0)
+                    
+                    SwapGirl();
+
+                    if (hit.collider.GetComponent<HealthController>().currentHealth <= 0)
                     {
                         Death();
                     }
@@ -163,24 +164,30 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
     public void SwapBoy()
     {
-        boyActive = true;
-        _BoySelected.enabled = true;
-        this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
-        this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
-        _UISpells.BoySpellActive();
-        _GirlSelected.enabled = false;
-        _BoySelectedParticle.Play();
-        _GirlSelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        if (_PublicVariableHolder.Boy.GetComponent<HealthController>().currentHealth > 0)
+        {
+            boyActive = true;
+            _BoySelected.enabled = true;
+            this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
+            this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
+            _UISpells.BoySpellActive();
+            _GirlSelected.enabled = false;
+            _BoySelectedParticle.Play();
+            _GirlSelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
     }
 
     public void SwapGirl()
     {
-        boyActive = false;
-        _BoySelected.enabled = false;
-        _GirlSelected.enabled = true;
-        _UISpells.GirlActive();
-        _BoySelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-        _GirlSelectedParticle.Play();
+        if (_PublicVariableHolder.Girl.GetComponent<HealthController>().currentHealth > 0)
+        {
+            boyActive = false;
+            _BoySelected.enabled = false;
+            _GirlSelected.enabled = true;
+            _UISpells.GirlActive();
+            _BoySelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            _GirlSelectedParticle.Play();
+        }
     }
 
     public void CancelMovement()

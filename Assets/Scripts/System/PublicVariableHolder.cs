@@ -5,16 +5,32 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class PublicVariableHolder : MonoBehaviour {
+
+    [Header("NeverUnload/Characters : General Usefull Variables")]
+    public GameObject Boy; //Goes with "Boy" (neverUnload)
+    public GameObject Girl; //Goes with "Girl" (neverUnload)
+
+    [Header("NeverUnload/Characters : HealthControler")]
+    public GameObject _BoySpriteGameObject; //Goes with "Momo" (neverUnload)
+    public GameObject _GirlSpriteGameObject; //Goes with "Bella" (neverUnload)
+    public GameObject _BoySlider; //Goes with "BoySlider" (neverUnload)
+    public GameObject _GirlSlider; //Goes with "GirlSlider" (neverUnload)
+    public GameObject _BoyDeathAnim; //Goes with "BoyDeath" (neverUnload)
+    public GameObject _GirlDeathAnim; //Goes with "GirlDeath" (neverUnload)
+    public GameObject _BoyCastReviveGameobject; //Goes with "BoyReviving" (neverUnload)
+    public GameObject _GirlCastReviveGameobject; //Goes with "GirlReviving" (neverUnload)
+    public Slider _BoyReviveSlider; //Goes with "BoyReviving" (neverUnload)
+    public Slider _GirlReviveSlider; //Goes with "GirlReviving" (neverUnload)
+    public Text _BoyReviveTextTimer; //Goes with "BoyCastingTimer" (neverUnload)
+    public Text _GirlReviveTextTimer; //Goes with "GirlCastingTimer" (neverUnload)
+
     [Header("NeverUnload/Characters : BetterPlayer_Movement")]
     public UISpellSwap _UISpells; //Goes with "PlayerUI" (neverUnload)
     public Image _BoySelected; //Goes with "BoySelected" (neverUnload)
     public Image _GirlSelected; //Goes with "GirlSelected" (neverUnload)
     public ParticleSystem _BoySelectedParticle; //Goes with "BoySelected" (neverUnload)
     public ParticleSystem _GirlSelectedParticle; //Goes with "GirlSelected" (neverUnload) 
-    public GameObject Boy; //Goes with "Boy" (neverUnload)
-    public GameObject Girl; //Goes with "Girl" (neverUnload)
-
-
+   
     [Header("NeverUnload/PlayerUI : UISpellSwap")]
     public Text _BigTextHP; //Goes with "BigTextHP" (neverUnload)
     public Text _SmallTextHP; //Goes with "SmallTextHP" (neverUnload)
@@ -56,10 +72,4 @@ public class PublicVariableHolder : MonoBehaviour {
 
     public BetterPlayer_Movement _GirlMovementScript; //Goes with "Girl" (neverUnload)
     public BetterPlayer_Movement _BoyMovementScript; //Goes with "Boy" (neverUnload)
-
-
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

@@ -6,43 +6,55 @@ using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour
 {
+    public PublicVariableHolder _PublicVariableHolder;
 
     public int totalHealth = 100;
     public int currentHealth;
     public GameObject enemy;
-    private int tempHealth;
-
     public AudioClip _DeathSound;
+    public int AggroBoy = 0;
+    public int AggroGirl = 0;
+    public int _ReviveCD;
+    public bool isBoss; //KeeganNTS: temporary victory conditions. Deprecate with later design
+    public GameObject Sprite;
 
     private AudioSource m_audioSource;
-
-    public bool m_reviveCoroutine;
+    private GameObject _CastReviveGameobject;
+    private Slider _ReviveSlider;
+    private Text _ReviveTextTimer;
+    private GameObject _Slider; 
+    private GameObject _DeathAnim; 
     private bool m_reviveCoroutineisStarted;
     private float m_castTime;
     private bool isReviving;
-
-    public GameObject _CastReviveGameobject; //specific for both/girl only
-    public Slider _ReviveSlider;//specific for both/girl only
-    public Text _ReviveTextTimer;
-
-    public int _ReviveCD;
-
-    public GameObject Sprite; // not in Public variable holder as everyone's different
-    public GameObject _Slider; //same
-    public GameObject _DeathAnim; //same
-
-    public int AggroBoy = 0;
-    public int AggroGirl = 0;
-
-    NavMeshAgent agent; //Why is this here? (it doesn't seem to be used)
+    public bool m_reviveCoroutine;
     public bool isTargeted;
-
-    MessageHandler m_messageHandler;
-
-    public bool isBoss; //KeeganNTS: temporary victory conditions. Deprecate with later design
+    private MessageHandler m_messageHandler;
+    private NavMeshAgent agent; //Why is this here? (it doesn't seem to be used)
+    private int tempHealth;
 
     private void Start()
     {
+        if(gameObject.name == "Boy")
+        {
+            _CastReviveGameobject = _PublicVariableHolder._BoyCastReviveGameobject;
+            _ReviveSlider = _PublicVariableHolder._BoyReviveSlider;
+            _ReviveTextTimer = _PublicVariableHolder._BoyReviveTextTimer;
+            Sprite = _PublicVariableHolder._BoySpriteGameObject;
+            _Slider = _PublicVariableHolder._BoySlider;
+            _DeathAnim = _PublicVariableHolder._BoyDeathAnim;
+        }
+        if (gameObject.name == "Girl")
+        {
+            _CastReviveGameobject = _PublicVariableHolder._GirlCastReviveGameobject;
+            _ReviveSlider = _PublicVariableHolder._GirlReviveSlider;
+            _ReviveTextTimer = _PublicVariableHolder._GirlReviveTextTimer;
+            Sprite = _PublicVariableHolder._GirlSpriteGameObject;
+            _Slider = _PublicVariableHolder._GirlSlider;
+            _DeathAnim = _PublicVariableHolder._GirlDeathAnim;
+        }
+
+
         currentHealth = totalHealth;
         m_messageHandler = GetComponent<MessageHandler>();
 

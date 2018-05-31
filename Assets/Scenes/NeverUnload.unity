@@ -33725,18 +33725,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d5333bd0f304e4cb08c61dcb194b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 500
+  _PublicVariableHolder: {fileID: 1546493861}
+  totalHealth: 40
   currentHealth: 0
   enemy: {fileID: 0}
   _DeathSound: {fileID: 8300000, guid: dc19616d39559be4cb2349abb317568a, type: 3}
   m_reviveCoroutine: 0
-  _CastReviveGameobject: {fileID: 889151732}
-  _ReviveSlider: {fileID: 889151734}
-  _ReviveTextTimer: {fileID: 496050089}
   _ReviveCD: 5
   Sprite: {fileID: 1899480612}
-  _Slider: {fileID: 924782170}
-  _DeathAnim: {fileID: 974235393}
   AggroBoy: 0
   AggroGirl: 0
   isTargeted: 0
@@ -34366,7 +34362,7 @@ GameObject:
   - component: {fileID: 924782171}
   - component: {fileID: 924782172}
   m_Layer: 0
-  m_Name: Slider
+  m_Name: GirlSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38059,7 +38055,7 @@ GameObject:
   - component: {fileID: 974235396}
   - component: {fileID: 974235395}
   m_Layer: 5
-  m_Name: Death
+  m_Name: GirlDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74500,7 +74496,7 @@ GameObject:
   - component: {fileID: 1416999800}
   - component: {fileID: 1416999799}
   m_Layer: 0
-  m_Name: Slider
+  m_Name: BoySlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78202,6 +78198,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29e1b88143d2114ea06d0dfbda42739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _BoySpriteGameObject: {fileID: 1312597365}
+  _GirlSpriteGameObject: {fileID: 1899480612}
+  _BoySlider: {fileID: 1416999798}
+  _GirlSlider: {fileID: 924782170}
+  _BoyDeathAnim: {fileID: 2055500909}
+  _GirlDeathAnim: {fileID: 974235393}
+  _BoyCastReviveGameobject: {fileID: 1550275391}
+  _GirlCastReviveGameobject: {fileID: 889151732}
+  _BoyReviveSlider: {fileID: 1550275394}
+  _GirlReviveSlider: {fileID: 889151734}
+  _BoyReviveTextTimer: {fileID: 100274139}
+  _GirlReviveTextTimer: {fileID: 496050089}
   _UISpells: {fileID: 925707680}
   _BoySelected: {fileID: 1713717679}
   _GirlSelected: {fileID: 606157430}
@@ -85587,18 +85595,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d5333bd0f304e4cb08c61dcb194b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _PublicVariableHolder: {fileID: 1546493861}
   totalHealth: 20
   currentHealth: 0
   enemy: {fileID: 0}
   _DeathSound: {fileID: 8300000, guid: c5e1c7a9bef26df4c81e70f9eb197bae, type: 3}
   m_reviveCoroutine: 0
-  _CastReviveGameobject: {fileID: 1550275391}
-  _ReviveSlider: {fileID: 1550275394}
-  _ReviveTextTimer: {fileID: 100274139}
   _ReviveCD: 5
   Sprite: {fileID: 1312597365}
-  _Slider: {fileID: 1416999798}
-  _DeathAnim: {fileID: 2055500909}
   AggroBoy: 0
   AggroGirl: 0
   isTargeted: 0
@@ -90702,7 +90706,7 @@ GameObject:
   - component: {fileID: 2055500912}
   - component: {fileID: 2055500911}
   m_Layer: 5
-  m_Name: Death
+  m_Name: BoyDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

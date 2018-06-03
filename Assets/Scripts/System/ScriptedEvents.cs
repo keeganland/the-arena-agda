@@ -26,22 +26,25 @@ public class ScriptedEvents : MonoBehaviour {
 
     private int roundNumber;
     private ScreenFader screenFader;
-
-    private void Awake()
+    // Use this for initialization
+    private void Start()
     {
-        enterArena = new UnityAction(EnterArena);
         publicVariableHolder = GameObject.Find("/PublicVariableHolderNeverUnload").GetComponent<PublicVariableHolderneverUnload>();
 
         boyNavMeshAgent = publicVariableHolder.BoynavMeshAgent;
         girlNavMeshAgent = publicVariableHolder.GirlnavMeshAgent;
 
         m_boy = publicVariableHolder.Boy;
-        Debug.Log(m_boy.name);
         m_girl = publicVariableHolder.Girl;
 
         _InitialPositionBoy = _PublicVariableHolderArena._InitialPositionBoy;
         _InitialPositionGirl = _PublicVariableHolderArena._InitialPositionGirl;
         _InitialPositionEnemy = _PublicVariableHolderArena._InitialPositionEnemy;
+    }
+
+    private void Awake()
+    {
+        enterArena = new UnityAction(EnterArena);
     }
 
     private void OnEnable()
@@ -62,8 +65,8 @@ public class ScriptedEvents : MonoBehaviour {
 
     IEnumerator EnterArenaCoroutine () {
 
-        //EventManager.TriggerEvent("StopMoving"); //Player doesn't move with SetDestination if Triggered. 
-        enemy.GetComponent<FirstEnemyAttack2>().isEnemyMoving = true;
+        //EventManager.TriggerEvent("StopMoving");
+        //enemy.GetComponent<FirstEnemyAttack2>().isEnemyMoving = true;
        
         m_boy.transform.position =_InitialPositionBoy.transform.position;
         m_girl.transform.position = _InitialPositionGirl.transform.position;
@@ -71,10 +74,9 @@ public class ScriptedEvents : MonoBehaviour {
 
         boyNavMeshAgent.SetDestination(_PublicVariableHolderArena._EnterArenaWaypointsBoy[0].transform.position);
         girlNavMeshAgent.SetDestination(_PublicVariableHolderArena._EnterArenaWaypointsGirl[0].transform.position);
-        Debug.Log("here");
 
-        yield return new WaitForSeconds(5); 
+        yield return new WaitForSeconds(5);
 
-        //Continue with the Event : -Enemy Enters, -Text Appears, -Release Control to Player.
+
     }
 }

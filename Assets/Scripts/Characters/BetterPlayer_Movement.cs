@@ -42,8 +42,6 @@ public class BetterPlayer_Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        Debug.Log("ReviveStart is" + ReviveStart);
-
         if (PauseMenu.gameIsPaused)
         {
             return;

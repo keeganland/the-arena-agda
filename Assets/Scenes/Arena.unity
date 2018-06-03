@@ -4043,6 +4043,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PublicVariableHolderArena: {fileID: 206583902}
+  _InitialPositionBoy: {fileID: 0}
+  _InitialPositionGirl: {fileID: 0}
+  _InitialPositionEnemy: {fileID: 0}
+  boyNavMeshAgent: {fileID: 0}
+  girlNavMeshAgent: {fileID: 0}
+  m_boy: {fileID: 0}
+  m_girl: {fileID: 0}
   enemy: {fileID: 1881716616}
 --- !u!4 &357521053
 Transform:
@@ -4643,7 +4650,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 745264434}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.204423, y: 0, z: -16.07211}
+  m_LocalPosition: {x: 2.204423, y: 1, z: -16.07211}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 64818954}
@@ -5661,7 +5668,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1628005643}
   m_LocalRotation: {x: -0, y: 0.68291134, z: -0, w: 0.7305013}
-  m_LocalPosition: {x: 0.034422994, y: 0, z: -16.01211}
+  m_LocalPosition: {x: 0.034422994, y: 1, z: -16.01211}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 64818954}
@@ -6917,7 +6924,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2091804058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.89, y: 0, z: 14.07}
+  m_LocalPosition: {x: 0.89, y: 1, z: 14.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 64818954}

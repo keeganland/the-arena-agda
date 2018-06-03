@@ -60,7 +60,7 @@ public class BetterCameraFollow : MonoBehaviour
          *  As it is, it is completely useless and will be modified during a future pass.
          */
 
-        if (target)
+        if (target && !_PublicVariableHolder.StopCamera)
         {
             ManualCamera();
             ChangeCharacters();

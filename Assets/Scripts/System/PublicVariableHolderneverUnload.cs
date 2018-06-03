@@ -4,11 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class PublicVariableHolder : MonoBehaviour {
+public class PublicVariableHolderneverUnload : MonoBehaviour {
 
     [Header("NeverUnload/Characters : General Usefull Variables")]
     public GameObject Boy; //Goes with "Boy" (neverUnload)
     public GameObject Girl; //Goes with "Girl" (neverUnload)
+    public NavMeshAgent BoynavMeshAgent;
+    public NavMeshAgent GirlnavMeshAgent;
+    public bool StopAllActions;
+    public bool StopCamera;
+
+    [Header("NeverUnload/EventManager : ScriptedEvents")]
+    public NavMeshAgent EnemynavMeshAgent;
 
     [Header("NeverUnload/Characters : HealthControler")]
     public GameObject _BoySpriteGameObject; //Goes with "Momo" (neverUnload)

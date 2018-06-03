@@ -21,11 +21,19 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
 
     private float m_warningCastTime;
     public bool m_warningCastTimeBool;
+    public bool isEnemyMoving;
+    private Vector3 m_targetPos;
+    private bool m_dashingAnim;
+
+    public float _DashSpeed = 4;
+    public int Aggro;
+
+    public GameObject _DashFX;
 
     // Update is called once per frame
     void Update ()
     {
-        if (!isCollided)
+        if (!isCollided && isEnemyMoving == true)
         {
           if (_Target[_BoyOrGirl] && !m_isDashAttack)
           {
@@ -44,11 +52,6 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
         }
         m_timer += Time.deltaTime;
 	}
-
-    private Vector3 m_targetPos;
-    private bool m_dashingAnim;
-
-    public float _DashSpeed = 4;
 
     private void FixedUpdate()
     {
@@ -114,11 +117,6 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
 			}
 		}
 	}
-
-	
-	public int Aggro;
-
-    public GameObject _DashFX;
 
     private IEnumerator DashAttack()
     {

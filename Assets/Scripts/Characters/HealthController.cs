@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour
 {
-    public PublicVariableHolder _PublicVariableHolder;
+    public PublicVariableHolderneverUnload _PublicVariableHolder;
 
     public int totalHealth = 100;
     public int currentHealth;

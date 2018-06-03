@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BetterPlayer_Movement : MonoBehaviour {
 
-    public PublicVariableHolder _PublicVariableHolder;
+    public PublicVariableHolderneverUnload _PublicVariableHolder;
 
     private UISpellSwap _UISpells;
     private Image _BoySelected;
@@ -164,7 +164,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
     public void SwapBoy()
     {
-        if (_PublicVariableHolder.Boy.GetComponent<HealthController>().currentHealth > 0)
+        if (_PublicVariableHolder.Boy.GetComponent<HealthController>().currentHealth > 0 && !_PublicVariableHolder.StopAllActions)
         {
             boyActive = true;
             _BoySelected.enabled = true;
@@ -179,7 +179,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
     public void SwapGirl()
     {
-        if (_PublicVariableHolder.Girl.GetComponent<HealthController>().currentHealth > 0)
+        if (_PublicVariableHolder.Girl.GetComponent<HealthController>().currentHealth > 0 && !_PublicVariableHolder.StopAllActions)
         {
             boyActive = false;
             _BoySelected.enabled = false;
@@ -263,6 +263,5 @@ public class BetterPlayer_Movement : MonoBehaviour {
             curTarget = Girl;
             ReviveStart = true;
         }
-    }
-    
+    }  
 }

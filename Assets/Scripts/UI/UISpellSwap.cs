@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UISpellSwap : MonoBehaviour {
 
-    public PublicVariableHolder _PublicVariableHolder;
+    public PublicVariableHolderneverUnload _PublicVariableHolder;
 
     private Text _BigTextHP;
     private Text _SmallTextHP;
@@ -222,54 +222,69 @@ public class UISpellSwap : MonoBehaviour {
 
     public void BigQisCastedWithMouse()
     {
-        if (m_isBoy)
+        if (!_PublicVariableHolder.StopAllActions)
         {
-            _SpellCommand.CastSpellQBoy();
+            if (m_isBoy)
+            {
+                _SpellCommand.CastSpellQBoy();
+            }
+            else _SpellCommand.CastSpellQGirl(true);
         }
-        else _SpellCommand.CastSpellQGirl(true);
     }
 
     public void BigWisCastedWithMouse()
     {
-        if (m_isBoy)
+        if (!_PublicVariableHolder.StopAllActions)
         {
-            _SpellCommand.CastSpellWBoy();
+            if (m_isBoy)
+            {
+                _SpellCommand.CastSpellWBoy();
+            }
+            else _SpellCommand.CastSpellWGirl(true);
         }
-        else _SpellCommand.CastSpellWGirl(true);
     }
 
     public void SmallQisCastedWithMouse()
     {
-        if (m_isBoy)
+        if (!_PublicVariableHolder.StopAllActions)
         {
-            
-            _SpellCommand.CastSpellQGirl(false);
+            if (m_isBoy)
+            {
+
+                _SpellCommand.CastSpellQGirl(false);
+            }
+            else _SpellCommand.CastSpellQBoy();
         }
-        else _SpellCommand.CastSpellQBoy();
     }
 
     public void SmallWisCastedWithMouse()
     {
-        if (m_isBoy)
+        if (!_PublicVariableHolder.StopAllActions)
         {
-            _SpellCommand.CastSpellWGirl(false);
+            if (m_isBoy)
+            {
+                _SpellCommand.CastSpellWGirl(false);
+            }
+            else _SpellCommand.CastSpellWBoy();
         }
-        else _SpellCommand.CastSpellWBoy();
     }
 
     public void PressSmallPicture()
     {
-        if (m_isBoy)
+        if (!_PublicVariableHolder.StopAllActions)
         {
-            GirlActive();
-            _GirlMovementScript.SwapGirl();
-            _BoyMovementScript.SwapGirl();
-        }
-        else
-        {
-            BoySpellActive();
-            _BoyMovementScript.SwapBoy();
-            _GirlMovementScript.SwapBoy();
+            if (m_isBoy)
+            {
+                GirlActive();
+                _GirlMovementScript.SwapGirl();
+                _BoyMovementScript.SwapGirl();
+            }
+            else
+            {
+                BoySpellActive();
+                _BoyMovementScript.SwapBoy();
+                _GirlMovementScript.SwapBoy();
+            }
         }
     }
 }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpellCommand : MonoBehaviour {
+
+    public PublicVariableHolderneverUnload _PublicVariableHolder;
+
     private int player_number;//variable used to hold value of which character is casting a spell
     private bool isWspell = false;
     private bool isQspell = false;
@@ -68,7 +71,7 @@ public class SpellCommand : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetKeyDown(KeyCode.Q)) //could switch to GetButtonDown laster to allow player to customise controls
+        if (Input.GetKeyDown(KeyCode.Q) && !_PublicVariableHolder.StopAllActions) //could switch to GetButtonDown laster to allow player to customise controls
         {
             //Debug.Log("SpellCommand: Q pressed");
             if (this.name == "Girl" && _HealCooldownTimer ==0)
@@ -87,7 +90,7 @@ public class SpellCommand : MonoBehaviour {
             CancelAOEAttack();
 
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && !_PublicVariableHolder.StopAllActions)
         {
             //Debug.Log("SpellCommand: W pressed");
             if (this.name == "Girl" && _AOECooldownTimer == 0)

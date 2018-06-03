@@ -21,7 +21,7 @@ public class StopMoving : MonoBehaviour {
     private void OnDisable()
     {
         EventManager.StopListening("StopMoving", StopPlayerMovement);
-        EventManager.StopListening("StopMoving", StartPlayerMovement);
+        EventManager.StopListening("StartMoving", StartPlayerMovement);
     }
 
     void StopPlayerMovement()

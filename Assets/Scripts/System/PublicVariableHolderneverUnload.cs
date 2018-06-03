@@ -14,9 +14,6 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     public bool StopAllActions;
     public bool StopCamera;
 
-    [Header("NeverUnload/EventManager : ScriptedEvents")]
-    public NavMeshAgent EnemynavMeshAgent;
-
     [Header("NeverUnload/Characters : HealthControler")]
     public GameObject _BoySpriteGameObject; //Goes with "Momo" (neverUnload)
     public GameObject _GirlSpriteGameObject; //Goes with "Bella" (neverUnload)

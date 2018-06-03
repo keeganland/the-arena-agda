@@ -26,11 +26,6 @@ public class ScriptedEvents : MonoBehaviour {
 
     private int roundNumber;
     private ScreenFader screenFader;
-    // Use this for initialization
-    private void Start()
-    {
-      
-    }
 
     private void Awake()
     {
@@ -81,7 +76,5 @@ public class ScriptedEvents : MonoBehaviour {
         yield return new WaitForSeconds(5); 
 
         //Continue with the Event : -Enemy Enters, -Text Appears, -Release Control to Player.
-
-
     }
 }

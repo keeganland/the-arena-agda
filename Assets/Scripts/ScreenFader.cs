@@ -8,7 +8,6 @@ public class ScreenFader : MonoBehaviour {
     Animator m_anim;
     bool m_isFading;
 
-
 	void Start () 
     {
         m_anim = GetComponent<Animator>();	

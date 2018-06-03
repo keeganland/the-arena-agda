@@ -20,8 +20,12 @@ public class DamageDisplayScript : MonoBehaviour {
     public void GetDamageText(Color color, int text)
     {
         _Color = color;
-        m_text.color = color;
-        m_text.text = text.ToString();
+        if (m_text)
+        {
+            m_text.color = color;
+            m_text.text = text.ToString();
+        }
+        if(m_anim)
         m_anim.PlayQueued("DamageDisplay", QueueMode.PlayNow);
     }
 }

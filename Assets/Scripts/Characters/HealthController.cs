@@ -2,33 +2,59 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour
 {
+    public PublicVariableHolderneverUnload _PublicVariableHolder;
 
     public int totalHealth = 100;
     public int currentHealth;
     public GameObject enemy;
-    private int tempHealth;
-
     public AudioClip _DeathSound;
-
-    private AudioSource m_audioSource;
-
-    public GameObject Sprite;
-
     public int AggroBoy = 0;
     public int AggroGirl = 0;
-
-    NavMeshAgent agent; //Why is this here? (it doesn't seem to be used)
-    public bool isTargeted;
-
-    MessageHandler m_messageHandler;
-
+    public int _ReviveCD;
     public bool isBoss; //KeeganNTS: temporary victory conditions. Deprecate with later design
+    public GameObject Sprite;
+
+    private AudioSource m_audioSource;
+    private GameObject _CastReviveGameobject;
+    private Slider _ReviveSlider;
+    private Text _ReviveTextTimer;
+    private GameObject _Slider; 
+    private GameObject _DeathAnim; 
+    private bool m_reviveCoroutineisStarted;
+    private float m_castTime;
+    private bool isReviving;
+    public bool m_reviveCoroutine;
+    public bool isTargeted;
+    private MessageHandler m_messageHandler;
+    private NavMeshAgent agent; //Why is this here? (it doesn't seem to be used)
+    private int tempHealth;
 
     private void Start()
     {
+        if(gameObject.name == "Boy")
+        {
+            _CastReviveGameobject = _PublicVariableHolder._BoyCastReviveGameobject;
+            _ReviveSlider = _PublicVariableHolder._BoyReviveSlider;
+            _ReviveTextTimer = _PublicVariableHolder._BoyReviveTextTimer;
+            Sprite = _PublicVariableHolder._BoySpriteGameObject;
+            _Slider = _PublicVariableHolder._BoySlider;
+            _DeathAnim = _PublicVariableHolder._BoyDeathAnim;
+        }
+        if (gameObject.name == "Girl")
+        {
+            _CastReviveGameobject = _PublicVariableHolder._GirlCastReviveGameobject;
+            _ReviveSlider = _PublicVariableHolder._GirlReviveSlider;
+            _ReviveTextTimer = _PublicVariableHolder._GirlReviveTextTimer;
+            Sprite = _PublicVariableHolder._GirlSpriteGameObject;
+            _Slider = _PublicVariableHolder._GirlSlider;
+            _DeathAnim = _PublicVariableHolder._GirlDeathAnim;
+        }
+
+
         currentHealth = totalHealth;
         m_messageHandler = GetComponent<MessageHandler>();
 
@@ -97,7 +123,7 @@ public class HealthController : MonoBehaviour
         //Will need to change this if statement, pretty sure I need to remove the spawn part
         if (currentHealth <= 0f /*&& GameObject.Find("Cube-Spawn").GetComponent<HealthController>().currentHealth > 0*/)
         {
-            PlaySoundOnKill();
+           // PlaySoundOnKill();
             currentHealth = 0;
 
             if (m_messageHandler)
@@ -125,8 +151,9 @@ public class HealthController : MonoBehaviour
 
             //VictoryScreen.youWon = true;
             //Debug.Log("This is HealthController.cs, youWon should have just flipped");
-            this.gameObject.SetActive(false);//This works
-            Sprite.SetActive(false);
+            //this.gameObject.SetActive(false);//This works
+            if(this.gameObject.tag == "Player")
+            DoDeath();
 
             //agent.enabled = false; //this is from the original script. Don't think it's remotely related
             // transform.position = enemy.GetComponent<enermy_movement>().spawnPoint.position;
@@ -141,6 +168,47 @@ public class HealthController : MonoBehaviour
         {
             this.GetComponent<HealthUI>().UpdateUi(totalHealth, currentHealth);
         }
+
+        if (m_messageHandler)
+        {
+            HealthData hpData = new HealthData();
+            hpData.maxHealth = totalHealth;
+            hpData.curHealth = currentHealth;
+
+            m_messageHandler.GiveMessage(MessageTypes.HEALTHCHANGED, gameObject, hpData);
+        }
+    }
+
+    private void DoDeath() {
+
+        Sprite.GetComponent<SpriteRenderer>().enabled = false;
+        if (_Slider)
+            _Slider.SetActive(false);
+        if (_DeathAnim)
+            _DeathAnim.SetActive(true);
+
+        if (this.gameObject.name == "Boy")
+        {
+            GameObject.Find("Girl").GetComponent<BetterPlayer_Movement>().SwapGirl();
+            gameObject.GetComponent<BetterPlayer_Movement>().SwapGirl();
+        }
+        if (this.gameObject.name == "Girl")
+        {
+            GameObject.Find("Boy").GetComponent<BetterPlayer_Movement>().SwapBoy();
+            gameObject.GetComponent<BetterPlayer_Movement>().SwapBoy();
+        }
+        this.gameObject.GetComponent<BetterPlayer_Movement>().enabled = false;//This works
+    }
+
+    public void UndoDeath()
+    {
+        Sprite.GetComponent<SpriteRenderer>().enabled = true;
+        if (_Slider)
+            _Slider.SetActive(true);
+        if (_DeathAnim)
+            _DeathAnim.SetActive(false);
+
+        this.gameObject.GetComponent<BetterPlayer_Movement>().enabled = true;//This works
 
         if (m_messageHandler)
         {
@@ -183,5 +251,61 @@ public class HealthController : MonoBehaviour
 
             m_messageHandler.GiveMessage(MessageTypes.HEALTHCHANGED, gameObject, hpData);
         }
+    }
+
+    public IEnumerator ReviveByClicking()
+    {
+        m_reviveCoroutineisStarted = true;
+        m_castTime = 0;
+        _CastReviveGameobject.SetActive(true);
+        _ReviveTextTimer.enabled = true;
+        isReviving = true;
+        yield return new WaitForSeconds(_ReviveCD);
+
+        if(this.gameObject.name == "Boy")
+        {
+            GameObject.Find("Girl").GetComponent<HealthController>().currentHealth = GameObject.Find("Girl").GetComponent<HealthController>().totalHealth;
+            GameObject.Find("Girl").GetComponent<HealthController>().UndoDeath();
+        }
+        if (this.gameObject.name == "Girl")
+        {
+            GameObject.Find("Boy").GetComponent<HealthController>().currentHealth = GameObject.Find("Boy").GetComponent<HealthController>().totalHealth;
+            GameObject.Find("Boy").GetComponent<HealthController>().UndoDeath();
+        }
+        isReviving = false;
+        _CastReviveGameobject.SetActive(false);
+        _ReviveTextTimer.enabled = false;
+        m_reviveCoroutineisStarted = false;
+        m_reviveCoroutine = false;
+    }
+
+    private void FixedUpdate()
+    {
+        if(!m_reviveCoroutineisStarted && m_reviveCoroutine)
+        {
+            StartCoroutine("ReviveByClicking");
+        }
+
+        if (isReviving == true)
+        {
+            if (m_castTime < _ReviveCD)
+            {
+                m_castTime += Time.deltaTime;
+            }
+            _ReviveSlider.value = m_castTime / _ReviveCD;
+            _ReviveTextTimer.text = System.Math.Round((float)(_ReviveCD - m_castTime), 2).ToString();
+
+        }
+    }
+
+    public void StopReviveCoroutine()
+    {
+        StopCoroutine("ReviveByClicking");
+
+        isReviving = false;
+        _CastReviveGameobject.SetActive(false);
+        _ReviveTextTimer.enabled = false;
+        m_reviveCoroutineisStarted = false;
+        m_reviveCoroutine = false;
     }
 }

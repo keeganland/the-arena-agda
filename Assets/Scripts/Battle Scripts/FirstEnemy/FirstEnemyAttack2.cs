@@ -21,11 +21,19 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
 
     private float m_warningCastTime;
     public bool m_warningCastTimeBool;
+    public bool isEnemyMoving;
+    private Vector3 m_targetPos;
+    private bool m_dashingAnim;
+
+    public float _DashSpeed = 4;
+    public int Aggro;
+
+    public GameObject _DashFX;
 
     // Update is called once per frame
     void Update ()
     {
-        if (!isCollided)
+        if (!isCollided && isEnemyMoving == true)
         {
           if (_Target[_BoyOrGirl] && !m_isDashAttack)
           {
@@ -42,12 +50,8 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
             _SpellCasttimer.text = System.Math.Round((float)(_WarningtoAttackCD - m_warningCastTime), 2).ToString();
    
         }
+        m_timer += Time.deltaTime;
 	}
-
-    private Vector3 m_targetPos;
-    private bool m_dashingAnim;
-
-    public float _DashSpeed = 4;
 
     private void FixedUpdate()
     {
@@ -91,7 +95,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
                 CancelDashMovement();
                 //Debug.Log("Target in Range " + curTarget.name)
                 if (!m_isDashAttack && m_timer >= _AttackCD)
-                {
+                {                 
                     transform.LookAt(_Target[_BoyOrGirl]);                  
                     StartCoroutine("DashAttack");
                 }
@@ -113,11 +117,6 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
 			}
 		}
 	}
-
-	
-	public int Aggro;
-
-    public GameObject _DashFX;
 
     private IEnumerator DashAttack()
     {

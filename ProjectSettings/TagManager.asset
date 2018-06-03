@@ -15,6 +15,7 @@ TagManager:
   - TargetRange
   - wall
   - RangeIndicator
+  - ScreenFader
   layers:
   - Default
   - TransparentFX

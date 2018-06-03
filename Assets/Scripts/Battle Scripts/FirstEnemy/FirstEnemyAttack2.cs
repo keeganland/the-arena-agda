@@ -21,7 +21,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
 
     private float m_warningCastTime;
     public bool m_warningCastTimeBool;
-    public bool isEnemyMoving;
+    public bool isEnemyMoving = true;
     private Vector3 m_targetPos;
     private bool m_dashingAnim;
 
@@ -30,9 +30,16 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
 
     public GameObject _DashFX;
 
+
+    private void Start()
+    {
+        _BoyOrGirl = Random.Range(0, 2);
+        isEnemyMoving = true;
+    }
     // Update is called once per frame
     void Update ()
     {
+     
         if (!isCollided && isEnemyMoving == true)
         {
           if (_Target[_BoyOrGirl] && !m_isDashAttack)

@@ -20,8 +20,8 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
 
 	private void Start() //initialize player objects in all enemies
 	{
-        _Target[0] = GameObject.Find("Boy").GetComponent<Transform>();
-        _Target[1] = GameObject.Find("Girl").GetComponent<Transform>();
+        _Target[0] = GameObject.Find("/Characters/Boy").GetComponent<Transform>();
+        _Target[1] = GameObject.Find("/Characters/Girl").GetComponent<Transform>();
 
         m_rbEnemy = GetComponent<Rigidbody>();
         m_nav = GetComponent<NavMeshAgent>();

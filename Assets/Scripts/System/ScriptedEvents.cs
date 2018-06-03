@@ -62,7 +62,7 @@ public class ScriptedEvents : MonoBehaviour {
 
     IEnumerator EnterArenaCoroutine () {
 
-        EventManager.TriggerEvent("StopMoving"); //Player doesn't move with SetDestination if Triggered. 
+        //EventManager.TriggerEvent("StopMoving"); //Player doesn't move with SetDestination if Triggered. 
         enemy.GetComponent<FirstEnemyAttack2>().isEnemyMoving = true;
        
         m_boy.transform.position =_InitialPositionBoy.transform.position;

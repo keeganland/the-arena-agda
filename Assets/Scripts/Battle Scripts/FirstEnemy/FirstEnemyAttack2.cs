@@ -30,8 +30,15 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
 
     public GameObject _DashFX;
 
-    // Update is called once per frame
-    void Update ()
+	private void Start()
+	{
+        isEnemyMoving = true;
+        //_Target[0] = GameObject.Find("Boy").GetComponent<Transform>();
+        //_Target[1] = GameObject.Find("Girl").GetComponent<Transform>();
+	}
+
+	// Update is called once per frame
+	void Update ()
     {
         if (!isCollided && isEnemyMoving == true)
         {

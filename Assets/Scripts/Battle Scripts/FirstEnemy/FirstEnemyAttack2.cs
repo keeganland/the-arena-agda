@@ -30,11 +30,16 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
 
     public GameObject _DashFX;
 
+    public Transform[] _NewTargets;
+    private NavMeshAgent meshAgent;
 
     private void Start()
     {
+        meshAgent = GetComponent<NavMeshAgent>();
+        _NewTargets[0] = GameObject.Find("/Characters/Boy").GetComponent<Transform>();
         _BoyOrGirl = Random.Range(0, 2);
         isEnemyMoving = true;
+        meshAgent.SetDestination(_NewTargets[0].transform.position);
     }
     // Update is called once per frame
     void Update ()

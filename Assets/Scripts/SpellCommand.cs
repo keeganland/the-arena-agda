@@ -2,29 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellCommand : PlayerSpells {
-
+public class SpellCommand : MonoBehaviour {
+    private int player_number;//variable used to hold value of which character is casting a spell
+    private bool isWspell = false;
+    private bool isQspell = false;
     private Vector3 AOEpos;
     private Vector3 Healpos;
 
+    private bool isQGirlforced;
+    private bool isWGirlforced;
+
     public int Healing;
     public GameObject Shield;
-
     public GameObject AOE;
     public GameObject RangeIndicatorAOE;
-
     public GameObject AttackIndicatorAOE;
     public GameObject AttackIndicatorHeal;
     public GameObject RangeIndicatorHeal;
     public GameObject Heal;
     public GameObject RangeIndicatorShield;
 
-   
+    public ParticleSystem _Qselected;
+    public ParticleSystem _Wselected;
+    public ParticleSystem _SmallQselected;
+    public ParticleSystem _SmallWselected;
 
     /*Timer variables:*/
     public float _AOECooldown;
     private float _AOECooldownTimer = 0;
-
     public float _AOEUITimer = 8; //for Alex
     public float _HealCooldown;
     private float _HealCooldownTimer = 0;
@@ -54,12 +59,16 @@ public class SpellCommand : PlayerSpells {
         {
             _StunCooldown = 5;
         }
+
+        _Qselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        _Wselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        _SmallQselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        _SmallWselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
     // Update is called once per frame
-    void Update () 
-    {
-        if (Input.GetKeyDown(KeyCode.Q)) //could switch to GetButtonDown later to allow player to customise controls
+    void Update () {
+        if (Input.GetKeyDown(KeyCode.Q)) //could switch to GetButtonDown laster to allow player to customise controls
         {
             //Debug.Log("SpellCommand: Q pressed");
             if (this.name == "Girl" && _HealCooldownTimer ==0)
@@ -71,7 +80,7 @@ public class SpellCommand : PlayerSpells {
             }
             if(this.name == "Boy" && _ShieldCooldownTimer == 0)
             {
-                isWspell = true;
+                isQspell = true;
                 if (_Qselected)
                     _Qselected.Play();
             }
@@ -145,9 +154,10 @@ public class SpellCommand : PlayerSpells {
 
     private void CastSpellQ() //used to call the spells connected to "Q"
     {
-       
+   
         if (isQspell)
         {
+
             player_number = CharacterSelect();
             //Debug.Log("SpellCommand: Q/player_number = " + player_number);
             //Boy spell called by Q (Shield)
@@ -177,14 +187,11 @@ public class SpellCommand : PlayerSpells {
                         }
                     }
                 }
-                else
-                {
-                  
-                }
+           
                 Debug.Log("SpellCommand: Boy cast Q");
             }
             //Girl spell called by Q (Heal)
-            if ((player_number == 1 || isQGirlforced) && _HealCooldownTimer == 0 )
+            if ((player_number == 1 && _HealCooldownTimer == 0) || (isQGirlforced && _HealCooldownTimer == 0)) //What is "isQGirlForeced" and is the _HealCooldownTimer == 0 part necessary? This is checked in update
             {
                 if (this.gameObject.name == "Girl" ) //checks if girl is casting and if this gamebobject is the girl
                 {
@@ -214,10 +221,7 @@ public class SpellCommand : PlayerSpells {
                         }
                     }
                 }
-                else
-                {
-                    return;
-                }
+           
                 Debug.Log("SpellCommand: Girl cast Q");
             }
         }
@@ -235,16 +239,14 @@ public class SpellCommand : PlayerSpells {
                 if (this.gameObject.name == "Boy") //checks if boy is casting and if this gamebobject is the boy
                 {
                     //Spell goes here
+                    isWspell = false;
                    
                 }
-                else
-                {
-                   
-                }
+            
                 Debug.Log("SpellCommand: Boy cast W");
             }
             //Girl spell called by W (AOE)
-            if ((player_number == 1 && _AOECooldownTimer ==0) || (isWGirlforced && _AOECooldownTimer == 0))
+            if ((player_number == 1 && _AOECooldownTimer ==0) || (isWGirlforced && _AOECooldownTimer == 0)) //What is "isWGirlforced"? And again, the timer is checked in update
             {
                 
                 if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
@@ -274,15 +276,26 @@ public class SpellCommand : PlayerSpells {
                         }
                     }
                 }
-                else
-                {
-                    return;
-                }
+             
             }
         }
     }
 
-
+    private int CharacterSelect()//Determines which character is active
+    {
+        if (GameObject.FindWithTag("Player").GetComponent<BetterPlayer_Movement>().boyActive == true)
+        {
+            return 0;
+        }
+        else if (GameObject.FindWithTag("Player").GetComponent<BetterPlayer_Movement>().boyActive == false)
+        {
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
+    }
 
     public void CancelAOEAttack()
     {
@@ -290,6 +303,7 @@ public class SpellCommand : PlayerSpells {
         isWspell = false;
         if(_Wselected)
         _Wselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        _SmallWselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         if (RangeIndicatorAOE)
             RangeIndicatorAOE.SetActive(false);
         if(AttackIndicatorAOE)
@@ -302,27 +316,43 @@ public class SpellCommand : PlayerSpells {
         isQspell = false;
         if(_Qselected)
     _Qselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-    if (RangeIndicatorHeal)
+        _SmallQselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        if (RangeIndicatorHeal)
             RangeIndicatorHeal.SetActive(false);
         if (AttackIndicatorHeal)
             AttackIndicatorHeal.SetActive(false);
     }
 
-    public void CastSpellQGirl()
+    public void CastSpellQGirl(bool isBig) //When is this used? What does this do?
     {
+        Debug.Log(isBig);
+        if (isBig)
+        {
+            _Qselected.Play();
+        }
+        else {
+            Debug.Log("I am here");
+            _SmallQselected.Play();
+        }
         isQGirlforced = true;
-        isQspell = true;       
+        isQspell = true;   //This is done in update?     
         CancelAOEAttack();
-        _Qselected.Play();
      
     }
 
-    public void CastSpellWGirl()
+    public void CastSpellWGirl(bool isBig)
     {
+        if (isBig)
+        {
+            _Wselected.Play();
+        }
+        else
+        {
+            _SmallWselected.Play();
+        }
         isWGirlforced = true;
         Debug.Log(isWGirlforced);
         isWspell = true;
-        _Wselected.Play();
         CancelHealAttack();
     }
 

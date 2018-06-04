@@ -25,7 +25,7 @@ public class SecondEnemyAttack : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	/*void Update () {
 		
         if(time>= spawnCD)
         {
@@ -33,6 +33,6 @@ public class SecondEnemyAttack : MonoBehaviour {
             GameObject sheep2 = Instantiate(SheepPrefab);
             GameObject sheep3 = Instantiate(SheepPrefab);
         }
-	}
+	}*/
 }
 

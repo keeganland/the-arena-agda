@@ -71,7 +71,7 @@ public class SpellCommand : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetKeyDown(KeyCode.Q) && !_PublicVariableHolder.StopAllActions) //could switch to GetButtonDown laster to allow player to customise controls
+        if (Input.GetKeyDown(KeyCode.Q) && !_PublicVariableHolder.StopAllActions) //could switch to GetButtonDown later to allow player to customise controls
         {
             //Debug.Log("SpellCommand: Q pressed");
             if (this.name == "Girl" && _HealCooldownTimer ==0)

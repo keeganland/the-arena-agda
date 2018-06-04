@@ -18,10 +18,10 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
     public GameObject _Sprite;
     public int Damage;
 
-	private void Start() //initialize player objects in all enemies
+	protected void Start() //initialize player objects in all enemies
 	{
-        _Target[0] = GameObject.Find("Boy").GetComponent<Transform>();
-        _Target[1] = GameObject.Find("Girl").GetComponent<Transform>();
+        _Target[0] = GameObject.Find("/Characters/Boy").GetComponent<Transform>();
+        _Target[1] = GameObject.Find("/Characters/Girl").GetComponent<Transform>();
 
         m_rbEnemy = GetComponent<Rigidbody>();
         m_nav = GetComponent<NavMeshAgent>();
@@ -30,11 +30,13 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update () 
+	protected void Update () 
     {
         ChooseTarget();
+        //RotateForAttack();
 
         m_timer += Time.deltaTime;
+        //Debug.Log("Update is being called!");
 	}
 
     void ChooseTarget () //enemy will choose target based on random integer
@@ -50,6 +52,39 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
             {
                 _BoyOrGirl = 1;
             }
+        }
+    }
+
+    void RotateForAttack () 
+    {
+        Vector3 direction = _Target[_BoyOrGirl].transform.position - transform.position;
+        float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
+
+        transform.LookAt(_Target[_BoyOrGirl].transform);
+
+        int rotation = 0;
+
+        if (45 <= transform.eulerAngles.y && transform.eulerAngles.y < 135)
+        {
+            rotation = 3;
+        }
+        else if (0 <= transform.eulerAngles.y && transform.eulerAngles.y < 45)
+        {
+            rotation = 1;
+        }
+        else if (225 <= transform.eulerAngles.y && transform.eulerAngles.y < 315)
+        {
+            rotation = 4;
+        }
+        else
+        {
+            rotation = 2;
+        }
+
+        if (rotation != 0)
+        {
+            if (_Sprite)
+                _Sprite.GetComponent<SpriteScript2>().ForcePlayerRotation(rotation);
         }
     }
 

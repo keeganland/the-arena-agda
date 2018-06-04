@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour {
         {
             return;
         }
-            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy"))
+            if ((other.gameObject.CompareTag("Player") && _SpellCaster.tag != "Player") || other.gameObject.CompareTag("Enemy"))
             {
                 MessageHandler msgHandler = other.GetComponent<MessageHandler>();
                 if (!isHeal)
@@ -61,9 +61,7 @@ public class Bullet : MonoBehaviour {
     }
    
     void OnCollisionEnter (Collision collision)
-    {
-        Debug.Log(collision.gameObject.name);
-            
+    {           
         AggroData aggroData = new AggroData();
         aggroData.aggro = AggroValue;
         MessageHandler msgHandler = collision.gameObject.GetComponent<MessageHandler>();

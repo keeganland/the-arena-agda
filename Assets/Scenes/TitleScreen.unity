@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 37645397}
   - component: {fileID: 37645399}
   - component: {fileID: 37645398}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 132631933}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Tutorial Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,87 +222,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &161600503
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 161600507}
-  - component: {fileID: 161600506}
-  - component: {fileID: 161600505}
-  - component: {fileID: 161600504}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &161600504
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 161600503}
-  m_Enabled: 1
---- !u!124 &161600505
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 161600503}
-  m_Enabled: 1
---- !u!20 &161600506
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 161600503}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 1
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &161600507
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 161600503}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &166223225
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +233,7 @@ GameObject:
   - component: {fileID: 166223229}
   - component: {fileID: 166223228}
   - component: {fileID: 166223227}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Introduction Cutscene Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,7 +354,7 @@ GameObject:
   - component: {fileID: 209631191}
   - component: {fileID: 209631193}
   - component: {fileID: 209631192}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Game Title Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +478,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &318374319
 GameObject:
@@ -572,7 +491,7 @@ GameObject:
   - component: {fileID: 318374322}
   - component: {fileID: 318374321}
   - component: {fileID: 318374320}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Title Screen Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +553,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 101
   m_TargetDisplay: 0
 --- !u!224 &318374323
 RectTransform:
@@ -667,7 +586,7 @@ GameObject:
   - component: {fileID: 437053771}
   - component: {fileID: 437053770}
   - component: {fileID: 437053769}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Quit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -789,7 +708,7 @@ GameObject:
   - component: {fileID: 478365088}
   - component: {fileID: 478365087}
   - component: {fileID: 478365086}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -921,7 +840,7 @@ GameObject:
   - component: {fileID: 678272957}
   - component: {fileID: 678272959}
   - component: {fileID: 678272958}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -995,7 +914,7 @@ GameObject:
   - component: {fileID: 824967919}
   - component: {fileID: 824967921}
   - component: {fileID: 824967920}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1069,7 +988,7 @@ GameObject:
   - component: {fileID: 981872788}
   - component: {fileID: 981872790}
   - component: {fileID: 981872789}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Background Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1139,7 +1058,7 @@ GameObject:
   - component: {fileID: 1020525522}
   - component: {fileID: 1020525524}
   - component: {fileID: 1020525523}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1214,7 +1133,7 @@ GameObject:
   - component: {fileID: 1045496241}
   - component: {fileID: 1045496240}
   - component: {fileID: 1045496239}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Boss Demo Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1336,7 +1255,7 @@ GameObject:
   - component: {fileID: 1150655631}
   - component: {fileID: 1150655630}
   - component: {fileID: 1150655629}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: How to Play Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1468,7 +1387,7 @@ GameObject:
   - component: {fileID: 1324746206}
   - component: {fileID: 1324746208}
   - component: {fileID: 1324746207}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Tutorial Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1558,7 +1477,7 @@ GameObject:
   - component: {fileID: 1538487712}
   - component: {fileID: 1538487714}
   - component: {fileID: 1538487713}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1633,7 +1552,7 @@ GameObject:
   - component: {fileID: 1595020869}
   - component: {fileID: 1595020868}
   - component: {fileID: 1595020867}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: NPC Demo Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1753,7 +1672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1686626926}
   - component: {fileID: 1686626927}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1805,7 +1724,7 @@ GameObject:
   - component: {fileID: 1764723493}
   - component: {fileID: 1764723495}
   - component: {fileID: 1764723494}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1879,7 +1798,7 @@ GameObject:
   - component: {fileID: 1784653897}
   - component: {fileID: 1784653899}
   - component: {fileID: 1784653898}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1954,7 +1873,7 @@ GameObject:
   - component: {fileID: 1920208011}
   - component: {fileID: 1920208010}
   - component: {fileID: 1920208009}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Arena Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}

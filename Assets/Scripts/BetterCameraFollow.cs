@@ -5,6 +5,8 @@ using System.Linq;
 
 public class BetterCameraFollow : MonoBehaviour
 {
+    public PublicVariableHolderneverUnload _PublicVariableHolder;
+
     public List<Transform> targets;
     public float _Speed = 1.0f;
     public Transform target;
@@ -26,6 +28,9 @@ public class BetterCameraFollow : MonoBehaviour
     private Camera m_cam;
     private bool targetsTooFar; //variable created to carry the "neutral area" value
 
+    private bool cutSceneMode = false;
+
+
     public void OnEnable()
     {
         EventManager.StartListening("cleanup", ReinitializePotentialTargets);
@@ -38,7 +43,7 @@ public class BetterCameraFollow : MonoBehaviour
         EventManager.StopListening("setup", ReinitializePotentialTargets);
     }
 
-    void Start()
+    private void Start()
     {
         m_potentialcameraTargets = (CameraTarget[])Object.FindObjectsOfType(typeof(CameraTarget));
 
@@ -49,7 +54,7 @@ public class BetterCameraFollow : MonoBehaviour
     }
 
 
-    void Update()
+    private void Update()
     {
         /*
          *  Keegan's NTS: 
@@ -58,7 +63,7 @@ public class BetterCameraFollow : MonoBehaviour
          *  As it is, it is completely useless and will be modified during a future pass.
          */
 
-        if (target)
+        if (target && !_PublicVariableHolder.StopCamera)
         {
             ManualCamera();
             ChangeCharacters();
@@ -282,7 +287,18 @@ public class BetterCameraFollow : MonoBehaviour
         potentialCameraTargetList = new List<CameraTarget>();
         for (int i = 0; i < potentialCameraTargetArray.Length; i++)
         {
+            Debug.Log("Potential camera target # " + i + ": " + potentialCameraTargetArray[i].name);
             potentialCameraTargetList.Add(potentialCameraTargetArray[i]);
         }
+    }
+
+    public bool getCutsceneMode()
+    {
+        return cutSceneMode;
+    }
+
+    public void setCutsceneMode(bool x)
+    {
+        cutSceneMode = x;
     }
 }

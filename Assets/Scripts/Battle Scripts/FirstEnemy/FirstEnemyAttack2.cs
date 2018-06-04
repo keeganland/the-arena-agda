@@ -21,11 +21,33 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
 
     private float m_warningCastTime;
     public bool m_warningCastTimeBool;
+    public bool isEnemyMoving = true;
+    private Vector3 m_targetPos;
+    private bool m_dashingAnim;
 
-    // Update is called once per frame
-    void Update ()
+    public float _DashSpeed = 4;
+    public int Aggro;
+
+    public GameObject _DashFX;
+
+    public Transform[] _NewTargets;
+    private NavMeshAgent meshAgent;
+
+    new void Start()
     {
-        if (!isCollided)
+        base.Start();
+        //meshAgent = GetComponent<NavMeshAgent>();
+        //_NewTargets[0] = GameObject.Find("/Characters/Boy").GetComponent<Transform>();
+        _BoyOrGirl = Random.Range(0, 2);
+        isEnemyMoving = true;
+        //meshAgent.SetDestination(_NewTargets[0].transform.position);
+    }
+    // Update is called once per frame
+    new void Update ()
+    {
+        base.Update();
+     
+        if (!isCollided && isEnemyMoving == true)
         {
           if (_Target[_BoyOrGirl] && !m_isDashAttack)
           {
@@ -42,12 +64,8 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
             _SpellCasttimer.text = System.Math.Round((float)(_WarningtoAttackCD - m_warningCastTime), 2).ToString();
    
         }
+        m_timer += Time.deltaTime;
 	}
-
-    private Vector3 m_targetPos;
-    private bool m_dashingAnim;
-
-    public float _DashSpeed = 4;
 
     private void FixedUpdate()
     {
@@ -91,7 +109,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
                 CancelDashMovement();
                 //Debug.Log("Target in Range " + curTarget.name)
                 if (!m_isDashAttack && m_timer >= _AttackCD)
-                {
+                {                 
                     transform.LookAt(_Target[_BoyOrGirl]);                  
                     StartCoroutine("DashAttack");
                 }
@@ -114,44 +132,11 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
 		}
 	}
 
-	
-	public int Aggro;
-
-    public GameObject _DashFX;
-
     private IEnumerator DashAttack()
     {
 		m_isDashAttack = true;
 
-		Vector3 direction = _Target[_BoyOrGirl].transform.position - transform.position;
-		float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
-
-		transform.LookAt(_Target[_BoyOrGirl].transform);
-
-		int rotation = 0;
-
-		if (45 <= transform.eulerAngles.y && transform.eulerAngles.y < 135)
-		{
-			rotation = 3;
-		}
-		else if (0 <= transform.eulerAngles.y && transform.eulerAngles.y < 45)
-		{
-			rotation = 1;
-		}
-		else if (225 <= transform.eulerAngles.y && transform.eulerAngles.y < 315)
-		{
-			rotation = 4;
-		}
-		else
-		{
-			rotation = 2;
-		}
-
-		if (rotation != 0)
-		{
-            if(_Sprite)
-			_Sprite.GetComponent<SpriteScript2>().ForcePlayerRotation(rotation);
-		}
+		
 
         //Look toward target and draw "warning" line
         _WarningDash.SetActive(true);
@@ -190,10 +175,9 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
         m_dashingAnim = false;
 
         m_nav.SetDestination(transform.position);
+        Destroy(fx,1);
 
-        yield return new WaitForSeconds(_WarningtoAttackCD);
-
-        Destroy(fx);        
+        yield return new WaitForSeconds(_WarningtoAttackCD);        
 
         _BoyOrGirl = Random.Range(0, 2);
 

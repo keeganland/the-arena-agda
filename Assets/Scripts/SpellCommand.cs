@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpellCommand : MonoBehaviour {
+
+    public PublicVariableHolderneverUnload _PublicVariableHolder;
+
     private int player_number;//variable used to hold value of which character is casting a spell
     private bool isWspell = false;
     private bool isQspell = false;
@@ -24,11 +27,13 @@ public class SpellCommand : MonoBehaviour {
 
     public ParticleSystem _Qselected;
     public ParticleSystem _Wselected;
+    public ParticleSystem _SmallQselected;
+    public ParticleSystem _SmallWselected;
 
     /*Timer variables:*/
     public float _AOECooldown;
     private float _AOECooldownTimer = 0;
-    public float _AOEUITimer; //for Alex
+    public float _AOEUITimer = 8; //for Alex
     public float _HealCooldown;
     private float _HealCooldownTimer = 0;
     public float _HealUITimer; //for Alex
@@ -60,11 +65,13 @@ public class SpellCommand : MonoBehaviour {
 
         _Qselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         _Wselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        _SmallQselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        _SmallWselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetKeyDown(KeyCode.Q)) //could switch to GetButtonDown laster to allow player to customise controls
+        if (Input.GetKeyDown(KeyCode.Q) && !_PublicVariableHolder.StopAllActions) //could switch to GetButtonDown laster to allow player to customise controls
         {
             //Debug.Log("SpellCommand: Q pressed");
             if (this.name == "Girl" && _HealCooldownTimer ==0)
@@ -83,7 +90,7 @@ public class SpellCommand : MonoBehaviour {
             CancelAOEAttack();
 
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && !_PublicVariableHolder.StopAllActions)
         {
             //Debug.Log("SpellCommand: W pressed");
             if (this.name == "Girl" && _AOECooldownTimer == 0)
@@ -150,9 +157,10 @@ public class SpellCommand : MonoBehaviour {
 
     private void CastSpellQ() //used to call the spells connected to "Q"
     {
-       
+   
         if (isQspell)
         {
+
             player_number = CharacterSelect();
             //Debug.Log("SpellCommand: Q/player_number = " + player_number);
             //Boy spell called by Q (Shield)
@@ -168,29 +176,25 @@ public class SpellCommand : MonoBehaviour {
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit))
                     {
-                         Vector3 directiondifference = hit.transform.position - this.transform.position;
-                        //this.transform.LookAt(hit.transform, direction);
-                        Instantiate(Shield as GameObject);// This creates a shield in the place that I originally placed it in scene
-                        //Shield.SetActive(true);
-                        //Destroy(Shield, 6.0f);
-                        //Shield.SetActive(false);
-                        _ShieldCooldownTimer = _ShieldCooldown;
-                        isQspell = false;
+                        if (hit.collider.tag == "RangeIndicator")
+                        {
+                            Vector3 directiondifference = hit.transform.position - this.transform.position;
+                            //this.transform.LookAt(hit.transform, direction);
+                            //Instantiate(Shield as GameObject);// This creates a shield in the place that I originally placed it in scene
+                            //Shield.SetActive(true);
                             /* Notes:
                              * Want to create some sort of targetting arrow that follows mouse on first click
                              * Then spawn shield in the direction of the arrow on second click
                              * Leave shield where it is, don't need to move it
                              */
+                        }
                     }
                 }
-                else
-                {
-
-                }
+           
                 Debug.Log("SpellCommand: Boy cast Q");
             }
             //Girl spell called by Q (Heal)
-            if ((player_number == 1 || isQGirlforced) && _HealCooldownTimer == 0 ) //What is "isQGirlForeced" and is the _HealCooldownTimer == 0 part necessary? This is checked in update
+            if ((player_number == 1 && _HealCooldownTimer == 0) || (isQGirlforced && _HealCooldownTimer == 0)) //What is "isQGirlForeced" and is the _HealCooldownTimer == 0 part necessary? This is checked in update
             {
                 if (this.gameObject.name == "Girl" ) //checks if girl is casting and if this gamebobject is the girl
                 {
@@ -220,10 +224,7 @@ public class SpellCommand : MonoBehaviour {
                         }
                     }
                 }
-                else
-                {
-                    return;
-                }
+           
                 Debug.Log("SpellCommand: Girl cast Q");
             }
         }
@@ -244,14 +245,11 @@ public class SpellCommand : MonoBehaviour {
                     isWspell = false;
                    
                 }
-                else
-                {
-                   
-                }
+            
                 Debug.Log("SpellCommand: Boy cast W");
             }
             //Girl spell called by W (AOE)
-            if ((player_number == 1 && _AOECooldownTimer ==0) || (isWGirlforced && _AOECooldownTimer == 0))
+            if ((player_number == 1 && _AOECooldownTimer ==0) || (isWGirlforced && _AOECooldownTimer == 0)) //What is "isWGirlforced"? And again, the timer is checked in update
             {
                 
                 if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
@@ -281,10 +279,7 @@ public class SpellCommand : MonoBehaviour {
                         }
                     }
                 }
-                else
-                {
-                    return;
-                }
+             
             }
         }
     }
@@ -311,6 +306,7 @@ public class SpellCommand : MonoBehaviour {
         isWspell = false;
         if(_Wselected)
         _Wselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        _SmallWselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         if (RangeIndicatorAOE)
             RangeIndicatorAOE.SetActive(false);
         if(AttackIndicatorAOE)
@@ -323,27 +319,43 @@ public class SpellCommand : MonoBehaviour {
         isQspell = false;
         if(_Qselected)
     _Qselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-    if (RangeIndicatorHeal)
+        _SmallQselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        if (RangeIndicatorHeal)
             RangeIndicatorHeal.SetActive(false);
         if (AttackIndicatorHeal)
             AttackIndicatorHeal.SetActive(false);
     }
 
-    public void CastSpellQGirl()
+    public void CastSpellQGirl(bool isBig) //When is this used? What does this do?
     {
+        Debug.Log(isBig);
+        if (isBig)
+        {
+            _Qselected.Play();
+        }
+        else {
+            Debug.Log("I am here");
+            _SmallQselected.Play();
+        }
         isQGirlforced = true;
-        isQspell = true;     
+        isQspell = true;   //This is done in update?     
         CancelAOEAttack();
-        _Qselected.Play();
      
     }
 
-    public void CastSpellWGirl()
+    public void CastSpellWGirl(bool isBig)
     {
+        if (isBig)
+        {
+            _Wselected.Play();
+        }
+        else
+        {
+            _SmallWselected.Play();
+        }
         isWGirlforced = true;
         Debug.Log(isWGirlforced);
         isWspell = true;
-        _Wselected.Play();
         CancelHealAttack();
     }
 

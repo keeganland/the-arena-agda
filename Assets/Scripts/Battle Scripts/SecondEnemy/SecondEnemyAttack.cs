@@ -16,9 +16,10 @@ public class SecondEnemyAttack : MonoBehaviour {
     private GameObject SheepPrefab;
     private Transform[] TeleportPosition;
     private Transform[] SpawnPosition;
-    private float spawnTime;
-    private float teleportTime;
+    [SerializeField] private float spawnTime;
+    [SerializeField] private float teleportTime;
     private int currentTeleportPosition;
+    private bool isCoroutineStarted;
 
     [Header("Totem Characteristics")]
     public float spawnCD = 30;
@@ -40,22 +41,11 @@ public class SecondEnemyAttack : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-        if(spawnTime >= spawnCD)
+        if(spawnTime >= spawnCD && !isCoroutineStarted)
         {
-            GameObject sheep1 = Instantiate(SheepPrefab, SpawnPosition[0]);
-            GameObject sheep2 = Instantiate(SheepPrefab, SpawnPosition[1]);
-            GameObject sheep3 = Instantiate(SheepPrefab, SpawnPosition[2]);
-
-            GameObject Redsheep = sheep3.GetComponent<HealthController>().Sprite;
-
-            Redsheep.GetComponent<SpriteRenderer>().color = RedSheepcolor;
-
-            sheep1.GetComponent<HealthController>().currentHealth = Sheephealth;
-            sheep2.GetComponent<HealthController>().currentHealth = Sheephealth;
-            sheep3.GetComponent<HealthController>().currentHealth = RedSheephealth;
-
-            spawnTime = 0;
+            StartCoroutine("SpawnSheeps");
         }
+
         if(teleportTime >= teleportCD)
         {
             int i = Random.Range(0, TeleportPosition.Length + 1);
@@ -70,5 +60,30 @@ public class SecondEnemyAttack : MonoBehaviour {
         spawnTime += Time.deltaTime;
         teleportTime += Time.deltaTime;
 	}
+
+    IEnumerator SpawnSheeps()
+    {
+        isCoroutineStarted = true;
+
+        GameObject sheep1 = Instantiate(SheepPrefab, SpawnPosition[0].position, Quaternion.identity);
+        GameObject sheep2 = Instantiate(SheepPrefab, SpawnPosition[1].position, Quaternion.identity);
+        GameObject sheep3 = Instantiate(SheepPrefab, SpawnPosition[2].position, Quaternion.identity);
+
+        Debug.Log(sheep1.name);
+        sheep1.transform.SetParent(null);
+        sheep2.transform.SetParent(null);
+        sheep3.transform.SetParent(null);
+
+        sheep1.GetComponentInChildren<HealthController>().currentHealth = Sheephealth;
+        sheep2.GetComponentInChildren<HealthController>().currentHealth = Sheephealth;
+        sheep3.GetComponentInChildren<HealthController>().currentHealth = RedSheephealth;
+
+        sheep1.GetComponentInChildren<HealthUI>().UpdateUi(Sheephealth, Sheephealth);
+        sheep2.GetComponentInChildren<HealthUI>().UpdateUi(Sheephealth, Sheephealth);
+        sheep3.GetComponentInChildren<HealthUI>().UpdateUi(RedSheephealth, RedSheephealth);
+        yield return new WaitForSeconds(1);
+        spawnTime = 0;
+        isCoroutineStarted = false;
+    }
 }
 

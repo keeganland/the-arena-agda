@@ -33,6 +33,11 @@ public class HealthController : MonoBehaviour
     private NavMeshAgent agent; //Why is this here? (it doesn't seem to be used)
     private int tempHealth;
 
+    private void Awake()
+    {
+        currentHealth = totalHealth;
+    }
+
     private void Start()
     {
         if(gameObject.name == "Boy")
@@ -54,8 +59,6 @@ public class HealthController : MonoBehaviour
             _DeathAnim = _PublicVariableHolder._GirlDeathAnim;
         }
 
-
-        currentHealth = totalHealth;
         m_messageHandler = GetComponent<MessageHandler>();
 
         if (m_messageHandler)
@@ -154,7 +157,8 @@ public class HealthController : MonoBehaviour
             //this.gameObject.SetActive(false);//This works
             if(this.gameObject.tag == "Player")
             DoDeath();
-
+            if (this.gameObject.tag == "Enemy")
+                Destroy(transform.parent.gameObject, 0.25f);
             //agent.enabled = false; //this is from the original script. Don't think it's remotely related
             // transform.position = enemy.GetComponent<enermy_movement>().spawnPoint.position;
 

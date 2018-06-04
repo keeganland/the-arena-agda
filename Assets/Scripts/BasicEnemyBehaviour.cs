@@ -18,7 +18,7 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
     public GameObject _Sprite;
     public int Damage;
 
-	private void Start() //initialize player objects in all enemies
+	protected void Start() //initialize player objects in all enemies
 	{
         _Target[0] = GameObject.Find("/Characters/Boy").GetComponent<Transform>();
         _Target[1] = GameObject.Find("/Characters/Girl").GetComponent<Transform>();
@@ -30,12 +30,14 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update () 
+	protected void Update () 
     {
+
         ChooseTarget();
         RotateForAttack();
 
         m_timer += Time.deltaTime;
+        Debug.Log("Update is being called!");
 	}
 
     void ChooseTarget () //enemy will choose target based on random integer

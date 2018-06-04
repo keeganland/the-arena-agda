@@ -33,17 +33,19 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
     public Transform[] _NewTargets;
     private NavMeshAgent meshAgent;
 
-    private void Start()
+    new void Start()
     {
-        meshAgent = GetComponent<NavMeshAgent>();
-        _NewTargets[0] = GameObject.Find("/Characters/Boy").GetComponent<Transform>();
+        base.Start();
+        //meshAgent = GetComponent<NavMeshAgent>();
+        //_NewTargets[0] = GameObject.Find("/Characters/Boy").GetComponent<Transform>();
         _BoyOrGirl = Random.Range(0, 2);
         isEnemyMoving = true;
-        meshAgent.SetDestination(_NewTargets[0].transform.position);
+        //meshAgent.SetDestination(_NewTargets[0].transform.position);
     }
     // Update is called once per frame
-    void Update ()
+    new void Update ()
     {
+        base.Update();
      
         if (!isCollided && isEnemyMoving == true)
         {

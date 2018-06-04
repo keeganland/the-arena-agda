@@ -136,8 +136,6 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
     {
 		m_isDashAttack = true;
 
-		
-
         //Look toward target and draw "warning" line
         _WarningDash.SetActive(true);
 

@@ -131,13 +131,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 6606538}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.6, y: 0, z: -0}
+  m_LocalRotation: {x: -0.6829105, y: 0, z: 0, w: 0.73050207}
+  m_LocalPosition: {x: 0, y: -0.177, z: -0.012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1762563044}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_Father: {fileID: 1312597369}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -86.143005, y: 0, z: 0}
 --- !u!199 &6606540
 ParticleSystemRenderer:
   serializedVersion: 3
@@ -246,14 +246,14 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2087422426
+  randomSeed: -635711849
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
+      scalar: 2.5
       minScalar: 0.9
       maxCurve:
         serializedVersion: 2
@@ -885,8 +885,8 @@ ParticleSystem:
     m_BurstCount: 1
     m_Bursts:
     - time: 0
-      minCount: 30
-      maxCount: 30
+      minCount: 500
+      maxCount: 500
       cycleCount: 1
       repeatInterval: 0.01
   SizeModule:
@@ -3783,7 +3783,7 @@ RectTransform:
   m_Children:
   - {fileID: 2055500910}
   m_Father: {fileID: 1312597369}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -20853,7 +20853,7 @@ RectTransform:
   - {fileID: 1416999800}
   - {fileID: 755389254}
   m_Father: {fileID: 1312597369}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -32792,7 +32792,7 @@ RectTransform:
   - {fileID: 1713717678}
   - {fileID: 1550275392}
   m_Father: {fileID: 1312597369}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -43132,7 +43132,6 @@ Transform:
   - {fileID: 49429862}
   - {fileID: 639055988}
   - {fileID: 115768439}
-  - {fileID: 1203669822}
   m_Father: {fileID: 1008081638}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -43626,7 +43625,7 @@ Transform:
   m_Children:
   - {fileID: 2119237873}
   m_Father: {fileID: 1312597369}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: -90, z: -270}
 --- !u!212 &832110586
 SpriteRenderer:
@@ -73897,12 +73896,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1203669821}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.48}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.171, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 765572581}
-  m_RootOrder: 6
+  m_Father: {fileID: 1899480619}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &1203669823
 ParticleSystem:
@@ -73961,14 +73960,14 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 614154231
+  randomSeed: 1736700021
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
+      scalar: 2.5
       minScalar: 0.9
       maxCurve:
         serializedVersion: 2
@@ -74600,8 +74599,8 @@ ParticleSystem:
     m_BurstCount: 1
     m_Bursts:
     - time: 0
-      minCount: 30
-      maxCount: 30
+      minCount: 500
+      maxCount: 500
       cycleCount: 1
       repeatInterval: 0.01
   SizeModule:
@@ -98705,7 +98704,6 @@ Transform:
   - {fileID: 558585965}
   - {fileID: 1860826678}
   - {fileID: 261845730}
-  - {fileID: 6606539}
   m_Father: {fileID: 1008081638}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 86.143005, z: 0}
@@ -99343,6 +99341,7 @@ Transform:
   - {fileID: 1223531898}
   - {fileID: 940374317}
   - {fileID: 201864520}
+  - {fileID: 1203669822}
   m_Father: {fileID: 1008081638}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

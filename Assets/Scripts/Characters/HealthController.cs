@@ -196,6 +196,8 @@ public class HealthController : MonoBehaviour
             GameObject.Find("Girl").GetComponent<BetterPlayer_Movement>().SwapGirl();
             gameObject.GetComponent<BetterPlayer_Movement>().SwapGirl();
             _PublicVariableHolder._DeathBoyParticle.Play();
+            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
           //  _PublicVariableHolder._DeathBoyParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
         if (this.gameObject.name == "Girl")
@@ -203,7 +205,9 @@ public class HealthController : MonoBehaviour
             GameObject.Find("Boy").GetComponent<BetterPlayer_Movement>().SwapBoy();
             gameObject.GetComponent<BetterPlayer_Movement>().SwapBoy();
             _PublicVariableHolder._DeathGirlParticle.Play();
-          //  _PublicVariableHolder._DeathGirlParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+            //  _PublicVariableHolder._DeathGirlParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
         this.gameObject.GetComponent<BetterPlayer_Movement>().enabled = false;//This works
     }

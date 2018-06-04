@@ -28,7 +28,7 @@ public class MeleeDamage : MonoBehaviour {
 	void Update () {
         //Debug.Log("MeleeDamage: Damage Target" + m_target.name);
         AttackTimer += Time.deltaTime; 
-        if(AttackTimer >= AttackSpeed && (this.GetComponentInChildren<RangeChecker>().InRange(m_target)) && m_target!=null)
+        if(AttackTimer >= AttackSpeed && (this.GetComponentInChildren<RangeChecker>().InRange(m_target)) && m_target!=null && gameObject.GetComponent<HealthController>().currentHealth > 0)
         {
             if(m_target.GetComponent<HealthController>().currentHealth <= 0)
             {

@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  target: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
 --- !u!114 &114559927459739594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,4 +101,4 @@ MonoBehaviour:
   _HealColor: {r: 0, g: 0, b: 0, a: 0}
   Healing: 0
   _SpellCaster: {fileID: 0}
-  AggroValue: 0
+  AggroValue: 50

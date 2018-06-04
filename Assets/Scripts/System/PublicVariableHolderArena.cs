@@ -17,5 +17,8 @@ public class PublicVariableHolderArena : MonoBehaviour {
     public GameObject _InitialPositionBoy; //Goes with "InitialPositionBoy"
     public GameObject _InitialPositionGirl; //Goes with "InitialPositionGirl"
     public GameObject _InitialPositionEnemy; //Goes with "InitialPositionEnemy"
-
+    [Header("Enemies/SecondEnemyPrefab/SecondEnemyAttack")]
+    public GameObject _SheepPrefab;
+    public Transform[] _TotemTeleportPos;
+    public Transform[] _Spawnposition;
 }

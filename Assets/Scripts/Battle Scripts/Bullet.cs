@@ -21,13 +21,25 @@ public class Bullet : MonoBehaviour {
     private int AggroValue;
 
 
+    /* Keegan:
+     * This function feels kind of smelly to me. Flagging for refactor
+     */
     private void OnTriggerEnter(Collider other)
     {
+        string spellCasterTag = "";
+        if (_SpellCaster)
+        {
+            spellCasterTag = _SpellCaster.tag;
+        }
+
+
         if (other.gameObject.CompareTag("AttackRange"))
         {
             return;
         }
-            if ((other.gameObject.CompareTag("Player") && _SpellCaster.tag != "Player") || other.gameObject.CompareTag("Enemy"))
+
+            //if ((other.gameObject.CompareTag("Player") && _SpellCaster.tag != "Player") || other.gameObject.CompareTag("Enemy"))
+            if ((other.gameObject.CompareTag("Player") && spellCasterTag != "Player") || other.gameObject.CompareTag("Enemy"))
             {
                 MessageHandler msgHandler = other.GetComponent<MessageHandler>();
                 if (!isHeal)

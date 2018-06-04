@@ -105706,7 +105706,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _PublicVariableHolder: {fileID: 1546493861}
   Healing: 0
-  Shield: {fileID: 0}
+  Shield: {fileID: 1738922277319302, guid: bd3a8cce02cc21b46bdc7737d61a1baf, type: 2}
   AOE: {fileID: 0}
   RangeIndicatorAOE: {fileID: 0}
   AttackIndicatorAOE: {fileID: 0}
@@ -105722,7 +105722,7 @@ MonoBehaviour:
   _AOEUITimer: 0
   _HealCooldown: 0
   _HealUITimer: 0
-  _ShieldCooldown: 0
+  _ShieldCooldown: 2
   _ShieldUITimer: 0
   _StunCooldown: 0
   _StunUITimer: 0

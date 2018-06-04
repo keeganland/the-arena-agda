@@ -18,7 +18,29 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
     public GameObject _Sprite;
     public int Damage;
 
-	protected void Start() //initialize player objects in all enemies
+    /*
+     * Keegan:
+     * Whenever any enemy whatsoever comes into being, whether through being present in a loaded scene by default
+     * Or spawned by a spell
+     * 
+     * Then there are new potential targets for the camera.
+     * Whenever any enemy whatsoever ceases to be, there are fewer
+     * Therefore, we need to tell the camera to refresh itself
+     * 
+     * NOTE: possibly not the best way to do this.
+     * It COULD be a good idea to set up the camera itself as a static singleton
+     */
+    protected void OnEnable()
+    {
+        EventManager.TriggerEvent("camTargetRefresh");
+    }
+
+    protected void OnDisable()
+    {
+        EventManager.TriggerEvent("camTargetRefresh");
+    }
+
+    protected void Start() //initialize player objects in all enemies
 	{
         _Target[0] = GameObject.Find("/Characters/Boy").GetComponent<Transform>();
         _Target[1] = GameObject.Find("/Characters/Girl").GetComponent<Transform>();

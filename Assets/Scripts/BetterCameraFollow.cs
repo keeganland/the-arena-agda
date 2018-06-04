@@ -18,7 +18,7 @@ public class BetterCameraFollow : MonoBehaviour
     private Vector3 m_new_Pos;
     private bool m_manualCamera;
 
-    private CameraTarget[] m_potentialcameraTargets; //Array that carry all potential targets in the scene at the start (won't count spawned enemies)
+    //private CameraTarget[] m_potentialcameraTargets; //Array that carry all potential targets in the scene at the start (won't count spawned enemies)
 
     public List<CameraTarget> potentialCameraTargetList;
 
@@ -31,21 +31,19 @@ public class BetterCameraFollow : MonoBehaviour
     private bool cutSceneMode = false;
 
 
-    public void OnEnable()
+    private void Awake()
     {
-        EventManager.StartListening("cleanup", ReinitializePotentialTargets);
-        EventManager.StartListening("setup", ReinitializePotentialTargets);
+        EventManager.StartListening("camTargetRefresh", ReinitializePotentialTargets);
     }
 
-    public void OnDisable()
+    private void OnDisable()
     {
-        EventManager.StopListening("cleanup", ReinitializePotentialTargets);
-        EventManager.StopListening("setup", ReinitializePotentialTargets);
+        EventManager.StopListening("camTargetRefresh", ReinitializePotentialTargets);
     }
 
     private void Start()
     {
-        m_potentialcameraTargets = (CameraTarget[])Object.FindObjectsOfType(typeof(CameraTarget));
+        //m_potentialcameraTargets = (CameraTarget[])Object.FindObjectsOfType(typeof(CameraTarget));
 
         ReinitializePotentialTargets();
 
@@ -271,10 +269,13 @@ public class BetterCameraFollow : MonoBehaviour
         }
     }
 
+
+    /*
     public void FindNewTargets()
     {
         m_potentialcameraTargets = (CameraTarget[])Object.FindObjectsOfType(typeof(CameraTarget));
     }
+    */
 
     /* Creates a LIST (not an array) of every potential target
      * 

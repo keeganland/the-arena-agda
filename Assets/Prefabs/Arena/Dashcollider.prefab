@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114559927459739594}
   - component: {fileID: 54444241509100604}
   - component: {fileID: 114374723124223392}
+  - component: {fileID: 114448735200379628}
   m_Layer: 0
   m_Name: Dashcollider
   m_TagString: Untagged
@@ -83,6 +84,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   target: {x: 0, y: 0, z: 0}
+--- !u!114 &114448735200379628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1629631235836830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34c04282042a9f45a066d59896bebd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114559927459739594
 MonoBehaviour:
   m_ObjectHideFlags: 1

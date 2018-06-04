@@ -28,7 +28,7 @@ public class SpellCommand : MonoBehaviour {
     /*Timer variables:*/
     public float _AOECooldown;
     private float _AOECooldownTimer = 0;
-    public float _AOEUITimer = 8; //for Alex
+    public float _AOEUITimer; //for Alex
     public float _HealCooldown;
     private float _HealCooldownTimer = 0;
     public float _HealUITimer; //for Alex
@@ -168,23 +168,24 @@ public class SpellCommand : MonoBehaviour {
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit))
                     {
-                        if (hit.collider.tag == "RangeIndicator")
-                        {
-                            Vector3 directiondifference = hit.transform.position - this.transform.position;
-                            //this.transform.LookAt(hit.transform, direction);
-                            //Instantiate(Shield as GameObject);// This creates a shield in the place that I originally placed it in scene
-                            //Shield.SetActive(true);
+                         Vector3 directiondifference = hit.transform.position - this.transform.position;
+                        //this.transform.LookAt(hit.transform, direction);
+                        Instantiate(Shield as GameObject);// This creates a shield in the place that I originally placed it in scene
+                        //Shield.SetActive(true);
+                        //Destroy(Shield, 6.0f);
+                        //Shield.SetActive(false);
+                        _ShieldCooldownTimer = _ShieldCooldown;
+                        isQspell = false;
                             /* Notes:
                              * Want to create some sort of targetting arrow that follows mouse on first click
                              * Then spawn shield in the direction of the arrow on second click
                              * Leave shield where it is, don't need to move it
                              */
-                        }
                     }
                 }
                 else
                 {
-                    return;
+
                 }
                 Debug.Log("SpellCommand: Boy cast Q");
             }
@@ -250,7 +251,7 @@ public class SpellCommand : MonoBehaviour {
                 Debug.Log("SpellCommand: Boy cast W");
             }
             //Girl spell called by W (AOE)
-            if ((player_number == 1 && _AOECooldownTimer ==0) || (isWGirlforced && _AOECooldownTimer == 0)) //What is "isWGirlforced"? And again, the timer is checked in update
+            if ((player_number == 1 && _AOECooldownTimer ==0) || (isWGirlforced && _AOECooldownTimer == 0))
             {
                 
                 if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
@@ -328,10 +329,10 @@ public class SpellCommand : MonoBehaviour {
             AttackIndicatorHeal.SetActive(false);
     }
 
-    public void CastSpellQGirl() //When is this used? What does this do?
+    public void CastSpellQGirl()
     {
         isQGirlforced = true;
-        isQspell = true;   //This is done in update?     
+        isQspell = true;     
         CancelAOEAttack();
         _Qselected.Play();
      

@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour {
         {
             return;
         }
-            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy"))
+            if ((other.gameObject.CompareTag("Player") && _SpellCaster.tag != "Player") || other.gameObject.CompareTag("Enemy"))
             {
                 MessageHandler msgHandler = other.GetComponent<MessageHandler>();
                 if (!isHeal)

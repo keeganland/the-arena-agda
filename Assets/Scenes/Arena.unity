@@ -422,7 +422,7 @@ RectTransform:
   - {fileID: 98459501}
   - {fileID: 1874844589}
   m_Father: {fileID: 1792024032}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5645,7 +5645,7 @@ RectTransform:
   m_LocalScale: {x: 0.0297148, y: 0.02803924, z: 0.05121291}
   m_Children: []
   m_Father: {fileID: 1792024032}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6030,8 +6030,8 @@ RectTransform:
   m_LocalScale: {x: 0.25, y: 0.08333335, z: 0.25000006}
   m_Children:
   - {fileID: 702611258}
-  - {fileID: 1644335196}
   - {fileID: 85563713}
+  - {fileID: 1644335196}
   m_Father: {fileID: 898819549}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6455,7 +6455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PublicVariableHolder: {fileID: 0}
-  totalHealth: 200
+  totalHealth: 500
   currentHealth: 0
   enemy: {fileID: 0}
   _DeathSound: {fileID: 0}

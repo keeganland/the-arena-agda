@@ -27,6 +27,10 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     public Slider _GirlReviveSlider; //Goes with "GirlReviving" (neverUnload)
     public Text _BoyReviveTextTimer; //Goes with "BoyCastingTimer" (neverUnload)
     public Text _GirlReviveTextTimer; //Goes with "GirlCastingTimer" (neverUnload)
+    public ParticleSystem _DeathBoyParticle; //Goes with "DeathBoyParticle" (neverUnload)
+    public ParticleSystem _DeathGirlParticle; //Goes with "DeathGirlParticle" (neverUnload)
+    public ParticleSystem _ReviveBoyParticle; //Goes with "ReviveBoyParticle" (neverUnload)
+    public ParticleSystem _ReviveGirlParticle; //Goes with "ReviveGirlParticle" (neverUnload)
 
     [Header("NeverUnload/Characters : BetterPlayer_Movement")]
     public UISpellSwap _UISpells; //Goes with "PlayerUI" (neverUnload)

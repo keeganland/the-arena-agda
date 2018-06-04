@@ -173,10 +173,9 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
         m_dashingAnim = false;
 
         m_nav.SetDestination(transform.position);
+        Destroy(fx,1);
 
-        yield return new WaitForSeconds(_WarningtoAttackCD);
-
-        Destroy(fx);        
+        yield return new WaitForSeconds(_WarningtoAttackCD);        
 
         _BoyOrGirl = Random.Range(0, 2);
 

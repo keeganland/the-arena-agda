@@ -36,7 +36,7 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
         //RotateForAttack();
 
         m_timer += Time.deltaTime;
-        Debug.Log("Update is being called!");
+        //Debug.Log("Update is being called!");
 	}
 
     void ChooseTarget () //enemy will choose target based on random integer

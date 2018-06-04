@@ -192,14 +192,14 @@ public class HealthController : MonoBehaviour
             GameObject.Find("Girl").GetComponent<BetterPlayer_Movement>().SwapGirl();
             gameObject.GetComponent<BetterPlayer_Movement>().SwapGirl();
             _PublicVariableHolder._DeathBoyParticle.Play();
-            _PublicVariableHolder._DeathBoyParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+          //  _PublicVariableHolder._DeathBoyParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
         if (this.gameObject.name == "Girl")
         {
             GameObject.Find("Boy").GetComponent<BetterPlayer_Movement>().SwapBoy();
             gameObject.GetComponent<BetterPlayer_Movement>().SwapBoy();
             _PublicVariableHolder._DeathGirlParticle.Play();
-            _PublicVariableHolder._DeathGirlParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+          //  _PublicVariableHolder._DeathGirlParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
         this.gameObject.GetComponent<BetterPlayer_Movement>().enabled = false;//This works
     }
@@ -216,13 +216,14 @@ public class HealthController : MonoBehaviour
 
         if(this.gameObject.name == "Boy")
         {
+            Debug.Log("here");
             _PublicVariableHolder._ReviveBoyParticle.Play();
-            _PublicVariableHolder._ReviveBoyParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+           // _PublicVariableHolder._ReviveBoyParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
         if (this.gameObject.name == "Girl")
         {
             _PublicVariableHolder._ReviveGirlParticle.Play();
-            _PublicVariableHolder._ReviveGirlParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+          //  _PublicVariableHolder._ReviveGirlParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
 
         if (m_messageHandler)

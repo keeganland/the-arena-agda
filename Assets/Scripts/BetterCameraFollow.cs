@@ -28,6 +28,9 @@ public class BetterCameraFollow : MonoBehaviour
     private Camera m_cam;
     private bool targetsTooFar; //variable created to carry the "neutral area" value
 
+    private bool cutSceneMode = false;
+
+
     public void OnEnable()
     {
         EventManager.StartListening("cleanup", ReinitializePotentialTargets);
@@ -287,5 +290,15 @@ public class BetterCameraFollow : MonoBehaviour
             Debug.Log("Potential camera target # " + i + ": " + potentialCameraTargetArray[i].name);
             potentialCameraTargetList.Add(potentialCameraTargetArray[i]);
         }
+    }
+
+    public bool getCutsceneMode()
+    {
+        return cutSceneMode;
+    }
+
+    public void setCutsceneMode(bool x)
+    {
+        cutSceneMode = x;
     }
 }

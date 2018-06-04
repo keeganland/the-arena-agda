@@ -99,7 +99,7 @@ public class Bullet : MonoBehaviour {
         }
     }
 
-    public void GetSpellCaster (GameObject caster)
+    public void SetSpellCaster (GameObject caster)
     {
         _SpellCaster = caster;
     }

@@ -245,7 +245,7 @@ public class BattleEnemy : MonoBehaviour {
 
         GameObject go = Instantiate(spellPrefab[0], _Mouth.transform.position, transform.rotation);
         go.GetComponent<Spell>().SetTarget(storedPositions[pos]);
-        go.GetComponent<Bullet>().GetSpellCaster(this.gameObject);
+        go.GetComponent<Bullet>().SetSpellCaster(this.gameObject);
         m_audioSource.PlayOneShot(_SpellAudio[1]);
 
         cooldownSpellA = 0;

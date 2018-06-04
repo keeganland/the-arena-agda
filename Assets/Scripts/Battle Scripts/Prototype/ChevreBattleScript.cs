@@ -162,7 +162,7 @@ public class ChevreBattleScript : MonoBehaviour {
 
         go.gameObject.GetComponent<Spell>().SetTarget(_Targets[i]);
         go.gameObject.GetComponent<Bullet>().SpellFlare(angle);
-        go.gameObject.GetComponent<Bullet>().GetSpellCaster(this.gameObject);
+        go.gameObject.GetComponent<Bullet>().SetSpellCaster(this.gameObject);
 
         m_isChevreSpell = false;
     }

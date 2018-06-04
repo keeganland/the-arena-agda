@@ -161,7 +161,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
         GameObject fx = Instantiate(_DashFX, this.transform.position, m_dashRotation);
         m_targetPos = _TeleportPosition.transform.position;
         go.GetComponent<DashCollider>().SetTarget(m_targetPos);
-        go.GetComponent<Bullet>().GetSpellCaster(this.gameObject);
+        go.GetComponent<Bullet>().SetSpellCaster(this.gameObject);
 
        
         m_dashingAnim = true;

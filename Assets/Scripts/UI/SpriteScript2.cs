@@ -40,6 +40,7 @@ public class SpriteScript2 : MonoBehaviour
         }
         else
         {
+            if(m_anim)
             m_anim.SetInteger("Direction", 0);
         }
 

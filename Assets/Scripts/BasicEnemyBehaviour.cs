@@ -32,9 +32,8 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
 	// Update is called once per frame
 	protected void Update () 
     {
-
         ChooseTarget();
-        RotateForAttack();
+        //RotateForAttack();
 
         m_timer += Time.deltaTime;
         Debug.Log("Update is being called!");

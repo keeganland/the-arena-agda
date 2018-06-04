@@ -40,7 +40,7 @@ public class BetterCameraFollow : MonoBehaviour
         EventManager.StopListening("setup", ReinitializePotentialTargets);
     }
 
-    void Start()
+    private void Start()
     {
         m_potentialcameraTargets = (CameraTarget[])Object.FindObjectsOfType(typeof(CameraTarget));
 
@@ -51,7 +51,7 @@ public class BetterCameraFollow : MonoBehaviour
     }
 
 
-    void Update()
+    private void Update()
     {
         /*
          *  Keegan's NTS: 
@@ -284,6 +284,7 @@ public class BetterCameraFollow : MonoBehaviour
         potentialCameraTargetList = new List<CameraTarget>();
         for (int i = 0; i < potentialCameraTargetArray.Length; i++)
         {
+            Debug.Log("Potential camera target # " + i + ": " + potentialCameraTargetArray[i].name);
             potentialCameraTargetList.Add(potentialCameraTargetArray[i]);
         }
     }

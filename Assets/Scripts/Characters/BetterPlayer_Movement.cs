@@ -262,4 +262,9 @@ public class BetterPlayer_Movement : MonoBehaviour {
             ReviveStart = true;
         }
     }  
+
+    public void UndoCurTarget()
+    {
+        curTarget = null;
+    }
 }

@@ -288,7 +288,7 @@ public class BetterCameraFollow : MonoBehaviour
         potentialCameraTargetList = new List<CameraTarget>();
         for (int i = 0; i < potentialCameraTargetArray.Length; i++)
         {
-            Debug.Log("Potential camera target # " + i + ": " + potentialCameraTargetArray[i].name);
+            //Debug.Log("Potential camera target # " + i + ": " + potentialCameraTargetArray[i].name);
             potentialCameraTargetList.Add(potentialCameraTargetArray[i]);
         }
     }

@@ -26,21 +26,29 @@ public class Spell : MonoBehaviour {
 
     private void Update()
     {
-        if (target.activeSelf == false)
+        if (target)
         {
-            Destroy(gameObject, 1);
+            if (target.activeSelf == false)
+            {
+                Destroy(gameObject, 1);
+            }
         }
+        else
+            Destroy(gameObject);
     }
     private void FixedUpdate()
     {
         if (!isCollided)
         {
-            Vector3 direction = target.transform.position - transform.position;
+            if (target)
+            {
+                Vector3 direction = target.transform.position - transform.position;
 
-            transform.position = Vector3.Lerp(this.transform.position, target.transform.position, speed * Time.fixedDeltaTime);
+                transform.position = Vector3.Lerp(this.transform.position, target.transform.position, speed * Time.fixedDeltaTime);
 
-            float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
-            transform.eulerAngles = new Vector3(0, -angle, 0);
+                float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
+                transform.eulerAngles = new Vector3(0, -angle, 0);
+            }
         }
     }
 

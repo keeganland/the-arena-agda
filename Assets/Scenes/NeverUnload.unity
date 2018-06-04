@@ -132,7 +132,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 6606538}
   m_LocalRotation: {x: -0.6829105, y: 0, z: 0, w: 0.73050207}
-  m_LocalPosition: {x: 0, y: -0.177, z: -0.012}
+  m_LocalPosition: {x: 0, y: -0.222, z: -0.015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1312597369}
@@ -246,7 +246,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -635711849
+  randomSeed: -1270873799
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -25718,7 +25718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -43109,6 +43109,7 @@ GameObject:
   - component: {fileID: 765572583}
   - component: {fileID: 765572582}
   - component: {fileID: 765572597}
+  - component: {fileID: 765572598}
   m_Layer: 0
   m_Name: Girl
   m_TagString: Player
@@ -43466,6 +43467,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a37628355bd49b043beb10c50b9717ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &765572598
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 765572580}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 15, z: 0}
 --- !u!1 &817161656
 GameObject:
   m_ObjectHideFlags: 0
@@ -73897,7 +73911,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1203669821}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.171, z: -0}
+  m_LocalPosition: {x: 0, y: -0.198, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1899480619}
@@ -73960,7 +73974,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1736700021
+  randomSeed: -1459514325
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -98364,6 +98378,7 @@ GameObject:
   - component: {fileID: 1762563030}
   - component: {fileID: 1762563029}
   - component: {fileID: 1762563045}
+  - component: {fileID: 1762563046}
   m_Layer: 0
   m_Name: Boy
   m_TagString: Player
@@ -98718,6 +98733,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a37628355bd49b043beb10c50b9717ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &1762563046
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1762563028}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 15, z: 0}
 --- !u!1 &1810121427
 GameObject:
   m_ObjectHideFlags: 0

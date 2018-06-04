@@ -158,7 +158,7 @@ public class HealthController : MonoBehaviour
             if(this.gameObject.tag == "Player")
             DoDeath();
             if (this.gameObject.tag == "Enemy")
-                Destroy(transform.parent.gameObject, 0.25f);
+                Destroy(transform.parent.gameObject, 0.15f);
             //agent.enabled = false; //this is from the original script. Don't think it's remotely related
             // transform.position = enemy.GetComponent<enermy_movement>().spawnPoint.position;
 
@@ -186,6 +186,7 @@ public class HealthController : MonoBehaviour
     private void DoDeath() {
 
         Sprite.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<CapsuleCollider>().enabled = true;
         if (_Slider)
             _Slider.SetActive(false);
         if (_DeathAnim)
@@ -215,6 +216,7 @@ public class HealthController : MonoBehaviour
     public void UndoDeath()
     {
         Sprite.GetComponent<SpriteRenderer>().enabled = true;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
         if (_Slider)
             _Slider.SetActive(true);
         if (_DeathAnim)
@@ -290,11 +292,14 @@ public class HealthController : MonoBehaviour
         {
             GameObject.Find("Girl").GetComponent<HealthController>().currentHealth = GameObject.Find("Girl").GetComponent<HealthController>().totalHealth;
             GameObject.Find("Girl").GetComponent<HealthController>().UndoDeath();
+            GameObject.Find("Girl").GetComponent<BetterPlayer_Movement>().UndoCurTarget();
         }
         if (this.gameObject.name == "Girl")
         {
             GameObject.Find("Boy").GetComponent<HealthController>().currentHealth = GameObject.Find("Boy").GetComponent<HealthController>().totalHealth;
             GameObject.Find("Boy").GetComponent<HealthController>().UndoDeath();
+            GameObject.Find("Boy").GetComponent<BetterPlayer_Movement>().UndoCurTarget();
+
         }
         isReviving = false;
         _CastReviveGameobject.SetActive(false);
@@ -314,7 +319,7 @@ public class HealthController : MonoBehaviour
         {
             if (m_castTime < _ReviveCD)
             {
-                m_castTime += Time.deltaTime;
+                m_castTime += Time.fixedDeltaTime;
             }
             _ReviveSlider.value = m_castTime / _ReviveCD;
             _ReviveTextTimer.text = System.Math.Round((float)(_ReviveCD - m_castTime), 2).ToString();

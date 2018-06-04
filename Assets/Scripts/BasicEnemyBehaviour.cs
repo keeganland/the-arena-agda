@@ -48,7 +48,7 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
         m_rbEnemy = GetComponent<Rigidbody>();
         m_nav = GetComponent<NavMeshAgent>();
         _BoyOrGirl = Random.Range(0, 2);
-        m_timer = 15;
+        m_timer = 5;
 	}
 
 	// Update is called once per frame

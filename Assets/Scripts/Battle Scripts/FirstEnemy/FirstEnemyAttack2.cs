@@ -29,6 +29,8 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
     public int Aggro;
 
     public GameObject _DashFX;
+    private GameObject go;
+    private GameObject fx;
 
     public Transform[] _NewTargets;
     private NavMeshAgent meshAgent;
@@ -65,13 +67,24 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
    
         }
         m_timer += Time.deltaTime;
-	}
+        CancelAttack();
+    }
 
     private void FixedUpdate()
     {
         if (m_dashingAnim)
         {
             transform.position = Vector3.Lerp(transform.position, m_targetPos, _DashSpeed * Time.fixedDeltaTime);
+        }
+    }
+
+    private void CancelAttack()
+    {
+        if(gameObject.GetComponent<HealthController>().currentHealth == 0)
+        {
+            Destroy(go);
+            Destroy(fx);
+            StopAllCoroutines();
         }
     }
 
@@ -110,7 +123,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
                 //Debug.Log("Target in Range " + curTarget.name)
                 if (!m_isDashAttack && m_timer >= _AttackCD)
                 {                 
-                    transform.LookAt(_Target[_BoyOrGirl]);                  
+                    transform.LookAt(_Target[_BoyOrGirl]);
                     StartCoroutine("DashAttack");
                 }
             }
@@ -157,8 +170,8 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
         _WarningDash.SetActive(false);
         //Start the Attack
         Quaternion m_dashRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 180, transform.rotation.eulerAngles.z);
-        GameObject go = Instantiate(_DashSpell, this.transform.position,Quaternion.identity);
-        GameObject fx = Instantiate(_DashFX, this.transform.position, m_dashRotation);
+        go = Instantiate(_DashSpell, this.transform.position,Quaternion.identity);
+        fx = Instantiate(_DashFX, this.transform.position, m_dashRotation);
         m_targetPos = _TeleportPosition.transform.position;
         go.GetComponent<DashCollider>().SetTarget(m_targetPos);
         go.GetComponent<Bullet>().SetSpellCaster(this.gameObject);
@@ -178,7 +191,6 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
         yield return new WaitForSeconds(_WarningtoAttackCD);        
 
         _BoyOrGirl = Random.Range(0, 2);
-
         m_timer = 0;
         isCollided = false;
         m_isDashAttack = false;

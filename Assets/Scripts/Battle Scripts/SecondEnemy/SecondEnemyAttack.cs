@@ -17,17 +17,20 @@ public class SecondEnemyAttack : MonoBehaviour {
     private Transform[] TeleportPosition;
     private Transform[] SpawnPosition;
     private ParticleSystem[] SpawnParticle;
+    private ParticleSystem TeleportStart;
     [SerializeField] private float spawnTime;
     [SerializeField] private float teleportTime;
     private int currentTeleportPosition;
     private bool isCoroutineStarted;
     private float m_castTime;
+    private bool TeleportStarted;
 
     [Header("Totem Characteristics")]
     public float spawnCD = 30;
     public float teleportCD = 180;
     public float castingTime;
     public float spawnParticleDelay;
+    public float teleportAnimStart;
     [Header("Sheep Characteristics")]
     public int Sheephealth = 15;
     public int RedSheephealth = 55;
@@ -39,6 +42,7 @@ public class SecondEnemyAttack : MonoBehaviour {
         TeleportPosition = publicVariableHolderArena._TotemTeleportPos;
         SpawnPosition = publicVariableHolderArena._Spawnposition;
         SpawnParticle = publicVariableHolderArena._SpawnAnimation;
+        TeleportStart = publicVariableHolderArena._TeleportStart;
 
         spawnTime = 20;
 	}
@@ -51,14 +55,22 @@ public class SecondEnemyAttack : MonoBehaviour {
             StartCoroutine("SpawnSheeps");
         }
 
+        if(teleportTime >= (teleportCD - teleportAnimStart) && !TeleportStarted)
+        {
+            Debug.Log("here");
+            TeleportStart.Play();
+            TeleportStarted = true;
+        }
+
         if(teleportTime >= teleportCD)
         {
-            int i = Random.Range(0, TeleportPosition.Length + 1);
+            int i = Random.Range(0, TeleportPosition.Length);
             if (currentTeleportPosition != i)
             {
                 transform.position = TeleportPosition[i].position;
                 currentTeleportPosition = i;
                 teleportTime = 0;
+                TeleportStarted = false;
             }
         }
 
@@ -109,6 +121,8 @@ public class SecondEnemyAttack : MonoBehaviour {
         sheep1.GetComponentInChildren<HealthController>().currentHealth = Sheephealth;
         sheep2.GetComponentInChildren<HealthController>().currentHealth = Sheephealth;
         sheep3.GetComponentInChildren<HealthController>().currentHealth = RedSheephealth;
+
+        sheep3.GetComponentInChildren<SpriteRenderer>().color = RedSheepcolor;
 
         sheep1.GetComponentInChildren<HealthUI>().UpdateUi(Sheephealth, Sheephealth);
         sheep2.GetComponentInChildren<HealthUI>().UpdateUi(Sheephealth, Sheephealth);

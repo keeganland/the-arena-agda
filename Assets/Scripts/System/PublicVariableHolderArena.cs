@@ -23,7 +23,8 @@ public class PublicVariableHolderArena : MonoBehaviour {
     public GameObject _SheepPrefab; //Goes with "FirstEnemy" (assets)
     public Transform[] _TotemTeleportPos; //GOes with "/SecondEnemyTeleportPosition/..." (arena)
     public Transform[] _Spawnposition;
-    public ParticleSystem[] _SpawnAnimation;
+    public ParticleSystem _SpawnSheepAnim;
     public ParticleSystem[] _TeleportSpawn;
     public ParticleSystem _TeleportStart;
+    public ParticleSystem _TeleportArrives;
 }

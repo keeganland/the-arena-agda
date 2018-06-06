@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using TMPro;
+
 
 public class PublicVariableHolderArena : MonoBehaviour {
 
@@ -18,6 +20,10 @@ public class PublicVariableHolderArena : MonoBehaviour {
     public GameObject _InitialPositionBoy; //Goes with "InitialPositionBoy" (arena)
     public GameObject _InitialPositionGirl; //Goes with "InitialPositionGirl" (arena)
     public GameObject _InitialPositionEnemy; //Goes with "InitialPositionEnemy" (arena)
+
+    [Header("Scripted Events/UI")]
+    public GameObject ReadyText; //Goes with "Ready"
+    public GameObject FightText; //Goes with "Figh!t"
 
     [Header("Enemies/SecondEnemyPrefab/SecondEnemyAttack")]
     public GameObject _SheepPrefab; //Goes with "FirstEnemy" (assets)

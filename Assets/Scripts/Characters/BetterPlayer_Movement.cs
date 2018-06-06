@@ -93,7 +93,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
             }
         }
             //For stopping the player character - whichever one that happens to be
-            if (isTheBoy == boyActive && !stopMoving)
+        if (isTheBoy == boyActive && !stopMoving)
         {
             if (Input.GetMouseButtonDown(1))
             {
@@ -133,7 +133,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
             }
         }
 
-        m_agent.isStopped = stopMoving;
+        //m_agent.isStopped = stopMoving; //Alex changes
         /*
         //The above is a more concise way of putting this more readable code:
 

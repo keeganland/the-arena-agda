@@ -9,8 +9,10 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     [Header("NeverUnload/Characters : General Usefull Variables")]
     public GameObject Boy; //Goes with "Boy" (neverUnload)
     public GameObject Girl; //Goes with "Girl" (neverUnload)
+    public GameObject MainCamera; //Goes with "Main Camera" (neverUnload)
     public NavMeshAgent BoynavMeshAgent;
     public NavMeshAgent GirlnavMeshAgent;
+    public GameObject PlayerUI;
     public bool StopAllActions;
     public bool StopCamera;
 

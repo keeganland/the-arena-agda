@@ -30,6 +30,8 @@ public class ScreenFader : MonoBehaviour {
     void AnimationComplete()
     {
         m_isFading = false;
+        m_anim.SetBool("FadeIn", false);
+        m_anim.SetBool("FadeOut", false);
     }
 
 }

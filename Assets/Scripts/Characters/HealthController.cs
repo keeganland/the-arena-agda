@@ -40,6 +40,11 @@ public class HealthController : MonoBehaviour
         currentHealth = totalHealth;
     }
 
+    private void OnDisable()
+    {
+        EventManager.TriggerEvent("camTargetRefresh");
+    }
+
     private void Start()
     {
         if(gameObject.name == "Boy")

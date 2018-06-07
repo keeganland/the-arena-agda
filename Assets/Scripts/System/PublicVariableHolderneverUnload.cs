@@ -72,4 +72,10 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     public Image _CooldownSmallWImage; //Goes with "cooldownWimagesmall" (neverUnload)
     public BetterPlayer_Movement _GirlMovementScript; //Goes with "Girl" (neverUnload)
     public BetterPlayer_Movement _BoyMovementScript; //Goes with "Boy" (neverUnload)
+
+    public GameObject EnemyUI; //Goes with "EnemyUI" (neverUnload)
+    public Text EnemyNameUI; //Goes with "EnemyNameUI" (neverUnload)
+    public Text CurrentEnemyHPUI; //Goes with "CurrentEnemyHPUI" (neverUnload)
+    public Text MaximumEnemyHPUI; //Goes with "MaximumEnemyHPUI" (neverUnload)
+    public Slider SliderEnemyHPUI;  //Goes with "SliderEnemyHPUI" (neverUnload)
 }

@@ -48,6 +48,14 @@ public class UISpellSwap : MonoBehaviour {
     private BetterPlayer_Movement _GirlMovementScript;
     private BetterPlayer_Movement _BoyMovementScript;
 
+    private GameObject EnemyUI;
+    private Text EnemyNameUI;
+    private Text CurrentEnemyHPUI;
+    private Text MaximumEnemyHPUI; 
+    private Slider SliderEnemyHPUI;
+    private GameObject currentEnemy;
+    private bool iscurrentEnemy;
+
     private int m_bigQcooldowntext;
     private int m_bigWcooldowntext;
     private int m_smallQcooldowntext;
@@ -97,13 +105,46 @@ public class UISpellSwap : MonoBehaviour {
 
         _GirlMovementScript = _PublicVariableHolder._GirlMovementScript;
         _BoyMovementScript = _PublicVariableHolder._BoyMovementScript;
-    }
+
+        EnemyUI = _PublicVariableHolder.EnemyUI;
+        EnemyNameUI = _PublicVariableHolder.EnemyNameUI;
+        CurrentEnemyHPUI = _PublicVariableHolder.CurrentEnemyHPUI;
+        MaximumEnemyHPUI = _PublicVariableHolder.MaximumEnemyHPUI;
+        SliderEnemyHPUI = _PublicVariableHolder.SliderEnemyHPUI;
+}
 
     private void Update()
     {
         if (m_isBoy)
             BoySlider();
         else GirlSlider();
+        EnableEnemyUI();
+    }
+
+    public void EnableEnemyUI()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if(hit.collider.tag == "Enemy")
+                {
+                    EnemyUI.SetActive(true);
+                    currentEnemy = hit.collider.gameObject;
+                    iscurrentEnemy = true;
+                    EnemyNameUI.text = currentEnemy.name;                
+                    MaximumEnemyHPUI.text = currentEnemy.GetComponent<HealthController>().totalHealth.ToString();
+                }
+            }
+        }
+
+        if(currentEnemy)
+        {
+            CurrentEnemyHPUI.text = currentEnemy.GetComponent<HealthController>().currentHealth.ToString() + " / ";
+            SliderEnemyHPUI.value = (1.0f / (float) currentEnemy.GetComponent<HealthController>().totalHealth) *(float) currentEnemy.GetComponent<HealthController>().currentHealth;
+        }
     }
     public void BoySpellActive()
     {

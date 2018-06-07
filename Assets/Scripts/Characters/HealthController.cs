@@ -160,7 +160,10 @@ public class HealthController : MonoBehaviour
             if(this.gameObject.tag == "Player")
             DoDeath();
             if (this.gameObject.tag == "Enemy")
+            {
+                GameObject.Find("/PlayerUI").GetComponent<UISpellSwap>().currentEnemy = null;
                 Destroy(transform.parent.gameObject, 0.15f);
+            }
             //agent.enabled = false; //this is from the original script. Don't think it's remotely related
             // transform.position = enemy.GetComponent<enermy_movement>().spawnPoint.position;
 

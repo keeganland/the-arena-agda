@@ -76,6 +76,5 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     public GameObject EnemyUI; //Goes with "EnemyUI" (neverUnload)
     public Text EnemyNameUI; //Goes with "EnemyNameUI" (neverUnload)
     public Text CurrentEnemyHPUI; //Goes with "CurrentEnemyHPUI" (neverUnload)
-    public Text MaximumEnemyHPUI; //Goes with "MaximumEnemyHPUI" (neverUnload)
     public Slider SliderEnemyHPUI;  //Goes with "SliderEnemyHPUI" (neverUnload)
 }

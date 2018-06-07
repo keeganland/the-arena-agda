@@ -51,9 +51,8 @@ public class UISpellSwap : MonoBehaviour {
     private GameObject EnemyUI;
     private Text EnemyNameUI;
     private Text CurrentEnemyHPUI;
-    private Text MaximumEnemyHPUI; 
     private Slider SliderEnemyHPUI;
-    private GameObject currentEnemy;
+    public GameObject currentEnemy;
     private bool iscurrentEnemy;
 
     private int m_bigQcooldowntext;
@@ -109,7 +108,6 @@ public class UISpellSwap : MonoBehaviour {
         EnemyUI = _PublicVariableHolder.EnemyUI;
         EnemyNameUI = _PublicVariableHolder.EnemyNameUI;
         CurrentEnemyHPUI = _PublicVariableHolder.CurrentEnemyHPUI;
-        MaximumEnemyHPUI = _PublicVariableHolder.MaximumEnemyHPUI;
         SliderEnemyHPUI = _PublicVariableHolder.SliderEnemyHPUI;
 }
 
@@ -118,10 +116,23 @@ public class UISpellSwap : MonoBehaviour {
         if (m_isBoy)
             BoySlider();
         else GirlSlider();
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.tag == "Ground")
+                {
+                    DisableEnemyUI();
+
+                }
+            }
+        }
         EnableEnemyUI();
     }
 
-    public void EnableEnemyUI()
+    private void EnableEnemyUI()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -129,13 +140,12 @@ public class UISpellSwap : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if(hit.collider.tag == "Enemy")
+                if (hit.collider.tag == "Enemy")
                 {
                     EnemyUI.SetActive(true);
                     currentEnemy = hit.collider.gameObject;
                     iscurrentEnemy = true;
                     EnemyNameUI.text = currentEnemy.GetComponent<HealthController>().GameObjectName;
-                    MaximumEnemyHPUI.text = currentEnemy.GetComponent<HealthController>().totalHealth.ToString();
                 }
             }
         }
@@ -145,7 +155,19 @@ public class UISpellSwap : MonoBehaviour {
             CurrentEnemyHPUI.text = currentEnemy.GetComponent<HealthController>().currentHealth.ToString() +  " / "  + currentEnemy.GetComponent<HealthController>().totalHealth.ToString();
             SliderEnemyHPUI.value = (1.0f / (float) currentEnemy.GetComponent<HealthController>().totalHealth) *(float) currentEnemy.GetComponent<HealthController>().currentHealth;
         }
+        if (!currentEnemy)
+        {
+            DisableEnemyUI();
+        }
     }
+
+
+    private void DisableEnemyUI()
+    {
+        iscurrentEnemy = false;
+        EnemyUI.SetActive(false);            
+    }
+
     public void BoySpellActive()
     {
         m_isBoy = true;

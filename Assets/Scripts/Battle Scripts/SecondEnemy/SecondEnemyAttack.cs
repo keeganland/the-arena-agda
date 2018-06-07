@@ -168,6 +168,10 @@ public class SecondEnemyAttack : MonoBehaviour {
         sheep2.GetComponentInChildren<HealthController>().currentHealth = Sheephealth;
         sheep3.GetComponentInChildren<HealthController>().currentHealth = RedSheephealth;
 
+        sheep1.GetComponentInChildren<HealthController>().totalHealth = Sheephealth;
+        sheep2.GetComponentInChildren<HealthController>().totalHealth = Sheephealth;
+        sheep3.GetComponentInChildren<HealthController>().totalHealth = RedSheephealth;
+
         sheep1.GetComponentInChildren<HealthController>().GameObjectName = "Small Sheep";
         sheep2.GetComponentInChildren<HealthController>().GameObjectName = "Small Sheep";
         sheep3.GetComponentInChildren<HealthController>().GameObjectName = "Red Sheep";

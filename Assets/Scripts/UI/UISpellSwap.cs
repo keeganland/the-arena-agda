@@ -134,7 +134,7 @@ public class UISpellSwap : MonoBehaviour {
                     EnemyUI.SetActive(true);
                     currentEnemy = hit.collider.gameObject;
                     iscurrentEnemy = true;
-                    EnemyNameUI.text = currentEnemy.name;                
+                    EnemyNameUI.text = currentEnemy.GetComponent<HealthController>().GameObjectName;
                     MaximumEnemyHPUI.text = currentEnemy.GetComponent<HealthController>().totalHealth.ToString();
                 }
             }

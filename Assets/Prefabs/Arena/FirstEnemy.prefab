@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 114732084975907912}
   - component: {fileID: 95626228729103294}
   m_Layer: 0
-  m_Name: FirstEnemy
+  m_Name: FirstEnemy-Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -942,6 +942,7 @@ MonoBehaviour:
   Sprite: {fileID: 1352543117010796}
   m_reviveCoroutine: 0
   isTargeted: 0
+  GameObjectName: 'The Ultimate Badass Sheep '
 --- !u!114 &114251069511720430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1051,6 +1052,7 @@ MonoBehaviour:
   _NewTargets:
   - {fileID: 0}
   - {fileID: 0}
+  StopAttacking: 0
 --- !u!114 &114501025417229350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4418,7 +4420,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300012, guid: 1b394d439e39c0a4f9ebd8a5ee2303ed, type: 3}
+  m_Sprite: {fileID: 21300014, guid: 1b394d439e39c0a4f9ebd8a5ee2303ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

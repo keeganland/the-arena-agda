@@ -33,6 +33,8 @@ public class HealthController : MonoBehaviour
     private NavMeshAgent agent; //Why is this here? (it doesn't seem to be used)
     private int tempHealth;
 
+    public string GameObjectName;
+
     private void Awake()
     {
         currentHealth = totalHealth;

@@ -142,7 +142,7 @@ public class UISpellSwap : MonoBehaviour {
 
         if(currentEnemy)
         {
-            CurrentEnemyHPUI.text = currentEnemy.GetComponent<HealthController>().currentHealth.ToString() + " / ";
+            CurrentEnemyHPUI.text = currentEnemy.GetComponent<HealthController>().currentHealth.ToString() +  " / "  + currentEnemy.GetComponent<HealthController>().totalHealth.ToString();
             SliderEnemyHPUI.value = (1.0f / (float) currentEnemy.GetComponent<HealthController>().totalHealth) *(float) currentEnemy.GetComponent<HealthController>().currentHealth;
         }
     }

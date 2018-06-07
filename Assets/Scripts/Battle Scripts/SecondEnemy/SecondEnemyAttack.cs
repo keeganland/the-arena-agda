@@ -140,6 +140,10 @@ public class SecondEnemyAttack : MonoBehaviour {
         ParticleSystem spawnparticle2 = Instantiate(_SpawnAnimationPrefab, SpawnPosition[1].position, Quaternion.Euler(-90,0,0));
         ParticleSystem spawnparticle3 = Instantiate(_SpawnAnimationPrefab, SpawnPosition[2].position, Quaternion.Euler(-90,0,0));
 
+        spawnparticle1.transform.SetParent(null);
+        spawnparticle2.transform.SetParent(null);
+        spawnparticle3.transform.SetParent(null);
+
         spawnparticle1.Play();
         spawnparticle2.Play();
         spawnparticle3.Play();
@@ -163,6 +167,10 @@ public class SecondEnemyAttack : MonoBehaviour {
         sheep1.GetComponentInChildren<HealthController>().currentHealth = Sheephealth;
         sheep2.GetComponentInChildren<HealthController>().currentHealth = Sheephealth;
         sheep3.GetComponentInChildren<HealthController>().currentHealth = RedSheephealth;
+
+        sheep1.GetComponentInChildren<HealthController>().GameObjectName = "Small Sheep";
+        sheep2.GetComponentInChildren<HealthController>().GameObjectName = "Small Sheep";
+        sheep3.GetComponentInChildren<HealthController>().GameObjectName = "Red Sheep";
 
         sheep3.GetComponentInChildren<SpriteRenderer>().color = RedSheepcolor;
 

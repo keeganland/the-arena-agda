@@ -107,7 +107,7 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 1c9b00955256ec2499f2ce9bc45f5762, type: 2}
 --- !u!1 &6606538
 GameObject:
   m_ObjectHideFlags: 0
@@ -43427,7 +43427,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -43545,7 +43545,7 @@ MonoBehaviour:
   Sprite: {fileID: 1899480612}
   m_reviveCoroutine: 0
   isTargeted: 0
-  GameObjectName: 
+  GameObjectName: Eva
 --- !u!114 &765572588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44601,6 +44601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PublicVariableHolder: {fileID: 1546493861}
+  currentEnemy: {fileID: 0}
 --- !u!1 &934019311
 GameObject:
   m_ObjectHideFlags: 0
@@ -91572,7 +91573,6 @@ MonoBehaviour:
   EnemyUI: {fileID: 2001455920}
   EnemyNameUI: {fileID: 1587741429}
   CurrentEnemyHPUI: {fileID: 1621909445}
-  MaximumEnemyHPUI: {fileID: 0}
   SliderEnemyHPUI: {fileID: 907234857}
 --- !u!4 &1546493862
 Transform:
@@ -99125,7 +99125,7 @@ MonoBehaviour:
   Sprite: {fileID: 1312597365}
   m_reviveCoroutine: 0
   isTargeted: 0
-  GameObjectName: 
+  GameObjectName: Evgeny
 --- !u!114 &1762563033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99152,7 +99152,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0

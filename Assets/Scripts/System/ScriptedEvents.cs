@@ -98,13 +98,12 @@ public class ScriptedEvents : MonoBehaviour {
         screenFader.StartCoroutine("FadeOut");
 
         yield return new WaitForSeconds(2.5f);
-
         Camera.transform.position = new Vector3(_InitialPositionEnemy.transform.position.x, Camera.transform.position.y, _InitialPositionEnemy.transform.position.z);
 
-        screenFader.StartCoroutine("FadeIn");
-        enemy.GetComponentInChildren<NavMeshAgent>().SetDestination(_PublicVariableHolderArena._EnterArenaWaypointsEnemy[0].transform.position);
-        yield return new WaitForSeconds(2.3f);
 
+        screenFader.StartCoroutine("FadeIn");
+        yield return new WaitForSeconds(2f);
+        enemy.GetComponentInChildren<NavMeshAgent>().SetDestination(_PublicVariableHolderArena._EnterArenaWaypointsEnemy[0].transform.position);
         enemyUI.SetActive(true);
 
         yield return new WaitForSeconds(6);

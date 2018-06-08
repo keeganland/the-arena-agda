@@ -107,7 +107,7 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-  m_NavMeshData: {fileID: 23800000, guid: 96b3691a7ac06ac42b69cf6fba9e819a, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 1c9b00955256ec2499f2ce9bc45f5762, type: 2}
 --- !u!1 &35792640
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +307,16 @@ Prefab:
     - target: {fileID: 1450077501164886, guid: 493e38eaf03b0e9409d8013601fcfcf7, type: 2}
       propertyPath: m_Name
       value: Collision (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 65594898852016186, guid: 493e38eaf03b0e9409d8013601fcfcf7,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65594898852016186, guid: 493e38eaf03b0e9409d8013601fcfcf7,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 493e38eaf03b0e9409d8013601fcfcf7, type: 2}
@@ -3867,7 +3877,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 357521051}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81ada50294defe641a85a955ae51a332, type: 3}
   m_Name: 
@@ -4819,6 +4829,7 @@ GameObject:
   - component: {fileID: 1051254524}
   - component: {fileID: 1051254526}
   - component: {fileID: 1051254525}
+  - component: {fileID: 1051254527}
   m_Layer: 0
   m_Name: pPipe1
   m_TagString: Untagged
@@ -4879,6 +4890,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1051254523}
+  m_Mesh: {fileID: 4300000, guid: b9736c25cc0abf848b18fc93e05e4964, type: 3}
+--- !u!64 &1051254527
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1051254523}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: b9736c25cc0abf848b18fc93e05e4964, type: 3}
 --- !u!1 &1052768779
 GameObject:
@@ -5040,7 +5065,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1567317636688986, guid: cb34f36d629497b41a3cb39cb5033c9b, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb34f36d629497b41a3cb39cb5033c9b, type: 2}
@@ -5420,7 +5445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1537485702
 Transform:
   m_ObjectHideFlags: 0
@@ -5684,6 +5709,16 @@ Prefab:
     - target: {fileID: 1450077501164886, guid: 493e38eaf03b0e9409d8013601fcfcf7, type: 2}
       propertyPath: m_Name
       value: Collision (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 65594898852016186, guid: 493e38eaf03b0e9409d8013601fcfcf7,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65594898852016186, guid: 493e38eaf03b0e9409d8013601fcfcf7,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 493e38eaf03b0e9409d8013601fcfcf7, type: 2}
@@ -5988,6 +6023,16 @@ Prefab:
       propertyPath: m_Name
       value: Collision (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 65594898852016186, guid: 493e38eaf03b0e9409d8013601fcfcf7,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65594898852016186, guid: 493e38eaf03b0e9409d8013601fcfcf7,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 493e38eaf03b0e9409d8013601fcfcf7, type: 2}
   m_IsPrefabParent: 0
@@ -6112,6 +6157,16 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65594898852016186, guid: 493e38eaf03b0e9409d8013601fcfcf7,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65594898852016186, guid: 493e38eaf03b0e9409d8013601fcfcf7,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 493e38eaf03b0e9409d8013601fcfcf7, type: 2}

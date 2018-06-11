@@ -132,18 +132,22 @@ public class BetterCameraFollow : MonoBehaviour
         {
             if (ct == null)
             {
-                Debug.Log("null element in potentialCameraTargetList???");
-                break;
+                //Debug.Log("null element in potentialCameraTargetList???");
+                throw new System.Exception("A null element was found in potentialCameraTargetList");
+                //break;
             }
-            bool m_isinview = IsInView(m_cam.gameObject, ct.gameObject);
+            else
+            {
+                bool m_isinview = IsInView(m_cam.gameObject, ct.gameObject);
 
-            if (m_isinview == true && !m_currentcameraTargets.Contains(ct.gameObject))
-            {
-                m_currentcameraTargets.Add(ct.gameObject);
-            }
-            else if (m_isinview == false && m_currentcameraTargets.Contains(ct.gameObject))
-            {
-                m_currentcameraTargets.Remove(ct.gameObject);
+                if (m_isinview == true && !m_currentcameraTargets.Contains(ct.gameObject))
+                {
+                    m_currentcameraTargets.Add(ct.gameObject);
+                }
+                else if (m_isinview == false && m_currentcameraTargets.Contains(ct.gameObject))
+                {
+                    m_currentcameraTargets.Remove(ct.gameObject);
+                }
             }
         }
 
@@ -292,6 +296,11 @@ public class BetterCameraFollow : MonoBehaviour
             potentialCameraTargetList.Add(potentialCameraTargetArray[i]);
         }
     }
+
+    /*
+     * Keegan NTS: the below might never be used? 
+     * 
+     */
 
     public bool getCutsceneMode()
     {

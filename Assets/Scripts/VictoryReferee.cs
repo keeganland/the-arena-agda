@@ -13,11 +13,14 @@ public class VictoryReferee : MonoBehaviour {
     private bool playerWon;
 
     public GameObject victoryUI;
+    public bool victoryDebugging;
+    public int victoryMode;
 
     private void Awake()
     {
         bossesKilled = 0;
         victoryAction = new UnityAction(Victory);
+        victoryCondition = new UnityAction(NeverVictory); //Just to avoid null references. victoryCondition will be a very frequently changing variable
         bossDeathAction = new UnityAction(BossDied);
     }
     private void OnEnable()
@@ -41,6 +44,17 @@ public class VictoryReferee : MonoBehaviour {
 
     private void Update()
     {
+        if (victoryDebugging)
+        {
+            SetVictoryCondition(victoryMode);
+
+            if (Input.GetKeyDown("v"));
+            {
+                SetVictoryCondition(1); //In debug mode, press 'v' key to automatically trigger a victory
+            }
+            
+        }
+
         //In theory, we could do a check victory event every single frame.
         //In practice, that would probably bog things down.
         //I'm going to put check victory events with the death of enemies in HealthController.cs, instead of here
@@ -60,6 +74,10 @@ public class VictoryReferee : MonoBehaviour {
         Time.timeScale = 0f;
     }
 
+    /* Keegan Note 2018/6/10:
+     * Presently used for the buttons on the victory screen
+     * Not 
+     */
     public void ResetGame()
     {
         victoryUI.SetActive(false);
@@ -85,6 +103,9 @@ public class VictoryReferee : MonoBehaviour {
 
     public void SetVictoryCondition(int n)
     {
+        //First, we clean out any old victory conditions that happened to exist. We only want one in the dictory at once
+        EventManager.StopListening("checkVictory", victoryCondition);
+
         switch(n)
         {
             /* Keegan NTS: 
@@ -94,6 +115,9 @@ public class VictoryReferee : MonoBehaviour {
              */
             case 0:
                 victoryCondition = new UnityAction(KillOneBossVictory);
+                break;
+            case 1:
+                victoryCondition = new UnityAction(AutoVictory); //for debugging
                 break;
             default:
                 victoryCondition = new UnityAction(KillOneBossVictory);
@@ -106,5 +130,15 @@ public class VictoryReferee : MonoBehaviour {
     private void KillOneBossVictory()
     {
         SetPlayerWon(bossesKilled > 0);
+    }
+
+    private void AutoVictory()
+    {
+        SetPlayerWon(true);
+    }
+
+    private void NeverVictory()
+    {
+        SetPlayerWon(false);
     }
 }

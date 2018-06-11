@@ -13,6 +13,8 @@
  * HealthController.cs
  *  "bossDied"
  *  "checkVictory"
+ *  
+ * This list is far from finished, unforunately. 
  */
 
 

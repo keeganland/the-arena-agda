@@ -46,16 +46,13 @@ public class VictoryReferee : MonoBehaviour {
     {
         if (victoryDebugging)
         {
-            if (Input.GetKeyDown("v"))
+            SetVictoryCondition(victoryMode);
+
+            if (Input.GetKeyDown("v"));
             {
-                this.SetVictoryCondition(1); //Whenever a checkVictory happens, you automatically win.
-                Debug.Log("You set the victory condition to 1");
+                SetVictoryCondition(1); //In debug mode, press 'v' key to automatically trigger a victory
             }
-            if (Input.GetKeyDown("b"))
-            {
-                Debug.Log("Time to trigger a checkVictory event");
-                EventManager.TriggerEvent("checkVictory"); //Make a checkVictory happen
-            }       
+            
         }
 
         //In theory, we could do a check victory event every single frame.
@@ -66,7 +63,6 @@ public class VictoryReferee : MonoBehaviour {
         //EventManager.TriggerEvent("checkVictory");
         if (playerWon)
         {
-            //Debug.Log("Player has won!");
             EventManager.TriggerEvent("victory");
         }
     }
@@ -74,18 +70,13 @@ public class VictoryReferee : MonoBehaviour {
     public void Victory()
     {
         bossesKilled = 0;
-
-        /*
-         * Keegan note to Alex 2018/6/10:
-         * You may want to comment out the two lines below. All they do is pop up the old victory menu, then pause the game.
-         * Triggers for things to start happening in ScriptedEvents are to be called in this function.
-         */
         victoryUI.SetActive(true);
         Time.timeScale = 0f;
     }
 
     /* Keegan Note 2018/6/10:
      * Presently used for the buttons on the victory screen
+     * Not 
      */
     public void ResetGame()
     {
@@ -96,7 +87,7 @@ public class VictoryReferee : MonoBehaviour {
 
     private void BossDied()
     {
-        //Debug.Log("A boss was killed!");
+        Debug.Log("A boss was killed!");
         bossesKilled++;
     }
 
@@ -121,15 +112,6 @@ public class VictoryReferee : MonoBehaviour {
              * Extensible for creation of alternative victory conditions
              * 
              * To create a new victory condition, the idea is to create a new private function with no args that calls SetPlayerWon
-             * This function will contain the necessary boolean logic for whether the player has satisfied the conditions for victory.
-             * This switch case will associate the variable victoryCondition with a delegate to a particular function.
-             * 
-             * Keep in mind that victory conditions are just elaborate setters and can't trigger a victory on their own.
-             * The game only checks for victory when a "checkVictory" event is called - which, in its current implementation,
-             * happens only when you kill an enemy or when using the victory debug mode.
-             *
-             * Therefore, even AutoVictory will require you to kill an enemy in most circumstances.
-             * 
              */
             case 0:
                 victoryCondition = new UnityAction(KillOneBossVictory);
@@ -141,24 +123,22 @@ public class VictoryReferee : MonoBehaviour {
                 victoryCondition = new UnityAction(KillOneBossVictory);
                 throw new System.Exception("You tried to set an invalid victory condition! Game set to KillOneBossVictory by default");
         }
+
         EventManager.StartListening("checkVictory", victoryCondition);
     }
 
     private void KillOneBossVictory()
     {
-        Debug.Log("Entered KillOneBossVictory");
         SetPlayerWon(bossesKilled > 0);
     }
 
     private void AutoVictory()
     {
-        Debug.Log("Entered AutoVictory");
         SetPlayerWon(true);
     }
 
     private void NeverVictory()
     {
-        Debug.Log("Entered NeverVictory");
         SetPlayerWon(false);
     }
 }

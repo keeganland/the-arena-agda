@@ -24,8 +24,8 @@ public class SpellCommand : MonoBehaviour {
     public GameObject RangeIndicatorHeal;
     public GameObject Heal;
     public GameObject RangeIndicatorShield;
-    public GameObject boytest1;
-    public GameObject boytest2;
+    public GameObject ShieldRangeIndicator;
+    public GameObject ShieldDirectionIndicator;
 
     public ParticleSystem _Qselected;
     public ParticleSystem _Wselected;
@@ -174,7 +174,7 @@ public class SpellCommand : MonoBehaviour {
                     //shield appears in front of boy in direction of mouse click (doesn't move)
                     // RangeIndicatorShield.SetActive(true);
 
-                    boytest1.SetActive(true);
+                    ShieldRangeIndicator.SetActive(true);
 
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
@@ -182,8 +182,8 @@ public class SpellCommand : MonoBehaviour {
                     {
                         if (hit.collider.tag == "RangeIndicator")
                         {
-                            boytest2.SetActive(true);
-                            boytest2.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
+                            ShieldDirectionIndicator.SetActive(true);
+                            ShieldDirectionIndicator.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
                             Vector3 difference = new Vector3(hit.point.x, this.transform.position.y, hit.point.z) - this.transform.position;
                             Debug.Log(difference);
                             if (Input.GetMouseButtonDown(0))

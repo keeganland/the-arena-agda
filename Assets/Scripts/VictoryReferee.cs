@@ -90,8 +90,7 @@ public class VictoryReferee : MonoBehaviour {
             /* Keegan NTS: 
              * Extensible for creation of alternative victory conditions
              * 
-             * To create a new victory condition, the idea is to create a new private function
-             * This 
+             * To create a new victory condition, the idea is to create a new private function with no args that calls SetPlayerWon
              */
             case 0:
                 victoryCondition = new UnityAction(KillOneBossVictory);

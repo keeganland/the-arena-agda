@@ -4,15 +4,16 @@
  */
 
 
- /* This script has the major advantage of decreasing dependencies but the major disadvantage of it becoming hard to keep track of
-  * what "events" actually exist.
-  * Events correspond to keys. Therefore I'm going to keep here a record of what keys are used for the dictionary and where:
-  * VictoryReferee.cs
-  *  "victory"
-  *  "bossDied"
-  * HealthController.cs
-  *  "bossDied"
-  */
+/* This script has the major advantage of decreasing dependencies but the major disadvantage of it becoming hard to keep track of
+ * what "events" actually exist.
+ * Events correspond to keys. Therefore I'm going to keep here a record of what keys are used for the dictionary and where:
+ * VictoryReferee.cs
+ *  "victory"
+ *  "bossDied"
+ * HealthController.cs
+ *  "bossDied"
+ *  "checkVictory"
+ */
 
 
 using UnityEngine;

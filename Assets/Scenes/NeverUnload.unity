@@ -4001,7 +4001,7 @@ GameObject:
   - component: {fileID: 76280333}
   - component: {fileID: 76280332}
   m_Layer: 0
-  m_Name: RangeIndicatorAOE (1)
+  m_Name: RangeIndicatorShield
   m_TagString: RangeIndicator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45274,8 +45274,8 @@ MonoBehaviour:
   RangeIndicatorHeal: {fileID: 639055987}
   Heal: {fileID: 1793293865268862, guid: 53d4c69cee5080542b3c6102a40822aa, type: 2}
   RangeIndicatorShield: {fileID: 0}
-  boytest1: {fileID: 0}
-  boytest2: {fileID: 0}
+  ShieldRangeIndicator: {fileID: 0}
+  ShieldDirectionIndicator: {fileID: 0}
   _Qselected: {fileID: 681220619}
   _Wselected: {fileID: 1932696980}
   _SmallQselected: {fileID: 1386101771}
@@ -45421,6 +45421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PublicVariableHolder: {fileID: 1546493861}
+  isBoss: 0
   totalHealth: 40
   currentHealth: 0
   enemy: {fileID: 0}
@@ -45428,7 +45429,6 @@ MonoBehaviour:
   AggroBoy: 0
   AggroGirl: 0
   _ReviveCD: 1
-  isBoss: 0
   Sprite: {fileID: 1899480612}
   m_reviveCoroutine: 0
   isTargeted: 0
@@ -45666,7 +45666,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1696719694173476, guid: 2ed29f8bda015dd458d0002314112583, type: 2}
       propertyPath: m_Name
-      value: AttackIndicatorAOE
+      value: DirectionIndicatorShield
       objectReference: {fileID: 0}
     - target: {fileID: 212661128681585990, guid: 2ed29f8bda015dd458d0002314112583,
         type: 2}
@@ -45933,7 +45933,7 @@ GameObject:
   - component: {fileID: 841903631}
   - component: {fileID: 841903630}
   m_Layer: 0
-  m_Name: AttackIndicatorAOE (1)
+  m_Name: DirectionIndicatorShield
   m_TagString: RangeIndicator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91799,6 +91799,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victoryUI: {fileID: 629648604}
+  victoryDebugging: 0
+  victoryMode: 0
 --- !u!114 &1413735967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95976,7 +95978,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1696719694173476, guid: 2ed29f8bda015dd458d0002314112583, type: 2}
       propertyPath: m_Name
-      value: RangeIndicatorAOE
+      value: RangeIndicatorShield
       objectReference: {fileID: 0}
     - target: {fileID: 212661128681585990, guid: 2ed29f8bda015dd458d0002314112583,
         type: 2}
@@ -103660,8 +103662,8 @@ MonoBehaviour:
   RangeIndicatorHeal: {fileID: 0}
   Heal: {fileID: 0}
   RangeIndicatorShield: {fileID: 0}
-  boytest1: {fileID: 76280330}
-  boytest2: {fileID: 841903628}
+  ShieldRangeIndicator: {fileID: 76280330}
+  ShieldDirectionIndicator: {fileID: 841903628}
   _Qselected: {fileID: 681220619}
   _Wselected: {fileID: 1932696980}
   _SmallQselected: {fileID: 1386101771}
@@ -103721,6 +103723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PublicVariableHolder: {fileID: 1546493861}
+  isBoss: 0
   totalHealth: 20
   currentHealth: 0
   enemy: {fileID: 0}
@@ -103728,7 +103731,6 @@ MonoBehaviour:
   AggroBoy: 0
   AggroGirl: 0
   _ReviveCD: 1
-  isBoss: 0
   Sprite: {fileID: 1312597365}
   m_reviveCoroutine: 0
   isTargeted: 0

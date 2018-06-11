@@ -183,14 +183,29 @@ public class SpellCommand : MonoBehaviour {
                         if (hit.collider.tag == "RangeIndicator")
                         {
                             ShieldDirectionIndicator.SetActive(true);
-                            ShieldDirectionIndicator.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
-                            Vector3 difference = new Vector3(hit.point.x, this.transform.position.y, hit.point.z) - this.transform.position;
-                            Debug.Log(difference);
+                            ShieldDirectionIndicator.transform.position = new Vector3(hit.point.x, 1, hit.point.z); //location of blue dot
+                            Vector3 difference = new Vector3(hit.point.x, this.transform.position.y, hit.point.z) - this.transform.position;//difference btw hit point and boy
                             if (Input.GetMouseButtonDown(0))
                             {
-                                //Shield.SetActive(true);// This creates a shield in the place that I originally placed it in scene
-
-                                Vector3 sheildpos = new Vector3(transform.position.x, 0, transform.position.z);
+                                float zpos = this.transform.position.z /* (float)0.9*/;//looking to move shield just off the boy
+                                float xpos = this.transform.position.x /* (float)0.9*/;
+                                if(this.transform.position.x > hit.point.x)//adapting to try to move shield off character depending on where the click is
+                                {
+                                    xpos = this.transform.position.x * (float)0.5;//not working correctly
+                                }
+                                if(this.transform.position.x < hit.point.x)
+                                {
+                                    xpos = this.transform.position.x * (float)1.5;
+                                }
+                                if (this.transform.position.z > hit.point.z)//adapting to try to move shield off character depending on where the click is
+                                {
+                                    zpos = this.transform.position.z * (float)1.1;
+                                }
+                                if (this.transform.position.z < hit.point.z)
+                                {
+                                    zpos = this.transform.position.z * (float)0.9;
+                                }
+                                Vector3 sheildpos = new Vector3(xpos, 0, zpos);
 
                                 GameObject shields = Instantiate(Shield, sheildpos, Quaternion.LookRotation( difference));
                                 shields.transform.SetParent(null);

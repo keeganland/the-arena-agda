@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class HealthController : MonoBehaviour
 {
     public PublicVariableHolderneverUnload _PublicVariableHolder;
+    public bool isBoss; //Needed here and not in the public var holder
 
     public int totalHealth = 100;
     public int currentHealth;
@@ -15,7 +16,6 @@ public class HealthController : MonoBehaviour
     public int AggroBoy = 0;
     public int AggroGirl = 0;
     public int _ReviveCD;
-    public bool isBoss; //KeeganNTS: temporary victory conditions. Deprecate with later design
     public GameObject Sprite;
 
     private AudioSource m_audioSource;
@@ -75,14 +75,6 @@ public class HealthController : MonoBehaviour
 
         m_audioSource = GetComponent<AudioSource>();
 
-    }
-
-    private void Update()
-    {
-        if (isBoss && (currentHealth <= 0))
-        {
-            //Keegan NTS: victory shenanigans
-        }
     }
 
     void RecieveMessage(MessageTypes msgType, GameObject go, MessageData msgData)
@@ -162,12 +154,20 @@ public class HealthController : MonoBehaviour
             //VictoryScreen.youWon = true;
             //Debug.Log("This is HealthController.cs, youWon should have just flipped");
             //this.gameObject.SetActive(false);//This works
-            if(this.gameObject.tag == "Player")
-            DoDeath();
+            if (this.gameObject.tag == "Player")
+            {
+                DoDeath();
+            }
             if (this.gameObject.tag == "Enemy")
             {
                 GameObject.Find("/PlayerUI").GetComponent<UISpellSwap>().currentEnemy = null;
                 Destroy(transform.parent.gameObject, 0.15f);
+
+                if (isBoss)
+                {
+                    EventManager.TriggerEvent("bossDied");
+                }
+                EventManager.TriggerEvent("checkVictory");
             }
             //agent.enabled = false; //this is from the original script. Don't think it's remotely related
             // transform.position = enemy.GetComponent<enermy_movement>().spawnPoint.position;

@@ -290,7 +290,7 @@ public class UISpellSwap : MonoBehaviour {
         {
             if (m_isBoy)
             {
-                _SpellCommand.CastSpellQBoy();
+                _SpellCommand.CastSpellQBoy(true);
             }
             else _SpellCommand.CastSpellQGirl(true);
         }
@@ -302,7 +302,7 @@ public class UISpellSwap : MonoBehaviour {
         {
             if (m_isBoy)
             {
-                _SpellCommand.CastSpellWBoy();
+                _SpellCommand.CastSpellWBoy(true);
             }
             else _SpellCommand.CastSpellWGirl(true);
         }
@@ -317,7 +317,7 @@ public class UISpellSwap : MonoBehaviour {
 
                 _SpellCommand.CastSpellQGirl(false);
             }
-            else _SpellCommand.CastSpellQBoy();
+            else _SpellCommand.CastSpellQBoy(false);
         }
     }
 
@@ -329,7 +329,7 @@ public class UISpellSwap : MonoBehaviour {
             {
                 _SpellCommand.CastSpellWGirl(false);
             }
-            else _SpellCommand.CastSpellWBoy();
+            else _SpellCommand.CastSpellWBoy(false);
         }
     }
 

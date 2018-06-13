@@ -32,6 +32,8 @@ public class HealthController : MonoBehaviour
     private MessageHandler m_messageHandler;
     private NavMeshAgent agent; //Why is this here? (it doesn't seem to be used)
     private int tempHealth;
+    private bool invincibility;
+    private float invincibilityTimer;
 
     public string GameObjectName;
 
@@ -77,6 +79,21 @@ public class HealthController : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (gameObject.tag == "Player")
+        {
+            if (invincibilityTimer >= 1f)
+            {
+                invincibility = false;
+            }
+            if (invincibilityTimer <= 10f)
+            {
+                invincibilityTimer += Time.deltaTime;
+            }
+        }
+    }
+
     void RecieveMessage(MessageTypes msgType, GameObject go, MessageData msgData)
     {
         switch (msgType)
@@ -84,9 +101,21 @@ public class HealthController : MonoBehaviour
             case MessageTypes.DAMAGED:
                 DamageData dmgData = msgData as DamageData;
 
-                if (dmgData != null)
+                if (gameObject.tag == "Player")
                 {
-                    ApplyDamage(dmgData.damage, go);
+                    if (dmgData != null && !invincibility)
+                    {
+                        invincibilityTimer = 0;
+                        invincibility = true;
+                        ApplyDamage(dmgData.damage, go);
+                    }
+                }
+                if (gameObject.tag == "Enemy")
+                {
+                    if (dmgData != null && !invincibility)
+                    {                       
+                        ApplyDamage(dmgData.damage, go);
+                    }
                 }
                 break;
              case MessageTypes.AGGROCHANGED:
@@ -204,6 +233,7 @@ public class HealthController : MonoBehaviour
 
         if (this.gameObject.name == "Boy")
         {
+            EventManager.TriggerEvent("StopBoyMoving");
             GameObject.Find("Girl").GetComponent<BetterPlayer_Movement>().SwapGirl();
             gameObject.GetComponent<BetterPlayer_Movement>().SwapGirl();
             _PublicVariableHolder._DeathBoyParticle.Play();
@@ -213,6 +243,7 @@ public class HealthController : MonoBehaviour
         }
         if (this.gameObject.name == "Girl")
         {
+            EventManager.TriggerEvent("StopGirlMoving");
             GameObject.Find("Boy").GetComponent<BetterPlayer_Movement>().SwapBoy();
             gameObject.GetComponent<BetterPlayer_Movement>().SwapBoy();
             _PublicVariableHolder._DeathGirlParticle.Play();
@@ -236,12 +267,14 @@ public class HealthController : MonoBehaviour
 
         if(this.gameObject.name == "Boy")
         {
+            EventManager.TriggerEvent("StartBoyMoving");
             Debug.Log("here");
             _PublicVariableHolder._ReviveBoyParticle.Play();
            // _PublicVariableHolder._ReviveBoyParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
         if (this.gameObject.name == "Girl")
         {
+            EventManager.TriggerEvent("StartGirlMoving");
             _PublicVariableHolder._ReviveGirlParticle.Play();
           //  _PublicVariableHolder._ReviveGirlParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }

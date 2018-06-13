@@ -359,46 +359,80 @@ public class SpellCommand : MonoBehaviour {
             AttackIndicatorHeal.SetActive(false);
     }
 
+    public void CancelBoyShield()
+    {
+        isQspell = false;
+        if(_Qselected)
+        _Qselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        _SmallQselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        if (RangeIndicatorShield)
+            RangeIndicatorShield.SetActive(false);
+        if (ShieldDirectionIndicator)
+            ShieldDirectionIndicator.SetActive(false);
+        if (ShieldRangeIndicator)
+            ShieldRangeIndicator.SetActive(false);
+    }
+
     public void CastSpellQGirl(bool isBig) //When is this used? What does this do?
     {
-        Debug.Log(isBig);
-        if (isBig)
-        {
-            _Qselected.Play();
-        }
-        else {
-            Debug.Log("I am here");
-            _SmallQselected.Play();
-        }
-        isQGirlforced = true;
-        isQspell = true;   //This is done in update?     
-        CancelAOEAttack();
-     
+                                           //Alex answer : It's the function called when you click on the big spell (UI)        
+            Debug.Log(isBig);
+            if (isBig)
+            {
+                _Qselected.Play();
+            }
+            else
+            {
+                Debug.Log("I am here");
+                _SmallQselected.Play();
+            }
+            isQGirlforced = true;
+            isQspell = true;   //This is done in update?     //Alex answer : it also need to be done when you click on the UI, otherwise it won't work
+            CancelAOEAttack();
+    
     }
 
     public void CastSpellWGirl(bool isBig)
-    {
-        if (isBig)
-        {
-            _Wselected.Play();
-        }
-        else
-        {
-            _SmallWselected.Play();
-        }
-        isWGirlforced = true;
-        Debug.Log(isWGirlforced);
-        isWspell = true;
-        CancelHealAttack();
+    {  
+            if (isBig)
+            {
+                _Wselected.Play();
+            }
+            else
+            {
+                _SmallWselected.Play();
+            }
+            isWGirlforced = true;
+            Debug.Log(isWGirlforced);
+            isWspell = true;
+            CancelHealAttack();      
     }
 
-    public void CastSpellQBoy()
+    public void CastSpellQBoy(bool isBig)
     {
-
+            if (isBig)
+            {
+                _Qselected.Play();
+            }
+            else
+            {
+                _SmallQselected.Play();
+            }
+            
+            isQspell = true;       
     }
 
-    public void CastSpellWBoy()
-    {
+    public void CastSpellWBoy(bool isBig)
+    {      
+            if (isBig)
+            {
+                _Wselected.Play();
+            }
+            else
+            {
+                _SmallWselected.Play();
+            }
 
+            isWspell = true;       
     }
 }

@@ -80,8 +80,12 @@ public class VictoryReferee : MonoBehaviour {
          * You may want to comment out the two lines below. All they do is pop up the old victory menu, then pause the game.
          * Triggers for things to start happening in ScriptedEvents are to be called in this function.
          */
-        victoryUI.SetActive(true);
-        Time.timeScale = 0f;
+        //victoryUI.SetActive(true);
+        // Time.timeScale = 0f;
+        EventManager.TriggerEvent("victoryEvent"); /*Alex note to Keegan 2018/6/12:
+                                                    * The "victory" event will be different for each "scene" later in the game,
+                                                    * I think we'll have to create specific events (with the same keyword).
+                                                    */
     }
 
     /* Keegan Note 2018/6/10:

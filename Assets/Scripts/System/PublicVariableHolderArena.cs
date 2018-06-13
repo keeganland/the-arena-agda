@@ -24,6 +24,7 @@ public class PublicVariableHolderArena : MonoBehaviour {
     [Header("Scripted Events/UI")]
     public GameObject ReadyText; //Goes with "Ready"
     public GameObject FightText; //Goes with "Figh!t"
+    public GameObject YouWonText; //Goes witH "You Won!"
 
     [Header("Enemies/SecondEnemyPrefab/SecondEnemyAttack")]
     public GameObject _SheepPrefab; //Goes with "FirstEnemy" (assets)

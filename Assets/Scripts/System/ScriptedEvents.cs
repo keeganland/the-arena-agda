@@ -8,6 +8,7 @@ using TMPro;
 public class ScriptedEvents : MonoBehaviour {
 
     private UnityAction enterArena;
+    private UnityAction victoryEvent;
 
     private PublicVariableHolderneverUnload publicVariableHolder;
     public PublicVariableHolderArena _PublicVariableHolderArena;
@@ -32,6 +33,7 @@ public class ScriptedEvents : MonoBehaviour {
 
     private GameObject ReadyText;
     private GameObject FightText;
+    private GameObject YouWonText;
     private GameObject PlayerUI;
     // Use this for initialization
     private void Start()
@@ -52,22 +54,32 @@ public class ScriptedEvents : MonoBehaviour {
 
         ReadyText = _PublicVariableHolderArena.ReadyText;
         FightText = _PublicVariableHolderArena.FightText;
+        YouWonText = _PublicVariableHolderArena.YouWonText;
         PlayerUI = publicVariableHolder.PlayerUI;
     }
 
     private void Awake()
     {
         enterArena = new UnityAction(EnterArena);
+        victoryEvent = new UnityAction(VictoryEvent);
     }
 
     private void OnEnable()
     {
         EventManager.StartListening("enterArena", EnterArena);
+        EventManager.StartListening("victoryEvent", VictoryEvent);
     }
 
     private void OnDisable()
     {
         EventManager.StopListening("enterArena", EnterArena);
+        EventManager.StopListening("victoryEvent", VictoryEvent);
+    }
+
+    void VictoryEvent()
+    {
+        EventManager.StopListening("victoryEvent", VictoryEvent);
+        StartCoroutine("victoryEventCoroutine");
     }
 
     void EnterArena()
@@ -80,7 +92,6 @@ public class ScriptedEvents : MonoBehaviour {
 
         PlayerUI.SetActive(false);
         EventManager.TriggerEvent("StopMoving");
-        publicVariableHolder.StopAllActions = true;
         enemy.GetComponentInChildren<FirstEnemyAttack2>().isEnemyMoving = false;
         enemy.GetComponentInChildren<FirstEnemyAttack2>().StopAttacking = true;
         
@@ -117,8 +128,21 @@ public class ScriptedEvents : MonoBehaviour {
         PlayerUI.SetActive(true);
 
         EventManager.TriggerEvent("StartMoving");
-        publicVariableHolder.StopAllActions = false;
         enemy.GetComponentInChildren<FirstEnemyAttack2>().isEnemyMoving = true;
         enemy.GetComponentInChildren<FirstEnemyAttack2>().StopAttacking = false;
+    }
+
+    IEnumerator victoryEventCoroutine()
+    {
+        EventManager.StopListening("victoryEvent", VictoryEvent);
+        PlayerUI.SetActive(false);
+        EventManager.TriggerEvent("StopMoving");      
+        YouWonText.SetActive(true);
+        yield return new WaitForSeconds(4);
+        boyNavMeshAgent.SetDestination(_InitialPositionBoy.transform.position);
+        girlNavMeshAgent.SetDestination(_InitialPositionGirl.transform.position);
+        yield return new WaitForSeconds(3);
+        YouWonText.SetActive(false);
+        screenFader.StartCoroutine("FadeOut");
     }
 }

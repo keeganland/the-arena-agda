@@ -132,6 +132,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                     {
                         this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
                         this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
+                        this.gameObject.GetComponent<SpellCommand>().CancelBoyShield();
 
                         Vector3 newpos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
                         m_agent.SetDestination(newpos);

@@ -7,6 +7,6 @@ public class StartFirstBattle : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-      //  EventManager.TriggerEvent("enterArena");
+        EventManager.TriggerEvent("enterArena");
 	}
 }

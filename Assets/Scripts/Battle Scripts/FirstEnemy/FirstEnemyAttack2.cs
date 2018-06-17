@@ -35,6 +35,8 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
     public Transform[] _NewTargets;
     private NavMeshAgent meshAgent;
 
+    public bool StopAttacking; 
+
     new void Start()
     {
         base.Start();
@@ -96,7 +98,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
 
 	public override void OnTriggerEnter(Collider other)
 	{
-		if (_Target[_BoyOrGirl])
+		if (_Target[_BoyOrGirl] && !StopAttacking)
 		{
 			if (other == _Target[_BoyOrGirl].GetComponent<Collider>())
 			{
@@ -115,7 +117,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
     public override void OnTriggerStay(Collider other)
     {
         //Debug.Log(other.name);
-        if (_Target[_BoyOrGirl])
+        if (_Target[_BoyOrGirl] && !StopAttacking)
         {
             if (other == _Target[_BoyOrGirl].GetComponent<Collider>())
             {

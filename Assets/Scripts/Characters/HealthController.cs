@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class HealthController : MonoBehaviour
 {
     public PublicVariableHolderneverUnload _PublicVariableHolder;
+    public bool isBoss; //Needed here and not in the public var holder
 
     public int totalHealth = 100;
     public int currentHealth;
@@ -15,7 +16,6 @@ public class HealthController : MonoBehaviour
     public int AggroBoy = 0;
     public int AggroGirl = 0;
     public int _ReviveCD;
-    public bool isBoss; //KeeganNTS: temporary victory conditions. Deprecate with later design
     public GameObject Sprite;
 
     private AudioSource m_audioSource;
@@ -32,10 +32,19 @@ public class HealthController : MonoBehaviour
     private MessageHandler m_messageHandler;
     private NavMeshAgent agent; //Why is this here? (it doesn't seem to be used)
     private int tempHealth;
+    private bool invincibility;
+    private float invincibilityTimer;
+
+    public string GameObjectName;
 
     private void Awake()
     {
         currentHealth = totalHealth;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.TriggerEvent("camTargetRefresh");
     }
 
     private void Start()
@@ -72,9 +81,16 @@ public class HealthController : MonoBehaviour
 
     private void Update()
     {
-        if (isBoss && (currentHealth <= 0))
+        if (gameObject.tag == "Player")
         {
-            //Keegan NTS: victory shenanigans
+            if (invincibilityTimer >= 1f)
+            {
+                invincibility = false;
+            }
+            if (invincibilityTimer <= 10f)
+            {
+                invincibilityTimer += Time.deltaTime;
+            }
         }
     }
 
@@ -85,9 +101,21 @@ public class HealthController : MonoBehaviour
             case MessageTypes.DAMAGED:
                 DamageData dmgData = msgData as DamageData;
 
-                if (dmgData != null)
+                if (gameObject.tag == "Player")
                 {
-                    ApplyDamage(dmgData.damage, go);
+                    if (dmgData != null && !invincibility)
+                    {
+                        invincibilityTimer = 0;
+                        invincibility = true;
+                        ApplyDamage(dmgData.damage, go);
+                    }
+                }
+                if (gameObject.tag == "Enemy")
+                {
+                    if (dmgData != null && !invincibility)
+                    {                       
+                        ApplyDamage(dmgData.damage, go);
+                    }
                 }
                 break;
              case MessageTypes.AGGROCHANGED:
@@ -155,10 +183,21 @@ public class HealthController : MonoBehaviour
             //VictoryScreen.youWon = true;
             //Debug.Log("This is HealthController.cs, youWon should have just flipped");
             //this.gameObject.SetActive(false);//This works
-            if(this.gameObject.tag == "Player")
-            DoDeath();
+            if (this.gameObject.tag == "Player")
+            {
+                DoDeath();
+            }
             if (this.gameObject.tag == "Enemy")
+            {
+                GameObject.Find("/PlayerUI").GetComponent<UISpellSwap>().currentEnemy = null;
                 Destroy(transform.parent.gameObject, 0.15f);
+
+                if (isBoss)
+                {
+                    EventManager.TriggerEvent("bossDied");
+                }
+                EventManager.TriggerEvent("checkVictory");
+            }
             //agent.enabled = false; //this is from the original script. Don't think it's remotely related
             // transform.position = enemy.GetComponent<enermy_movement>().spawnPoint.position;
 
@@ -194,6 +233,7 @@ public class HealthController : MonoBehaviour
 
         if (this.gameObject.name == "Boy")
         {
+            EventManager.TriggerEvent("StopBoyMoving");
             GameObject.Find("Girl").GetComponent<BetterPlayer_Movement>().SwapGirl();
             gameObject.GetComponent<BetterPlayer_Movement>().SwapGirl();
             _PublicVariableHolder._DeathBoyParticle.Play();
@@ -203,6 +243,7 @@ public class HealthController : MonoBehaviour
         }
         if (this.gameObject.name == "Girl")
         {
+            EventManager.TriggerEvent("StopGirlMoving");
             GameObject.Find("Boy").GetComponent<BetterPlayer_Movement>().SwapBoy();
             gameObject.GetComponent<BetterPlayer_Movement>().SwapBoy();
             _PublicVariableHolder._DeathGirlParticle.Play();
@@ -226,12 +267,14 @@ public class HealthController : MonoBehaviour
 
         if(this.gameObject.name == "Boy")
         {
+            EventManager.TriggerEvent("StartBoyMoving");
             Debug.Log("here");
             _PublicVariableHolder._ReviveBoyParticle.Play();
            // _PublicVariableHolder._ReviveBoyParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
         if (this.gameObject.name == "Girl")
         {
+            EventManager.TriggerEvent("StartGirlMoving");
             _PublicVariableHolder._ReviveGirlParticle.Play();
           //  _PublicVariableHolder._ReviveGirlParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }

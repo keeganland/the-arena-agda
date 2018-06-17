@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using TMPro;
+
 
 public class PublicVariableHolderArena : MonoBehaviour {
 
@@ -19,11 +21,17 @@ public class PublicVariableHolderArena : MonoBehaviour {
     public GameObject _InitialPositionGirl; //Goes with "InitialPositionGirl" (arena)
     public GameObject _InitialPositionEnemy; //Goes with "InitialPositionEnemy" (arena)
 
+    [Header("Scripted Events/UI")]
+    public GameObject ReadyText; //Goes with "Ready"
+    public GameObject FightText; //Goes with "Figh!t"
+    public GameObject YouWonText; //Goes witH "You Won!"
+
     [Header("Enemies/SecondEnemyPrefab/SecondEnemyAttack")]
     public GameObject _SheepPrefab; //Goes with "FirstEnemy" (assets)
     public Transform[] _TotemTeleportPos; //GOes with "/SecondEnemyTeleportPosition/..." (arena)
     public Transform[] _Spawnposition;
-    public ParticleSystem[] _SpawnAnimation;
+    public ParticleSystem _SpawnSheepAnim;
     public ParticleSystem[] _TeleportSpawn;
     public ParticleSystem _TeleportStart;
+    public ParticleSystem _TeleportArrives;
 }

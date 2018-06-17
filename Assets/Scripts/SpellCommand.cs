@@ -24,6 +24,8 @@ public class SpellCommand : MonoBehaviour {
     public GameObject RangeIndicatorHeal;
     public GameObject Heal;
     public GameObject RangeIndicatorShield;
+    public GameObject ShieldRangeIndicator;
+    public GameObject ShieldDirectionIndicator;
 
     public ParticleSystem _Qselected;
     public ParticleSystem _Wselected;
@@ -170,7 +172,9 @@ public class SpellCommand : MonoBehaviour {
                 {
                     //Spell goes here
                     //shield appears in front of boy in direction of mouse click (doesn't move)
-                   // RangeIndicatorShield.SetActive(true);
+                    // RangeIndicatorShield.SetActive(true);
+
+                    ShieldRangeIndicator.SetActive(true);
 
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
@@ -178,9 +182,35 @@ public class SpellCommand : MonoBehaviour {
                     {
                         if (hit.collider.tag == "RangeIndicator")
                         {
-                            Vector3 directiondifference = hit.transform.position - this.transform.position;
-                            //this.transform.LookAt(hit.transform, direction);
-                            //Instantiate(Shield as GameObject);// This creates a shield in the place that I originally placed it in scene
+                            ShieldDirectionIndicator.SetActive(true);
+                            ShieldDirectionIndicator.transform.position = new Vector3(hit.point.x, 1, hit.point.z); //location of blue dot
+                            Vector3 difference = new Vector3(hit.point.x, this.transform.position.y, hit.point.z) - this.transform.position;//difference btw hit point and boy
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                float zpos = this.transform.position.z /* (float)0.9*/;//looking to move shield just off the boy
+                                float xpos = this.transform.position.x /* (float)0.9*/;
+                                if(this.transform.position.x > hit.point.x)//adapting to try to move shield off character depending on where the click is
+                                {
+                                    xpos = this.transform.position.x * (float)0.5;//not working correctly
+                                }
+                                if(this.transform.position.x < hit.point.x)
+                                {
+                                    xpos = this.transform.position.x * (float)1.5;
+                                }
+                                if (this.transform.position.z > hit.point.z)//adapting to try to move shield off character depending on where the click is
+                                {
+                                    zpos = this.transform.position.z * (float)1.1;
+                                }
+                                if (this.transform.position.z < hit.point.z)
+                                {
+                                    zpos = this.transform.position.z * (float)0.9;
+                                }
+                                Vector3 sheildpos = new Vector3(xpos, 0, zpos);
+
+                                GameObject shields = Instantiate(Shield, sheildpos, Quaternion.LookRotation( difference));
+                                shields.transform.SetParent(null);
+                                //Shield.transform.rotation = Quaternion.LookRotation(directiondifference); //rotation becomes the direction of the difference of the click
+                            }
                             //Shield.SetActive(true);
                             /* Notes:
                              * Want to create some sort of targetting arrow that follows mouse on first click
@@ -243,6 +273,9 @@ public class SpellCommand : MonoBehaviour {
                 {
                     //Spell goes here
                     isWspell = false;
+                    //Stop Coroutines
+                    //Make stop attacking (FirstEnemyAttack2) true
+                    //Trigger the event
                    
                 }
             
@@ -326,46 +359,80 @@ public class SpellCommand : MonoBehaviour {
             AttackIndicatorHeal.SetActive(false);
     }
 
+    public void CancelBoyShield()
+    {
+        isQspell = false;
+        if(_Qselected)
+        _Qselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        _SmallQselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        if (RangeIndicatorShield)
+            RangeIndicatorShield.SetActive(false);
+        if (ShieldDirectionIndicator)
+            ShieldDirectionIndicator.SetActive(false);
+        if (ShieldRangeIndicator)
+            ShieldRangeIndicator.SetActive(false);
+    }
+
     public void CastSpellQGirl(bool isBig) //When is this used? What does this do?
     {
-        Debug.Log(isBig);
-        if (isBig)
-        {
-            _Qselected.Play();
-        }
-        else {
-            Debug.Log("I am here");
-            _SmallQselected.Play();
-        }
-        isQGirlforced = true;
-        isQspell = true;   //This is done in update?     
-        CancelAOEAttack();
-     
+                                           //Alex answer : It's the function called when you click on the big spell (UI)        
+            Debug.Log(isBig);
+            if (isBig)
+            {
+                _Qselected.Play();
+            }
+            else
+            {
+                Debug.Log("I am here");
+                _SmallQselected.Play();
+            }
+            isQGirlforced = true;
+            isQspell = true;   //This is done in update?     //Alex answer : it also need to be done when you click on the UI, otherwise it won't work
+            CancelAOEAttack();
+    
     }
 
     public void CastSpellWGirl(bool isBig)
-    {
-        if (isBig)
-        {
-            _Wselected.Play();
-        }
-        else
-        {
-            _SmallWselected.Play();
-        }
-        isWGirlforced = true;
-        Debug.Log(isWGirlforced);
-        isWspell = true;
-        CancelHealAttack();
+    {  
+            if (isBig)
+            {
+                _Wselected.Play();
+            }
+            else
+            {
+                _SmallWselected.Play();
+            }
+            isWGirlforced = true;
+            Debug.Log(isWGirlforced);
+            isWspell = true;
+            CancelHealAttack();      
     }
 
-    public void CastSpellQBoy()
+    public void CastSpellQBoy(bool isBig)
     {
-
+            if (isBig)
+            {
+                _Qselected.Play();
+            }
+            else
+            {
+                _SmallQselected.Play();
+            }
+            
+            isQspell = true;       
     }
 
-    public void CastSpellWBoy()
-    {
+    public void CastSpellWBoy(bool isBig)
+    {      
+            if (isBig)
+            {
+                _Wselected.Play();
+            }
+            else
+            {
+                _SmallWselected.Play();
+            }
 
+            isWspell = true;       
     }
 }

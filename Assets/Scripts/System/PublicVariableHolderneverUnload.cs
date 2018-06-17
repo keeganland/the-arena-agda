@@ -9,8 +9,10 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     [Header("NeverUnload/Characters : General Usefull Variables")]
     public GameObject Boy; //Goes with "Boy" (neverUnload)
     public GameObject Girl; //Goes with "Girl" (neverUnload)
+    public GameObject MainCamera; //Goes with "Main Camera" (neverUnload)
     public NavMeshAgent BoynavMeshAgent;
     public NavMeshAgent GirlnavMeshAgent;
+    public GameObject PlayerUI;
     public bool StopAllActions;
     public bool StopCamera;
 
@@ -70,4 +72,9 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     public Image _CooldownSmallWImage; //Goes with "cooldownWimagesmall" (neverUnload)
     public BetterPlayer_Movement _GirlMovementScript; //Goes with "Girl" (neverUnload)
     public BetterPlayer_Movement _BoyMovementScript; //Goes with "Boy" (neverUnload)
+
+    public GameObject EnemyUI; //Goes with "EnemyUI" (neverUnload)
+    public Text EnemyNameUI; //Goes with "EnemyNameUI" (neverUnload)
+    public Text CurrentEnemyHPUI; //Goes with "CurrentEnemyHPUI" (neverUnload)
+    public Slider SliderEnemyHPUI;  //Goes with "SliderEnemyHPUI" (neverUnload)
 }

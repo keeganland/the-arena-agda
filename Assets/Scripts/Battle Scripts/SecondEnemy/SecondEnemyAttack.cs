@@ -16,21 +16,25 @@ public class SecondEnemyAttack : MonoBehaviour {
     private GameObject SheepPrefab;
     private Transform[] TeleportPosition;
     private Transform[] SpawnPosition;
-    private ParticleSystem[] SpawnParticle;
+    private ParticleSystem _SpawnAnimationPrefab;
     private ParticleSystem TeleportStart;
+    private ParticleSystem TeleportArrives;
     [SerializeField] private float spawnTime;
     [SerializeField] private float teleportTime;
     private int currentTeleportPosition;
     private bool isCoroutineStarted;
     private float m_castTime;
-    private bool TeleportStarted;
+    private bool TeleportStarted; //bool for the "Beginning animation of teleportation
+    private bool TeleportEndStarted; //bool for the "Arrival animation" of teleportation
+
 
     [Header("Totem Characteristics")]
     public float spawnCD = 30;
     public float teleportCD = 180;
     public float castingTime;
     public float spawnParticleDelay;
-    public float teleportAnimStart;
+    public float teleportAnimStart; //float that set the start of the animation (you want a to start before for a smooth anim)
+    public float teleportAnimEnd; //same as before but for the "end" animation
     [Header("Sheep Characteristics")]
     public int Sheephealth = 15;
     public int RedSheephealth = 55;
@@ -41,8 +45,12 @@ public class SecondEnemyAttack : MonoBehaviour {
         SheepPrefab = publicVariableHolderArena._SheepPrefab;
         TeleportPosition = publicVariableHolderArena._TotemTeleportPos;
         SpawnPosition = publicVariableHolderArena._Spawnposition;
-        SpawnParticle = publicVariableHolderArena._SpawnAnimation;
+        //SpawnParticle = publicVariableHolderArena._SpawnAnimation;
         TeleportStart = publicVariableHolderArena._TeleportStart;
+        TeleportArrives = publicVariableHolderArena._TeleportArrives;
+        _SpawnAnimationPrefab = publicVariableHolderArena._SpawnSheepAnim;
+
+        TeleportArrives.transform.SetParent(null);
 
         spawnTime = 20;
 	}
@@ -62,21 +70,48 @@ public class SecondEnemyAttack : MonoBehaviour {
             TeleportStarted = true;
         }
 
-        if(teleportTime >= teleportCD)
+        if(teleportTime >= teleportCD - teleportAnimEnd)
         {
-            int i = Random.Range(0, TeleportPosition.Length);
-            if (currentTeleportPosition != i)
+            if (!TeleportEndStarted)
             {
-                transform.position = TeleportPosition[i].position;
-                currentTeleportPosition = i;
-                teleportTime = 0;
-                TeleportStarted = false;
+                StartCoroutine("teleportArrives");
+                TeleportEndStarted = true;
+            }
+
+            if (teleportTime >= teleportCD)
+            {
+                int i = Random.Range(0, TeleportPosition.Length);
+                if (currentTeleportPosition != i)
+                {
+                    transform.position = new Vector3(TeleportPosition[i].position.x, transform.position.y, TeleportPosition[i].position.z);
+                    currentTeleportPosition = i;
+                    teleportTime = 0;
+                    TeleportStarted = false;
+                }
             }
         }
 
         spawnTime += Time.deltaTime;
         teleportTime += Time.deltaTime;
 	}
+
+    private IEnumerator teleportArrives()
+    {
+        int i = Random.Range(0, TeleportPosition.Length);
+        while (currentTeleportPosition == i)
+        {
+            i = Random.Range(0, TeleportPosition.Length);
+        }
+        TeleportArrives.transform.position = new Vector3(TeleportPosition[i].position.x, transform.position.y, TeleportPosition[i].position.z);
+        TeleportArrives.Play();
+        yield return new WaitForSeconds(teleportAnimEnd);
+
+        transform.position = new Vector3(TeleportPosition[i].position.x, transform.position.y, TeleportPosition[i].position.z);
+        currentTeleportPosition = i;    
+        teleportTime = 0;
+        TeleportStarted = false;
+        TeleportEndStarted = false;
+    }
 
     private void FixedUpdate()
     {
@@ -99,11 +134,22 @@ public class SecondEnemyAttack : MonoBehaviour {
         _CastSpellGameobject.SetActive(true);
         _SpellCasttimer.enabled = true;
 
-        yield return new WaitForSeconds(castingTime - spawnParticleDelay); 
+        yield return new WaitForSeconds(castingTime - spawnParticleDelay);
 
-        SpawnParticle[0].Play();
-        SpawnParticle[1].Play();
-        SpawnParticle[2].Play();
+        ParticleSystem spawnparticle1 = Instantiate(_SpawnAnimationPrefab, SpawnPosition[0].position, Quaternion.Euler(-90,0,0));
+        ParticleSystem spawnparticle2 = Instantiate(_SpawnAnimationPrefab, SpawnPosition[1].position, Quaternion.Euler(-90,0,0));
+        ParticleSystem spawnparticle3 = Instantiate(_SpawnAnimationPrefab, SpawnPosition[2].position, Quaternion.Euler(-90,0,0));
+
+        spawnparticle1.transform.SetParent(null);
+        spawnparticle2.transform.SetParent(null);
+        spawnparticle3.transform.SetParent(null);
+
+        spawnparticle1.Play();
+        spawnparticle2.Play();
+        spawnparticle3.Play();
+        //SpawnParticle[0].Play();
+        //SpawnParticle[1].Play();
+        //SpawnParticle[2].Play();
 
         yield return new WaitForSeconds(spawnParticleDelay);
 
@@ -122,12 +168,23 @@ public class SecondEnemyAttack : MonoBehaviour {
         sheep2.GetComponentInChildren<HealthController>().currentHealth = Sheephealth;
         sheep3.GetComponentInChildren<HealthController>().currentHealth = RedSheephealth;
 
+        sheep1.GetComponentInChildren<HealthController>().totalHealth = Sheephealth;
+        sheep2.GetComponentInChildren<HealthController>().totalHealth = Sheephealth;
+        sheep3.GetComponentInChildren<HealthController>().totalHealth = RedSheephealth;
+
+        sheep1.GetComponentInChildren<HealthController>().GameObjectName = "Small Sheep";
+        sheep2.GetComponentInChildren<HealthController>().GameObjectName = "Small Sheep";
+        sheep3.GetComponentInChildren<HealthController>().GameObjectName = "Red Sheep";
+
         sheep3.GetComponentInChildren<SpriteRenderer>().color = RedSheepcolor;
 
         sheep1.GetComponentInChildren<HealthUI>().UpdateUi(Sheephealth, Sheephealth);
         sheep2.GetComponentInChildren<HealthUI>().UpdateUi(Sheephealth, Sheephealth);
         sheep3.GetComponentInChildren<HealthUI>().UpdateUi(RedSheephealth, RedSheephealth);
 
+        Destroy(spawnparticle1, 2f);
+        Destroy(spawnparticle2, 2f);
+        Destroy(spawnparticle3, 2f);
 
         yield return new WaitForSeconds(1);
 

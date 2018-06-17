@@ -23,9 +23,32 @@ public class BetterPlayer_Movement : MonoBehaviour {
     private GameObject curTarget;
 
     private bool ReviveStart;
-    
-	// Use this for initialization
-	void Start () {
+
+    /* Keegan note 2018/6/6
+     * 
+     * The two functions below, Awake and OnDisable, imply the need for modifications and improvements to:
+     * MovementManager.cs (possibly completely obselete?)
+     * TextBoxManager.cs (needs improvement, general refactors)
+     * [Possibly more?]
+     * 
+     * Remove this note once these changes have been made
+     */
+
+    private void Awake()
+    {
+        EventManager.StartListening("stopForTextbox", stopPlayerAgent);
+        EventManager.StartListening("resumeAfterTextbox", startPlayerAgent);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("stopForTextbox", stopPlayerAgent);
+        EventManager.StopListening("resumeAfterTextbox", startPlayerAgent);
+
+    }
+
+    // Use this for initialization
+    void Start () {
 
         m_agent = GetComponent<NavMeshAgent>();
 
@@ -39,6 +62,10 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
     }
 	
+    /* Keegan note 2018/6/6
+     * Codesmell:
+     * Overly long Update function. Please review and refactor
+     */
 	// Update is called once per frame
 	void Update () {
 
@@ -93,7 +120,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
             }
         }
             //For stopping the player character - whichever one that happens to be
-            if (isTheBoy == boyActive && !stopMoving)
+        if (isTheBoy == boyActive && !stopMoving)
         {
             if (Input.GetMouseButtonDown(1))
             {
@@ -105,6 +132,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                     {
                         this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
                         this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
+                        this.gameObject.GetComponent<SpellCommand>().CancelBoyShield();
 
                         Vector3 newpos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
                         m_agent.SetDestination(newpos);
@@ -133,7 +161,10 @@ public class BetterPlayer_Movement : MonoBehaviour {
             }
         }
 
-        m_agent.isStopped = stopMoving;
+        /* Keegan note 2018/6/6:
+         * The below may be COMPLETELY unnecessary right now. Check old scripts to see if there's any important logical difference
+         */
+        //m_agent.isStopped = stopMoving; //Alex changes
         /*
         //The above is a more concise way of putting this more readable code:
 
@@ -266,5 +297,16 @@ public class BetterPlayer_Movement : MonoBehaviour {
     public void UndoCurTarget()
     {
         curTarget = null;
+    }
+
+
+    public void stopPlayerAgent()
+    {
+        m_agent.isStopped = true;
+    }
+
+    public void startPlayerAgent()
+    {
+        m_agent.isStopped = false;
     }
 }

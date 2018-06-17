@@ -48,6 +48,13 @@ public class UISpellSwap : MonoBehaviour {
     private BetterPlayer_Movement _GirlMovementScript;
     private BetterPlayer_Movement _BoyMovementScript;
 
+    private GameObject EnemyUI;
+    private Text EnemyNameUI;
+    private Text CurrentEnemyHPUI;
+    private Slider SliderEnemyHPUI;
+    public GameObject currentEnemy;
+    private bool iscurrentEnemy;
+
     private int m_bigQcooldowntext;
     private int m_bigWcooldowntext;
     private int m_smallQcooldowntext;
@@ -97,14 +104,70 @@ public class UISpellSwap : MonoBehaviour {
 
         _GirlMovementScript = _PublicVariableHolder._GirlMovementScript;
         _BoyMovementScript = _PublicVariableHolder._BoyMovementScript;
-    }
+
+        EnemyUI = _PublicVariableHolder.EnemyUI;
+        EnemyNameUI = _PublicVariableHolder.EnemyNameUI;
+        CurrentEnemyHPUI = _PublicVariableHolder.CurrentEnemyHPUI;
+        SliderEnemyHPUI = _PublicVariableHolder.SliderEnemyHPUI;
+}
 
     private void Update()
     {
         if (m_isBoy)
             BoySlider();
         else GirlSlider();
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.tag == "Ground")
+                {
+                    DisableEnemyUI();
+
+                }
+            }
+        }
+        EnableEnemyUI();
     }
+
+    private void EnableEnemyUI()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.tag == "Enemy")
+                {
+                    EnemyUI.SetActive(true);
+                    currentEnemy = hit.collider.gameObject;
+                    iscurrentEnemy = true;
+                    EnemyNameUI.text = currentEnemy.GetComponent<HealthController>().GameObjectName;
+                }
+            }
+        }
+
+        if(currentEnemy)
+        {
+            CurrentEnemyHPUI.text = currentEnemy.GetComponent<HealthController>().currentHealth.ToString() +  " / "  + currentEnemy.GetComponent<HealthController>().totalHealth.ToString();
+            SliderEnemyHPUI.value = (1.0f / (float) currentEnemy.GetComponent<HealthController>().totalHealth) *(float) currentEnemy.GetComponent<HealthController>().currentHealth;
+        }
+        if (!currentEnemy)
+        {
+            DisableEnemyUI();
+        }
+    }
+
+
+    private void DisableEnemyUI()
+    {
+        iscurrentEnemy = false;
+        EnemyUI.SetActive(false);            
+    }
+
     public void BoySpellActive()
     {
         m_isBoy = true;
@@ -227,7 +290,7 @@ public class UISpellSwap : MonoBehaviour {
         {
             if (m_isBoy)
             {
-                _SpellCommand.CastSpellQBoy();
+                _SpellCommand.CastSpellQBoy(true);
             }
             else _SpellCommand.CastSpellQGirl(true);
         }
@@ -239,7 +302,7 @@ public class UISpellSwap : MonoBehaviour {
         {
             if (m_isBoy)
             {
-                _SpellCommand.CastSpellWBoy();
+                _SpellCommand.CastSpellWBoy(true);
             }
             else _SpellCommand.CastSpellWGirl(true);
         }
@@ -254,7 +317,7 @@ public class UISpellSwap : MonoBehaviour {
 
                 _SpellCommand.CastSpellQGirl(false);
             }
-            else _SpellCommand.CastSpellQBoy();
+            else _SpellCommand.CastSpellQBoy(false);
         }
     }
 
@@ -266,7 +329,7 @@ public class UISpellSwap : MonoBehaviour {
             {
                 _SpellCommand.CastSpellWGirl(false);
             }
-            else _SpellCommand.CastSpellWBoy();
+            else _SpellCommand.CastSpellWBoy(false);
         }
     }
 

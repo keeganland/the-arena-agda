@@ -66,7 +66,7 @@ namespace ShaderForge {
 			r.width = 26;
 			r.y -= 26;
 
-			if(Event.current.type == EventType.Repaint){
+			if(Event.current.type == EventType.repaint){
 				smoothConnectorHeight = Mathf.Lerp(smoothConnectorHeight, targetConnectorHeight, 0.6f);
 			}
 

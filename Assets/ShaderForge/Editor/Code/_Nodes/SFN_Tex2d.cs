@@ -301,7 +301,7 @@ namespace ShaderForge {
 				}
 			}
 
-			if( IsProperty() && Event.current.type == EventType.DragUpdated ) {
+			if( IsProperty() && Event.current.type == EventType.dragUpdated ) {
 				if(DragAndDrop.objectReferences.Length > 0){
 					Object dragObj = DragAndDrop.objectReferences[0];
 					if( dragObj is Texture2D || dragObj is ProceduralTexture || dragObj is RenderTexture) {

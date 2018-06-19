@@ -187,27 +187,59 @@ public class SpellCommand : MonoBehaviour {
                             Vector3 difference = new Vector3(hit.point.x, this.transform.position.y, hit.point.z) - this.transform.position;//difference btw hit point and boy
                             if (Input.GetMouseButtonDown(0))
                             {
-                                float zpos = this.transform.position.z /* (float)0.9*/;//looking to move shield just off the boy
-                                float xpos = this.transform.position.x /* (float)0.9*/;
+                                float zpos = this.transform.position.z;//in case the click is directly in line
+                                float xpos = this.transform.position.x;
+                                //Create new system for this. Read how far away the x value is, make it that far off boy unless it exceeds a certain max
+                                //Do the same for z
+                                //This may cause issues regarding Needing to spawn the shield a certain minimum distance away so it isn't on top of boy
+                                //This distance will be much smaller when using the -20x rotation
                                 if(this.transform.position.x > hit.point.x)//adapting to try to move shield off character depending on where the click is
                                 {
-                                    xpos = this.transform.position.x * (float)0.5;//not working correctly
+                                    if(this.transform.position.x - hit.point.x >= 1.5)
+                                    {
+                                        xpos = this.transform.position.x - (float)1.5;//Need to decrease this when the click is closer
+                                    }
+                                    else
+                                    {
+                                        xpos = hit.point.x;
+                                    }
                                 }
                                 if(this.transform.position.x < hit.point.x)
                                 {
-                                    xpos = this.transform.position.x * (float)1.5;
+                                    if(hit.point.x - this.transform.position.x >= 1.5)
+                                    {
+                                        xpos = this.transform.position.x + (float)1.5;
+                                    }
+                                    else
+                                    {
+                                        xpos = hit.point.x;
+                                    }
                                 }
                                 if (this.transform.position.z > hit.point.z)//adapting to try to move shield off character depending on where the click is
                                 {
-                                    zpos = this.transform.position.z * (float)1.1;
+                                    if(this.transform.position.z - hit.point.z >= 1.5)
+                                    {
+                                        zpos = this.transform.position.z - (float)1.5;
+                                    }
+                                    else
+                                    {
+                                        zpos = hit.point.z;
+                                    }
                                 }
                                 if (this.transform.position.z < hit.point.z)
                                 {
-                                    zpos = this.transform.position.z * (float)0.9;
+                                    if(hit.point.z - this.transform.position.z >= 1.5)
+                                    {
+                                        zpos = this.transform.position.z + (float)1.5;
+                                    }
+                                    else
+                                    {
+                                        zpos = hit.point.z;
+                                    }
                                 }
                                 Vector3 sheildpos = new Vector3(xpos, 0, zpos);
 
-                                GameObject shields = Instantiate(Shield, sheildpos, Quaternion.LookRotation( difference));
+                                GameObject shields = Instantiate(Shield, sheildpos, Quaternion.LookRotation( difference));//Need to assign a rotaion of -20x
                                 shields.transform.SetParent(null);
                                 //Shield.transform.rotation = Quaternion.LookRotation(directiondifference); //rotation becomes the direction of the difference of the click
                             }

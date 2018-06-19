@@ -203,7 +203,7 @@ public class SpellCommand : MonoBehaviour {
                                     {
                                         xpos = hit.point.x;
                                     }
-                                }
+                                }//Adapting for whether the click is less than or more than 1.5
                                 if(this.transform.position.x < hit.point.x)
                                 {
                                     if(hit.point.x - this.transform.position.x >= 1.5)
@@ -241,14 +241,8 @@ public class SpellCommand : MonoBehaviour {
 
                                 GameObject shields = Instantiate(Shield, sheildpos, Quaternion.LookRotation( difference));//Need to assign a rotaion of -20x
                                 shields.transform.SetParent(null);
-                                //Shield.transform.rotation = Quaternion.LookRotation(directiondifference); //rotation becomes the direction of the difference of the click
+                                CancelBoyShield();
                             }
-                            //Shield.SetActive(true);
-                            /* Notes:
-                             * Want to create some sort of targetting arrow that follows mouse on first click
-                             * Then spawn shield in the direction of the arrow on second click
-                             * Leave shield where it is, don't need to move it
-                             */
                         }
                     }
                 }

@@ -17774,22 +17774,22 @@ Prefab:
     - target: {fileID: 198763410501092346, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
       propertyPath: startDelay.maxCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198763410501092346, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
       propertyPath: startDelay.minCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198315888989380376, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
       propertyPath: startDelay.maxCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198315888989380376, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
       propertyPath: startDelay.minCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224168313853542154, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
@@ -25804,22 +25804,22 @@ Prefab:
     - target: {fileID: 198763410501092346, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
       propertyPath: startDelay.maxCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198763410501092346, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
       propertyPath: startDelay.minCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198315888989380376, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
       propertyPath: startDelay.maxCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198315888989380376, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
       propertyPath: startDelay.minCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224168313853542154, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
@@ -95784,6 +95784,7 @@ MonoBehaviour:
   _GirlHealthUI: {fileID: 765572586}
   _BoyHealthUI: {fileID: 1762563031}
   _GirlSpellCommandScript: {fileID: 765572582}
+  _BoySpellCommandScript: {fileID: 1762563029}
   _SpellCommand: {fileID: 765572582}
   _BigQCooldowntext: {fileID: 817161660}
   _BigWCooldowntext: {fileID: 724197719}
@@ -99402,22 +99403,22 @@ Prefab:
     - target: {fileID: 198763410501092346, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
       propertyPath: startDelay.maxCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198763410501092346, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
       propertyPath: startDelay.minCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198315888989380376, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
       propertyPath: startDelay.maxCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198315888989380376, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
       propertyPath: startDelay.minCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224168313853542154, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
@@ -103259,11 +103260,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1637208690}
---- !u!4 &1653979544 stripped
+--- !u!4 &1653979544
 Transform:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 4088508475585140, guid: f086c14612ae1d0488ed41b8af999a63,
     type: 2}
   m_PrefabInternal: {fileID: 1876937740}
+  m_GameObject: {fileID: 2013286101}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2075195117}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1713717677
 GameObject:
   m_ObjectHideFlags: 0
@@ -103647,7 +103657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _PublicVariableHolder: {fileID: 1546493861}
   Healing: 0
-  Shield: {fileID: 1582344462032776, guid: 10c237ab3688c9449b4aecc97b21d7d5, type: 2}
+  Shield: {fileID: 1582344462032776, guid: 382c0cf752640a540aed438c6cc9d6d1, type: 2}
   AOE: {fileID: 0}
   RangeIndicatorAOE: {fileID: 0}
   AttackIndicatorAOE: {fileID: 0}
@@ -103665,7 +103675,7 @@ MonoBehaviour:
   _AOEUITimer: 0
   _HealCooldown: 0
   _HealUITimer: 0
-  _ShieldCooldown: 2
+  _ShieldCooldown: 12
   _ShieldUITimer: 0
   _StunCooldown: 0
   _StunUITimer: 0
@@ -103967,7 +103977,7 @@ Transform:
   m_LocalPosition: {x: -0.75, y: 0, z: -28.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1653979544}
+  - {fileID: 2075195117}
   - {fileID: 558585965}
   - {fileID: 1860826678}
   - {fileID: 76280331}
@@ -108547,6 +108557,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0db46a815311994c9fd6b1a5d6f07e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2013286101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1876937740}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1653979544}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &2031836710
 GameObject:
   m_ObjectHideFlags: 0
@@ -108720,22 +108745,22 @@ Prefab:
     - target: {fileID: 198763410501092346, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
       propertyPath: startDelay.maxCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198763410501092346, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
       propertyPath: startDelay.minCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198315888989380376, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
       propertyPath: startDelay.maxCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198315888989380376, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
       propertyPath: startDelay.minCurve.m_Curve.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224168313853542154, guid: 7192b9e7c1fa9fe4387943281348c895,
         type: 2}
@@ -116071,6 +116096,35 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2066337820}
+--- !u!1 &2075195116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1876937740}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2075195117}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2075195117
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1876937740}
+  m_GameObject: {fileID: 2075195116}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1653979544}
+  m_Father: {fileID: 1762563044}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2100151471
 GameObject:
   m_ObjectHideFlags: 0

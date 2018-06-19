@@ -50,11 +50,11 @@ public class SpellCommand : MonoBehaviour {
     {
         if(_AOECooldown == 0)
         {
-            _AOECooldown = 3;
+            _AOECooldown = 6;
         }
         if(_HealCooldown == 0)
         {
-            _HealCooldown = 3;
+            _HealCooldown = 7;
         }
         if(_ShieldCooldown == 0)
         {
@@ -62,7 +62,7 @@ public class SpellCommand : MonoBehaviour {
         }
         if(_StunCooldown == 0)
         {
-            _StunCooldown = 5;
+            _StunCooldown = 15;
         }
 
         _Qselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);

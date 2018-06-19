@@ -61,6 +61,7 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     public HealthUI _GirlHealthUI; //Goes with "Girl" (neverUnload)
     public HealthUI _BoyHealthUI; //Goes with "Boy" (neverUnload)
     public SpellCommand _GirlSpellCommandScript; //Goes with "Girl" (neverUnload)
+    public SpellCommand _BoySpellCommandScript; //Goes with "Boy" (neverUnload)
     public SpellCommand _SpellCommand; //Goes with "Girl" (neverUnload)
     public Text _BigQCooldowntext; //Goes with "CooldownbigQtext" (neverUnload)
     public Text _BigWCooldowntext; //Goes with "CooldownbigWtext" (neverUnload)

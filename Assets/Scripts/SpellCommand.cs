@@ -58,7 +58,7 @@ public class SpellCommand : MonoBehaviour {
         }
         if(_ShieldCooldown == 0)
         {
-            _ShieldCooldown = 5;
+            _ShieldCooldown = 12;
         }
         if(_StunCooldown == 0)
         {
@@ -241,7 +241,9 @@ public class SpellCommand : MonoBehaviour {
 
                                 GameObject shields = Instantiate(Shield, sheildpos, Quaternion.LookRotation( difference));//Need to assign a rotaion of -20x
                                 shields.transform.SetParent(null);
+                                Destroy(shields, 10.0f);
                                 CancelBoyShield();
+                                _ShieldCooldownTimer = _ShieldCooldown;
                             }
                         }
                     }

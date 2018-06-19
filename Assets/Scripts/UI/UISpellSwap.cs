@@ -33,6 +33,7 @@ public class UISpellSwap : MonoBehaviour {
     private HealthUI _BoyHealthUI;
 
     private SpellCommand _GirlSpellCommandScript;
+    private SpellCommand _BoySpellCommandScript;
     private SpellCommand _SpellCommand;
 
     private Text _BigQCooldowntext;
@@ -90,6 +91,7 @@ public class UISpellSwap : MonoBehaviour {
         _BoyHealthUI = _PublicVariableHolder._BoyHealthUI;
 
         _GirlSpellCommandScript = _PublicVariableHolder._GirlSpellCommandScript;
+        _BoySpellCommandScript = _PublicVariableHolder._BoySpellCommandScript;
         _SpellCommand = _PublicVariableHolder._SpellCommand;
 
         _BigQCooldowntext = _PublicVariableHolder._BigQCooldowntext;
@@ -201,8 +203,8 @@ public class UISpellSwap : MonoBehaviour {
         _BigTextHP.text = "HP : " + _GirlHealthUI.m_curHealth.ToString() + " /  " + _GirlHealthUI.m_maxHealth.ToString();
         _SmallTextHP.text = "HP : " + _BoyHealthUI.m_curHealth.ToString() + " /  " + _BoyHealthUI.m_maxHealth.ToString();
 
-        m_smallQcooldowntext = (int) _GirlSpellCommandScript._ShieldUITimer;
-        m_smallWcooldowntext = (int)_GirlSpellCommandScript._StunUITimer;
+        m_smallQcooldowntext = (int) _BoySpellCommandScript._ShieldUITimer;
+        m_smallWcooldowntext = (int)_BoySpellCommandScript._StunUITimer;
         m_bigQcooldowntext = (int)_GirlSpellCommandScript._HealUITimer;
         m_bigWcooldowntext = (int)_GirlSpellCommandScript._AOEUITimer;
 
@@ -231,8 +233,8 @@ public class UISpellSwap : MonoBehaviour {
         else
             _BigWCooldowntext.text = m_bigWcooldowntext.ToString();
 
-        _CooldownSmallQImage.fillAmount = _GirlSpellCommandScript._ShieldUITimer/_GirlSpellCommandScript._ShieldCooldown;
-        _CooldownSmallWImage.fillAmount = _GirlSpellCommandScript._StunUITimer / _GirlSpellCommandScript._StunCooldown;
+        _CooldownSmallQImage.fillAmount = _BoySpellCommandScript._ShieldUITimer/_BoySpellCommandScript._ShieldCooldown;
+        _CooldownSmallWImage.fillAmount = _BoySpellCommandScript._StunUITimer / _BoySpellCommandScript._StunCooldown;
         _CooldownBigQImage.fillAmount = _GirlSpellCommandScript._HealUITimer / _GirlSpellCommandScript._HealCooldown;
         _CooldownBigWImage.fillAmount = _GirlSpellCommandScript._AOEUITimer / _GirlSpellCommandScript._AOECooldown;
 
@@ -247,8 +249,8 @@ public class UISpellSwap : MonoBehaviour {
 
         m_smallQcooldowntext = (int)_GirlSpellCommandScript._HealUITimer;
         m_smallWcooldowntext = (int)_GirlSpellCommandScript._AOEUITimer;
-        m_bigQcooldowntext = (int)_GirlSpellCommandScript._ShieldUITimer;
-        m_bigWcooldowntext = (int)_GirlSpellCommandScript._StunUITimer;
+        m_bigQcooldowntext = (int)_BoySpellCommandScript._ShieldUITimer;
+        m_bigWcooldowntext = (int)_BoySpellCommandScript._StunUITimer;
 
         if (m_bigQcooldowntext == 0)
         {
@@ -277,8 +279,8 @@ public class UISpellSwap : MonoBehaviour {
         else
             _SmallWCooldowntext.text = m_smallWcooldowntext.ToString();
 
-        _CooldownBigQImage.fillAmount = _GirlSpellCommandScript._ShieldUITimer / _GirlSpellCommandScript._ShieldCooldown;
-        _CooldownBigWImage.fillAmount = _GirlSpellCommandScript._StunUITimer / _GirlSpellCommandScript._StunCooldown;
+        _CooldownBigQImage.fillAmount = _BoySpellCommandScript._ShieldUITimer / _GirlSpellCommandScript._ShieldCooldown;
+        _CooldownBigWImage.fillAmount = _BoySpellCommandScript._StunUITimer / _GirlSpellCommandScript._StunCooldown;
         _CooldownSmallQImage.fillAmount = _GirlSpellCommandScript._HealUITimer / _GirlSpellCommandScript._HealCooldown;
         _CooldownSmallWImage.fillAmount = _GirlSpellCommandScript._AOEUITimer / _GirlSpellCommandScript._AOECooldown;
     }

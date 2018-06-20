@@ -107,7 +107,7 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-  m_NavMeshData: {fileID: 23800000, guid: 1c9b00955256ec2499f2ce9bc45f5762, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 2242f069bdcbcd6438038193158c7f31, type: 2}
 --- !u!1 &35792640
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +392,7 @@ MonoBehaviour:
   _InitialPositionEnemy: {fileID: 2091804058}
   ReadyText: {fileID: 1510548510}
   FightText: {fileID: 788385234}
+  YouWonText: {fileID: 0}
   _SheepPrefab: {fileID: 1567317636688986, guid: cb34f36d629497b41a3cb39cb5033c9b,
     type: 2}
   _TotemTeleportPos:

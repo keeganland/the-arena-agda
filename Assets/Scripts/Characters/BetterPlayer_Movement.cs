@@ -17,6 +17,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
     private GameObject Girl;
 
     private NavMeshAgent m_agent;
+    public bool isCombat;
     public bool isTheBoy = false;
     public bool stopMoving = false;
     public bool boyActive = false;
@@ -189,6 +190,17 @@ public class BetterPlayer_Movement : MonoBehaviour {
             }
         }
 
+
+        NonCombat();
+    }
+
+    public void NonCombat()
+    {
+        if(isCombat== false)
+        {
+            if (isTheBoy == true)
+                curTarget = Girl;
+        }
     }
 
     public void SwapBoy()

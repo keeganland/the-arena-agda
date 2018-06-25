@@ -87,6 +87,16 @@ public class Bullet : MonoBehaviour {
                 DisplayDamage(collision.gameObject, _DamageColor, Damage);
             }
         }
+        else if (collision.gameObject.CompareTag("Player") && _SpellCaster.gameObject.tag == "Enemy")
+        {
+            DestroyObject();
+            DoSpellFlare();
+            if (collision.gameObject.CompareTag("Player") && _SpellCaster != collision.gameObject)
+            {
+                DisplayDamage(collision.gameObject, _DamageColor, Damage);
+            }
+        }
+
         if(msgHandler || collision.gameObject.CompareTag("Enemy"))
         {
             msgHandler.GiveMessage(MessageTypes.AGGROCHANGED, _SpellCaster, aggroData);
@@ -145,7 +155,12 @@ public class Bullet : MonoBehaviour {
     private void DisplayHealing(GameObject targetdisplay, Color healingColor, int healingText)
     {
         GameObject go = targetdisplay.GetComponent<HealthController>().Sprite;
-        Canvas canvas = go.GetComponentInChildren<Canvas>();
-        canvas.GetComponentInChildren<DamageDisplayScript>().GetDamageText(healingColor, healingText);
+        Canvas[] canvas = go.GetComponentsInChildren<Canvas>();
+
+        for (int i = 0; i < canvas.Length; i++)
+        {
+            if (canvas[i].GetComponentInChildren<DamageDisplayScript>())
+                canvas[i].GetComponentInChildren<DamageDisplayScript>().GetDamageText(healingColor, healingText);
+        }
     }
 }

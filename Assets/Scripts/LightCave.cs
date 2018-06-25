@@ -20,11 +20,19 @@ public class LightCave : MonoBehaviour {
     {
         if(gameObject.name == "PointLightGirl")
         {
-            this.transform.position = new Vector3(Girl.transform.position.x, 16, Girl.transform.position.z);
+            this.transform.position = new Vector3(Girl.transform.position.x, 2, Girl.transform.position.z);
         }
         if (gameObject.name == "PointLightBoy")
         {
-            this.transform.position = new Vector3(Boy.transform.position.x, 16, Boy.transform.position.z);
+            this.transform.position = new Vector3(Boy.transform.position.x, 2, Boy.transform.position.z);
+        }
+        if (gameObject.name == "PointLightGirlSprite")
+        {
+            this.transform.position = new Vector3(Girl.transform.position.x, 16f, Girl.transform.position.z);
+        }
+        if (gameObject.name == "PointLightBoySprite")
+        {
+            this.transform.position = new Vector3(Boy.transform.position.x, 16f, Boy.transform.position.z);
         }
 	}
 }

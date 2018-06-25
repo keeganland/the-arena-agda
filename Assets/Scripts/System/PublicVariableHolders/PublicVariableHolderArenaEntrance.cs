@@ -10,7 +10,7 @@ public class PublicVariableHolderArenaEntrance : MonoBehaviour {
     public GameObject Boy;
 
 
-    private void Start()
+    private void Awake()
     {
         publicVariableHolderNeverUnload = GameObject.Find("/PublicVariableHolderNeverUnload").GetComponent<PublicVariableHolderneverUnload>();
         Girl = publicVariableHolderNeverUnload.Girl;

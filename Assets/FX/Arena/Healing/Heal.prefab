@@ -322,10 +322,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHeal: 1
-  Damage: 0
+  Damage: 25
   _SpellFlare: {fileID: 0}
   _DamageColor: {r: 1, g: 0.210142, b: 0.029411793, a: 1}
-  _HealColor: {r: 0.02789795, g: 0.9485294, b: 0.07234231, a: 0}
+  _HealColor: {r: 0.02789795, g: 0.9485294, b: 0.07234231, a: 1}
   Healing: 25
   _SpellCaster: {fileID: 0}
   AggroValue: 0

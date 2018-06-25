@@ -32,7 +32,6 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
     private GameObject go;
     private GameObject fx;
 
-    public Transform[] _NewTargets;
     private NavMeshAgent meshAgent;
 
     public bool StopAttacking; 
@@ -40,13 +39,11 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
     new void Start()
     {
         base.Start();
-        //meshAgent = GetComponent<NavMeshAgent>();
-        //_NewTargets[0] = GameObject.Find("/Characters/Boy").GetComponent<Transform>();
         _BoyOrGirl = Random.Range(0, 2);
         isEnemyMoving = true;
-        //meshAgent.SetDestination(_NewTargets[0].transform.position);
     }
-    // Update is called once per frame
+
+
     new void Update ()
     {
         base.Update();

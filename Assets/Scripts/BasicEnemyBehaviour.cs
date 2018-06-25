@@ -13,7 +13,7 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
     protected NavMeshAgent m_nav;
     protected float m_timer; 
 
-    public GameObject attackWarning;
+    public GameObject attackWarning; // Alex : I don't know about this one. One enemy may have more than one "attack Warning".
     public int _BoyOrGirl;
     public GameObject _Sprite;
     public int Damage;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireExplosionDelay : MonoBehaviour {
 
     public float _Speed;
-    public int _Radius = 110;
+    public float _Radius = 110;
     public float _Delay;
 
     SphereCollider _Collider;
@@ -17,7 +17,6 @@ public class FireExplosionDelay : MonoBehaviour {
         _Collider = GetComponent<SphereCollider>();
 	}
 	
-	// Update is called once per frame
 	void Update () {
         if (timer >= _Delay)
         {

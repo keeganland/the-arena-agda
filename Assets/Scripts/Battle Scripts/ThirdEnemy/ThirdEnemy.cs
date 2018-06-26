@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class ThirdEnemy : BasicEnemyBehaviour
 {
+    public PublicVariableHolderArena publicVariableHolderArena;
+
     private int i; // 0 = BombAttack, 1 = LaserAttack, 2 = UltimateAttack;
 
     public Slider _CastSpellSlider;
@@ -16,7 +18,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
     public bool m_warningCastTimeBool;
     private Vector3 m_targetPos;
     private bool m_dashingAnim;
-
+    private bool laser;
     public int Aggro;
     public bool StopAttacking;
 
@@ -31,13 +33,19 @@ public class ThirdEnemy : BasicEnemyBehaviour
 
     [Header("Attack Warning FX (bomb, laser, ultimate")]
     public GameObject[] _AttackWarningPrefabs;
+    [Header("Attack Animation FX (bomb, laser, ultimate")]
+    public GameObject[] _AttackAnimations;
 
     [Header("AttackDamages (normal, bomb, laser, ultimate")]
     public int[] _AttackDamage;
 
+    [Header("BasicSpellData")]
+    public float TimeBetweenMeteors = 2;
+    public int NumberOfMeteors = 4;
+
     private GameObject[] Attack;
     private GameObject[] AttackFx;
-
+    private LineRenderer[] LaserBeam;
     private NavMeshAgent meshAgent;
 
     [SerializeField] private float m_normalAttackTimer;
@@ -49,6 +57,12 @@ public class ThirdEnemy : BasicEnemyBehaviour
     {
         base.Start();
 
+        LaserBeam = publicVariableHolderArena.LaserBeam;
+        for (int i = 0; i < LaserBeam.Length; i++)
+        {
+            LaserBeam[i].sortingOrder = 10;
+        }
+   
         _BoyOrGirl = Random.Range(0, 2);
     }
 
@@ -77,6 +91,52 @@ public class ThirdEnemy : BasicEnemyBehaviour
             BombAttack();
             LaserAttack();
             UltimateAttack();
+        }
+
+        if (laser)
+        {
+            transform.LookAt(_Target[_BoyOrGirl]);
+            for (int i = 0; i < LaserBeam.Length; i++)
+            {
+                LaserBeam[i].SetPosition(0, transform.position);
+            }
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit))
+            {
+                if (hit.collider)
+                {
+                    for (int i = 0; i < LaserBeam.Length; i++)
+                    {
+                        LaserBeam[i].SetPosition(1, hit.point);
+                    }
+                }
+
+                if (hit.collider.tag == "Player")
+                {
+                    MessageHandler msgHandler = hit.collider.GetComponent<MessageHandler>();
+                    DamageData dmgData = new DamageData();
+                    dmgData.damage = _AttackDamage[2];
+                    if (msgHandler)
+                    {
+                        msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
+                        GameObject go = hit.collider.GetComponent<HealthController>().Sprite;
+                        Canvas[] canvas = go.GetComponentsInChildren<Canvas>();
+
+                        for (int i = 0; i < canvas.Length; i++)
+                        {
+                            if (canvas[i].GetComponentInChildren<DamageDisplayScript>())
+                                canvas[i].GetComponentInChildren<DamageDisplayScript>().GetDamageText(Color.red, _AttackDamage[2]);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < LaserBeam.Length; i++)
+                {
+                    LaserBeam[i].SetPosition(1, transform.forward * 5000);
+                }
+            }
         }
 
         CancelAttack();
@@ -177,7 +237,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
         return;
     }
 
-    private IEnumerator CastBombAttack()
+    private IEnumerator CastBombAttack() //Work in Prgress
     {
         StopAttacking = true;
         i = 0;
@@ -192,15 +252,36 @@ public class ThirdEnemy : BasicEnemyBehaviour
         _SpellCasttimer.text = System.Math.Round((float)(_TimeWarningForSpell[i]), 2).ToString();
         m_warningCastTimeBool = true;
 
-        yield return new WaitForSeconds(_TimeWarningForSpell[i]);
+        yield return new WaitForSeconds(2);
+
+        Vector3 meteorLaunch = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1.9f);
+        GameObject go = Instantiate(_AttackAnimations[0], meteorLaunch, Quaternion.identity);
+
+        yield return new WaitForSeconds(_TimeWarningForSpell[i] - 2);
 
         m_warningCastTimeBool = false;
         _SpellCasttimer.enabled = false;
         _CastSpellGameobject.SetActive(false);
 
         //Start the Attack
+        Vector3[] MeteorTargetpos = new Vector3[NumberOfMeteors];
+        GameObject[] meteors = new GameObject[NumberOfMeteors];
+        GameObject[] WarningMeteor = new GameObject[NumberOfMeteors];
+
+        for (int i = 0; i < meteors.Length; i++)
+        {
+            MeteorTargetpos[i] = _Target[_BoyOrGirl].transform.position;
+            WarningMeteor[i] = Instantiate(_AttackWarningPrefabs[0], MeteorTargetpos[i], Quaternion.identity);
+            yield return new WaitForSeconds(TimeBetweenMeteors);
+            meteors[i] = Instantiate(_AttackPrefabs[1] , MeteorTargetpos[i], Quaternion.identity);
+            Destroy(WarningMeteor[i], 1.5f);
+            meteors[i].GetComponent<Bullet>().Damage = _AttackDamage[1];
+            yield return new WaitForSeconds(TimeBetweenMeteors + 0.5f);
+
+        }
 
         m_bombAttackTimer = 0;
+        Destroy(go);
         StopAttacking = false;
     }
 
@@ -226,6 +307,19 @@ public class ThirdEnemy : BasicEnemyBehaviour
         _CastSpellGameobject.SetActive(false);
 
         //Start the Attack
+        for (int i = 0; i < LaserBeam.Length; i++)
+        {
+            LaserBeam[i].enabled = true;
+        }
+        laser = true;
+
+        yield return new WaitForSeconds(5);
+
+        for (int i = 0; i < LaserBeam.Length; i++)
+        {
+            LaserBeam[i].enabled = false;
+        }
+        laser = false;
 
         m_laserAttackTimer = 0;
         StopAttacking = false;
@@ -295,9 +389,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
         //go.gameObject.GetComponent<Bullet>().GetAggro(Aggro);
         go.gameObject.GetComponent<Bullet>().SpellFlare(angle);
         go.gameObject.GetComponent<Bullet>().SetSpellCaster(this.gameObject);
-
-
         _BoyOrGirl = Random.Range(0, 2);
-    }
+    } //Finished
 }
 

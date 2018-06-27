@@ -3692,7 +3692,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: d6e558258344f4ba2b5d7df4128b9dee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: afa711beeb085124182782f0b1c2a537, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3856,7 +3856,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.20588237, g: 0.63853943, b: 1, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 50
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -4122,7 +4122,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.4044118, g: 0.4044118, b: 0.4044118, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 50
   m_SpotAngle: 30
   m_CookieSize: 10

@@ -37,4 +37,5 @@ public class PublicVariableHolderArena : MonoBehaviour {
 
     [Header("Enemies/ThirdEnemy-Agent/ThirdEnemy")]
     public LineRenderer[] LaserBeam;
+    public GameObject LaserBeamHit;
 }

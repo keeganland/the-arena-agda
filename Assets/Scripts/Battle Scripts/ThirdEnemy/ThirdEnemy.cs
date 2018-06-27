@@ -15,6 +15,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
     public Text _SpellCasttimer;
 
     private float m_warningCastTime;
+    private GameObject LaserBeamHit;
     public bool m_warningCastTimeBool;
     private Vector3 m_targetPos;
     private bool m_dashingAnim;
@@ -58,6 +59,8 @@ public class ThirdEnemy : BasicEnemyBehaviour
         base.Start();
 
         LaserBeam = publicVariableHolderArena.LaserBeam;
+        LaserBeamHit = publicVariableHolderArena.LaserBeamHit;
+
         for (int i = 0; i < LaserBeam.Length; i++)
         {
             LaserBeam[i].sortingOrder = 10;
@@ -105,6 +108,8 @@ public class ThirdEnemy : BasicEnemyBehaviour
             {
                 if (hit.collider)
                 {
+                    if(LaserBeamHit)
+                    LaserBeamHit.transform.position = hit.collider.transform.position;
                     for (int i = 0; i < LaserBeam.Length; i++)
                     {
                         LaserBeam[i].SetPosition(1, hit.point);
@@ -313,7 +318,11 @@ public class ThirdEnemy : BasicEnemyBehaviour
         _CastSpellGameobject.SetActive(false);
 
         //Start the Attack
+        
         laser = true;
+        LaserBeamHit.SetActive(true);
+        //LaserBeamHit.GetComponent<ParticleSystem>().Play(); ;
+
         yield return new WaitForEndOfFrame();
 
         _AttackAnimations[2].GetComponent<ParticleSystem>().Play();
@@ -330,6 +339,8 @@ public class ThirdEnemy : BasicEnemyBehaviour
         {
             LaserBeam[i].enabled = false;
         }
+        LaserBeamHit.SetActive(false);
+        //LaserBeamHit.GetComponent<ParticleSystem>().Stop(); ;
         laser = false;
 
         _AttackAnimations[2].GetComponent<ParticleSystem>().Stop();

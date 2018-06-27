@@ -300,18 +300,29 @@ public class ThirdEnemy : BasicEnemyBehaviour
         _SpellCasttimer.text = System.Math.Round((float)(_TimeWarningForSpell[i]), 2).ToString();
         m_warningCastTimeBool = true;
 
-        yield return new WaitForSeconds(_TimeWarningForSpell[i]);
+        yield return new WaitForSeconds(1f);
+
+        GameObject laserGathering = Instantiate(_AttackAnimations[1], transform.position, Quaternion.identity);
+
+        yield return new WaitForSeconds(_TimeWarningForSpell[i] - 1f);
+
+        Destroy(laserGathering, 2f);
 
         m_warningCastTimeBool = false;
         _SpellCasttimer.enabled = false;
         _CastSpellGameobject.SetActive(false);
 
         //Start the Attack
+        laser = true;
+        yield return new WaitForEndOfFrame();
+
+        _AttackAnimations[2].GetComponent<ParticleSystem>().Play();
+
         for (int i = 0; i < LaserBeam.Length; i++)
         {
             LaserBeam[i].enabled = true;
         }
-        laser = true;
+
 
         yield return new WaitForSeconds(5);
 
@@ -320,6 +331,8 @@ public class ThirdEnemy : BasicEnemyBehaviour
             LaserBeam[i].enabled = false;
         }
         laser = false;
+
+        _AttackAnimations[2].GetComponent<ParticleSystem>().Stop();
 
         m_laserAttackTimer = 0;
         StopAttacking = false;

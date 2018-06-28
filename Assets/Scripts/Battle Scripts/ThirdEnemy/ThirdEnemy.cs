@@ -14,14 +14,22 @@ public class ThirdEnemy : BasicEnemyBehaviour
     public GameObject _CastSpellGameobject;
     public Text _SpellCasttimer;
 
+    public float LineDrawSpeed;
+
     private float m_warningCastTime;
     private GameObject LaserBeamHit;
     public bool m_warningCastTimeBool;
     private Vector3 m_targetPos;
     private bool m_dashingAnim;
     private bool laser;
+    private LineRenderer laserWarning;
+    private bool laserWarningBool;
     public int Aggro;
     public bool StopAttacking;
+    private float laserCounter;
+    private float laserWarningCounter;
+    private float laserDist;
+
 
     [Header("SpellsPrefab (normal, bomb, laser, ultimate")]
     public GameObject[] _AttackPrefabs;
@@ -63,7 +71,8 @@ public class ThirdEnemy : BasicEnemyBehaviour
 
         for (int i = 0; i < LaserBeam.Length; i++)
         {
-            LaserBeam[i].sortingOrder = 10;
+            LaserBeam[i].sortingOrder = 10; 
+            LaserBeam[i].SetPosition(0, transform.position);            
         }
    
         _BoyOrGirl = Random.Range(0, 2);
@@ -72,6 +81,44 @@ public class ThirdEnemy : BasicEnemyBehaviour
     new void Update()
     {
         base.Update();
+
+        if (laserWarningBool)
+        {
+            transform.LookAt(_Target[_BoyOrGirl]);
+
+            laserWarning.SetPosition(0, transform.position);
+
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit))
+            {
+                laserDist = Vector3.Distance(transform.position, hit.collider.transform.position);
+
+                /*if (hit.collider && laserCounter >= laserDist)
+                {
+                   
+                   laserWarning.SetPosition(1, hit.point);
+                    
+                }*/
+
+                if (hit.collider && laserWarningCounter < laserDist)
+                {
+                    laserWarningCounter += .1f / LineDrawSpeed;
+
+                    float x = Mathf.Lerp(0, laserDist, laserWarningCounter);
+
+                    Vector3 pointA = transform.position;
+                    Vector3 pointB = hit.collider.transform.position;
+
+                    Vector3 pointAlLongLine = x * Vector3.Normalize(pointB - pointA) + pointA;
+
+                    laserWarning.SetPosition(1, pointAlLongLine);
+                }
+                else if (hit.collider && laserWarningCounter >= laserDist)
+                {
+                    laserWarning.SetPosition(1, hit.collider.transform.position);
+                }
+            }
+        }
 
         if (m_warningCastTimeBool == true)
         {
@@ -87,7 +134,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
         {
             m_normalAttackTimer += Time.deltaTime;
             m_bombAttackTimer += Time.deltaTime;
-            m_laserAttackTimer += Time.deltaTime; 
+            m_laserAttackTimer += Time.deltaTime;
             m_ultimateAttackTimer += Time.deltaTime;
 
             NormalAttack();
@@ -108,43 +155,73 @@ public class ThirdEnemy : BasicEnemyBehaviour
             {
                 if (hit.collider)
                 {
-                    if(LaserBeamHit)
+                    laserDist = Vector3.Distance(transform.position, hit.collider.transform.position);
+
+                    /*if(LaserBeamHit && laserCounter>= laserDist)
+                    { 
                     LaserBeamHit.transform.position = hit.collider.transform.position;
                     for (int i = 0; i < LaserBeam.Length; i++)
-                    {
+                      {
                         LaserBeam[i].SetPosition(1, hit.point);
-                    }
-                }
+                      }
+                    }*/
 
-                if (hit.collider.tag == "Player")
-                {
-                    MessageHandler msgHandler = hit.collider.GetComponent<MessageHandler>();
-                    DamageData dmgData = new DamageData();
-                    dmgData.damage = _AttackDamage[2];
-                    if (msgHandler)
+                    if (LaserBeamHit && laserCounter < laserDist)
                     {
-                        msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
-                        GameObject go = hit.collider.GetComponent<HealthController>().Sprite;
-                        Canvas[] canvas = go.GetComponentsInChildren<Canvas>();
+                        laserCounter += .1f / LineDrawSpeed;
 
-                        for (int i = 0; i < canvas.Length; i++)
+                        float x = Mathf.Lerp(0, laserDist, laserCounter);
+
+                        Vector3 pointA = transform.position;
+                        Vector3 pointB = hit.collider.transform.position;
+
+                        Vector3 pointAlLongLine = x * Vector3.Normalize(pointB - pointA) + pointA;
+
+                        for (int i = 0; i < LaserBeam.Length; i++)
                         {
-                            if (canvas[i].GetComponentInChildren<DamageDisplayScript>())
-                                canvas[i].GetComponentInChildren<DamageDisplayScript>().GetDamageText(Color.red, _AttackDamage[2]);
+                            LaserBeam[i].SetPosition(1, pointAlLongLine);
+                        }
+                        LaserBeamHit.transform.position = pointAlLongLine;
+                    }
+                    else
+                    {
+                        for (int i = 0; i < LaserBeam.Length; i++)
+                        {
+                            LaserBeam[i].SetPosition(1, hit.collider.transform.position);
+                            LaserBeamHit.transform.position = hit.collider.transform.position;
+
+                        }
+                    }
+
+                    if (hit.collider.tag == "Player")
+                    {
+                        MessageHandler msgHandler = hit.collider.GetComponent<MessageHandler>();
+                        DamageData dmgData = new DamageData();
+                        dmgData.damage = _AttackDamage[2];
+                        if (msgHandler)
+                        {
+                            msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
+                            GameObject go = hit.collider.GetComponent<HealthController>().Sprite;
+                            Canvas[] canvas = go.GetComponentsInChildren<Canvas>();
+
+                            for (int i = 0; i < canvas.Length; i++)
+                            {
+                                if (canvas[i].GetComponentInChildren<DamageDisplayScript>())
+                                    canvas[i].GetComponentInChildren<DamageDisplayScript>().GetDamageText(Color.red, _AttackDamage[2]);
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                for (int i = 0; i < LaserBeam.Length; i++)
+                else
                 {
-                    LaserBeam[i].SetPosition(1, transform.forward * 5000);
-                }
+                    for (int i = 0; i < LaserBeam.Length; i++)
+                    {
+                        LaserBeam[i].SetPosition(1, transform.forward * 5000);
+                    }
+                }            
             }
+            CancelAttack();
         }
-
-        CancelAttack();
     }
 
     private void NormalAttack()
@@ -309,6 +386,12 @@ public class ThirdEnemy : BasicEnemyBehaviour
 
         GameObject laserGathering = Instantiate(_AttackAnimations[1], transform.position, Quaternion.identity);
 
+        laserWarningBool = true;
+
+        GameObject laserWarningGameObject = Instantiate(_AttackWarningPrefabs[1], transform.position,Quaternion.identity);
+        laserWarning = laserWarningGameObject.GetComponent<LineRenderer>();
+        laserWarning.sortingOrder = 10;
+
         yield return new WaitForSeconds(_TimeWarningForSpell[i] - 1f);
 
         Destroy(laserGathering, 2f);
@@ -316,14 +399,17 @@ public class ThirdEnemy : BasicEnemyBehaviour
         m_warningCastTimeBool = false;
         _SpellCasttimer.enabled = false;
         _CastSpellGameobject.SetActive(false);
-
+    
         //Start the Attack
-        
+    
         laser = true;
         LaserBeamHit.SetActive(true);
         //LaserBeamHit.GetComponent<ParticleSystem>().Play(); ;
 
         yield return new WaitForEndOfFrame();
+
+        laserWarningBool = false;
+        Destroy(laserWarningGameObject);
 
         _AttackAnimations[2].GetComponent<ParticleSystem>().Play();
 
@@ -335,10 +421,12 @@ public class ThirdEnemy : BasicEnemyBehaviour
 
         yield return new WaitForSeconds(5);
 
+
         for (int i = 0; i < LaserBeam.Length; i++)
         {
             LaserBeam[i].enabled = false;
         }
+
         LaserBeamHit.SetActive(false);
         //LaserBeamHit.GetComponent<ParticleSystem>().Stop(); ;
         laser = false;
@@ -346,7 +434,9 @@ public class ThirdEnemy : BasicEnemyBehaviour
         _AttackAnimations[2].GetComponent<ParticleSystem>().Stop();
 
         m_laserAttackTimer = 0;
-        StopAttacking = false;
+        laserCounter = 0;
+        laserWarningCounter = 0;
+         StopAttacking = false;
     }
 
     private IEnumerator CastUltimateAttack()
@@ -361,6 +451,8 @@ public class ThirdEnemy : BasicEnemyBehaviour
         m_warningCastTimeBool = true;
 
         GameObject UltimateGathering = Instantiate(_AttackAnimations[3], transform);
+
+        GameObject Warning = Instantiate(_AttackWarningPrefabs[2], transform.position, Quaternion.identity);       
 
         yield return new WaitForSeconds(_TimeWarningForSpell[i]-5f);
 
@@ -401,11 +493,12 @@ public class ThirdEnemy : BasicEnemyBehaviour
                 for (int i = 0; i < canvas.Length; i++)
                 {
                     if (canvas[i].GetComponentInChildren<DamageDisplayScript>())
-                        canvas[i].GetComponentInChildren<DamageDisplayScript>().GetDamageText(Color.red, _AttackDamage[2]);
+                        canvas[i].GetComponentInChildren<DamageDisplayScript>().GetDamageText(Color.red, _AttackDamage[3]);
                 }
             }
         }
         Destroy(UltimateAttack);
+        Destroy(Warning);
 
         m_ultimateAttackTimer = 0;
         StopAttacking = false;

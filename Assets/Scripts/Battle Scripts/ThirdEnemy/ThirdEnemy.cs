@@ -353,25 +353,59 @@ public class ThirdEnemy : BasicEnemyBehaviour
     {
         StopAttacking = true;
         i = 2;
-        _BoyOrGirl = Random.Range(0, 2);
 
-        //Look toward target and warn line
-
-        //Slider
         m_warningCastTime = 0;
         _CastSpellGameobject.SetActive(true);
         _SpellCasttimer.enabled = true;
         _SpellCasttimer.text = System.Math.Round((float)(_TimeWarningForSpell[i]), 2).ToString();
         m_warningCastTimeBool = true;
 
-        yield return new WaitForSeconds(_TimeWarningForSpell[i]);
+        GameObject UltimateGathering = Instantiate(_AttackAnimations[3], transform);
+
+        yield return new WaitForSeconds(_TimeWarningForSpell[i]-5f);
+
+        CameraShake cameraShake = GameObject.FindWithTag("CameraHolder").GetComponent<CameraShake>();
+        StartCoroutine(cameraShake.LaserShake(8f, .15f));
+
+        yield return new WaitForSeconds(5f);
 
         m_warningCastTimeBool = false;
         _SpellCasttimer.enabled = false;
         _CastSpellGameobject.SetActive(false);
 
+        Destroy(UltimateGathering);
+
+        GameObject UltimateAttack = Instantiate(_AttackAnimations[4], transform);
+
         //Start the Attack
 
+
+        yield return new WaitForSeconds(1f);
+
+        GameObject.Find("ScreenFader").GetComponent<Animator>().Play("LaserAttackDevastation");
+
+        yield return new WaitForSeconds(1.5f);
+
+
+        foreach (Transform player in _Target)
+        {
+            MessageHandler msgHandler = player.GetComponent<MessageHandler>();
+            DamageData dmgData = new DamageData();
+            dmgData.damage = _AttackDamage[3];
+            if (msgHandler)
+            {
+                msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
+                GameObject go = player.GetComponent<HealthController>().Sprite;
+                Canvas[] canvas = go.GetComponentsInChildren<Canvas>();
+
+                for (int i = 0; i < canvas.Length; i++)
+                {
+                    if (canvas[i].GetComponentInChildren<DamageDisplayScript>())
+                        canvas[i].GetComponentInChildren<DamageDisplayScript>().GetDamageText(Color.red, _AttackDamage[2]);
+                }
+            }
+        }
+        Destroy(UltimateAttack);
 
         m_ultimateAttackTimer = 0;
         StopAttacking = false;

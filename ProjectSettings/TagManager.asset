@@ -16,6 +16,7 @@ TagManager:
   - wall
   - RangeIndicator
   - ScreenFader
+  - CameraHolder
   layers:
   - Default
   - TransparentFX

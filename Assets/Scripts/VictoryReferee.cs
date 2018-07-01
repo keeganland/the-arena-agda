@@ -86,6 +86,14 @@ public class VictoryReferee : MonoBehaviour {
                                                     * The "victory" event will be different for each "scene" later in the game,
                                                     * I think we'll have to create specific events (with the same keyword).
                                                     */
+
+
+        /*
+         * Keegan note, 2018/7/1
+         * 
+         * Possibly desirable to put an EventManager.StopListening("victoryEvent", whatever_the_relevant_delegate_is_called)
+         * to accomplish what alex is talking about in the above note if not here than in something triggered by the 
+         */
     }
 
     /* Keegan Note 2018/6/10:

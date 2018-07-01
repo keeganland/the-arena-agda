@@ -20,8 +20,8 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
 
     /*
      * Keegan:
-     * Whenever any enemy whatsoever comes into being, whether through being present in a loaded scene by default
-     * Or spawned by a spell
+     * Whenever any enemy whatsoever comes into being, whether through being present in a loaded scene by default,
+     * Or being spawned by a spell, etc.
      * 
      * Then there are new potential targets for the camera.
      * Whenever any enemy whatsoever ceases to be, there are fewer

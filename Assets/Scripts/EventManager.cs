@@ -5,7 +5,7 @@
 
 
 /* This script has the major advantage of decreasing dependencies but the major disadvantage of it becoming hard to keep track of
- * what "events" actually exist.
+ * what "events" actually exist. I don't think visual studio has any feature that will make this easier - but look into it. 
  * Events correspond to keys. Therefore I'm going to keep here a record of what keys are used for the dictionary and where:
  * VictoryReferee.cs
  *  "victory"
@@ -15,7 +15,13 @@
  *  "checkVictory"
  *  
  * This list is far from finished, unforunately. 
- */
+ * 
+ *  //Keegan note 2018/7/1: searching for alex's enterArena calls
+ * StartFirstBattle.cs
+ *  "enterArena"
+ *  
+ * 
+ * */
 
 
 using UnityEngine;

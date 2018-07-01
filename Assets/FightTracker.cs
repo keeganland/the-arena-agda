@@ -5,6 +5,8 @@ using UnityEngine;
 public class FightTracker : MonoBehaviour {
 
     public List<GameObject> enemies; //Keegan 2018/7/1: switch to private once testing is done
+
+    private bool fightActivated = false;
     
 
     protected void OnEnable()
@@ -30,4 +32,38 @@ public class FightTracker : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void activateFight(int n)
+    {
+        if(fightActivated)
+        {
+            throw new System.Exception("Tried to activate a fight when a previous fight was already activated! Be sure to shut down the earlier fight so that only one fight is active at a time!");
+        }
+        enemies[n].SetActive(true);
+        fightActivated = true;
+    }
+
+    /*
+     * Might not bee too good, because we have to look at every single enemy to make sure none are activated at an inapprorpriate time.
+     * But then the size of our enemy list shouldn't ever get too out of control.
+     */
+    public void deactivateFight(int n)
+    {
+        enemies[n].SetActive(false);
+        fightActivated = isAnythingActive();
+    }
+
+
+    public bool isAnythingActive()
+    {
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy.activeInHierarchy)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

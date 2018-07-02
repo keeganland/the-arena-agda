@@ -32,11 +32,13 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
      */
     protected void OnEnable()
     {
+        //EventManager.StartListening("cleanup", CleanUp);
         EventManager.TriggerEvent("camTargetRefresh");
     }
 
     protected void OnDisable()
     {
+        //EventManager.StopListening("cleanup", CleanUp);
         EventManager.TriggerEvent("camTargetRefresh");
     }
 
@@ -134,6 +136,21 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
                 _Sprite.GetComponent<SpriteScript2>().ForcePlayerRotation(rotation);
         }
     }
+
+    /*
+     * Keegan 2018/7/2:
+     * We need a different way to load enemies. This is going to create problems with the queue that currently exists.
+     * 
+     * Long term, create a way of loading enenies from prefabs, rather than just enabling or disabling them in the scene.
+     * Then we can completely remove them from the scene without causing a data structure issue.
+     */
+    /*
+    public void CleanUp()
+    {
+        EventManager.StopListening("cleanup", CleanUp);
+        Destroy(gameObject);
+    }
+    */
 
     //abstract methods
     abstract public void OnTriggerEnter(Collider other);

@@ -91,7 +91,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit))
             {
-                laserDist = Vector3.Distance(transform.position, hit.collider.transform.position);
+                laserDist = Vector3.Distance(transform.position, hit.point);
 
                 /*if (hit.collider && laserCounter >= laserDist)
                 {
@@ -107,7 +107,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
                     float x = Mathf.Lerp(0, laserDist, laserWarningCounter);
 
                     Vector3 pointA = transform.position;
-                    Vector3 pointB = hit.collider.transform.position;
+                    Vector3 pointB = hit.point;
 
                     Vector3 pointAlLongLine = x * Vector3.Normalize(pointB - pointA) + pointA;
 
@@ -115,7 +115,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
                 }
                 else if (hit.collider && laserWarningCounter >= laserDist)
                 {
-                    laserWarning.SetPosition(1, hit.collider.transform.position);
+                    laserWarning.SetPosition(1, hit.point);
                 }
             }
         }
@@ -155,7 +155,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
             {
                 if (hit.collider)
                 {
-                    laserDist = Vector3.Distance(transform.position, hit.collider.transform.position);
+                    laserDist = Vector3.Distance(transform.position, hit.point);
 
                     /*if(LaserBeamHit && laserCounter>= laserDist)
                     { 
@@ -173,7 +173,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
                         float x = Mathf.Lerp(0, laserDist, laserCounter);
 
                         Vector3 pointA = transform.position;
-                        Vector3 pointB = hit.collider.transform.position;
+                        Vector3 pointB = hit.point;
 
                         Vector3 pointAlLongLine = x * Vector3.Normalize(pointB - pointA) + pointA;
 
@@ -188,7 +188,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
                         for (int i = 0; i < LaserBeam.Length; i++)
                         {
                             LaserBeam[i].SetPosition(1, hit.collider.transform.position);
-                            LaserBeamHit.transform.position = hit.collider.transform.position;
+                            LaserBeamHit.transform.position = hit.point;
 
                         }
                     }

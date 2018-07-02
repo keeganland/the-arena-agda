@@ -57,8 +57,10 @@ public class FightLoaderTester : MonoBehaviour {
         }
         finally
         {
+            EventManager.TriggerEvent("cleanup");
             ft.activateFight(0);
             Resume();
+            EventManager.TriggerEvent("enterArena");
         }
     }
 
@@ -74,6 +76,7 @@ public class FightLoaderTester : MonoBehaviour {
         }
         finally
         {
+            EventManager.TriggerEvent("cleanup");
             ft.activateFight(1);
             Resume();
         }
@@ -91,6 +94,7 @@ public class FightLoaderTester : MonoBehaviour {
         }
         finally
         {
+            EventManager.TriggerEvent("cleanup");
             ft.activateFight(2);
             Resume();
         }

@@ -101,6 +101,8 @@ public class ScriptedEvents : MonoBehaviour {
         m_girl.transform.position = _InitialPositionGirl.transform.position;
         enemy.transform.position = _InitialPositionEnemy.transform.position;
 
+        Camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, Camera.transform.position.y, _InitialPositionBoy.transform.position.z);
+
         boyNavMeshAgent.SetDestination(_PublicVariableHolderArena._EnterArenaWaypointsBoy[0].transform.position);
         girlNavMeshAgent.SetDestination(_PublicVariableHolderArena._EnterArenaWaypointsGirl[0].transform.position);
 

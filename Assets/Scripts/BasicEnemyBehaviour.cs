@@ -40,8 +40,15 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
         EventManager.TriggerEvent("camTargetRefresh");
     }
 
-    protected void Start() //initialize player objects in all enemies
+    protected void Start() 
 	{
+
+        /* Keegan NTS 2018/7/2:
+         * The below was originally just part of the Start method
+         * //initialize player objects in all enemies
+         * I've moved it to the helper method InitPlayerInformation so we can call the same information when resetting an enemy
+         */
+        /*
         _Target[0] = GameObject.Find("/Characters/Boy").GetComponent<Transform>();
         _Target[1] = GameObject.Find("/Characters/Girl").GetComponent<Transform>();
 
@@ -49,10 +56,28 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
         m_nav = GetComponent<NavMeshAgent>();
         _BoyOrGirl = Random.Range(0, 2);
         m_timer = 5;
-	}
+        */
 
-	// Update is called once per frame
-	protected void Update () 
+        InitPlayerInformation();
+    }
+
+    /*
+     * Helper method - used in both Start and functions for resetting enemies to their default behaviour 
+     */
+    private void InitPlayerInformation()
+    {
+        _Target[0] = GameObject.Find("/Characters/Boy").GetComponent<Transform>();
+        _Target[1] = GameObject.Find("/Characters/Girl").GetComponent<Transform>();
+
+        m_rbEnemy = GetComponent<Rigidbody>();
+        m_nav = GetComponent<NavMeshAgent>();
+        _BoyOrGirl = UnityEngine.Random.Range(0, 2); //was complaining about namespace ambiguity between System and UnityEngine
+        m_timer = 5;
+
+    }
+
+    // Update is called once per frame
+    protected void Update () 
     {
         ChooseTarget();
         //RotateForAttack();
@@ -116,4 +141,12 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
     abstract public void OnTriggerStay(Collider other);
 
     abstract public void OnTriggerExit(Collider other);
+    
+    /*
+     * Keegan 2018/7/2:
+     * Whatever information the enemy needs to have for normal behaviour out of the gate goes here.
+     * This will be so when the player engages in the "same" fight again, they'll be back at full health and won't be in the middle of some AI behaviour that no longer makes sense
+     */
+    abstract public void ResetToDefaults();
+
 }

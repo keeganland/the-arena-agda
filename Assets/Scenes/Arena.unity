@@ -3221,8 +3221,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ResetGame
+      - m_Target: {fileID: 1882715208}
+        m_MethodName: Fight1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3399,8 +3399,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ResetGame
+      - m_Target: {fileID: 1882715208}
+        m_MethodName: Fight2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5022,6 +5022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6516e1e10df41c94e892acdd60c97456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ft: {fileID: 1242159604}
   fightMenuUI: {fileID: 1516009451}
 --- !u!1 &1894288478
 GameObject:
@@ -5202,8 +5203,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: HardReset
+      - m_Target: {fileID: 1882715208}
+        m_MethodName: Fight3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

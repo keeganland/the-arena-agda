@@ -194,5 +194,10 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
         isCollided = false;
         m_isDashAttack = false;
     }
+
+    public override void ResetToDefaults()
+    {
+        throw new System.NotImplementedException();
+    }
 }
 

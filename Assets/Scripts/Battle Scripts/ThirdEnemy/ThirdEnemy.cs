@@ -542,5 +542,10 @@ public class ThirdEnemy : BasicEnemyBehaviour
         go.gameObject.GetComponent<Bullet>().SetSpellCaster(this.gameObject);
         _BoyOrGirl = Random.Range(0, 2);
     } //Finished
+
+    public override void ResetToDefaults()
+    {
+        throw new System.NotImplementedException();
+    }
 }
 

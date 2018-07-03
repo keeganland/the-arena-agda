@@ -174,15 +174,6 @@ public class HealthController : MonoBehaviour
                 }
             }
 
-            /*
-             * Keegan NTS:
-             * 
-             * The stuff below is a temporary bandaid for setting off the victory condition. We are to 
-             */
-
-            //VictoryScreen.youWon = true;
-            //Debug.Log("This is HealthController.cs, youWon should have just flipped");
-            //this.gameObject.SetActive(false);//This works
             if (this.gameObject.tag == "Player")
             {
                 DoDeath();

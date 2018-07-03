@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SecondEnemyAttack : MonoBehaviour {
+public class SecondEnemyAttack : BasicEnemyBehaviour {
 
     public Slider _CastSpellSlider;
     public GameObject _CastSpellGameobject;
@@ -39,22 +39,11 @@ public class SecondEnemyAttack : MonoBehaviour {
     public int Sheephealth = 15;
     public int RedSheephealth = 55;
 
-	// Use this for initialization
-	void Start () { 
-
-        SheepPrefab = publicVariableHolderArena._SheepPrefab;
-        TeleportPosition = publicVariableHolderArena._TotemTeleportPos;
-        SpawnPosition = publicVariableHolderArena._Spawnposition;
-        //SpawnParticle = publicVariableHolderArena._SpawnAnimation;
-        TeleportStart = publicVariableHolderArena._TeleportStart;
-        TeleportArrives = publicVariableHolderArena._TeleportArrives;
-        _SpawnAnimationPrefab = publicVariableHolderArena._SpawnSheepAnim;
-
-        TeleportArrives.transform.SetParent(null);
-
-        spawnTime = 20;
-	}
-	
+    private void OnEnable()
+    {
+        ResetToDefaults();
+    }
+    
 	// Update is called once per frame
 	void Update () {
 		
@@ -160,6 +149,15 @@ public class SecondEnemyAttack : MonoBehaviour {
         GameObject sheep2 = Instantiate(SheepPrefab, SpawnPosition[1].position, Quaternion.identity);
         GameObject sheep3 = Instantiate(SheepPrefab, SpawnPosition[2].position, Quaternion.identity);
 
+        /*
+         * Keegan NTS 2018/7/2:
+         * Because the sheep doesn't move by default now
+         */
+
+        sheep1.GetComponentInChildren<FirstEnemyAttack2>().isEnemyMoving = true;
+        sheep2.GetComponentInChildren<FirstEnemyAttack2>().isEnemyMoving = true;
+        sheep3.GetComponentInChildren<FirstEnemyAttack2>().isEnemyMoving = true;
+
         sheep1.transform.SetParent(null);
         sheep2.transform.SetParent(null);
         sheep3.transform.SetParent(null);
@@ -190,6 +188,48 @@ public class SecondEnemyAttack : MonoBehaviour {
 
         spawnTime = 0;
         isCoroutineStarted = false;
+    }
+
+
+    /*
+     * Unimplemented
+     * 
+     */
+
+    public override void OnTriggerEnter(Collider other)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnTriggerStay(Collider other)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnTriggerExit(Collider other)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void ResetToDefaults()
+    {
+        InitializeEnemy();
+    }
+
+    private void InitializeEnemy()
+    {
+        SheepPrefab = publicVariableHolderArena._SheepPrefab;
+        TeleportPosition = publicVariableHolderArena._TotemTeleportPos;
+        SpawnPosition = publicVariableHolderArena._Spawnposition;
+        //SpawnParticle = publicVariableHolderArena._SpawnAnimation;
+        TeleportStart = publicVariableHolderArena._TeleportStart;
+        TeleportArrives = publicVariableHolderArena._TeleportArrives;
+        _SpawnAnimationPrefab = publicVariableHolderArena._SpawnSheepAnim;
+
+        TeleportArrives.transform.SetParent(null);
+
+        spawnTime = 20;
+
     }
 }
 

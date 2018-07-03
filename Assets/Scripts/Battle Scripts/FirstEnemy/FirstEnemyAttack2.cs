@@ -21,7 +21,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
 
     private float m_warningCastTime;
     public bool m_warningCastTimeBool;
-    public bool isEnemyMoving = true;
+    public bool isEnemyMoving;
     private Vector3 m_targetPos;
     private bool m_dashingAnim;
 
@@ -40,7 +40,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
     {
         base.Start();
         _BoyOrGirl = Random.Range(0, 2);
-        isEnemyMoving = true;
+        //isEnemyMoving = true;
     }
 
 
@@ -193,6 +193,11 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
         m_timer = 0;
         isCollided = false;
         m_isDashAttack = false;
+    }
+
+    public override void ResetToDefaults()
+    {
+        throw new System.NotImplementedException();
     }
 }
 

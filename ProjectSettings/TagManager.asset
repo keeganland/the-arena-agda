@@ -17,6 +17,8 @@ TagManager:
   - RangeIndicator
   - ScreenFader
   - CameraHolder
+  - Shield
+  - Projectile
   layers:
   - Default
   - TransparentFX

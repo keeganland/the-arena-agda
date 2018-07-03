@@ -7,9 +7,34 @@ public class FightLoaderTester : MonoBehaviour {
     public FightTracker ft;
     public static bool gameIsPaused = false;
     public GameObject fightMenuUI;
-	
-	// Update is called once per frame
-	void Update () {
+
+    public bool testSpecificFight;
+    public int specificFightToTest = 0;
+
+    private void Start()
+    {
+        if(testSpecificFight)
+        {
+            switch (specificFightToTest)
+            {
+                case 1:
+                    Fight1();
+                    break;
+                case 2:
+                    Fight2();
+                    break;
+                case 3:
+                    Fight3();
+                    break;
+                default:
+                    Fight1();
+                    break;
+            }
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         if (Input.GetKeyDown(KeyCode.F1))
         {

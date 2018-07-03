@@ -3456,6 +3456,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ft: {fileID: 1242159604}
   fightMenuUI: {fileID: 1516009451}
+  testSpecificFight: 1
+  specificFightToTest: 1
 --- !u!1 &1894288478
 GameObject:
   m_ObjectHideFlags: 0

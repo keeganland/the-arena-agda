@@ -99561,7 +99561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PublicVariableHolder: {fileID: 1546493861}
-  isCombat: 1
+  isCombat: 0
   isTheBoy: 1
   stopMoving: 0
   boyActive: 0

@@ -5,13 +5,13 @@ using UnityEngine;
 public class ChangeRoom : MonoBehaviour {
 
     Collider m_collider;
-    Animator m_anim;
+    Animator[] m_anim;
     bool m_isFading;
 
 	void Start () {
 
         m_collider = GetComponent<Collider>();
-        m_anim = GetComponent<Animator>();
+        m_anim = GetComponentsInChildren<Animator>();
 	}
 
     private void OnTriggerEnter(Collider other)
@@ -19,7 +19,6 @@ public class ChangeRoom : MonoBehaviour {
         if (other.tag == "Player")
         {
             FadeRoomIn();
-
         }
     }
 
@@ -33,13 +32,19 @@ public class ChangeRoom : MonoBehaviour {
 
     private void FadeRoomIn()
     {
-        m_anim.SetBool("FadeOut", false);
-        m_anim.SetBool("FadeIn", true);
+        for (int i = 0; i < m_anim.Length; i++)
+        {
+            m_anim[i].SetBool("FadeOut", false);
+            m_anim[i].SetBool("FadeIn", true);
+        }
     }
 
     private void FadeRoomOut()
     {
-        m_anim.SetBool("FadeIn", false);
-        m_anim.SetBool("FadeOut", true);
+        for (int i = 0; i < m_anim.Length; i++)
+        {
+            m_anim[i].SetBool("FadeOut", true);
+            m_anim[i].SetBool("FadeIn", false);
+        }
     }
 }

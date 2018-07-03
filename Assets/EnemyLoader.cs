@@ -6,17 +6,27 @@ public class EnemyLoader : MonoBehaviour {
 
     public PublicVariableHolderArena publicVariableHolderArena;
 
-    private List<GameObject> EnemyPrefabs;
+    [SerializeField] private List<GameObject> EnemyPrefabs;
 
 
     private void OnEnable()
     {
+        /*
+         * Keegan note: im doing this like an idiot until i get used to Resources.Load
+         */
+
+        GameObject enemy1 = Resources.Load("Prefabs/Arena/FirstEnemy") as GameObject;
+        GameObject enemy2 = Resources.Load("Prefabs/Arena/SecondEnemyPrefab") as GameObject;
+        GameObject enemy3 = Resources.Load("Prefabs/Arena/ThirdEnemy") as GameObject;
+
         EnemyPrefabs = new List<GameObject>();
-        EnemyPrefabs.Add(publicVariableHolderArena._SheepPrefab);
+        EnemyPrefabs.Add(enemy1);
+        EnemyPrefabs.Add(enemy2);
+        EnemyPrefabs.Add(enemy3);
     }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

@@ -250,7 +250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4091010564750102}
   m_Layer: 0
-  m_Name: FirstEnemy
+  m_Name: Enemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

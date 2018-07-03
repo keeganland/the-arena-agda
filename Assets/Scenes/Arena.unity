@@ -1993,6 +1993,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114763481707909964, guid: 1046cdc9ffc25344b80ecc3fc6dcf9e8,
+        type: 2}
+      propertyPath: publicVariableHolderArena
+      value: 
+      objectReference: {fileID: 206583902}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1046cdc9ffc25344b80ecc3fc6dcf9e8, type: 2}
   m_IsPrefabParent: 0

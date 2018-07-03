@@ -39,22 +39,11 @@ public class SecondEnemyAttack : BasicEnemyBehaviour {
     public int Sheephealth = 15;
     public int RedSheephealth = 55;
 
-	// Use this for initialization
-	void Start () { 
-
-        SheepPrefab = publicVariableHolderArena._SheepPrefab;
-        TeleportPosition = publicVariableHolderArena._TotemTeleportPos;
-        SpawnPosition = publicVariableHolderArena._Spawnposition;
-        //SpawnParticle = publicVariableHolderArena._SpawnAnimation;
-        TeleportStart = publicVariableHolderArena._TeleportStart;
-        TeleportArrives = publicVariableHolderArena._TeleportArrives;
-        _SpawnAnimationPrefab = publicVariableHolderArena._SpawnSheepAnim;
-
-        TeleportArrives.transform.SetParent(null);
-
-        spawnTime = 20;
-	}
-	
+    private void OnEnable()
+    {
+        ResetToDefaults();
+    }
+    
 	// Update is called once per frame
 	void Update () {
 		
@@ -224,7 +213,23 @@ public class SecondEnemyAttack : BasicEnemyBehaviour {
 
     public override void ResetToDefaults()
     {
-        throw new System.NotImplementedException();
+        InitializeEnemy();
+    }
+
+    private void InitializeEnemy()
+    {
+        SheepPrefab = publicVariableHolderArena._SheepPrefab;
+        TeleportPosition = publicVariableHolderArena._TotemTeleportPos;
+        SpawnPosition = publicVariableHolderArena._Spawnposition;
+        //SpawnParticle = publicVariableHolderArena._SpawnAnimation;
+        TeleportStart = publicVariableHolderArena._TeleportStart;
+        TeleportArrives = publicVariableHolderArena._TeleportArrives;
+        _SpawnAnimationPrefab = publicVariableHolderArena._SpawnSheepAnim;
+
+        TeleportArrives.transform.SetParent(null);
+
+        spawnTime = 20;
+
     }
 }
 

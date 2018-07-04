@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class SpriteScript2 : MonoBehaviour
 {
 
+    public float _DistanceFromSprite = 15;
+
     public Transform _Target;
     public NavMeshAgent _Agent;
 
@@ -52,7 +54,7 @@ public class SpriteScript2 : MonoBehaviour
         float m_newx = _Target.position.x;
         float m_newy = _Target.position.z;
 
-        transform.position = new Vector3(m_newx, 15, m_newy);
+        transform.position = new Vector3(m_newx, _DistanceFromSprite, m_newy);
 
     }
 

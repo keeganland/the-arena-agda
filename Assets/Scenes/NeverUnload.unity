@@ -21301,7 +21301,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 274857888}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -8.42, z: 0}
+  m_LocalPosition: {x: -10.72, y: -4.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 205955003}
@@ -84685,6 +84685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a26086712ea3f4b93b052a92d8cc15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _DistanceFromSprite: 0
   _Target: {fileID: 1762563044}
   _Agent: {fileID: 1762563040}
 --- !u!4 &1312597369 stripped
@@ -99413,7 +99414,7 @@ Prefab:
     - target: {fileID: 212750045308732562, guid: 01d36d0a53eea7d4195de850d0b68eca,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1684630263900376, guid: 01d36d0a53eea7d4195de850d0b68eca, type: 2}
       propertyPath: m_TagString
@@ -100290,6 +100291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a26086712ea3f4b93b052a92d8cc15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _DistanceFromSprite: 0
   _Target: {fileID: 765572581}
   _Agent: {fileID: 765572593}
 --- !u!82 &1899480616
@@ -100423,7 +100425,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300152, guid: 4ac5081fab47a034c9ec94d6cf56e90e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

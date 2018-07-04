@@ -4209,6 +4209,11 @@ Prefab:
       propertyPath: _AttackCD.Array.data[2]
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114632455225780266, guid: 7f143ac4fda31a7449aea96f62455029,
+        type: 2}
+      propertyPath: publicVariableHolderArena
+      value: 
+      objectReference: {fileID: 206583902}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}
   m_IsPrefabParent: 0

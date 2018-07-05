@@ -16,10 +16,8 @@ public class ChangeRoom : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.tag);
         if (other.CompareTag("Player"))
         {
-            Debug.Log(other.name);
                FadeRoomIn();                
         }
     }
@@ -28,7 +26,6 @@ public class ChangeRoom : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log(other.name);
                 FadeRoomOut();
         }
     }

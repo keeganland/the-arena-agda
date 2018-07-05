@@ -8,9 +8,18 @@ public class StopMoving : MonoBehaviour {
     private BetterPlayer_Movement playerMovement;
     public PublicVariableHolderneverUnload publicVariableHolder;
 
+    private BetterPlayer_Movement Boy;
+    private BetterPlayer_Movement Girl;
+
     private void Awake()
     {
         playerMovement = GetComponent<BetterPlayer_Movement>();
+    }
+
+    private void Start()
+    {
+        Boy = publicVariableHolder._BoyMovementScript;
+        Girl = publicVariableHolder._GirlMovementScript;
     }
 
     private void OnEnable()
@@ -21,6 +30,9 @@ public class StopMoving : MonoBehaviour {
         EventManager.StartListening("StartBoyMoving", StartPlayerMovementBoy);
         EventManager.StartListening("StopGirlMoving", StopPlayerMovementGirl);
         EventManager.StartListening("StartGirlMoving", StartPlayerMovementGirl);
+
+        EventManager.StartListening("NotInCombat", NotInCombat);
+        EventManager.StartListening("InCombat", InCombat);
     }
 
     private void OnDisable()
@@ -31,12 +43,17 @@ public class StopMoving : MonoBehaviour {
         EventManager.StopListening("StartBoyMoving", StartPlayerMovementBoy);
         EventManager.StopListening("StopGirlMoving", StopPlayerMovementGirl);
         EventManager.StopListening("StartGirlMoving", StartPlayerMovementGirl);
+
+        EventManager.StopListening("NotInCombat", NotInCombat);
+        EventManager.StopListening("InCombat", InCombat);
     }
 
     void StopPlayerMovement()
     {
         playerMovement.stopMoving = true;
         publicVariableHolder.StopAllActions = true;
+        Boy.UndoCurTarget();
+        Girl.UndoCurTarget();
     }
 
     void StartPlayerMovement()
@@ -49,6 +66,7 @@ public class StopMoving : MonoBehaviour {
         if (gameObject.name == "Girl")
         {
             playerMovement.stopMoving = true;
+            Girl.UndoCurTarget();
         }
     }
 
@@ -64,6 +82,7 @@ public class StopMoving : MonoBehaviour {
         if (gameObject.name == "Boy")
         {
             playerMovement.stopMoving = true;
+            Boy.UndoCurTarget();
         }
     }
 
@@ -73,5 +92,14 @@ public class StopMoving : MonoBehaviour {
         {
             playerMovement.stopMoving = false;
         }
+    }
+
+    void NotInCombat()
+    {
+        this.GetComponent<BetterPlayer_Movement>().isCombat = false;
+    }
+    void InCombat()
+    {
+        this.GetComponent<BetterPlayer_Movement>().isCombat = true;
     }
 }

@@ -6,12 +6,16 @@ public class PublicVariableHolderArenaEntrance : MonoBehaviour {
 
     public PublicVariableHolderneverUnload publicVariableHolderNeverUnload;
 
+
     public GameObject Girl; 
     public GameObject Boy;
 
     public GameObject SpawnPosBoy;
     public GameObject SpawnPosGirl;
 
+    [Header("InteractiveObjectsEvents")]
+    public GameObject DungeonDoorFloor1Boy;
+    public GameObject DungeonDoorFloor1Girl;
 
     private void Awake()
     {

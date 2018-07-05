@@ -215,7 +215,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &110577857
 GameObject:
@@ -350,6 +350,8 @@ MonoBehaviour:
   Boy: {fileID: 0}
   SpawnPosBoy: {fileID: 625082957}
   SpawnPosGirl: {fileID: 239072847}
+  DungeonDoorFloor1Boy: {fileID: 1509412932}
+  DungeonDoorFloor1Girl: {fileID: 1740543488}
 --- !u!4 &206583903
 Transform:
   m_ObjectHideFlags: 0
@@ -3549,6 +3551,7 @@ GameObject:
   - component: {fileID: 275953381}
   - component: {fileID: 275953380}
   - component: {fileID: 275953379}
+  - component: {fileID: 275953382}
   m_Layer: 0
   m_Name: DoorSecondRoomAgent
   m_TagString: Objects
@@ -3581,9 +3584,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edaaff3953b884416be1c806a2e51598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  publicVariableHolderArenaEntrance: {fileID: 206583902}
   _DestroyEffect: {fileID: 1202357446433742, guid: a069b7957b10a4dbeaa424b9e5e4db02,
     type: 2}
   Door: {fileID: 1578739714}
+  Case: 0
 --- !u!82 &275953380
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3698,6 +3703,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &275953382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 275953377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df02fa5ac9d818b4c805c4e7ae9d6b59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages: 000000000100000002000000
 --- !u!135 &275953383
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3816,7 +3833,7 @@ Transform:
   - {fileID: 625082958}
   - {fileID: 239072848}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &276520675
 MonoBehaviour:
@@ -4192,7 +4209,7 @@ Transform:
   - {fileID: 601484365}
   - {fileID: 469365796}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &469365795
 GameObject:
@@ -4365,7 +4382,7 @@ Transform:
   - {fileID: 1857096476}
   - {fileID: 1943265421}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &513584698
 GameObject:
@@ -7771,7 +7788,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &676246293
 GameObject:
@@ -17846,6 +17863,53 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
+--- !u!1 &1311807281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1311807282}
+  - component: {fileID: 1311807283}
+  m_Layer: 0
+  m_Name: InteractiveObjectsEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1311807282
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1311807281}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.265132, y: -5.476345, z: -9.676667}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1509412933}
+  - {fileID: 1740543489}
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1311807283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1311807281}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edaaff3953b884416be1c806a2e51598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  publicVariableHolderArenaEntrance: {fileID: 0}
+  _DestroyEffect: {fileID: 1202357446433742, guid: a069b7957b10a4dbeaa424b9e5e4db02,
+    type: 2}
+  Door: {fileID: 1578739714}
+  Case: 0
 --- !u!1 &1351034887
 GameObject:
   m_ObjectHideFlags: 0
@@ -18018,6 +18082,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 73.66, y: 20, z: 20}
   m_Center: {x: 0, y: 10.75, z: 0}
+--- !u!1 &1509412932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1509412933}
+  m_Layer: 0
+  m_Name: DungeonDoorFloor1Boy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1509412933
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1509412932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.58, y: 0, z: 3.16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1311807282}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1551021555
 GameObject:
   m_ObjectHideFlags: 0
@@ -18522,13 +18614,41 @@ RectTransform:
   - {fileID: 337486079}
   - {fileID: 2007499884}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1740543488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1740543489}
+  m_Layer: 0
+  m_Name: DungeonDoorFloor1Girl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1740543489
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1740543488}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.89, y: 0, z: 3.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1311807282}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1786367764
 GameObject:
   m_ObjectHideFlags: 0
@@ -24962,7 +25082,7 @@ Transform:
   m_Children:
   - {fileID: 727887953}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1911430716
 GameObject:
@@ -25431,7 +25551,7 @@ Transform:
   - {fileID: 793724284}
   - {fileID: 1786367765}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2105345274
 GameObject:

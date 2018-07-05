@@ -21,7 +21,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
     public bool isTheBoy = false;
     public bool stopMoving = false;
     public bool boyActive = false;
-    private GameObject curTarget;
+    [SerializeField] private GameObject curTarget;
 
     private bool ReviveStart;
 
@@ -156,17 +156,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                     }
                     if (hit.collider.tag == "Objects")
                     {
-                        curTarget = hit.collider.gameObject;
-                        this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
-                        //Debug.Log("Target is " + curTarget.name);
-
-                        //this should chase enemy if enemy is not currently in range
-                        if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
-                        {
-                            //Debug.Log("in range: " + curTarget.name);
-                            m_agent.SetDestination(hit.point);
-                            //OnTriggerEnter should stop character once target is within range
-                        }
+                        hit.collider.GetComponent<InteractiveObjects>().DoAction();
                     }  
 
                 }
@@ -175,6 +165,8 @@ public class BetterPlayer_Movement : MonoBehaviour {
                     gameObject.GetComponent<HealthController>().StopReviveCoroutine();
                 }
             }
+
+           
         }
 
         /* Keegan note 2018/6/6:
@@ -205,6 +197,23 @@ public class BetterPlayer_Movement : MonoBehaviour {
             }
         }
         NonCombat();
+
+        if (curTarget)
+        {
+            if (curTarget.CompareTag("Objects"))
+            {
+                this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
+                //Debug.Log("Target is " + curTarget.name);
+
+                //this should chase enemy if enemy is not currently in range
+                if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
+                {
+                    //Debug.Log("in range: " + curTarget.name);
+                    m_agent.SetDestination(curTarget.transform.position);
+                    //OnTriggerEnter should stop character once target is within range
+                }
+            }
+        }
     }
 
     public void NonCombat()
@@ -323,6 +332,12 @@ public class BetterPlayer_Movement : MonoBehaviour {
     public void UndoCurTarget()
     {
         curTarget = null;
+    }
+
+
+    public void SetCurTarget(GameObject target)
+    {
+        curTarget = target;
     }
 
 

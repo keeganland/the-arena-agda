@@ -78,7 +78,7 @@ public class Bullet : MonoBehaviour {
         aggroData.aggro = AggroValue;
         MessageHandler msgHandler = collision.gameObject.GetComponent<MessageHandler>();
 
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("wall"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("wall") || collision.gameObject.CompareTag("Objects"))
         {
             DestroyObject();
             DoSpellFlare();
@@ -144,23 +144,27 @@ public class Bullet : MonoBehaviour {
     {
             GameObject go = targetdisplay.GetComponent<HealthController>().Sprite;
             Canvas[] canvas = go.GetComponentsInChildren<Canvas>();
-
-        for (int i = 0; i < canvas.Length; i++)
+        if (canvas.Length != 0)
         {
-            if(canvas[i].GetComponentInChildren<DamageDisplayScript>())
-            canvas[i].GetComponentInChildren<DamageDisplayScript>().GetDamageText(damageColor, damageText);
-        }
+            for (int i = 0; i < canvas.Length; i++)
+            {
+                if (canvas[i].GetComponentInChildren<DamageDisplayScript>())
+                    canvas[i].GetComponentInChildren<DamageDisplayScript>().GetDamageText(damageColor, damageText);
+            }
+        } 
     }
 
     private void DisplayHealing(GameObject targetdisplay, Color healingColor, int healingText)
     {
         GameObject go = targetdisplay.GetComponent<HealthController>().Sprite;
         Canvas[] canvas = go.GetComponentsInChildren<Canvas>();
-
-        for (int i = 0; i < canvas.Length; i++)
+        if (canvas.Length != 0)
         {
-            if (canvas[i].GetComponentInChildren<DamageDisplayScript>())
-                canvas[i].GetComponentInChildren<DamageDisplayScript>().GetDamageText(healingColor, healingText);
+            for (int i = 0; i < canvas.Length; i++)
+            {
+                if (canvas[i].GetComponentInChildren<DamageDisplayScript>())
+                    canvas[i].GetComponentInChildren<DamageDisplayScript>().GetDamageText(healingColor, healingText);
+            }
         }
     }
 }

@@ -39,7 +39,7 @@ public class MeleeDamage : MonoBehaviour {
 
             CastSpell();
 
-            if (_Color != new Color(0,0,0,0))
+            if (_Color != new Color(0, 0, 0, 0) && m_target.GetComponent<Canvas>() == true)
             {
                 GameObject sprite = m_target.GetComponent<HealthController>().Sprite;
                 Canvas canvas = sprite.GetComponentInChildren<Canvas>();

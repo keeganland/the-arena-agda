@@ -110,7 +110,7 @@ public class HealthController : MonoBehaviour
                         ApplyDamage(dmgData.damage, go);
                     }
                 }
-                if (gameObject.tag == "Enemy")
+                if (gameObject.tag == "Enemy" || gameObject.tag == "Objects")
                 {
                     if (dmgData != null && !invincibility)
                     {                       
@@ -198,7 +198,7 @@ public class HealthController : MonoBehaviour
 
         }
 
-        else if(currentHealth >= 0f && currentHealth <= totalHealth)
+        else if(currentHealth >= 0f && currentHealth <= totalHealth && this.GetComponent<HealthUI>())
         {
             this.GetComponent<HealthUI>().UpdateUi(totalHealth, currentHealth);
         }

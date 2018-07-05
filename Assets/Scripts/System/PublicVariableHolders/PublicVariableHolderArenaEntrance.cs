@@ -9,6 +9,9 @@ public class PublicVariableHolderArenaEntrance : MonoBehaviour {
     public GameObject Girl; 
     public GameObject Boy;
 
+    public GameObject SpawnPosBoy;
+    public GameObject SpawnPosGirl;
+
 
     private void Awake()
     {

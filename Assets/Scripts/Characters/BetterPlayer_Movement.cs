@@ -154,6 +154,21 @@ public class BetterPlayer_Movement : MonoBehaviour {
                             //OnTriggerEnter should stop character once target is within range
                         }
                     }
+                    if (hit.collider.tag == "Objects")
+                    {
+                        curTarget = hit.collider.gameObject;
+                        this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
+                        //Debug.Log("Target is " + curTarget.name);
+
+                        //this should chase enemy if enemy is not currently in range
+                        if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
+                        {
+                            //Debug.Log("in range: " + curTarget.name);
+                            m_agent.SetDestination(hit.point);
+                            //OnTriggerEnter should stop character once target is within range
+                        }
+                    }  
+
                 }
                 if (gameObject.GetComponent<HealthController>().m_reviveCoroutine == true)
                 {
@@ -189,8 +204,6 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 m_agent.SetDestination(curTarget.transform.position);
             }
         }
-
-
         NonCombat();
     }
 
@@ -202,6 +215,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 curTarget = Girl;
         }
     }
+
 
     public void SwapBoy()
     {

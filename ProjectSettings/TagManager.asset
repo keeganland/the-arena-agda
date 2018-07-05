@@ -19,6 +19,7 @@ TagManager:
   - CameraHolder
   - Shield
   - Projectile
+  - Objects
   layers:
   - Default
   - TransparentFX

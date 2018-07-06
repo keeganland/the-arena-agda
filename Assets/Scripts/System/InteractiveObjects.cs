@@ -109,7 +109,7 @@ public class InteractiveObjects : MonoBehaviour {
             yield return null; 
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(.5f);
         Boy.GetComponent<BetterPlayer_Movement>().SetCurTarget(this.gameObject);
         Debug.Log(currentHealth);
         yield return new WaitUntil(() => currentHealth <=0);

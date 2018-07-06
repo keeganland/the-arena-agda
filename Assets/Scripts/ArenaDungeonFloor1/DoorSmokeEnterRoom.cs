@@ -17,7 +17,7 @@ public class DoorSmokeEnterRoom : MonoBehaviour {
         if(other.CompareTag("Player"))
         {
             particleSystem.Play();
-            Destroy(this, 5f);
+            Destroy(this.gameObject, 5f);
         }
     }
 }

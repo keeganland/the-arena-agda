@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class SpriteScript2 : MonoBehaviour
 {
-
+    public PublicVariableHolderneverUnload publicVariableHolderneverUnload;
     public float _DistanceFromSprite = 15;
 
     public Transform _Target;
@@ -16,34 +16,64 @@ public class SpriteScript2 : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        if(!publicVariableHolderneverUnload)
+        publicVariableHolderneverUnload = GameObject.Find("/PublicVariableHolderNeverUnload").GetComponent<PublicVariableHolderneverUnload>();
         m_anim = GetComponent<Animator>();
 
     }
 
     private void Update()
     {
-        if (m_anim)
+        if (publicVariableHolderneverUnload.MainCamera.transform.localRotation == Quaternion.Euler(0,0,0))
         {
-            if (System.Math.Abs(_Agent.velocity.z) >= System.Math.Abs(_Agent.velocity.x) && _Agent.velocity.z > 0)
+            if (m_anim)
             {
-                m_anim.SetInteger("Direction", 1);
+                if (System.Math.Abs(_Agent.velocity.z) >= System.Math.Abs(_Agent.velocity.x) && _Agent.velocity.z > 0)
+                {
+                    m_anim.SetInteger("Direction", 1);
+                }
+                else if (System.Math.Abs(_Agent.velocity.z) > System.Math.Abs(_Agent.velocity.x) && _Agent.velocity.z < 0)
+                {
+                    m_anim.SetInteger("Direction", 2);
+                }
+                else if (System.Math.Abs(_Agent.velocity.x) >= System.Math.Abs(_Agent.velocity.z) && _Agent.velocity.x > 0)
+                {
+                    m_anim.SetInteger("Direction", 3);
+                }
+                else if (System.Math.Abs(_Agent.velocity.x) > System.Math.Abs(_Agent.velocity.z) && _Agent.velocity.x < 0)
+                {
+                    m_anim.SetInteger("Direction", 4);
+                }
+                else
+                {
+                    m_anim.SetInteger("Direction", 0);
+                }
             }
-            else if (System.Math.Abs(_Agent.velocity.z) > System.Math.Abs(_Agent.velocity.x) && _Agent.velocity.z < 0)
+        }
+        else if(publicVariableHolderneverUnload.MainCamera.transform.localRotation == Quaternion.Euler(0,0,-90))
+        {
+            if (m_anim)
             {
-                m_anim.SetInteger("Direction", 2);
-            }
-            else if (System.Math.Abs(_Agent.velocity.x) >= System.Math.Abs(_Agent.velocity.z) && _Agent.velocity.x > 0)
-            {
-                m_anim.SetInteger("Direction", 3);
-            }
-            else if (System.Math.Abs(_Agent.velocity.x) > System.Math.Abs(_Agent.velocity.z) && _Agent.velocity.x < 0)
-            {
-                m_anim.SetInteger("Direction", 4);
-            }
-            else
-            {
-                m_anim.SetInteger("Direction", 0);
+                if (System.Math.Abs(_Agent.velocity.z) >= System.Math.Abs(_Agent.velocity.x) && _Agent.velocity.z > 0)
+                {                 
+                    m_anim.SetInteger("Direction", 4);
+                }
+                else if (System.Math.Abs(_Agent.velocity.z) > System.Math.Abs(_Agent.velocity.x) && _Agent.velocity.z < 0)
+                {
+                    m_anim.SetInteger("Direction", 3);
+                }
+                else if (System.Math.Abs(_Agent.velocity.x) >= System.Math.Abs(_Agent.velocity.z) && _Agent.velocity.x > 0)
+                {
+                    m_anim.SetInteger("Direction", 1);
+                }
+                else if (System.Math.Abs(_Agent.velocity.x) > System.Math.Abs(_Agent.velocity.z) && _Agent.velocity.x < 0)
+                {
+                    m_anim.SetInteger("Direction", 2);
+                }
+                else
+                {
+                    m_anim.SetInteger("Direction", 0);
+                }
             }
         }
 
@@ -51,12 +81,10 @@ public class SpriteScript2 : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-
         float m_newx = _Target.position.x;
         float m_newy = _Target.position.z;
 
         transform.position = new Vector3(m_newx, _DistanceFromSprite, m_newy);
-
     }
 
     public void ForcePlayerRotation(int direction)

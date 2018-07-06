@@ -46,8 +46,11 @@ public class ChangeRoom : MonoBehaviour {
     {
         for (int i = 0; i < m_anim.Length; i++)
         {
-            m_anim[i].SetBool("FadeOut", false);
-            m_anim[i].SetBool("FadeIn", true);
+            if (m_anim[i])
+            {
+                m_anim[i].SetBool("FadeOut", false);
+                m_anim[i].SetBool("FadeIn", true);
+            }
         }
     }
 
@@ -55,8 +58,11 @@ public class ChangeRoom : MonoBehaviour {
     {
         for (int i = 0; i < m_anim.Length; i++)
         {
-            m_anim[i].SetBool("FadeOut", true);
-            m_anim[i].SetBool("FadeIn", false);
+            if (m_anim[i])
+            {
+                m_anim[i].SetBool("FadeOut", true);
+                m_anim[i].SetBool("FadeIn", false);
+            }
         }
     }
 }

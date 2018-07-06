@@ -6,19 +6,25 @@ public class ChangeRoom : MonoBehaviour {
 
     Collider m_collider;
     Animator[] m_anim;
+    ParticleSystem[] m_particle;
     bool m_isFading;
 
 	void Start () {
 
         m_collider = GetComponent<Collider>();
         m_anim = GetComponentsInChildren<Animator>();
+        m_particle = GetComponentsInChildren<ParticleSystem>();
 	}
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-               FadeRoomIn();                
+               FadeRoomIn();
+            for (int i = 0; i < m_particle.Length; i++)
+            {
+                m_particle[i].Play();  
+            }
         }
     }
 
@@ -27,6 +33,12 @@ public class ChangeRoom : MonoBehaviour {
         if (other.CompareTag("Player"))
         {
                 FadeRoomOut();
+
+            for (int i = 0; i < m_particle.Length; i++)
+            {
+                m_particle[i].Stop();
+            }
+
         }
     }
 

@@ -92,7 +92,6 @@ public class ScriptedEvents : MonoBehaviour {
 
         PlayerUI.SetActive(false);
         EventManager.TriggerEvent("StopMoving");
-        EventManager.TriggerEvent("InCombat");
         enemy.GetComponentInChildren<FirstEnemyAttack2>().isEnemyMoving = false;
         enemy.GetComponentInChildren<FirstEnemyAttack2>().StopAttacking = true;
         

@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class ChangeRoom : MonoBehaviour {
 
-    Collider m_collider;
     Animator[] m_anim;
     ParticleSystem[] m_particle;
     bool m_isFading;
 
 	void Start () {
 
-        m_collider = GetComponent<Collider>();
         m_anim = GetComponentsInChildren<Animator>();
         m_particle = GetComponentsInChildren<ParticleSystem>();
 	}
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.name == "Girl")
         {
                FadeRoomIn();
             for (int i = 0; i < m_particle.Length; i++)
@@ -30,7 +28,7 @@ public class ChangeRoom : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.name == "Girl")
         {
                 FadeRoomOut();
 
@@ -38,7 +36,6 @@ public class ChangeRoom : MonoBehaviour {
             {
                 m_particle[i].Stop();
             }
-
         }
     }
 
@@ -60,9 +57,16 @@ public class ChangeRoom : MonoBehaviour {
         {
             if (m_anim[i])
             {
+                Debug.Log("here");
                 m_anim[i].SetBool("FadeOut", true);
                 m_anim[i].SetBool("FadeIn", false);
             }
         }
+    }
+
+    public void ResetChangeRoom()
+    {
+        m_anim = GetComponentsInChildren<Animator>();
+        m_particle = GetComponentsInChildren<ParticleSystem>();
     }
 }

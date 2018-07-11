@@ -89,8 +89,7 @@ public class SpriteScript2 : MonoBehaviour
 
     public void ForcePlayerRotation(int direction)
     {
-        if (gameObject.name == "Bella")
-        {
+        Debug.Log("here");
             if (direction == 1)
             {
                 m_anim.Play("idle up");
@@ -108,5 +107,4 @@ public class SpriteScript2 : MonoBehaviour
                 m_anim.Play("idle left");
             }
         }
-    }
 }

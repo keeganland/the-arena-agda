@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class StopMoving : MonoBehaviour {
@@ -54,19 +55,23 @@ public class StopMoving : MonoBehaviour {
         publicVariableHolder.StopAllActions = true;
         Boy.UndoCurTarget();
         Girl.UndoCurTarget();
+        Boy.GetComponent<NavMeshAgent>().SetDestination(Boy.transform.position);
+        Girl.GetComponent<NavMeshAgent>().SetDestination(Girl.transform.position);
     }
 
     void StartPlayerMovement()
     {
         playerMovement.stopMoving = false;
         publicVariableHolder.StopAllActions = false;
+
     }
     void StopPlayerMovementGirl()
     {
         if (gameObject.name == "Girl")
         {
             playerMovement.stopMoving = true;
-            Girl.UndoCurTarget();
+            Girl.UndoCurTarget(); 
+            Girl.GetComponent<NavMeshAgent>().SetDestination(Girl.transform.position);
         }
     }
 
@@ -83,6 +88,7 @@ public class StopMoving : MonoBehaviour {
         {
             playerMovement.stopMoving = true;
             Boy.UndoCurTarget();
+            Boy.GetComponent<NavMeshAgent>().SetDestination(Boy.transform.position);
         }
     }
 

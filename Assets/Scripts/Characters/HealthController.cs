@@ -33,7 +33,9 @@ public class HealthController : MonoBehaviour
     private NavMeshAgent agent; //Why is this here? (it doesn't seem to be used)
     private int tempHealth;
     private bool invincibility;
+    private bool invincibilityHeal;
     private float invincibilityTimer;
+    private float invincibilityHealTimer;
 
     public string GameObjectName;
 
@@ -91,6 +93,14 @@ public class HealthController : MonoBehaviour
             {
                 invincibilityTimer += Time.deltaTime;
             }
+            if (invincibilityHealTimer <= 10f)
+            {
+                invincibilityHealTimer += Time.deltaTime; 
+            }
+            if(invincibilityHealTimer >= 1f)
+            {
+                invincibilityHeal = false;
+            }
         }
     }
 
@@ -137,8 +147,10 @@ public class HealthController : MonoBehaviour
                  break;
             case MessageTypes.HEALED: //for healing character
                 RecoverData recoverData = msgData as RecoverData;
-                if(recoverData != null)
+                if(recoverData != null && !invincibilityHeal)
                 {
+                    invincibilityHealTimer = 0;
+                    invincibilityHeal = true;
                     //Debug.Log("HealthController: case HEALED");
                     RecoverHealth(recoverData.HP_up, go);
                 }
@@ -291,26 +303,26 @@ public class HealthController : MonoBehaviour
     public void RecoverHealth(int HP_up, GameObject go) //Applies healing to character
     {
         tempHealth = HP_up + currentHealth;
-        if (tempHealth > totalHealth) //checks to make sure character doesn't go over max health
-        {
-            currentHealth = totalHealth;
-        }
-        else if(tempHealth <= totalHealth) //applies healing if health is still below max health
-        {
-            currentHealth = tempHealth;
-        }
-        if (currentHealth >= 0f && currentHealth <= totalHealth)
-        {
-            this.GetComponent<HealthUI>().UpdateUi(totalHealth, currentHealth);
-        }
-        if (m_messageHandler)
-        {
-            HealthData hpData = new HealthData();
-            hpData.maxHealth = totalHealth;
-            hpData.curHealth = currentHealth;
+            if (tempHealth > totalHealth) //checks to make sure character doesn't go over max health
+            {
+                currentHealth = totalHealth;
+            }
+            else if (tempHealth <= totalHealth) //applies healing if health is still below max health
+            {
+                currentHealth = tempHealth;
+            }
+            if (currentHealth >= 0f && currentHealth <= totalHealth)
+            {
+                this.GetComponent<HealthUI>().UpdateUi(totalHealth, currentHealth);
+            }
+            if (m_messageHandler)
+            {
+                HealthData hpData = new HealthData();
+                hpData.maxHealth = totalHealth;
+                hpData.curHealth = currentHealth;
 
-            m_messageHandler.GiveMessage(MessageTypes.HEALTHCHANGED, gameObject, hpData);
-        }
+                m_messageHandler.GiveMessage(MessageTypes.HEALTHCHANGED, gameObject, hpData);
+            }
     }
 
     public IEnumerator ReviveByClicking()

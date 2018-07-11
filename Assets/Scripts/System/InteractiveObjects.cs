@@ -13,7 +13,7 @@ public class InteractiveObjects : MonoBehaviour {
     private int currentHealth;
     public GameObject _DestroyEffect;
     public GameObject Door;
-    [Header("Case : 1 DoorDungeonFloor1; ")]
+    [Header("Case : 0 DoorDungeonFloor1; Case 1 = BossScriptedEvent ")]
     public int Case;
 
     private GameObject DungeonDoorFloor1Boy;
@@ -21,6 +21,14 @@ public class InteractiveObjects : MonoBehaviour {
 
     private GameObject Boy;
     private GameObject Girl;
+
+    private GameObject Momo;
+    private GameObject Bella;
+    private GameObject BoyPosBoss;
+    private GameObject GirlPosBoss;
+    private GameObject BossPos;
+
+    private GameObject[] LightRoom;
 
     private MessageHandler m_messageHandler;
 
@@ -36,6 +44,16 @@ public class InteractiveObjects : MonoBehaviour {
 
         DungeonDoorFloor1Boy = publicVariableHolderArenaEntrance.DungeonDoorFloor1Boy;
         DungeonDoorFloor1Girl = publicVariableHolderArenaEntrance.DungeonDoorFloor1Girl;
+
+        BoyPosBoss = publicVariableHolderArenaEntrance.BoyPosBoss;
+        GirlPosBoss = publicVariableHolderArenaEntrance.GirlPosBoss;
+
+        Momo = publicVariableHolderNeverUnload._BoySpriteGameObject;
+        Bella = publicVariableHolderNeverUnload._GirlSpriteGameObject;
+
+        LightRoom = publicVariableHolderArenaEntrance.LightsBossRoom;
+
+        BossPos = publicVariableHolderArenaEntrance.BossPos;
 
 
         m_messageHandler = GetComponent<MessageHandler>();
@@ -67,6 +85,11 @@ public class InteractiveObjects : MonoBehaviour {
                 StartCoroutine("DungeonFloor1Door");
                 break; 
 
+            case 1:
+
+                StartCoroutine("DungeonFloor1Boss");
+                break;
+
         }   
     }
 
@@ -95,8 +118,8 @@ public class InteractiveObjects : MonoBehaviour {
 
     IEnumerator DungeonFloor1Door()
     {
-        EventManager.TriggerEvent("StopMoving");
         EventManager.TriggerEvent("InCombat");
+        EventManager.TriggerEvent("StopMoving");
 
         Vector3 BoyNewPos = new Vector3(DungeonDoorFloor1Boy.transform.position.x, Boy.transform.position.y, DungeonDoorFloor1Boy.transform.position.z);
         Vector3 GirlNewPos = new Vector3(DungeonDoorFloor1Girl.transform.position.x, Girl.transform.position.y, DungeonDoorFloor1Girl.transform.position.z);
@@ -133,7 +156,64 @@ public class InteractiveObjects : MonoBehaviour {
         Destroy(Door);
 
         EventManager.TriggerEvent("NotInCombat");
-        EventManager.TriggerEvent("StartMoving");
+    }
 
+    IEnumerator DungeonFloor1Boss()
+    {
+        EventManager.TriggerEvent("InCombat");
+        EventManager.TriggerEvent("StopMoving");
+
+
+        Vector3 BoyNewPos = new Vector3(BoyPosBoss.transform.position.x, Boy.transform.position.y, BoyPosBoss.transform.position.z);
+        Vector3 GirlNewPos = new Vector3(GirlPosBoss.transform.position.x, Girl.transform.position.y, GirlPosBoss.transform.position.z);
+
+        Boy.GetComponent<NavMeshAgent>().SetDestination(BoyNewPos);
+        Girl.GetComponent<NavMeshAgent>().SetDestination(GirlNewPos);
+
+        yield return new WaitForSeconds(1f);
+
+        NavMeshAgent boynav = Boy.GetComponent<NavMeshAgent>();
+        NavMeshAgent girlnav = Girl.GetComponent<NavMeshAgent>();
+
+        Debug.Log(boynav.velocity);
+        yield return new WaitUntil(() => boynav.velocity == Vector3.zero && girlnav.velocity == Vector3.zero);
+
+        Momo.GetComponent<SpriteScript2>().ForcePlayerRotation(1);
+        Bella.GetComponent<SpriteScript2>().ForcePlayerRotation(1);
+
+        for (int i = 0; i < LightRoom.Length; i++)
+        {
+            LightRoom[i].GetComponent<TorcheLighten>().OpenLight();
+            i += 1;
+            LightRoom[i].GetComponent<TorcheLighten>().OpenLight();
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        Bella.GetComponent<SpriteScript2>().ForcePlayerRotation(4);
+        yield return new WaitForSeconds(0.5f);
+        Momo.GetComponent<SpriteScript2>().ForcePlayerRotation(3);
+        yield return new WaitForSeconds(1.5f);
+        Bella.GetComponent<SpriteScript2>().ForcePlayerRotation(1);
+        Momo.GetComponent<SpriteScript2>().ForcePlayerRotation(1);
+        yield return new WaitForSeconds(1f);
+        Girl.GetComponent<NavMeshAgent>().SetDestination(BossPos.transform.position);
+
+        ScreenFader fader = GameObject.Find("ScreenFader").GetComponent<ScreenFader>();
+        fader.StartCoroutine("FadeOut");
+
+        yield return new WaitForSeconds(3f);
+
+        fader.StartCoroutine("FadeIn");
+        Destroy(this.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        ChangeRoom[] cghroom = this.GetComponentsInParent<ChangeRoom>();
+        for (int i = 0; i < cghroom.Length; i++)
+        {
+            cghroom[i].ResetChangeRoom();
+        }
+        EventManager.TriggerEvent("StartMoving");
     }
 }

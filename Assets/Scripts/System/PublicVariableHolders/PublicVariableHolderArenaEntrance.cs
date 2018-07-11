@@ -21,6 +21,12 @@ public class PublicVariableHolderArenaEntrance : MonoBehaviour {
     public GameObject DungeonDoorFloor1Boy;
     public GameObject DungeonDoorFloor1Girl;
 
+    [Header("BossTrigger")]
+    public GameObject BoyPosBoss;
+    public GameObject GirlPosBoss;
+    public GameObject BossPos;
+    public GameObject[] LightsBossRoom;
+
     private void Awake()
     {
         publicVariableHolderNeverUnload = GameObject.Find("/PublicVariableHolderNeverUnload").GetComponent<PublicVariableHolderneverUnload>();

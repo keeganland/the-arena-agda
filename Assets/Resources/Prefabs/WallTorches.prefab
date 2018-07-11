@@ -197,10 +197,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1137428263721944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88758236c8ad74be6b3020e6acc3b9ad, type: 3}
+  m_Script: {fileID: 11500000, guid: b647d8f481f634cd6a3e364f4093c51c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLighten: 0
+  isLighten: 1
 --- !u!198 &198843884049312650
 ParticleSystem:
   m_ObjectHideFlags: 1

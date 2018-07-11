@@ -337,7 +337,6 @@ public class UISpellSwap : MonoBehaviour {
 
     public void PressSmallPicture()
     {
-        Debug.Log("here");
         if (!_PublicVariableHolder.StopAllActions)
         {
             if (m_isBoy)

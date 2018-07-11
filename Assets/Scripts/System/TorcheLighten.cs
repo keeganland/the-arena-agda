@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TorcheLighten : MonoBehaviour {
 
     public bool isLighten = true;
-    Animator m_anim;
+
     Animator[] m_animChild;
     Collider m_collider;
 
@@ -15,12 +16,15 @@ public class TorcheLighten : MonoBehaviour {
         m_collider = GetComponent<Collider>();
         m_animChild = GetComponentsInChildren<Animator>();
 
-        if(isLighten == true){
-            foreach (Animator anim in  m_animChild)
+        if(isLighten == true)
+        {
+            for (int i = 0; i < m_animChild.Length; i++)
             {
-                if (anim.GetBool("Lighten") == false)
-                    anim.SetBool("Lighten", true);
+                    m_animChild[i].SetBool("Lighten", true);
             }
+
+            if(m_collider)
+            m_collider.enabled = false;
         }
 	}
 
@@ -28,15 +32,29 @@ public class TorcheLighten : MonoBehaviour {
     {
         if (isLighten == false)
         {
-            if (other.CompareTag("Player"))
+            if (other.name == "Girl")
             {
                 isLighten = true;
-                foreach (Animator anim in m_animChild)
+
+                for (int i = 0; i < m_animChild.Length; i++)
                 {
-                    if (anim.GetBool("Lighten") == false)
-                        anim.SetBool("Lighten", true);
+                        m_animChild[i].SetBool("Lighten", true);
                 }
+                if(m_collider)
+                m_collider.enabled = false;
             }
         }
+    }
+
+    public void OpenLight()
+    {
+        isLighten = true;
+
+        for (int i = 0; i < m_animChild.Length; i++)
+        {
+                m_animChild[i].SetBool("Lighten", true);
+        }
+        if(m_collider)
+            m_collider.enabled = false;
     }
 }

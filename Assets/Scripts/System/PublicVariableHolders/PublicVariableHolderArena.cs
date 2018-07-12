@@ -34,8 +34,4 @@ public class PublicVariableHolderArena : MonoBehaviour {
     public ParticleSystem[] _TeleportSpawn;
     public ParticleSystem _TeleportStart;
     public ParticleSystem _TeleportArrives;
-
-    [Header("Enemies/ThirdEnemy-Agent/ThirdEnemy")]
-    public LineRenderer[] LaserBeam;
-    public GameObject LaserBeamHit;
 }

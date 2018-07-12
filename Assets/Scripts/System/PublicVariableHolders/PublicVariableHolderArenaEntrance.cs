@@ -26,6 +26,9 @@ public class PublicVariableHolderArenaEntrance : MonoBehaviour {
     public GameObject GirlPosBoss;
     public GameObject BossPos;
     public GameObject[] LightsBossRoom;
+    public GameObject[] EnemiesSpawnPos; //pos 0 = boss, 1-4 small enemies;
+    public GameObject smallEnemies;
+    public GameObject boss;
 
     private void Awake()
     {

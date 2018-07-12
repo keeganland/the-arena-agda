@@ -12,14 +12,20 @@ public class SpriteScript2 : MonoBehaviour
     public NavMeshAgent _Agent;
 
     private Animator m_anim;
+    private GameObject mainCamera;
 
     // Use this for initialization
     void Start()
     {
         if(!publicVariableHolderneverUnload)
         publicVariableHolderneverUnload = GameObject.Find("/PublicVariableHolderNeverUnload").GetComponent<PublicVariableHolderneverUnload>();
+        
         m_anim = GetComponent<Animator>();
 
+        mainCamera = publicVariableHolderneverUnload.MainCamera;
+
+        Vector3 rotation = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, mainCamera.transform.localEulerAngles.z);
+        this.gameObject.transform.localRotation = Quaternion.Euler(rotation);
     }
 
     private void Update()

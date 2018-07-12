@@ -4243,29 +4243,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1973562701685340, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114632455225780266, guid: 7f143ac4fda31a7449aea96f62455029,
-        type: 2}
-      propertyPath: _AttackCD.Array.data[2]
-      value: 27
-      objectReference: {fileID: 0}
     - target: {fileID: 114632455225780266, guid: 7f143ac4fda31a7449aea96f62455029,
         type: 2}
       propertyPath: publicVariableHolderArena
       value: 
       objectReference: {fileID: 206583902}
-    - target: {fileID: 114632455225780266, guid: 7f143ac4fda31a7449aea96f62455029,
+    - target: {fileID: 224511904201869690, guid: 7f143ac4fda31a7449aea96f62455029,
         type: 2}
-      propertyPath: _AttackCD.Array.data[1]
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114632455225780266, guid: 7f143ac4fda31a7449aea96f62455029,
-        type: 2}
-      propertyPath: _AttackCD.Array.data[3]
-      value: 43
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}

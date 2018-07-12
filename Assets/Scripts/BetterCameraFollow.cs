@@ -224,9 +224,9 @@ public class BetterCameraFollow : MonoBehaviour
             Vector3 CameraNewpos = new Vector3(0, this.transform.position.y, 0);
 
             for (int i = 0; i < currentTargets.Count; i++)
-            {
-                CameraNewpos.x += currentTargets[i].transform.position.x;
-                CameraNewpos.z += currentTargets[i].transform.position.z;
+            {              
+                 CameraNewpos.x += currentTargets[i].transform.position.x;
+                 CameraNewpos.z += currentTargets[i].transform.position.z;              
             }
 
             CameraNewpos.x /= currentTargets.Count;

@@ -29,6 +29,12 @@ public class InteractiveObjects : MonoBehaviour {
     private GameObject BossPos;
 
     private GameObject[] LightRoom;
+    private GameObject[] EnemiesSpawnPos;
+
+    private GameObject smallEnemy;
+    private GameObject boss;
+
+
 
     private MessageHandler m_messageHandler;
 
@@ -55,6 +61,10 @@ public class InteractiveObjects : MonoBehaviour {
 
         BossPos = publicVariableHolderArenaEntrance.BossPos;
 
+        EnemiesSpawnPos = publicVariableHolderArenaEntrance.EnemiesSpawnPos;
+
+        smallEnemy = publicVariableHolderArenaEntrance.smallEnemies;
+        boss = publicVariableHolderArenaEntrance.boss;
 
         m_messageHandler = GetComponent<MessageHandler>();
 
@@ -204,6 +214,20 @@ public class InteractiveObjects : MonoBehaviour {
         yield return new WaitForSeconds(3f);
 
         fader.StartCoroutine("FadeIn");
+
+        yield return new WaitForSeconds(1f);
+
+        GameObject[] Enemiesgo = new GameObject[EnemiesSpawnPos.Length];
+
+        Enemiesgo[0] = Instantiate(boss, EnemiesSpawnPos[0].transform.position, Quaternion.identity);
+        Enemiesgo[0].SetActive(true);
+        for (int i = 1; i < EnemiesSpawnPos.Length - 1; i++)
+        {
+            Enemiesgo[i] = Instantiate(smallEnemy, EnemiesSpawnPos[i].transform.position, Quaternion.identity);
+        }
+
+        yield return new WaitForSeconds(1f);
+
         Destroy(this.gameObject);
     }
 

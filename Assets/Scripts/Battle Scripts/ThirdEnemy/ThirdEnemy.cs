@@ -5,9 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class ThirdEnemy : BasicEnemyBehaviour
-{
-    public PublicVariableHolderArena publicVariableHolderArena;
-
+{  
     private int i; // 0 = BombAttack, 1 = LaserAttack, 2 = UltimateAttack;
 
     public Slider _CastSpellSlider;
@@ -17,7 +15,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
     public float LineDrawSpeed;
 
     private float m_warningCastTime;
-    private GameObject LaserBeamHit;
+    public GameObject LaserBeamHit;
     public bool m_warningCastTimeBool;
     private Vector3 m_targetPos;
     private bool m_dashingAnim;
@@ -54,7 +52,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
 
     private GameObject[] Attack;
     private GameObject[] AttackFx;
-    private LineRenderer[] LaserBeam;
+    public LineRenderer[] LaserBeam;
     private NavMeshAgent meshAgent;
 
     [SerializeField] private float m_normalAttackTimer;
@@ -65,9 +63,6 @@ public class ThirdEnemy : BasicEnemyBehaviour
     new void Start()
     {
         base.Start();
-
-        LaserBeam = publicVariableHolderArena.LaserBeam;
-        LaserBeamHit = publicVariableHolderArena.LaserBeamHit;
 
         for (int i = 0; i < LaserBeam.Length; i++)
         {

@@ -43,14 +43,6 @@ public class HealthController : MonoBehaviour
     {
         currentHealth = totalHealth;
     }
-    private void OnDisable()
-    {
-        EventManager.TriggerEvent("camTargetRefresh");
-    }
-    private void OnDestroy()
-    {
-        EventManager.TriggerEvent("camTargetRefresh");
-    }
 
     private void Start()
     {
@@ -196,6 +188,8 @@ public class HealthController : MonoBehaviour
             if (this.gameObject.tag == "Enemy")
             {
                 GameObject.Find("/PlayerUI").GetComponent<UISpellSwap>().currentEnemy = null;
+                this.GetComponent<CameraTarget>().enabled = false;
+                Debug.Log(this.GetComponent<CameraTarget>().enabled);
                 Destroy(transform.parent.gameObject, 0.15f);
 
                 if (isBoss)
@@ -274,7 +268,6 @@ public class HealthController : MonoBehaviour
         if(this.gameObject.name == "Boy")
         {
             EventManager.TriggerEvent("StartBoyMoving");
-            Debug.Log("here");
             _PublicVariableHolder._ReviveBoyParticle.Play();
            // _PublicVariableHolder._ReviveBoyParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }

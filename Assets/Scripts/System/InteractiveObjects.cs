@@ -185,7 +185,6 @@ public class InteractiveObjects : MonoBehaviour {
         NavMeshAgent boynav = Boy.GetComponent<NavMeshAgent>();
         NavMeshAgent girlnav = Girl.GetComponent<NavMeshAgent>();
 
-        Debug.Log(boynav.velocity);
         yield return new WaitUntil(() => boynav.velocity == Vector3.zero && girlnav.velocity == Vector3.zero);
 
         Momo.GetComponent<SpriteScript2>().ForcePlayerRotation(1);

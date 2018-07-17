@@ -76,18 +76,14 @@ public class SpellCommand : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Q) && !_PublicVariableHolder.StopAllActions) //could switch to GetButtonDown later to allow player to customise controls
         {
             //Debug.Log("SpellCommand: Q pressed");
-            if (this.name == "Girl" && _HealCooldownTimer ==0)
+            if (this.name == "Girl" && _HealCooldownTimer == 0)
             {
              
                 isQspell = true;
-                if (_Qselected)
-                    _Qselected.Play();
             }
             if(this.name == "Boy" && _ShieldCooldownTimer == 0)
             {
                 isQspell = true;
-                if (_Qselected)
-                    _Qselected.Play();
             }
             CancelAOEAttack();
 
@@ -98,14 +94,10 @@ public class SpellCommand : MonoBehaviour {
             if (this.name == "Girl" && _AOECooldownTimer == 0)
             {
                 isWspell = true;
-                if (_Wselected)
-                    _Wselected.Play();
             }
             if(this.name == "Boy" && _StunCooldownTimer == 0)
             {
                 isWspell = true;
-                if (_Wselected)
-                    _Wselected.Play();  
             }
             CancelHealAttack();
 
@@ -170,6 +162,7 @@ public class SpellCommand : MonoBehaviour {
             {
                 if (this.gameObject.name == "Boy") //checks if boy is casting and if this gamebobject is the boy
                 {
+                    _Qselected.Play();
                     //Spell goes here
                     //shield appears in front of boy in direction of mouse click (doesn't move)
                     // RangeIndicatorShield.SetActive(true);
@@ -256,7 +249,7 @@ public class SpellCommand : MonoBehaviour {
             {
                 if (this.gameObject.name == "Girl" ) //checks if girl is casting and if this gamebobject is the girl
                 {
-
+                    _Qselected.Play();
                     //Spell goes here                  
                     RangeIndicatorHeal.SetActive(true);
 
@@ -299,6 +292,7 @@ public class SpellCommand : MonoBehaviour {
             {
                 if (this.gameObject.name == "Boy") //checks if boy is casting and if this gamebobject is the boy
                 {
+                    _Wselected.Play();
                     //Spell goes here
                     isWspell = false;
                     //Stop Coroutines
@@ -307,7 +301,7 @@ public class SpellCommand : MonoBehaviour {
                    
                 }
             
-                Debug.Log("SpellCommand: Boy cast W");
+              //  Debug.Log("SpellCommand: Boy cast W");
             }
             //Girl spell called by W (AOE)
             if ((player_number == 1 && _AOECooldownTimer ==0) || (isWGirlforced && _AOECooldownTimer == 0)) //What is "isWGirlforced"? And again, the timer is checked in update
@@ -315,6 +309,7 @@ public class SpellCommand : MonoBehaviour {
                 
                 if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
                 {
+                    _Wselected.Play();
                     RangeIndicatorAOE.SetActive(true);
 
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

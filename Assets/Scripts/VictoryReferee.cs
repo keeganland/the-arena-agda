@@ -158,19 +158,19 @@ public class VictoryReferee : MonoBehaviour {
 
     private void KillOneBossVictory()
     {
-        Debug.Log("Entered KillOneBossVictory");
+     //   Debug.Log("Entered KillOneBossVictory");
         SetPlayerWon(bossesKilled > 0);
     }
 
     private void AutoVictory()
     {
-        Debug.Log("Entered AutoVictory");
+      //  Debug.Log("Entered AutoVictory");
         SetPlayerWon(true);
     }
 
     private void NeverVictory()
     {
-        Debug.Log("Entered NeverVictory");
+       // Debug.Log("Entered NeverVictory");
         SetPlayerWon(false);
     }
 }

@@ -74,5 +74,9 @@ public class ChangeCameraAngle : MonoBehaviour
             BoySprite.transform.localRotation = Quaternion.Euler(90, 0, x);
             GirlSprite.transform.localRotation = Quaternion.Euler(90, 0, x);
         }
+        if (Counter > 100)
+        {
+            Counter = 0;
+        }
     }
 }

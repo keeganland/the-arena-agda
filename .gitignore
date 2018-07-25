@@ -9,6 +9,8 @@
 **/TextMesh*Pro/
 **/ShaderForge/
 **/Substance/
+**/Plugins/[Ss]ubstance**
+**/Plugins/libsubstance**
 
 # Visual Studio 2015 cache directory
 /.vs/

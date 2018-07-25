@@ -37,6 +37,9 @@ public class InitialSceneSetup : MonoBehaviour {
         SpawnPosBoy = publicArenaEntrance.SpawnPosBoy;
         SpawnPosGirl = publicArenaEntrance.SpawnPosGirl;
 
+        Debug.Log(Boy.transform.position);
+        Debug.Log(SpawnPosBoy.transform.position);
+
         Boy.transform.position = SpawnPosBoy.transform.position;
         Girl.transform.position = SpawnPosGirl.transform.position;
 

@@ -144,7 +144,7 @@ public class BetterCameraFollow : MonoBehaviour
                 {
                     m_currentcameraTargets.Add(ct.gameObject);
                 }
-                else if ((m_isinview == false && m_currentcameraTargets.Contains(ct.gameObject)))
+                else if (m_isinview == false && m_currentcameraTargets.Contains(ct.gameObject))
                 {
                     m_currentcameraTargets.Remove(ct.gameObject);
                 }
@@ -222,23 +222,15 @@ public class BetterCameraFollow : MonoBehaviour
     {
 
             Vector3 CameraNewpos = new Vector3(0, this.transform.position.y, 0);
-        Debug.Log("currentTargets number is " + currentTargets.Count);
-        int a = 0;
+
             for (int i = 0; i < currentTargets.Count; i++)
-            {
-            if (currentTargets[i] == null)
-            {
-                a += 1;
-            }
-            else
-            {
-                CameraNewpos.x += currentTargets[i].transform.position.x;
-                CameraNewpos.z += currentTargets[i].transform.position.z;
-            }
+            {              
+                 CameraNewpos.x += currentTargets[i].transform.position.x;
+                 CameraNewpos.z += currentTargets[i].transform.position.z;              
             }
 
-        CameraNewpos.x /= (currentTargets.Count - a);
-        CameraNewpos.z /= (currentTargets.Count - a);
+            CameraNewpos.x /= currentTargets.Count;
+            CameraNewpos.z /= currentTargets.Count;
 
             if (m_currentcameraTargets.Count == 0 || m_manualCamera == true)
             {
@@ -298,14 +290,10 @@ public class BetterCameraFollow : MonoBehaviour
     {
         CameraTarget[] potentialCameraTargetArray = (CameraTarget[])Object.FindObjectsOfType(typeof(CameraTarget));
         potentialCameraTargetList = new List<CameraTarget>();
-
         for (int i = 0; i < potentialCameraTargetArray.Length; i++)
         {
-            if (potentialCameraTargetArray[i].enabled == true)
-            {
-                //Debug.Log("Potential camera target # " + i + ": " + potentialCameraTargetArray[i].name);
-                potentialCameraTargetList.Add(potentialCameraTargetArray[i]);
-            }
+            //Debug.Log("Potential camera target # " + i + ": " + potentialCameraTargetArray[i].name);
+            potentialCameraTargetList.Add(potentialCameraTargetArray[i]);
         }
     }
 

@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class CameraTarget : MonoBehaviour {
 
-    private void Awake()
-    {
-        EventManager.TriggerEvent("camTargetRefresh");
-    }
-
-    private void OnDisable()
-    {
-        EventManager.TriggerEvent("camTargetRefresh");
-    }
-    private void OnDestroy()
-    {
-        EventManager.TriggerEvent("camTargetRefresh");
-    }
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
 }

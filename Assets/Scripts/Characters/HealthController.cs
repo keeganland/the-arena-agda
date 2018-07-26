@@ -47,10 +47,6 @@ public class HealthController : MonoBehaviour
     {
         EventManager.TriggerEvent("camTargetRefresh");
     }
-    private void OnDestroy()
-    {
-        EventManager.TriggerEvent("camTargetRefresh");
-    }
 
     private void Start()
     {

@@ -653,10 +653,6 @@ MonoBehaviour:
   _TeleportSpawn: []
   _TeleportStart: {fileID: 1051094088}
   _TeleportArrives: {fileID: 1051094086}
-  LaserBeam:
-  - {fileID: 2115132869}
-  - {fileID: 2115132868}
-  LaserBeamHit: {fileID: 2115132867}
 --- !u!4 &206583903
 Transform:
   m_ObjectHideFlags: 0
@@ -4281,20 +4277,5 @@ Prefab:
 --- !u!4 &2115132866 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4022118786350532, guid: 7f143ac4fda31a7449aea96f62455029,
-    type: 2}
-  m_PrefabInternal: {fileID: 2115132865}
---- !u!1 &2115132867 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1414175169794978, guid: 7f143ac4fda31a7449aea96f62455029,
-    type: 2}
-  m_PrefabInternal: {fileID: 2115132865}
---- !u!120 &2115132868 stripped
-LineRenderer:
-  m_CorrespondingSourceObject: {fileID: 120777054298667658, guid: 7f143ac4fda31a7449aea96f62455029,
-    type: 2}
-  m_PrefabInternal: {fileID: 2115132865}
---- !u!120 &2115132869 stripped
-LineRenderer:
-  m_CorrespondingSourceObject: {fileID: 120678925836254962, guid: 7f143ac4fda31a7449aea96f62455029,
     type: 2}
   m_PrefabInternal: {fileID: 2115132865}

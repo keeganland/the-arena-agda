@@ -241,13 +241,13 @@ public class SpellCommand : MonoBehaviour {
                             Debug.Log(PositionRectangle);
                             PositionRectangle.y = 1;
                             PositionRectangle.Normalize();
-                            //difference2.y = 1;
-                            ShieldDirectionIndicator.transform.localPosition = PositionRectangle * 2f;
-                            //ShieldDirectionIndicator.transform.position = new Vector3(xpos, 1, zpos); //location of blue rectangle
-                            // Vector3 perpdifference = new Vector3(this.transform.position.x , ShieldDirectionIndicator.transform.position.y ,this.transform.position.z);
+                            ShieldDirectionIndicator.transform.position = PositionRectangle * 2f + new Vector3(transform.position.x, 0 , transform.position.z);
+
+                            //float angle = Mathf.Atan2(difference.x, difference.z) * Mathf.Rad2Deg;
+                            //// apply that rotation to the Z axis.
+                            //ShieldDirectionIndicator.transform.localRotation = Quaternion.Euler(0f, angle, 0);
                             ShieldDirectionIndicator.transform.LookAt(RotationRectangle);
                             //ShieldDirectionIndicator.transform.localRotation = Quaternion.Euler(90, 0, ShieldDirectionIndicator.transform.localRotation.z);
-                                                    
                             if (Input.GetMouseButtonDown(0))
                             {                     
                                 Vector3 sheildpos = new Vector3(xpos, 0, zpos);

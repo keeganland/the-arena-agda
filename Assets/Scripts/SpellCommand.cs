@@ -26,6 +26,8 @@ public class SpellCommand : MonoBehaviour {
     public GameObject RangeIndicatorShield;
     public GameObject ShieldRangeIndicator;
     public GameObject ShieldDirectionIndicator;
+    public GameObject StunRangeIndicator;
+    public GameObject StunDirectionIndicator;
 
     public ParticleSystem _Qselected;
     public ParticleSystem _Wselected;
@@ -312,8 +314,40 @@ public class SpellCommand : MonoBehaviour {
             {
                 if (this.gameObject.name == "Boy") //checks if boy is casting and if this gamebobject is the boy
                 {
+                    StunRangeIndicator.SetActive(true);
                     //Spell goes here
-                    isWspell = false;
+
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        if (hit.collider.tag == "RangeIndicator")
+                        {
+                            Debug.Log(hit.collider.tag);
+                            StunDirectionIndicator.SetActive(true);
+                            StunDirectionIndicator.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
+
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                CancelBoyStun();
+                                Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+                                RaycastHit hat;
+                                if (Physics.Raycast(ray, out hat))
+                                {
+                                    if (hat.collider.tag == "Enemy")
+                                    {
+                                        hat.collider.GetComponent<ThirdEnemy>().Stunned();
+                                        //  CancelBoyStun();
+                                        _StunCooldownTimer = _StunCooldown;
+                                    }
+                                }
+                            }
+                        }
+                        if (hit.collider.tag == "Ground")
+                        {
+                            StunDirectionIndicator.SetActive(false);
+                        }
+                    }
                     //Stop Coroutines
                     //Make stop attacking (FirstEnemyAttack2) true
                     //Trigger the event
@@ -323,7 +357,7 @@ public class SpellCommand : MonoBehaviour {
                 Debug.Log("SpellCommand: Boy cast W");
             }
             //Girl spell called by W (AOE)
-            if ((player_number == 1 && _AOECooldownTimer ==0) || (isWGirlforced && _AOECooldownTimer == 0)) //What is "isWGirlforced"? And again, the timer is checked in update
+            if ((player_number == 1 && _AOECooldownTimer == 0) || (isWGirlforced && _AOECooldownTimer == 0)) //What is "isWGirlforced"? And again, the timer is checked in update
             {
                 
                 if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
@@ -413,7 +447,20 @@ public class SpellCommand : MonoBehaviour {
         if (ShieldRangeIndicator)
             ShieldRangeIndicator.SetActive(false);
     }
+    public void CancelBoyStun()
+    {
+        isWspell = false;
+        if(_Wselected)
+        {
+            _Wselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            _SmallWselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+        if (StunRangeIndicator)
+            StunRangeIndicator.SetActive(false);
+        if (StunDirectionIndicator)
+            StunDirectionIndicator.SetActive(false);
 
+    }
     public void CastSpellQGirl(bool isBig) //When is this used? What does this do?
     {
                                            //Alex answer : It's the function called when you click on the big spell (UI)        

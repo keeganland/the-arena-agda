@@ -8,6 +8,20 @@ public class ThirdEnemy : BasicEnemyBehaviour
 {  
     private int i; // 0 = BombAttack, 1 = LaserAttack, 2 = UltimateAttack;
 
+    //bool for coroutines
+
+    private bool Bomb;
+    private bool Laser;
+    private bool Ultimate;
+
+    private GameObject meteorLaunchAnimation;
+    private GameObject laserGathering;
+    private GameObject laserWarningGameObject;
+    private GameObject UltimateGathering;
+    private GameObject Warning;
+    private GameObject UltimateAttackGameObject;
+    private GameObject[] WarningMeteor;
+
     public Slider _CastSpellSlider;
     public GameObject _CastSpellGameobject;
     public Text _SpellCasttimer;
@@ -316,7 +330,8 @@ public class ThirdEnemy : BasicEnemyBehaviour
 
     private IEnumerator CastBombAttack() //Work in Prgress
     {
-        StopAttacking = true;
+        StopAttacking = true; //To Reset if  
+        Bomb = true;
         i = 0;
         _BoyOrGirl = Random.Range(0, 2);
 
@@ -332,7 +347,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
         yield return new WaitForSeconds(2);
 
         Vector3 meteorLaunch = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1.9f);
-        GameObject go = Instantiate(_AttackAnimations[0], meteorLaunch, Quaternion.identity);
+         meteorLaunchAnimation = Instantiate(_AttackAnimations[0], meteorLaunch, Quaternion.identity);
 
         yield return new WaitForSeconds(_TimeWarningForSpell[i] - 2);
 
@@ -343,28 +358,29 @@ public class ThirdEnemy : BasicEnemyBehaviour
         //Start the Attack
         Vector3[] MeteorTargetpos = new Vector3[NumberOfMeteors];
         GameObject[] meteors = new GameObject[NumberOfMeteors];
-        GameObject[] WarningMeteor = new GameObject[NumberOfMeteors];
+        WarningMeteor = new GameObject[NumberOfMeteors];
 
         for (int i = 0; i < meteors.Length; i++)
         {
             MeteorTargetpos[i] = _Target[_BoyOrGirl].transform.position;
             WarningMeteor[i] = Instantiate(_AttackWarningPrefabs[0], MeteorTargetpos[i], Quaternion.identity);
+            Destroy(WarningMeteor[i], 1.5f + TimeBetweenMeteors);
             yield return new WaitForSeconds(TimeBetweenMeteors);
             meteors[i] = Instantiate(_AttackPrefabs[1] , MeteorTargetpos[i], Quaternion.identity);
-            Destroy(WarningMeteor[i], 1.5f);
             meteors[i].GetComponent<Bullet>().Damage = _AttackDamage[1];
             yield return new WaitForSeconds(TimeBetweenMeteors + 0.5f);
-
         }
 
         m_bombAttackTimer = 0;
-        Destroy(go);
+        Destroy(meteorLaunchAnimation);
+        Bomb = false;
         StopAttacking = false;
     }
 
     private IEnumerator CastLaserAttack()
     {
         StopAttacking = true;
+        Laser = true;
         i = 1;
         _BoyOrGirl = Random.Range(0, 2);
 
@@ -379,11 +395,11 @@ public class ThirdEnemy : BasicEnemyBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        GameObject laserGathering = Instantiate(_AttackAnimations[1], transform.position, Quaternion.identity);
+        laserGathering = Instantiate(_AttackAnimations[1], transform.position, Quaternion.identity);
 
         laserWarningBool = true;
 
-        GameObject laserWarningGameObject = Instantiate(_AttackWarningPrefabs[1], transform.position,Quaternion.identity);
+        laserWarningGameObject = Instantiate(_AttackWarningPrefabs[1], transform.position,Quaternion.identity);
         laserWarning = laserWarningGameObject.GetComponent<LineRenderer>();
         laserWarning.sortingOrder = 10;
 
@@ -431,12 +447,15 @@ public class ThirdEnemy : BasicEnemyBehaviour
         m_laserAttackTimer = 0;
         laserCounter = 0;
         laserWarningCounter = 0;
+        Laser = false;
          StopAttacking = false;
     }
 
     private IEnumerator CastUltimateAttack()
     {
         StopAttacking = true;
+        Ultimate = true;
+
         i = 2;
 
         m_warningCastTime = 0;
@@ -445,9 +464,9 @@ public class ThirdEnemy : BasicEnemyBehaviour
         _SpellCasttimer.text = System.Math.Round((float)(_TimeWarningForSpell[i]), 2).ToString();
         m_warningCastTimeBool = true;
 
-        GameObject UltimateGathering = Instantiate(_AttackAnimations[3], transform);
+        UltimateGathering = Instantiate(_AttackAnimations[3], transform);
 
-        GameObject Warning = Instantiate(_AttackWarningPrefabs[2], transform.position, Quaternion.identity);       
+        Warning = Instantiate(_AttackWarningPrefabs[2], transform.position, Quaternion.identity);       
 
         yield return new WaitForSeconds(_TimeWarningForSpell[i]-5f);
 
@@ -462,7 +481,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
 
         Destroy(UltimateGathering);
 
-        GameObject UltimateAttack = Instantiate(_AttackAnimations[4], transform);
+        UltimateAttackGameObject = Instantiate(_AttackAnimations[4], transform);
 
         //Start the Attack
 
@@ -492,10 +511,11 @@ public class ThirdEnemy : BasicEnemyBehaviour
                 }
             }
         }
-        Destroy(UltimateAttack);
+        Destroy(UltimateAttackGameObject);
         Destroy(Warning);
 
         m_ultimateAttackTimer = 0;
+        Ultimate = false;
         StopAttacking = false;
     }
 
@@ -541,6 +561,120 @@ public class ThirdEnemy : BasicEnemyBehaviour
     public override void ResetToDefaults()
     {
         throw new System.NotImplementedException();
+    }
+
+    public void Stunned()
+    {
+        //      Alex Stun Enemy3:
+
+        //    All:
+
+        //        StopAttacking->False if (Bomb, Laser, Ultimate && true).
+        //m_warningCastTimeBool->False if (Bomb, Laser, Ultimate && true)
+        //_SpellCasttimer.enabled->False if (Bomb, Laser, Ultimate && true)
+        //_CastSpellGameobject.SetActive->False if (Bomb, Laser, Ultimate && true)
+
+        //Bomb:
+
+        //        m_bonbAttackTimer = 0 if (Bomb)
+
+        //        Laser:
+
+        //            LaserWarningBool = false if (Laser && true)
+        //            laser = false if (Laser && true)
+        //            LaserBeamHit.SetActive = false if (Laser && true)
+        //            LaserBeam[i].enabled = false if (Laser && true)
+
+        //            m_laserAttackTimer = 0 if (Laser)
+        //            laserCounter = 0 if (Laser)
+        //            laserWarningCounter = 0 if (Laser)
+
+        //            _AttackAnimations[2].GetComponent<ParticleSystem>().Stop() if (Laser)
+
+        //        Ultimate:
+
+        //            Destroy “UltimateGatherning”
+        //Destroy “Warning” 
+        //Destroy(UltimateAttack)
+
+        //m_ultimateAttackTimer = 0;
+
+        if(Bomb)
+        {
+            StopCoroutine("CastBombAttack");
+
+            if(meteorLaunchAnimation)
+                Destroy(meteorLaunchAnimation);
+            
+            //for (int i = 0; i < WarningMeteor.Length;i++)
+            //{
+            //    if (WarningMeteor[i])
+            //        Destroy(WarningMeteor[i]);
+            //}
+            
+            m_bombAttackTimer = 0;
+
+        }
+
+        if(Laser)
+        {
+            StopCoroutine("CastLaserAttack");
+
+            if (laserWarningBool)
+                laserWarningBool = false;
+            if (laser)
+                laser = false;
+            if (LaserBeamHit.activeSelf == true)
+                LaserBeamHit.SetActive(false);
+            for (int i = 0; i < LaserBeam.Length; i++)
+            {
+                if(LaserBeam[i].enabled)
+                LaserBeam[i].enabled = false;
+            }
+
+            if (laserGathering)
+                Destroy(laserGathering);
+            if (laserWarningGameObject)
+                Destroy(laserWarningGameObject);
+            if (UltimateAttackGameObject)
+                Destroy(UltimateAttackGameObject);
+
+            laserCounter = 0;
+            laserWarningCounter = 0;
+            if (_AttackAnimations[2].GetComponent<ParticleSystem>().isPlaying == true)
+                _AttackAnimations[2].GetComponent<ParticleSystem>().Stop();
+            
+            m_laserAttackTimer = 0;
+        }
+
+        if(Ultimate)
+        {
+            StopCoroutine("CastUltimateAttack");
+
+            if (UltimateGathering)
+                Destroy(UltimateGathering);
+            if (Warning)
+                Destroy(Warning);
+            
+            m_ultimateAttackTimer = 0;
+        }
+
+        if (m_warningCastTimeBool)
+            m_warningCastTimeBool = false;
+        if (_SpellCasttimer.enabled)
+            _SpellCasttimer.enabled = false;
+        if (_CastSpellGameobject.activeSelf == true)
+            _CastSpellGameobject.SetActive(false);
+
+        StartCoroutine("StunCoroutine");
+    }
+
+    private IEnumerator StunCoroutine()
+    {
+        Debug.Log("Stun start");
+        yield return new WaitForSeconds(5f);
+        Debug.Log("Stun end");
+        StopAttacking = false;
     }
 }
 

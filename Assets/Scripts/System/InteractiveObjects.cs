@@ -225,9 +225,6 @@ public class InteractiveObjects : MonoBehaviour {
         {
             Enemiesgo[i] = Instantiate(smallEnemy, EnemiesSpawnPos[i].transform.position, Quaternion.identity);
         }
-
-        yield return new WaitForSeconds(1f);
-
         Destroy(this.gameObject);
     }
 

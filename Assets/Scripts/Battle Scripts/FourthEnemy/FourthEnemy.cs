@@ -128,4 +128,9 @@ public class FourthEnemy : BasicEnemyBehaviour{
     {
         throw new System.NotImplementedException();
     }
+
+    public override void Stunned(GameObject StunAnim)
+    {
+        throw new System.NotImplementedException();
+    }
 }

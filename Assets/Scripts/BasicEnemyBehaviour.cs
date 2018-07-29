@@ -166,4 +166,6 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
      */
     abstract public void ResetToDefaults();
 
+    abstract public void Stunned(GameObject StunAnim);
+
 }

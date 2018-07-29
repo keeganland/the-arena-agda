@@ -231,5 +231,10 @@ public class SecondEnemyAttack : BasicEnemyBehaviour {
         spawnTime = 20;
 
     }
+
+    public override void Stunned(GameObject StunAnim)
+    {
+        throw new System.NotImplementedException();
+    }
 }
 

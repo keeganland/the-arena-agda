@@ -42,7 +42,6 @@ public class ThirdEnemy : BasicEnemyBehaviour
     private float laserWarningCounter;
     private float laserDist;
 
-
     [Header("SpellsPrefab (normal, bomb, laser, ultimate")]
     public GameObject[] _AttackPrefabs;
    
@@ -563,7 +562,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
         throw new System.NotImplementedException();
     }
 
-    public void Stunned()
+    public override void Stunned(GameObject StunAnim)
     {
         //      Alex Stun Enemy3:
 
@@ -666,13 +665,16 @@ public class ThirdEnemy : BasicEnemyBehaviour
         if (_CastSpellGameobject.activeSelf == true)
             _CastSpellGameobject.SetActive(false);
 
-        StartCoroutine("StunCoroutine");
+        StartCoroutine(StunCoroutine(StunAnim));
     }
 
-    private IEnumerator StunCoroutine()
+    private IEnumerator StunCoroutine(GameObject Stun)
     {
         Debug.Log("Stun start");
+        GameObject StunAnim = Instantiate(Stun, transform.position + new Vector3(0,0,0.88f), Quaternion.Euler(0, 35, 0));
         yield return new WaitForSeconds(5f);
+        StunAnim.GetComponent<ParticleSystem>().Stop();
+        Destroy(StunAnim, 1f);
         Debug.Log("Stun end");
         StopAttacking = false;
     }

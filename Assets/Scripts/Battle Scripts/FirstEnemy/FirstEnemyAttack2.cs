@@ -199,5 +199,10 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
     {
         throw new System.NotImplementedException();
     }
+
+    public override void Stunned(GameObject StunAnim)
+    {
+        throw new System.NotImplementedException();
+    }
 }
 

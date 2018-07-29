@@ -34,6 +34,9 @@ public class SpellCommand : MonoBehaviour {
     public ParticleSystem _SmallQselected;
     public ParticleSystem _SmallWselected;
 
+    public GameObject StunAnim;
+    public GameObject StunIndicatorPivot;
+
     /*Timer variables:*/
     public float _AOECooldown;
     private float _AOECooldownTimer = 0;
@@ -321,32 +324,30 @@ public class SpellCommand : MonoBehaviour {
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit))
                     {
-                        if (hit.collider.tag == "RangeIndicator")
-                        {
+                        //if (hit.collider.tag == "RangeIndicator" || hit.collider.tag == "Ground")
+                        //{
                             Debug.Log(hit.collider.tag);
                             StunDirectionIndicator.SetActive(true);
-                            StunDirectionIndicator.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
+                            //StunDirectionIndicator.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
+
+                            Vector3 difference = new Vector3(hit.point.x, this.transform.position.y, hit.point.z) - this.transform.position;//difference btw hit point and boy
+                            float angle = Mathf.Atan2(difference.x, difference.z) * Mathf.Rad2Deg;
+                            /// apply that rotation to the Z axis.
+                            StunIndicatorPivot.transform.rotation = Quaternion.Euler(90f, angle, 0);
+                            //StunIndicatorPivot.transform.LookAt(RotationRectangle);
 
                             if (Input.GetMouseButtonDown(0))
                             {
-                                CancelBoyStun();
-                                Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
-                                RaycastHit hat;
-                                if (Physics.Raycast(ray, out hat))
-                                {
-                                    if (hat.collider.tag == "Enemy")
-                                    {
-                                        hat.collider.GetComponent<ThirdEnemy>().Stunned();
-                                        //  CancelBoyStun();
-                                        _StunCooldownTimer = _StunCooldown;
-                                    }
-                                }
+                            List<GameObject> EnemiestoStun = StunDirectionIndicator.GetComponent<BoyStunListGameObjects>().EnemiesList;
+                            foreach (GameObject cd in EnemiestoStun)
+                            {
+                                cd.GetComponent<BasicEnemyBehaviour>().Stunned(StunAnim);
                             }
-                        }
-                        if (hit.collider.tag == "Ground")
-                        {
-                            StunDirectionIndicator.SetActive(false);
-                        }
+                             //  CancelBoyStun();
+                            _StunCooldownTimer = _StunCooldown;
+                            CancelBoyStun();    
+                            }                           
+                      //  }
                     }
                     //Stop Coroutines
                     //Make stop attacking (FirstEnemyAttack2) true

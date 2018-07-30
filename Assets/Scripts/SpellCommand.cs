@@ -35,6 +35,7 @@ public class SpellCommand : MonoBehaviour {
     public ParticleSystem _SmallWselected;
 
     public GameObject StunAnim;
+    public GameObject ElectricStun;
     public GameObject StunIndicatorPivot;
 
     /*Timer variables:*/
@@ -341,6 +342,11 @@ public class SpellCommand : MonoBehaviour {
                             List<GameObject> EnemiestoStun = StunDirectionIndicator.GetComponent<BoyStunListGameObjects>().EnemiesList;
                             foreach (GameObject cd in EnemiestoStun)
                             {
+                                GameObject ElectricBeam = Instantiate(ElectricStun);
+                                ElectricBeam.GetComponent<Electric>().lineBeginning = transform;
+                                ElectricBeam.GetComponent<Electric>().lineEnd = ElectricBeam.GetComponentInChildren<MoveElectricBeam>().gameObject.transform;
+                                MoveElectricBeam end = ElectricBeam.GetComponentInChildren<MoveElectricBeam>();
+                                end.SetLineValues(transform, cd.transform);
                                 cd.GetComponent<BasicEnemyBehaviour>().Stunned(StunAnim);
                             }
                              //  CancelBoyStun();

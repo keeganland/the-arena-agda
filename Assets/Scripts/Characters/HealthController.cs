@@ -46,6 +46,30 @@ public class HealthController : MonoBehaviour
     private void OnDisable()
     {
         EventManager.TriggerEvent("camTargetRefresh");
+        EventManager.StopListening("resetPlayer", resetPlayers);
+    }
+
+    private void OnEnable()
+    {
+        EventManager.StartListening("resetPlayer", resetPlayers);
+    }
+
+    private void resetPlayers()
+    {
+        StartCoroutine(StartResetPlayer());
+    }
+
+    private IEnumerator StartResetPlayer()
+    {
+        currentHealth = totalHealth;
+
+        yield return new WaitForSeconds(1f);
+
+        if (this.gameObject.name == "Girl")
+        {
+            _PublicVariableHolder.DeathCanvas.SetActive(false);
+            _PublicVariableHolder.fader.StartCoroutine("FadeIn");
+        }
     }
 
     private void Start()
@@ -189,6 +213,7 @@ public class HealthController : MonoBehaviour
             {
                 DoDeath();
             }
+
             if (this.gameObject.tag == "Enemy")
             {
                 GameObject.Find("/PlayerUI").GetComponent<UISpellSwap>().currentEnemy = null;

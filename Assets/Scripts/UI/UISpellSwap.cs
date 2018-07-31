@@ -112,7 +112,6 @@ public class UISpellSwap : MonoBehaviour {
         CurrentEnemyHPUI = _PublicVariableHolder.CurrentEnemyHPUI;
         SliderEnemyHPUI = _PublicVariableHolder.SliderEnemyHPUI;
 }
-
     private void Update()
     {
         if (m_isBoy)

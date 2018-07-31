@@ -26,7 +26,7 @@ public class Electric : MonoBehaviour {
     public float Speed;
     public float fadeOutSpeed = 1f;
 
-    private readonly WaitForSeconds customFrame = new WaitForSeconds(0.05f);
+    private readonly WaitForSeconds customFrame = new WaitForSeconds(0.1f);
 
     private int FrameNumber;
     private float alpha = 0.5f;
@@ -34,6 +34,7 @@ public class Electric : MonoBehaviour {
 
     private Material newMat;
     private Material newMat2;
+
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -44,6 +45,7 @@ public class Electric : MonoBehaviour {
     {
         yield return customFrame;
         CalculateMiddle();
+        lineRenderer.SetPositions(points);
         lineRenderer.SetWidth(RandomWidthOffset(), RandomWidthOffset());
         FrameNumber += 1;
         if (FrameNumber < 5)
@@ -71,7 +73,8 @@ public class Electric : MonoBehaviour {
     private void CalculateMiddle()
     {
         Vector3 center = GetMiddleWithRandomness(lineBeginning.position, lineEnd.position);
-
+        points[point_Begin] = new Vector3(lineBeginning.position.x, 0, lineBeginning.position.z);
+        points[point_End] = new Vector3(lineEnd.position.x, 0, lineEnd.position.z);
         points[point_Center] = center;
         points[point_Middle_Left] = GetMiddleWithRandomness(lineBeginning.position, center);
         points[point_Middle_Right] = GetMiddleWithRandomness(center, lineEnd.position);
@@ -88,15 +91,10 @@ public class Electric : MonoBehaviour {
     }
     private void Update()
     {
-        points[point_Begin] = new Vector3(lineBeginning.position.x, 0, lineBeginning.position.z);
-        points[point_End] = new Vector3(lineEnd.position.x, 0, lineEnd.position.z);
-        lineRenderer.SetPositions(points);
-
         if(fadeOut)
         {
             fadeOutSpeed += Time.deltaTime;
             Color m_color = Color.Lerp(new Color(0.5f, 0.5f, 0.5f , 0.5f), new Color(0f, 0f, 0f, 0f), fadeOutSpeed);
-            Debug.Log(m_color);
             lineRenderer.materials[0].SetColor("_TintColor", m_color);
             lineRenderer.materials[1].SetColor("_TintColor", m_color);
         }

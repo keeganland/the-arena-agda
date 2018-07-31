@@ -21,24 +21,9 @@ GameObject:
   - component: {fileID: 4018012950374538}
   - component: {fileID: 120151075288865714}
   - component: {fileID: 114902247186709174}
+  - component: {fileID: 114522529839023540}
   m_Layer: 0
   m_Name: ElectricBeam
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1640842722854550
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4868270272763938}
-  - component: {fileID: 114664603241092720}
-  m_Layer: 0
-  m_Name: End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,38 +38,21 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4868270272763938}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4868270272763938
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1640842722854550}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.6, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4018012950374538}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114664603241092720
+--- !u!114 &114522529839023540
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1640842722854550}
+  m_GameObject: {fileID: 1340784413278550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e88074e369b84b55bd48ec8f2485d09, type: 3}
+  m_Script: {fileID: 11500000, guid: f34c04282042a9f45a066d59896bebd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  Startpoint: {fileID: 0}
-  Speed: 10
 --- !u!114 &114902247186709174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -96,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8ae9f813c4bf406795208853e6d1b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineEnd: {fileID: 4868270272763938}
+  lineEnd: {fileID: 0}
   lineBeginning: {fileID: 0}
   ElectricShape2: {fileID: 2800000, guid: 711b3dc1b6a154a94aade0a7fce39c64, type: 3}
   ElectricShape: {fileID: 2800000, guid: 9f463666aebec4f81b8b0aea92f24e88, type: 3}

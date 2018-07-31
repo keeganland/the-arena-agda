@@ -26,6 +26,14 @@ public class ThirdEnemy : BasicEnemyBehaviour
     public GameObject _CastSpellGameobject;
     public Text _SpellCasttimer;
 
+    public Slider _StunnedSlider;
+    public GameObject _StunnedGameObject;
+    public Text _StunnedTimer;
+    private bool isStunned;
+
+    private float StunDurationTime;
+    private float StunActualtime;
+
     public float LineDrawSpeed;
 
     private float m_warningCastTime;
@@ -136,6 +144,16 @@ public class ThirdEnemy : BasicEnemyBehaviour
             }
             _CastSpellSlider.value = m_warningCastTime / _TimeWarningForSpell[i];
             _SpellCasttimer.text = System.Math.Round((float)(_TimeWarningForSpell[i] - m_warningCastTime), 2).ToString();
+        }
+
+        if (isStunned == true)
+        {
+            if (StunActualtime >= 0)
+            {
+                StunActualtime -= Time.deltaTime;
+            }
+            _StunnedSlider.value = StunActualtime / StunDurationTime;
+            _StunnedTimer.text = System.Math.Round((float)(StunActualtime), 2).ToString();
         }
 
         if (!StopAttacking)
@@ -562,7 +580,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
         throw new System.NotImplementedException();
     }
 
-    public override void Stunned(GameObject StunAnim)
+    public override void Stunned(GameObject StunAnim, float StunDuration)
     {
         //      Alex Stun Enemy3:
 
@@ -597,6 +615,9 @@ public class ThirdEnemy : BasicEnemyBehaviour
         //Destroy(UltimateAttack)
 
         //m_ultimateAttackTimer = 0;
+
+        StunDurationTime = StunDuration;
+        StunActualtime = StunDuration;
 
         if(Bomb)
         {
@@ -664,19 +685,28 @@ public class ThirdEnemy : BasicEnemyBehaviour
             _SpellCasttimer.enabled = false;
         if (_CastSpellGameobject.activeSelf == true)
             _CastSpellGameobject.SetActive(false);
-
+        
         StartCoroutine(StunCoroutine(StunAnim));
     }
 
     private IEnumerator StunCoroutine(GameObject Stun)
     {
+        _StunnedGameObject.SetActive(true);
+        _StunnedTimer.enabled = true;
+
+        isStunned = true;
+
         Debug.Log("Stun start");
-        GameObject StunAnim = Instantiate(Stun, transform.position + new Vector3(0,0,0.88f), Quaternion.Euler(0, 35, 0));
-        yield return new WaitForSeconds(5f);
+        GameObject StunAnim = Instantiate(Stun, transform.position + new Vector3(0,0,1.4f), Quaternion.Euler(0, 35, 0));
+        yield return new WaitForSeconds(StunDurationTime);
         StunAnim.GetComponent<ParticleSystem>().Stop();
         Destroy(StunAnim, 1f);
         Debug.Log("Stun end");
         StopAttacking = false;
+        isStunned = false;
+
+        _StunnedGameObject.SetActive(false);
+        _StunnedTimer.enabled = false;
     }
 }
 

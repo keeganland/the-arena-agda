@@ -232,7 +232,7 @@ public class SecondEnemyAttack : BasicEnemyBehaviour {
 
     }
 
-    public override void Stunned(GameObject StunAnim)
+    public override void Stunned(GameObject StunAnim, float StunDuration)
     {
         throw new System.NotImplementedException();
     }

@@ -12,9 +12,10 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     public GameObject MainCamera; //Goes with "Main Camera" (neverUnload)
     public NavMeshAgent BoynavMeshAgent;
     public NavMeshAgent GirlnavMeshAgent;
-    public GameObject PlayerUI;
-    public bool StopAllActions;
-    public bool StopCamera;
+    public GameObject PlayerUI; //The player UI Holder GameObject.
+    public bool StopAllActions; //Stop to attack, move, everything !
+    public bool StopCamera; //To move Camera freely with a transform without worrying about the "Automatic" camera.
+    public ScreenFader fader;
 
     [Header("NeverUnload/Characters : HealthControler")]
     public GameObject _BoySpriteGameObject; //Goes with "Momo" (neverUnload)
@@ -78,4 +79,28 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     public Text EnemyNameUI; //Goes with "EnemyNameUI" (neverUnload)
     public Text CurrentEnemyHPUI; //Goes with "CurrentEnemyHPUI" (neverUnload)
     public Slider SliderEnemyHPUI;  //Goes with "SliderEnemyHPUI" (neverUnload)
+
+    [Header("NeverUnload/VictoryReferee")]
+    public GameObject DeathCanvas;
+
+    private void OnEnable()
+    {
+        EventManager.StartListening("HideUI", HideUI);
+        EventManager.StartListening("ShowUI", ShowUI);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("HideUI", HideUI);
+        EventManager.StopListening("ShowUI", ShowUI);
+    }
+
+    private void HideUI()
+    {
+        PlayerUI.SetActive(false);
+    }
+    private void ShowUI()
+    {
+        PlayerUI.SetActive(true);
+    }
 }

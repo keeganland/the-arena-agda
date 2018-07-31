@@ -7,7 +7,12 @@ public class TitleScreenMainMenu : MonoBehaviour {
     
     private void Start()
     {
-        GameObject.Find("PlayerUI").SetActive(false);
+        EventManager.TriggerEvent("HideUI");
+    }
+
+    private void OnDisable()
+    {
+        EventManager.TriggerEvent("ShowUI");
     }
 
     public void PlayGame()

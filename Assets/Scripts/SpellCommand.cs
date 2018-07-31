@@ -52,6 +52,8 @@ public class SpellCommand : MonoBehaviour {
     private float _StunCooldownTimer = 0;
     public float _StunUITimer; //for Alex
 
+    public float StunDurationTime = 5f;
+
     private void Start() //This is purely error handling
     {
         if(_AOECooldown == 0)
@@ -344,10 +346,8 @@ public class SpellCommand : MonoBehaviour {
                             {
                                 GameObject ElectricBeam = Instantiate(ElectricStun);
                                 ElectricBeam.GetComponent<Electric>().lineBeginning = transform;
-                                ElectricBeam.GetComponent<Electric>().lineEnd = ElectricBeam.GetComponentInChildren<MoveElectricBeam>().gameObject.transform;
-                                MoveElectricBeam end = ElectricBeam.GetComponentInChildren<MoveElectricBeam>();
-                                end.SetLineValues(transform, cd.transform);
-                                cd.GetComponent<BasicEnemyBehaviour>().Stunned(StunAnim);
+                                ElectricBeam.GetComponent<Electric>().lineEnd = cd.transform;
+                                cd.GetComponent<BasicEnemyBehaviour>().Stunned(StunAnim, StunDurationTime);
                             }
                              //  CancelBoyStun();
                             _StunCooldownTimer = _StunCooldown;

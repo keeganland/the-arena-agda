@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class VictoryReferee : MonoBehaviour {
 
+    public PublicVariableHolderneverUnload publicVariableHoldernever;
 
     private UnityAction victoryAction;
     private UnityAction victoryCondition;
@@ -15,6 +16,10 @@ public class VictoryReferee : MonoBehaviour {
     public GameObject victoryUI;
     public bool victoryDebugging;
     public int victoryMode;
+
+    [Header("Lose Condition")]
+    public HealthController Boy;
+    public HealthController Girl;
 
     private void Awake()
     {
@@ -69,6 +74,11 @@ public class VictoryReferee : MonoBehaviour {
             //Debug.Log("Player has won!");
             EventManager.TriggerEvent("victory");
         }
+
+        if(Boy.currentHealth <= 0 && Girl.currentHealth <=0)
+        {
+            StartCoroutine(Lost());
+        }
     }
 
     public void Victory()
@@ -101,6 +111,7 @@ public class VictoryReferee : MonoBehaviour {
      */
     public void ResetGame()
     {
+        EventManager.TriggerEvent("resetPlayer"); //Alex : Reset Player is in HealthControler.cs... IT DOESN'T WORK !
         victoryUI.SetActive(false);
         Time.timeScale = 1f;
         AnyManager.anyManager.ResetGame();
@@ -172,5 +183,13 @@ public class VictoryReferee : MonoBehaviour {
     {
         Debug.Log("Entered NeverVictory");
         SetPlayerWon(false);
+    }
+
+    private IEnumerator Lost()
+    {
+        publicVariableHoldernever.fader.StartCoroutine("FadeOut");
+        EventManager.TriggerEvent("HideUI");
+        yield return new WaitForSeconds(1f);
+        publicVariableHoldernever.DeathCanvas.SetActive(true);
     }
 }

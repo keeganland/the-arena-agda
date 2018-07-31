@@ -13,15 +13,34 @@
  * HealthController.cs
  *  "bossDied"
  *  "checkVictory"
+ *  "resetPlayer"
  *  
  * This list is far from finished, unforunately. 
  * 
  *  //Keegan note 2018/7/1: searching for alex's enterArena calls
  * StartFirstBattle.cs
  *  "enterArena"
- *  
- * 
- * */
+ * StopMoving.cs  //has all events to make any player stop moving separatly, together, and set "InCombat" bool.
+ *  "StopMoving" (for both characters)
+ *  "StartMoving" (for both characters)
+ *  "StopBoyMoving" 
+ *  "StartBoyMoving" 
+ *  "StopGirlMoving"
+ *  "StartGirlMoving"
+ *  "NotInCombat" (They are not in combat : for city, exploration mode (boy follow girl))
+ *  "InCombat"
+ *
+ * BetterPlayer_Movement.cs
+ *  "stopForTextbox"
+ *  "resumeAfterTextbox"
+ *
+ * BetterCameraFollow.cs
+ *   "camTargetRefresh"    
+ *
+ * PublicVariableHolderneverUnload.cs
+ *  "HideUI"
+ *  "ShowUI"
+ */
 
 
 using UnityEngine;

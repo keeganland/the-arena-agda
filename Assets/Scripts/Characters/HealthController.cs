@@ -11,7 +11,7 @@ public class HealthController : MonoBehaviour
 
     public int totalHealth = 100;
     public int currentHealth;
-    public GameObject enemy;
+    public List<GameObject> enemy;
     public AudioClip _DeathSound;
     public int AggroBoy = 0;
     public int AggroGirl = 0;
@@ -47,6 +47,16 @@ public class HealthController : MonoBehaviour
     {
         EventManager.TriggerEvent("camTargetRefresh");
         EventManager.StopListening("resetPlayer", resetPlayers);
+
+        for (int i = 0; i < enemy.Count; i ++)
+        {
+            if (enemy[i])
+            {
+                Debug.Log("here " + gameObject.name);
+                Debug.Log(enemy[i].name);
+                enemy[i].GetComponent<PlayerAI>().hasTarget = false;
+            }
+        }
     }
 
     private void OnEnable()
@@ -408,5 +418,21 @@ public class HealthController : MonoBehaviour
         _ReviveTextTimer.enabled = false;
         m_reviveCoroutineisStarted = false;
         m_reviveCoroutine = false;
+    }
+
+    public void SetEnemy(GameObject Attackeur)
+    {
+        if(!enemy.Contains(Attackeur))
+        {
+            enemy.Add(Attackeur);
+        }
+    }
+
+    public void CancelEnemy(GameObject Attackeur)
+    {
+        if (enemy.Contains(Attackeur))
+        {
+            enemy.Remove(Attackeur);
+        }
     }
 }

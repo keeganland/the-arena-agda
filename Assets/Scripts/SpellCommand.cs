@@ -127,7 +127,6 @@ public class SpellCommand : MonoBehaviour {
 
             CancelHealAttack();
             CancelBoyShield();
-
         }
 
         CastSpellW();

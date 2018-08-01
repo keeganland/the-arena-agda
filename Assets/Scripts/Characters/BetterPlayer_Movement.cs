@@ -131,6 +131,8 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 {
                     if (hit.collider.tag == "Ground" || hit.collider.tag == "RangeIndicator")
                     {
+                        this.GetComponent<PlayerAI>().AIavailable = false;
+                        this.GetComponent<PlayerAI>().hasTarget = false;
                         Boy.GetComponent<SpellCommand>().CancelAOEAttack();
                         Boy.GetComponent<SpellCommand>().CancelHealAttack();
                         Boy.GetComponent<SpellCommand>().CancelBoyShield();
@@ -143,12 +145,17 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
                         Vector3 newpos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
                         m_agent.SetDestination(newpos);
+                        if(curTarget)
+                        curTarget.GetComponent<HealthController>().CancelEnemy(this.gameObject);
                         curTarget = null;
                         this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
                     }
                     if(hit.collider.tag == "Enemy")
                     {
+                        this.GetComponent<PlayerAI>().AIavailable = true;
+                        this.GetComponent<PlayerAI>().hasTarget = true;
                         curTarget = hit.collider.gameObject;
+                        curTarget.GetComponent<HealthController>().SetEnemy(this.gameObject);
                         this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
                         //Debug.Log("Target is " + curTarget.name);
 
@@ -193,11 +200,13 @@ public class BetterPlayer_Movement : MonoBehaviour {
         }
         */
 
+        Debug.Log(this.GetComponentInChildren<RangeChecker>().InRange(curTarget));
         //this should chase enemy if enemy is not currently in range
         if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
         {
             if (curTarget)
             {
+                Debug.Log("Set Destination?");
                 //Debug.Log("in range: " + curTarget.name);
                 m_agent.SetDestination(curTarget.transform.position);
             }
@@ -208,9 +217,9 @@ public class BetterPlayer_Movement : MonoBehaviour {
         {
             if (curTarget.CompareTag("Objects"))
             {
+                Debug.Log("Not Set Destination?");
                 this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
                 //Debug.Log("Target is " + curTarget.name);
-
                 //this should chase enemy if enemy is not currently in range
                 if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
                 {
@@ -224,12 +233,13 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
     public void NonCombat()
     {
-        if(isCombat== false)
+        if(isCombat == false)
         {
             if (isTheBoy == true)
                 curTarget = Girl;
         }
     }
+
 
 
     public void SwapBoy()
@@ -343,13 +353,18 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
     public void UndoCurTarget()
     {
+        this.GetComponent<PlayerAI>().hasTarget = false;
+        if(curTarget)
+        curTarget.GetComponent<HealthController>().CancelEnemy(this.gameObject);
         curTarget = null;
     }
-
 
     public void SetCurTarget(GameObject target)
     {
         curTarget = target;
+        this.GetComponent<PlayerAI>().hasTarget = true;
+        curTarget.GetComponent<HealthController>().SetEnemy(this.gameObject);
+        this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
     }
 
 

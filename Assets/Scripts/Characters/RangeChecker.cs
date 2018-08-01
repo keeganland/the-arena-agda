@@ -78,4 +78,15 @@ public class RangeChecker : MonoBehaviour
         //Debug.Log("[RangeChecker][InRange] returning false for " + go.name);
         return false;
     }
+
+    private void Update()
+    {
+        for (int i = 0; i < m_targets.Count; i++)
+        {
+            if(m_targets[i].gameObject == null)
+            {
+                m_targets.Remove(m_targets[i].gameObject);
+            }
+        }
+    }
 }

@@ -57,7 +57,6 @@ public class ChangeRoom : MonoBehaviour {
         {
             if (m_anim[i])
             {
-                Debug.Log("here");
                 m_anim[i].SetBool("FadeOut", true);
                 m_anim[i].SetBool("FadeIn", false);
             }

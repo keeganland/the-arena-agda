@@ -118,6 +118,4 @@ public class MeleeDamage : MonoBehaviour {
         go.gameObject.GetComponent<Bullet>().SpellFlare(angle);
         go.gameObject.GetComponent<Bullet>().SetSpellCaster(this.gameObject);
     }
-
-
 }

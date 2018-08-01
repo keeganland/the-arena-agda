@@ -4,22 +4,35 @@ using UnityEngine;
 
 public class MoveElectricBeam : MonoBehaviour {
  
-	public Transform Target;
 	public Transform Startpoint;
+    public Vector3 Target;
+
 
 	public float Speed;
 
-	private void Start()
-	{
-		transform.position = Startpoint.position;
-	}
+    private Rigidbody rb;
 
-	private void FixedUpdate()
+    private void Awake()
+    {
+        transform.position = GameObject.Find("Boy").transform.position;
+    }
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+    float time;
+    private void FixedUpdate()
 	{
-        transform.position = Vector3.Lerp(transform.position, Target.position, Speed * Time.fixedDeltaTime);
+        if (time <= 0.8f)
+        {
+            Vector3 newPos = transform.position + Target * Time.deltaTime * Speed;
+            rb.MovePosition(newPos);
+        }
+        time += Time.deltaTime;
 	} 
 
-	public void SetLineValues(Transform Beginning, Transform End)
+    public void SetLineValues(Transform Beginning, Vector3 End)
 	{
 		Startpoint = Beginning;
 		Target = End;

@@ -95,7 +95,6 @@ public class SpriteScript2 : MonoBehaviour
 
     public void ForcePlayerRotation(int direction)
     {
-        Debug.Log("here");
             if (direction == 1)
             {
                 m_anim.Play("idle up");

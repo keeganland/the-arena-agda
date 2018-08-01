@@ -26,6 +26,8 @@ public class Electric : MonoBehaviour {
     public float Speed;
     public float fadeOutSpeed = 1f;
 
+    public bool forceEnd;
+
     private readonly WaitForSeconds customFrame = new WaitForSeconds(0.1f);
 
     private int FrameNumber;
@@ -45,6 +47,7 @@ public class Electric : MonoBehaviour {
     {
         yield return customFrame;
         CalculateMiddle();
+        if(!forceEnd)
         lineRenderer.SetPositions(points);
         lineRenderer.SetWidth(RandomWidthOffset(), RandomWidthOffset());
         FrameNumber += 1;
@@ -73,8 +76,11 @@ public class Electric : MonoBehaviour {
     private void CalculateMiddle()
     {
         Vector3 center = GetMiddleWithRandomness(lineBeginning.position, lineEnd.position);
-        points[point_Begin] = new Vector3(lineBeginning.position.x, 0, lineBeginning.position.z);
-        points[point_End] = new Vector3(lineEnd.position.x, 0, lineEnd.position.z);
+        if (!forceEnd)
+        {
+            points[point_Begin] = new Vector3(lineBeginning.position.x, 0, lineBeginning.position.z);
+            points[point_End] = new Vector3(lineEnd.position.x, 0, lineEnd.position.z);
+        }
         points[point_Center] = center;
         points[point_Middle_Left] = GetMiddleWithRandomness(lineBeginning.position, center);
         points[point_Middle_Right] = GetMiddleWithRandomness(center, lineEnd.position);
@@ -89,14 +95,29 @@ public class Electric : MonoBehaviour {
 
         return new Vector3(finalX, 0, finalZ);
     }
+
+    float time;
     private void Update()
     {
+        if (time > 0.1f)
+        {
+            if (forceEnd)
+            {
+                points[point_Begin] = new Vector3(lineBeginning.position.x, 0, lineBeginning.position.z);
+                points[point_End] = new Vector3(lineEnd.position.x, 0, lineEnd.position.z);
+                lineRenderer.SetPositions(points);
+            }
+        }
         if(fadeOut)
         {
             fadeOutSpeed += Time.deltaTime;
             Color m_color = Color.Lerp(new Color(0.5f, 0.5f, 0.5f , 0.5f), new Color(0f, 0f, 0f, 0f), fadeOutSpeed);
             lineRenderer.materials[0].SetColor("_TintColor", m_color);
             lineRenderer.materials[1].SetColor("_TintColor", m_color);
+
+            if (m_color == new Color(0f, 0f, 0f, 0f))
+                Destroy(gameObject);
         }
+        time += Time.deltaTime;
     }
 }

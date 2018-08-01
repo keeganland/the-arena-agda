@@ -27,4 +27,9 @@ public class BoyStunListGameObjects : MonoBehaviour {
             }
         }
     }
+
+    public void ResetList()
+    {
+        EnemiesList.Clear();
+    }
 }

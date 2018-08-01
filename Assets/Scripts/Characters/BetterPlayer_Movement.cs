@@ -131,10 +131,15 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 {
                     if (hit.collider.tag == "Ground" || hit.collider.tag == "RangeIndicator")
                     {
-                        this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
-                        this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
-                        this.gameObject.GetComponent<SpellCommand>().CancelBoyShield();
-                        this.gameObject.GetComponent<SpellCommand>().CancelBoyStun();
+                        Boy.GetComponent<SpellCommand>().CancelAOEAttack();
+                        Boy.GetComponent<SpellCommand>().CancelHealAttack();
+                        Boy.GetComponent<SpellCommand>().CancelBoyShield();
+                        Boy.GetComponent<SpellCommand>().CancelBoyStun();
+
+                        Girl.GetComponent<SpellCommand>().CancelAOEAttack();
+                        Girl.GetComponent<SpellCommand>().CancelHealAttack();
+                        Girl.GetComponent<SpellCommand>().CancelBoyShield();
+                        Girl.GetComponent<SpellCommand>().CancelBoyStun();
 
                         Vector3 newpos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
                         m_agent.SetDestination(newpos);
@@ -235,6 +240,8 @@ public class BetterPlayer_Movement : MonoBehaviour {
             _BoySelected.enabled = true;
             this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
             this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
+            Boy.GetComponent<SpellCommand>().isSmallUI =false;
+            Girl.GetComponent<SpellCommand>().isSmallUI = false;
             _UISpells.BoySpellActive();
             _GirlSelected.enabled = false;
             _BoySelectedParticle.Play();
@@ -248,6 +255,10 @@ public class BetterPlayer_Movement : MonoBehaviour {
         {
             boyActive = false;
             _BoySelected.enabled = false;
+            this.gameObject.GetComponent<SpellCommand>().CancelBoyStun();
+            this.gameObject.GetComponent<SpellCommand>().CancelBoyShield();
+            Boy.GetComponent<SpellCommand>().isSmallUI = false;
+            Girl.GetComponent<SpellCommand>().isSmallUI = false;
             _GirlSelected.enabled = true;
             _UISpells.GirlActive();
             _BoySelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);

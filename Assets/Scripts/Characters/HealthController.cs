@@ -62,7 +62,7 @@ public class HealthController : MonoBehaviour
     private IEnumerator StartResetPlayer()
     {
         currentHealth = totalHealth;
-
+        UndoDeath();
         yield return new WaitForSeconds(1f);
 
         if (this.gameObject.name == "Girl")
@@ -284,18 +284,19 @@ public class HealthController : MonoBehaviour
     public void UndoDeath()
     {
         Sprite.GetComponent<SpriteRenderer>().enabled = true;
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        if(gameObject.GetComponent<CapsuleCollider>())
+            gameObject.GetComponent<CapsuleCollider>().enabled = false;
         if (_Slider)
             _Slider.SetActive(true);
         if (_DeathAnim)
             _DeathAnim.SetActive(false);
 
-        this.gameObject.GetComponent<BetterPlayer_Movement>().enabled = true;//This works
+        if(this.gameObject.GetComponent<BetterPlayer_Movement>())
+            this.gameObject.GetComponent<BetterPlayer_Movement>().enabled = true;//This works
 
         if(this.gameObject.name == "Boy")
         {
             EventManager.TriggerEvent("StartBoyMoving");
-            Debug.Log("here");
             _PublicVariableHolder._ReviveBoyParticle.Play();
            // _PublicVariableHolder._ReviveBoyParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
@@ -309,6 +310,7 @@ public class HealthController : MonoBehaviour
         if (m_messageHandler)
         {
             HealthData hpData = new HealthData();
+
             hpData.maxHealth = totalHealth;
             hpData.curHealth = currentHealth;
 

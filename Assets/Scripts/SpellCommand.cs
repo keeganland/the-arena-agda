@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SpellCommand : MonoBehaviour {
 
@@ -14,6 +15,9 @@ public class SpellCommand : MonoBehaviour {
 
     private bool isQGirlforced;
     private bool isWGirlforced;
+    private bool isQBoyforced;
+    private bool isWBoyforced;
+    public bool isSmallUI;
 
     public int Healing;
     public GameObject Shield;
@@ -86,18 +90,21 @@ public class SpellCommand : MonoBehaviour {
             //Debug.Log("SpellCommand: Q pressed");
             if (this.name == "Girl" && _HealCooldownTimer ==0)
             {
-             
+                isSmallUI = false;
                 isQspell = true;
                 if (_Qselected)
                     _Qselected.Play();
             }
             if(this.name == "Boy" && _ShieldCooldownTimer == 0)
             {
+                isSmallUI = false;
                 isQspell = true;
                 if (_Qselected)
                     _Qselected.Play();
             }
+
             CancelAOEAttack();
+            CancelBoyStun();
 
         }
         if (Input.GetKeyDown(KeyCode.W) && !_PublicVariableHolder.StopAllActions)
@@ -105,19 +112,24 @@ public class SpellCommand : MonoBehaviour {
             //Debug.Log("SpellCommand: W pressed");
             if (this.name == "Girl" && _AOECooldownTimer == 0)
             {
+                isSmallUI = false;
                 isWspell = true;
                 if (_Wselected)
                     _Wselected.Play();
             }
             if(this.name == "Boy" && _StunCooldownTimer == 0)
             {
+                isSmallUI = false;
                 isWspell = true;
                 if (_Wselected)
                     _Wselected.Play();  
             }
+
             CancelHealAttack();
+            CancelBoyShield();
 
         }
+
         CastSpellW();
         CastSpellQ();
 
@@ -174,7 +186,7 @@ public class SpellCommand : MonoBehaviour {
             player_number = CharacterSelect();
             //Debug.Log("SpellCommand: Q/player_number = " + player_number);
             //Boy spell called by Q (Shield)
-            if (player_number == 0)
+            if ((player_number == 0 && _ShieldCooldownTimer == 0 && !isSmallUI) || (isQBoyforced && _ShieldCooldownTimer == 0 && !isSmallUI))
             {
                 if (this.gameObject.name == "Boy") //checks if boy is casting and if this gamebobject is the boy
                 {
@@ -246,7 +258,6 @@ public class SpellCommand : MonoBehaviour {
                             Vector3 difference = new Vector3(hit.point.x, this.transform.position.y, hit.point.z) - this.transform.position;//difference btw hit point and boy
                             Vector3 RotationRectangle = new Vector3(this.transform.position.x, 1, this.transform.position.z);//difference btw hit point and boy
                             Vector3 PositionRectangle = new Vector3(hit.point.x, this.transform.position.y, hit.point.z) - this.transform.position;
-                            Debug.Log(PositionRectangle);
                             PositionRectangle.y = 1;
                             PositionRectangle.Normalize();
                             ShieldDirectionIndicator.transform.position = PositionRectangle * 2f + new Vector3(transform.position.x, 0 , transform.position.z);
@@ -256,7 +267,7 @@ public class SpellCommand : MonoBehaviour {
                             //ShieldDirectionIndicator.transform.localRotation = Quaternion.Euler(0f, angle, 0);
                             ShieldDirectionIndicator.transform.LookAt(RotationRectangle);
                             //ShieldDirectionIndicator.transform.localRotation = Quaternion.Euler(90, 0, ShieldDirectionIndicator.transform.localRotation.z);
-                            if (Input.GetMouseButtonDown(0))
+                            if (Input.GetMouseButtonDown(0) && !(EventSystem.current.IsPointerOverGameObject() && EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("UI")))
                             {                     
                                 Vector3 sheildpos = new Vector3(xpos, 0, zpos);
 
@@ -273,11 +284,10 @@ public class SpellCommand : MonoBehaviour {
                 Debug.Log("SpellCommand: Boy cast Q");
             }
             //Girl spell called by Q (Heal)
-            if ((player_number == 1 && _HealCooldownTimer == 0) || (isQGirlforced && _HealCooldownTimer == 0)) //What is "isQGirlForeced" and is the _HealCooldownTimer == 0 part necessary? This is checked in update
+            else if((player_number == 1 && _HealCooldownTimer == 0) || (isQGirlforced && _HealCooldownTimer == 0)) //What is "isQGirlForeced" and is the _HealCooldownTimer == 0 part necessary? This is checked in update
             {
                 if (this.gameObject.name == "Girl" ) //checks if girl is casting and if this gamebobject is the girl
                 {
-
                     //Spell goes here                  
                     RangeIndicatorHeal.SetActive(true);
 
@@ -285,7 +295,7 @@ public class SpellCommand : MonoBehaviour {
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit))
                     {
-                        if (hit.collider.tag == "RangeIndicator")
+                        if (hit.collider.tag == "RangeIndicator" && !(EventSystem.current.IsPointerOverGameObject() && EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("UI")))
                         {
                             AttackIndicatorHeal.SetActive(true);
                             AttackIndicatorHeal.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
@@ -314,9 +324,9 @@ public class SpellCommand : MonoBehaviour {
         if (isWspell)
         {
             player_number = CharacterSelect();
-            //Debug.Log("SpellCommand: W/player_number = " + player_number);
+            Debug.Log("SpellCommand: W/player_number = " + player_number);
             //Boy spell called by W (Stun)
-            if (player_number == 0)
+            if ((player_number == 0 && _StunCooldownTimer == 0 && !isSmallUI) || (isWBoyforced && _StunCooldownTimer == 0 && !isSmallUI))
             {
                 if (this.gameObject.name == "Boy") //checks if boy is casting and if this gamebobject is the boy
                 {
@@ -329,7 +339,6 @@ public class SpellCommand : MonoBehaviour {
                     {
                         //if (hit.collider.tag == "RangeIndicator" || hit.collider.tag == "Ground")
                         //{
-                            Debug.Log(hit.collider.tag);
                             StunDirectionIndicator.SetActive(true);
                             //StunDirectionIndicator.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
 
@@ -337,17 +346,30 @@ public class SpellCommand : MonoBehaviour {
                             float angle = Mathf.Atan2(difference.x, difference.z) * Mathf.Rad2Deg;
                             /// apply that rotation to the Z axis.
                             StunIndicatorPivot.transform.rotation = Quaternion.Euler(90f, angle, 0);
-                            //StunIndicatorPivot.transform.LookAt(RotationRectangle);
+                        //StunIndicatorPivot.transform.LookAt(RotationRectangle);
 
-                            if (Input.GetMouseButtonDown(0))
+                        Debug.Log(EventSystem.current.IsPointerOverGameObject());
+                        if (Input.GetMouseButtonDown(0) && !(EventSystem.current.IsPointerOverGameObject() && EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("UI")))
                             {
                             List<GameObject> EnemiestoStun = StunDirectionIndicator.GetComponent<BoyStunListGameObjects>().EnemiesList;
-                            foreach (GameObject cd in EnemiestoStun)
+                            Debug.Log(EnemiestoStun.Count);
+                            if (EnemiestoStun.Count != 0)
+                            {
+                                foreach (GameObject cd in EnemiestoStun)
+                                {
+                                    GameObject ElectricBeam = Instantiate(ElectricStun);
+                                    ElectricBeam.GetComponent<Electric>().lineBeginning = transform;
+                                    ElectricBeam.GetComponent<Electric>().lineEnd = cd.transform;
+                                    cd.GetComponent<BasicEnemyBehaviour>().Stunned(StunAnim, StunDurationTime);
+                                }
+                            }
+                            else 
                             {
                                 GameObject ElectricBeam = Instantiate(ElectricStun);
+                                ElectricBeam.GetComponentInChildren<MoveElectricBeam>().SetLineValues(transform, difference.normalized);
                                 ElectricBeam.GetComponent<Electric>().lineBeginning = transform;
-                                ElectricBeam.GetComponent<Electric>().lineEnd = cd.transform;
-                                cd.GetComponent<BasicEnemyBehaviour>().Stunned(StunAnim, StunDurationTime);
+                                ElectricBeam.GetComponent<Electric>().lineEnd = ElectricBeam.GetComponentInChildren<MoveElectricBeam>().gameObject.transform;
+                                ElectricBeam.GetComponent<Electric>().forceEnd = true;
                             }
                              //  CancelBoyStun();
                             _StunCooldownTimer = _StunCooldown;
@@ -364,7 +386,7 @@ public class SpellCommand : MonoBehaviour {
                 Debug.Log("SpellCommand: Boy cast W");
             }
             //Girl spell called by W (AOE)
-            if ((player_number == 1 && _AOECooldownTimer == 0) || (isWGirlforced && _AOECooldownTimer == 0)) //What is "isWGirlforced"? And again, the timer is checked in update
+            else if((player_number == 1 && _AOECooldownTimer == 0) || (isWGirlforced && _AOECooldownTimer == 0)) //What is "isWGirlforced"? And again, the timer is checked in update
             {
                 
                 if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
@@ -379,7 +401,7 @@ public class SpellCommand : MonoBehaviour {
                         {
                             AttackIndicatorAOE.SetActive(true);
                             AttackIndicatorAOE.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
-                            if (Input.GetMouseButtonDown(0))
+                            if (Input.GetMouseButtonDown(0) && !(EventSystem.current.IsPointerOverGameObject() && EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("UI")))
                             {
                                 AOEpos = new Vector3(hit.point.x, 1, hit.point.z);
                                 Instantiate(AOE, AOEpos, Quaternion.identity);
@@ -419,9 +441,10 @@ public class SpellCommand : MonoBehaviour {
     {
         isWGirlforced = false;
         isWspell = false;
-        if(_Wselected)
+
         _Wselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         _SmallWselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
         if (RangeIndicatorAOE)
             RangeIndicatorAOE.SetActive(false);
         if(AttackIndicatorAOE)
@@ -432,9 +455,10 @@ public class SpellCommand : MonoBehaviour {
     {
         isQGirlforced = false;
         isQspell = false;
-        if(_Qselected)
-    _Qselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
+        _Qselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         _SmallQselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
         if (RangeIndicatorHeal)
             RangeIndicatorHeal.SetActive(false);
         if (AttackIndicatorHeal)
@@ -444,9 +468,11 @@ public class SpellCommand : MonoBehaviour {
     public void CancelBoyShield()
     {
         isQspell = false;
-        if(_Qselected)
+        isQBoyforced = false;
+
         _Qselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         _SmallQselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
         if (RangeIndicatorShield)
             RangeIndicatorShield.SetActive(false);
         if (ShieldDirectionIndicator)
@@ -454,73 +480,92 @@ public class SpellCommand : MonoBehaviour {
         if (ShieldRangeIndicator)
             ShieldRangeIndicator.SetActive(false);
     }
+   
     public void CancelBoyStun()
     {
+        if(StunDirectionIndicator)
+        StunDirectionIndicator.GetComponent<BoyStunListGameObjects>().ResetList();
+
         isWspell = false;
-        if(_Wselected)
-        {
-            _Wselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-            _SmallWselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-        }
+        isWBoyforced = false;
+
+        _Wselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        _SmallWselected.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
         if (StunRangeIndicator)
             StunRangeIndicator.SetActive(false);
         if (StunDirectionIndicator)
             StunDirectionIndicator.SetActive(false);
 
     }
+
     public void CastSpellQGirl(bool isBig) //When is this used? What does this do?
     {
                                            //Alex answer : It's the function called when you click on the big spell (UI)        
-            Debug.Log(isBig);
             if (isBig)
             {
+            isSmallUI = false;
                 _Qselected.Play();
             }
             else
             {
-                Debug.Log("I am here");
+            isSmallUI = true;
                 _SmallQselected.Play();
             }
-            isQGirlforced = true;
-            isQspell = true;   //This is done in update?     //Alex answer : it also need to be done when you click on the UI, otherwise it won't work
-            CancelAOEAttack();
-    
+
+        CancelAOEAttack();
+        CancelBoyStun();
+        CancelBoyShield();
+        isQGirlforced = true;
+        isQspell = true;   //This is done in update?     //Alex answer : it also need to be done when you click on the UI, otherwise it won't work
+
     }
 
     public void CastSpellWGirl(bool isBig)
     {  
             if (isBig)
             {
+            isSmallUI = false;
                 _Wselected.Play();
             }
             else
             {
+            isSmallUI = true;
                 _SmallWselected.Play();
             }
-            isWGirlforced = true;
-            Debug.Log(isWGirlforced);
-            isWspell = true;
-            CancelHealAttack();      
+
+        CancelHealAttack(); 
+        CancelBoyStun();
+        CancelBoyShield();
+        isWGirlforced = true;
+        isWspell = true;
     }
 
     public void CastSpellQBoy(bool isBig)
     {
             if (isBig)
             {
+            isSmallUI = false;
                 _Qselected.Play();
             }
             else
             {
                 _SmallQselected.Play();
             }
-            
-            isQspell = true;       
+
+        CancelHealAttack();
+        CancelAOEAttack();
+        CancelBoyStun();
+        isQBoyforced = true;
+        isQspell = true; 
+
     }
 
     public void CastSpellWBoy(bool isBig)
-    {      
+    {
             if (isBig)
             {
+            isSmallUI = false;
                 _Wselected.Play();
             }
             else
@@ -528,6 +573,10 @@ public class SpellCommand : MonoBehaviour {
                 _SmallWselected.Play();
             }
 
-            isWspell = true;       
+        CancelAOEAttack();
+        CancelHealAttack();
+        CancelBoyShield();
+        isWBoyforced = true;
+        isWspell = true;
     }
 }

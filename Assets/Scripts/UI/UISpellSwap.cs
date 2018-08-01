@@ -34,7 +34,6 @@ public class UISpellSwap : MonoBehaviour {
 
     private SpellCommand _GirlSpellCommandScript;
     private SpellCommand _BoySpellCommandScript;
-    private SpellCommand _SpellCommand;
 
     private Text _BigQCooldowntext;
     private Text _BigWCooldowntext;
@@ -92,7 +91,6 @@ public class UISpellSwap : MonoBehaviour {
 
         _GirlSpellCommandScript = _PublicVariableHolder._GirlSpellCommandScript;
         _BoySpellCommandScript = _PublicVariableHolder._BoySpellCommandScript;
-        _SpellCommand = _PublicVariableHolder._SpellCommand;
 
         _BigQCooldowntext = _PublicVariableHolder._BigQCooldowntext;
         _BigWCooldowntext = _PublicVariableHolder._BigWCooldowntext;
@@ -286,14 +284,18 @@ public class UISpellSwap : MonoBehaviour {
 
     public void BigQisCastedWithMouse()
     {
-        Debug.Log("here");
         if (!_PublicVariableHolder.StopAllActions)
         {
             if (m_isBoy)
             {
-                _SpellCommand.CastSpellQBoy(true);
+                _GirlSpellCommandScript.CastSpellQBoy(true);
+                _BoySpellCommandScript.CastSpellQBoy(true);
             }
-            else _SpellCommand.CastSpellQGirl(true);
+            else 
+            { 
+                _GirlSpellCommandScript.CastSpellQGirl(true);
+                _BoySpellCommandScript.CastSpellQGirl(true);
+            }
         }
     }
 
@@ -303,9 +305,14 @@ public class UISpellSwap : MonoBehaviour {
         {
             if (m_isBoy)
             {
-                _SpellCommand.CastSpellWBoy(true);
+                _GirlSpellCommandScript.CastSpellWBoy(true);
+                _BoySpellCommandScript.CastSpellWBoy(true);
             }
-            else _SpellCommand.CastSpellWGirl(true);
+            else
+            {
+                _GirlSpellCommandScript.CastSpellWGirl(true);
+                _BoySpellCommandScript.CastSpellWGirl(true);
+            }
         }
     }
 
@@ -315,10 +322,14 @@ public class UISpellSwap : MonoBehaviour {
         {
             if (m_isBoy)
             {
-
-                _SpellCommand.CastSpellQGirl(false);
+                _GirlSpellCommandScript.CastSpellQGirl(false);
+                _BoySpellCommandScript.CastSpellQGirl(false);
             }
-            else _SpellCommand.CastSpellQBoy(false);
+            else
+            {
+                _GirlSpellCommandScript.CastSpellQBoy(false);
+                _BoySpellCommandScript.CastSpellQBoy(false);
+            }
         }
     }
 
@@ -328,9 +339,14 @@ public class UISpellSwap : MonoBehaviour {
         {
             if (m_isBoy)
             {
-                _SpellCommand.CastSpellWGirl(false);
+                _GirlSpellCommandScript.CastSpellWGirl(false);
+                _BoySpellCommandScript.CastSpellWGirl(false);
             }
-            else _SpellCommand.CastSpellWBoy(false);
+            else
+            {
+                _GirlSpellCommandScript.CastSpellWBoy(false);
+                _BoySpellCommandScript.CastSpellWBoy(false);
+            }
         }
     }
 

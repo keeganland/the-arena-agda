@@ -21,6 +21,7 @@ TagManager:
   - Projectile
   - Objects
   - UI
+  - LoadingScreen
   layers:
   - Default
   - TransparentFX

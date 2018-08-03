@@ -57,6 +57,7 @@ public class AnyManager : MonoBehaviour {
             }
         }
         SceneManager.LoadSceneAsync("TitleScreen", LoadSceneMode.Additive);
+        GameObject.FindWithTag("Fader").GetComponent<Animator>().Play("ForceFadeIn");
     }
 
     /*

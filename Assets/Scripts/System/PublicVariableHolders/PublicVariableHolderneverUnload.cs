@@ -83,6 +83,11 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     [Header("NeverUnload/VictoryReferee")]
     public GameObject DeathCanvas;
 
+    [Header("NeverUnload/Loading Screen")]
+    public GameObject loadingScreen;
+    public Slider loadingScreenSlider;
+    public LoadingScreen loadingScreenControler;
+
     private void OnEnable()
     {
         EventManager.StartListening("HideUI", HideUI);

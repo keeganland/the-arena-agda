@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class TitleScreenMainMenu : MonoBehaviour {
     
-    private bool KeepUIHidden;
 
     private void Awake()
     {
@@ -14,9 +13,7 @@ public class TitleScreenMainMenu : MonoBehaviour {
 
     private void OnDisable()
     {
-        if (!KeepUIHidden)
             EventManager.TriggerEvent("ShowUI");
-        else KeepUIHidden = false;
     }
 
     public void PlayGame()
@@ -25,15 +22,14 @@ public class TitleScreenMainMenu : MonoBehaviour {
         /**
          * Holy shit the stuff below just works painlessly
          */
-        SceneManager.UnloadSceneAsync("TitleScreen");
-        SceneManager.LoadSceneAsync("Introduction (1)", LoadSceneMode.Additive);
+
+        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("Introduction (1)", "TitleScreen");
         EventManager.TriggerEvent("setup");
     }
 
     public void PlayArena()
     {
-        SceneManager.UnloadSceneAsync("TitleScreen");
-        SceneManager.LoadSceneAsync("Arena", LoadSceneMode.Additive);
+        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("Arena", "TitleScreen");
         EventManager.TriggerEvent("setup");
     }
 
@@ -55,9 +51,7 @@ public class TitleScreenMainMenu : MonoBehaviour {
     }
     public void PlayHowToPlay()
     {
-        KeepUIHidden = true;
-        SceneManager.UnloadSceneAsync("TitleScreen");
-        SceneManager.LoadSceneAsync("HowToPlay", LoadSceneMode.Additive);
+        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("HowToPlay", "TitleScreen");
         EventManager.TriggerEvent("setup");
     }
 

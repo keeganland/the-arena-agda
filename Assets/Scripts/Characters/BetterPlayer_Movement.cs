@@ -21,6 +21,8 @@ public class BetterPlayer_Movement : MonoBehaviour {
     public bool isTheBoy = false;
     public bool stopMoving = false;
     public bool boyActive = false;
+
+    public GameObject MoveClick;
     [SerializeField] private GameObject curTarget;
 
     private bool ReviveStart;
@@ -149,6 +151,9 @@ public class BetterPlayer_Movement : MonoBehaviour {
                         curTarget.GetComponent<HealthController>().CancelEnemy(this.gameObject);
                         curTarget = null;
                         this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
+
+                        GameObject move = Instantiate(MoveClick, new Vector3(hit.point.x, transform.position.y, hit.point.z), Quaternion.identity);
+                        Destroy(move, 1f);
                     }
                     if(hit.collider.tag == "Enemy")
                     {
@@ -158,6 +163,12 @@ public class BetterPlayer_Movement : MonoBehaviour {
                         curTarget.GetComponent<HealthController>().SetEnemy(this.gameObject);
                         this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
                         //Debug.Log("Target is " + curTarget.name);
+                        GameObject move = Instantiate(MoveClick, new Vector3(hit.point.x, transform.position.y, hit.point.z), Quaternion.identity);
+                        ParticleSystem.MainModule movemain = move.GetComponent<ParticleSystem>().main;
+                        movemain.startColor = Color.red;
+                        movemain.startSize = 2;
+                        Destroy(move, 1f);
+
 
                         //this should chase enemy if enemy is not currently in range
                         if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
@@ -250,12 +261,16 @@ public class BetterPlayer_Movement : MonoBehaviour {
             _BoySelected.enabled = true;
             this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
             this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
+            this.gameObject.GetComponent<SpellCommand>().CancelBoyStun();
+            this.gameObject.GetComponent<SpellCommand>().CancelBoyShield();
+
             Boy.GetComponent<SpellCommand>().isSmallUI =false;
             Girl.GetComponent<SpellCommand>().isSmallUI = false;
             _UISpells.BoySpellActive();
             _GirlSelected.enabled = false;
             _BoySelectedParticle.Play();
             _GirlSelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
         }
     }
 
@@ -267,6 +282,9 @@ public class BetterPlayer_Movement : MonoBehaviour {
             _BoySelected.enabled = false;
             this.gameObject.GetComponent<SpellCommand>().CancelBoyStun();
             this.gameObject.GetComponent<SpellCommand>().CancelBoyShield();
+            this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
+            this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
+
             Boy.GetComponent<SpellCommand>().isSmallUI = false;
             Girl.GetComponent<SpellCommand>().isSmallUI = false;
             _GirlSelected.enabled = true;

@@ -26,6 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dialog - Prototype.unity
     guid: 9377f17f71c01b84a8cfe7c6c68b79cd
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/HowToPlay.unity
+    guid: 2f1b6f111d5434867994d6faa7089c81
+  m_configObjects: {}

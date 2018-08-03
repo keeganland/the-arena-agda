@@ -5,14 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class TitleScreenMainMenu : MonoBehaviour {
     
-    private void Start()
+    private bool KeepUIHidden;
+
+    private void Awake()
     {
         EventManager.TriggerEvent("HideUI");
     }
 
     private void OnDisable()
     {
-        EventManager.TriggerEvent("ShowUI");
+        if (!KeepUIHidden)
+            EventManager.TriggerEvent("ShowUI");
+        else KeepUIHidden = false;
     }
 
     public void PlayGame()
@@ -51,6 +55,7 @@ public class TitleScreenMainMenu : MonoBehaviour {
     }
     public void PlayHowToPlay()
     {
+        KeepUIHidden = true;
         SceneManager.UnloadSceneAsync("TitleScreen");
         SceneManager.LoadSceneAsync("HowToPlay", LoadSceneMode.Additive);
         EventManager.TriggerEvent("setup");

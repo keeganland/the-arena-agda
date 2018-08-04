@@ -18,12 +18,13 @@ public class TitleScreenMainMenu : MonoBehaviour {
 
     public void PlayGame()
     {
-        //SceneManager.LoadScene("Introduction (1)");
-        /**
-         * Holy shit the stuff below just works painlessly
-         */
-
         GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("Introduction (1)", "TitleScreen");
+        EventManager.TriggerEvent("setup");
+    }
+
+    public void PlayArenaEntrance()
+    {
+        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("ArenaEntrance", "TitleScreen");
         EventManager.TriggerEvent("setup");
     }
 

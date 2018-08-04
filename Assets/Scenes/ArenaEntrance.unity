@@ -20759,8 +20759,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Fight2
+      - m_Target: {fileID: 1527566730}
+        m_MethodName: ArenaEntranceFight2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21324,8 +21324,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Fight1
+      - m_Target: {fileID: 1527566730}
+        m_MethodName: ArenaEntranceFight1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26056,6 +26056,7 @@ GameObject:
   - component: {fileID: 1527566728}
   - component: {fileID: 1527566727}
   - component: {fileID: 1527566729}
+  - component: {fileID: 1527566730}
   m_Layer: 0
   m_Name: FightLoaderTester
   m_TagString: Untagged
@@ -26103,6 +26104,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies: []
+--- !u!114 &1527566730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1527566726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22665d7edd9cbff44a76f337e0c98859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fightMenuUI: {fileID: 393804666}
 --- !u!1 &1624244540
 GameObject:
   m_ObjectHideFlags: 0
@@ -30819,7 +30832,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1527566727}
+      - m_Target: {fileID: 1527566730}
         m_MethodName: DoorClicked
         m_Mode: 1
         m_Arguments:
@@ -31532,8 +31545,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Fight3
+      - m_Target: {fileID: 1527566730}
+        m_MethodName: ArenaEntranceFight3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

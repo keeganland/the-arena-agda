@@ -9,6 +9,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class FightLoaderTester : MonoBehaviour {
 
@@ -19,10 +21,10 @@ public class FightLoaderTester : MonoBehaviour {
     public bool testSpecificFight;
     public int specificFightToTest = 0;
 
-    private bool doorClicked = false;
-
     private void Start()
     {
+        specificFightToTest = SetUp.Instance.GetFightToLoad();
+
         if(testSpecificFight)
         {
             switch (specificFightToTest)
@@ -46,9 +48,8 @@ public class FightLoaderTester : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (Input.GetKeyDown(KeyCode.F1) || doorClicked)
+        if (Input.GetKeyDown(KeyCode.F1))
         {
-            doorClicked = false;
             if (gameIsPaused)
             {
                 Resume();
@@ -134,10 +135,5 @@ public class FightLoaderTester : MonoBehaviour {
             ft.activateFight(2);
             Resume();
         }
-    }
-
-    public void DoorClicked()
-    {
-        doorClicked = true;
     }
 }

@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/*Alex : I inspired the code from https://www.youtube.com/watch?v=rXnZE8MwK-E;
+*/
+
+
 public class LoadingScreen : MonoBehaviour {
 
     public PublicVariableHolderneverUnload publicVariableHolderneverUnload;

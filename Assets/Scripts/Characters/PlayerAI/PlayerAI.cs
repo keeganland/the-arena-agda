@@ -47,7 +47,7 @@ public class PlayerAI : MonoBehaviour {
 
     void TargetNearest()
     {
-        GameObject[] validTargets = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] validTargets = GameObject.FindGameObjectsWithTag("Enemy"); //KeeganNote 2018/8/1 - Replace with some sort of priority queue
 
         GameObject curTarget = null;
 

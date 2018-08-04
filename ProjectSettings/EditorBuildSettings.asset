@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HowToPlay.unity
     guid: 2f1b6f111d5434867994d6faa7089c81
+  - enabled: 1
+    path: Assets/Scenes/ArenaEntrance.unity
+    guid: f2ba403514d791245874052990c374be
   m_configObjects: {}

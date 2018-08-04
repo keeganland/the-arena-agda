@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/*
+ * Click play --> arena entrance scene
+ * Click door, select battle (or just go to first)
+ * Return to the entrance when battle is done.
+ */
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;

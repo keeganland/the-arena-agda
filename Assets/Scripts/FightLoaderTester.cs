@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿/**
+ * Keegan Note 2018/8/3 - This is going to turn into some wild bullshit very quickly.
+ * I'm redesigning it to load into different setups of the Arena scene FROM the ArenaEntrance.
+ * 
+ * Keep in mind that this whole script was never intended to be permanent.
+ */
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +18,8 @@ public class FightLoaderTester : MonoBehaviour {
 
     public bool testSpecificFight;
     public int specificFightToTest = 0;
+
+    private bool doorClicked = false;
 
     private void Start()
     {
@@ -36,8 +46,9 @@ public class FightLoaderTester : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.F1) || doorClicked)
         {
+            doorClicked = false;
             if (gameIsPaused)
             {
                 Resume();
@@ -123,5 +134,10 @@ public class FightLoaderTester : MonoBehaviour {
             ft.activateFight(2);
             Resume();
         }
+    }
+
+    public void DoorClicked()
+    {
+        doorClicked = true;
     }
 }

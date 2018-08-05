@@ -211,13 +211,12 @@ public class BetterPlayer_Movement : MonoBehaviour {
         }
         */
 
-        Debug.Log(this.GetComponentInChildren<RangeChecker>().InRange(curTarget));
+        //Debug.Log(this.GetComponentInChildren<RangeChecker>().InRange(curTarget));
         //this should chase enemy if enemy is not currently in range
         if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
         {
             if (curTarget)
-            {
-                Debug.Log("Set Destination?");
+            {             
                 //Debug.Log("in range: " + curTarget.name);
                 m_agent.SetDestination(curTarget.transform.position);
             }

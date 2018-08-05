@@ -44,10 +44,10 @@ public class LoadingScreen : MonoBehaviour {
             {
                 slider.value = 1.0f;
                 async.allowSceneActivation = true;
-                fader.GetComponent<Animator>().Play("ForceFadeIn");
             }
             yield return null;
         }
         loadingScreenObj.SetActive(false);
+        fader.StartCoroutine("FadeIn");
     }
 }

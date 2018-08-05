@@ -30,6 +30,10 @@ public class PublicVariableHolderArenaEntrance : MonoBehaviour {
     public GameObject smallEnemies;
     public GameObject boss;
 
+    [Header("Walk To Door, Arena Entrance")]
+    public GameObject BoyDoorPos;
+    public GameObject GirlDoorPos;
+
     private void Awake()
     {
         publicVariableHolderNeverUnload = GameObject.Find("/PublicVariableHolderNeverUnload").GetComponent<PublicVariableHolderneverUnload>();

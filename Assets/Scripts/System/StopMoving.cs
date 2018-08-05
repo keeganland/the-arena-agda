@@ -34,6 +34,7 @@ public class StopMoving : MonoBehaviour {
 
         EventManager.StartListening("NotInCombat", NotInCombat);
         EventManager.StartListening("InCombat", InCombat);
+        EventManager.StartListening("GirlInCombat", GirlInCombat);
     }
 
     private void OnDisable()
@@ -47,6 +48,7 @@ public class StopMoving : MonoBehaviour {
 
         EventManager.StopListening("NotInCombat", NotInCombat);
         EventManager.StopListening("InCombat", InCombat);
+        EventManager.StopListening("GirlInCombat", GirlInCombat);
     }
 
     void StopPlayerMovement()
@@ -107,5 +109,13 @@ public class StopMoving : MonoBehaviour {
     void InCombat()
     {
         this.GetComponent<BetterPlayer_Movement>().isCombat = true;
+    }
+
+    void GirlInCombat()
+    {
+        if(gameObject.name == "Girl")
+        {
+            GetComponent<BetterPlayer_Movement>().isCombat = true;
+        }
     }
 }

@@ -17,6 +17,8 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     public bool StopCamera; //To move Camera freely with a transform without worrying about the "Automatic" camera.
     public ScreenFader fader;
 
+    public GameObject BoyUIGameObject;
+    public GameObject GirlUIGameObject;
     [Header("NeverUnload/Characters : HealthControler")]
     public GameObject _BoySpriteGameObject; //Goes with "Momo" (neverUnload)
     public GameObject _GirlSpriteGameObject; //Goes with "Bella" (neverUnload)

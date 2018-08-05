@@ -21,8 +21,8 @@ public class TextBoxManager : MonoBehaviour
     //these are game objects and unity stuff
     public GameObject textBox;
     public GameObject namePlate;
-    public GameObject interactivityCue;
-
+    public GameObject interactivityCue; //Alex : I don't really know what it does but I suppose it's like a choice box for the player : (Yes/No)??
+                                        //I will use it as if it is (and create a bool eventAtEndofText too.
     public Text boxContent;
 	public Text NPCNameTag;
 
@@ -45,6 +45,7 @@ public class TextBoxManager : MonoBehaviour
     public bool cueActive = false;
     public bool stopPlayerMovement;
     public bool stopNPCMovement;
+    public bool eventAtEndofText;
 
     private bool isTyping = false;
     private bool cancelTyping = false;
@@ -116,15 +117,22 @@ public class TextBoxManager : MonoBehaviour
             return;
         }
         
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
         {
-
             if (!isTyping)
             {
                 currentLine += 1; //the way things work at the moment is just increment through the array. should sooner or later be replaced with a queue
-				if((textQueue.Count == 0) || (currentLine > endAtLine))
+                if(((textQueue.Count == 0 && !eventAtEndofText) || (currentLine > endAtLine && !eventAtEndofText)))
                 {
                     DisableTextBox();
+                }
+                else if (((textQueue.Count == 0 && eventAtEndofText) || (currentLine > endAtLine && eventAtEndofText)))
+                {
+                    if (interactivityCue.activeSelf == false)
+                    {
+                        EnableCue();
+                    }
+                    return;
                 }
                 else
                 {
@@ -173,11 +181,11 @@ public class TextBoxManager : MonoBehaviour
 
         if (stopPlayerMovement)
         {
-            movementManager.StopPlayerMovement();
+            EventManager.TriggerEvent("StopMoving");
         }
         if (stopNPCMovement)
         {
-            theNPCMovementManager.StopNPCMovement();
+            //theNPCMovementManager.StopNPCMovement();
         }
  
 		//StartCoroutine(TextScroll(textLines[currentLine]));
@@ -188,13 +196,15 @@ public class TextBoxManager : MonoBehaviour
     {
         textBox.SetActive(false);
         isActive = false;
+        EventManager.TriggerEvent("StartMoving"); //Alex: I added this line here 'cause I don't know what is "movementManager";
+
         if (namePlate != null)
         {
             namePlate.SetActive(false);
         }
         if (movementManager != null)
         {
-            movementManager.StartPlayerMovement();
+            EventManager.TriggerEvent("StartMoving");
         }
         if (theNPCMovementManager != null)
         {
@@ -224,14 +234,22 @@ public class TextBoxManager : MonoBehaviour
 
     public void EnableCue()
     {
-        interactivityCue.SetActive(true);
-        cueActive = true;
+        if (interactivityCue)
+        {
+            interactivityCue.SetActive(true);
+            cueActive = true;
+        }
     }
+
+    //Alex : I'll just put the exit of the Text (if eventAtEndOfText) here and I'll disable it with the "button"
 
     public void DisableCue()
     {
-        interactivityCue.SetActive(false);
-        cueActive = false;
+        if (interactivityCue)
+        {
+            interactivityCue.SetActive(false);
+            cueActive = false;
+        }
     }
 
 	public bool getIsActive()
@@ -241,7 +259,7 @@ public class TextBoxManager : MonoBehaviour
 
 	public void setLastTriggered(string gameObjName)
 	{
-		//Debug.Log (gameObjName + " triggered the TextBoxManager");
+        //Debug.Log (gameObjName + " triggered the TextBoxManager");
 		lastTriggeredBy = gameObjName;
 	}
 

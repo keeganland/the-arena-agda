@@ -30,6 +30,11 @@ public class SpriteScript2 : MonoBehaviour
 
     private void Update()
     {
+        float m_newx = _Target.position.x;
+        float m_newy = _Target.position.z;
+
+        transform.position = new Vector3(m_newx, _DistanceFromSprite, m_newy);
+
         if (publicVariableHolderneverUnload.MainCamera.transform.localRotation == Quaternion.Euler(0,0,0))
         {
             if (m_anim)
@@ -82,15 +87,6 @@ public class SpriteScript2 : MonoBehaviour
                 }
             }
         }
-
-    }
-    // Update is called once per frame
-    void LateUpdate()
-    {
-        float m_newx = _Target.position.x;
-        float m_newy = _Target.position.z;
-
-        transform.position = new Vector3(m_newx, _DistanceFromSprite, m_newy);
     }
 
     public void ForcePlayerRotation(int direction)

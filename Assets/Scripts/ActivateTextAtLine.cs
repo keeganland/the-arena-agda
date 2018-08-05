@@ -33,6 +33,8 @@ public class ActivateTextAtLine : MonoBehaviour
     public string activatedByTag;
     public string activatedByName;
 
+    public bool eventAtEndofText;
+
     private bool waitForPress = false;
     private bool textWasManuallyActivated; // If the text box has been activated, player should scroll through it before they get to end.
                                            //man did i manage to confuse myself with the above variable's name!
@@ -43,6 +45,8 @@ public class ActivateTextAtLine : MonoBehaviour
     void Start()
     {
         theTextManager = FindObjectOfType<TextBoxManager>();
+
+        theTextManager.eventAtEndofText = eventAtEndofText;
 
         textWasManuallyActivated = false;
 

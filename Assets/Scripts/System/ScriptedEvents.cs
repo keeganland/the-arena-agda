@@ -60,19 +60,19 @@ public class ScriptedEvents : MonoBehaviour {
 
     private void Awake()
     {
-        enterArena = new UnityAction(EnterArena);
+        enterArena = new UnityAction(EnterArenaFight1);
         victoryEvent = new UnityAction(VictoryEvent);
     }
 
     private void OnEnable()
     {
-        EventManager.StartListening("enterArena", EnterArena);
+        EventManager.StartListening("enterArenaFight1", EnterArenaFight1);
         EventManager.StartListening("victoryEvent", VictoryEvent);
     }
 
     private void OnDisable()
     {
-        EventManager.StopListening("enterArena", EnterArena);
+        EventManager.StopListening("enterArenaFight1", EnterArenaFight1);
         EventManager.StopListening("victoryEvent", VictoryEvent);
     }
 
@@ -82,29 +82,41 @@ public class ScriptedEvents : MonoBehaviour {
         StartCoroutine("victoryEventCoroutine");
     }
 
-    void EnterArena()
+    void EnterArenaFight1()
     {
-        EventManager.StopListening("enterArena", EnterArena);
-        StartCoroutine("EnterArenaCoroutine");
+        EventManager.StopListening("enterArenaFight1", EnterArenaFight1);
+        StartCoroutine("EnterArenaFight1Coroutine");
     }
 
-    IEnumerator EnterArenaCoroutine () {
+    IEnumerator EnterArenaFight1Coroutine () {
 
+        publicVariableHolder.BoyUIGameObject.SetActive(false);
+        publicVariableHolder.GirlUIGameObject.SetActive(false);
         PlayerUI.SetActive(false);
+        EventManager.TriggerEvent("InCombat");
         EventManager.TriggerEvent("StopMoving");
         enemy.GetComponentInChildren<FirstEnemyAttack2>().isEnemyMoving = false;
         enemy.GetComponentInChildren<FirstEnemyAttack2>().StopAttacking = true;
         
         enemyUI.SetActive(false);
-       
+        Camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, Camera.transform.position.y, _InitialPositionBoy.transform.position.z);
+
+        yield return new WaitForSeconds(.4f);
         m_boy.transform.position =_InitialPositionBoy.transform.position;
+        Debug.Log("_InitialPositionBoy.transform.position " + _InitialPositionBoy.transform.position);
+        Debug.Log("_m_boy " + m_boy.transform.position);
         m_girl.transform.position = _InitialPositionGirl.transform.position;
         enemy.transform.position = _InitialPositionEnemy.transform.position;
 
-        Camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, Camera.transform.position.y, _InitialPositionBoy.transform.position.z);
+        publicVariableHolder.BoyUIGameObject.SetActive(true);
+        publicVariableHolder.GirlUIGameObject.SetActive(true);
 
         boyNavMeshAgent.SetDestination(_PublicVariableHolderArena._EnterArenaWaypointsBoy[0].transform.position);
         girlNavMeshAgent.SetDestination(_PublicVariableHolderArena._EnterArenaWaypointsGirl[0].transform.position);
+
+        yield return new WaitForSeconds(.4f);
+
+        screenFader.StartCoroutine("FadeIn");
 
         yield return new WaitForSeconds(4.5f);
 
@@ -113,8 +125,8 @@ public class ScriptedEvents : MonoBehaviour {
         yield return new WaitForSeconds(2.5f);
         Camera.transform.position = new Vector3(_InitialPositionEnemy.transform.position.x, Camera.transform.position.y, _InitialPositionEnemy.transform.position.z);
 
-
         screenFader.StartCoroutine("FadeIn");
+
         yield return new WaitForSeconds(2f);
         enemy.GetComponentInChildren<NavMeshAgent>().SetDestination(_PublicVariableHolderArena._EnterArenaWaypointsEnemy[0].transform.position);
         enemyUI.SetActive(true);

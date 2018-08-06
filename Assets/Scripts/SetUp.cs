@@ -7,6 +7,8 @@ public class SetUp : MonoBehaviour {
     private static int fightToLoad;
     private static SetUp setUp;
 
+    public GameObject[] PlayersGameObject;
+
     public static SetUp Instance
     {
         get
@@ -34,7 +36,8 @@ public class SetUp : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    private void OnEnable () 
+    {
         EventManager.StartListening("setup", SetUpCharacterHealth);
 	}
 
@@ -44,13 +47,21 @@ public class SetUp : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-		
+    void Update () 
+    {
+
 	}
 
     public void SetUpCharacterHealth()
     {
         /*TODO reset the players' health here*/
+        foreach (GameObject players in PlayersGameObject)
+        {
+            players.GetComponent<HealthController>().currentHealth = players.GetComponent<HealthController>().totalHealth;
+            players.GetComponent<BetterPlayer_Movement>().UndoCurTarget();
+        }
+
+        FindObjectOfType<VictoryReferee>().SetPlayerWon(false);
     }
 
     public int GetFightToLoad()

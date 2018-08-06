@@ -289,15 +289,15 @@ public class SpellCommand : MonoBehaviour {
                 {
                     //Spell goes here                  
                     RangeIndicatorHeal.SetActive(true);
-
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit))
                     {
+                        AttackIndicatorHeal.SetActive(true);
+                        AttackIndicatorHeal.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
+
                         if (hit.collider.tag == "RangeIndicator" && !(EventSystem.current.IsPointerOverGameObject() && EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("UI")))
                         {
-                            AttackIndicatorHeal.SetActive(true);
-                            AttackIndicatorHeal.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
                             if (Input.GetMouseButtonDown(0))
                             {
                                 Healpos = new Vector3(hit.point.x, 1, hit.point.z);
@@ -387,7 +387,6 @@ public class SpellCommand : MonoBehaviour {
             //Girl spell called by W (AOE)
             else if((player_number == 1 && _AOECooldownTimer == 0) || (isWGirlforced && _AOECooldownTimer == 0)) //What is "isWGirlforced"? And again, the timer is checked in update
             {
-                
                 if (this.gameObject.name == "Girl") //checks if girl is casting and if this gamebobject is the girl
                 {
                     RangeIndicatorAOE.SetActive(true);
@@ -501,56 +500,49 @@ public class SpellCommand : MonoBehaviour {
     public void CastSpellQGirl(bool isBig) //When is this used? What does this do?
     {
                                            //Alex answer : It's the function called when you click on the big spell (UI)        
-            if (isBig)
-            {
-            isSmallUI = false;
-                _Qselected.Play();
-            }
-            else
-            {
-            isSmallUI = true;
-                _SmallQselected.Play();
-            }
-
         CancelAOEAttack();
         CancelBoyStun();
         CancelBoyShield();
         isQGirlforced = true;
-        isQspell = true;   //This is done in update?     //Alex answer : it also need to be done when you click on the UI, otherwise it won't work
+        isQspell = true;
+        //This is done in update?     //Alex answer : it also need to be done when you click on the UI, otherwise it won't work
+        if (isBig)
+        {
+            isSmallUI = false;
+            _Qselected.Play();
+        }
+        else
+        {
+            isSmallUI = true;
+            _SmallQselected.Play();
+        }
 
     }
 
     public void CastSpellWGirl(bool isBig)
     {  
-            if (isBig)
-            {
-            isSmallUI = false;
-                _Wselected.Play();
-            }
-            else
-            {
-            isSmallUI = true;
-                _SmallWselected.Play();
-            }
-
         CancelHealAttack(); 
         CancelBoyStun();
         CancelBoyShield();
         isWGirlforced = true;
         isWspell = true;
+
+        if (isBig)
+        {
+            isSmallUI = false;
+            _Wselected.Play();
+        }
+        else
+        {
+            isSmallUI = true;
+            _SmallWselected.Play();
+        }
+
+
     }
 
     public void CastSpellQBoy(bool isBig)
     {
-            if (isBig)
-            {
-            isSmallUI = false;
-                _Qselected.Play();
-            }
-            else
-            {
-                _SmallQselected.Play();
-            }
 
         CancelHealAttack();
         CancelAOEAttack();
@@ -558,24 +550,35 @@ public class SpellCommand : MonoBehaviour {
         isQBoyforced = true;
         isQspell = true; 
 
+        if (isBig)
+        {
+            isSmallUI = false;
+            _Qselected.Play();
+        }
+        else
+        {
+            _SmallQselected.Play();
+        }
+
     }
 
     public void CastSpellWBoy(bool isBig)
     {
-            if (isBig)
-            {
-            isSmallUI = false;
-                _Wselected.Play();
-            }
-            else
-            {
-                _SmallWselected.Play();
-            }
-
         CancelAOEAttack();
         CancelHealAttack();
         CancelBoyShield();
         isWBoyforced = true;
         isWspell = true;
+
+        if (isBig)
+        {
+            isSmallUI = false;
+            _Wselected.Play();
+        }
+        else
+        {
+            _SmallWselected.Play();
+        }
+
     }
 }

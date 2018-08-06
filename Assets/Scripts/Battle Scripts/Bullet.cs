@@ -49,6 +49,7 @@ public class Bullet : MonoBehaviour {
                     if (msgHandler)
                     {
                         msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
+                    Debug.Log("here");
                         DisplayDamage(other.gameObject, _DamageColor, Damage);
                     }
                 }

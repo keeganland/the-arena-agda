@@ -222,15 +222,22 @@ public class BetterCameraFollow : MonoBehaviour
     {
 
             Vector3 CameraNewpos = new Vector3(0, this.transform.position.y, 0);
-
+            int count = 0; 
             for (int i = 0; i < currentTargets.Count; i++)
-            {              
-                 CameraNewpos.x += currentTargets[i].transform.position.x;
-                 CameraNewpos.z += currentTargets[i].transform.position.z;              
+            {
+            if (currentTargets[i] == null)
+            {
+                count += 1;
+            }
+            else
+            {
+                CameraNewpos.x += currentTargets[i].transform.position.x;
+                CameraNewpos.z += currentTargets[i].transform.position.z;
+            }
             }
 
-            CameraNewpos.x /= currentTargets.Count;
-            CameraNewpos.z /= currentTargets.Count;
+        CameraNewpos.x /= (currentTargets.Count - count);
+        CameraNewpos.z /= (currentTargets.Count - count);
 
             if (m_currentcameraTargets.Count == 0 || m_manualCamera == true)
             {
@@ -289,6 +296,7 @@ public class BetterCameraFollow : MonoBehaviour
     public void ReinitializePotentialTargets()
     {
         CameraTarget[] potentialCameraTargetArray = (CameraTarget[])Object.FindObjectsOfType(typeof(CameraTarget));
+        m_currentcameraTargets.Clear();
         potentialCameraTargetList = new List<CameraTarget>();
         for (int i = 0; i < potentialCameraTargetArray.Length; i++)
         {

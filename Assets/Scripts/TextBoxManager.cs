@@ -26,6 +26,10 @@ public class TextBoxManager : MonoBehaviour
     public Text boxContent;
 	public Text NPCNameTag;
 
+    public GameObject TextBallon;
+    private GameObject NPCGameObject; //Alex : Get the NPC position to Spawn the "Text" Ballon.
+    private GameObject textBallon;
+
     //these exist for the management of the external .txt file
     public TextAsset textFile;
     public TextAsset xmlDialogFile;
@@ -55,10 +59,11 @@ public class TextBoxManager : MonoBehaviour
 
     public float typeSpeed;
 
+    PauseMenu pauseMenu;
     // Use this for initialization
     void Start()
     {
-
+        pauseMenu = FindObjectOfType<PauseMenu>();
 		/**
 		 * Keegan NTS: Initialize the script. Lots of redundancy with the Reload method. Revisit plz
 		 */
@@ -111,6 +116,12 @@ public class TextBoxManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape) && isActive)
+        {
+            DisableTextBox();
+            DisableCue();
+            pauseMenu.Resume();
+        }
 
         if (!isActive)
         {
@@ -167,7 +178,9 @@ public class TextBoxManager : MonoBehaviour
     public void EnableTextBox()
     {
         textBox.SetActive(true);
-		if (NPCNameTag != null) {
+        textBallon = Instantiate(TextBallon, NPCGameObject.transform.position + new Vector3(0,0,1.36f), Quaternion.Euler(90, 0, 0));
+
+		if (NPCNameTag != null) {   
 
             NPCNameTag.text = NPCName;
 
@@ -179,7 +192,7 @@ public class TextBoxManager : MonoBehaviour
 		}
         isActive = true;
 
-        if (stopPlayerMovement)
+        if (stopPlayerMovement) 
         {
             EventManager.TriggerEvent("StopMoving");
         }
@@ -196,6 +209,7 @@ public class TextBoxManager : MonoBehaviour
     {
         textBox.SetActive(false);
         isActive = false;
+        Destroy(textBallon);
         EventManager.TriggerEvent("StartMoving"); //Alex: I added this line here 'cause I don't know what is "movementManager";
 
         if (namePlate != null)
@@ -231,6 +245,11 @@ public class TextBoxManager : MonoBehaviour
 	{
 		NPCName = newName;
 	}
+
+    public void setNPCGameObject(GameObject NPC)
+    {
+        NPCGameObject = NPC;
+    }
 
     public void EnableCue()
     {

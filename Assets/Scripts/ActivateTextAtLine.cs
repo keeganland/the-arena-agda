@@ -11,7 +11,7 @@ public class ActivateTextAtLine : MonoBehaviour
 	 * does it even make sense to have this be ActivateTextAtLine going forward, or should it be simplified into ActivateText or something like that?
 	 * since we're currently evolving the text manager to use more complicated stuff than simply an array of strings
 	 */
-
+    SaveManager saveManager;
 
     public bool useXml;
     public string NPCName;
@@ -19,7 +19,8 @@ public class ActivateTextAtLine : MonoBehaviour
     public TextAsset theXml;
     public bool useSpeechBubble;
 
-    public int startLine;
+    public int startLine; //Alex to Keegan : it actually doesn't work. If your text is 3 lines [0,1,2] but you ask to start line [1] and end line [2], then the textboxManager will real line [0,1] instead of [1,2]
+    public int startLineSecondTime; //If it is solved, I suppose my "Save" text will work fine ! (For Bertrand it will be : read line [0,1,2] the first time then only line [2] the other times !).
     public int endLine;
 
     public TextBoxManager theTextManager;
@@ -41,6 +42,14 @@ public class ActivateTextAtLine : MonoBehaviour
     private bool destroyNextTimeTextboxCloses = false;
     private Player_Movement playerMover;
 
+    public bool OnlyTriggerDialogueOnce; //Alex : To allow the player to trgger the dialogue only once, then has to click on NPC to trigger dialogue manually
+    private bool DialoguehasbeenTriggered; //2nd bool that helps that;
+    public bool HasDifferentDialogue; //Alex : This is... to start the dialogue on another line after talking it to once. If the NPC already introduced itself, we don't want it to introduce itself again.
+
+    private void Awake()
+    {
+        saveManager = FindObjectOfType<SaveManager>(); 
+    }
     // Use this for initialization
     void Start()
     {
@@ -97,9 +106,77 @@ public class ActivateTextAtLine : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("ActivateTextAtLine's OnTriggerEnter triggered by: " + other.name);
-        if (other.name == activatedByName || (tagTriggersText && other.CompareTag(activatedByTag)))
+        if (OnlyTriggerDialogueOnce && DialoguehasbeenTriggered) //Logic that allows : Trigger Dialogue once then manually click on NPC for dialogue, or not. (if, else if)
         {
+            return;
+        }
+
+        else if ((OnlyTriggerDialogueOnce && !DialoguehasbeenTriggered) || !OnlyTriggerDialogueOnce)
+        {
+            //Debug.Log("ActivateTextAtLine's OnTriggerEnter triggered by: " + other.name);
+            if (other.name == activatedByName || (tagTriggersText && other.CompareTag(activatedByTag)))
+            {
+                if (requireButtonPress)
+                {
+                    theTextManager.EnableCue();
+                    waitForPress = true;
+                    return;
+                }
+
+                this.Activate();
+
+                if (destroyWhenFinished)
+                {
+                    destroyNextTimeTextboxCloses = true;
+                }
+
+                if (destroyWhenActivated)
+                {
+                    //Having the stuff that activates the text bubble in the update loop causes problems. uh oh. dunno how to fix yet
+
+                    /**
+                     * The below is a partial fix. The outstanding issue is that once that balloon activates, this script is effectively over.
+                     * Therefore, there's nothing available to make the balloon DISAPPEAR
+                     * 
+                     * What I need is someway to check if the text box is FINISHED.
+                     * 
+                     * I need to brainstorm some fixes: Maybe rather than "destroy when activated" I can do "destroy when finished"?
+                     * 
+
+                    if (talkBubble != null && useSpeechBubble && (gameObject.name == theTextManager.getLastTriggered()))
+                    {
+                        Debug.Log("The text box is active, was last triggered by " + theTextManager.getLastTriggered() + ", so let's turn on the talk bubble");
+                        talkBubble.SetActive(theTextManager.getIsActive());
+                    }
+
+                     */
+                    Destroy(gameObject);
+                }
+
+                if (HasDifferentDialogue == true)
+                {
+                    SaveDialogue();
+                }
+
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        //Debug.Log("ActivateTextAtLine's OnTriggerEnter triggered by: " + other.name);
+        if (activatedByTag != "")
+        {
+            if (other.CompareTag(activatedByTag))
+            {
+                theTextManager.DisableCue();
+                waitForPress = false;
+            }
+        }
+    }
+
+    public void PlayerEnableText() //To allow the player to CLICK on the NPC and start dialogue (or pass near it if not clicked, without trigger)
+    {   
             if (requireButtonPress)
             {
                 theTextManager.EnableCue();
@@ -136,24 +213,20 @@ public class ActivateTextAtLine : MonoBehaviour
                  */
                 Destroy(gameObject);
             }
-        }
-    }
 
-    void OnTriggerExit(Collider other)
-    {
-        //Debug.Log("ActivateTextAtLine's OnTriggerEnter triggered by: " + other.name);
-        if (other.CompareTag(activatedByTag))
-        {
-            theTextManager.DisableCue();
-            waitForPress = false;
-        }
     }
 
     private void Activate()
     {
+        if (HasDifferentDialogue) //Alex : I tried to do it so Every NPC has a different dialogue BUT we can find it with strings easily without mistakes ! It is supposed to work with EVERYONE ?
+        {
+            if (saveManager.dialogueSaver.Contains(name + startLineSecondTime.ToString()))
+                startLine = startLineSecondTime;
+        }
         //Debug.Log("In ActivateTextAtLine.cs's Activate function");
         theTextManager.setLastTriggered(gameObject.name);
         theTextManager.setNPCName(NPCName);
+        theTextManager.setNPCGameObject(this.gameObject);
 
         //Debug.Log("useXml == " + useXml);
         if (useXml)
@@ -166,7 +239,13 @@ public class ActivateTextAtLine : MonoBehaviour
         }
         
         theTextManager.currentLine = startLine;
+        Debug.Log(theTextManager.currentLine);
         theTextManager.endAtLine = endLine;
         theTextManager.EnableTextBox();
+    }
+
+    private void SaveDialogue()
+    {
+        saveManager.dialogueSaver.Add(name + startLineSecondTime.ToString());
     }
 }

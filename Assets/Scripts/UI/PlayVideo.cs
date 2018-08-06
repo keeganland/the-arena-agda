@@ -10,7 +10,7 @@ public class PlayVideo : MonoBehaviour
     private VideoPlayer movie;
     private bool isPlaying;
 
-    void Start()
+    void OnEnable()
     {
         Application.runInBackground = true;
         movie = GetComponent<VideoPlayer>();
@@ -21,7 +21,6 @@ public class PlayVideo : MonoBehaviour
 
     private IEnumerator PrepareVideo()
     {
-        Debug.Log("here");
         movie.Prepare();
         WaitForSeconds wait = new WaitForSeconds(1);
         while(!movie.isPrepared)

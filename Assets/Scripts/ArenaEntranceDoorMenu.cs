@@ -51,6 +51,7 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
     private void Pause()
     {
         fightMenuUI.SetActive(true);
+        FindObjectOfType<EnableFight>().EnableNextFight();
         Time.timeScale = 0f;
         gameIsPaused = true;
     }

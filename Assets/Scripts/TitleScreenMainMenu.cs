@@ -4,16 +4,22 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class TitleScreenMainMenu : MonoBehaviour {
-    
+
+    public GameObject tutorialScreen;
 
     private void Awake()
     {
         EventManager.TriggerEvent("HideUI");
     }
 
+    private void Start()
+    {
+        GameObject.FindWithTag("Fader").GetComponent<ScreenFader>().StartCoroutine("FadeIn");
+    }
     private void OnDisable()
     {
-            EventManager.TriggerEvent("ShowUI");
+        if(tutorialScreen.activeSelf == false)
+        EventManager.TriggerEvent("ShowUI");
     }
 
     public void PlayGame()
@@ -52,8 +58,7 @@ public class TitleScreenMainMenu : MonoBehaviour {
     }
     public void PlayHowToPlay()
     {
-        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("HowToPlay", "TitleScreen");
-        EventManager.TriggerEvent("setup");
+        tutorialScreen.SetActive(true);
     }
 
     public void QuitGame ()

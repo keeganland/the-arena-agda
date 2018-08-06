@@ -2,21 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CancelAnyCollider : MonoBehaviour {
+public class CancelAnyCollider : MonoBehaviour
+{
+    SaveManager saveManager;
 
-    private void OnTriggerEnter(Collider other)
+    public bool SphereActivated;
+    public bool CapsuleActivated;
+
+    private void Awake()
     {
-        if(other.name == "Girl")
+        saveManager = FindObjectOfType<SaveManager>();
+    }
+
+    private void Start()
+    {
+        if (saveManager.cancelColliders.Contains(name))
         {
-            GetComponent<Collider>().enabled = false;
+            ChangeCollider();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.name == "Girl")
         {
-            GetComponent<Collider>().enabled = true;
+            ChangeCollider();
         }
+
+        if (!saveManager.cancelColliders.Contains(name))
+            saveManager.cancelColliders.Add(name);
+    }
+
+    private void ChangeCollider()
+    {
+        if (GetComponent<SphereCollider>() == true)
+            GetComponent<SphereCollider>().enabled = SphereActivated;
+        if (GetComponent<CapsuleCollider>() == true)
+            GetComponent<CapsuleCollider>().enabled = CapsuleActivated;
     }
 }

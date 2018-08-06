@@ -48,6 +48,5 @@ public class LoadingScreen : MonoBehaviour {
             yield return null;
         }
         loadingScreenObj.SetActive(false);
-        fader.StartCoroutine("FadeIn");
     }
 }

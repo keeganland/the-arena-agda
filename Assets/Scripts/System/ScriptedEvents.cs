@@ -7,12 +7,16 @@ using TMPro;
 
 public class ScriptedEvents : MonoBehaviour {
 
+    SaveManager saveManager;
+
     private UnityAction enterArena;
     private UnityAction victoryEvent;
 
     private PublicVariableHolderneverUnload publicVariableHolder;
     public PublicVariableHolderArena _PublicVariableHolderArena;
 
+    public GameObject tutorial1;
+    public GameObject tutorial2;
 
     [SerializeField] private GameObject _InitialPositionBoy;
     [SerializeField] private GameObject _InitialPositionGirl;
@@ -35,6 +39,7 @@ public class ScriptedEvents : MonoBehaviour {
     private GameObject FightText;
     private GameObject YouWonText;
     private GameObject PlayerUI;
+
     // Use this for initialization
     private void Start()
     {
@@ -62,6 +67,7 @@ public class ScriptedEvents : MonoBehaviour {
     {
         enterArena = new UnityAction(EnterArenaFight1);
         victoryEvent = new UnityAction(VictoryEvent);
+        saveManager = FindObjectOfType<SaveManager>();
     }
 
     private void OnEnable()
@@ -93,6 +99,7 @@ public class ScriptedEvents : MonoBehaviour {
         publicVariableHolder.BoyUIGameObject.SetActive(false);
         publicVariableHolder.GirlUIGameObject.SetActive(false);
         PlayerUI.SetActive(false);
+        EventManager.TriggerEvent("setup");
         EventManager.TriggerEvent("InCombat");
         EventManager.TriggerEvent("StopMoving");
         enemy.GetComponentInChildren<FirstEnemyAttack2>().isEnemyMoving = false;
@@ -103,8 +110,6 @@ public class ScriptedEvents : MonoBehaviour {
 
         yield return new WaitForSeconds(.4f);
         m_boy.transform.position =_InitialPositionBoy.transform.position;
-        Debug.Log("_InitialPositionBoy.transform.position " + _InitialPositionBoy.transform.position);
-        Debug.Log("_m_boy " + m_boy.transform.position);
         m_girl.transform.position = _InitialPositionGirl.transform.position;
         enemy.transform.position = _InitialPositionEnemy.transform.position;
 
@@ -132,6 +137,26 @@ public class ScriptedEvents : MonoBehaviour {
         enemyUI.SetActive(true);
 
         yield return new WaitForSeconds(6);
+
+        if (tutorial1)
+        {
+            tutorial1.SetActive(true);
+
+            while (tutorial1 != null)
+            {
+                yield return null;
+            }
+        }
+
+        if (tutorial2)
+        {
+            tutorial2.SetActive(true);
+            while (tutorial2 != null)
+            {
+                yield return null;
+            }
+        }
+
         ReadyText.SetActive(true);
         yield return new WaitForSeconds(2);
         ReadyText.SetActive(false);
@@ -158,5 +183,8 @@ public class ScriptedEvents : MonoBehaviour {
         yield return new WaitForSeconds(3);
         YouWonText.SetActive(false);
         screenFader.StartCoroutine("FadeOut");
+        yield return new WaitForSeconds(1.5f);
+        saveManager.returnFromArena = true;
+        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("ArenaEntrance", "Arena");
     }
 }

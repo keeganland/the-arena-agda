@@ -78,6 +78,7 @@ public class VictoryReferee : MonoBehaviour {
         //EventManager.TriggerEvent("checkVictory");
         if (playerWon)
         {
+            Debug.Log("Here!!@!");
             //Debug.Log("Player has won!");
             EventManager.TriggerEvent("victory");
         }

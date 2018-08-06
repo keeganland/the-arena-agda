@@ -155,7 +155,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                         GameObject move = Instantiate(MoveClick, new Vector3(hit.point.x, transform.position.y, hit.point.z), Quaternion.identity);
                         Destroy(move, 1f);
                     }
-                    if(hit.collider.tag == "Enemy")
+                    else if(hit.collider.tag == "Enemy")
                     {
                         this.GetComponent<PlayerAI>().AIavailable = true;
                         this.GetComponent<PlayerAI>().hasTarget = true;
@@ -178,11 +178,17 @@ public class BetterPlayer_Movement : MonoBehaviour {
                             //OnTriggerEnter should stop character once target is within range
                         }
                     }
-                    if (hit.collider.tag == "Objects")
+                    else if (hit.collider.tag == "Objects")
                     {
                         hit.collider.GetComponent<InteractiveObjects>().DoAction();
                     }  
 
+                    else if(hit.collider.tag == "NPC")
+                    {
+                        ActivateTextAtLine activateText = hit.collider.GetComponent<ActivateTextAtLine>();
+                        if (activateText)
+                            activateText.PlayerEnableText();
+                    }
                 }
                 if (gameObject.GetComponent<HealthController>().m_reviveCoroutine == true)
                 {

@@ -33,6 +33,9 @@ public class PublicVariableHolderArenaEntrance : MonoBehaviour {
     [Header("Walk To Door, Arena Entrance")]
     public GameObject BoyDoorPos;
     public GameObject GirlDoorPos;
+    public GameObject ReturnFromArenaGirlPos;
+    public GameObject ReturnFromArenaBoyPos;
+    public GameObject ReturnFromArena;
 
     private void Awake()
     {

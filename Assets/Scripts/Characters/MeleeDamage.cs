@@ -34,16 +34,28 @@ public class MeleeDamage : MonoBehaviour {
             {
                 return;
             }
+
             DamageData dmgData = new DamageData();
             dmgData.damage = Damage;
 
             CastSpell();
 
-            if (_Color != new Color(0, 0, 0, 0) && m_target.GetComponent<Canvas>() == true)
+            if (_Color != new Color(0, 0, 0, 0))
             {
-                GameObject sprite = m_target.GetComponent<HealthController>().Sprite;
-                Canvas canvas = sprite.GetComponentInChildren<Canvas>();
-                canvas.GetComponentInChildren<DamageDisplayScript>().GetDamageText(_Color, Damage);
+                if (gameObject.name == "Boy")
+                {
+                    GameObject sprite = m_target.GetComponent<HealthController>().Sprite;
+                    Canvas[] canvas = sprite.GetComponentsInChildren<Canvas>();
+                    if (canvas.Length != 0)
+                    {
+                        for (int i = 0; i < canvas.Length; i++)
+                        {
+                            if (canvas[i].GetComponentInChildren<DamageDisplayScript>())
+                                Debug.Log("here");
+                                canvas[i].GetComponentInChildren<DamageDisplayScript>().GetDamageText(_Color, Damage);
+                        }
+                    }
+                }
             }
             //Debug.Log("MeleeDamage: deal damage to " + m_target.name);
 

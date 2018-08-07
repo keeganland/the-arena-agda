@@ -46,6 +46,8 @@ public class ActivateTextAtLine : MonoBehaviour
     private bool DialoguehasbeenTriggered; //2nd bool that helps that;
     public bool HasDifferentDialogue; //Alex : This is... to start the dialogue on another line after talking it to once. If the NPC already introduced itself, we don't want it to introduce itself again.
 
+    public GameObject InteractivityCue;
+
     private void Awake()
     {
         saveManager = FindObjectOfType<SaveManager>(); 
@@ -116,48 +118,12 @@ public class ActivateTextAtLine : MonoBehaviour
             //Debug.Log("ActivateTextAtLine's OnTriggerEnter triggered by: " + other.name);
             if (other.name == activatedByName || (tagTriggersText && other.CompareTag(activatedByTag)))
             {
-                if (requireButtonPress)
-                {
-                    theTextManager.EnableCue();
-                    waitForPress = true;
-                    return;
-                }
-
-                this.Activate();
-
-                if (destroyWhenFinished)
-                {
-                    destroyNextTimeTextboxCloses = true;
-                }
-
-                if (destroyWhenActivated)
-                {
-                    //Having the stuff that activates the text bubble in the update loop causes problems. uh oh. dunno how to fix yet
-
-                    /**
-                     * The below is a partial fix. The outstanding issue is that once that balloon activates, this script is effectively over.
-                     * Therefore, there's nothing available to make the balloon DISAPPEAR
-                     * 
-                     * What I need is someway to check if the text box is FINISHED.
-                     * 
-                     * I need to brainstorm some fixes: Maybe rather than "destroy when activated" I can do "destroy when finished"?
-                     * 
-
-                    if (talkBubble != null && useSpeechBubble && (gameObject.name == theTextManager.getLastTriggered()))
-                    {
-                        Debug.Log("The text box is active, was last triggered by " + theTextManager.getLastTriggered() + ", so let's turn on the talk bubble");
-                        talkBubble.SetActive(theTextManager.getIsActive());
-                    }
-
-                     */
-                    Destroy(gameObject);
-                }
+                PlayerEnableText();
 
                 if (HasDifferentDialogue == true)
                 {
                     SaveDialogue();
                 }
-
             }
         }
     }
@@ -177,6 +143,11 @@ public class ActivateTextAtLine : MonoBehaviour
 
     public void PlayerEnableText() //To allow the player to CLICK on the NPC and start dialogue (or pass near it if not clicked, without trigger)
     {   
+        if(InteractivityCue)
+        {
+            theTextManager.SetinteractivityCue(InteractivityCue);   
+        }
+
             if (requireButtonPress)
             {
                 theTextManager.EnableCue();

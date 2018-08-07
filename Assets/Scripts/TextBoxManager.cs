@@ -260,6 +260,10 @@ public class TextBoxManager : MonoBehaviour
         }
     }
 
+    public void SetinteractivityCue(GameObject cue)
+    {
+        interactivityCue = cue;
+    }
     //Alex : I'll just put the exit of the Text (if eventAtEndOfText) here and I'll disable it with the "button"
 
     public void DisableCue()

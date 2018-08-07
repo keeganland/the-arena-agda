@@ -62,13 +62,7 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
     }
     public void ArenaEntranceFight2()
     {
-        SetUp.Instance.SetFightToLoad(1);
-        Resume();
-        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("Arena", "ArenaEntrance");
-        //SceneManager.UnloadSceneAsync("ArenaEntrance");
-        //SceneManager.LoadSceneAsync("Arena", LoadSceneMode.Additive);
-
-        //GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("Arena", "TitleScreen");
+        StartCoroutine(Fight2());
     }
     public void ArenaEntranceFight3()
     {
@@ -108,5 +102,28 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
         GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("Arena", "ArenaEntrance");
 
         yield return new WaitForSeconds(1f);
+    }
+
+    private IEnumerator Fight2()
+    {
+        SetUp.Instance.SetFightToLoad(1);
+        Resume(); //oh boy can't wait for this to cause a race condition somehow
+
+        EventManager.TriggerEvent("GirlInCombat");
+        EventManager.TriggerEvent("StopMoving");
+
+        Vector3 DoorGirlPos = new Vector3(GirlDoorPos.transform.position.x, Girl.transform.position.y, GirlDoorPos.transform.position.z);
+        Girl.GetComponent<NavMeshAgent>().SetDestination(DoorGirlPos);
+
+        yield return new WaitForSeconds(2f);
+
+        GameObject.FindWithTag("Fader").GetComponent<ScreenFader>().StartCoroutine("FadeOut");
+
+        yield return new WaitForSeconds(2f);
+
+        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("Arena", "ArenaEntrance");
+
+        yield return new WaitForSeconds(1f);
+
     }
 }

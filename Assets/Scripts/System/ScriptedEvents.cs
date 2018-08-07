@@ -73,12 +73,14 @@ public class ScriptedEvents : MonoBehaviour {
     private void OnEnable()
     {
         EventManager.StartListening("enterArenaFight1", EnterArenaFight1);
+        EventManager.StartListening("enterArenaFight2", EnterArenaFight2);
         EventManager.StartListening("victoryEvent", VictoryEvent);
     }
 
     private void OnDisable()
     {
         EventManager.StopListening("enterArenaFight1", EnterArenaFight1);
+        EventManager.StopListening("enterArenaFight2", EnterArenaFight2);
         EventManager.StopListening("victoryEvent", VictoryEvent);
     }
 
@@ -92,6 +94,12 @@ public class ScriptedEvents : MonoBehaviour {
     {
         EventManager.StopListening("enterArenaFight1", EnterArenaFight1);
         StartCoroutine("EnterArenaFight1Coroutine");
+    }
+
+    void EnterArenaFight2()
+    {
+        EventManager.StopListening("enterArenaFight2", EnterArenaFight2);
+        StartCoroutine("EnterArenaFight2Coroutine");
     }
 
     IEnumerator EnterArenaFight1Coroutine () {
@@ -165,10 +173,47 @@ public class ScriptedEvents : MonoBehaviour {
         FightText.SetActive(false);
 
         PlayerUI.SetActive(true);
-
+        PlayerUI.GetComponent<UISpellSwap>().HiddeSpells();
+                
         EventManager.TriggerEvent("StartMoving");
         enemy.GetComponentInChildren<FirstEnemyAttack2>().isEnemyMoving = true;
         enemy.GetComponentInChildren<FirstEnemyAttack2>().StopAttacking = false;
+    }
+
+    IEnumerator EnterArenaFight2Coroutine()
+    {
+        Debug.Log("here");
+        publicVariableHolder.BoyUIGameObject.SetActive(false);
+        publicVariableHolder.GirlUIGameObject.SetActive(false);
+        PlayerUI.SetActive(false);
+        EventManager.TriggerEvent("setup");
+        EventManager.TriggerEvent("InCombat");
+        EventManager.TriggerEvent("StopMoving");
+        enemy.GetComponentInChildren<FirstEnemyAttack2>().isEnemyMoving = false;
+        enemy.GetComponentInChildren<FirstEnemyAttack2>().StopAttacking = true;
+
+        enemyUI.SetActive(false);
+        Camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, Camera.transform.position.y, _InitialPositionBoy.transform.position.z);
+
+        yield return new WaitForSeconds(.4f);
+        m_boy.transform.position = _InitialPositionBoy.transform.position;
+        m_girl.transform.position = _InitialPositionGirl.transform.position;
+        enemy.transform.position = _InitialPositionEnemy.transform.position;
+
+        publicVariableHolder.BoyUIGameObject.SetActive(true);
+        publicVariableHolder.GirlUIGameObject.SetActive(true);
+
+        boyNavMeshAgent.SetDestination(_PublicVariableHolderArena._EnterArenaWaypointsBoy[0].transform.position);
+        girlNavMeshAgent.SetDestination(_PublicVariableHolderArena._EnterArenaWaypointsGirl[0].transform.position);
+
+        yield return new WaitForSeconds(.4f);
+
+        screenFader.StartCoroutine("FadeIn");
+
+        yield return new WaitForSeconds(4.5f);
+
+
+        yield return new WaitForSeconds(2.5f);
     }
 
     IEnumerator victoryEventCoroutine()

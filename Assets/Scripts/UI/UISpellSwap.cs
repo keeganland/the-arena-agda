@@ -60,6 +60,11 @@ public class UISpellSwap : MonoBehaviour {
     private int m_smallQcooldowntext;
     private int m_smallWcooldowntext;
 
+    private GameObject BigSpellW;
+    private GameObject BigSpellQ;
+    private GameObject SmallSpellQ;
+    private GameObject SmallSpellW;
+
     private bool m_isBoy;
 
     private void Start()
@@ -109,6 +114,12 @@ public class UISpellSwap : MonoBehaviour {
         EnemyNameUI = _PublicVariableHolder.EnemyNameUI;
         CurrentEnemyHPUI = _PublicVariableHolder.CurrentEnemyHPUI;
         SliderEnemyHPUI = _PublicVariableHolder.SliderEnemyHPUI;
+
+        BigSpellQ = _PublicVariableHolder.BigSpellQ;
+        BigSpellW = _PublicVariableHolder.BigSpellW;
+        SmallSpellQ = _PublicVariableHolder.SmallSpellQ;
+        SmallSpellW = _PublicVariableHolder.SmallSpellW;
+
 }
     private void Update()
     {
@@ -367,5 +378,21 @@ public class UISpellSwap : MonoBehaviour {
                 _GirlMovementScript.SwapBoy();
             }
         }
+    }
+
+    public void HiddeSpells()
+    {
+        BigSpellW.SetActive(false);
+        BigSpellQ.SetActive(false);
+        SmallSpellQ.SetActive(false);
+        SmallSpellW.SetActive(false);
+    }
+
+    public void ShowSpells()
+    {
+        BigSpellW.SetActive(true);
+        BigSpellQ.SetActive(true);
+        SmallSpellQ.SetActive(true);
+        SmallSpellW.SetActive(true);
     }
 }

@@ -24,7 +24,7 @@ public class DestroyTutorials : MonoBehaviour {
 	
 	void Update () 
     {
-        if(Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+        if(Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
         {
             Destroy(gameObject);
         }

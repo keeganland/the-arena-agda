@@ -82,6 +82,12 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     public Text CurrentEnemyHPUI; //Goes with "CurrentEnemyHPUI" (neverUnload)
     public Slider SliderEnemyHPUI;  //Goes with "SliderEnemyHPUI" (neverUnload)
 
+    public GameObject BigSpellW;
+    public GameObject BigSpellQ;
+    public GameObject SmallSpellQ;
+    public GameObject SmallSpellW;
+
+
     [Header("NeverUnload/VictoryReferee")]
     public GameObject DeathCanvas;
 

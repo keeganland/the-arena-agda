@@ -37,6 +37,11 @@ public class SaveManager : MonoBehaviour
     public int fightNumber;
     public bool returnFromArena;
 
+    [Header("Inventory")]
+    public List<WeaponObject> AvailableItems;
+    public List<WeaponObject> StoredItems;
+    public List<WeaponObject> EquipedItems;
+
     private void Start()
     {
         

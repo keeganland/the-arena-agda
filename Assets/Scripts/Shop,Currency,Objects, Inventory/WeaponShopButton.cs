@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class WeaponShopButton : MonoBehaviour {
 
-    public WeaponObject weapon;
+    public WeaponObject[] weapon;
 
     public Text weaponName;
     public Text weaponDescription;
@@ -16,6 +16,8 @@ public class WeaponShopButton : MonoBehaviour {
 
     public Text currentMoney;
 
+    private int weaponNumber = 0;
+
     public void OnEnable()
     {
         currentMoney.text = "$" + FindObjectOfType<SaveManager>().CurrentMoney.ToString();
@@ -23,13 +25,17 @@ public class WeaponShopButton : MonoBehaviour {
 
     public void AquireWeapon()
     {
-        InventoryManager.AquireItem(weapon.weaponName);
+        if(FindObjectOfType<SaveManager>().currentFight == 1)
+        {
+            weaponNumber = 1;
+        }
 
-        Debug.Log("here");
-        weaponName.text = weapon.weaponName;
-        weaponImage.texture = weapon.Icon.texture;
-        weaponDescription.text = weapon.description;
-        weaponDescription2.text = weapon.description2;
+        InventoryManager.AquireItem(weapon[weaponNumber].weaponName);
+
+        weaponName.text = weapon[weaponNumber].weaponName;
+        weaponImage.texture = weapon[weaponNumber].Icon.texture;
+        weaponDescription.text = weapon[weaponNumber].description;
+        weaponDescription2.text = weapon[weaponNumber].description2;
         aquiredWeapon.SetActive(true);
     }
 }

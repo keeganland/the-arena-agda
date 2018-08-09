@@ -5,12 +5,25 @@ using UnityEngine;
 public abstract class ActivateTextAtLine : MonoBehaviour
 {
 
-    /**
+    /*
 	 * Oh boy this one is getting messy.  
 	 * TODO:
 	 * does it even make sense to have this be ActivateTextAtLine going forward, or should it be simplified into ActivateText or something like that?
 	 * since we're currently evolving the text manager to use more complicated stuff than simply an array of strings
 	 */
+
+    /* Alex : The changes I made are to create more flexibility with PNGs. 
+     * 
+     * ABSTRACT CLASS : it allows us to have different reaction of NPC's with different "Cues", but also different "Starts, End Dialogues, etc...".
+     * 
+     * So far we can :  - Have 2 different Text that can be used as Openings, 
+     *                  - Have 2 different (or more) Texts after a simple "Yes/No" answer.
+     *                  - Reset the text to start from the beginning (Before "Yes/No")
+     *                  - Have two different cue (Initial text -> "Yes/No" (or event) -> YesText/NoText -> "Yes/No" -> Any Event)
+     *                  - Choose if there will be an event after the text (SetEventAfterText). 
+     *                  - Save if we want a different dialogue after the First Introduction (Skip the greetings and go straight to the point)
+     */
+
     SaveManager saveManager;
 
     public bool useXml;

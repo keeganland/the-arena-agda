@@ -5216,7 +5216,7 @@ Transform:
   m_Children:
   - {fileID: 1643416542}
   m_Father: {fileID: 2040197673}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!95 &110577859
 Animator:
@@ -5557,6 +5557,11 @@ MonoBehaviour:
   smallEnemies: {fileID: 1886467794102414, guid: 7fe2061e66b865d40addbc9d0f2f875e,
     type: 2}
   boss: {fileID: 1973562701685340, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}
+  BoyDoorPos: {fileID: 0}
+  GirlDoorPos: {fileID: 0}
+  ReturnFromArenaGirlPos: {fileID: 0}
+  ReturnFromArenaBoyPos: {fileID: 0}
+  ReturnFromArena: {fileID: 0}
 --- !u!4 &206583903
 Transform:
   m_ObjectHideFlags: 0
@@ -19794,7 +19799,7 @@ Transform:
   m_Children:
   - {fileID: 1911430717}
   m_Father: {fileID: 2040197673}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!95 &330317535
 Animator:
@@ -20517,7 +20522,7 @@ Transform:
   m_LocalScale: {x: 1.2500001, y: 1.2499988, z: 1.2499988}
   m_Children: []
   m_Father: {fileID: 2040197673}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
 --- !u!95 &473643899
 Animator:
@@ -25644,7 +25649,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4162770721006500, guid: 8c3ae33ef411148b5bb157706af9cb1e, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114301619356760074, guid: 8c3ae33ef411148b5bb157706af9cb1e,
         type: 2}
@@ -25885,6 +25890,7 @@ MonoBehaviour:
   interactivityCue: {fileID: 2007499883}
   boxContent: {fileID: 1107638620}
   NPCNameTag: {fileID: 0}
+  TextBallon: {fileID: 0}
   textFile: {fileID: 4900000, guid: 4b254365abf4b1e4ebd01c770c027b91, type: 3}
   xmlDialogFile: {fileID: 0}
   NPCName: 
@@ -25897,6 +25903,7 @@ MonoBehaviour:
   cueActive: 0
   stopPlayerMovement: 1
   stopNPCMovement: 0
+  eventAtEndofText: 0
   typeSpeed: 0
 --- !u!4 &657219891
 Transform:
@@ -42136,12 +42143,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1311807281}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c430bfded07ee45579878188defe4e38, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b3a3b603498748939a3a6befc75f0f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 0}
   publicArenaEntrance: {fileID: 206583902}
-  MainCameraFieldOfViewMin: 11
-  MainCameraFieldOfViewMax: 13
+  MainCameraFieldOfViewMin: 9
+  MainCameraFieldOfViewMax: 12
+  BoyNav: {fileID: 0}
+  GirlNav: {fileID: 0}
+  Boy: {fileID: 0}
+  Girl: {fileID: 0}
+  MainCamera: {fileID: 0}
 --- !u!1001 &1316784130
 Prefab:
   m_ObjectHideFlags: 0
@@ -47406,6 +47419,91 @@ Transform:
   m_Father: {fileID: 1311807282}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1519175934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1519175935}
+  - component: {fileID: 1519175937}
+  - component: {fileID: 1519175936}
+  m_Layer: 0
+  m_Name: Spotlight (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1519175935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1519175934}
+  m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 35.42, y: -4.65, z: -5}
+  m_LocalScale: {x: 1.2500001, y: 1.2499981, z: 1.2499981}
+  m_Children: []
+  m_Father: {fileID: 2040197673}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
+--- !u!95 &1519175936
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1519175934}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 04cdd2f14fe87b449a5e0d1b35ab07c1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!108 &1519175937
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1519175934}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 15
+  m_Range: 10
+  m_SpotAngle: 60
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &1542944846
 GameObject:
   m_ObjectHideFlags: 0
@@ -47559,7 +47657,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2040197673}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &1557040124
 SpriteRenderer:
@@ -57970,7 +58068,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4988829358006578, guid: c50f48ea44e3b47d6b3217f58bf20af4, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 199022847606647522, guid: c50f48ea44e3b47d6b3217f58bf20af4,
         type: 2}
@@ -68067,6 +68165,7 @@ Transform:
   m_LocalPosition: {x: -16, y: 5.7, z: -4.2}
   m_LocalScale: {x: 0.79999995, y: 0.8000014, z: 0.8000014}
   m_Children:
+  - {fileID: 1519175935}
   - {fileID: 585183144}
   - {fileID: 110577858}
   - {fileID: 330317534}
@@ -68611,7 +68710,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.99999875, z: 0.99999875}
   m_Children: []
   m_Father: {fileID: 2040197673}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!95 &2111066242
 Animator:

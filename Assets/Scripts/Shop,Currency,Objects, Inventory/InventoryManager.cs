@@ -41,6 +41,8 @@ public class InventoryManager : MonoBehaviour
     public static GameObject Boy;
     public static GameObject Girl;
 
+    public static int CurrentMoney = 0;
+
     /*Alex : What CURRENTLY DOESN'T WORK : 
      * 
      *  we only have an "EquipedItems" array for the girl AND the boy, which means that only one HELMET, CHEST, PASSIVE, etc... WeaponObject can be equiped for both. 
@@ -97,10 +99,12 @@ public class InventoryManager : MonoBehaviour
     {
         foreach(WeaponObject item in AvailableItems)
         {
-            if (item.weaponName == itemName && !StoredItems.Contains(item))
+            if (item.weaponName == itemName && !StoredItems.Contains(item) && item.cost <= CurrentMoney)
             {
                 StoredItems.Add(item);
+                SubstractMoney(item.cost);
             }
+
             else if (item.name == itemName)
             {
                 return; //Do Item +1, for exemple : Flower in current inventory = 1, then we'll have 2 flowers.
@@ -207,5 +211,18 @@ public class InventoryManager : MonoBehaviour
         AvailableItems = FindObjectOfType<SaveManager>().AvailableItems;
         StoredItems = FindObjectOfType<SaveManager>().StoredItems;
         EquipedItems = FindObjectOfType<SaveManager>().EquipedItems;
+        CurrentMoney = FindObjectOfType<SaveManager>().CurrentMoney;
+    }
+
+    public static void AddMoney(int addmoney)
+    {
+        CurrentMoney += addmoney;
+        FindObjectOfType<SaveManager>().CurrentMoney = CurrentMoney;
+    }
+
+    public static void SubstractMoney(int substractmoney)
+    {
+        CurrentMoney -= substractmoney;
+        FindObjectOfType<SaveManager>().CurrentMoney = CurrentMoney;
     }
 }

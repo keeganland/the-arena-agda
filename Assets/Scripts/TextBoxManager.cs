@@ -135,6 +135,7 @@ public class TextBoxManager : MonoBehaviour
                 currentLine += 1; //the way things work at the moment is just increment through the array. should sooner or later be replaced with a queue
                 if(((textQueue.Count == 0 && !eventAtEndofText) || (currentLine > endAtLine && !eventAtEndofText)))
                 {
+                    Debug.Log("here");
                     DisableTextBox();
                 }
                 else if (((textQueue.Count == 0 && eventAtEndofText) || (currentLine > endAtLine && eventAtEndofText)))
@@ -178,7 +179,8 @@ public class TextBoxManager : MonoBehaviour
     public void EnableTextBox()
     {
         textBox.SetActive(true);
-        textBallon = Instantiate(TextBallon, NPCGameObject.transform.position + new Vector3(0,0,1.36f), Quaternion.Euler(90, 0, 0));
+        if(!textBallon)
+            textBallon = Instantiate(TextBallon, NPCGameObject.transform.position + new Vector3(0,0,1.36f), Quaternion.Euler(90, 0, 0));
 
 		if (NPCNameTag != null) {   
 
@@ -210,6 +212,8 @@ public class TextBoxManager : MonoBehaviour
         textBox.SetActive(false);
         isActive = false;
         Destroy(textBallon);
+        if(NPCGameObject)
+            NPCGameObject.GetComponent<ActivateTextAtLine>().ResetText(); //Alex : Not sure it's the best way to reset the text. 
         EventManager.TriggerEvent("StartMoving"); //Alex: I added this line here 'cause I don't know what is "movementManager";
 
         if (namePlate != null)
@@ -224,6 +228,8 @@ public class TextBoxManager : MonoBehaviour
         {
             theNPCMovementManager.StartNPCMovement();
         }
+
+
     }
 
     public void ReloadScript(TextAsset theText)

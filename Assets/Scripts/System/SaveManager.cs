@@ -41,6 +41,7 @@ public class SaveManager : MonoBehaviour
     public List<WeaponObject> AvailableItems;
     public List<WeaponObject> StoredItems;
     public List<WeaponObject> EquipedItems;
+    public int CurrentMoney;
 
     private void Start()
     {

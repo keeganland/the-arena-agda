@@ -7,8 +7,8 @@ public class HealthUI : MonoBehaviour
 {
     public Slider slider;
 
-    public int m_curHealth;
-    public int m_maxHealth;
+    private int m_curHealth;
+    private int m_maxHealth;
 
     void Start()
     {

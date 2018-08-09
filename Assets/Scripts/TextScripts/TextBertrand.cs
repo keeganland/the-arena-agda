@@ -8,4 +8,31 @@ public class TextBertrand: ActivateTextAtLine {
     {
         throw new System.NotImplementedException();
     }
+
+    public override void ChangeCue()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void ResetCue()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void ResetText()
+    {
+        theTextManager = FindObjectOfType<TextBoxManager>();
+
+        theTextManager.eventAtEndofText = eventAtEndofText;
+
+        textWasManuallyActivated = false;
+
+        if (talkBubble != null)
+        {
+            talkBubble.SetActive(false);
+        }
+
+        TextBeginning = theText;
+
+    }
 }

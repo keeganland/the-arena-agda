@@ -28,11 +28,6 @@ public class FightTracker : MonoBehaviour {
             enemies.Add(child.gameObject);
         }
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void activateFight(int n)
     {

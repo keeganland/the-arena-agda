@@ -13,7 +13,7 @@ public class EnableFight : MonoBehaviour {
     private void Awake()
     {
         saveManager = FindObjectOfType<SaveManager>();
-        fightNumber = saveManager.fightNumber;
+        fightNumber = saveManager.fightNumberAvailable;
     }
 
     private void Start()
@@ -32,8 +32,11 @@ public class EnableFight : MonoBehaviour {
             if(!saveManager.fights.Contains(Fights[fightNumber].name))
             {
                 saveManager.fights.Add(Fights[fightNumber].name);
-                fightNumber += 1;
-                saveManager.fightNumber = fightNumber; 
+                if (fightNumber == FindObjectOfType<SaveManager>().currentFight)
+                {
+                    fightNumber += 1;
+                    saveManager.fightNumberAvailable = fightNumber;
+                }
             }
         }
     }

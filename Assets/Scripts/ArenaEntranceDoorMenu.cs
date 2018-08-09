@@ -62,17 +62,12 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
     }
     public void ArenaEntranceFight2()
     {
+        Debug.Log("here");
         StartCoroutine(Fight2());
     }
     public void ArenaEntranceFight3()
     {
-        SetUp.Instance.SetFightToLoad(2);
-        Resume();
-        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("Arena", "ArenaEntrance");
-        //SceneManager.UnloadSceneAsync("ArenaEntrance");
-        //SceneManager.LoadSceneAsync("Arena", LoadSceneMode.Additive);
-
-        //GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("Arena", "TitleScreen");
+        StartCoroutine(Fight3());     
     }
 
     public void DoorClicked()
@@ -86,6 +81,8 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
     {
         SetUp.Instance.SetFightToLoad(0);
         Resume(); //oh boy can't wait for this to cause a race condition somehow
+
+        FindObjectOfType<SaveManager>().currentFight = 0;
 
         EventManager.TriggerEvent("GirlInCombat");
         EventManager.TriggerEvent("StopMoving");
@@ -108,6 +105,33 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
     {
         SetUp.Instance.SetFightToLoad(1);
         Resume(); //oh boy can't wait for this to cause a race condition somehow
+
+        FindObjectOfType<SaveManager>().currentFight = 1;
+
+        EventManager.TriggerEvent("GirlInCombat");
+        EventManager.TriggerEvent("StopMoving");
+
+        Vector3 DoorGirlPos = new Vector3(GirlDoorPos.transform.position.x, Girl.transform.position.y, GirlDoorPos.transform.position.z);
+        Girl.GetComponent<NavMeshAgent>().SetDestination(DoorGirlPos);
+
+        yield return new WaitForSeconds(2f);
+
+        GameObject.FindWithTag("Fader").GetComponent<ScreenFader>().StartCoroutine("FadeOut");
+
+        yield return new WaitForSeconds(2f);
+
+        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("Arena", "ArenaEntrance");
+
+        yield return new WaitForSeconds(1f);
+
+    }
+
+    private IEnumerator Fight3()
+    {
+        SetUp.Instance.SetFightToLoad(2);
+        Resume(); //oh boy can't wait for this to cause a race condition somehow
+
+        FindObjectOfType<SaveManager>().currentFight = 2;
 
         EventManager.TriggerEvent("GirlInCombat");
         EventManager.TriggerEvent("StopMoving");

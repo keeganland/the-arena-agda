@@ -37,7 +37,7 @@ public abstract class ActivateTextAtLine : MonoBehaviour
     public bool eventAtEndofText;
 
     private bool waitForPress = false;
-    private bool textWasManuallyActivated; // If the text box has been activated, player should scroll through it before they get to end.
+    public bool textWasManuallyActivated; // If the text box has been activated, player should scroll through it before they get to end.
                                            //man did i manage to confuse myself with the above variable's name!
     private bool destroyNextTimeTextboxCloses = false;
     private Player_Movement playerMover;
@@ -53,14 +53,14 @@ public abstract class ActivateTextAtLine : MonoBehaviour
     public TextAsset YesText;
     public TextAsset NoText;
 
-    private TextAsset TextBeginning;
+    public TextAsset TextBeginning;
 
     private void Awake()
     {
         saveManager = FindObjectOfType<SaveManager>(); 
     }
     // Use this for initialization
-    void Start()
+    protected void Start()
     {
         theTextManager = FindObjectOfType<TextBoxManager>();
 
@@ -73,7 +73,7 @@ public abstract class ActivateTextAtLine : MonoBehaviour
             talkBubble.SetActive(false);
         }
 
-        TextBeginning = GetComponent<ActivateTextAtLine>().theText;
+        TextBeginning = theText;
     }
 
     // Update is called once per frame
@@ -127,7 +127,7 @@ public abstract class ActivateTextAtLine : MonoBehaviour
             //Debug.Log("ActivateTextAtLine's OnTriggerEnter triggered by: " + other.name);
             if (other.name == activatedByName || (tagTriggersText && other.CompareTag(activatedByTag)))
             {
-                PlayerEnableText();
+                PlayerEnableText(true);
 
                 if (HasDifferentDialogue == true)
                 {
@@ -150,8 +150,12 @@ public abstract class ActivateTextAtLine : MonoBehaviour
         }
     }
 
-    public void PlayerEnableText() //To allow the player to CLICK on the NPC and start dialogue (or pass near it if not clicked, without trigger)
-    {   
+    public void PlayerEnableText(bool start) //To allow the player to CLICK on the NPC and start dialogue (or pass near it if not clicked, without trigger). The first dialogue, start will be true, if it's an answer to "Yes/No", start will be false.
+    {
+        if(start)
+        {
+            ResetText();
+        }
         if(InteractivityCue)
         {
             theTextManager.SetinteractivityCue(InteractivityCue);   
@@ -237,23 +241,25 @@ public abstract class ActivateTextAtLine : MonoBehaviour
     public void LoadOnYes()
     {
         theText = YesText;
-        PlayerEnableText();
+        PlayerEnableText(false);
         theTextManager.DisableCue();
+        ChangeCue();
     }
 
     public void LoadOnNo()
     {
         theText = NoText;
-        PlayerEnableText();
+        PlayerEnableText(false);
         SetEventAtEndofText(false);
         theTextManager.DisableCue();
+        ResetCue();
     }
 
-    public void ResetText()
-    {
-        theText = TextBeginning;
-        SetEventAtEndofText(eventAtEndofText);
-    }
+    abstract public void ResetText(); 
 
-    abstract public void ChangeText(TextAsset TextYes, TextAsset TextNo);
+    abstract public void ChangeText(TextAsset NewTextYes, TextAsset NewTextNo);
+
+    abstract public void ChangeCue();
+
+    abstract public void ResetCue();
 }

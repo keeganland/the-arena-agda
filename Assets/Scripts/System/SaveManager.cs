@@ -34,7 +34,8 @@ public class SaveManager : MonoBehaviour
      *  "EnableFights.cs"
      */
     public List<string> fights;
-    public int fightNumber;
+    public int fightNumberAvailable; //The fight we're currently on. 
+    public int currentFight;
     public bool returnFromArena;
 
     [Header("Inventory")]

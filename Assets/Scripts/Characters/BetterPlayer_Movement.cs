@@ -187,7 +187,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                     {
                         ActivateTextAtLine activateText = hit.collider.GetComponent<ActivateTextAtLine>();
                         if (activateText)
-                            activateText.PlayerEnableText();
+                            activateText.PlayerEnableText(true);
                     }
                 }
                 if (gameObject.GetComponent<HealthController>().m_reviveCoroutine == true)
@@ -227,6 +227,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 m_agent.SetDestination(curTarget.transform.position);
             }
         }
+
         NonCombat();
 
         if (curTarget)
@@ -385,7 +386,8 @@ public class BetterPlayer_Movement : MonoBehaviour {
     public void SetCurTarget(GameObject target)
     {
         curTarget = target;
-        this.GetComponent<PlayerAI>().hasTarget = true;
+        if (GetComponent<PlayerAI>() != null)
+            this.GetComponent<PlayerAI>().hasTarget = true;
         curTarget.GetComponent<HealthController>().SetEnemy(this.gameObject);
         this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
     }

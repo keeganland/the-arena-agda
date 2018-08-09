@@ -62,6 +62,7 @@ public class SetUp : MonoBehaviour {
         }
 
         FindObjectOfType<VictoryReferee>().SetPlayerWon(false);
+        EventManager.TriggerEvent("refreshUI");
     }
 
     public int GetFightToLoad()

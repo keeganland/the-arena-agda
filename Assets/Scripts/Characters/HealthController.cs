@@ -47,7 +47,7 @@ public class HealthController : MonoBehaviour
     {
         EventManager.TriggerEvent("camTargetRefresh");
         EventManager.StopListening("resetPlayer", resetPlayers);
-
+        EventManager.StopListening("refreshUI", refreshUI);
         for (int i = 0; i < enemy.Count; i ++)
         {
             if (enemy[i])
@@ -62,6 +62,7 @@ public class HealthController : MonoBehaviour
     private void OnEnable()
     {
         EventManager.StartListening("resetPlayer", resetPlayers);
+        EventManager.StartListening("refreshUI", refreshUI);
     }
 
     private void resetPlayers()
@@ -434,5 +435,10 @@ public class HealthController : MonoBehaviour
         {
             enemy.Remove(Attackeur);
         }
+    }
+
+    private void refreshUI()
+    {
+        GetComponent<HealthUI>().UpdateUi(totalHealth, currentHealth);
     }
 }

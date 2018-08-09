@@ -101,15 +101,20 @@ public class InventoryManager : MonoBehaviour
         {
             if (item.weaponName == itemName && !StoredItems.Contains(item) && item.cost <= CurrentMoney)
             {
+                Debug.Log("You Bought The Item");
                 StoredItems.Add(item);
                 SubstractMoney(item.cost);
+                EquipItem(item.weaponName);
             }
-
-            else if (item.name == itemName)
+            else if (item.weaponName == itemName && item.cost <= CurrentMoney)
             {
                 return; //Do Item +1, for exemple : Flower in current inventory = 1, then we'll have 2 flowers.
             }
-            else return;
+            else if (item.weaponName == itemName && item.cost > CurrentMoney)
+            {
+                Debug.Log("You do not have enough money");
+            }
+            else return;                
         }
 
         FindObjectOfType<SaveManager>().StoredItems = StoredItems;
@@ -131,6 +136,7 @@ public class InventoryManager : MonoBehaviour
 
     public static void EquipItem(string itemName) 
     {
+        Debug.Log(itemName);
         foreach(WeaponObject weapon in StoredItems)
         {
             if(weapon.weaponName == itemName)
@@ -143,7 +149,9 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        foreach(WeaponObject item in EquipedItems)
+        Debug.Log(weaponToEquip);
+
+        foreach(WeaponObject item in StoredItems)
         {
             if(item.Object == weaponToEquip.Object)
             {
@@ -153,6 +161,7 @@ public class InventoryManager : MonoBehaviour
             else 
             {
                 EquipedItems.Add(weaponToEquip);
+                Debug.Log("You Equiped The Item");
             }
         }
 
@@ -173,37 +182,50 @@ public class InventoryManager : MonoBehaviour
 
     private static void CalculateBonuses()
     {
-        foreach(WeaponObject equipedWeapon in EquipedItems)
+        int BoyBonusHealth = 0;
+        int GirlBonusHealth = 0;
+
+        if (EquipedItems.Count != 0)
         {
-            if(equipedWeapon.forBoy)
+            foreach (WeaponObject equipedWeapon in EquipedItems)
             {
-                if (equipedWeapon.Object == WeaponObject.ObjectType.WEAPON)
+                if (equipedWeapon)
                 {
-                    BoyFireRate = equipedWeapon.fireRate;
-                    Boy.GetComponent<MeleeDamage>().AttackSpeed = BoyFireRate;
-                }
+                    if (equipedWeapon.forBoy)
+                    {
+                        if (equipedWeapon.Object == WeaponObject.ObjectType.WEAPON)
+                        {
+                            BoyFireRate = equipedWeapon.fireRate;
+                            Boy.GetComponent<MeleeDamage>().AttackSpeed = BoyFireRate;
+                        }
 
-                BoyDamage += equipedWeapon.bonusDamage;
-                BoyHealth += equipedWeapon.bonusHealth;
-            }
-            if(equipedWeapon.forGirl)
-            {
-                if (equipedWeapon.Object == WeaponObject.ObjectType.WEAPON)
-                {
-                    GirlFireRate = equipedWeapon.fireRate;
-                    Girl.GetComponent<MeleeDamage>().AttackSpeed = GirlFireRate;
-                }
+                        BoyDamage += equipedWeapon.bonusDamage;
+                        BoyBonusHealth += equipedWeapon.bonusHealth;
+                    }
+                    if (equipedWeapon.forGirl)
+                    {
+                        if (equipedWeapon.Object == WeaponObject.ObjectType.WEAPON)
+                        {
+                            GirlFireRate = equipedWeapon.fireRate;
+                            Girl.GetComponent<MeleeDamage>().AttackSpeed = GirlFireRate;
+                        }
 
-                GirlDamage += equipedWeapon.bonusDamage;
-                GirlHealth += equipedWeapon.bonusHealth;
+                        GirlDamage += equipedWeapon.bonusDamage;
+                        GirlBonusHealth += equipedWeapon.bonusHealth;
+                    }
+                }
             }
+
+            Boy.GetComponent<HealthController>().totalHealth = BoyHealth + BoyBonusHealth;
+            Boy.GetComponent<HealthController>().currentHealth += BoyBonusHealth;
+            Boy.GetComponent<MeleeDamage>().Damage = BoyDamage;
+
+            Girl.GetComponent<HealthController>().totalHealth = GirlHealth + GirlBonusHealth;
+            Girl.GetComponent<HealthController>().currentHealth += GirlBonusHealth;
+            Girl.GetComponent<MeleeDamage>().Damage = GirlDamage;
+
+            EventManager.TriggerEvent("refreshUI");
         }
-
-        Boy.GetComponent<HealthController>().totalHealth = BoyHealth;
-        Boy.GetComponent<MeleeDamage>().Damage = BoyDamage;
-
-        Girl.GetComponent<HealthController>().totalHealth = GirlHealth;
-        Girl.GetComponent<MeleeDamage>().Damage = GirlDamage;
     }
 
     private static void LoadWeaponsSave()

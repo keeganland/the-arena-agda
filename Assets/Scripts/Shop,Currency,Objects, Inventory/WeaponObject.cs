@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
  public class WeaponObject : ScriptableObject {
 
-    public Image Icon;
+    public Sprite Icon;
 
     public enum ObjectType {WEAPON, HEAD, HAND, CHEST, BOOTS, PASSIVE};
     public ObjectType Object;
@@ -22,6 +22,7 @@ using UnityEngine.UI;
     public string weaponName = "Weapon Name";
     public int cost = 5;
     public string description = "Weapon Description";
+    public string description2 = "Second Weapon Description";
 
 
     //Basic Stats for Weapons;

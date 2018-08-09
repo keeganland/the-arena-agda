@@ -29,8 +29,8 @@ public class UISpellSwap : MonoBehaviour {
     private Slider _SmallSlider;
     private Slider _BigSlider;
 
-    private HealthUI _GirlHealthUI;
-    private HealthUI _BoyHealthUI;
+    private HealthController _GirlHealthUI;
+    private HealthController _BoyHealthUI;
 
     private SpellCommand _GirlSpellCommandScript;
     private SpellCommand _BoySpellCommandScript;
@@ -205,11 +205,11 @@ public class UISpellSwap : MonoBehaviour {
 
     private void GirlSlider()
     {
-        _BigSlider.value = (1.0f / _GirlHealthUI.m_maxHealth) * _GirlHealthUI.m_curHealth;
-        _SmallSlider.value = (1.0f / _BoyHealthUI.m_maxHealth) * _BoyHealthUI.m_curHealth;
+        _BigSlider.value = (1.0f / _GirlHealthUI.totalHealth) * _GirlHealthUI.currentHealth;
+        _SmallSlider.value = (1.0f / _BoyHealthUI.totalHealth) * _BoyHealthUI.currentHealth;
 
-        _BigTextHP.text = "HP : " + _GirlHealthUI.m_curHealth.ToString() + " /  " + _GirlHealthUI.m_maxHealth.ToString();
-        _SmallTextHP.text = "HP : " + _BoyHealthUI.m_curHealth.ToString() + " /  " + _BoyHealthUI.m_maxHealth.ToString();
+        _BigTextHP.text = "HP : " + _GirlHealthUI.currentHealth.ToString() + " /  " + _GirlHealthUI.totalHealth.ToString();
+        _SmallTextHP.text = "HP : " + _BoyHealthUI.currentHealth.ToString() + " /  " + _BoyHealthUI.totalHealth.ToString();
 
         m_smallQcooldowntext = (int) _BoySpellCommandScript._ShieldUITimer;
         m_smallWcooldowntext = (int)_BoySpellCommandScript._StunUITimer;
@@ -249,11 +249,11 @@ public class UISpellSwap : MonoBehaviour {
     }
     private void BoySlider()
     {
-        _BigSlider.value = (1.0f / _BoyHealthUI.m_maxHealth) * _BoyHealthUI.m_curHealth;
-        _SmallSlider.value = (1.0f / _GirlHealthUI.m_maxHealth) * _GirlHealthUI.m_curHealth;
+        _BigSlider.value = (1.0f / _BoyHealthUI.totalHealth) * _BoyHealthUI.currentHealth;
+        _SmallSlider.value = (1.0f / _GirlHealthUI.totalHealth) * _GirlHealthUI.currentHealth;
 
-        _SmallTextHP.text = "HP : " + _GirlHealthUI.m_curHealth.ToString() + " /  " + _GirlHealthUI.m_maxHealth.ToString();
-        _BigTextHP.text = "HP : " + _BoyHealthUI.m_curHealth.ToString() + " /  " + _BoyHealthUI.m_maxHealth.ToString();
+        _SmallTextHP.text = "HP : " + _GirlHealthUI.currentHealth.ToString() + " /  " + _GirlHealthUI.totalHealth.ToString();
+        _BigTextHP.text = "HP : " + _BoyHealthUI.currentHealth.ToString() + " /  " + _BoyHealthUI.totalHealth.ToString();
 
         m_smallQcooldowntext = (int)_GirlSpellCommandScript._HealUITimer;
         m_smallWcooldowntext = (int)_GirlSpellCommandScript._AOEUITimer;

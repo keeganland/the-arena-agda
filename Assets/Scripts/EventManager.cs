@@ -14,6 +14,7 @@
  *  "bossDied"
  *  "checkVictory"
  *  "resetPlayer"
+ *  "resetUI" => force the use of UpdateUI (HealthUI) without any message sent (to message handler).
  *  
  * This list is far from finished, unforunately. 
  * 

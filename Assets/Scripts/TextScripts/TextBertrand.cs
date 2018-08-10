@@ -33,6 +33,5 @@ public class TextBertrand: ActivateTextAtLine {
         }
 
         TextBeginning = theText;
-
     }
 }

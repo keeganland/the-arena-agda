@@ -68,6 +68,9 @@ public abstract class ActivateTextAtLine : MonoBehaviour
 
     public TextAsset TextBeginning;
 
+    public string SpriteSheet;
+    public string NameInSpriteSheet;
+
     private void Awake()
     {
         saveManager = FindObjectOfType<SaveManager>(); 
@@ -224,6 +227,7 @@ public abstract class ActivateTextAtLine : MonoBehaviour
         theTextManager.setLastTriggered(gameObject.name);
         theTextManager.setNPCName(NPCName);
         theTextManager.setNPCGameObject(this.gameObject);
+        theTextManager.SetSprite(SpriteSheet, NameInSpriteSheet);
 
         //Debug.Log("useXml == " + useXml);
         if (useXml)
@@ -268,7 +272,7 @@ public abstract class ActivateTextAtLine : MonoBehaviour
         ResetCue();
     }
 
-    abstract public void ResetText(); 
+    abstract public void ResetText(); //Alex : I made a mistake, resetText needs to have elements in it. I don't know how to force the "add" in this script so just copy past the textBertrand ResetText() to have the sample one. 
 
     abstract public void ChangeText(TextAsset NewTextYes, TextAsset NewTextNo);
 

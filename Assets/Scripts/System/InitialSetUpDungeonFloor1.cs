@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
 
@@ -17,12 +18,6 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         Boy.transform.position = new Vector3(SpawnPosBoy.transform.position.x, transform.position.y, SpawnPosBoy.transform.position.z);
         Girl.transform.position = new Vector3(SpawnPosGirl.transform.position.x, transform.position.y, SpawnPosGirl.transform.position.z);
 
-        BoyNav.enabled = true;
-        GirlNav.enabled = true;
-
-        Boy.GetComponent<BetterPlayer_Movement>().isCombat = false;
-        Girl.GetComponent<BetterPlayer_Movement>().isCombat = false;
-
         MainCamera = publicArenaEntrance.MainCamera;
 
         MainCamera.GetComponent<BetterCameraFollow>()._FieldOfViewMin = MainCameraFieldOfViewMin;
@@ -30,6 +25,17 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
 
         publicArenaEntrance.publicVariableHolderNeverUnload.PlayerUI.SetActive(false);
 
-        publicArenaEntrance.publicVariableHolderNeverUnload.fader.StartCoroutine("FadeIn");   
+        publicArenaEntrance.publicVariableHolderNeverUnload.fader.StartCoroutine("FadeIn");
+
+        StartCoroutine(ArrivalDialogue());
 	}
+
+    IEnumerator ArrivalDialogue()
+    {
+        yield return new WaitForSeconds(2f);
+
+        GetComponent<TextFloor1Arrival>().PlayerEnableText(true);
+
+        //yield return new WaitUntil(() => Input.anyKeyDown == true);
+    }
 }

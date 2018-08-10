@@ -59,6 +59,11 @@ public class TextBoxManager : MonoBehaviour
 
     public float typeSpeed;
 
+    private string SpriteSheet;
+    private string SpriteNameInSheet;
+    public SpriteRenderer SpriteHolder;
+    public GameObject SpriteHolderGameObject;
+
     PauseMenu pauseMenu;
     // Use this for initialization
     void Start()
@@ -202,6 +207,26 @@ public class TextBoxManager : MonoBehaviour
         {
             //theNPCMovementManager.StopNPCMovement();
         }
+
+        if (SpriteNameInSheet != "" && SpriteHolder)
+        {
+            SpriteHolderGameObject.SetActive(true);
+            Sprite[] sprites = Resources.LoadAll<Sprite>(SpriteSheet);
+            Debug.Log(sprites.Length);
+            foreach(Sprite sp in sprites)
+            {
+                Debug.Log(SpriteNameInSheet);
+                if(sp.name == SpriteNameInSheet)
+                {
+                    Debug.Log(sp.name);
+                    SpriteHolder.sprite = sp;
+                }
+            }
+        }
+        else {
+            SpriteHolderGameObject.SetActive(false);
+            SpriteHolder.sprite = null; 
+        }
  
 		//StartCoroutine(TextScroll(textLines[currentLine]));
 		StartCoroutine(TextScroll(textQueue.Dequeue()));
@@ -228,8 +253,6 @@ public class TextBoxManager : MonoBehaviour
         {
             theNPCMovementManager.StartNPCMovement();
         }
-
-
     }
 
     public void ReloadScript(TextAsset theText)
@@ -314,5 +337,11 @@ public class TextBoxManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SetSprite(string spriteSheetName, string spriteNameInSheet)
+    {
+        SpriteSheet = spriteSheetName;
+        SpriteNameInSheet = spriteNameInSheet;
     }
 }

@@ -180,6 +180,10 @@ public class SecondEnemyAttack : BasicEnemyBehaviour {
         sheep2.GetComponentInChildren<HealthUI>().UpdateUi(Sheephealth, Sheephealth);
         sheep3.GetComponentInChildren<HealthUI>().UpdateUi(RedSheephealth, RedSheephealth);
 
+        sheep1.GetComponentInChildren<HealthController>().isBoss = false;
+        sheep2.GetComponentInChildren<HealthController>().isBoss = false;
+        sheep3.GetComponentInChildren<HealthController>().isBoss = false;
+
         Destroy(spawnparticle1, 2f);
         Destroy(spawnparticle2, 2f);
         Destroy(spawnparticle3, 2f);

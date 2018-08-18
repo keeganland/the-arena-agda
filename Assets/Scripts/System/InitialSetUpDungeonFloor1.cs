@@ -36,15 +36,6 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
 
         GetComponent<TextFloor1Arrival>().PlayerEnableText(true);
 
-        yield return new WaitForSeconds(2f);
-
-        BoyNav.enabled = true;
-        GirlNav.enabled = true;
-
-        Boy.GetComponent<BetterPlayer_Movement>().isCombat = false;
-        Girl.GetComponent<BetterPlayer_Movement>().isCombat = false;
-        Girl.GetComponent<BoxCollider>().enabled = false;
-
         //yield return new WaitUntil(() => Input.anyKeyDown == true);
     }
 }

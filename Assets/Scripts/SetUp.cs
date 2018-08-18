@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SetUp : MonoBehaviour {
 
-    private static int fightToLoad;
     private static SetUp setUp;
+    [SerializeField]
+    private int fightToLoad;
 
     public GameObject[] PlayersGameObject;
 

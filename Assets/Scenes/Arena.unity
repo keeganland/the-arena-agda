@@ -1711,6 +1711,8 @@ MonoBehaviour:
   stopNPCMovement: 0
   eventAtEndofText: 0
   typeSpeed: 0
+  SpriteHolder: {fileID: 0}
+  SpriteHolderGameObject: {fileID: 0}
 --- !u!4 &657219891
 Transform:
   m_ObjectHideFlags: 0
@@ -2423,6 +2425,16 @@ Prefab:
       propertyPath: publicVariableHolderArena
       value: 
       objectReference: {fileID: 206583902}
+    - target: {fileID: 114832071830984872, guid: 1046cdc9ffc25344b80ecc3fc6dcf9e8,
+        type: 2}
+      propertyPath: isBoss
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114832071830984872, guid: 1046cdc9ffc25344b80ecc3fc6dcf9e8,
+        type: 2}
+      propertyPath: totalHealth
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1046cdc9ffc25344b80ecc3fc6dcf9e8, type: 2}
   m_IsPrefabAsset: 0
@@ -4533,7 +4545,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ft: {fileID: 1242159604}
   fightMenuUI: {fileID: 1516009451}
-  testSpecificFight: 1
   specificFightToTest: 2
 --- !u!1 &1894288478
 GameObject:

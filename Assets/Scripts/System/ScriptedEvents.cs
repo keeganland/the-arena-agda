@@ -214,6 +214,22 @@ public class ScriptedEvents : MonoBehaviour {
 
 
         yield return new WaitForSeconds(2.5f);
+
+        //Keegannote 2018/8/17: im just adding the stuff below to see if it fixes the entrance to the second fight. Delete if no
+
+        ReadyText.SetActive(true);
+        yield return new WaitForSeconds(2);
+        ReadyText.SetActive(false);
+        FightText.SetActive(true);
+        yield return new WaitForSeconds(2);
+        FightText.SetActive(false);
+
+        PlayerUI.SetActive(true);
+        PlayerUI.GetComponent<UISpellSwap>().HiddeSpells();
+
+        EventManager.TriggerEvent("StartMoving");
+        enemy.GetComponentInChildren<FirstEnemyAttack2>().isEnemyMoving = true;
+        enemy.GetComponentInChildren<FirstEnemyAttack2>().StopAttacking = false;
     }
 
     IEnumerator victoryEventCoroutine()

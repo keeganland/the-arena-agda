@@ -223,7 +223,7 @@ public class TextBoxManager : MonoBehaviour
                 }
             }
         }
-        else {
+        else if(SpriteHolderGameObject){
             SpriteHolderGameObject.SetActive(false);
             SpriteHolder.sprite = null; 
         }

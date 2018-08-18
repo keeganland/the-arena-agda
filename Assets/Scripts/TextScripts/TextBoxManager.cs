@@ -184,10 +184,11 @@ public class TextBoxManager : MonoBehaviour
     public void EnableTextBox()
     {
         textBox.SetActive(true);
-        if(!textBallon)
-            textBallon = Instantiate(TextBallon, NPCGameObject.transform.position + new Vector3(0,0,1.36f), Quaternion.Euler(90, 0, 0));
+        if (!textBallon)
+            textBallon = Instantiate(TextBallon, NPCGameObject.transform.position + new Vector3(0, 0, 1.36f), Quaternion.Euler(90, 0, 0));
 
-		if (NPCNameTag != null) {   
+        if (NPCNameTag != null)
+        {
 
             NPCNameTag.text = NPCName;
 
@@ -196,10 +197,10 @@ public class TextBoxManager : MonoBehaviour
             {
                 namePlate.SetActive(true);
             }
-		}
+        }
         isActive = true;
 
-        if (stopPlayerMovement) 
+        if (stopPlayerMovement)
         {
             EventManager.TriggerEvent("StopMoving");
         }
@@ -213,17 +214,17 @@ public class TextBoxManager : MonoBehaviour
             SpriteHolderGameObject.SetActive(true);
             Sprite[] sprites = Resources.LoadAll<Sprite>(SpriteSheet);
             Debug.Log(sprites.Length);
-            foreach(Sprite sp in sprites)
+            foreach (Sprite sp in sprites)
             {
                 Debug.Log(SpriteNameInSheet);
-                if(sp.name == SpriteNameInSheet)
+                if (sp.name == SpriteNameInSheet)
                 {
                     Debug.Log(sp.name);
                     SpriteHolder.sprite = sp;
                 }
             }
         }
-        else {
+        else if(SpriteHolderGameObject){
             SpriteHolderGameObject.SetActive(false);
             SpriteHolder.sprite = null; 
         }

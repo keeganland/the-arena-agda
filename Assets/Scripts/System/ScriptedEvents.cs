@@ -30,6 +30,8 @@ public class ScriptedEvents : MonoBehaviour {
 
     public GameObject enemy;
     public GameObject enemyUI;
+
+    public GameObject enemy2;
     private GameObject Camera;
 
     private int roundNumber;
@@ -185,6 +187,8 @@ public class ScriptedEvents : MonoBehaviour {
         Debug.Log("here");
         publicVariableHolder.BoyUIGameObject.SetActive(false);
         publicVariableHolder.GirlUIGameObject.SetActive(false);
+        enemy2.GetComponent<SecondEnemyAttack>().enabled = false;
+
         PlayerUI.SetActive(false);
         EventManager.TriggerEvent("setup");
         EventManager.TriggerEvent("InCombat");
@@ -230,6 +234,7 @@ public class ScriptedEvents : MonoBehaviour {
         EventManager.TriggerEvent("StartMoving");
         enemy.GetComponentInChildren<FirstEnemyAttack2>().isEnemyMoving = true;
         enemy.GetComponentInChildren<FirstEnemyAttack2>().StopAttacking = false;
+        enemy2.GetComponent<SecondEnemyAttack>().enabled = true;
     }
 
     IEnumerator victoryEventCoroutine()

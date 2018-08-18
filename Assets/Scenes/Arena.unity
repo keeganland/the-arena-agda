@@ -883,6 +883,7 @@ MonoBehaviour:
   m_girl: {fileID: 0}
   enemy: {fileID: 609509074}
   enemyUI: {fileID: 119681699}
+  enemy2: {fileID: 2053259219}
 --- !u!4 &357521053
 Transform:
   m_ObjectHideFlags: 0
@@ -5162,6 +5163,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4590965737642928, guid: 493e38eaf03b0e9409d8013601fcfcf7,
     type: 2}
   m_PrefabInternal: {fileID: 2015954393}
+--- !u!1 &2053259219 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1621503884982114, guid: 1046cdc9ffc25344b80ecc3fc6dcf9e8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1051094085}
 --- !u!1 &2068974074
 GameObject:
   m_ObjectHideFlags: 0

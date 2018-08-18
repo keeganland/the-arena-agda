@@ -202,17 +202,14 @@ public class SecondEnemyAttack : BasicEnemyBehaviour {
 
     public override void OnTriggerEnter(Collider other)
     {
-        throw new System.NotImplementedException();
     }
 
     public override void OnTriggerStay(Collider other)
     {
-        throw new System.NotImplementedException();
     }
 
     public override void OnTriggerExit(Collider other)
     {
-        throw new System.NotImplementedException();
     }
 
     public override void ResetToDefaults()

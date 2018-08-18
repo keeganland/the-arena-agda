@@ -53,7 +53,8 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
 
         publicArenaEntrance.publicVariableHolderNeverUnload.PlayerUI.SetActive(false);
 
-
+        Girl.GetComponent<BetterPlayer_Movement>().boyActive = false;
+        Boy.GetComponent<BetterPlayer_Movement>().boyActive = false;
         publicArenaEntrance.publicVariableHolderNeverUnload.fader.StartCoroutine("FadeIn");
 
         if (publicArenaEntrance.ReturnFromArena && saveManager.returnFromArena)

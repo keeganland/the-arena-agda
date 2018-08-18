@@ -2428,7 +2428,12 @@ Prefab:
     - target: {fileID: 114832071830984872, guid: 1046cdc9ffc25344b80ecc3fc6dcf9e8,
         type: 2}
       propertyPath: isBoss
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114832071830984872, guid: 1046cdc9ffc25344b80ecc3fc6dcf9e8,
+        type: 2}
+      propertyPath: totalHealth
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1046cdc9ffc25344b80ecc3fc6dcf9e8, type: 2}

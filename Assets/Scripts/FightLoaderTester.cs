@@ -18,31 +18,31 @@ public class FightLoaderTester : MonoBehaviour {
     public static bool gameIsPaused = false;
     public GameObject fightMenuUI;
 
-    public bool testSpecificFight;
+    //public bool testSpecificFight;
     public int specificFightToTest = 0;
 
     private void Start()
     {
         specificFightToTest = SetUp.Instance.GetFightToLoad();
 
-        if(testSpecificFight)
-        {
+        //if(testSpecificFight)
+        //{
             switch (specificFightToTest)
             {
-                case 1:
+                case 0:
                     Fight1();
                     break;
-                case 2:
+                case 1:
                     Fight2();
                     break;
-                case 3:
+                case 2:
                     Fight3();
                     break;
                 default:
                     Fight1();
                     break;
             }
-        }
+        //}
     }
 
     // Update is called once per frame

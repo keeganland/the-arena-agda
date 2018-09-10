@@ -43,6 +43,7 @@ public class HealthController : MonoBehaviour
     {
         currentHealth = totalHealth;
     }
+
     private void OnDisable()
     {
         EventManager.TriggerEvent("camTargetRefresh");
@@ -262,12 +263,16 @@ public class HealthController : MonoBehaviour
 
     private void DoDeath() {
 
-        Sprite.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<CapsuleCollider>().enabled = true;
         if (_Slider)
             _Slider.SetActive(false);
         if (_DeathAnim)
             _DeathAnim.SetActive(true);
+
+        if (Sprite)
+        {
+            Sprite.GetComponent<Animator>().Play("Death");
+        }
 
         if (this.gameObject.name == "Boy")
         {

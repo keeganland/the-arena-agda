@@ -62,7 +62,6 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
     }
     public void ArenaEntranceFight2()
     {
-        Debug.Log("here");
         StartCoroutine(Fight2());
     }
     public void ArenaEntranceFight3()

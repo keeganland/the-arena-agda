@@ -69,7 +69,7 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
         yield return new WaitForSeconds(2f);
 
         InventoryManager.AddMoney(moneyGainedperFight[FindObjectOfType<SaveManager>().currentFight]);
-        moneyWon.text = "You won : $" + moneyGainedperFight[FindObjectOfType<SaveManager>().currentFight].ToString() + "!";
+        moneyWon.text = "You won : $" + moneyGainedperFight[FindObjectOfType<SaveManager>().currentFight].ToString() + "!   Next fight unlocked";
         moneyTextGameObject.SetActive(true);
 
         yield return new WaitUntil(() => Input.anyKeyDown == true);

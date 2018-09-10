@@ -17,6 +17,9 @@ public class ScriptedEvents : MonoBehaviour {
 
     public GameObject tutorial1;
     public GameObject tutorial2;
+    public GameObject tutorial3;
+    public GameObject tutorial4;
+
 
     [SerializeField] private GameObject _InitialPositionBoy;
     [SerializeField] private GameObject _InitialPositionGirl;
@@ -32,6 +35,9 @@ public class ScriptedEvents : MonoBehaviour {
     public GameObject enemyUI;
 
     public GameObject enemy2;
+    public GameObject enemy2UI;
+    public GameObject enemy2Sprite;
+
     private GameObject Camera;
 
     private int roundNumber;
@@ -184,19 +190,17 @@ public class ScriptedEvents : MonoBehaviour {
 
     IEnumerator EnterArenaFight2Coroutine()
     {
-        Debug.Log("here");
         publicVariableHolder.BoyUIGameObject.SetActive(false);
         publicVariableHolder.GirlUIGameObject.SetActive(false);
         enemy2.GetComponent<SecondEnemyAttack>().enabled = false;
+        enemy2Sprite.SetActive(false);
 
         PlayerUI.SetActive(false);
         EventManager.TriggerEvent("setup");
         EventManager.TriggerEvent("InCombat");
         EventManager.TriggerEvent("StopMoving");
-        enemy.GetComponentInChildren<FirstEnemyAttack2>().isEnemyMoving = false;
-        enemy.GetComponentInChildren<FirstEnemyAttack2>().StopAttacking = true;
 
-        enemyUI.SetActive(false);
+        enemy2UI.SetActive(false);
         Camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, Camera.transform.position.y, _InitialPositionBoy.transform.position.z);
 
         yield return new WaitForSeconds(.4f);
@@ -216,8 +220,29 @@ public class ScriptedEvents : MonoBehaviour {
 
         yield return new WaitForSeconds(4.5f);
 
+        enemy2Sprite.SetActive(true);
+        enemy2UI.SetActive(true);
+        enemy2Sprite.GetComponent<Animator>().Play("Enemy2Entrance");
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
+        if (tutorial3)
+        {
+            tutorial3.SetActive(true);
+
+            while (tutorial3 != null)
+            {
+                yield return null;
+            }
+        }
+
+        if (tutorial4)
+        {
+            tutorial4.SetActive(true);
+            while (tutorial4 != null)
+            {
+                yield return null;
+            }
+        }
 
         //Keegannote 2018/8/17: im just adding the stuff below to see if it fixes the entrance to the second fight. Delete if no
 
@@ -230,8 +255,10 @@ public class ScriptedEvents : MonoBehaviour {
 
         PlayerUI.SetActive(true);
         PlayerUI.GetComponent<UISpellSwap>().HiddeSpells();
+        PlayerUI.GetComponent<UISpellSwap>().ShowGirlSpellsOnly();
 
         EventManager.TriggerEvent("StartMoving");
+
         enemy.GetComponentInChildren<FirstEnemyAttack2>().isEnemyMoving = true;
         enemy.GetComponentInChildren<FirstEnemyAttack2>().StopAttacking = false;
         enemy2.GetComponent<SecondEnemyAttack>().enabled = true;

@@ -67,6 +67,9 @@ public class UISpellSwap : MonoBehaviour {
 
     private bool m_isBoy;
 
+    private bool m_showGirlSpellsOnly;
+    private bool m_spellHidden;
+
     private void Start()
     {
         _BigTextHP = _PublicVariableHolder._BigTextHP;
@@ -126,6 +129,7 @@ public class UISpellSwap : MonoBehaviour {
         if (m_isBoy)
             BoySlider();
         else GirlSlider();
+
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -135,11 +139,28 @@ public class UISpellSwap : MonoBehaviour {
                 if (hit.collider.tag == "Ground")
                 {
                     DisableEnemyUI();
-
                 }
             }
         }
         EnableEnemyUI();
+
+        if (m_showGirlSpellsOnly)
+        {
+            if (m_isBoy)
+            {
+                BigSpellW.SetActive(false);
+                BigSpellQ.SetActive(false);
+                SmallSpellQ.SetActive(true);
+                SmallSpellW.SetActive(true);
+            }
+            else
+            {
+                BigSpellW.SetActive(true);
+                BigSpellQ.SetActive(true);
+                SmallSpellQ.SetActive(false);
+                SmallSpellW.SetActive(false);
+            }
+        }
     }
 
     private void EnableEnemyUI()
@@ -386,6 +407,8 @@ public class UISpellSwap : MonoBehaviour {
         BigSpellQ.SetActive(false);
         SmallSpellQ.SetActive(false);
         SmallSpellW.SetActive(false);
+
+        m_spellHidden = true;
     }
 
     public void ShowSpells()
@@ -394,5 +417,16 @@ public class UISpellSwap : MonoBehaviour {
         BigSpellQ.SetActive(true);
         SmallSpellQ.SetActive(true);
         SmallSpellW.SetActive(true);
+
+        m_spellHidden = false;
+        m_showGirlSpellsOnly = false;
+    }
+
+    public void ShowGirlSpellsOnly()
+    {
+        if (m_spellHidden == true)
+        {
+            m_showGirlSpellsOnly = true;
+        }
     }
 }

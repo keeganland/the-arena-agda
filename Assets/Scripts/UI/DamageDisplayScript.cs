@@ -13,7 +13,8 @@ public class DamageDisplayScript : MonoBehaviour {
     public Color _Color;
 	// Use this for initialization
 
-	void Start () {
+	void Start ()
+    {
         m_anim = GetComponentInChildren<Animation>();
 	}
 	

@@ -172,6 +172,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
         go = Instantiate(_DashSpell, this.transform.position,Quaternion.identity);
         fx = Instantiate(_DashFX, this.transform.position, m_dashRotation);
         m_targetPos = _TeleportPosition.transform.position;
+        Destroy(go, 3f);
         go.GetComponent<DashCollider>().SetTarget(m_targetPos);
         go.GetComponent<Bullet>().SetSpellCaster(this.gameObject);
 
@@ -181,7 +182,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
         yield return new WaitForSeconds(_WarningtoAttackCD);
        
         //Reset Enemy
-        Destroy(go);
+
         m_dashingAnim = false;
 
         m_nav.SetDestination(transform.position);

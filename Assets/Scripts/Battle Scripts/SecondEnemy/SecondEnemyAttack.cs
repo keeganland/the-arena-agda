@@ -54,7 +54,6 @@ public class SecondEnemyAttack : BasicEnemyBehaviour {
 
         if(teleportTime >= (teleportCD - teleportAnimStart) && !TeleportStarted)
         {
-            Debug.Log("here");
             TeleportStart.Play();
             TeleportStarted = true;
         }

@@ -23,6 +23,6 @@ public class Enemy2ArrivalScript : MonoBehaviour {
     public void ShakeCamera()
     {
         CameraShake cameraShake = GameObject.FindWithTag("CameraHolder").GetComponent<CameraShake>();
-        StartCoroutine(cameraShake.LaserShake(1f, .15f));
+        StartCoroutine(cameraShake.LaserShake(1f, 2f));
     }
 }

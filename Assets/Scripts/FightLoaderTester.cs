@@ -135,6 +135,7 @@ public class FightLoaderTester : MonoBehaviour {
             EventManager.TriggerEvent("cleanup");
             ft.activateFight(2);
             Resume();
+            EventManager.TriggerEvent("enterArenaFight3");
         }
     }
 }

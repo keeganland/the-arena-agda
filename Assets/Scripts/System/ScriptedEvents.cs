@@ -19,6 +19,8 @@ public class ScriptedEvents : MonoBehaviour {
     public GameObject tutorial2;
     public GameObject tutorial3;
     public GameObject tutorial4;
+    public GameObject tutorial5;
+    public GameObject tutorial6;
 
 
     [SerializeField] private GameObject _InitialPositionBoy;
@@ -37,6 +39,9 @@ public class ScriptedEvents : MonoBehaviour {
     public GameObject enemy2;
     public GameObject enemy2UI;
     public GameObject enemy2Sprite;
+
+    public GameObject enemy3;
+    public GameObject enemy3UI;
 
     private GameObject Camera;
 
@@ -82,6 +87,7 @@ public class ScriptedEvents : MonoBehaviour {
     {
         EventManager.StartListening("enterArenaFight1", EnterArenaFight1);
         EventManager.StartListening("enterArenaFight2", EnterArenaFight2);
+        EventManager.StartListening("enterArenaFight3", EnterArenaFight3);
         EventManager.StartListening("victoryEvent", VictoryEvent);
     }
 
@@ -89,6 +95,7 @@ public class ScriptedEvents : MonoBehaviour {
     {
         EventManager.StopListening("enterArenaFight1", EnterArenaFight1);
         EventManager.StopListening("enterArenaFight2", EnterArenaFight2);
+        EventManager.StopListening("enterArenaFight3", EnterArenaFight3);
         EventManager.StopListening("victoryEvent", VictoryEvent);
     }
 
@@ -108,6 +115,12 @@ public class ScriptedEvents : MonoBehaviour {
     {
         EventManager.StopListening("enterArenaFight2", EnterArenaFight2);
         StartCoroutine("EnterArenaFight2Coroutine");
+    }
+
+    void EnterArenaFight3()
+    {
+        EventManager.StopListening("enterArenaFight3", EnterArenaFight3);
+        StartCoroutine("EnterArenaFight3Coroutine");
     }
 
     IEnumerator EnterArenaFight1Coroutine () {
@@ -262,6 +275,82 @@ public class ScriptedEvents : MonoBehaviour {
         enemy.GetComponentInChildren<FirstEnemyAttack2>().isEnemyMoving = true;
         enemy.GetComponentInChildren<FirstEnemyAttack2>().StopAttacking = false;
         enemy2.GetComponent<SecondEnemyAttack>().enabled = true;
+    }
+
+    IEnumerator EnterArenaFight3Coroutine()
+    {
+        publicVariableHolder.BoyUIGameObject.SetActive(false);
+        publicVariableHolder.GirlUIGameObject.SetActive(false);
+        PlayerUI.SetActive(false);
+        EventManager.TriggerEvent("setup");
+        EventManager.TriggerEvent("InCombat");
+        EventManager.TriggerEvent("StopMoving");
+        enemy3.GetComponentInChildren<ThirdEnemy>().StopAttacking = true;
+
+        enemy3UI.SetActive(false);
+        Camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, Camera.transform.position.y, _InitialPositionBoy.transform.position.z);
+
+        yield return new WaitForSeconds(.4f);
+        m_boy.transform.position = _InitialPositionBoy.transform.position;
+        m_girl.transform.position = _InitialPositionGirl.transform.position;
+        enemy3.transform.position = _InitialPositionEnemy.transform.position;
+
+        publicVariableHolder.BoyUIGameObject.SetActive(true);
+        publicVariableHolder.GirlUIGameObject.SetActive(true);
+
+        boyNavMeshAgent.SetDestination(_PublicVariableHolderArena._EnterArenaWaypointsBoy[0].transform.position);
+        girlNavMeshAgent.SetDestination(_PublicVariableHolderArena._EnterArenaWaypointsGirl[0].transform.position);
+
+        yield return new WaitForSeconds(.4f);
+
+        screenFader.StartCoroutine("FadeIn");
+
+        yield return new WaitForSeconds(4.5f);
+
+        screenFader.StartCoroutine("FadeOut");
+
+        yield return new WaitForSeconds(2.5f);
+        Camera.transform.position = new Vector3(_InitialPositionEnemy.transform.position.x, Camera.transform.position.y, _InitialPositionEnemy.transform.position.z);
+
+        screenFader.StartCoroutine("FadeIn");
+
+        yield return new WaitForSeconds(2f);
+        enemy3.GetComponentInChildren<NavMeshAgent>().SetDestination(_PublicVariableHolderArena._EnterArenaWaypointsEnemy[0].transform.position);
+        enemy3UI.SetActive(true);
+
+        yield return new WaitForSeconds(6);
+
+        if (tutorial5)
+        {
+            tutorial5.SetActive(true);
+
+            while (tutorial5 != null)
+            {
+                yield return null;
+            }
+        }
+
+        if (tutorial6)
+        {
+            tutorial6.SetActive(true);
+            while (tutorial6 != null)
+            {
+                yield return null;
+            }
+        }
+
+        ReadyText.SetActive(true);
+        yield return new WaitForSeconds(2);
+        ReadyText.SetActive(false);
+        FightText.SetActive(true);
+        yield return new WaitForSeconds(2);
+        FightText.SetActive(false);
+
+        PlayerUI.SetActive(true);
+        PlayerUI.GetComponent<UISpellSwap>().ShowSpells();
+
+        EventManager.TriggerEvent("StartMoving");
+        enemy3.GetComponentInChildren<ThirdEnemy>().StopAttacking = false;
     }
 
     IEnumerator victoryEventCoroutine()

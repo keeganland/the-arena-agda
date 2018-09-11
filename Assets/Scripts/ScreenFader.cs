@@ -17,6 +17,7 @@ public class ScreenFader : MonoBehaviour {
     {
         m_isFading = true;
         m_anim.SetBool("FadeIn", true);
+        m_anim.SetBool("FadeOut", false);
         while (m_isFading) yield return null;
     }
 
@@ -24,6 +25,7 @@ public class ScreenFader : MonoBehaviour {
     {
         m_isFading = true;
         m_anim.SetBool("FadeOut", true);
+        m_anim.SetBool("FadeIn", false);
         while (m_isFading) yield return null;
     }
 

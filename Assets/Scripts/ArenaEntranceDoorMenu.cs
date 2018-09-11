@@ -147,6 +147,5 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
         GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("Arena", "ArenaEntrance");
 
         yield return new WaitForSeconds(1f);
-
     }
 }

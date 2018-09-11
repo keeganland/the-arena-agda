@@ -183,7 +183,7 @@ VideoPlayer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 15419954}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: eef219b5cef2c4ff784b29108013438f, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 83a7b625003911943b02a4afb5d5e838, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -2461,7 +2461,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1052768780}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &683395071 stripped
 Transform:
@@ -8769,8 +8769,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1535935400}
-  - {fileID: 1702925672}
   - {fileID: 682670750}
+  - {fileID: 1702925672}
   m_Father: {fileID: 357521053}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9227,8 +9227,8 @@ Transform:
   m_Children:
   - {fileID: 995493250}
   - {fileID: 1537485702}
-  - {fileID: 2115132866}
   - {fileID: 1294447959}
+  - {fileID: 2115132866}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9518,7 +9518,7 @@ VideoPlayer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1445027132}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: eef219b5cef2c4ff784b29108013438f, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 62a6d024a22578c4aa34f6b9ddb06b99, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -10575,7 +10575,7 @@ VideoPlayer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1575829912}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: eef219b5cef2c4ff784b29108013438f, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 8f4228f014f7c1c4c8bb14f6e1462d0f, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -10953,7 +10953,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1052768780}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1714526744
 GameObject:
@@ -11025,7 +11025,7 @@ VideoPlayer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1714526744}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: eef219b5cef2c4ff784b29108013438f, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: af5c15ac7b5084542b15011d52cfdeff, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -11527,7 +11527,7 @@ VideoPlayer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1882911522}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: eef219b5cef2c4ff784b29108013438f, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 7ac38b9a90edf0748b65f81b93bc617a, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -12343,7 +12343,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4022118786350532, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.865577
       objectReference: {fileID: 0}
     - target: {fileID: 4022118786350532, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}
       propertyPath: m_LocalPosition.y
@@ -12351,7 +12351,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4022118786350532, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -9.55
+      value: -7.47789
       objectReference: {fileID: 0}
     - target: {fileID: 4022118786350532, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}
       propertyPath: m_LocalRotation.x
@@ -12371,7 +12371,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4022118786350532, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1973562701685340, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}
       propertyPath: m_IsActive
@@ -12381,6 +12381,10 @@ Prefab:
         type: 2}
       propertyPath: totalHealth
       value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414175169794978, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}

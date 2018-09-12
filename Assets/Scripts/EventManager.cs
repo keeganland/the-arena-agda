@@ -30,6 +30,7 @@
  *  "StartGirlMoving"
  *  "NotInCombat" (They are not in combat : for city, exploration mode (boy follow girl))
  *  "InCombat"
+ *  "ResetTargets"
  *
  * BetterPlayer_Movement.cs
  *  "stopForTextbox"

@@ -59,11 +59,11 @@ public class SetUp : MonoBehaviour {
         foreach (GameObject players in PlayersGameObject)
         {
             players.GetComponent<HealthController>().currentHealth = players.GetComponent<HealthController>().totalHealth;
-            players.GetComponent<BetterPlayer_Movement>().UndoCurTarget();
         }
 
         FindObjectOfType<VictoryReferee>().SetPlayerWon(false);
         EventManager.TriggerEvent("refreshUI");
+        EventManager.TriggerEvent("ResetTargets");
     }
 
     public int GetFightToLoad()

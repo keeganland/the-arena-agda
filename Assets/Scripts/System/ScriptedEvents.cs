@@ -212,6 +212,7 @@ public class ScriptedEvents : MonoBehaviour {
         EventManager.TriggerEvent("setup");
         EventManager.TriggerEvent("InCombat");
         EventManager.TriggerEvent("StopMoving");
+        EventManager.TriggerEvent("ResetTargets");
 
         enemy2UI.SetActive(false);
         Camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, Camera.transform.position.y, _InitialPositionBoy.transform.position.z);
@@ -285,6 +286,7 @@ public class ScriptedEvents : MonoBehaviour {
         EventManager.TriggerEvent("setup");
         EventManager.TriggerEvent("InCombat");
         EventManager.TriggerEvent("StopMoving");
+        EventManager.TriggerEvent("ResetTargets");
         enemy3.GetComponentInChildren<ThirdEnemy>().StopAttacking = true;
 
         enemy3UI.SetActive(false);

@@ -35,6 +35,8 @@ public class StopMoving : MonoBehaviour {
         EventManager.StartListening("NotInCombat", NotInCombat);
         EventManager.StartListening("InCombat", InCombat);
         EventManager.StartListening("GirlInCombat", GirlInCombat);
+
+        EventManager.StartListening("ResetTargets", ResetTargets);
     }
 
     private void OnDisable()
@@ -49,6 +51,8 @@ public class StopMoving : MonoBehaviour {
         EventManager.StopListening("NotInCombat", NotInCombat);
         EventManager.StopListening("InCombat", InCombat);
         EventManager.StopListening("GirlInCombat", GirlInCombat);
+
+        EventManager.StopListening("ResetTargets", ResetTargets);
     }
 
     void StopPlayerMovement()
@@ -117,5 +121,11 @@ public class StopMoving : MonoBehaviour {
         {
             GetComponent<BetterPlayer_Movement>().isCombat = true;
         }
+    }
+
+    void ResetTargets()
+    {
+         Girl.UndoCurTarget();
+         Boy.UndoCurTarget();
     }
 }

@@ -26,6 +26,7 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
+        
         if (doorClicked)
         {
             doorClicked = false;
@@ -51,6 +52,7 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
     private void Pause()
     {
         fightMenuUI.SetActive(true);
+        Debug.Log("Alex : Enable Next Fight after return");
         FindObjectOfType<EnableFight>().EnableNextFight();
         Time.timeScale = 0f;
         gameIsPaused = true;

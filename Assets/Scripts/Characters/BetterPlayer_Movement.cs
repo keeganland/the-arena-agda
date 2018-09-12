@@ -378,6 +378,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
     public void UndoCurTarget()
     {
         this.GetComponent<PlayerAI>().hasTarget = false;
+        this.GetComponent<PlayerAI>().AIavailable = false;
         if(curTarget)
         curTarget.GetComponent<HealthController>().CancelEnemy(this.gameObject);
         curTarget = null;

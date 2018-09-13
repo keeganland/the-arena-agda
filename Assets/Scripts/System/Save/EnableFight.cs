@@ -9,25 +9,21 @@ public class EnableFight : MonoBehaviour
 
     public List<GameObject> Fights;
 
-    [SerializeField] int fightNumber;
-
     private void Awake()
     {
         saveManager = FindObjectOfType<SaveManager>();
+        EnableNextFight(0);
     }
 
-    public void EnableNextFight()
+    public void EnableNextFight(int fightNumber)
     {
-        fightNumber = saveManager.fightNumberAvailable;
-
         if(Fights[fightNumber].activeSelf == false)
         {
             Fights[fightNumber].SetActive(true);
             if(!saveManager.fights.Contains(Fights[fightNumber].name))
             {
-                saveManager.fights.Add(Fights[fightNumber].name);
-                fightNumber += 1;
-                saveManager.fightNumberAvailable = fightNumber;
+                saveManager.fights.Add(Fights[fightNumber].name);            
+                saveManager.fightNumberAvailable = fightNumber;   
             }
         }
 

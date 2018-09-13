@@ -53,17 +53,19 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
     {
         fightMenuUI.SetActive(true);
         Debug.Log("Alex : Enable Next Fight after return");
-        FindObjectOfType<EnableFight>().EnableNextFight();
         Time.timeScale = 0f;
         gameIsPaused = true;
     }
 
     public void ArenaEntranceFight1()
     {
+        FindObjectOfType<EnableFight>().EnableNextFight(1);
+        Debug.Log("here");
         StartCoroutine(Fight1());
     }
     public void ArenaEntranceFight2()
     {
+        FindObjectOfType<EnableFight>().EnableNextFight(2);
         StartCoroutine(Fight2());
     }
     public void ArenaEntranceFight3()

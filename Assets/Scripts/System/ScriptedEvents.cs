@@ -25,8 +25,10 @@ public class ScriptedEvents : MonoBehaviour {
 
     [SerializeField] private GameObject _InitialPositionBoy;
     [SerializeField] private GameObject _InitialPositionGirl;
-    [SerializeField] private GameObject _InitialPositionEnemy; 
-    
+    [SerializeField] private GameObject _InitialPositionEnemy;
+    [SerializeField] private GameObject _DungeonPositionGirl;
+    [SerializeField] private GameObject _DungeonPositionBoy;
+
 
     [SerializeField] private NavMeshAgent boyNavMeshAgent;
     [SerializeField] private NavMeshAgent girlNavMeshAgent;
@@ -69,6 +71,8 @@ public class ScriptedEvents : MonoBehaviour {
         _InitialPositionBoy = _PublicVariableHolderArena._InitialPositionBoy;
         _InitialPositionGirl = _PublicVariableHolderArena._InitialPositionGirl;
         _InitialPositionEnemy = _PublicVariableHolderArena._InitialPositionEnemy;
+        _DungeonPositionGirl = _PublicVariableHolderArena._DungeonPositionGirl;
+        _DungeonPositionBoy = _PublicVariableHolderArena._DungeonPositionBoy;
 
         ReadyText = _PublicVariableHolderArena.ReadyText;
         FightText = _PublicVariableHolderArena.FightText;
@@ -357,18 +361,37 @@ public class ScriptedEvents : MonoBehaviour {
 
     IEnumerator victoryEventCoroutine()
     {
-        EventManager.StopListening("victoryEvent", VictoryEvent);
-        PlayerUI.SetActive(false);
-        EventManager.TriggerEvent("StopMoving");      
-        YouWonText.SetActive(true);
-        yield return new WaitForSeconds(4);
-        boyNavMeshAgent.SetDestination(_InitialPositionBoy.transform.position);
-        girlNavMeshAgent.SetDestination(_InitialPositionGirl.transform.position);
-        yield return new WaitForSeconds(3);
-        YouWonText.SetActive(false);
-        screenFader.StartCoroutine("FadeOut");
-        yield return new WaitForSeconds(1.5f);
-        saveManager.returnFromArena = true;
-        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("ArenaEntrance", "Arena");
+        if (saveManager.currentFight != 2)
+        {
+            EventManager.StopListening("victoryEvent", VictoryEvent);
+            PlayerUI.SetActive(false);
+            EventManager.TriggerEvent("StopMoving");
+            YouWonText.SetActive(true);
+            yield return new WaitForSeconds(4);
+            boyNavMeshAgent.SetDestination(_InitialPositionBoy.transform.position);
+            girlNavMeshAgent.SetDestination(_InitialPositionGirl.transform.position);
+            yield return new WaitForSeconds(3);
+            YouWonText.SetActive(false);
+            screenFader.StartCoroutine("FadeOut");
+            yield return new WaitForSeconds(1.5f);
+            saveManager.returnFromArena = true;
+            GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("ArenaEntrance", "Arena");
+        }
+        else if(saveManager.currentFight == 2)
+        {
+            EventManager.StopListening("victoryEvent", VictoryEvent);
+            PlayerUI.SetActive(false);
+            EventManager.TriggerEvent("StopMoving");
+            YouWonText.SetActive(true);
+            yield return new WaitForSeconds(4);
+            boyNavMeshAgent.SetDestination(_DungeonPositionBoy.transform.position);
+            girlNavMeshAgent.SetDestination(_DungeonPositionGirl.transform.position);
+            yield return new WaitForSeconds(3);
+            YouWonText.SetActive(false);
+            screenFader.StartCoroutine("FadeOut");
+            yield return new WaitForSeconds(1.5f);
+            saveManager.returnFromArena = true;
+            GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("ArenaDungeonFloor1", "Arena");
+        }
     }
 }

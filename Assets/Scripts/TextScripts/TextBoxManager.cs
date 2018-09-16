@@ -50,6 +50,7 @@ public class TextBoxManager : MonoBehaviour
     public bool stopPlayerMovement;
     public bool stopNPCMovement;
     public bool eventAtEndofText;
+    public bool eventStart;
 
     private bool isTyping = false;
     private bool cancelTyping = false;
@@ -145,7 +146,7 @@ public class TextBoxManager : MonoBehaviour
                 }
                 else if (((textQueue.Count == 0 && eventAtEndofText) || (currentLine > endAtLine && eventAtEndofText)))
                 {
-                    if (interactivityCue.activeSelf == false)
+                    if (interactivityCue == null || interactivityCue.activeSelf == false) 
                     {
                         EnableCue();
                     }
@@ -287,6 +288,11 @@ public class TextBoxManager : MonoBehaviour
             interactivityCue.SetActive(true);
             cueActive = true;
         }
+        else
+        {
+            eventStart = true;
+            DisableTextBox();
+        } 
     }
 
     public void SetinteractivityCue(GameObject cue)

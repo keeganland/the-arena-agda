@@ -434,6 +434,8 @@ Transform:
   - {fileID: 1628005644}
   - {fileID: 745264435}
   - {fileID: 2091804059}
+  - {fileID: 395362629}
+  - {fileID: 2112006213}
   m_Father: {fileID: 357521053}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1053,6 +1055,8 @@ MonoBehaviour:
   _InitialPositionBoy: {fileID: 1628005643}
   _InitialPositionGirl: {fileID: 745264434}
   _InitialPositionEnemy: {fileID: 2091804058}
+  _DungeonPositionGirl: {fileID: 395362628}
+  _DungeonPositionBoy: {fileID: 2112006212}
   ReadyText: {fileID: 1510548510}
   FightText: {fileID: 788385234}
   YouWonText: {fileID: 190615887}
@@ -1475,6 +1479,8 @@ MonoBehaviour:
   _InitialPositionBoy: {fileID: 0}
   _InitialPositionGirl: {fileID: 0}
   _InitialPositionEnemy: {fileID: 0}
+  _DungeonPositionGirl: {fileID: 0}
+  _DungeonPositionBoy: {fileID: 0}
   boyNavMeshAgent: {fileID: 0}
   girlNavMeshAgent: {fileID: 0}
   m_boy: {fileID: 0}
@@ -1704,6 +1710,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0000002, z: 1.0000001}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &395362628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 395362629}
+  m_Layer: 0
+  m_Name: DungeonPositionGirl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &395362629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 395362628}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.95, y: 0, z: 12.87}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 64818954}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &450394512
 GameObject:
   m_ObjectHideFlags: 0
@@ -9227,8 +9261,8 @@ Transform:
   m_Children:
   - {fileID: 995493250}
   - {fileID: 1537485702}
-  - {fileID: 1294447959}
   - {fileID: 2115132866}
+  - {fileID: 1294447959}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12334,6 +12368,34 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 493e38eaf03b0e9409d8013601fcfcf7, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &2112006212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2112006213}
+  m_Layer: 0
+  m_Name: DungeonPositionBoy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2112006213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2112006212}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.31, y: 0, z: 12.87}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 64818954}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2115132865
 Prefab:
   m_ObjectHideFlags: 0

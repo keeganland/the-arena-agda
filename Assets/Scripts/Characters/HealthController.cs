@@ -272,6 +272,7 @@ public class HealthController : MonoBehaviour
         if (Sprite)
         {
             Sprite.GetComponent<Animator>().Play("Death");
+            Sprite.GetComponent<Animator>().SetBool("Death", true);
         }
 
         if (this.gameObject.name == "Boy")
@@ -300,7 +301,9 @@ public class HealthController : MonoBehaviour
     public void UndoDeath()
     {
         Sprite.GetComponent<SpriteRenderer>().enabled = true;
-        if(gameObject.GetComponent<CapsuleCollider>())
+        Sprite.GetComponent<Animator>().SetBool("Death", false);
+
+        if (gameObject.GetComponent<CapsuleCollider>())
             gameObject.GetComponent<CapsuleCollider>().enabled = false;
         if (_Slider)
             _Slider.SetActive(true);

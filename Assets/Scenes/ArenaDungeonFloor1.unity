@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -26066,6 +26066,7 @@ MonoBehaviour:
   stopPlayerMovement: 1
   stopNPCMovement: 0
   eventAtEndofText: 0
+  eventStart: 0
   typeSpeed: 0
   SpriteHolder: {fileID: 283590050}
   SpriteHolderGameObject: {fileID: 2119263816}
@@ -42372,7 +42373,7 @@ MonoBehaviour:
   tagTriggersText: 0
   activatedByTag: 
   activatedByName: 
-  eventAtEndofText: 0
+  eventAtEndofText: 1
   textWasManuallyActivated: 0
   OnlyTriggerDialogueOnce: 0
   HasDifferentDialogue: 0

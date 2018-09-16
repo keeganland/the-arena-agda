@@ -20,6 +20,9 @@ public class PublicVariableHolderArena : MonoBehaviour {
     public GameObject _InitialPositionBoy; //Goes with "InitialPositionBoy" (arena)
     public GameObject _InitialPositionGirl; //Goes with "InitialPositionGirl" (arena)
     public GameObject _InitialPositionEnemy; //Goes with "InitialPositionEnemy" (arena)
+    public GameObject _DungeonPositionGirl; //Goes with "DungeonPositionGirl" (arena)
+    public GameObject _DungeonPositionBoy; //Goes with "DungeonPositionBoy" (arena)
+
 
     [Header("Scripted Events/UI")]
     public GameObject ReadyText; //Goes with "Ready"

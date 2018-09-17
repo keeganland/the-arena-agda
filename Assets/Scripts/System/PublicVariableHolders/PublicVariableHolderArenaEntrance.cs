@@ -16,6 +16,7 @@ public class PublicVariableHolderArenaEntrance : MonoBehaviour {
     [Header("SpawnPosition")]
     public GameObject SpawnPosBoy;
     public GameObject SpawnPosGirl;
+    public GameObject ScriptedPosBoyIntro;
 
     [Header("InteractiveObjectsEvents")]
     public GameObject DungeonDoorFloor1Boy;

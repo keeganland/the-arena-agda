@@ -95,11 +95,11 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
 
         yield return new WaitForSeconds(2f);
 
-        GameObject.FindWithTag("Fader").GetComponent<ScreenFader>().StartCoroutine("FadeOut");
+        ScreenFader.fadeOut();
 
         yield return new WaitForSeconds(2f);
 
-        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("Arena", "ArenaEntrance");
+        LoadingScreen.LoadScene("Arena", "ArenaEntrance");
 
         yield return new WaitForSeconds(1f);
     }
@@ -119,11 +119,11 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
 
         yield return new WaitForSeconds(2f);
 
-        GameObject.FindWithTag("Fader").GetComponent<ScreenFader>().StartCoroutine("FadeOut");
+        ScreenFader.fadeOut();
 
         yield return new WaitForSeconds(2f);
 
-        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("Arena", "ArenaEntrance");
+        LoadingScreen.LoadScene("Arena", "ArenaEntrance");
 
         yield return new WaitForSeconds(1f);
 
@@ -144,11 +144,11 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
 
         yield return new WaitForSeconds(2f);
 
-        GameObject.FindWithTag("Fader").GetComponent<ScreenFader>().StartCoroutine("FadeOut");
+        ScreenFader.fadeOut();
 
         yield return new WaitForSeconds(2f);
 
-        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("Arena", "ArenaEntrance");
+        LoadingScreen.LoadScene("Arena", "ArenaEntrance");
 
         yield return new WaitForSeconds(1f);
     }

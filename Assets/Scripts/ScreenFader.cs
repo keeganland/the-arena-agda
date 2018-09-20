@@ -4,16 +4,54 @@ using UnityEngine;
 
 public class ScreenFader : MonoBehaviour {
 
-
     Animator m_anim;
     bool m_isFading;
 
-	void Start () 
-    {
-        m_anim = GetComponent<Animator>();	
-	}
+    private static ScreenFader screenFader;
 
-    public IEnumerator FadeIn()
+    public static ScreenFader Instance
+    {
+        get
+        {
+            if (!screenFader)
+            {
+                screenFader = FindObjectOfType(typeof(ScreenFader)) as ScreenFader;
+
+                if (!screenFader)
+                {
+                    Debug.LogError("There needs to be one active EventManger script on a GameObject in your scene.");
+                }
+                else
+                {
+                    screenFader.Init();
+                }
+            }
+            return screenFader;
+        }
+    }
+
+    void Init()
+    {
+        m_anim = GetComponent<Animator>();  
+    }
+
+    private void Awake()
+    {
+        m_anim = GetComponent<Animator>();
+        screenFader = this;
+    }
+
+    static public void fadeIn()
+    {
+        screenFader.StartCoroutine("FadeIn");
+    }
+
+    static public void fadeOut()
+    {
+        screenFader.StartCoroutine("FadeOut");
+    }
+
+    IEnumerator FadeIn()
     {
         m_isFading = true;
         m_anim.SetBool("FadeIn", true);
@@ -21,7 +59,7 @@ public class ScreenFader : MonoBehaviour {
         while (m_isFading) yield return null;
     }
 
-    public IEnumerator FadeOut()
+    IEnumerator FadeOut()
     {
         m_isFading = true;
         m_anim.SetBool("FadeOut", true);
@@ -34,6 +72,16 @@ public class ScreenFader : MonoBehaviour {
         m_isFading = false;
         m_anim.SetBool("FadeIn", false);
         m_anim.SetBool("FadeOut", false);
+    }
+
+    public static void PlayLaserDevastation()
+    {
+        screenFader.Laser();
+    }
+
+    private void Laser()
+    {
+        m_anim.Play("LaserAttackDevastation");
     }
 
 }

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PublicVariableHolderArenaEntrance : MonoBehaviour {
+public class PublicVariableHolderArenaEntrance : MonoBehaviour
+{
 
     public PublicVariableHolderneverUnload publicVariableHolderNeverUnload;
 
 
-    public GameObject Girl; 
+    public GameObject Girl;
     public GameObject Boy;
 
     [Header("GeneralCharacteristics")]
@@ -37,6 +38,9 @@ public class PublicVariableHolderArenaEntrance : MonoBehaviour {
     public GameObject ReturnFromArenaGirlPos;
     public GameObject ReturnFromArenaBoyPos;
     public GameObject ReturnFromArena;
+
+    [Header("Exit floor 1")]
+    public GameObject ExitDoor;
 
     private void Awake()
     {

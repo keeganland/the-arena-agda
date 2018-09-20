@@ -13,7 +13,7 @@ public class InteractiveObjects : MonoBehaviour {
     private int currentHealth;
     public GameObject _DestroyEffect;
     public GameObject Door;
-    [Header("Case : 0 DoorDungeonFloor1; Case 1 = BossScriptedEvent ")]
+    [Header("Case : 0 DoorDungeonFloor1; Case 1 = BossScriptedEvent; Case 3 = ExitFloor1")]
     public int Case;
 
     private GameObject DungeonDoorFloor1Boy;
@@ -33,6 +33,8 @@ public class InteractiveObjects : MonoBehaviour {
 
     private GameObject smallEnemy;
     private GameObject boss;
+
+    private GameObject ExitDoor;
 
 
 
@@ -65,6 +67,8 @@ public class InteractiveObjects : MonoBehaviour {
 
         smallEnemy = publicVariableHolderArenaEntrance.smallEnemies;
         boss = publicVariableHolderArenaEntrance.boss;
+
+        ExitDoor = publicVariableHolderArenaEntrance.ExitDoor;
 
         m_messageHandler = GetComponent<MessageHandler>();
 
@@ -100,6 +104,10 @@ public class InteractiveObjects : MonoBehaviour {
                 StartCoroutine("DungeonFloor1Boss");
                 break;
 
+            case 2:
+
+                DungeonFloor1Exit();
+                break;
         }   
     }
 
@@ -120,10 +128,10 @@ public class InteractiveObjects : MonoBehaviour {
                 break;
         }
     }
+
     public void ApplyDamage(int damage, GameObject go)
     {
         currentHealth -= damage;
-
     }
 
     IEnumerator DungeonFloor1Door()
@@ -151,7 +159,7 @@ public class InteractiveObjects : MonoBehaviour {
 
         if(_DestroyEffect)
         {
-            GameObject.Find("ScreenFader").GetComponent<Animator>().Play("LaserAttackDevastation");
+            ScreenFader.PlayLaserDevastation();
             yield return new WaitForSeconds(.5f);
             GameObject sfx = Instantiate(_DestroyEffect, transform.position, Quaternion.identity);
             Destroy(sfx, 5f);
@@ -172,7 +180,6 @@ public class InteractiveObjects : MonoBehaviour {
     {
         EventManager.TriggerEvent("InCombat");
         EventManager.TriggerEvent("StopMoving");
-
 
         Vector3 BoyNewPos = new Vector3(BoyPosBoss.transform.position.x, Boy.transform.position.y, BoyPosBoss.transform.position.z);
         Vector3 GirlNewPos = new Vector3(GirlPosBoss.transform.position.x, Girl.transform.position.y, GirlPosBoss.transform.position.z);
@@ -208,12 +215,11 @@ public class InteractiveObjects : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         Girl.GetComponent<NavMeshAgent>().SetDestination(BossPos.transform.position);
 
-        ScreenFader fader = GameObject.Find("ScreenFader").GetComponent<ScreenFader>();
-        fader.StartCoroutine("FadeOut");
+        ScreenFader.fadeOut();
 
         yield return new WaitForSeconds(3f);
 
-        fader.StartCoroutine("FadeIn");
+        ScreenFader.fadeIn();
 
         yield return new WaitForSeconds(1f);
 
@@ -226,6 +232,15 @@ public class InteractiveObjects : MonoBehaviour {
             Enemiesgo[i] = Instantiate(smallEnemy, EnemiesSpawnPos[i].transform.position, Quaternion.identity);
         }
         Destroy(this.gameObject);
+    }
+
+    void DungeonFloor1Exit()
+    {
+        EventManager.TriggerEvent("InCombat");
+        EventManager.TriggerEvent("StopMoving");
+
+        Boy.GetComponent<NavMeshAgent>().SetDestination(new Vector3(ExitDoor.transform.position.x, Boy.transform.position.y, ExitDoor.transform.position.z));
+        Girl.GetComponent<NavMeshAgent>().SetDestination(new Vector3(ExitDoor.transform.position.x, Girl.transform.position.y, ExitDoor.transform.position.z));
     }
 
     private void OnDestroy()

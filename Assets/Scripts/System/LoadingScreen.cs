@@ -18,19 +18,51 @@ public class LoadingScreen : MonoBehaviour {
 
     AsyncOperation async;
 
-    private void Start()
+    private static LoadingScreen loadingScreen;
+
+    public static LoadingScreen Instance
     {
+        get
+        {
+            if (!loadingScreen)
+            {
+                loadingScreen = FindObjectOfType(typeof(LoadingScreen)) as LoadingScreen;
+
+                if (!loadingScreen)
+                {
+                    Debug.LogError("There needs to be one active EventManger script on a GameObject in your scene.");
+                }
+                else
+                {
+                    loadingScreen.Init();
+                }
+            }
+            return loadingScreen;
+        }
+    }
+
+    void Init()
+    {
+        loadingScreen = this;
         slider = publicVariableHolderneverUnload.loadingScreenSlider;
         loadingScreenObj = publicVariableHolderneverUnload.loadingScreen;
         fader = publicVariableHolderneverUnload.fader;
     }
 
-    public void loadScene(string sceneToLoad, string sceneToUnload)
+    private void Awake()
     {
-        StartCoroutine(loadSceneCoroutine(sceneToLoad, sceneToUnload));
+        loadingScreen = this;
+        slider = publicVariableHolderneverUnload.loadingScreenSlider;
+        loadingScreenObj = publicVariableHolderneverUnload.loadingScreen;
+        fader = publicVariableHolderneverUnload.fader;
     }
 
-    private IEnumerator loadSceneCoroutine(string sceneToLoad, string sceneToUnload)
+    public static void LoadScene(string sceneToLoad, string sceneToUnload)
+    {
+        loadingScreen.StartCoroutine(loadingScreen.LoadSceneCoroutine(sceneToLoad, sceneToUnload));
+    }
+
+    private IEnumerator LoadSceneCoroutine(string sceneToLoad, string sceneToUnload)
     {
         loadingScreenObj.SetActive(true);
         SceneManager.UnloadSceneAsync(sceneToUnload);

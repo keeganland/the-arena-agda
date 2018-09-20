@@ -48,7 +48,7 @@ public class ScriptedEvents : MonoBehaviour {
     private GameObject Camera;
 
     private int roundNumber;
-    private ScreenFader screenFader;
+
 
     private GameObject ReadyText;
     private GameObject FightText;
@@ -59,7 +59,6 @@ public class ScriptedEvents : MonoBehaviour {
     private void Start()
     {
         publicVariableHolder = GameObject.Find("/PublicVariableHolderNeverUnload").GetComponent<PublicVariableHolderneverUnload>();
-        screenFader = GameObject.Find("/ScreenFader").GetComponent<ScreenFader>();
 
         Camera = publicVariableHolder.MainCamera;
         boyNavMeshAgent = publicVariableHolder.BoynavMeshAgent;
@@ -142,9 +141,13 @@ public class ScriptedEvents : MonoBehaviour {
         Camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, Camera.transform.position.y, _InitialPositionBoy.transform.position.z);
 
         yield return new WaitForSeconds(.4f);
+
         m_boy.transform.position =_InitialPositionBoy.transform.position;
         m_girl.transform.position = _InitialPositionGirl.transform.position;
         enemy.transform.position = _InitialPositionEnemy.transform.position;
+
+        Debug.Log(m_boy.transform.position);
+        Debug.Log(_InitialPositionBoy.transform.position);
 
         publicVariableHolder.BoyUIGameObject.SetActive(true);
         publicVariableHolder.GirlUIGameObject.SetActive(true);
@@ -154,16 +157,16 @@ public class ScriptedEvents : MonoBehaviour {
 
         yield return new WaitForSeconds(.4f);
 
-        screenFader.StartCoroutine("FadeIn");
+        ScreenFader.fadeIn();
 
         yield return new WaitForSeconds(4.5f);
 
-        screenFader.StartCoroutine("FadeOut");
+        ScreenFader.fadeOut();
 
         yield return new WaitForSeconds(2.5f);
         Camera.transform.position = new Vector3(_InitialPositionEnemy.transform.position.x, Camera.transform.position.y, _InitialPositionEnemy.transform.position.z);
 
-        screenFader.StartCoroutine("FadeIn");
+        ScreenFader.fadeIn();
 
         yield return new WaitForSeconds(2f);
         enemy.GetComponentInChildren<NavMeshAgent>().SetDestination(_PublicVariableHolderArena._EnterArenaWaypointsEnemy[0].transform.position);
@@ -234,7 +237,7 @@ public class ScriptedEvents : MonoBehaviour {
 
         yield return new WaitForSeconds(.4f);
 
-        screenFader.StartCoroutine("FadeIn");
+        ScreenFader.fadeIn();
 
         yield return new WaitForSeconds(4.5f);
 
@@ -309,16 +312,16 @@ public class ScriptedEvents : MonoBehaviour {
 
         yield return new WaitForSeconds(.4f);
 
-        screenFader.StartCoroutine("FadeIn");
+        ScreenFader.fadeIn();
 
         yield return new WaitForSeconds(4.5f);
 
-        screenFader.StartCoroutine("FadeOut");
+        ScreenFader.fadeOut();
 
         yield return new WaitForSeconds(2.5f);
         Camera.transform.position = new Vector3(_InitialPositionEnemy.transform.position.x, Camera.transform.position.y, _InitialPositionEnemy.transform.position.z);
 
-        screenFader.StartCoroutine("FadeIn");
+        ScreenFader.fadeIn();
 
         yield return new WaitForSeconds(2f);
         enemy3.GetComponentInChildren<NavMeshAgent>().SetDestination(_PublicVariableHolderArena._EnterArenaWaypointsEnemy[0].transform.position);
@@ -372,10 +375,10 @@ public class ScriptedEvents : MonoBehaviour {
             girlNavMeshAgent.SetDestination(_InitialPositionGirl.transform.position);
             yield return new WaitForSeconds(3);
             YouWonText.SetActive(false);
-            screenFader.StartCoroutine("FadeOut");
+            ScreenFader.fadeOut();
             yield return new WaitForSeconds(1.5f);
             saveManager.returnFromArena = true;
-            GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("ArenaEntrance", "Arena");
+            LoadingScreen.LoadScene("ArenaEntrance", "Arena");
         }
         else if(saveManager.currentFight == 2)
         {
@@ -388,10 +391,10 @@ public class ScriptedEvents : MonoBehaviour {
             girlNavMeshAgent.SetDestination(_DungeonPositionGirl.transform.position);
             yield return new WaitForSeconds(3);
             YouWonText.SetActive(false);
-            screenFader.StartCoroutine("FadeOut");
+            ScreenFader.fadeOut();
             yield return new WaitForSeconds(1.5f);
             saveManager.returnFromArena = true;
-            GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("ArenaDungeonFloor1", "Arena");
+            LoadingScreen.LoadScene("ArenaDungeonFloor1", "Arena");
         }
     }
 }

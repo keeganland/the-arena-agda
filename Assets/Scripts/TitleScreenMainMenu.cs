@@ -14,7 +14,7 @@ public class TitleScreenMainMenu : MonoBehaviour {
 
     private void Start()
     {
-        GameObject.FindWithTag("Fader").GetComponent<ScreenFader>().StartCoroutine("FadeIn");
+        ScreenFader.fadeIn();
     }
     private void OnDisable()
     {
@@ -24,19 +24,19 @@ public class TitleScreenMainMenu : MonoBehaviour {
 
     public void PlayGame()
     {
-        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("Introduction (1)", "TitleScreen");
+        LoadingScreen.LoadScene("Introduction (1)", "TitleScreen");
         EventManager.TriggerEvent("setup");
     }
 
     public void PlayArenaEntrance()
     {
-        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("ArenaEntrance", "TitleScreen");
+        LoadingScreen.LoadScene("ArenaEntrance", "TitleScreen");
         EventManager.TriggerEvent("setup");
     }
 
     public void PlayArena()
     {
-        GameObject.FindWithTag("LoadingScreen").GetComponent<LoadingScreen>().loadScene("Arena", "TitleScreen");
+        LoadingScreen.LoadScene("Arena", "TitleScreen");
         EventManager.TriggerEvent("setup");
     }
 

@@ -505,7 +505,7 @@ public class ThirdEnemy : BasicEnemyBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        GameObject.Find("ScreenFader").GetComponent<Animator>().Play("LaserAttackDevastation");
+        ScreenFader.PlayLaserDevastation();
 
         yield return new WaitForSeconds(1.5f);
 

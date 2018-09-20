@@ -220,6 +220,7 @@ public class InteractiveObjects : MonoBehaviour {
         yield return new WaitForSeconds(3f);
 
         ScreenFader.fadeIn();
+        publicVariableHolderNeverUnload.PlayerUI.SetActive(true);
 
         yield return new WaitForSeconds(1f);
 
@@ -241,6 +242,8 @@ public class InteractiveObjects : MonoBehaviour {
 
         Boy.GetComponent<NavMeshAgent>().SetDestination(new Vector3(ExitDoor.transform.position.x, Boy.transform.position.y, ExitDoor.transform.position.z));
         Girl.GetComponent<NavMeshAgent>().SetDestination(new Vector3(ExitDoor.transform.position.x, Girl.transform.position.y, ExitDoor.transform.position.z));
+
+        publicVariableHolderNeverUnload.PlayerUI.SetActive(false);
     }
 
     private void OnDestroy()

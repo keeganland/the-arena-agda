@@ -90,6 +90,7 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
 
     [Header("NeverUnload/VictoryReferee")]
     public GameObject DeathCanvas;
+    public GameObject VictoryCanvas;
 
     [Header("NeverUnload/Loading Screen")]
     public GameObject loadingScreen;

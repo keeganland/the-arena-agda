@@ -189,6 +189,10 @@ public class BetterPlayer_Movement : MonoBehaviour {
                         if (activateText)
                             activateText.PlayerEnableText(true);
                     }
+                    else if(hit.collider.tag == "Player")
+                    {
+                        SetCurTarget(hit.collider.gameObject);
+                    }
                 }
                 if (gameObject.GetComponent<HealthController>().m_reviveCoroutine == true)
                 {
@@ -265,10 +269,16 @@ public class BetterPlayer_Movement : MonoBehaviour {
         {
             boyActive = true;
             _BoySelected.enabled = true;
-            this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
-            this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
-            this.gameObject.GetComponent<SpellCommand>().CancelBoyStun();
-            this.gameObject.GetComponent<SpellCommand>().CancelBoyShield();
+
+            Boy.GetComponent<SpellCommand>().CancelAOEAttack();
+            Boy.GetComponent<SpellCommand>().CancelHealAttack();
+            Boy.GetComponent<SpellCommand>().CancelBoyStun();
+            Boy.GetComponent<SpellCommand>().CancelBoyShield();
+            Girl.GetComponent<SpellCommand>().CancelAOEAttack();
+            Girl.GetComponent<SpellCommand>().CancelHealAttack();
+            Girl.GetComponent<SpellCommand>().CancelBoyStun();
+            Girl.GetComponent<SpellCommand>().CancelBoyShield();
+
 
             Boy.GetComponent<SpellCommand>().isSmallUI =false;
             Girl.GetComponent<SpellCommand>().isSmallUI = false;
@@ -286,10 +296,14 @@ public class BetterPlayer_Movement : MonoBehaviour {
         {
             boyActive = false;
             _BoySelected.enabled = false;
-            this.gameObject.GetComponent<SpellCommand>().CancelBoyStun();
-            this.gameObject.GetComponent<SpellCommand>().CancelBoyShield();
-            this.gameObject.GetComponent<SpellCommand>().CancelAOEAttack();
-            this.gameObject.GetComponent<SpellCommand>().CancelHealAttack();
+
+            Boy.GetComponent<SpellCommand>().CancelAOEAttack();
+            Boy.GetComponent<SpellCommand>().CancelHealAttack();
+            Boy.GetComponent<SpellCommand>().CancelBoyStun();
+            Boy.GetComponent<SpellCommand>().CancelBoyShield();
+            Girl.GetComponent<SpellCommand>().CancelAOEAttack();
+            Girl.GetComponent<SpellCommand>().CancelHealAttack();
+            Girl.GetComponent<SpellCommand>().CancelBoyStun();
 
             Boy.GetComponent<SpellCommand>().isSmallUI = false;
             Girl.GetComponent<SpellCommand>().isSmallUI = false;

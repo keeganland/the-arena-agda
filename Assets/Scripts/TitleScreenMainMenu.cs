@@ -18,8 +18,11 @@ public class TitleScreenMainMenu : MonoBehaviour {
     }
     private void OnDisable()
     {
-        if(tutorialScreen.activeSelf == false)
-        EventManager.TriggerEvent("ShowUI");
+        if (tutorialScreen)
+        {
+            if (tutorialScreen.activeSelf == false)
+                EventManager.TriggerEvent("ShowUI");
+        }
     }
 
     public void PlayGame()
@@ -56,8 +59,10 @@ public class TitleScreenMainMenu : MonoBehaviour {
         SceneManager.LoadSceneAsync("Dialog - Prototype", LoadSceneMode.Additive);
         EventManager.TriggerEvent("setup");
     }
+
     public void PlayHowToPlay()
     {
+        if(tutorialScreen)
         tutorialScreen.SetActive(true);
     }
 

@@ -48,5 +48,6 @@ public class PublicVariableHolderArenaEntrance : MonoBehaviour
         Girl = publicVariableHolderNeverUnload.Girl;
         Boy = publicVariableHolderNeverUnload.Boy;
         MainCamera = publicVariableHolderNeverUnload.MainCamera;
+
     }
 }

@@ -8,6 +8,7 @@ abstract public class InitialSceneSetup : MonoBehaviour {
     public SaveManager saveManager;
 
 	public PublicVariableHolderArenaEntrance publicArenaEntrance;
+    public PublicVariableHolderneverUnload publicVariableHolderneverUnload;
 
 	public float MainCameraFieldOfViewMin = 9;
 	public float MainCameraFieldOfViewMax = 12;
@@ -27,6 +28,8 @@ abstract public class InitialSceneSetup : MonoBehaviour {
     // Use this for initialization
     protected void Start()
     {
+        publicArenaEntrance.publicVariableHolderNeverUnload.PlayerUI.SetActive(false);
+
         Boy = publicArenaEntrance.Boy;
         Girl = publicArenaEntrance.Girl;
 

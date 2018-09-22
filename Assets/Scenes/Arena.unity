@@ -391,7 +391,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &48077434
 MonoBehaviour:
@@ -2453,6 +2453,7 @@ MonoBehaviour:
   stopPlayerMovement: 1
   stopNPCMovement: 0
   eventAtEndofText: 0
+  eventStart: 0
   typeSpeed: 0
   SpriteHolder: {fileID: 0}
   SpriteHolderGameObject: {fileID: 0}
@@ -10355,8 +10356,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: 0}
-  m_SizeDelta: {x: 400, y: 200}
+  m_AnchoredPosition: {x: 250, y: -110}
+  m_SizeDelta: {x: 700, y: 200}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1529783371
 MonoBehaviour:
@@ -10384,15 +10385,15 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 60
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Press 1 to play the Egnevy (Boy)
+  m_Text: '- Press 1 to play the Egnevy (Boy)
 
-    Press 2 to play the Eva (Girl)'
+    - Press 2 to play the Eva (Girl)'
 --- !u!222 &1529783372
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11821,7 +11822,7 @@ RectTransform:
   m_Children:
   - {fileID: 1354941839}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

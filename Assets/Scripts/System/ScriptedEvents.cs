@@ -78,7 +78,7 @@ public class ScriptedEvents : MonoBehaviour {
         YouWonText = _PublicVariableHolderArena.YouWonText;
         PlayerUI = publicVariableHolder.PlayerUI;
 
-        m_girl.GetComponent<BoxCollider>().enabled = false;
+        m_girl.GetComponent<BoxCollider>().enabled = true;
     }
 
     private void Awake()

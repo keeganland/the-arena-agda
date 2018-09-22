@@ -1355,6 +1355,7 @@ MonoBehaviour:
   MainCamera: {fileID: 0}
   SpawnPosBoy: {fileID: 60219640}
   SpawnPosGirl: {fileID: 26255390}
+  ScriptedPosBoyIntro: {fileID: 0}
   DungeonDoorFloor1Boy: {fileID: 0}
   DungeonDoorFloor1Girl: {fileID: 0}
   BoyPosBoss: {fileID: 0}
@@ -1369,6 +1370,7 @@ MonoBehaviour:
   ReturnFromArenaGirlPos: {fileID: 246443981}
   ReturnFromArenaBoyPos: {fileID: 1287893382}
   ReturnFromArena: {fileID: 1271664863}
+  ExitDoor: {fileID: 0}
 --- !u!4 &206583903
 Transform:
   m_ObjectHideFlags: 0
@@ -13198,6 +13200,7 @@ MonoBehaviour:
   stopPlayerMovement: 1
   stopNPCMovement: 0
   eventAtEndofText: 0
+  eventStart: 0
   typeSpeed: 0
   SpriteHolder: {fileID: 0}
   SpriteHolderGameObject: {fileID: 0}
@@ -29914,6 +29917,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveManager: {fileID: 0}
   publicArenaEntrance: {fileID: 206583902}
+  publicVariableHolderneverUnload: {fileID: 0}
   MainCameraFieldOfViewMin: 9
   MainCameraFieldOfViewMax: 12
   BoyNav: {fileID: 0}

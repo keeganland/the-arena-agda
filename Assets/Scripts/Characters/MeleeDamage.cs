@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MeleeDamage : MonoBehaviour {
 
@@ -16,6 +17,8 @@ public class MeleeDamage : MonoBehaviour {
     public AudioClip _InvinsibleSFX;
     private AudioSource m_audioSource;
 
+    public Slider AutoAttackslider;
+
     //-----------------Alex Modifications-----------//
     [SerializeField]
     private GameObject[] spellPrefab;
@@ -27,6 +30,11 @@ public class MeleeDamage : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Debug.Log("MeleeDamage: Damage Target" + m_target.name);
+
+        if (AutoAttackslider)
+        {
+            AutoAttackslider.value = AttackTimer / AttackSpeed;
+        }
         AttackTimer += Time.deltaTime; 
         if(AttackTimer >= AttackSpeed && (this.GetComponentInChildren<RangeChecker>().InRange(m_target)) && m_target!=null && gameObject.GetComponent<HealthController>().currentHealth > 0)
         {

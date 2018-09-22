@@ -191,7 +191,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                     }
                     else if(hit.collider.tag == "Player")
                     {
-                        SetCurTarget(hit.collider.gameObject);
+                        curTarget = hit.collider.gameObject;
                     }
                 }
                 if (gameObject.GetComponent<HealthController>().m_reviveCoroutine == true)

@@ -21,8 +21,8 @@ public class DestroyTutorials : MonoBehaviour {
 
         saveManager.tutorials.Add(name);
     }
-	
-	void Update () 
+
+    void Update () 
     {
         if(Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
         {

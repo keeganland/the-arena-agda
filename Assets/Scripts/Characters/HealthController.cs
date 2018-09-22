@@ -38,6 +38,7 @@ public class HealthController : MonoBehaviour
     private float invincibilityHealTimer;
 
     public string GameObjectName;
+    public GameObject deathTutorial;
 
     private void Awake()
     {
@@ -262,6 +263,11 @@ public class HealthController : MonoBehaviour
     }
 
     private void DoDeath() {
+
+        if (deathTutorial)
+        {
+            deathTutorial.SetActive(true);
+        }
 
         gameObject.GetComponent<CapsuleCollider>().enabled = true;
         if (_Slider)

@@ -47,18 +47,13 @@ public class SetUp : MonoBehaviour {
         EventManager.StopListening("setup", SetUpCharacterHealth);
     }
 
-    // Update is called once per frame
-    void Update () 
-    {
-
-	}
-
     public void SetUpCharacterHealth()
     {
         /*TODO reset the players' health here*/
         foreach (GameObject players in PlayersGameObject)
         {
             players.GetComponent<HealthController>().currentHealth = players.GetComponent<HealthController>().totalHealth;
+            players.GetComponent<HealthController>().UndoDeath();
         }
 
         FindObjectOfType<VictoryReferee>().SetPlayerWon(false);

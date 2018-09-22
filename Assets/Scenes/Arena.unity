@@ -12449,6 +12449,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114632455225780266, guid: 7f143ac4fda31a7449aea96f62455029,
+        type: 2}
+      propertyPath: _AttackCD.Array.data[3]
+      value: 33
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}
   m_IsPrefabAsset: 0

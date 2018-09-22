@@ -96,6 +96,7 @@ public class MeleeDamage : MonoBehaviour {
         Vector3 direction = m_target.transform.position - transform.position;
         float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
 
+        Debug.Log(transform.eulerAngles.y);
         transform.LookAt(m_target.transform);
 
         int rotation = 0;
@@ -104,9 +105,9 @@ public class MeleeDamage : MonoBehaviour {
         {
             rotation = 3;
         }
-        else if (0 <= transform.eulerAngles.y && transform.eulerAngles.y < 45)
+        else if (135 <= transform.eulerAngles.y && transform.eulerAngles.y < 225)
         {
-            rotation = 1;
+            rotation = 2;
         }
         else if (225 <= transform.eulerAngles.y && transform.eulerAngles.y < 315)
         {
@@ -114,7 +115,8 @@ public class MeleeDamage : MonoBehaviour {
         }
         else
         {
-            rotation = 2;
+            Debug.Log("here" + gameObject.name);
+            rotation = 1;
         }
 
         if (rotation != 0)

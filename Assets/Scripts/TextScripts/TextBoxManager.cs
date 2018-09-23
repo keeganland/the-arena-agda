@@ -9,6 +9,12 @@
  * I may want to replace this with a general "UI manager"
  */
 
+
+ /**
+  * Todo 9/21: turn this into a persistent singleton object for NeverUnload
+  */
+
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
@@ -66,10 +72,45 @@ public class TextBoxManager : MonoBehaviour
     public GameObject SpriteHolderGameObject;
 
     PauseMenu pauseMenu;
-    // Use this for initialization
-    void Start()
+
+
+    //Holds the single object for singleton design pattern
+    public static TextBoxManager textBoxManager;
+
+
+    public static TextBoxManager Instance
+    {
+        get
+        {
+            if(!textBoxManager)
+            {
+                textBoxManager = FindObjectOfType(typeof(TextBoxManager)) as TextBoxManager;
+
+                if(!textBoxManager)
+                {
+                    Debug.LogError("There needs to be one active TextBoxManager script on a GameObject in your scene.");
+                }
+                else
+                {
+                    textBoxManager.Init();
+                }
+            }
+            return textBoxManager;
+        }
+    }
+
+    void Init()
     {
         pauseMenu = FindObjectOfType<PauseMenu>();
+        //TODO: Move a lot of what was in Start, etc. in here
+    }
+
+
+
+
+    void Start()
+    {
+        //pauseMenu = FindObjectOfType<PauseMenu>(); // moved to Init
 		/**
 		 * Keegan NTS: Initialize the script. Lots of redundancy with the Reload method. Revisit plz
 		 */
@@ -100,6 +141,15 @@ public class TextBoxManager : MonoBehaviour
             }
         }
 
+
+        /*
+         * Keegan 2018/9/21- as far as i know, the below existed strictly for testing through the Unity inspector
+         * 
+         * I cannot think of any other circumstance in which 
+         */
+
+
+        /*
         if (isActive)
         {
             EnableTextBox();
@@ -117,6 +167,7 @@ public class TextBoxManager : MonoBehaviour
         {
             DisableCue();
         }
+        */
     }
 
     // Update is called once per frame
@@ -198,12 +249,14 @@ public class TextBoxManager : MonoBehaviour
                 namePlate.SetActive(true);
             }
 		}
+
         isActive = true;
 
         if (stopPlayerMovement) 
         {
             EventManager.TriggerEvent("StopMoving");
         }
+
         if (stopNPCMovement)
         {
             //theNPCMovementManager.StopNPCMovement();

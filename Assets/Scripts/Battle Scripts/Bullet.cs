@@ -49,7 +49,8 @@ public class Bullet : MonoBehaviour {
                     if (msgHandler)
                     {
                         msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
-                    Debug.Log("here");
+                    Debug.Log("Bullet check: Other's Tag = " + other.tag);
+                    Debug.Log("Bullet Check: Spellcaster's Tag = " + _SpellCaster.tag);
                         DisplayDamage(other.gameObject, _DamageColor, Damage);
                     }
                 }

@@ -78,7 +78,12 @@ public abstract class ActivateTextAtLine : MonoBehaviour
     // Use this for initialization
     protected void Start()
     {
-        theTextManager = FindObjectOfType<TextBoxManager>();
+        /*
+         * As of 2018/9/21, text box manager will be a singleton, its script being part of an object in the NeverUnload scene.
+         */
+
+        //theTextManager = FindObjectOfType<TextBoxManager>();
+        theTextManager = TextBoxManager.Instance;
 
         theTextManager.eventAtEndofText = eventAtEndofText;
 

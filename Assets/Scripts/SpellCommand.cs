@@ -280,7 +280,7 @@ public class SpellCommand : MonoBehaviour {
                     }
                 }
            
-                Debug.Log("SpellCommand: Boy cast Q");
+                //Debug.Log("SpellCommand: Boy cast Q");
             }
             //Girl spell called by Q (Heal)
             else if((player_number == 1 && _HealCooldownTimer == 0) || (isQGirlforced && _HealCooldownTimer == 0)) //What is "isQGirlForeced" and is the _HealCooldownTimer == 0 part necessary? This is checked in update
@@ -313,7 +313,7 @@ public class SpellCommand : MonoBehaviour {
                     }
                 }
            
-                Debug.Log("SpellCommand: Girl cast Q");
+                //Debug.Log("SpellCommand: Girl cast Q");
             }
         }
     }
@@ -347,11 +347,11 @@ public class SpellCommand : MonoBehaviour {
                             StunIndicatorPivot.transform.rotation = Quaternion.Euler(90f, angle, 0);
                         //StunIndicatorPivot.transform.LookAt(RotationRectangle);
 
-                        Debug.Log(EventSystem.current.IsPointerOverGameObject());
+                        //Debug.Log(EventSystem.current.IsPointerOverGameObject());
                         if (Input.GetMouseButtonDown(0) && !(EventSystem.current.IsPointerOverGameObject() && EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("UI")))
                             {
                             List<GameObject> EnemiestoStun = StunDirectionIndicator.GetComponent<BoyStunListGameObjects>().EnemiesList;
-                            Debug.Log(EnemiestoStun.Count);
+                            //Debug.Log(EnemiestoStun.Count);
                             if (EnemiestoStun.Count != 0)
                             {
                                 foreach (GameObject cd in EnemiestoStun)
@@ -382,7 +382,7 @@ public class SpellCommand : MonoBehaviour {
                    
                 }
             
-                Debug.Log("SpellCommand: Boy cast W");
+                //Debug.Log("SpellCommand: Boy cast W");
             }
             //Girl spell called by W (AOE)
             else if((player_number == 1 && _AOECooldownTimer == 0) || (isWGirlforced && _AOECooldownTimer == 0)) //What is "isWGirlforced"? And again, the timer is checked in update
@@ -402,7 +402,8 @@ public class SpellCommand : MonoBehaviour {
                             if (Input.GetMouseButtonDown(0) && !(EventSystem.current.IsPointerOverGameObject() && EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("UI")))
                             {
                                 AOEpos = new Vector3(hit.point.x, 1, hit.point.z);
-                                Instantiate(AOE, AOEpos, Quaternion.identity);
+                                GameObject go = Instantiate(AOE, AOEpos, Quaternion.identity);
+                                go.GetComponentInChildren<Bullet>().SetSpellCaster(this.gameObject);
                                 CancelAOEAttack();
                                 _AOECooldownTimer = _AOECooldown;
                             }

@@ -240,7 +240,6 @@ public abstract class ActivateTextAtLine : MonoBehaviour
         }
         
         theTextManager.currentLine = startLine;
-        Debug.Log(theTextManager.currentLine);
         theTextManager.endAtLine = endLine;
         theTextManager.EnableTextBox();
     }

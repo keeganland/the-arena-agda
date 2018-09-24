@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-public class PlayVideo : MonoBehaviour
+// Source https://www.youtube.com/watch?v=nGA3jMBDjHk&t=220s
+
+public class PlayVideo : MonoBehaviour 
 {
     private RawImage image;
     private VideoPlayer movie;

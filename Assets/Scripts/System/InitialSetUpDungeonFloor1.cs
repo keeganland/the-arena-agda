@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.Events;
+
 
 public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
 
@@ -13,7 +15,24 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
     private SpriteScript2 Egnevy;
     private SpriteScript2 Eva;
 
-   
+    private UnityAction victoryEvent;
+
+    private void Awake()
+    {
+        victoryEvent = new UnityAction(VictoryEvent);
+        saveManager = FindObjectOfType<SaveManager>();
+    }
+
+    private void OnEnable()
+    {
+        EventManager.StartListening("victoryEvent", VictoryEvent);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("victoryEvent", VictoryEvent);
+    }
+
 
     new void Start()
     {
@@ -26,6 +45,10 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         Boy.transform.position = new Vector3(SpawnPosBoy.transform.position.x, transform.position.y, SpawnPosBoy.transform.position.z);
         Girl.transform.position = new Vector3(SpawnPosGirl.transform.position.x, transform.position.y, SpawnPosGirl.transform.position.z);
 
+        Boy.GetComponent<BetterPlayer_Movement>().SwapGirl();
+        Girl.GetComponent<BetterPlayer_Movement>().SwapGirl();
+
+
         Egnevy = Boy.GetComponent<HealthController>().Sprite.GetComponent<SpriteScript2>();
         Eva = Girl.GetComponent<HealthController>().Sprite.GetComponent<SpriteScript2>();
 
@@ -34,9 +57,14 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         MainCamera.GetComponent<BetterCameraFollow>()._FieldOfViewMin = MainCameraFieldOfViewMin;
         MainCamera.GetComponent<BetterCameraFollow>()._FieldOfViewMax = MainCameraFieldOfViewMax;
 
+        EventManager.TriggerEvent("StopMoving");
+
         publicArenaEntrance.publicVariableHolderNeverUnload.fader.StartCoroutine("FadeIn");
 
         StartCoroutine(ArrivalScriptedEvent());
+
+        VictoryReferee.ResetEnemyList();
+        VictoryReferee.SetVictoryCondition(2);
 	}
 
     IEnumerator ArrivalScriptedEvent()
@@ -84,6 +112,8 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         yield return new WaitForSeconds(0.5f);
         Eva.ForcePlayerRotation(3);
 
+        EventManager.TriggerEvent("StartMoving");
+
         StartCoroutine(ArrivalDialogue());
     }
 
@@ -102,5 +132,38 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
 
 
         //yield return new WaitUntil(() => Input.anyKeyDown == true);
+    }
+
+    private void VictoryEvent()
+    {
+        EventManager.StopListening("victoryEvent", VictoryEvent);
+        EventManager.TriggerEvent("NotInCombat");
+        EventManager.TriggerEvent("StopMoving");
+
+        StartCoroutine(VictoryEventCoroutine());
+    }
+
+    private IEnumerator VictoryEventCoroutine()
+    {
+        float t = 0.0f;
+        MainCamera.GetComponent<BetterCameraFollow>().enabled = false;
+        while( t< 2.0f)
+        {
+            MainCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, new Vector3(publicArenaEntrance.Floor2Door.gameObject.transform.position.x, MainCamera.transform.position.y, publicArenaEntrance.Floor2Door.gameObject.transform.position.z), t*0.01f);
+            MainCamera.GetComponent<Camera>().orthographicSize = Mathf.Lerp(MainCamera.GetComponent<Camera>().orthographicSize, 6f, t*0.01f);
+            Debug.Log(t);
+            t += Time.deltaTime;
+            yield return null;
+        }
+        EventManager.TriggerEvent("camTargetRefresh");
+        publicArenaEntrance.Floor2Door.Play("OpenDoorFloor2");
+
+        yield return new WaitForSeconds(1.5f);
+        MainCamera.GetComponent<BetterCameraFollow>().enabled = true;
+        yield return new WaitForSeconds(0.5f);
+
+        publicArenaEntrance.ExitDoor.SetActive(true);
+
+        EventManager.TriggerEvent("StartMoving");
     }
 }

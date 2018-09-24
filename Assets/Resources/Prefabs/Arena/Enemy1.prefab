@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 23491299734698112}
   - component: {fileID: 82965811579602256}
   - component: {fileID: 114480562559653218}
+  - component: {fileID: 114270830833823884}
   m_Layer: 0
   m_Name: FirstEnemy-Agent
   m_TagString: Enemy
@@ -977,6 +978,7 @@ MonoBehaviour:
   m_reviveCoroutine: 0
   isTargeted: 0
   GameObjectName: 'The Ultimate Badass Sheep '
+  deathTutorial: {fileID: 0}
 --- !u!114 &114251069511720430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1004,6 +1006,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114270830833823884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344374512228346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 224e2c1527d5b1b4291e16d95fe7a6f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114301555200086774
 MonoBehaviour:
   m_ObjectHideFlags: 1

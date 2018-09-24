@@ -69592,6 +69592,7 @@ MonoBehaviour:
   - Enemy
   - Player
   - Objects
+  m_targets: []
 --- !u!23 &1051442756
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -89419,6 +89420,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   publicVariableHoldernever: {fileID: 1546493861}
+  EnemiesLeft: []
+  TriggerKillAllbool: 0
   victoryUI: {fileID: 629648604}
   victoryDebugging: 0
   victoryMode: 0
@@ -102310,6 +102313,7 @@ MonoBehaviour:
   - Enemy
   - Player
   - Objects
+  m_targets: []
 --- !u!23 &1860826680
 MeshRenderer:
   m_ObjectHideFlags: 0

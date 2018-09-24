@@ -323,7 +323,7 @@ public class SpellCommand : MonoBehaviour {
         if (isWspell)
         {
             player_number = CharacterSelect();
-            Debug.Log("SpellCommand: W/player_number = " + player_number);
+            //Debug.Log("SpellCommand: W/player_number = " + player_number);
             //Boy spell called by W (Stun)
             if ((player_number == 0 && _StunCooldownTimer == 0 && !isSmallUI) || (isWBoyforced && _StunCooldownTimer == 0 && !isSmallUI))
             {

@@ -20,6 +20,9 @@ public class VictoryReferee : MonoBehaviour {
     private int bossesKilled;
     private bool playerWon;
 
+    [SerializeField] private List<GameObject> EnemiesLeft;
+    [SerializeField] private bool TriggerKillAllbool = false;
+
     public GameObject victoryUI;
     public bool victoryDebugging;
     public int victoryMode;
@@ -28,8 +31,36 @@ public class VictoryReferee : MonoBehaviour {
     public HealthController Boy;
     public HealthController Girl;
 
+    private static VictoryReferee victoryReferee;
+
+    public static VictoryReferee Instance
+    {
+        get
+        {
+            if (!victoryReferee)
+            {
+                victoryReferee = FindObjectOfType(typeof(VictoryReferee)) as VictoryReferee;
+
+                if (!victoryReferee)
+                {
+                    Debug.LogError("There needs to be one active EventManger script on a GameObject in your scene.");
+                }
+                else
+                {
+                    victoryReferee.Init();
+                }
+            }
+            return victoryReferee;
+        }
+    }
+
+    void Init()
+    {
+    }
+
     private void Awake()
     {
+        victoryReferee = this;
         bossesKilled = 0;
         victoryAction = new UnityAction(Victory);
         victoryCondition = new UnityAction(NeverVictory); //Just to avoid null references. victoryCondition will be a very frequently changing variable
@@ -51,7 +82,7 @@ public class VictoryReferee : MonoBehaviour {
     {
         //At the beginning of the scene, victory condition is set to 0 - i.e., "kill one boss"
         //This is so that there is ALWAYS a victory condition. 
-        this.SetVictoryCondition(0);
+        SetVictoryCondition(0);
     }
 
     private void Update()
@@ -60,7 +91,7 @@ public class VictoryReferee : MonoBehaviour {
         {
             if (Input.GetKeyDown("v"))
             {
-                this.SetVictoryCondition(1); //Whenever a checkVictory happens, you automatically win.
+                SetVictoryCondition(1); //Whenever a checkVictory happens, you automatically win.
                 Debug.Log("You set the victory condition to 1");
             }
             if (Input.GetKeyDown("b"))
@@ -86,6 +117,8 @@ public class VictoryReferee : MonoBehaviour {
         {
             StartCoroutine(Lost());
         }
+
+        KillAllVictory(); //Check for kill all victory ?
     }
 
     public void Victory()
@@ -118,7 +151,7 @@ public class VictoryReferee : MonoBehaviour {
      */
     public void ResetGame()
     {
-        EventManager.TriggerEvent("resetPlayer"); //Alex : Reset Player is in HealthControler.cs... IT DOESN'T WORK !
+        EventManager.TriggerEvent("resetPlayer"); //Alex : Reset Player is in HealthControler.cs... IT DOESN'T WORK ! //Alex : Why did I write that ? need to be investigated! Lol.
         victoryUI.SetActive(false);
         Time.timeScale = 1f;
         AnyManager.anyManager.ResetGame();
@@ -135,15 +168,15 @@ public class VictoryReferee : MonoBehaviour {
         return playerWon;
     }
 
-    public void SetPlayerWon(bool n)
+    public static void SetPlayerWon(bool n)
     {
-        playerWon = n;
+        victoryReferee.playerWon = n;
     }
 
-    public void SetVictoryCondition(int n)
+    public static void SetVictoryCondition(int n)
     {
         //First, we clean out any old victory conditions that happened to exist. We only want one in the dictory at once
-        EventManager.StopListening("checkVictory", victoryCondition);
+        EventManager.StopListening("checkVictory", victoryReferee.victoryCondition);
 
         switch(n)
         {
@@ -162,22 +195,76 @@ public class VictoryReferee : MonoBehaviour {
              * 
              */
             case 0:
-                victoryCondition = new UnityAction(KillOneBossVictory);
+                victoryReferee.victoryCondition = new UnityAction(victoryReferee.KillOneBossVictory);
+                victoryReferee.victoryMode = 0;
                 break;
             case 1:
-                victoryCondition = new UnityAction(AutoVictory); //for debugging
+                victoryReferee.victoryCondition = new UnityAction(victoryReferee.AutoVictory); //for debugging
+                victoryReferee.victoryMode = 1;
+
+                break;
+            case 2:
+                victoryReferee.victoryCondition = new UnityAction(victoryReferee.KillAllVictory);
+                victoryReferee.victoryMode = 2;
+
                 break;
             default:
-                victoryCondition = new UnityAction(KillOneBossVictory);
+                victoryReferee.victoryCondition = new UnityAction(victoryReferee.KillOneBossVictory);
                 throw new System.Exception("You tried to set an invalid victory condition! Game set to KillOneBossVictory by default");
         }
-        EventManager.StartListening("checkVictory", victoryCondition);
+        EventManager.StartListening("checkVictory", victoryReferee.victoryCondition);
     }
+
+    /* Alex: I'm trying to find a good data structure but I don't see anything else than an array or list? Stacks or queues seems to linear. The only goal is to store a gameobject and check if a container contains it? 
+     * 
+     * I'll do a list for now then we can change if it is better: 
+     * 
+     *  - I create a list where I'll store all Gameobjects that needs to be killed for the victory condition,
+     *  - Start triggering the victory contidion once the list is not empty anymore
+     *  
+     *  What does this allows us to do? 
+     *  
+     * - Switch the victory case at the beginning of the level, 
+     * - Wait until the List starts to be populated,
+     * - Trigger the event when the list is empty. 
+     * 
+     * Thank to this, we can have enemies that does NOT trigger the victory event, and enemies that does. 
+     * 
+     * PS :If you find a better way to do so, please go for it. 
+     * 
+     */
 
     private void KillOneBossVictory()
     {
         Debug.Log("Entered KillOneBossVictory");
         SetPlayerWon(bossesKilled > 0);
+    }
+
+    private void KillAllVictory()
+    {
+        if (EnemiesLeft.Count <= 0 && TriggerKillAllbool)
+        {
+            Debug.Log("here, Victory is true !");
+            TriggerKillAllbool = false;
+            SetPlayerWon(true);
+        }
+    }
+
+    public static void AddEnemiesCount(GameObject enemy)
+    {
+        victoryReferee.EnemiesLeft.Add(enemy);
+        victoryReferee.TriggerKillAllbool = true;
+    }
+
+    public static void RemoveEnemy(GameObject enemy)
+    {
+        victoryReferee.EnemiesLeft.Remove(enemy);
+    }
+
+    public static void ResetEnemyList()
+    {
+        victoryReferee.EnemiesLeft.Clear();
+        victoryReferee.TriggerKillAllbool = false;
     }
 
     private void AutoVictory()

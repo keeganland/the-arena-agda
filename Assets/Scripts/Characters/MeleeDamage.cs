@@ -103,8 +103,6 @@ public class MeleeDamage : MonoBehaviour {
     {
         Vector3 direction = m_target.transform.position - transform.position;
         float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
-
-        Debug.Log(transform.eulerAngles.y);
         transform.LookAt(m_target.transform);
 
         int rotation = 0;

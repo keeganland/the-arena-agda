@@ -10,7 +10,7 @@ public class HealthUI : MonoBehaviour
     private int m_curHealth;
     private int m_maxHealth;
 
-    void Start()
+    void Awake()
     {
         m_maxHealth = this.gameObject.GetComponent<HealthController>().totalHealth;
         m_curHealth = m_maxHealth;

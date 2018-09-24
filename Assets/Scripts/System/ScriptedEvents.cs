@@ -148,9 +148,6 @@ public class ScriptedEvents : MonoBehaviour {
         m_girl.transform.position = _InitialPositionGirl.transform.position;
         enemy.transform.position = _InitialPositionEnemy.transform.position;
 
-        Debug.Log(m_boy.transform.position);
-        Debug.Log(_InitialPositionBoy.transform.position);
-
         publicVariableHolder.BoyUIGameObject.SetActive(true);
         publicVariableHolder.GirlUIGameObject.SetActive(true);
 
@@ -212,6 +209,8 @@ public class ScriptedEvents : MonoBehaviour {
 
     IEnumerator EnterArenaFight2Coroutine()
     {
+        VictoryReferee.ResetEnemyList();
+        VictoryReferee.SetVictoryCondition(2);
         publicVariableHolder.BoyUIGameObject.SetActive(false);
         publicVariableHolder.GirlUIGameObject.SetActive(false);
         enemy2.GetComponent<SecondEnemyAttack>().enabled = false;
@@ -289,6 +288,9 @@ public class ScriptedEvents : MonoBehaviour {
 
     IEnumerator EnterArenaFight3Coroutine()
     {
+        VictoryReferee.ResetEnemyList();
+        VictoryReferee.SetVictoryCondition(0);
+
         publicVariableHolder.BoyUIGameObject.SetActive(false);
         publicVariableHolder.GirlUIGameObject.SetActive(false);
         PlayerUI.SetActive(false);
@@ -395,6 +397,7 @@ public class ScriptedEvents : MonoBehaviour {
             YouWonText.SetActive(false);
             ScreenFader.fadeOut();
             yield return new WaitForSeconds(1.5f);
+            EventManager.TriggerEvent("setup");
             saveManager.returnFromArena = true;
             LoadingScreen.LoadScene("ArenaDungeonFloor1", "Arena");
         }

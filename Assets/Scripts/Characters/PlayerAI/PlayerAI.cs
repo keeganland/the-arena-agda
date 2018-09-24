@@ -63,7 +63,10 @@ public class PlayerAI : MonoBehaviour {
                 closesDist = dist;
             }
         }
-        m_player.SetCurTarget(curTarget);
+        if (validTargets != null)
+        {
+            m_player.SetCurTarget(curTarget);
+        }
     }
 
     void TargetFurthest()

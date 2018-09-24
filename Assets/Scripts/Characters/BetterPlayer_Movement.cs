@@ -221,7 +221,6 @@ public class BetterPlayer_Movement : MonoBehaviour {
         }
         */
 
-        //Debug.Log(this.GetComponentInChildren<RangeChecker>().InRange(curTarget));
         //this should chase enemy if enemy is not currently in range
         if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
         {
@@ -257,7 +256,9 @@ public class BetterPlayer_Movement : MonoBehaviour {
         if(isCombat == false)
         {
             if (isTheBoy == true)
+            {
                 curTarget = Girl;
+            }
         }
     }
 
@@ -400,11 +401,13 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
     public void SetCurTarget(GameObject target)
     {
-        curTarget = target;
-        if (GetComponent<PlayerAI>() != null)
-            this.GetComponent<PlayerAI>().hasTarget = true;
-        curTarget.GetComponent<HealthController>().SetEnemy(this.gameObject);
-        this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
+        if (target != null) {
+            curTarget = target;
+            if (GetComponent<PlayerAI>() != null)
+                this.GetComponent<PlayerAI>().hasTarget = true;
+            curTarget.GetComponent<HealthController>().SetEnemy(this.gameObject);
+            this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
+        }
     }
 
 

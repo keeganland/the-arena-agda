@@ -41,6 +41,7 @@ public class PublicVariableHolderArenaEntrance : MonoBehaviour
 
     [Header("Exit floor 1")]
     public GameObject ExitDoor;
+    public Animator Floor2Door;
 
     private void Awake()
     {

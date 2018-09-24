@@ -40,8 +40,7 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
         BoyNav.enabled = true;
         GirlNav.enabled = true;
 
-        Boy.GetComponent<BetterPlayer_Movement>().isCombat = false;
-        Girl.GetComponent<BetterPlayer_Movement>().isCombat = false;
+        EventManager.TriggerEvent("NotInCombat");
         Girl.GetComponent<BoxCollider>().enabled = false;
 
         MainCamera = publicArenaEntrance.MainCamera;
@@ -63,6 +62,7 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
     private IEnumerator ArenaArrival()
     {
         GirlNav.SetDestination(new Vector3(publicArenaEntrance.ReturnFromArena.transform.position.x, Girl.transform.position.y, publicArenaEntrance.ReturnFromArena.transform.position.z));
+        BoyNav.SetDestination(Girl.transform.position);
 
         yield return new WaitForSeconds(2f);
 

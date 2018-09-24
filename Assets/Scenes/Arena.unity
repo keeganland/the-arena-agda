@@ -12240,6 +12240,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1621503884982114, guid: 1046cdc9ffc25344b80ecc3fc6dcf9e8,
     type: 2}
   m_PrefabInternal: {fileID: 1051094085}
+--- !u!114 &2053259220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2053259219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 224e2c1527d5b1b4291e16d95fe7a6f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2068974074
 GameObject:
   m_ObjectHideFlags: 0
@@ -12434,7 +12445,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4022118786350532, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1973562701685340, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}
       propertyPath: m_IsActive

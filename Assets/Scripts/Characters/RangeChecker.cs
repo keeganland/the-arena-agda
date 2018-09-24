@@ -7,7 +7,7 @@ public class RangeChecker : MonoBehaviour
 
     public List<string> tags;
 
-    List<GameObject> m_targets = new List<GameObject>();
+    [SerializeField] List<GameObject> m_targets = new List<GameObject>();
 
     //creates list of all tags within the attack range
     private void OnTriggerEnter(Collider other)
@@ -65,6 +65,10 @@ public class RangeChecker : MonoBehaviour
         return m_targets;
     }
 
+    public void ResetList()
+    {
+        m_targets.Clear();
+    }
     //checks if a specific target is within the attack range list
     public bool InRange(GameObject go)
     {

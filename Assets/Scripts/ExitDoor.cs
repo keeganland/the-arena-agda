@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ExitDoor : MonoBehaviour {
-    
+
+    public PublicVariableHolderArenaEntrance publicVariableHolderArenaEntrance;
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            ScreenFader.fadeOut();
-        }
+            StartCoroutine("ExitDoorC");
+         }
     }
 
     private IEnumerator ExitDoorC()
     {
         ScreenFader.fadeOut();
-        yield return new WaitForSeconds(1);
-        FindObjectOfType<PublicVariableHolderneverUnload>().GetComponent<PublicVariableHolderneverUnload>().VictoryCanvas.SetActive(true);
+        publicVariableHolderArenaEntrance.publicVariableHolderNeverUnload.PlayerUI.SetActive(false);
+        yield return new WaitForSeconds(2);
+        publicVariableHolderArenaEntrance.publicVariableHolderNeverUnload.VictoryCanvas.SetActive(true);
     }
 }

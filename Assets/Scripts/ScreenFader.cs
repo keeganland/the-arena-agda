@@ -7,7 +7,7 @@ public class ScreenFader : MonoBehaviour {
     Animator m_anim;
     bool m_isFading;
 
-    private static ScreenFader screenFader;
+    public static ScreenFader screenFader;
 
     public static ScreenFader Instance
     {

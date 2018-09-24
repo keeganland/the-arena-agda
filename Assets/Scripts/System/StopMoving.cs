@@ -109,6 +109,8 @@ public class StopMoving : MonoBehaviour {
     void NotInCombat()
     {
         this.GetComponent<BetterPlayer_Movement>().isCombat = false;
+        this.GetComponentInChildren<RangeChecker>().ResetList();
+
     }
     void InCombat()
     {

@@ -24,13 +24,14 @@ abstract public class InitialSceneSetup : MonoBehaviour {
     private void Awake()
     {
         saveManager = FindObjectOfType<SaveManager>();
+        publicVariableHolderneverUnload = FindObjectOfType<PublicVariableHolderneverUnload>().GetComponent<PublicVariableHolderneverUnload>();
     }
     // Use this for initialization
     protected void Start()
     {
         publicArenaEntrance.publicVariableHolderNeverUnload.PlayerUI.SetActive(false);
 
-        Boy = publicArenaEntrance.Boy;
+                Boy = publicArenaEntrance.Boy;
         Girl = publicArenaEntrance.Girl;
 
         BoyNav = Boy.GetComponent<NavMeshAgent>();

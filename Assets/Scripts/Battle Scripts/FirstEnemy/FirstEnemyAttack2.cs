@@ -172,7 +172,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
         go = Instantiate(_DashSpell, this.transform.position,Quaternion.identity);
         fx = Instantiate(_DashFX, this.transform.position, m_dashRotation);
         m_targetPos = _TeleportPosition.transform.position;
-        Destroy(go, 3f);
+        Destroy(go, 1.4f);
         go.GetComponent<DashCollider>().SetTarget(m_targetPos);
         go.GetComponent<Bullet>().SetSpellCaster(this.gameObject);
 

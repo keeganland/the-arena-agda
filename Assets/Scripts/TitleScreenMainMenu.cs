@@ -12,10 +12,6 @@ public class TitleScreenMainMenu : MonoBehaviour {
         EventManager.TriggerEvent("HideUI");
     }
 
-    private void Start()
-    {
-        ScreenFader.fadeIn();
-    }
     private void OnDisable()
     {
         if (tutorialScreen)

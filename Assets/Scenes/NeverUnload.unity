@@ -54168,7 +54168,7 @@ MonoBehaviour:
   _Color: {r: 0, g: 0, b: 0, a: 0}
   _SpellAudio: {fileID: 8300000, guid: 8019e196601cafe4082da0c3f9f2e0fd, type: 3}
   _InvinsibleSFX: {fileID: 8300000, guid: 8887c955d27975240a0d75e19b2cd1c9, type: 3}
-  AutoAttackslider: {fileID: 0}
+  AutoAttackslider: {fileID: 245370702}
   spellPrefab:
   - {fileID: 1295723877484022, guid: 8eaf6f50b96824e449b628001eb7a044, type: 2}
 --- !u!114 &765572589
@@ -103009,7 +103009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1644919336
 RectTransform:
   m_ObjectHideFlags: 0
@@ -104376,7 +104376,7 @@ MonoBehaviour:
   _Color: {r: 1, g: 0.31617647, b: 0.8113589, a: 1}
   _SpellAudio: {fileID: 8300000, guid: 0ce742af79f66fe47a8d140c40257e90, type: 3}
   _InvinsibleSFX: {fileID: 8300000, guid: 5d0d6fb1118cf41f889bb350f7568cd2, type: 3}
-  AutoAttackslider: {fileID: 0}
+  AutoAttackslider: {fileID: 569613053}
   spellPrefab:
   - {fileID: 1687814447947090, guid: 6ad3571874aa6a5459a6a7dcf8d428e9, type: 2}
 --- !u!114 &1762563031

@@ -29,6 +29,8 @@ public class TextBoxManager : MonoBehaviour
     public GameObject namePlate;
     public GameObject interactivityCue; //Alex : I don't really know what it does but I suppose it's like a choice box for the player : (Yes/No)??
                                         //I will use it as if it is (and create a bool eventAtEndofText too.
+    public GameObject dialogPrompt;
+
     public Text boxContent;
 	public Text NPCNameTag;
 
@@ -52,7 +54,7 @@ public class TextBoxManager : MonoBehaviour
     public NPCMovementManager theNPCMovementManager;
 
     //public bool isActive;
-    public bool cueActive = false;
+    //public bool cueActive = false;
     public bool stopPlayerMovement;
     public bool stopNPCMovement;
     public bool eventAtEndofText;
@@ -334,12 +336,15 @@ public class TextBoxManager : MonoBehaviour
         NPCGameObject = NPC;
     }
 
+    /*
+     * 2018/10/13 - Worthless. Shouldn't have anything whatsoever to do with events
+     */
     public void EnableCue()
     {
         if (interactivityCue)
         {
             interactivityCue.SetActive(true);
-            cueActive = true;
+            //cueActive = true;
         }
         else
         {
@@ -348,7 +353,9 @@ public class TextBoxManager : MonoBehaviour
         } 
     }
 
-    public void SetinteractivityCue(GameObject cue)
+
+
+    public void SetInteractivityCue(GameObject cue)
     {
         interactivityCue = cue;
     }
@@ -359,7 +366,7 @@ public class TextBoxManager : MonoBehaviour
         if (interactivityCue)
         {
             interactivityCue.SetActive(false);
-            cueActive = false;
+            //cueActive = false;
         }
     }
 

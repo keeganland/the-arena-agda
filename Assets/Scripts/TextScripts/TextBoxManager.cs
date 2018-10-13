@@ -147,7 +147,7 @@ public class TextBoxManager : MonoBehaviour
         /*
          * Keegan 2018/9/21- as far as i know, the below existed strictly for testing through the Unity inspector
          * 
-         * I cannot think of any other circumstance in which 
+         * I cannot think of any other circumstance in which they'd actually be relevant
          */
 
 
@@ -201,7 +201,8 @@ public class TextBoxManager : MonoBehaviour
                 {
                     if (interactivityCue == null || interactivityCue.activeSelf == false) 
                     {
-                        EnableCue();
+                        //EnableCue();
+                        EnableDialogPrompt();
                     }
                     return;
                 }
@@ -336,8 +337,10 @@ public class TextBoxManager : MonoBehaviour
         NPCGameObject = NPC;
     }
 
+
     /*
-     * 2018/10/13 - Worthless. Shouldn't have anything whatsoever to do with events
+     * 2018/10/13 - Should to be turned back into providing "Press Enter" type cues in order to defend against some possible regressions. Leave for now.
+     * Consider restoring cueActive for those purposes
      */
     public void EnableCue()
     {
@@ -351,6 +354,19 @@ public class TextBoxManager : MonoBehaviour
             eventStart = true;
             DisableTextBox();
         } 
+    }
+
+    public void EnableDialogPrompt()
+    {
+        if (dialogPrompt)
+        {
+            dialogPrompt.SetActive(true);
+        }
+        else
+        {
+            eventStart = true;
+            DisableTextBox();
+        }
     }
 
 
@@ -370,7 +386,17 @@ public class TextBoxManager : MonoBehaviour
         }
     }
 
-	public bool getIsActive()
+    public void DisableDialogPrompt()
+    {
+        if (dialogPrompt)
+        {
+            dialogPrompt.SetActive(false);
+        }
+    }
+
+
+
+    public bool getIsActive()
 	{
 		return isActive;
 	}

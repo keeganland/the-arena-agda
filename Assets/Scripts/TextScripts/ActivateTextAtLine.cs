@@ -102,6 +102,10 @@ public abstract class ActivateTextAtLine : MonoBehaviour
     {
         //Debug.Log(gameObject.name + "'s useXml == " + useXml);
 
+        /*
+         * 2018/10/13 - Keegan: old code. Maybe get rid of this. 
+         * 
+         */
         if (waitForPress && Input.GetKeyDown(KeyCode.Return) && !textWasManuallyActivated)
         {
             textWasManuallyActivated = true;
@@ -171,54 +175,81 @@ public abstract class ActivateTextAtLine : MonoBehaviour
         }
     }
 
-    public void PlayerEnableText(bool start) //To allow the player to CLICK on the NPC and start dialogue (or pass near it if not clicked, without trigger). The first dialogue, start will be true, if it's an answer to "Yes/No", start will be false.
+
+    /*
+     * 2018/10/13 - Exists for refactoring purposes
+     */
+    public void PlayerEnableText (bool start)
     {
+        if (start)
+        {
+            ResetText();
+        }
+        this.PlayerEnableText();
+    }
+
+    public void PlayerEnableText() //To allow the player to CLICK on the NPC and start dialogue (or pass near it if not clicked, without trigger). The first dialogue, start will be true, if it's an answer to "Yes/No", start will be false.
+    {
+        /*
+         * Worthless while ResetText is public, can't really make ResetText private because of C# reasons, neither do we really want to
+         */
+        /*
         if(start)
         {
             ResetText();
         }
+        */
+
+
+        /*
+         * Again, keep in mind Alex got confused what the Interactivity Cue is supposed to be. Possibly get rid of this
+         */
         if(InteractivityCue)
         {
             theTextManager.SetinteractivityCue(InteractivityCue);   
         }
+        
 
-            if (requireButtonPress)
-            {
-                theTextManager.EnableCue();
-                waitForPress = true;
-                return;
-            }
+        /*
+         * 2018/10/13 - The below seems to be a result of Alex misunderstanding what EnableCue does
+         */
+        /*
+        if (requireButtonPress)
+        {
+            theTextManager.EnableCue();
+            waitForPress = true;
+            return;
+        }*/
 
-            this.Activate();
+        this.Activate();
 
-            if (destroyWhenFinished)
-            {
-                destroyNextTimeTextboxCloses = true;
-            }
+        if (destroyWhenFinished)
+        {
+            destroyNextTimeTextboxCloses = true;
+        }
 
-            if (destroyWhenActivated)
-            {
-                //Having the stuff that activates the text bubble in the update loop causes problems. uh oh. dunno how to fix yet
+        if (destroyWhenActivated)
+        {
+        //Having the stuff that activates the text bubble in the update loop causes problems. uh oh. dunno how to fix yet
 
-                /**
-                 * The below is a partial fix. The outstanding issue is that once that balloon activates, this script is effectively over.
-                 * Therefore, there's nothing available to make the balloon DISAPPEAR
-                 * 
-                 * What I need is someway to check if the text box is FINISHED.
-                 * 
-                 * I need to brainstorm some fixes: Maybe rather than "destroy when activated" I can do "destroy when finished"?
-                 * 
+        /**
+        * The below is a partial fix. The outstanding issue is that once that balloon activates, this script is effectively over.
+        * Therefore, there's nothing available to make the balloon DISAPPEAR
+        * 
+        * What I need is someway to check if the text box is FINISHED.
+        * 
+        * I need to brainstorm some fixes: Maybe rather than "destroy when activated" I can do "destroy when finished"?
+        * 
 
-                if (talkBubble != null && useSpeechBubble && (gameObject.name == theTextManager.getLastTriggered()))
-                {
-                    Debug.Log("The text box is active, was last triggered by " + theTextManager.getLastTriggered() + ", so let's turn on the talk bubble");
-                    talkBubble.SetActive(theTextManager.getIsActive());
-                }
+        if (talkBubble != null && useSpeechBubble && (gameObject.name == theTextManager.getLastTriggered()))
+        {
+            Debug.Log("The text box is active, was last triggered by " + theTextManager.getLastTriggered() + ", so let's turn on the talk bubble");
+            talkBubble.SetActive(theTextManager.getIsActive());
+        }
 
-                 */
-                Destroy(gameObject);
-            }
-
+        */
+        Destroy(gameObject);
+        }
     }
 
     private void Activate()

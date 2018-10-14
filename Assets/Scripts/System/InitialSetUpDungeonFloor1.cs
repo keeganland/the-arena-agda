@@ -48,7 +48,6 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         Boy.GetComponent<BetterPlayer_Movement>().SwapGirl();
         Girl.GetComponent<BetterPlayer_Movement>().SwapGirl();
 
-        Girl.GetComponent<BetterPlayer_Movement>().CancelParticles();
 
         Egnevy = Boy.GetComponent<HealthController>().Sprite.GetComponent<SpriteScript2>();
         Eva = Girl.GetComponent<HealthController>().Sprite.GetComponent<SpriteScript2>();
@@ -72,6 +71,7 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
     {
         Boy.GetComponent<NavMeshAgent>().enabled = true;
         Girl.GetComponent<NavMeshAgent>().enabled = true;
+
         Girl.GetComponent<BetterPlayer_Movement>().isCombat = false;
 
         Boy.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", true);
@@ -129,6 +129,7 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         GameObject.Find("TextBoxManager").GetComponent<TextBoxManager>().eventStart = false;
 
         Girl.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", false);
+
 
         //yield return new WaitUntil(() => Input.anyKeyDown == true);
     }

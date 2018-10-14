@@ -206,7 +206,7 @@ public abstract class ActivateTextAtLine : MonoBehaviour
          */
         if(InteractivityCue)
         {
-            theTextManager.SetinteractivityCue(InteractivityCue);   
+            theTextManager.SetInteractivityCue(InteractivityCue);   
         }
         
 

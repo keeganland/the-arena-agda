@@ -28,7 +28,9 @@ public class TextBoxManager : MonoBehaviour
     public GameObject textBox;
     public GameObject namePlate;
     public GameObject interactivityCue; //Alex : I don't really know what it does but I suppose it's like a choice box for the player : (Yes/No)??
-                                        //I will use it as if it is (and create a bool eventAtEndofText too).
+                                        //I will use it as if it is (and create a bool eventAtEndofText too.
+    public GameObject dialogPrompt;
+
     public Text boxContent;
 	public Text NPCNameTag;
 
@@ -52,7 +54,7 @@ public class TextBoxManager : MonoBehaviour
     public NPCMovementManager theNPCMovementManager;
 
     //public bool isActive;
-    public bool cueActive = false;
+    //public bool cueActive = false;
     public bool stopPlayerMovement;
     public bool stopNPCMovement;
     public bool eventAtEndofText;
@@ -145,7 +147,7 @@ public class TextBoxManager : MonoBehaviour
         /*
          * Keegan 2018/9/21- as far as i know, the below existed strictly for testing through the Unity inspector
          * 
-         * I cannot think of any other circumstance in which 
+         * I cannot think of any other circumstance in which they'd actually be relevant
          */
 
 
@@ -199,7 +201,8 @@ public class TextBoxManager : MonoBehaviour
                 {
                     if (interactivityCue == null || interactivityCue.activeSelf == false) 
                     {
-                        EnableCue();
+                        //EnableCue();
+                        EnableDialogPrompt();
                     }
                     return;
                 }
@@ -334,12 +337,17 @@ public class TextBoxManager : MonoBehaviour
         NPCGameObject = NPC;
     }
 
+
+    /*
+     * 2018/10/13 - Should to be turned back into providing "Press Enter" type cues in order to defend against some possible regressions. Leave for now.
+     * Consider restoring cueActive for those purposes
+     */
     public void EnableCue()
     {
         if (interactivityCue)
         {
             interactivityCue.SetActive(true);
-            cueActive = true;
+            //cueActive = true;
         }
         else
         {
@@ -348,7 +356,22 @@ public class TextBoxManager : MonoBehaviour
         } 
     }
 
-    public void SetinteractivityCue(GameObject cue)
+    public void EnableDialogPrompt()
+    {
+        if (dialogPrompt)
+        {
+            dialogPrompt.SetActive(true);
+        }
+        else
+        {
+            eventStart = true;
+            DisableTextBox();
+        }
+    }
+
+
+
+    public void SetInteractivityCue(GameObject cue)
     {
         interactivityCue = cue;
     }
@@ -359,11 +382,21 @@ public class TextBoxManager : MonoBehaviour
         if (interactivityCue)
         {
             interactivityCue.SetActive(false);
-            cueActive = false;
+            //cueActive = false;
         }
     }
 
-	public bool getIsActive()
+    public void DisableDialogPrompt()
+    {
+        if (dialogPrompt)
+        {
+            dialogPrompt.SetActive(false);
+        }
+    }
+
+
+
+    public bool getIsActive()
 	{
 		return isActive;
 	}

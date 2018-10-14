@@ -43723,13 +43723,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textBox: {fileID: 249619582}
   namePlate: {fileID: 1616137014}
-<<<<<<< HEAD
-  interactivityCue: {fileID: 1644919335}
-  dialogPrompt: {fileID: 0}
-=======
   interactivityCue: {fileID: 0}
   dialogPrompt: {fileID: 1644919335}
->>>>>>> 8ffe11d30a1942f6fd6f10f7f358f860ee67d42c
   boxContent: {fileID: 367122354}
   NPCNameTag: {fileID: 604382288}
   TextBallon: {fileID: 1173212495195382, guid: e5dba29c5add148da8c20370e2af5f05, type: 2}
@@ -86585,53 +86580,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f32b1f75e30c842a5a052924050106a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1344813217
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4061916659699518, guid: 7fe2061e66b865d40addbc9d0f2f875e, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 1.784303
-      objectReference: {fileID: 0}
-    - target: {fileID: 4061916659699518, guid: 7fe2061e66b865d40addbc9d0f2f875e, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 13.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 4061916659699518, guid: 7fe2061e66b865d40addbc9d0f2f875e, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 32.443676
-      objectReference: {fileID: 0}
-    - target: {fileID: 4061916659699518, guid: 7fe2061e66b865d40addbc9d0f2f875e, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4061916659699518, guid: 7fe2061e66b865d40addbc9d0f2f875e, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4061916659699518, guid: 7fe2061e66b865d40addbc9d0f2f875e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4061916659699518, guid: 7fe2061e66b865d40addbc9d0f2f875e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4061916659699518, guid: 7fe2061e66b865d40addbc9d0f2f875e, type: 2}
-      propertyPath: m_RootOrder
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 95213054898595440, guid: 7fe2061e66b865d40addbc9d0f2f875e,
-        type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 6e17c1698b8f33b4990e444c8f7fa748, type: 2}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7fe2061e66b865d40addbc9d0f2f875e, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1352279386
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/*
+ * 2018-10-13: Replacing this with ActivateText.cs
+ * 
+ * 
+ * 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,7 +43,7 @@ public abstract class ActivateTextAtLine : MonoBehaviour
     public int startLineSecondTime; //If it is solved, I suppose my "Save" text will work fine ! (For Bertrand it will be : read line [0,1,2] the first time then only line [2] the other times !).
     public int endLine;
 
-    public TextBoxManager theTextManager;
+    protected TextBoxManager theTextManager;
     public GameObject talkBubble;
 
     public bool requireButtonPress;

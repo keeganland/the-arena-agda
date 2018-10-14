@@ -22,6 +22,23 @@ public class SelectableObjects : MonoBehaviour, ISelectHandler, IPointerClickHan
 
     public void OnDeselect(BaseEventData eventData)
     {
+        if (this.name == "Boy")
+        {
+            BetterPlayer_Movement movBoy = this.GetComponent<BetterPlayer_Movement>();
+            BetterPlayer_Movement movGirl = this.GetComponent<BetterPlayer_Movement>();
+
+            movBoy.SwapGirl();
+            movGirl.SwapGirl();
+        }
+
+        if (this.name == "Girl")
+        {
+            BetterPlayer_Movement movBoy = this.GetComponent<BetterPlayer_Movement>();
+            BetterPlayer_Movement movGirl = this.GetComponent<BetterPlayer_Movement>();
+
+            movBoy.SwapBoy();
+            movGirl.SwapBoy();
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -36,6 +53,28 @@ public class SelectableObjects : MonoBehaviour, ISelectHandler, IPointerClickHan
     public void OnSelect(BaseEventData eventData)
     {
        currentlySelected.Add(this);
+
+        if (this.name == "Boy")
+        {
+            BetterPlayer_Movement movBoy = this.GetComponent<BetterPlayer_Movement>();
+
+            if (movBoy.isCombat == true)
+            {
+                movBoy.boyActive = true;
+                movBoy.SelectedParticleBoy();
+            }
+        }
+
+        if(this.name == "Girl")
+        {
+            BetterPlayer_Movement movGirl = this.GetComponent<BetterPlayer_Movement>();
+
+            if (movGirl.isCombat == true)
+            {
+                movGirl.boyActive = false;
+                movGirl.SelectedParticleGirl();
+            }
+        }
     }
 
     public static void DeselectAll(BaseEventData eventData)

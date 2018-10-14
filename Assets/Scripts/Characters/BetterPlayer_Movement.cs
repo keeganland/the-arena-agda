@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class BetterPlayer_Movement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler {
+public class BetterPlayer_Movement : MonoBehaviour {
 
     public PublicVariableHolderneverUnload _PublicVariableHolder;
 
@@ -139,94 +139,77 @@ public class BetterPlayer_Movement : MonoBehaviour, IBeginDragHandler, IDragHand
         //For stopping the player character - whichever one that happens to be
         if (isTheBoy == boyActive && !stopMoving)
         {
-           
-
             if(Input.GetMouseButtonDown(1))
             {
-                oldMousePosition = Input.mousePosition;
-            }
-
-            if(Input.GetMouseButtonUp(1))
-            {
-                newMousePosition = Input.mousePosition;
-
-                if(oldMousePosition == newMousePosition)
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
                 {
-                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                        RaycastHit hit;
-                        if (Physics.Raycast(ray, out hit))
-                        {
-                            if (hit.collider.tag == "Ground" || hit.collider.tag == "RangeIndicator")
-                            {
-                                this.GetComponent<PlayerAI>().AIavailable = false;
-                                this.GetComponent<PlayerAI>().hasTarget = false;
-                                Boy.GetComponent<SpellCommand>().CancelAOEAttack();
-                                Boy.GetComponent<SpellCommand>().CancelHealAttack();
-                                Boy.GetComponent<SpellCommand>().CancelBoyShield();
-                                Boy.GetComponent<SpellCommand>().CancelBoyStun();
+                   if (hit.collider.tag == "Ground" || hit.collider.tag == "RangeIndicator")
+                   {
+                      this.GetComponent<PlayerAI>().AIavailable = false;
+                      this.GetComponent<PlayerAI>().hasTarget = false;
+                      Boy.GetComponent<SpellCommand>().CancelAOEAttack();
+                      Boy.GetComponent<SpellCommand>().CancelHealAttack();
+                      Boy.GetComponent<SpellCommand>().CancelBoyShield();
+                      Boy.GetComponent<SpellCommand>().CancelBoyStun();
 
-                                Girl.GetComponent<SpellCommand>().CancelAOEAttack();
-                                Girl.GetComponent<SpellCommand>().CancelHealAttack();
-                                Girl.GetComponent<SpellCommand>().CancelBoyShield();
-                                Girl.GetComponent<SpellCommand>().CancelBoyStun();
+                      Girl.GetComponent<SpellCommand>().CancelAOEAttack();
+                      Girl.GetComponent<SpellCommand>().CancelHealAttack();
+                      Girl.GetComponent<SpellCommand>().CancelBoyShield();
+                      Girl.GetComponent<SpellCommand>().CancelBoyStun();
 
-                                Vector3 newpos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-                                m_agent.SetDestination(newpos);
-                                if (curTarget)
-                                    curTarget.GetComponent<HealthController>().CancelEnemy(this.gameObject);
-                                curTarget = null;
-                                this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
+                      Vector3 newpos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+                      m_agent.SetDestination(newpos);
+                      if (curTarget)
+                         curTarget.GetComponent<HealthController>().CancelEnemy(this.gameObject);
+                      curTarget = null;
+                      this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
 
-                                GameObject move = Instantiate(MoveClick, new Vector3(hit.point.x, transform.position.y, hit.point.z), Quaternion.identity);
-                                Destroy(move, 1f);
-                            }
-                            else if (hit.collider.tag == "Enemy")
-                            {
-                                this.GetComponent<PlayerAI>().AIavailable = true;
-                                this.GetComponent<PlayerAI>().hasTarget = true;
-                                curTarget = hit.collider.gameObject;
-                                curTarget.GetComponent<HealthController>().SetEnemy(this.gameObject);
-                                this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
-                                //Debug.Log("Target is " + curTarget.name);
-                                GameObject move = Instantiate(MoveClick, new Vector3(hit.point.x, transform.position.y, hit.point.z), Quaternion.identity);
-                                ParticleSystem.MainModule movemain = move.GetComponent<ParticleSystem>().main;
-                                movemain.startColor = Color.red;
-                                movemain.startSize = 2;
-                                Destroy(move, 1f);
+                      GameObject move = Instantiate(MoveClick, new Vector3(hit.point.x, transform.position.y, hit.point.z), Quaternion.identity);
+                      Destroy(move, 1f);
+                   }
+                   else if (hit.collider.tag == "Enemy")
+                   {
+                       this.GetComponent<PlayerAI>().AIavailable = true;
+                       this.GetComponent<PlayerAI>().hasTarget = true;
+                       curTarget = hit.collider.gameObject;
+                       curTarget.GetComponent<HealthController>().SetEnemy(this.gameObject);
+                       this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
+                       //Debug.Log("Target is " + curTarget.name);
+                       GameObject move = Instantiate(MoveClick, new Vector3(hit.point.x, transform.position.y, hit.point.z), Quaternion.identity);
+                       ParticleSystem.MainModule movemain = move.GetComponent<ParticleSystem>().main;
+                       movemain.startColor = Color.red;
+                       movemain.startSize = 2;
+                       Destroy(move, 1f);
 
+                      //this should chase enemy if enemy is not currently in range
+                      if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
+                      {
+                         //Debug.Log("in range: " + curTarget.name);
+                         m_agent.SetDestination(hit.point);
+                         //OnTriggerEnter should stop character once target is within range
+                      }
+                   }
+                   else if (hit.collider.tag == "Objects")
+                   {
+                      hit.collider.GetComponent<InteractiveObjects>().DoAction();
+                   }
 
-                                //this should chase enemy if enemy is not currently in range
-                                if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
-                                {
-                                    //Debug.Log("in range: " + curTarget.name);
-                                    m_agent.SetDestination(hit.point);
-                                    //OnTriggerEnter should stop character once target is within range
-                                }
-                            }
-                            else if (hit.collider.tag == "Objects")
-                            {
-                                hit.collider.GetComponent<InteractiveObjects>().DoAction();
-                            }
-
-                            else if (hit.collider.tag == "NPC")
-                            {
-                                ActivateTextAtLine activateText = hit.collider.GetComponent<ActivateTextAtLine>();
-                                if (activateText)
-                                    activateText.PlayerEnableText(true);
-                            }
-                            else if (hit.collider.tag == "Player")
-                            {
-                                curTarget = hit.collider.gameObject;
-                            }
-                        }
-                        if (gameObject.GetComponent<HealthController>().m_reviveCoroutine == true)
-                        {
-                            gameObject.GetComponent<HealthController>().StopReviveCoroutine();
-                        }
+                   else if (hit.collider.tag == "NPC")
+                   {
+                      ActivateTextAtLine activateText = hit.collider.GetComponent<ActivateTextAtLine>();
+                      if (activateText)
+                         activateText.PlayerEnableText(true);
+                   }
+                   else if (hit.collider.tag == "Player")
+                   {
+                      curTarget = hit.collider.gameObject;
+                   }
                 }
-                else
+                if (gameObject.GetComponent<HealthController>().m_reviveCoroutine == true)
                 {
-                    
+                   gameObject.GetComponent<HealthController>().StopReviveCoroutine();
                 }
             }
 
@@ -291,14 +274,13 @@ public class BetterPlayer_Movement : MonoBehaviour, IBeginDragHandler, IDragHand
         }
     }
 
-
-
     public void SwapBoy()
     {
         if (_PublicVariableHolder.Boy.GetComponent<HealthController>().currentHealth > 0 && !_PublicVariableHolder.StopAllActions)
         {
             boyActive = true;
-            _BoySelected.enabled = true;
+
+            SelectedParticleBoy();
 
             Boy.GetComponent<SpellCommand>().CancelAOEAttack();
             Boy.GetComponent<SpellCommand>().CancelHealAttack();
@@ -314,10 +296,15 @@ public class BetterPlayer_Movement : MonoBehaviour, IBeginDragHandler, IDragHand
             Girl.GetComponent<SpellCommand>().isSmallUI = false;
             _UISpells.BoySpellActive();
             _GirlSelected.enabled = false;
-            _BoySelectedParticle.Play();
             _GirlSelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
 
         }
+    }
+
+    public void SelectedParticleBoy()
+    {
+        _BoySelected.enabled = true;
+        _BoySelectedParticle.Play();
     }
 
     public void SwapGirl()
@@ -326,7 +313,7 @@ public class BetterPlayer_Movement : MonoBehaviour, IBeginDragHandler, IDragHand
         {
             boyActive = false;
             _BoySelected.enabled = false;
-
+            SelectedParticleGirl();
             Boy.GetComponent<SpellCommand>().CancelAOEAttack();
             Boy.GetComponent<SpellCommand>().CancelHealAttack();
             Boy.GetComponent<SpellCommand>().CancelBoyStun();
@@ -337,11 +324,16 @@ public class BetterPlayer_Movement : MonoBehaviour, IBeginDragHandler, IDragHand
 
             Boy.GetComponent<SpellCommand>().isSmallUI = false;
             Girl.GetComponent<SpellCommand>().isSmallUI = false;
-            _GirlSelected.enabled = true;
+
             _UISpells.GirlActive();
             _BoySelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-            _GirlSelectedParticle.Play();
         }
+    }
+
+    public void SelectedParticleGirl()
+    {
+        _GirlSelected.enabled = true;
+        _GirlSelectedParticle.Play();
     }
 
     public void CancelMovement()
@@ -448,88 +440,5 @@ public class BetterPlayer_Movement : MonoBehaviour, IBeginDragHandler, IDragHand
     public void startPlayerAgent()
     {
         m_agent.isStopped = false;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        selectionBoxImage.gameObject.SetActive(false);
-        foreach(SelectableObjects selectable in SelectableObjects.allSelectableObjects)
-        {
-            if(selectrionRect.Contains(Camera.main.WorldToScreenPoint(selectable.transform.position))){
-                selectable.OnSelect(eventData);
-            }
-        }
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        if(eventData.position.x < oldMousePosition.x)
-        {
-            selectrionRect.xMin = eventData.position.x;
-            selectrionRect.xMax = oldMousePosition.x;
-        }
-        else
-        {
-            selectrionRect.xMin = oldMousePosition.x;
-            selectrionRect.xMax = eventData.position.x;
-        }
-
-        if (eventData.position.y < oldMousePosition.y)
-        {
-            selectrionRect.yMin = eventData.position.y;
-            selectrionRect.yMax = oldMousePosition.y;
-        }
-        else
-        {
-            selectrionRect.yMin = oldMousePosition.y;
-            selectrionRect.yMax = eventData.position.y;
-        }
-
-        selectionBoxImage.rectTransform.offsetMin = selectrionRect.min;
-        selectionBoxImage.rectTransform.offsetMax = selectrionRect.max;
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        if (!Input.GetKey(KeyCode.LeftControl) && !Input.GetKey(KeyCode.RightControl))
-        {
-            SelectableObjects.DeselectAll(new BaseEventData(EventSystem.current));
-        }
-            selectionBoxImage.gameObject.SetActive(true);
-            oldMousePosition = eventData.position;
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventData, results);
-
-        float myDistance = 0;
-
-        foreach(RaycastResult result in results)
-        {
-            if(result.gameObject == gameObject)
-            {
-                myDistance = result.distance;
-                break;
-            }
-        }
-
-        GameObject nextObject = null;
-        float maxDistance = Mathf.Infinity;
-
-        foreach(RaycastResult result in results)
-        {
-            if(result.distance > myDistance && result.distance < maxDistance)
-            {
-                nextObject = result.gameObject;
-                maxDistance = result.distance;
-            }
-        }
-
-        if(nextObject)
-        {
-            ExecuteEvents.Execute<IPointerClickHandler>(nextObject, eventData, (x, y) => { x.OnPointerClick((PointerEventData)y); });
-        }
     }
 }

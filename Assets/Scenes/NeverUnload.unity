@@ -54014,6 +54014,7 @@ GameObject:
   - component: {fileID: 765572597}
   - component: {fileID: 765572598}
   - component: {fileID: 765572599}
+  - component: {fileID: 765572600}
   m_Layer: 0
   m_Name: Girl
   m_TagString: Player
@@ -54431,6 +54432,17 @@ MonoBehaviour:
   aiState: 0
   hasTarget: 0
   AIavailable: 0
+--- !u!114 &765572600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 765572580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f25ff9e1566d409080c59e2e8fb35da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &775352696
 GameObject:
   m_ObjectHideFlags: 0
@@ -104554,6 +104566,7 @@ GameObject:
   - component: {fileID: 1762563046}
   - component: {fileID: 1762563047}
   - component: {fileID: 1762563048}
+  - component: {fileID: 1762563049}
   m_Layer: 0
   m_Name: Boy
   m_TagString: Player
@@ -104982,6 +104995,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea5f1d72e8da5294fac23751148e39da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1762563049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1762563028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f25ff9e1566d409080c59e2e8fb35da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1784888808

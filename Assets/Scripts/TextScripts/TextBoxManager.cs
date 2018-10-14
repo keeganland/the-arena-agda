@@ -28,7 +28,7 @@ public class TextBoxManager : MonoBehaviour
     public GameObject textBox;
     public GameObject namePlate;
     public GameObject interactivityCue; //Alex : I don't really know what it does but I suppose it's like a choice box for the player : (Yes/No)??
-                                        //I will use it as if it is (and create a bool eventAtEndofText too.
+                                        //I will use it as if it is (and create a bool eventAtEndofText too).
     public Text boxContent;
 	public Text NPCNameTag;
 

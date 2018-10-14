@@ -24,10 +24,11 @@ public class CancelAnyCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Girl")
-        {
+       if (other.name == "Girl")
+       {
             ChangeCollider();
-        }
+            other.GetComponentInChildren<RangeChecker>().ResetList();
+       }
 
         if (!saveManager.cancelColliders.Contains(name))
             saveManager.cancelColliders.Add(name);
@@ -35,9 +36,11 @@ public class CancelAnyCollider : MonoBehaviour
 
     private void ChangeCollider()
     {
-        if (GetComponent<SphereCollider>() == true)
-            GetComponent<SphereCollider>().enabled = SphereActivated;
-        if (GetComponent<CapsuleCollider>() == true)
+        if (GetComponent<SphereCollider>())
+            Destroy(GetComponent<SphereCollider>());
+        if (GetComponent<CapsuleCollider>())
             GetComponent<CapsuleCollider>().enabled = CapsuleActivated;
+
+
     }
 }

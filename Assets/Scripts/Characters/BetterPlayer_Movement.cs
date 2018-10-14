@@ -17,6 +17,8 @@ public class BetterPlayer_Movement : MonoBehaviour {
     private GameObject Boy;
     private GameObject Girl;
 
+    public bool NPCisinRange;
+
     private NavMeshAgent m_agent;
     public bool isCombat;
     public bool isTheBoy = false;
@@ -164,7 +166,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
                       Vector3 newpos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
                       m_agent.SetDestination(newpos);
-                      if (curTarget)
+                      if (curTarget && !curTarget.CompareTag("NPC"))
                          curTarget.GetComponent<HealthController>().CancelEnemy(this.gameObject);
                       curTarget = null;
                       this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
@@ -201,9 +203,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
                    else if (hit.collider.tag == "NPC")
                    {
-                      ActivateTextAtLine activateText = hit.collider.GetComponent<ActivateTextAtLine>();
-                      if (activateText)
-                         activateText.PlayerEnableText(true);
+                        curTarget = hit.collider.gameObject;                    
                    }
                    else if (hit.collider.tag == "Player")
                    {
@@ -259,6 +259,16 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
                 {
                     //Debug.Log("in range: " + curTarget.name);
+                    m_agent.SetDestination(curTarget.transform.position);
+                    //OnTriggerEnter should stop character once target is within range
+                }
+            }
+
+            if (curTarget.CompareTag("NPC"))
+            {
+                if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
+                {
+                    Debug.Log("Not in range: " + curTarget.name);
                     m_agent.SetDestination(curTarget.transform.position);
                     //OnTriggerEnter should stop character once target is within range
                 }
@@ -358,16 +368,24 @@ public class BetterPlayer_Movement : MonoBehaviour {
         if (curTarget)
         {
             if (other == curTarget.GetComponent<Collider>())
-            {
+            {          
                 //Debug.Log("Target in Range " + curTarget.name);
                 CancelMovement();
+
+                if (other.CompareTag("NPC") && !NPCisinRange)
+                {
+                    NPCisinRange = true;
+                    ActivateTextAtLine activateText = curTarget.GetComponent<ActivateTextAtLine>();
+                    if (activateText)
+                        activateText.PlayerEnableText(true);
+                }
 
                 if (ReviveStart == true)
                 {
                     gameObject.GetComponent<HealthController>().m_reviveCoroutine = true;
                     ReviveStart = false;
                 }
-                //Pass attack function here?
+                //Pass attack function here
             }
             else return;
         }
@@ -381,6 +399,13 @@ public class BetterPlayer_Movement : MonoBehaviour {
             {
                 //Debug.Log("Target in Range " + curTarget.name);
                 CancelMovement();
+                if (other.CompareTag("NPC") && !NPCisinRange)
+                {
+                    NPCisinRange = true;
+                    ActivateTextAtLine activateText = curTarget.GetComponent<ActivateTextAtLine>();
+                    if (activateText)
+                        activateText.PlayerEnableText(true);
+                }
 
                 if (ReviveStart == true)
                 {
@@ -405,6 +430,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 //Debug.Log("Target out of range " + curTarget.name);
             }
         }
+        NPCisinRange = false;
     }
 
     private void Death()

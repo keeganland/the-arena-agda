@@ -71045,6 +71045,7 @@ MonoBehaviour:
   - Enemy
   - Player
   - Objects
+  - NPC
   m_targets: []
 --- !u!23 &1051442756
 MeshRenderer:

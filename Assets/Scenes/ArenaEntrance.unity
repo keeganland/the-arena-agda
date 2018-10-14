@@ -1133,7 +1133,6 @@ MonoBehaviour:
   startLine: 0
   startLineSecondTime: 2
   endLine: 2
-  theTextManager: {fileID: 0}
   talkBubble: {fileID: 0}
   requireButtonPress: 0
   destroyWhenActivated: 0
@@ -12133,8 +12132,8 @@ GameObject:
   - component: {fileID: 620568729}
   - component: {fileID: 620568724}
   - component: {fileID: 620568731}
-  - component: {fileID: 620568730}
   - component: {fileID: 620568732}
+  - component: {fileID: 620568730}
   m_Layer: 0
   m_Name: NPC-ArenaEntrance
   m_TagString: NPC
@@ -12237,7 +12236,6 @@ MonoBehaviour:
   startLine: 0
   startLineSecondTime: 0
   endLine: 2
-  theTextManager: {fileID: 0}
   talkBubble: {fileID: 0}
   requireButtonPress: 0
   destroyWhenActivated: 0
@@ -12303,7 +12301,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 620568723}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.8
   m_Height: 1
   m_Direction: 1

@@ -1202,6 +1202,7 @@ MonoBehaviour:
   ReturnFromArenaBoyPos: {fileID: 1287893382}
   ReturnFromArena: {fileID: 1271664863}
   ExitDoor: {fileID: 0}
+  Floor2Door: {fileID: 0}
 --- !u!4 &206583903
 Transform:
   m_ObjectHideFlags: 0

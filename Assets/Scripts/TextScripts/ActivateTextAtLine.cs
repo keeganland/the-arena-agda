@@ -1,6 +1,14 @@
-﻿using System.Collections;
+﻿/*
+ * 2018-10-13: Replacing this with ActivateText.cs
+ * 
+ * 
+ * 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class ActivateTextAtLine : MonoBehaviour
 {
@@ -36,7 +44,7 @@ public abstract class ActivateTextAtLine : MonoBehaviour
     public int startLineSecondTime; //If it is solved, I suppose my "Save" text will work fine ! (For Bertrand it will be : read line [0,1,2] the first time then only line [2] the other times !).
     public int endLine;
 
-    public TextBoxManager theTextManager;
+    protected TextBoxManager theTextManager;
     public GameObject talkBubble;
 
     public bool requireButtonPress;
@@ -47,7 +55,7 @@ public abstract class ActivateTextAtLine : MonoBehaviour
     public string activatedByTag;
     public string activatedByName;
 
-    public bool eventAtEndofText;
+    public bool eventAtEndofText; //2018-10-13 - Keegan - Completely pointless as far as I can tell? should be replaced with 
 
     private bool waitForPress = false;
     public bool textWasManuallyActivated; // If the text box has been activated, player should scroll through it before they get to end.
@@ -71,6 +79,9 @@ public abstract class ActivateTextAtLine : MonoBehaviour
     public string SpriteSheet;
     public string NameInSpriteSheet;
 
+    protected UnityAction yesAnswer;
+    protected UnityAction noAnswer;
+
     private void Awake()
     {
         saveManager = FindObjectOfType<SaveManager>(); 
@@ -78,6 +89,9 @@ public abstract class ActivateTextAtLine : MonoBehaviour
     // Use this for initialization
     protected void Start()
     {
+        yesAnswer = this.YesButtonEvent;
+        noAnswer = this.NoButtonEvent;
+
         /*
          * As of 2018/9/21, text box manager will be a singleton, its script being part of an object in the NeverUnload scene.
          */
@@ -169,7 +183,9 @@ public abstract class ActivateTextAtLine : MonoBehaviour
         {
             if (other.CompareTag(activatedByTag))
             {
+                //DisableDialogPrompt is what we should be using, DisableCue is what Alex was using. 
                 theTextManager.DisableCue();
+                theTextManager.DisableDialogPrompt();
                 waitForPress = false;
             }
         }
@@ -208,7 +224,7 @@ public abstract class ActivateTextAtLine : MonoBehaviour
         {
             theTextManager.SetInteractivityCue(InteractivityCue);   
         }
-        
+
 
         /*
          * 2018/10/13 - The below seems to be a result of Alex misunderstanding what EnableCue does
@@ -220,6 +236,9 @@ public abstract class ActivateTextAtLine : MonoBehaviour
             waitForPress = true;
             return;
         }*/
+
+        EventManager.StartListening("answersYes", yesAnswer);
+        EventManager.StartListening("answersNo", noAnswer);
 
         this.Activate();
 
@@ -309,11 +328,39 @@ public abstract class ActivateTextAtLine : MonoBehaviour
         ResetCue();
     }
 
-    abstract public void ResetText(); //Alex : I made a mistake, resetText needs to have elements in it. I don't know how to force the "add" in this script so just copy past the textBertrand ResetText() to have the sample one. 
+    private void ResetText()
+    {
+        theTextManager = FindObjectOfType<TextBoxManager>();
+
+        theTextManager.eventAtEndofText = eventAtEndofText;
+
+        textWasManuallyActivated = false;
+
+        if (talkBubble != null)
+        {
+            talkBubble.SetActive(false);
+        }
+
+        TextBeginning = theText;
+    }
+
+    //abstract public void ResetText(); //Alex : I made a mistake, resetText needs to have elements in it. I don't know how to force the "add" in this script so just copy past the textBertrand ResetText() to have the sample one. 
 
     abstract public void ChangeText(TextAsset NewTextYes, TextAsset NewTextNo);
 
     abstract public void ChangeCue();
 
     abstract public void ResetCue();
+
+    virtual public void YesButtonEvent()
+    {
+        Debug.Log("This is ActivateTextAtLine.cs, confirming we're in the YesButtonEvent method");      
+        EventManager.StopListening("answersYes", yesAnswer);
+    }
+
+    virtual public void NoButtonEvent()
+    {
+        Debug.Log("This is ActivateTextAtLine.cs, confirming we're in the NoButtonEvent method");
+        EventManager.StopListening("answersNo", noAnswer);
+    }
 }

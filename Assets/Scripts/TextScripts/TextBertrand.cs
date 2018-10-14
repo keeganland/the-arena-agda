@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class TextBertrand: ActivateTextAtLine {
 
+    new void Start()
+    {
+        base.Start();
+        this.yesAnswer = YesButtonEvent;
+    }
+
+
+    [Header("Unique to Bertrand - for now")]
+    public GameObject fightCanvas;
+
     public override void ChangeText(TextAsset TextYes, TextAsset TextNo)
     {
         throw new System.NotImplementedException();
@@ -18,7 +28,7 @@ public class TextBertrand: ActivateTextAtLine {
     {
         throw new System.NotImplementedException();
     }
-
+    /*
     public override void ResetText()
     {
         theTextManager = FindObjectOfType<TextBoxManager>();
@@ -33,5 +43,14 @@ public class TextBertrand: ActivateTextAtLine {
         }
 
         TextBeginning = theText;
+    }*/
+
+    new void YesButtonEvent()
+    {
+        base.YesButtonEvent();
+        Debug.Log("This is TextBertrand.cs, confirming we're in the YesButtonEvent method");
+        theTextManager.DisableTextBox();
+        fightCanvas.SetActive(true);
     }
+
 }

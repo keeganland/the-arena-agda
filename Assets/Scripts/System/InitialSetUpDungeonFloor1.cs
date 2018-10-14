@@ -57,8 +57,6 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         MainCamera.GetComponent<BetterCameraFollow>()._FieldOfViewMin = MainCameraFieldOfViewMin;
         MainCamera.GetComponent<BetterCameraFollow>()._FieldOfViewMax = MainCameraFieldOfViewMax;
 
-        EventManager.TriggerEvent("StopMoving");
-
         publicArenaEntrance.publicVariableHolderNeverUnload.fader.StartCoroutine("FadeIn");
 
         StartCoroutine(ArrivalScriptedEvent());
@@ -73,6 +71,8 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         Girl.GetComponent<NavMeshAgent>().enabled = true;
 
         Girl.GetComponent<BetterPlayer_Movement>().isCombat = false;
+        Girl.GetComponent<BetterPlayer_Movement>().CancelParticles();
+
 
         Boy.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", true);
         Boy.GetComponent<HealthController>().Sprite.GetComponent<Animator>().Play("Death");
@@ -129,7 +129,6 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         GameObject.Find("TextBoxManager").GetComponent<TextBoxManager>().eventStart = false;
 
         Girl.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", false);
-
 
         //yield return new WaitUntil(() => Input.anyKeyDown == true);
     }

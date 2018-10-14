@@ -110,7 +110,7 @@ public class StopMoving : MonoBehaviour {
     {
         this.GetComponent<BetterPlayer_Movement>().isCombat = false;
         this.GetComponentInChildren<RangeChecker>().ResetList();
-
+        this.GetComponent<BetterPlayer_Movement>().CancelParticles();
     }
     void InCombat()
     {

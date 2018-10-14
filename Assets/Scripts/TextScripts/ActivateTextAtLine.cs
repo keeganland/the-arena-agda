@@ -295,6 +295,7 @@ public abstract class ActivateTextAtLine : MonoBehaviour
         theText = YesText;
         PlayerEnableText(false);
         theTextManager.DisableCue();
+        theTextManager.DisableDialogPrompt();
         ChangeCue();
     }
 
@@ -304,6 +305,7 @@ public abstract class ActivateTextAtLine : MonoBehaviour
         PlayerEnableText(false);
         SetEventAtEndofText(false);
         theTextManager.DisableCue();
+        theTextManager.DisableDialogPrompt();
         ResetCue();
     }
 

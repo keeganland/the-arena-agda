@@ -347,11 +347,13 @@ public abstract class ActivateTextAtLine : MonoBehaviour
 
     virtual public void YesButtonEvent()
     {
+        Debug.Log("This is ActivateTextAtLine.cs, confirming we're in the YesButtonEvent method");      
         EventManager.StopListening("answersYes", YesButtonEvent);
     }
 
     virtual public void NoButtonEvent()
     {
+        Debug.Log("This is ActivateTextAtLine.cs, confirming we're in the NoButtonEvent method");
         EventManager.StopListening("answersNo", NoButtonEvent);
     }
 }

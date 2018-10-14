@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TextBertrand: ActivateTextAtLine {
 
+    [Header("Unique to Bertrand - for now")]
+    public GameObject fightCanvas;
+
     public override void ChangeText(TextAsset TextYes, TextAsset TextNo)
     {
         throw new System.NotImplementedException();
@@ -34,4 +37,12 @@ public class TextBertrand: ActivateTextAtLine {
 
         TextBeginning = theText;
     }*/
+
+    new void YesButtonEvent()
+    {
+        base.YesButtonEvent();
+        Debug.Log("This is TextBertrand.cs, confirming we're in the YesButtonEvent method");
+        fightCanvas.SetActive(true);
+    }
+
 }

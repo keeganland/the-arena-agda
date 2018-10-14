@@ -43723,7 +43723,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textBox: {fileID: 249619582}
   namePlate: {fileID: 1616137014}
-  interactivityCue: {fileID: 1644919335}
+  interactivityCue: {fileID: 0}
+  dialogPrompt: {fileID: 1644919335}
   boxContent: {fileID: 367122354}
   NPCNameTag: {fileID: 604382288}
   TextBallon: {fileID: 1173212495195382, guid: e5dba29c5add148da8c20370e2af5f05, type: 2}
@@ -43738,7 +43739,6 @@ MonoBehaviour:
   endAtLine: 0
   movementManager: {fileID: 0}
   theNPCMovementManager: {fileID: 0}
-  cueActive: 0
   stopPlayerMovement: 1
   stopNPCMovement: 0
   eventAtEndofText: 0

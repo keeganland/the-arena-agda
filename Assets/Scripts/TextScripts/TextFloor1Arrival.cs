@@ -26,6 +26,7 @@ public class TextFloor1Arrival : ActivateTextAtLine
         throw new System.NotImplementedException();
     }
 
+    /*
     public override void ResetText()
     {
         theTextManager = FindObjectOfType<TextBoxManager>();
@@ -40,7 +41,7 @@ public class TextFloor1Arrival : ActivateTextAtLine
         }
 
         TextBeginning = theText;
-    }
+    }*/
 
     public override void ChangeCue()
     {

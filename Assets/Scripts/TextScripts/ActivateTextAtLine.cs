@@ -54,7 +54,7 @@ public abstract class ActivateTextAtLine : MonoBehaviour
     public string activatedByTag;
     public string activatedByName;
 
-    public bool eventAtEndofText;
+    public bool eventAtEndofText; //2018-10-13 - Keegan - Completely pointless as far as I can tell? should be replaced with 
 
     private bool waitForPress = false;
     public bool textWasManuallyActivated; // If the text box has been activated, player should scroll through it before they get to end.
@@ -316,7 +316,24 @@ public abstract class ActivateTextAtLine : MonoBehaviour
         ResetCue();
     }
 
-    abstract public void ResetText(); //Alex : I made a mistake, resetText needs to have elements in it. I don't know how to force the "add" in this script so just copy past the textBertrand ResetText() to have the sample one. 
+
+    private void ResetText()
+    {
+        theTextManager = FindObjectOfType<TextBoxManager>();
+
+        theTextManager.eventAtEndofText = eventAtEndofText;
+
+        textWasManuallyActivated = false;
+
+        if (talkBubble != null)
+        {
+            talkBubble.SetActive(false);
+        }
+
+        TextBeginning = theText;
+    }
+
+    //abstract public void ResetText(); //Alex : I made a mistake, resetText needs to have elements in it. I don't know how to force the "add" in this script so just copy past the textBertrand ResetText() to have the sample one. 
 
     abstract public void ChangeText(TextAsset NewTextYes, TextAsset NewTextNo);
 

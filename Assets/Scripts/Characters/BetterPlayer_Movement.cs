@@ -91,46 +91,49 @@ public class BetterPlayer_Movement : MonoBehaviour {
         }
 
         //For switching player characters
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (isCombat)
         {
-            if (Boy.activeSelf == true && Boy.GetComponent<HealthController>().currentHealth>0)
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                SwapBoy();
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            if (Girl.activeSelf == true && Boy.GetComponent<HealthController>().currentHealth> 0)
-            {
-                SwapGirl();
-            }
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-               
-                if(hit.collider.name == "Boy")
+                if (Boy.activeSelf == true && Boy.GetComponent<HealthController>().currentHealth > 0)
                 {
-                    
                     SwapBoy();
-
-                    if(hit.collider.GetComponent<HealthController>().currentHealth <= 0)
-                    {
-                        Death();
-                    }
                 }
-                if (hit.collider.name == "Girl")
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                if (Girl.activeSelf == true && Boy.GetComponent<HealthController>().currentHealth > 0)
                 {
-                    
                     SwapGirl();
+                }
+            }
 
-                    if (hit.collider.GetComponent<HealthController>().currentHealth <= 0)
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+
+                    if (hit.collider.name == "Boy")
                     {
-                        Death();
+
+                        SwapBoy();
+
+                        if (hit.collider.GetComponent<HealthController>().currentHealth <= 0)
+                        {
+                            Death();
+                        }
+                    }
+                    if (hit.collider.name == "Girl")
+                    {
+
+                        SwapGirl();
+
+                        if (hit.collider.GetComponent<HealthController>().currentHealth <= 0)
+                        {
+                            Death();
+                        }
                     }
                 }
             }
@@ -334,6 +337,14 @@ public class BetterPlayer_Movement : MonoBehaviour {
     {
         _GirlSelected.enabled = true;
         _GirlSelectedParticle.Play();
+    }
+
+    public void CancelParticles()
+    {
+        _BoySelected.enabled = false;
+        _BoySelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        _GirlSelected.enabled = false;
+        _GirlSelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
     public void CancelMovement()

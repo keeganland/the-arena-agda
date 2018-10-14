@@ -12253,6 +12253,7 @@ MonoBehaviour:
   TextBeginning: {fileID: 0}
   SpriteSheet: 
   NameInSpriteSheet: 
+  fightCanvas: {fileID: 393804666}
 --- !u!135 &620568729
 SphereCollider:
   m_ObjectHideFlags: 0

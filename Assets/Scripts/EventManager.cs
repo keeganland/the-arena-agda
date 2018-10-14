@@ -42,6 +42,15 @@
  * PublicVariableHolderneverUnload.cs
  *  "HideUI"
  *  "ShowUI"
+ *  
+ * TextBoxManager.cs
+ *  "answersYes"
+ *  "answersNo"
+ *  
+ * ActivateTextAtLine.cs
+ *  "answersYes"
+ *  "answersNo"
+ *
  */
 
 

@@ -439,4 +439,15 @@ public class TextBoxManager : MonoBehaviour
         SpriteSheet = spriteSheetName;
         SpriteNameInSheet = spriteNameInSheet;
     }
+
+
+    public void PlayerAnswersYes()
+    {
+        EventManager.TriggerEvent("answersYes");
+    }
+
+    public void PlayerAnswersNo()
+    {
+        EventManager.TriggerEvent("answersNo");
+    }
 }

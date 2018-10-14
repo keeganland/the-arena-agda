@@ -176,7 +176,9 @@ public abstract class ActivateTextAtLine : MonoBehaviour
         {
             if (other.CompareTag(activatedByTag))
             {
+                //DisableDialogPrompt is what we should be using, DisableCue is what Alex was using. 
                 theTextManager.DisableCue();
+                theTextManager.DisableDialogPrompt();
                 waitForPress = false;
             }
         }
@@ -215,7 +217,7 @@ public abstract class ActivateTextAtLine : MonoBehaviour
         {
             theTextManager.SetInteractivityCue(InteractivityCue);   
         }
-        
+
 
         /*
          * 2018/10/13 - The below seems to be a result of Alex misunderstanding what EnableCue does
@@ -227,6 +229,9 @@ public abstract class ActivateTextAtLine : MonoBehaviour
             waitForPress = true;
             return;
         }*/
+
+        EventManager.StartListening("answersYes", YesButtonEvent);
+        EventManager.StartListening("answersNo", NoButtonEvent);
 
         this.Activate();
 
@@ -316,7 +321,6 @@ public abstract class ActivateTextAtLine : MonoBehaviour
         ResetCue();
     }
 
-
     private void ResetText()
     {
         theTextManager = FindObjectOfType<TextBoxManager>();
@@ -340,4 +344,14 @@ public abstract class ActivateTextAtLine : MonoBehaviour
     abstract public void ChangeCue();
 
     abstract public void ResetCue();
+
+    virtual public void YesButtonEvent()
+    {
+        EventManager.StopListening("answersYes", YesButtonEvent);
+    }
+
+    virtual public void NoButtonEvent()
+    {
+        EventManager.StopListening("answersNo", NoButtonEvent);
+    }
 }

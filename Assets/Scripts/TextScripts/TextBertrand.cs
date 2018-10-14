@@ -18,7 +18,7 @@ public class TextBertrand: ActivateTextAtLine {
     {
         throw new System.NotImplementedException();
     }
-
+    /*
     public override void ResetText()
     {
         theTextManager = FindObjectOfType<TextBoxManager>();
@@ -33,5 +33,5 @@ public class TextBertrand: ActivateTextAtLine {
         }
 
         TextBeginning = theText;
-    }
+    }*/
 }

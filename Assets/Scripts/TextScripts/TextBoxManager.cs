@@ -194,12 +194,11 @@ public class TextBoxManager : MonoBehaviour
                 currentLine += 1; //the way things work at the moment is just increment through the array. should sooner or later be replaced with a queue
                 if(((textQueue.Count == 0 && !eventAtEndofText) || (currentLine > endAtLine && !eventAtEndofText)))
                 {
-                    Debug.Log("here");
                     DisableTextBox();
                 }
                 else if (((textQueue.Count == 0 && eventAtEndofText) || (currentLine > endAtLine && eventAtEndofText)))
                 {
-                    if (interactivityCue == null || interactivityCue.activeSelf == false) 
+                    if (dialogPrompt == null || dialogPrompt.activeSelf == false) 
                     {
                         //EnableCue();
                         EnableDialogPrompt();
@@ -294,8 +293,12 @@ public class TextBoxManager : MonoBehaviour
         textBox.SetActive(false);
         isActive = false;
         Destroy(textBallon);
+
+        /*
         if(NPCGameObject)
             NPCGameObject.GetComponent<ActivateTextAtLine>().ResetText(); //Alex : Not sure it's the best way to reset the text. 
+            //It's not. 
+        */
         EventManager.TriggerEvent("StartMoving"); //Alex: I added this line here 'cause I don't know what is "movementManager";
 
         if (namePlate != null)

@@ -32798,7 +32798,11 @@ GameObject:
   - component: {fileID: 555127028}
   - component: {fileID: 555127027}
   m_Layer: 5
+<<<<<<< HEAD
   m_Name: DragCanvas
+=======
+  m_Name: MouseCanvas
+>>>>>>> ceb02ce1a085dfea4f9efbe21e27cdcf4eff6991
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43723,8 +43727,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textBox: {fileID: 249619582}
   namePlate: {fileID: 1616137014}
+<<<<<<< HEAD
   interactivityCue: {fileID: 1644919335}
   dialogPrompt: {fileID: 0}
+=======
+  interactivityCue: {fileID: 0}
+  dialogPrompt: {fileID: 1644919335}
+>>>>>>> ceb02ce1a085dfea4f9efbe21e27cdcf4eff6991
   boxContent: {fileID: 367122354}
   NPCNameTag: {fileID: 604382288}
   TextBallon: {fileID: 1173212495195382, guid: e5dba29c5add148da8c20370e2af5f05, type: 2}

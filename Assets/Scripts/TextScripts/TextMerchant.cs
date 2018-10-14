@@ -26,7 +26,7 @@ public class TextMerchant : ActivateTextAtLine {
         theTextManager.interactivityCue = InteractivityCue;
         newCue.SetActive(false);
     }
-
+    /*
     public override void ResetText()
     {
         if (FindObjectOfType<SaveManager>().CurrentMoney == 0 && FindObjectOfType<SaveManager>().fightNumberAvailable == 0)
@@ -39,6 +39,6 @@ public class TextMerchant : ActivateTextAtLine {
             theText = TextBeginning;
             SetEventAtEndofText(eventAtEndofText);
         }
-
     }
+    */
 }

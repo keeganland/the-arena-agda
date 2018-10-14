@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class TextBertrand: ActivateTextAtLine {
 
+    new void Start()
+    {
+        base.Start();
+        this.yesAnswer = YesButtonEvent;
+    }
+
+
     [Header("Unique to Bertrand - for now")]
     public GameObject fightCanvas;
 
@@ -42,6 +49,7 @@ public class TextBertrand: ActivateTextAtLine {
     {
         base.YesButtonEvent();
         Debug.Log("This is TextBertrand.cs, confirming we're in the YesButtonEvent method");
+        theTextManager.DisableTextBox();
         fightCanvas.SetActive(true);
     }
 

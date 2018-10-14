@@ -8,6 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class ActivateTextAtLine : MonoBehaviour
 {
@@ -78,6 +79,9 @@ public abstract class ActivateTextAtLine : MonoBehaviour
     public string SpriteSheet;
     public string NameInSpriteSheet;
 
+    protected UnityAction yesAnswer;
+    protected UnityAction noAnswer;
+
     private void Awake()
     {
         saveManager = FindObjectOfType<SaveManager>(); 
@@ -85,6 +89,9 @@ public abstract class ActivateTextAtLine : MonoBehaviour
     // Use this for initialization
     protected void Start()
     {
+        yesAnswer = this.YesButtonEvent;
+        noAnswer = this.NoButtonEvent;
+
         /*
          * As of 2018/9/21, text box manager will be a singleton, its script being part of an object in the NeverUnload scene.
          */
@@ -230,8 +237,8 @@ public abstract class ActivateTextAtLine : MonoBehaviour
             return;
         }*/
 
-        EventManager.StartListening("answersYes", YesButtonEvent);
-        EventManager.StartListening("answersNo", NoButtonEvent);
+        EventManager.StartListening("answersYes", yesAnswer);
+        EventManager.StartListening("answersNo", noAnswer);
 
         this.Activate();
 
@@ -348,12 +355,12 @@ public abstract class ActivateTextAtLine : MonoBehaviour
     virtual public void YesButtonEvent()
     {
         Debug.Log("This is ActivateTextAtLine.cs, confirming we're in the YesButtonEvent method");      
-        EventManager.StopListening("answersYes", YesButtonEvent);
+        EventManager.StopListening("answersYes", yesAnswer);
     }
 
     virtual public void NoButtonEvent()
     {
         Debug.Log("This is ActivateTextAtLine.cs, confirming we're in the NoButtonEvent method");
-        EventManager.StopListening("answersNo", NoButtonEvent);
+        EventManager.StopListening("answersNo", noAnswer);
     }
 }

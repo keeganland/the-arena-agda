@@ -5633,7 +5633,7 @@ MonoBehaviour:
   - {fileID: 1671386423}
   smallEnemies: {fileID: 1478816986308020, guid: 19078010063769b49aed707f4e700a1f,
     type: 2}
-  boss: {fileID: 1973562701685340, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}
+  boss: {fileID: 1378449355851128, guid: 53b628bbfe43e774f908fb797beb83ed, type: 2}
   BoyDoorPos: {fileID: 0}
   GirlDoorPos: {fileID: 0}
   ReturnFromArenaGirlPos: {fileID: 0}

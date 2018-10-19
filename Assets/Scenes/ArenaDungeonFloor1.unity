@@ -5631,7 +5631,7 @@ MonoBehaviour:
   - {fileID: 1685162299}
   - {fileID: 1340441681}
   - {fileID: 1671386423}
-  smallEnemies: {fileID: 1886467794102414, guid: 7fe2061e66b865d40addbc9d0f2f875e,
+  smallEnemies: {fileID: 1478816986308020, guid: 19078010063769b49aed707f4e700a1f,
     type: 2}
   boss: {fileID: 1973562701685340, guid: 7f143ac4fda31a7449aea96f62455029, type: 2}
   BoyDoorPos: {fileID: 0}
@@ -26565,6 +26565,7 @@ MonoBehaviour:
   textBox: {fileID: 834513654}
   namePlate: {fileID: 410026865}
   interactivityCue: {fileID: 0}
+  dialogPrompt: {fileID: 0}
   boxContent: {fileID: 188199588}
   NPCNameTag: {fileID: 580368529}
   TextBallon: {fileID: 1173212495195382, guid: e5dba29c5add148da8c20370e2af5f05, type: 2}
@@ -26577,7 +26578,6 @@ MonoBehaviour:
   endAtLine: 0
   movementManager: {fileID: 0}
   theNPCMovementManager: {fileID: 0}
-  cueActive: 0
   stopPlayerMovement: 1
   stopNPCMovement: 0
   eventAtEndofText: 0
@@ -43721,7 +43721,6 @@ MonoBehaviour:
   startLine: 0
   startLineSecondTime: 0
   endLine: 7
-  theTextManager: {fileID: 657219890}
   talkBubble: {fileID: 834513654}
   requireButtonPress: 0
   destroyWhenActivated: 0

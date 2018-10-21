@@ -865,7 +865,7 @@ Transform:
   m_Children:
   - {fileID: 327628809}
   m_Father: {fileID: 508573566}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &137093981
 SpriteRenderer:
@@ -11681,7 +11681,6 @@ Transform:
   - {fileID: 1624244541}
   - {fileID: 494971087}
   - {fileID: 54577646}
-  - {fileID: 1679622585}
   - {fileID: 1165019439}
   - {fileID: 1482882778}
   - {fileID: 137093980}
@@ -22442,7 +22441,7 @@ Transform:
   m_Children:
   - {fileID: 379942984}
   m_Father: {fileID: 508573566}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!95 &1165019440
 Animator:
@@ -27677,6 +27676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1456509848}
   - component: {fileID: 1456509847}
+  - component: {fileID: 1456509849}
   m_Layer: 0
   m_Name: ScriptedEvents
   m_TagString: Untagged
@@ -27726,6 +27726,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1456509849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1456509846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 186e3330f4e7f584a8d346aff4da3fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DistanceFromSprite: 1.2
 --- !u!1 &1482882777
 GameObject:
   m_ObjectHideFlags: 0
@@ -27756,7 +27768,7 @@ Transform:
   m_Children:
   - {fileID: 248724894}
   m_Father: {fileID: 508573566}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &1482882779
 SpriteRenderer:
@@ -32762,47 +32774,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4590965737642928, guid: 493e38eaf03b0e9409d8013601fcfcf7,
     type: 2}
   m_PrefabInternal: {fileID: 1672439161}
---- !u!1 &1679622584
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1679622585}
-  - component: {fileID: 1679622586}
-  m_Layer: 0
-  m_Name: DistanceFromSprite
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1679622585
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1679622584}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 508573566}
-  m_RootOrder: 18
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1679622586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1679622584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 186e3330f4e7f584a8d346aff4da3fc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _DistanceFromSprite: 1.2
 --- !u!1 &1799213779
 GameObject:
   m_ObjectHideFlags: 0

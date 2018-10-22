@@ -27,8 +27,11 @@ public class TextBoxManager : MonoBehaviour
     //these are game objects and unity stuff
     public GameObject textBox;
     public GameObject namePlate;
-    public GameObject interactivityCue; //Alex : I don't really know what it does but I suppose it's like a choice box for the player : (Yes/No)??
-                                        //I will use it as if it is (and create a bool eventAtEndofText too.
+    public GameObject interactivityCue;
+    /*
+        //Alex : I don't really know what it does but I suppose it's like a choice box for the player : (Yes/No)??
+        //I will use it as if it is (and create a bool eventAtEndofText too.
+    */
     public GameObject dialogPrompt;
 
     public Text boxContent;
@@ -47,8 +50,8 @@ public class TextBoxManager : MonoBehaviour
     public bool useXml;
 
     //these refer to particular lines in the text file because we're using a string array for some dumb reason
-    public int currentLine;
-    public int endAtLine;
+    //public int currentLine;
+    //public int endAtLine;
 
     public MovementManager movementManager;
     public NPCMovementManager theNPCMovementManager;
@@ -132,10 +135,10 @@ public class TextBoxManager : MonoBehaviour
                 textLines = (textFile.text.Split('\n')); //Keegan NTS: weird that this is valid syntax- i have never used round brackets () like that?
             }
 
-            if (endAtLine == 0)
-            {
-                endAtLine = textLines.Length - 1;
-            }
+            //if (endatline == 0)
+            //{
+            //    endatline = textlines.length - 1;
+            //}
 
             for (int i = 0; i < textLines.Length; i++)
             {
@@ -191,12 +194,14 @@ public class TextBoxManager : MonoBehaviour
         {
             if (!isTyping)
             {
-                currentLine += 1; //the way things work at the moment is just increment through the array. should sooner or later be replaced with a queue
-                if(((textQueue.Count == 0 && !eventAtEndofText) || (currentLine > endAtLine && !eventAtEndofText)))
+                //currentLine += 1; //the way things work at the moment is just increment through the array. should sooner or later be replaced with a queue
+                //if(((textQueue.Count == 0 && !eventAtEndofText) || (currentLine > endAtLine && !eventAtEndofText)))
+                if(textQueue.Count == 0 && !eventAtEndofText)
                 {
                     DisableTextBox();
                 }
-                else if (((textQueue.Count == 0 && eventAtEndofText) || (currentLine > endAtLine && eventAtEndofText)))
+                //else if (((textQueue.Count == 0 && eventAtEndofText) || (currentLine > endAtLine && eventAtEndofText)))
+                else if (textQueue.Count == 0 && eventAtEndofText)
                 {
                     if (dialogPrompt == null || dialogPrompt.activeSelf == false) 
                     {

@@ -108,6 +108,11 @@ public class InteractiveObjects : MonoBehaviour {
 
                 DungeonFloor1Exit();
                 break;
+
+            case 3:
+
+                DungeonFloor1Torches();
+                break;
         }   
     }
 
@@ -255,5 +260,10 @@ public class InteractiveObjects : MonoBehaviour {
             cghroom[i].ResetChangeRoom();
         }
         EventManager.TriggerEvent("StartMoving");
+    }
+
+    private void DungeonFloor1Torches()
+    {
+        this.gameObject.GetComponent<TorchesBoss>().LightUp();
     }
 }

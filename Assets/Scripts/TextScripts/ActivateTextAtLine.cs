@@ -134,7 +134,8 @@ public abstract class ActivateTextAtLine : MonoBehaviour
 
         //Refactor to take into account the queue structure!!!
         //if(theTextManager.currentLine > theTextManager.endAtLine)
-        if (!theTextManager.getIsActive() || (theTextManager.currentLine > theTextManager.endAtLine))
+        //if (!theTextManager.getIsActive() || (theTextManager.currentLine > theTextManager.endAtLine))
+        if (!theTextManager.getIsActive())
         {
             textWasManuallyActivated = false;
             //i.e., if the text isn't even activated any more, ofc it's not manually activated
@@ -294,8 +295,8 @@ public abstract class ActivateTextAtLine : MonoBehaviour
             theTextManager.ReloadScript(theText);
         }
         
-        theTextManager.currentLine = startLine;
-        theTextManager.endAtLine = endLine;
+        //theTextManager.currentLine = startLine;
+        //theTextManager.endAtLine = endLine;
         theTextManager.EnableTextBox();
     }
 

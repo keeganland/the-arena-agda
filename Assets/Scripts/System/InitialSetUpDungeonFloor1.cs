@@ -62,7 +62,7 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         StartCoroutine(ArrivalScriptedEvent());
 
         VictoryReferee.ResetEnemyList();
-        VictoryReferee.SetVictoryCondition(2);
+        VictoryReferee.SetVictoryCondition(2);  
 	}
 
     IEnumerator ArrivalScriptedEvent()

@@ -30,6 +30,7 @@ public class InteractiveObjects : MonoBehaviour {
 
     private GameObject[] LightRoom;
     private GameObject[] EnemiesSpawnPos;
+    private GameObject[] LightInteractiveParticles;
 
     private GameObject smallEnemy;
     private GameObject boss;
@@ -60,6 +61,7 @@ public class InteractiveObjects : MonoBehaviour {
         Bella = publicVariableHolderNeverUnload._GirlSpriteGameObject;
 
         LightRoom = publicVariableHolderArenaEntrance.LightsBossRoom;
+        LightInteractiveParticles = publicVariableHolderArenaEntrance.LightInteractiveParticles;
 
         BossPos = publicVariableHolderArenaEntrance.BossPos;
 
@@ -229,13 +231,19 @@ public class InteractiveObjects : MonoBehaviour {
 
         yield return new WaitForSeconds(1f);
 
-        GameObject[] Enemiesgo = new GameObject[EnemiesSpawnPos.Length];
+        //GameObject[] Enemiesgo = new GameObject[EnemiesSpawnPos.Length];
 
-        Enemiesgo[0] = Instantiate(boss, EnemiesSpawnPos[0].transform.position, Quaternion.identity);
-        Enemiesgo[0].SetActive(true);
-        for (int i = 1; i < EnemiesSpawnPos.Length - 1; i++)
+        //Enemiesgo[0] = Instantiate(boss, EnemiesSpawnPos[0].transform.position, Quaternion.identity);
+        //Enemiesgo[0].SetActive(true);
+        //for (int i = 1; i < EnemiesSpawnPos.Length - 1; i++)
+        //{
+        //    Enemiesgo[i] = Instantiate(smallEnemy, EnemiesSpawnPos[i].transform.position, Quaternion.identity);
+        //}
+
+        for (int i = 0; i < LightRoom.Length; i++)
         {
-            Enemiesgo[i] = Instantiate(smallEnemy, EnemiesSpawnPos[i].transform.position, Quaternion.identity);
+            LightInteractiveParticles[i].SetActive(true);
+            LightRoom[i].GetComponent<Collider>().enabled = true;
         }
 
         Destroy(this.gameObject);

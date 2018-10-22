@@ -291,60 +291,6 @@ public class ThirdEnemy : BasicEnemyBehaviour
         }
     }
 
-    public override void OnTriggerEnter(Collider other)
-    {
-        //if (_Target[_BoyOrGirl] && !StopAttacking)
-        //{
-        //    if (other == _Target[_BoyOrGirl].GetComponent<Collider>())
-        //    {
-        //        //Debug.Log("Target in Range " + curTarget.name)
-        //        if (m_timer >= _AttackCD[i])
-        //        {
-        //            //Debug.Log("here");
-        //            CancelDashMovement();
-        //            StartCoroutine("BombAttack");
-        //        }
-        //    }
-        //    else return;
-        //}
-        return;
-    }
-
-    public override void OnTriggerStay(Collider other)
-    {
-        ////Debug.Log(other.name);
-        //if (_Target[_BoyOrGirl] && !StopAttacking)
-        //{
-        //    if (other == _Target[_BoyOrGirl].GetComponent<Collider>())
-        //    {
-        //        CancelDashMovement();
-        //        //Debug.Log("Target in Range " + curTarget.name)
-        //        if (m_timer >= _AttackCD[i])
-        //        {
-        //            transform.LookAt(_Target[_BoyOrGirl]);
-        //            StartCoroutine("BombAttack");
-        //        }
-        //    }
-        //    else return;
-        //}
-        return;
-    }
-
-    public override void OnTriggerExit(Collider other)
-    {
-        //if (_Target[_BoyOrGirl])
-        //{
-        //    //Debug.Log("TriggerExit" + other.name);
-        //    if (other == _Target[_BoyOrGirl].GetComponent<Collider>())
-        //    {
-        //        isCollided = false;
-        //        //will have player chase target once target leaves attack range trigger
-        //        //Debug.Log("Target out of range " + curTarget.name);
-        //    }
-        //}
-        return;
-    }
-
     private IEnumerator CastBombAttack() //Work in Prgress
     {
         StopAttacking = true; //To Reset if  
@@ -707,6 +653,22 @@ public class ThirdEnemy : BasicEnemyBehaviour
 
         _StunnedGameObject.SetActive(false);
         _StunnedTimer.enabled = false;
+    }
+
+    //Not used but need to be inherited from BasicEnemyBehaviour
+    public override void OnTriggerEnter(Collider other)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnTriggerStay(Collider other)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnTriggerExit(Collider other)
+    {
+        throw new System.NotImplementedException();
     }
 }
 

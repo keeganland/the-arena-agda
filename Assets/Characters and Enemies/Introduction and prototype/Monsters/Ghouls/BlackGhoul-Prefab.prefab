@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 4326062379809444}
   m_Layer: 0
   m_Name: BlackGhoul-Prefab
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,12 +144,12 @@ GameObject:
   - component: {fileID: 114454394968755570}
   - component: {fileID: 114585252837894084}
   - component: {fileID: 195583663002981140}
-  - component: {fileID: 114678929009828692}
   - component: {fileID: 135108640602548560}
   - component: {fileID: 114435767823738108}
   - component: {fileID: 23823658646424944}
   - component: {fileID: 82860284459606680}
   - component: {fileID: 114122308229402690}
+  - component: {fileID: 114701003997030724}
   m_Layer: 0
   m_Name: BlackGhoulMonster-Agent
   m_TagString: Enemy
@@ -746,7 +746,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114678929009828692
+--- !u!114 &114701003997030724
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -754,18 +754,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 1506283560260720}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 249edda872eafdf499cfecbe372c8573, type: 3}
+  m_Script: {fileID: 11500000, guid: 82fe3c611017c2c43b05f23c958b3816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _AudioClip:
-  - {fileID: 8300000, guid: f582422ffc86a5b4e8a980f4fce1593c, type: 3}
-  - {fileID: 8300000, guid: c1ef312bf7e9ce94aa457eb783488216, type: 3}
-  Damage: 15
+  attackWarning: {fileID: 0}
+  _BoyOrGirl: 0
+  _Sprite: {fileID: 0}
+  Damage: 0
+  _CastSpellSlider: {fileID: 0}
+  _CastSpellGameobject: {fileID: 0}
+  _SpellCasttimer: {fileID: 0}
+  _StunnedSlider: {fileID: 0}
+  _StunnedGameObject: {fileID: 0}
+  _StunnedTimer: {fileID: 0}
+  LineDrawSpeed: 0
+  LaserBeamHit: {fileID: 0}
+  m_warningCastTimeBool: 0
   Aggro: 0
-  AttackSpeed: 2
-  _Sprite: {fileID: 1064130333639568}
-  spellPrefab:
-  - {fileID: 1919202666365878, guid: 4ba1252289dbec84c961a24f47d825ec, type: 2}
+  StopAttacking: 0
+  _AttackPrefabs: []
+  _AttackCD: []
+  _TimeWarningForSpell: []
+  _AttackWarningPrefabs: []
+  _AttackAnimations: []
+  _AttackDamage: 
+  TimeBetweenMeteors: 2
+  NumberOfMeteors: 4
+  LaserBeam: []
+  m_darkpulseTimer: 0
+  m_normalAttackTimer: 0
+  m_bombAttackTimer: 0
+  m_laserAttackTimer: 0
 --- !u!114 &114786628511643540
 MonoBehaviour:
   m_ObjectHideFlags: 1

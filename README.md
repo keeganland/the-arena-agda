@@ -2,6 +2,8 @@
 
 _The Arena_ is an Action RPG developed in Unity in association with Alexandre Guichet, Patric McConnell, Ryan Donnelly, and Eloïse Zahabi. It began as a project in association with the UBC AMS Game Development Association.
 
+Special thanks to [Gowtham Mohan](https://bitbucket.org/Gowtham100/) for helping to get this project started.
+
 ## Technical Q&A
 
 ### Q: Running _The Arena_ within Unity works fine; why I am getting an error when I try to build the project?

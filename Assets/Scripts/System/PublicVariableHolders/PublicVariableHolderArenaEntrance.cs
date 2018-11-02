@@ -24,6 +24,7 @@ public class PublicVariableHolderArenaEntrance : MonoBehaviour
     public GameObject DungeonDoorFloor1Girl;
 
     [Header("BossTrigger")]
+    public DirectionalLight directionalLight;
     public GameObject BoyPosBoss;
     public GameObject GirlPosBoss;
     public GameObject BossPos;

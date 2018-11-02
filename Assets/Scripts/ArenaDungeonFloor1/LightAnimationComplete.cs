@@ -18,9 +18,4 @@ public class LightAnimationComplete : MonoBehaviour {
         anim.SetBool("TurnOn", false);
         anim.SetBool("TurnOff", false);
     }
-
-    public void SetIntensityMax()
-    {
-
-    }
 }

@@ -166,7 +166,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
                       Vector3 newpos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
                       m_agent.SetDestination(newpos);
-                      if (curTarget && !curTarget.CompareTag("NPC"))
+                        if (curTarget && !curTarget.CompareTag("NPC") && !curTarget.CompareTag("Objects"))
                          curTarget.GetComponent<HealthController>().CancelEnemy(this.gameObject);
                       curTarget = null;
                       this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
@@ -198,7 +198,8 @@ public class BetterPlayer_Movement : MonoBehaviour {
                    }
                    else if (hit.collider.tag == "Objects")
                    {
-                      hit.collider.GetComponent<InteractiveObjects>().DoAction();
+                        curTarget = hit.collider.gameObject;
+                     // hit.collider.GetComponent<InteractiveObjects>().DoAction();
                    }
 
                    else if (hit.collider.tag == "NPC")
@@ -253,15 +254,24 @@ public class BetterPlayer_Movement : MonoBehaviour {
             if (curTarget.CompareTag("Objects"))
             {
                 Debug.Log("Not Set Destination?");
-                this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
+
                 //Debug.Log("Target is " + curTarget.name);
                 //this should chase enemy if enemy is not currently in range
-                if (this.GetComponentInChildren<RangeChecker>().InRange(curTarget) == false)
-                {
+
                     //Debug.Log("in range: " + curTarget.name);
-                    m_agent.SetDestination(curTarget.transform.position);
+                  if (curTarget.GetComponent<InteractiveObjects>().isAttackable)
+                    {
+                        this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
+                    if (this.GetComponentInChildren<ObjectChecker>().InRange(curTarget) == false)
+                         {
+                        m_agent.SetDestination(curTarget.transform.position);
+                         }
+                    }
+                    else
+                    {
+                        curTarget.GetComponent<InteractiveObjects>().DoAction();
+                    }
                     //OnTriggerEnter should stop character once target is within range
-                }
             }
 
             if (curTarget.CompareTag("NPC"))
@@ -385,6 +395,12 @@ public class BetterPlayer_Movement : MonoBehaviour {
                     gameObject.GetComponent<HealthController>().m_reviveCoroutine = true;
                     ReviveStart = false;
                 }
+
+                if(other.CompareTag("Objects"))
+                {
+                    Debug.Log("here for Lights");
+                    other.GetComponent<InteractiveObjects>().DoAction();
+                }
                 //Pass attack function here
             }
             else return;
@@ -411,6 +427,12 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 {
                     gameObject.GetComponent<HealthController>().m_reviveCoroutine = true;
                     ReviveStart = false;
+                }
+
+                if (other.CompareTag("Objects"))
+                {
+                    Debug.Log("here for Lights");
+                    curTarget.GetComponent<InteractiveObjects>().DoAction();
                 }
                 //Pass attack function here?
             }

@@ -7,6 +7,9 @@ using UnityEngine.AI;
 public class InteractiveObjects : MonoBehaviour {
 
     public PublicVariableHolderArenaEntrance publicVariableHolderArenaEntrance;
+
+    public bool isAttackable;
+
     private PublicVariableHolderneverUnload publicVariableHolderNeverUnload;
 
     private int totalHealth;
@@ -37,7 +40,7 @@ public class InteractiveObjects : MonoBehaviour {
 
     private GameObject ExitDoor;
 
-
+    private DirectionalLight directionalLight;
 
     private MessageHandler m_messageHandler;
 
@@ -71,6 +74,8 @@ public class InteractiveObjects : MonoBehaviour {
         boss = publicVariableHolderArenaEntrance.boss;
 
         ExitDoor = publicVariableHolderArenaEntrance.ExitDoor;
+
+        directionalLight = publicVariableHolderArenaEntrance.directionalLight;
 
         m_messageHandler = GetComponent<MessageHandler>();
 
@@ -245,6 +250,8 @@ public class InteractiveObjects : MonoBehaviour {
             LightInteractiveParticles[i].SetActive(true);
             LightRoom[i].GetComponent<Collider>().enabled = true;
         }
+
+        directionalLight.LightDown();
 
         Destroy(this.gameObject);
     }

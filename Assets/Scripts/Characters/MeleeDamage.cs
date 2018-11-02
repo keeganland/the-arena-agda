@@ -38,6 +38,11 @@ public class MeleeDamage : MonoBehaviour {
         AttackTimer += Time.deltaTime; 
         if(AttackTimer >= AttackSpeed && (this.GetComponentInChildren<RangeChecker>().InRange(m_target)) && m_target!=null && gameObject.GetComponent<HealthController>().currentHealth > 0)
         {
+            if(m_target.CompareTag("Objects") && m_target.GetComponent<HealthController>() == false)
+            {
+                return;
+            }
+
             if(m_target.GetComponent<HealthController>().currentHealth <= 0)
             {
                 return;

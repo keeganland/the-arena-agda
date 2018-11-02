@@ -22,6 +22,7 @@ TagManager:
   - Objects
   - UI
   - LoadingScreen
+  - ObjectRange
   layers:
   - Default
   - TransparentFX

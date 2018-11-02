@@ -36,7 +36,7 @@ public class TorchesBoss : MonoBehaviour {
             
             if (_Timeup - time >= 0)
             {
-                TorchSlider.value = (_Timeup - time)/_Timeup;
+                TorchSlider.value = (1 - time/_Timeup);
             }
             else
             {
@@ -56,7 +56,7 @@ public class TorchesBoss : MonoBehaviour {
 
             if (_Timedown - time >= 0)
             {
-                TorchSlider.value = (_Timedown - time)/_Timedown;
+                TorchSlider.value = (1 - time/_Timedown);
             }
             else
             {
@@ -106,6 +106,13 @@ public class TorchesBoss : MonoBehaviour {
         lightdown = false;
 
         PointLight.SetActive(true);
+
+        if (PointLight.GetComponentInChildren<ParticleSystem>() != false)
+        {
+            var emission = PointLight.GetComponentInChildren<ParticleSystem>().emission;
+            emission.enabled = true;
+        }
+
         TorchSlider.gameObject.SetActive(false);
 
         LightInteractionParticle.Play();

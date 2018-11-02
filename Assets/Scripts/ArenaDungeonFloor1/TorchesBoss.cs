@@ -102,19 +102,14 @@ public class TorchesBoss : MonoBehaviour {
     {
         gameObject.GetComponent<Collider>().enabled = true;
 
-        lightup = false;
-        lightdown = false;
-
         PointLight.SetActive(true);
-
-        if (PointLight.GetComponentInChildren<ParticleSystem>() != false)
-        {
-            var emission = PointLight.GetComponentInChildren<ParticleSystem>().emission;
-            emission.enabled = true;
-        }
-
+        PointLight.GetComponent<Animator>().SetBool("FadeIn", true);
+        PointLight.GetComponent<Animator>().SetBool("Lighten", true);
         TorchSlider.gameObject.SetActive(false);
 
         LightInteractionParticle.Play();
+
+        lightup = false;
+        lightdown = false;
     }
 }

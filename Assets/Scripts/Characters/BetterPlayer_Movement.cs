@@ -380,7 +380,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
             if (other == curTarget.GetComponent<Collider>())
             {          
                 //Debug.Log("Target in Range " + curTarget.name);
-                CancelMovement();
+
 
                 if (other.CompareTag("NPC") && !NPCisinRange)
                 {
@@ -396,11 +396,17 @@ public class BetterPlayer_Movement : MonoBehaviour {
                     ReviveStart = false;
                 }
 
-                if(other.CompareTag("Objects"))
+                if(other.CompareTag("Objects") && GetComponentInChildren<ObjectChecker>().InRange(other.gameObject))
                 {
                     Debug.Log("here for Lights");
                     other.GetComponent<InteractiveObjects>().DoAction();
+
                 }
+                else if(other.CompareTag("Objects") && !GetComponentInChildren<ObjectChecker>().InRange(other.gameObject))
+                {
+                    return;
+                }
+                CancelMovement();
                 //Pass attack function here
             }
             else return;
@@ -414,7 +420,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
             if (other == curTarget.GetComponent<Collider>())
             {
                 //Debug.Log("Target in Range " + curTarget.name);
-                CancelMovement();
+           
                 if (other.CompareTag("NPC") && !NPCisinRange)
                 {
                     NPCisinRange = true;
@@ -429,11 +435,17 @@ public class BetterPlayer_Movement : MonoBehaviour {
                     ReviveStart = false;
                 }
 
-                if (other.CompareTag("Objects"))
+                if (other.CompareTag("Objects") && GetComponent<ObjectChecker>().InRange(other.gameObject))
                 {
                     Debug.Log("here for Lights");
                     curTarget.GetComponent<InteractiveObjects>().DoAction();
                 }
+                else if (other.CompareTag("Objects") && !GetComponentInChildren<ObjectChecker>().InRange(other.gameObject))
+                {
+                    return;
+                }
+
+                CancelMovement();
                 //Pass attack function here?
             }
             else return;

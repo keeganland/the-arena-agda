@@ -19,6 +19,7 @@ public class ChangeRoom : MonoBehaviour {
         if (other.name == "Girl")
         {
                FadeRoomIn();
+
             for (int i = 0; i < m_particle.Length; i++)
             {
                 m_particle[i].Play();  

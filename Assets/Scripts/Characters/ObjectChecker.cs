@@ -86,7 +86,7 @@ public class ObjectChecker : MonoBehaviour {
     {
         for (int i = 0; i < m_targets.Count; i++)
         {
-            if (m_targets[i].gameObject == null)
+            if (m_targets[i].gameObject == null || m_targets[i].GetComponent<Collider>().enabled == false)
             {
                 m_targets.Remove(m_targets[i].gameObject);
             }

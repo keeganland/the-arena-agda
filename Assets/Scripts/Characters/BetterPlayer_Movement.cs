@@ -435,7 +435,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                     ReviveStart = false;
                 }
 
-                if (other.CompareTag("Objects") && GetComponent<ObjectChecker>().InRange(other.gameObject))
+                if (other.CompareTag("Objects") && GetComponentInChildren<ObjectChecker>().InRange(other.gameObject))
                 {
                     Debug.Log("here for Lights");
                     curTarget.GetComponent<InteractiveObjects>().DoAction();

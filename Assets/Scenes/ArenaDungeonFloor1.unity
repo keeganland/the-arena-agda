@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edaaff3953b884416be1c806a2e51598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  publicVariableHolderArenaEntrance: {fileID: 0}
+  publicVariableHolderArenaEntrance: {fileID: 206583902}
   isAttackable: 1
   _DestroyEffect: {fileID: 0}
   Door: {fileID: 0}
@@ -45511,7 +45511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edaaff3953b884416be1c806a2e51598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  publicVariableHolderArenaEntrance: {fileID: 0}
+  publicVariableHolderArenaEntrance: {fileID: 206583902}
   isAttackable: 1
   _DestroyEffect: {fileID: 0}
   Door: {fileID: 0}
@@ -45757,7 +45757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edaaff3953b884416be1c806a2e51598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  publicVariableHolderArenaEntrance: {fileID: 0}
+  publicVariableHolderArenaEntrance: {fileID: 206583902}
   isAttackable: 1
   _DestroyEffect: {fileID: 0}
   Door: {fileID: 0}
@@ -58405,7 +58405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edaaff3953b884416be1c806a2e51598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  publicVariableHolderArenaEntrance: {fileID: 0}
+  publicVariableHolderArenaEntrance: {fileID: 206583902}
   isAttackable: 1
   _DestroyEffect: {fileID: 0}
   Door: {fileID: 0}
@@ -63166,7 +63166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edaaff3953b884416be1c806a2e51598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  publicVariableHolderArenaEntrance: {fileID: 0}
+  publicVariableHolderArenaEntrance: {fileID: 206583902}
   isAttackable: 1
   _DestroyEffect: {fileID: 0}
   Door: {fileID: 0}
@@ -68229,7 +68229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edaaff3953b884416be1c806a2e51598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  publicVariableHolderArenaEntrance: {fileID: 0}
+  publicVariableHolderArenaEntrance: {fileID: 206583902}
   isAttackable: 1
   _DestroyEffect: {fileID: 0}
   Door: {fileID: 0}

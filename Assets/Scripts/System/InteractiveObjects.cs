@@ -48,8 +48,11 @@ public class InteractiveObjects : MonoBehaviour {
 
         publicVariableHolderNeverUnload = GameObject.Find("PublicVariableHolderNeverUnload").GetComponent<PublicVariableHolderneverUnload>();
 
-        totalHealth = GetComponent<HealthController>().totalHealth;
-        currentHealth = GetComponent<HealthController>().currentHealth;
+        if (GetComponent<HealthController>() == true)
+        {
+            totalHealth = GetComponent<HealthController>().totalHealth;
+            currentHealth = GetComponent<HealthController>().currentHealth;
+        }
 
         Boy = publicVariableHolderArenaEntrance.Boy;
         Girl = publicVariableHolderArenaEntrance.Girl;

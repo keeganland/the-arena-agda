@@ -2437,6 +2437,7 @@ MonoBehaviour:
   textBox: {fileID: 337486078}
   namePlate: {fileID: 0}
   interactivityCue: {fileID: 2007499883}
+  dialogPrompt: {fileID: 0}
   boxContent: {fileID: 1107638620}
   NPCNameTag: {fileID: 0}
   TextBallon: {fileID: 0}
@@ -2445,11 +2446,8 @@ MonoBehaviour:
   NPCName: 
   textLines: []
   useXml: 0
-  currentLine: 0
-  endAtLine: 0
   movementManager: {fileID: 0}
   theNPCMovementManager: {fileID: 0}
-  cueActive: 0
   stopPlayerMovement: 1
   stopNPCMovement: 0
   eventAtEndofText: 0
@@ -8251,6 +8249,16 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114480562559653218, guid: 4c935f56c7c07fb44b680540f66edf7e,
+        type: 2}
+      propertyPath: _AttackCD
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114480562559653218, guid: 4c935f56c7c07fb44b680540f66edf7e,
+        type: 2}
+      propertyPath: _WarningtoAttackCD
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c935f56c7c07fb44b680540f66edf7e, type: 2}

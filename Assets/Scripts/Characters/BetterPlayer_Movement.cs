@@ -264,12 +264,13 @@ public class BetterPlayer_Movement : MonoBehaviour {
                         this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
                     if (this.GetComponentInChildren<ObjectChecker>().InRange(curTarget) == false)
                          {
+                        Debug.Log("Alex : 08/11 here");
                         m_agent.SetDestination(curTarget.transform.position);
                          }
                     }
                     else
                     {
-                        curTarget.GetComponent<InteractiveObjects>().DoAction();
+                    curTarget.GetComponent<InteractiveObjects>().DoAction(this.gameObject);
                     }
                     //OnTriggerEnter should stop character once target is within range
             }
@@ -399,7 +400,8 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 if(other.CompareTag("Objects") && GetComponentInChildren<ObjectChecker>().InRange(other.gameObject))
                 {
                     Debug.Log("here for Lights");
-                    other.GetComponent<InteractiveObjects>().DoAction();
+                    other.GetComponent<InteractiveObjects>().DoAction(this.gameObject);
+                    UndoCurTarget();
 
                 }
                 else if(other.CompareTag("Objects") && !GetComponentInChildren<ObjectChecker>().InRange(other.gameObject))
@@ -438,7 +440,8 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 if (other.CompareTag("Objects") && GetComponentInChildren<ObjectChecker>().InRange(other.gameObject))
                 {
                     Debug.Log("here for Lights");
-                    curTarget.GetComponent<InteractiveObjects>().DoAction();
+                    curTarget.GetComponent<InteractiveObjects>().DoAction(this.gameObject);
+                    UndoCurTarget();
                 }
                 else if (other.CompareTag("Objects") && !GetComponentInChildren<ObjectChecker>().InRange(other.gameObject))
                 {
@@ -486,7 +489,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
     {
         this.GetComponent<PlayerAI>().hasTarget = false;
         this.GetComponent<PlayerAI>().AIavailable = false;
-        if(curTarget)
+        if(curTarget && curTarget.GetComponent<HealthController>())
         curTarget.GetComponent<HealthController>().CancelEnemy(this.gameObject);
         curTarget = null;
     }

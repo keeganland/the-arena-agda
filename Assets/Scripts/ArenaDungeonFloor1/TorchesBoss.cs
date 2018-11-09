@@ -28,6 +28,8 @@ public class TorchesBoss : MonoBehaviour {
 
     public int Intensity;
 
+    [SerializeField] int LightingTime = 2;
+
 	void Update ()
     {
         if (lightup)
@@ -71,11 +73,10 @@ public class TorchesBoss : MonoBehaviour {
         }
 	}
 
-    public void LightUp()
+    private void LightUp()
     {
         time = 0;
         lightAnimTime=0;
-        gameObject.GetComponent<Collider>().enabled = false;
         LightInteractionParticle.Stop();
 
         TorchSlider.gameObject.SetActive(true);
@@ -111,5 +112,15 @@ public class TorchesBoss : MonoBehaviour {
 
         lightup = false;
         lightdown = false;
+    }
+
+    public IEnumerator LightUpCoroutine(GameObject sender)
+    {
+        gameObject.GetComponent<Collider>().enabled = false;
+
+        sender.GetComponent<SpriteInteractionSlider>().SetUpInteractionSlider("Lighting", (float)LightingTime);
+
+        yield return new WaitForSeconds(LightingTime);
+        LightUp();
     }
 }

@@ -44,6 +44,8 @@ public class InteractiveObjects : MonoBehaviour {
 
     private MessageHandler m_messageHandler;
 
+    private GameObject ActionSender;
+
 	void Start () {
 
         publicVariableHolderNeverUnload = GameObject.Find("PublicVariableHolderNeverUnload").GetComponent<PublicVariableHolderneverUnload>();
@@ -89,8 +91,9 @@ public class InteractiveObjects : MonoBehaviour {
 	}
 
 
-    public void DoAction()
+    public void DoAction(GameObject sender)
     {
+        ActionSender = sender;
         Action(Case);
     }
 
@@ -282,6 +285,6 @@ public class InteractiveObjects : MonoBehaviour {
 
     private void DungeonFloor1Torches()
     {
-        this.gameObject.GetComponent<TorchesBoss>().LightUp();
+        this.gameObject.GetComponent<TorchesBoss>().StartCoroutine("LightUpCoroutine", ActionSender);
     }
 }

@@ -17,6 +17,7 @@ public class TorchesBoss : MonoBehaviour {
     public Light Light;
     public ParticleSystem LightInteractionParticle;
     public GameObject PointLight;
+    public Text Text;
 
     float time;
     float lightAnimTime;
@@ -35,7 +36,8 @@ public class TorchesBoss : MonoBehaviour {
         if (lightup)
         {
             time += Time.deltaTime;  
-            
+            Text.text = ((int)(_Timeup - time)).ToString();
+
             if (_Timeup - time >= 0)
             {
                 TorchSlider.value = (1 - time/_Timeup);
@@ -55,7 +57,7 @@ public class TorchesBoss : MonoBehaviour {
         if (lightdown)
         {
             time += Time.deltaTime;
-
+            Text.text = ((int)(_Timedown - time)).ToString();
             if (_Timedown - time >= 0)
             {
                 TorchSlider.value = (1 - time/_Timedown);
@@ -73,7 +75,7 @@ public class TorchesBoss : MonoBehaviour {
         }
 	}
 
-    private void LightUp()
+    public void LightUp()
     {
         time = 0;
         lightAnimTime=0;
@@ -102,7 +104,7 @@ public class TorchesBoss : MonoBehaviour {
     private void LightWaiting()
     {
         gameObject.GetComponent<Collider>().enabled = true;
-
+        Text.text = "";
         PointLight.SetActive(true);
         PointLight.GetComponent<Animator>().SetBool("FadeIn", true);
         PointLight.GetComponent<Animator>().SetBool("Lighten", true);

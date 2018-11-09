@@ -179,7 +179,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
        
         m_dashingAnim = true;
    
-        yield return new WaitForSeconds(_WarningtoAttackCD);
+        yield return new WaitForSeconds(_AttackCD);
        
         //Reset Enemy
 
@@ -188,7 +188,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
         m_nav.SetDestination(transform.position);
         Destroy(fx,1);
 
-        yield return new WaitForSeconds(_WarningtoAttackCD);        
+        yield return new WaitForSeconds(_AttackCD);        
 
         _BoyOrGirl = Random.Range(0, 2);
         m_timer = 0;

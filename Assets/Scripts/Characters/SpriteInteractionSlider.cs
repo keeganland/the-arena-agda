@@ -23,7 +23,7 @@ public class SpriteInteractionSlider : MonoBehaviour {
             {
                 m_castTime += Time.fixedDeltaTime;
                 InteractionSlider.value = m_castTime / m_totalCD;
-                CastingTime.text = System.Math.Round((float)(m_totalCD - m_castTime), 2).ToString();
+                CastingTime.text = System.Math.Round((float)(m_totalCD - m_castTime), 1).ToString();
             }
             else
             {

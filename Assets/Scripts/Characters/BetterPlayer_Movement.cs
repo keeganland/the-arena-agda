@@ -16,7 +16,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
     private ParticleSystem _GirlSelectedParticle;
     private GameObject Boy;
     private GameObject Girl;
-
+    private GameObject ObjectInteraction;
     public bool NPCisinRange;
 
     private NavMeshAgent m_agent;
@@ -199,6 +199,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                    else if (hit.collider.tag == "Objects")
                    {
                         curTarget = hit.collider.gameObject;
+                        ObjectInteraction = hit.collider.gameObject;
                      // hit.collider.GetComponent<InteractiveObjects>().DoAction();
                    }
 
@@ -215,8 +216,15 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 {
                    gameObject.GetComponent<HealthController>().StopReviveCoroutine();
                 }
-            }
+                if (ObjectInteraction)
+                {
+                    if (ObjectInteraction.GetComponent<InteractiveObjectAbstract>().canBeCancelled && ObjectInteraction.GetComponent<InteractiveObjectAbstract>().isCoroutineStarted)
+                    {
+                        ObjectInteraction.GetComponent<InteractiveObjectAbstract>().CancelAction(this.gameObject);
+                    }
+                }
 
+            }
         }
 
         /* Keegan note 2018/6/6:
@@ -259,18 +267,17 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 //this should chase enemy if enemy is not currently in range
 
                     //Debug.Log("in range: " + curTarget.name);
-                  if (curTarget.GetComponent<InteractiveObjects>().isAttackable)
+                if (curTarget.GetComponent<InteractiveObjectAbstract>().isAttackable)
                     {
                         this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
                     if (this.GetComponentInChildren<ObjectChecker>().InRange(curTarget) == false)
-                         {
-                        Debug.Log("Alex : 08/11 here");
+                         {                     
                         m_agent.SetDestination(curTarget.transform.position);
                          }
                     }
                     else
                     {
-                    curTarget.GetComponent<InteractiveObjects>().DoAction(this.gameObject);
+                    curTarget.GetComponent<InteractiveObjectAbstract>().DoAction(this.gameObject);
                     }
                     //OnTriggerEnter should stop character once target is within range
             }
@@ -400,7 +407,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 if(other.CompareTag("Objects") && GetComponentInChildren<ObjectChecker>().InRange(other.gameObject))
                 {
                     Debug.Log("here for Lights");
-                    other.GetComponent<InteractiveObjects>().DoAction(this.gameObject);
+                    other.GetComponent<InteractiveObjectAbstract>().DoAction(this.gameObject);
                     UndoCurTarget();
 
                 }
@@ -440,7 +447,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 if (other.CompareTag("Objects") && GetComponentInChildren<ObjectChecker>().InRange(other.gameObject))
                 {
                     Debug.Log("here for Lights");
-                    curTarget.GetComponent<InteractiveObjects>().DoAction(this.gameObject);
+                    curTarget.GetComponent<InteractiveObjectAbstract>().DoAction(this.gameObject);
                     UndoCurTarget();
                 }
                 else if (other.CompareTag("Objects") && !GetComponentInChildren<ObjectChecker>().InRange(other.gameObject))

@@ -22,6 +22,8 @@ using UnityEngine;
 */
 public class SaveManager : MonoBehaviour 
 {
+    private static SaveManager saveManager;
+
     [Header("General")]
     /*Scripts linked but can be used with any scenes
      * "ActivateTextAtLine.cs"
@@ -39,14 +41,43 @@ public class SaveManager : MonoBehaviour
     public bool returnFromArena;
 
     [Header("Inventory")]
-    public List<WeaponObject> AvailableItems;
-    public List<WeaponObject> StoredItems;
-    public List<WeaponObject> EquipedItems;
-    public int CurrentMoney;
 
-    private void Start()
+    private WeaponObject[] availableObjects;
+
+    public static List<WeaponObject> AvailableItems = new List<WeaponObject>();
+    public static List<WeaponObject> StoredItems = new List<WeaponObject>();
+    public static List<WeaponObject> EquipedItems = new List<WeaponObject>();
+    public static int CurrentMoney;
+
+    public static SaveManager Instance
+    {
+        get
+        {
+            if (!saveManager)
+            {
+                saveManager = FindObjectOfType(typeof(SaveManager)) as SaveManager;
+
+                if (!saveManager)
+                {
+                    Debug.LogError("There needs to be one active EventManger script on a GameObject in your scene.");
+                }
+                else
+                {
+                    saveManager.Init();
+                }
+            }
+            return saveManager;
+        }
+    }
+    private void Init()
     {
         
     }
 
+    private void Awake()
+    {
+        AvailableItems = new List<WeaponObject>(Resources.LoadAll<WeaponObject>("WeaponsObjects/WeaponObjectAssets/"));
+        Debug.Log(AvailableItems.Count + " Available Items");
+        Debug.Log(StoredItems.Count + " Stored Items");
+    }
 }

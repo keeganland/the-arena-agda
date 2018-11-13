@@ -1,0 +1,624 @@
+fileFormatVersion: 2
+guid: 6f428df1aa43645daaebd74f9e4ab89a
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Rings-Merchant2_0
+    21300002: Rings-Merchant2_1
+    21300004: Rings-Merchant2_2
+    21300006: Rings-Merchant2_3
+    21300008: Rings-Merchant2_4
+    21300010: Rings-Merchant2_5
+    21300012: Rings-Merchant2_6
+    21300014: Rings-Merchant2_7
+    21300016: Rings-Merchant2_8
+    21300018: Rings-Merchant2_9
+    21300020: Rings-Merchant2_10
+    21300022: Rings-Merchant2_11
+    21300024: Rings-Merchant2_12
+    21300026: Rings-Merchant2_13
+    21300028: Rings-Merchant2_14
+    21300030: Rings-Merchant2_15
+    21300032: Rings-Merchant2_16
+    21300034: Rings-Merchant2_17
+    21300036: Rings-Merchant2_18
+    21300038: Rings-Merchant2_19
+    21300040: Rings-Merchant2_20
+    21300042: Rings-Merchant2_21
+    21300044: Rings-Merchant2_22
+    21300046: Rings-Merchant2_23
+    21300048: Rings-Merchant2_24
+  externalObjects: {}
+  serializedVersion: 7
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Rings-Merchant2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 899.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7cd1b1d8f847495aacad28910dd7957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_1
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 899.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ba8d1f8c6c66451e972d51722213d59
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_2
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 899.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e8a56d7b4be642b5a8d8020f8394402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_3
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 899.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ae744fbe8b48473095a7deab71058dd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_4
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 899.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e665ac697813f4c529b81354c6b3cdbd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 675.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91c5eb6cca59c4507a65e3b936027adf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_6
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 675.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc66079501f4a48689884e412737997f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 675.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f44fd7e1cbfa42c5be3b064b31fe4a1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_8
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 675.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8e899f999d20436e9e426eae45eb7d4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_9
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 675.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62d82a458becb4b6ba39aa2e50d667d6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 451.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 005625e2bef4d463b80147c20babef6f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_11
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 451.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84c554495f9944c6aaa20931a7318269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_12
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 451.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55e68cf363eaf4a43b81734432bad7ae
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_13
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 451.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3cac7a346628444ca4be9716353d12b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 451.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34a9dae281f514da68a95618c777dd0f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 227.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c966b2714a2d42c082c4b6f56ce15b4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_16
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 227.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f32d3638608b4408b025eac3432f2b6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_17
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 227.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a32f16d8614df49a5874cf7f700aacbe
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_18
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 227.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7264a16c4a5904039a30006e973b0fa4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_19
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 227.2
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36b1f960ab51f401b9941662c631bdb6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3.199997
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e18fa21f8f0543cfab3b4333180cc2a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_21
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 3.199997
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37ad981d7295e4dac8688fdd8732963b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_22
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 3.199997
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3b9e6b9c8164405abce338cb6ec81e7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_23
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 3.199997
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97d3191deed3c41e192a32ab46fdb8ab
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rings-Merchant2_24
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 3.199997
+        width: 224.8
+        height: 224.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 459179efbbc074d5eb645e408148c4f6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 96f9c63db214f445e9060e233861f9c7
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

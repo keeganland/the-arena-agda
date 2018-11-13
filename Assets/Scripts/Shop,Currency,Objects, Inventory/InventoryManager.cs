@@ -21,9 +21,9 @@ public class InventoryManager : MonoBehaviour
      */
     private static InventoryManager inventoryManager;
 
-    public static List<WeaponObject> AvailableItems; //All items ?
-    public static List<WeaponObject> StoredItems;  //Item available in the inventory UI;
-    public static List<WeaponObject> EquipedItems; //How it will work : All items of type WeaponObjects has a type : Head, Chest, Passive, Hand, etc... The player will be allowed only ONE 
+    public static Dictionary<string, WeaponObject> AvailableItems = new Dictionary<string, WeaponObject>(); //All items ?
+    public static Dictionary<string,WeaponObject> StoredItems = new Dictionary<string, WeaponObject>();  //Item available in the inventory UI;
+    public static Dictionary<string,WeaponObject> EquipedItems = new Dictionary<string, WeaponObject>(); //How it will work : All items of type WeaponObjects has a type : Head, Chest, Passive, Hand, etc... The player will be allowed only ONE 
                                             //item of each equiped. (One weapon + helmet + passive), etc...  
 
     static WeaponObject weaponToEquip;
@@ -40,6 +40,9 @@ public class InventoryManager : MonoBehaviour
 
     public static GameObject Boy;
     public static GameObject Girl;
+
+    public GameObject InventoryTab;
+    private bool InventoryTabActive;
 
     public static int CurrentMoney = 0;
 
@@ -83,7 +86,7 @@ public class InventoryManager : MonoBehaviour
 
     }
 
-    private void Awake() //Alex : I don't understand the "Init" part, so I put that in Awake. It needs to be run before everything else.
+    private void Start() //Alex : I don't understand the "Init" part, so I put that in Awake. It needs to be run before everything else.
     {
         if (!Boy)
             Boy = GameObject.Find("Boy");
@@ -95,89 +98,105 @@ public class InventoryManager : MonoBehaviour
         CalculateBonuses();
     }
 
+    private void Update()
+    {
+        InventoryUI();
+    }
+
     public static void AquireItem(string itemName) //Every time the player will find an item, I'll put the item from the Array AvailableItems to StoredItems;
     {
-        foreach(WeaponObject item in AvailableItems)
-        {
-            if (item.weaponName == itemName && !StoredItems.Contains(item) && item.cost <= CurrentMoney)
-            {
+        WeaponObject item;
+        AvailableItems.TryGetValue(itemName,out item);
+        if (item.weaponName == itemName && !StoredItems.ContainsValue(item) && item.cost <= CurrentMoney)
+         {
                 Debug.Log("You Bought The Item");
-                StoredItems.Add(item);
+                StoredItems.Add(item.weaponName, item);
                 SubstractMoney(item.cost);
                 EquipItem(item.weaponName);
-            }
-            else if (item.weaponName == itemName && item.cost <= CurrentMoney)
-            {
+         }
+       else if (item.weaponName == itemName && item.cost <= CurrentMoney)
+         {
                 return; //Do Item +1, for exemple : Flower in current inventory = 1, then we'll have 2 flowers.
-            }
-            else if (item.weaponName == itemName && item.cost > CurrentMoney)
-            {
+         }
+       else if (item.weaponName == itemName && item.cost > CurrentMoney)
+         {
                 Debug.Log("You do not have enough money");
-            }
-            else return;                
-        }
+         }
+        else return;
 
-        FindObjectOfType<SaveManager>().StoredItems = StoredItems;
+        SaveManager.StoredItems.Clear();
+
+        foreach (KeyValuePair<string, WeaponObject> IventoryPair in StoredItems)
+        {
+            SaveManager.StoredItems.Add(IventoryPair.Value);
+        }
     }
 
     public static void RemoveItemInventory(string itemName)
     {
-        foreach (WeaponObject item in StoredItems)
-        {
-            if (item.weaponName == itemName)
-            {
-                StoredItems.Remove(item); //Remove item or decrease item count (-1).
-            }
-            else return; 
-        }
+        WeaponObject item;
+        StoredItems.TryGetValue(itemName, out item);
 
-        FindObjectOfType<SaveManager>().StoredItems = StoredItems;
+        if (item.weaponName == itemName)
+          {
+            StoredItems.Remove(item.weaponName); //Remove item or decrease item count (-1).
+          }
+          else return; 
+
+        SaveManager.StoredItems.Clear();
+
+        foreach (KeyValuePair<string, WeaponObject> IventoryPair in StoredItems)
+        {
+            SaveManager.StoredItems.Add(IventoryPair.Value);
+        }
     }
 
     public static void EquipItem(string itemName) 
     {
-        Debug.Log(itemName);
-        foreach(WeaponObject weapon in StoredItems)
+        WeaponObject weaponToEquip;
+
+        if (StoredItems.ContainsKey(itemName))
         {
-            if(weapon.weaponName == itemName)
-            {
-                weaponToEquip = weapon;
-            }
-            else
-            {
-                Debug.Log("You can't equip an item you don't have in your inventory"); 
-            }
+            StoredItems.TryGetValue(itemName, out weaponToEquip);
         }
+        else return;
 
-        Debug.Log(weaponToEquip);
-
-        foreach(WeaponObject item in StoredItems)
+        foreach(KeyValuePair<string, WeaponObject> IventoryPair in StoredItems)
         {
+
+            WeaponObject item = IventoryPair.Value;
             if(item.Object == weaponToEquip.Object)
             {
-                EquipedItems.Remove(item);
-                EquipedItems.Add(weaponToEquip);
+                EquipedItems.Remove(item.weaponName);
+                EquipedItems.Add(weaponToEquip.weaponName, weaponToEquip);
             }
             else 
             {
-                EquipedItems.Add(weaponToEquip);
+                EquipedItems.Add(weaponToEquip.name, weaponToEquip);
                 Debug.Log("You Equiped The Item");
             }
         }
 
-        FindObjectOfType<SaveManager>().EquipedItems = EquipedItems;
+        SaveManager.EquipedItems.Clear();
+
+        foreach (KeyValuePair<string, WeaponObject> IventoryPair in EquipedItems)
+        {
+            SaveManager.EquipedItems.Add(IventoryPair.Value);
+        }
+
         CalculateBonuses();
     }
 
     public static void UnEquipItem(string itemName)
     {
-        foreach(WeaponObject weapon in EquipedItems)
-        {
-            if (weapon.weaponName == itemName)
-                EquipedItems.Remove(weapon);
-        }
+        EquipedItems.Remove(itemName);
 
-        FindObjectOfType<SaveManager>().EquipedItems = EquipedItems;
+        SaveManager.EquipedItems.Clear();
+
+        foreach (KeyValuePair<string, WeaponObject> IventoryPair in EquipedItems)
+        {
+            SaveManager.EquipedItems.Add(IventoryPair.Value);
+        }
     }
 
     private static void CalculateBonuses()
@@ -187,8 +206,10 @@ public class InventoryManager : MonoBehaviour
 
         if (EquipedItems.Count != 0)
         {
-            foreach (WeaponObject equipedWeapon in EquipedItems)
+            foreach (KeyValuePair<string,WeaponObject> EquipedPair in EquipedItems)
             {
+                WeaponObject equipedWeapon = EquipedPair.Value;
+
                 if (equipedWeapon)
                 {
                     if (equipedWeapon.forBoy)
@@ -230,21 +251,53 @@ public class InventoryManager : MonoBehaviour
 
     private static void LoadWeaponsSave()
     {
-        AvailableItems = FindObjectOfType<SaveManager>().AvailableItems;
-        StoredItems = FindObjectOfType<SaveManager>().StoredItems;
-        EquipedItems = FindObjectOfType<SaveManager>().EquipedItems;
-        CurrentMoney = FindObjectOfType<SaveManager>().CurrentMoney;
+        if (SaveManager.AvailableItems.Count != 0)
+        {
+            foreach (WeaponObject item in SaveManager.AvailableItems)
+            {
+                AvailableItems.Add(item.weaponName, item);
+            }
+        }
+        if (SaveManager.StoredItems.Count != 0)
+        {
+            foreach (WeaponObject item in SaveManager.StoredItems)
+            {
+                StoredItems.Add(item.weaponName, item);
+            }
+        }
+        if (SaveManager.EquipedItems.Count != 0)
+        {
+            foreach (WeaponObject item in SaveManager.EquipedItems)
+            {
+                EquipedItems.Add(item.weaponName, item);
+            }
+        }
+        CurrentMoney = SaveManager.CurrentMoney;
     }
 
     public static void AddMoney(int addmoney)
     {
         CurrentMoney += addmoney;
-        FindObjectOfType<SaveManager>().CurrentMoney = CurrentMoney;
+        SaveManager.CurrentMoney = CurrentMoney;
     }
 
     public static void SubstractMoney(int substractmoney)
     {
         CurrentMoney -= substractmoney;
-        FindObjectOfType<SaveManager>().CurrentMoney = CurrentMoney;
+        SaveManager.CurrentMoney = CurrentMoney;
+    }
+
+    private void InventoryUI()
+    {
+        if(Input.GetKeyDown(KeyCode.I) && !InventoryTabActive)
+        {
+            InventoryTab.SetActive(true);
+            InventoryTabActive = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.I) && InventoryTabActive)
+        {
+            InventoryTab.SetActive(false);
+            InventoryTabActive = false;
+        }
     }
 }

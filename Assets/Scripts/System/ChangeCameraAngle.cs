@@ -40,8 +40,8 @@ public class ChangeCameraAngle : MonoBehaviour
     {
         if (other.name == ("Girl"))
         {
-            Debug.Log(Mathf.Abs(x));
-            Debug.Log(Mathf.Abs(NewCameraAngle + 1f));
+            //Debug.Log(Mathf.Abs(x));
+            //Debug.Log(Mathf.Abs(NewCameraAngle + 1f));
             if (Mathf.Abs(x) >= Mathf.Abs(NewCameraAngle))
             {
                 CameraChangeAngle = false;

@@ -1188,10 +1188,12 @@ MonoBehaviour:
   ScriptedPosBoyIntro: {fileID: 0}
   DungeonDoorFloor1Boy: {fileID: 0}
   DungeonDoorFloor1Girl: {fileID: 0}
+  directionalLight: {fileID: 0}
   BoyPosBoss: {fileID: 0}
   GirlPosBoss: {fileID: 0}
   BossPos: {fileID: 0}
   LightsBossRoom: []
+  LightInteractiveParticles: []
   EnemiesSpawnPos: []
   smallEnemies: {fileID: 0}
   boss: {fileID: 0}

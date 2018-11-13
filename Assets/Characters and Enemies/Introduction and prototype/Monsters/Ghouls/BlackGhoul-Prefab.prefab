@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 82860284459606680}
   - component: {fileID: 114122308229402690}
   - component: {fileID: 114701003997030724}
+  - component: {fileID: 114032196458180564}
   m_Layer: 0
   m_Name: BlackGhoulMonster-Agent
   m_TagString: Enemy
@@ -228,8 +229,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1064130333639568}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -8.59, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 12}
   m_Children:
   - {fileID: 224050721939218374}
@@ -481,6 +482,19 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114032196458180564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1506283560260720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efa1d481519187246800eb0b01245078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DamageColor: {r: 0.9433962, g: 0.04004982, b: 0.04004982, a: 1}
+  _HealColor: {r: 0.10062665, g: 0.9716981, b: 0.068752214, a: 0}
 --- !u!114 &114047301089523410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -493,7 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_text: {fileID: 114251300427324454}
-  m_anim: {fileID: 0}
+  m_anim: {fileID: 111651211228494862}
   _Color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114122308229402690
 MonoBehaviour:
@@ -566,7 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -586,10 +600,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-
-'
+  m_Text: 
 --- !u!114 &114367190949670676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -632,7 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   publicVariableHolderneverUnload: {fileID: 0}
-  _DistanceFromSprite: 15
+  _DistanceFromSprite: 5
   _Target: {fileID: 4999463688164038}
   _Agent: {fileID: 195583663002981140}
 --- !u!114 &114428941953821764
@@ -685,8 +696,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _PublicVariableHolder: {fileID: 0}
   isBoss: 0
-  totalHealth: 18
-  currentHealth: 0
+  totalHealth: 200
+  currentHealth: 200
   enemy:
   - {fileID: 0}
   _DeathSound: {fileID: 0}
@@ -740,7 +751,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -764,27 +775,36 @@ MonoBehaviour:
   _CastSpellSlider: {fileID: 0}
   _CastSpellGameobject: {fileID: 0}
   _SpellCasttimer: {fileID: 0}
-  _StunnedSlider: {fileID: 0}
-  _StunnedGameObject: {fileID: 0}
-  _StunnedTimer: {fileID: 0}
+  _StunnedSlider: {fileID: 114837184317225994, guid: 699038ecea5315d41bf20df362a9084d,
+    type: 2}
+  _StunnedGameObject: {fileID: 1431991948940094, guid: c27dceb55376dcc4cb25f97b2825f527,
+    type: 2}
+  _StunnedTimer: {fileID: 114743302661306650, guid: 283701fbc0a22194d9fa92fe6595272d,
+    type: 2}
   LineDrawSpeed: 0
   LaserBeamHit: {fileID: 0}
   m_warningCastTimeBool: 0
   Aggro: 0
   StopAttacking: 0
-  _AttackPrefabs: []
-  _AttackCD: []
-  _TimeWarningForSpell: []
+  _AttackPrefabs:
+  - {fileID: 0}
+  - {fileID: 0}
+  _AttackCD:
+  - 0
+  - 0
+  _TimeWarningForSpell:
+  - 0
+  - 0
   _AttackWarningPrefabs: []
   _AttackAnimations: []
   _AttackDamage: 
   TimeBetweenMeteors: 2
   NumberOfMeteors: 4
   LaserBeam: []
-  m_darkpulseTimer: 0
-  m_normalAttackTimer: 0
-  m_bombAttackTimer: 0
-  m_laserAttackTimer: 0
+  m_darkpulseTimer: 80.63537
+  m_normalAttackTimer: 80.63537
+  m_bombAttackTimer: 80.63537
+  m_laserAttackTimer: 80.63537
 --- !u!114 &114786628511643540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1047,7 +1067,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1861167528347918}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.7}
+  m_LocalPosition: {x: 0, y: 0, z: 2.05}
   m_LocalScale: {x: 0.0297148, y: 0.02803924, z: 0.05121291}
   m_Children: []
   m_Father: {fileID: 224050721939218374}

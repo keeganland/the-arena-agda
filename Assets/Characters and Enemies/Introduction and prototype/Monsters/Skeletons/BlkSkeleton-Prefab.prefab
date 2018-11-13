@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   publicVariableHolderneverUnload: {fileID: 0}
-  _DistanceFromSprite: 15
+  _DistanceFromSprite: 5
   _Target: {fileID: 4155717871013890}
   _Agent: {fileID: 195031526369173820}
 --- !u!114 &114216067380201656

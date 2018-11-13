@@ -9,17 +9,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00c6d78e3df684cfdbcc85c30320526e, type: 3}
-  m_Name: Waluigi
+  m_Name: Polyvalent Ring
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: a28d6b820ffa544129aaafa38e205ecc, type: 3}
+  Icon: {fileID: 21300004, guid: 6f428df1aa43645daaebd74f9e4ab89a, type: 3}
   Object: 5
   forBoy: 1
   forGirl: 1
-  weaponName: Waluigi's Picture
-  cost: 5
-  description: '"Whaaaaaaaaaaaa"'
-  description2: Both Characters gain 10 HP !
+  weaponName: Basic Polyvalent Ring
+  cost: 69
+  description: Empowers Attack and HP
+  description2: +16 HP and +5 Damages
   fireRate: 0
-  bonusDamage: 0
+  bonusDamage: 5
   range: 0
-  bonusHealth: 10
+  bonusHealth: 16

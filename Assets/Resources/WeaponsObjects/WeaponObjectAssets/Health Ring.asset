@@ -9,17 +9,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00c6d78e3df684cfdbcc85c30320526e, type: 3}
-  m_Name: SexyWaluigi
+  m_Name: Health Ring
   m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300012, guid: 6f428df1aa43645daaebd74f9e4ab89a, type: 3}
   Object: 5
   forBoy: 1
   forGirl: 1
-  weaponName: Sexy Waluigi
-  cost: 69
-  description: '"Whaaaaaaa, babe"'
-  description2: Both Characters gets +16 HP and +5 Damages
+  weaponName: Basic Health Ring
+  cost: 5
+  description: Little boost of HP
+  description2: +10 HP
   fireRate: 0
-  bonusDamage: 5
+  bonusDamage: 0
   range: 0
-  bonusHealth: 16
+  bonusHealth: 10

@@ -104,11 +104,11 @@ public class InteractiveObjectDungeonFloor1Boss : InteractiveObjectAbstract {
 
         yield return new WaitForSeconds(1f);
 
-        //GameObject[] Enemiesgo = new GameObject[EnemiesSpawnPos.Length];
+        GameObject[] Enemiesgo = new GameObject[EnemiesSpawnPos.Length];
 
-        //Enemiesgo[0] = Instantiate(boss, EnemiesSpawnPos[0].transform.position, Quaternion.identity);
-        //Enemiesgo[0].SetActive(true);
-        //for (int i = 1; i < EnemiesSpawnPos.Length - 1; i++)
+        Enemiesgo[0] = Instantiate(boss, EnemiesSpawnPos[0].transform.position, Quaternion.identity); //Spawns the boss
+        Enemiesgo[0].SetActive(true);
+        //for (int i = 1; i < EnemiesSpawnPos.Length - 1; i++) //Spawns the Skeletons
         //{
         //    Enemiesgo[i] = Instantiate(smallEnemy, EnemiesSpawnPos[i].transform.position, Quaternion.identity);
         //}

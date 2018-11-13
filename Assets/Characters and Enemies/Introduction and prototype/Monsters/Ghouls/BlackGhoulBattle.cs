@@ -22,24 +22,29 @@ public class BlackGhoulBattle : BasicEnemyBehaviour
     private GameObject laserGathering; 
     private GameObject laserWarningGameObject; 
     private GameObject Warning; 
-    private GameObject[] WarningMeteor; 
+    private GameObject[] WarningMeteor;
+    private GameObject PulseAreaWarningAnimation;
+    private GameObject PulsePathGameObject;
+    //Don't think I actually want these as they are
+    private GameObject PulseShot;
+    private GameObject DarkPulse;
 
-    //Will need to remake this for the ghoul at some point
+    //Will need to remake this for the ghoul at some point. Maybe not, just change the gameobjects placed in them
     public Slider _CastSpellSlider;
     public GameObject _CastSpellGameobject;
     public Text _SpellCasttimer;
 
-    //Will need to remake this for the ghoul as well
+    //Probably just apply the same stun as the third enemy
     public Slider _StunnedSlider;
     public GameObject _StunnedGameObject;
     public Text _StunnedTimer;
     private bool isStunned;
 
-    //Rmake this as well
+    //Leave this as well for stuns
     private float StunDurationTime;
     private float StunActualtime;
 
-    //Not sure what to do about this? Likely need to remake it as well
+    //Not sure what to do about this? Likely need to remake it as well?
     public float LineDrawSpeed;
 
     //Lots here will need to be remove but some will need to be reused
@@ -56,27 +61,28 @@ public class BlackGhoulBattle : BasicEnemyBehaviour
     private float laserCounter;
     private float laserWarningCounter;
     private float laserDist;
+    private LineRenderer PulsePath;
 
     //Keep this, change name
-    [Header("SpellsPrefab (normal, bomb, laser")]
+    [Header("SpellsPrefab (normal, darkpulse/bomb, //laser)")]
     public GameObject[] _AttackPrefabs;
 
-    //Need to edit to make dark pulse one. Pretty sure I want dark pulse to be AttackCD[1]
-    [Header("Attack Cooldowns (normal, bomb, laser")]
+    //Need to edit to make dark pulse one. I want dark pulse to be AttackCD[1]
+    [Header("Attack Cooldowns (normal, darkpulse/bomb, //laser)")]
     public float[] _AttackCD;
 
     //Need to edit to include dark pulse attack and remove others
-    [Header("Attack Cast Time (bomb, laser")]
+    [Header("Attack Cast Time (darkpulse/bomb, //laser)")]
     public float[] _TimeWarningForSpell; // i = 0 is BombAttack, i = 1 is Laser;
 
     //Keep these, change name
-    [Header("Attack Warning FX (bomb, laser")]
+    [Header("Attack Warning FX (darkpulse/bomb, //laser)")]
     public GameObject[] _AttackWarningPrefabs;
-    [Header("Attack Animation FX (bomb, laser")]
+    [Header("Attack Animation FX (darkpulse/bomb, //laser)")]
     public GameObject[] _AttackAnimations;
 
     //Keep this, change name and include darkpulse
-    [Header("AttackDamages (normal, bomb, laser")]
+    [Header("AttackDamages (normal, darkpulse/bomb, //laser)")]
     public int[] _AttackDamage;
 
     //Can maybe remove this? check it out first
@@ -107,7 +113,8 @@ public class BlackGhoulBattle : BasicEnemyBehaviour
             LaserBeam[i].SetPosition(0, transform.position);
         }
 
-        _BoyOrGirl = Random.Range(0, 2);
+        m_nav = GetComponent<NavMeshAgent>();
+        _BoyOrGirl = Random.Range(0, 2); //Setting target?
     }
 
     new void Update()
@@ -259,6 +266,24 @@ public class BlackGhoulBattle : BasicEnemyBehaviour
             }
             CancelAttack();
         }
+
+        //Implementing to move towards and follow target
+        if (!isCollided)
+        {
+            if (i == 1 && _Target[_BoyOrGirl].GetComponent<HealthController>().currentHealth == 0)
+            {
+                i = 0;
+            }
+            else if (i == 0 && _Target[_BoyOrGirl].GetComponent<HealthController>().currentHealth == 0)
+            {
+                i = 1;
+            }
+            if (_Target[_BoyOrGirl])
+            {
+                m_nav.SetDestination(_Target[_BoyOrGirl].transform.position);
+            }
+
+        }
     }
 
     private void NormalAttack()
@@ -274,7 +299,7 @@ public class BlackGhoulBattle : BasicEnemyBehaviour
     {
         if(m_darkpulseTimer >= _AttackCD[1])
         {
-            StartCoroutine("DarkPuleAttack"); //Need to make this
+            StartCoroutine("CastDarkPulseAttack"); //Need to make this
             m_darkpulseTimer = 0;
         }
     }
@@ -306,7 +331,91 @@ public class BlackGhoulBattle : BasicEnemyBehaviour
         }
     }
 
-    //Don't want to keep this, but there is a lot I'll need to use for hte dark pulse in here
+    private IEnumerator CastDarkPulseAttack()
+    {
+        StopAttacking = true; //To stop the function in the update
+        Pulse = true; //This bool is used in the stun function to check if the spell is currently happening
+        i = 1; //Not sure this is the number I want (currently the same as laser, should sort it out)
+        _BoyOrGirl = Random.Range(0, 2); //Selecting a target
+
+        //Need to move to target if target is not in range here
+
+        //Notes: Want to draw a line similarly to the laser, then cast the spell trajectory, then cause the explosion/damage
+
+        m_warningCastTime = 0;
+        _CastSpellGameobject.SetActive(true);
+        _SpellCasttimer.enabled = true;
+        _SpellCasttimer.text = System.Math.Round((float)(_TimeWarningForSpell[i]), 2).ToString();
+        m_warningCastTimeBool = true;
+
+        //Need to put a warning here and a yield function.
+        //Need to think of specifics: do I want to give the player a warning of who is going to be attacked? Probably
+        //How do I provide that warning? With the darkpulse area warning
+
+        //Initial yield before warning starts
+        yield return new WaitForSeconds(2);
+
+        //Instantiating warning
+        //What is the tranform in the next line? Should I change it to something like "target.transform.position.x"
+        Vector3 PulseLaunch = _Target[_BoyOrGirl].transform.position - transform.position; //determining the direction of attack
+        float angle = Mathf.Atan2(PulseLaunch.z, PulseLaunch.x) * Mathf.Rad2Deg; //translating the direction into an angle(in degrees)
+        PulseAreaWarningAnimation = Instantiate(_AttackAnimations[0]/*Need to makre sure this is input right later*/, PulseLaunch, Quaternion.identity);
+
+        //The rest of the wait time adjusted for previous pause
+        yield return new WaitForSeconds(_TimeWarningForSpell[i] - 2);
+
+
+        transform.LookAt(_Target[_BoyOrGirl].transform); //looking at target?
+
+        int rotation = 0; //Making the rotation 0
+
+        //the following ifs give a value to the variable "rotation" if the target is in that direction
+        if (45 <= transform.eulerAngles.y && transform.eulerAngles.y < 135)
+        {
+            rotation = 3;
+        }
+        else if (0 <= transform.eulerAngles.y && transform.eulerAngles.y < 45)
+        {
+            rotation = 1;
+        }
+        else if (225 <= transform.eulerAngles.y && transform.eulerAngles.y < 315)
+        {
+            rotation = 4;
+        }
+        else
+        {
+            rotation = 2;
+        }
+
+        if (rotation != 0) //rotating the sprite
+        {
+            _Sprite.GetComponent<SpriteScript2>().ForcePlayerRotation(rotation);
+        }
+
+        //This is getting rid of the casting warning because the spell is about to start
+        m_warningCastTimeBool = false;
+        _SpellCasttimer.enabled = false;
+        _CastSpellGameobject.SetActive(false);
+
+        //destroy dark pulse area warning at the same time the path is destroyed
+        Destroy(PulseAreaWarningAnimation);
+        //Instantiate then destroy dark pulse path
+        GameObject go = Instantiate(_AttackPrefabs[0], transform.position, Quaternion.Euler(0, -angle, 0)); //instantiate the game object
+        go.gameObject.GetComponent<Spell>().SetTarget(_Target[_BoyOrGirl].gameObject); //sets the target
+        go.gameObject.GetComponent<Bullet>().SpellFlare(angle); //using bullet script of angle
+        go.gameObject.GetComponent<Bullet>().SetSpellCaster(this.gameObject); //setting spellcaster in bullet script
+
+        //Need to instantiate and destroy the actual dark pulse explosion
+
+        //End stuff
+        _BoyOrGirl = Random.Range(0, 2); //randomises the target
+        m_darkpulseTimer = 0; //resetting the timer
+        Destroy(DarkPulse); //destroying the darkpulse animation
+        Pulse = false; //restting the Pulse bool
+        StopAttacking = false; //allows the timers to start counting again. Very important that this is the very last thing in the coroutine
+    }
+
+    //Don't want to keep this, but there is a lot I'll need to use for the dark pulse in here
     private IEnumerator CastBombAttack() //Work in Prgress
     {
         StopAttacking = true; //To stop the function in the update
@@ -330,7 +439,7 @@ public class BlackGhoulBattle : BasicEnemyBehaviour
         Vector3 meteorLaunch = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1.9f); //Not super sure what the z adjustment is for, may need to edit it for the dungeon floor
         meteorLaunchAnimation = Instantiate(_AttackAnimations[0], meteorLaunch, Quaternion.identity);
 
-        //This is the rest pf the warning time, eddited to account for the previous yield function
+        //This is the rest of the warning time, eddited to account for the previous yield function
         yield return new WaitForSeconds(_TimeWarningForSpell[i] - 2);
 
         //This is getting rid of the casting warning because the spell is about to start
@@ -475,7 +584,7 @@ public class BlackGhoulBattle : BasicEnemyBehaviour
             rotation = 2;
         }
 
-        if (rotation != 0) //rotatiting the sprite
+        if (rotation != 0) //rotating the sprite
         {
             _Sprite.GetComponent<SpriteScript2>().ForcePlayerRotation(rotation);
         }
@@ -573,7 +682,14 @@ public class BlackGhoulBattle : BasicEnemyBehaviour
 
     public override void OnTriggerEnter(Collider other)
     {
-        throw new System.NotImplementedException();
+        if (_Target[_BoyOrGirl])
+        {
+            if (other == _Target[_BoyOrGirl].GetComponent<Collider>())
+            {
+                CancelGhoulMovement();
+            }
+            else return;
+        }
     }
 
     public override void OnTriggerStay(Collider other)
@@ -583,7 +699,20 @@ public class BlackGhoulBattle : BasicEnemyBehaviour
 
     public override void OnTriggerExit(Collider other)
     {
-        throw new System.NotImplementedException();
+        if (_Target[_BoyOrGirl])
+        {
+            if (other == _Target[_BoyOrGirl].GetComponent<Collider>())
+            {
+                isCollided = false;
+                //will have player chase target once target leaves attack range trigger
+            }
+        }
+    }
+
+    private void CancelGhoulMovement()
+    {
+        isCollided = true;
+        m_nav.SetDestination(m_nav.transform.position);
     }
 }
 

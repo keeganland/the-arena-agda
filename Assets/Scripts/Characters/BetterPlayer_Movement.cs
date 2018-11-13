@@ -261,7 +261,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
         {
             if (curTarget.CompareTag("Objects"))
             {
-                Debug.Log("Not Set Destination?");
+                //Debug.Log("Not Set Destination?");
 
                 //Debug.Log("Target is " + curTarget.name);
                 //this should chase enemy if enemy is not currently in range
@@ -406,7 +406,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
                 if(other.CompareTag("Objects") && GetComponentInChildren<ObjectChecker>().InRange(other.gameObject))
                 {
-                    Debug.Log("here for Lights");
+                    //Debug.Log("here for Lights");
                     other.GetComponent<InteractiveObjectAbstract>().DoAction(this.gameObject);
                     UndoCurTarget();
 

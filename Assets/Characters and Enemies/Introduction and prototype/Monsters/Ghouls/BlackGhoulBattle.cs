@@ -299,7 +299,7 @@ public class BlackGhoulBattle : BasicEnemyBehaviour
     {
         if(m_darkpulseTimer >= _AttackCD[1])
         {
-            StartCoroutine("CastDarkPulseAttack"); //Need to make this
+            StartCoroutine("CastDarkPulseAttack");
             m_darkpulseTimer = 0;
         }
     }

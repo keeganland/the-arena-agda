@@ -27,7 +27,7 @@ public class AnyManager : MonoBehaviour {
 
     private void Start()
     {
-        Debug.Log("AnyManager Start function");
+        //Debug.Log("AnyManager Start function");
         if (!gameStart && normalGameplay || (SceneManager.sceneCount == 1))
         {
             Debug.Log("The game has not started, and we are doing normal gameplay, or else ONLY NeverUnload is loaded. Let's start things up by going to the title screen!");

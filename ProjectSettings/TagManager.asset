@@ -23,6 +23,8 @@ TagManager:
   - UI
   - LoadingScreen
   - ObjectRange
+  - Darkness
+  - Torches
   layers:
   - Default
   - TransparentFX

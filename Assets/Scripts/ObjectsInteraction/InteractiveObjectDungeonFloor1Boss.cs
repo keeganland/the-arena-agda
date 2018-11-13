@@ -18,10 +18,16 @@ public class InteractiveObjectDungeonFloor1Boss : InteractiveObjectAbstract {
 
     private GameObject smallEnemy;
     private GameObject boss;
+    private GameObject LightCollider;
 
     private GameObject[] LightRoom;
+    private GameObject[] LightRoomCollidersSpawnPos;
     private GameObject[] EnemiesSpawnPos;
     private GameObject[] LightInteractiveParticles;
+
+    private GameObject DarknessColliderSpawnPos;
+    private GameObject DarknessCollider;
+    private GameObject Darknessgo;
 
     private DirectionalLight directionalLight;
 
@@ -40,6 +46,7 @@ public class InteractiveObjectDungeonFloor1Boss : InteractiveObjectAbstract {
         Bella = publicVariableHolderNeverUnload._GirlSpriteGameObject;
 
         LightRoom = publicVariableHolderArenaEntrance.LightsBossRoom;
+        LightRoomCollidersSpawnPos = publicVariableHolderArenaEntrance.LightsBossRoomCollidersSpawnPos;
         LightInteractiveParticles = publicVariableHolderArenaEntrance.LightInteractiveParticles;
 	
         BossPos = publicVariableHolderArenaEntrance.BossPos;
@@ -47,6 +54,10 @@ public class InteractiveObjectDungeonFloor1Boss : InteractiveObjectAbstract {
 
         smallEnemy = publicVariableHolderArenaEntrance.smallEnemies;
         boss = publicVariableHolderArenaEntrance.boss;
+        LightCollider = publicVariableHolderArenaEntrance.TorchCollider;
+
+        DarknessCollider = publicVariableHolderArenaEntrance.DarknessCollider;
+        DarknessColliderSpawnPos = publicVariableHolderArenaEntrance.DarknessColliderSpawnPos;
 
         directionalLight = publicVariableHolderArenaEntrance.directionalLight;
     }
@@ -72,7 +83,7 @@ public class InteractiveObjectDungeonFloor1Boss : InteractiveObjectAbstract {
         NavMeshAgent boynav = Boy.GetComponent<NavMeshAgent>();
         NavMeshAgent girlnav = Girl.GetComponent<NavMeshAgent>();
 
-        Debug.Log(boynav.velocity);
+        //Debug.Log(boynav.velocity);
         yield return new WaitUntil(() => boynav.velocity == Vector3.zero && girlnav.velocity == Vector3.zero);
 
         Momo.GetComponent<SpriteScript2>().ForcePlayerRotation(1);
@@ -112,6 +123,15 @@ public class InteractiveObjectDungeonFloor1Boss : InteractiveObjectAbstract {
         //{
         //    Enemiesgo[i] = Instantiate(smallEnemy, EnemiesSpawnPos[i].transform.position, Quaternion.identity);
         //}
+
+        //Instantiating the colliders required to cause the damage in the dark
+        GameObject[] LightCollidersgo = new GameObject[LightRoomCollidersSpawnPos.Length];
+        for(int i = 0; i < LightRoomCollidersSpawnPos.Length; i++)
+        {
+            LightCollidersgo[0] = Instantiate(LightCollider, LightRoomCollidersSpawnPos[i].transform.position, Quaternion.identity);
+        }
+
+        Darknessgo = Instantiate(DarknessCollider, DarknessColliderSpawnPos.transform.position, Quaternion.identity);
 
         for (int i = 0; i < LightRoom.Length; i++)
         {

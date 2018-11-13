@@ -29,10 +29,14 @@ public class PublicVariableHolderArenaEntrance : MonoBehaviour
     public GameObject GirlPosBoss;
     public GameObject BossPos;
     public GameObject[] LightsBossRoom;
+    public GameObject[] LightsBossRoomCollidersSpawnPos; //Spawn Positions at each of the lights
     public GameObject[] LightInteractiveParticles;
     public GameObject[] EnemiesSpawnPos; //pos 0 = boss, 1-4 small enemies;
     public GameObject smallEnemies;
     public GameObject boss;
+    public GameObject TorchCollider; //The colliders around the torches
+    public GameObject DarknessCollider; //The large collider over the whole boss room
+    public GameObject DarknessColliderSpawnPos; //Where the darkness collider spawns
 
     [Header("Walk To Door, Arena Entrance")]
     public GameObject BoyDoorPos;

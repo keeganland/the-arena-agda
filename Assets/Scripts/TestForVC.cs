@@ -6,7 +6,7 @@ public class TestForVC : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Debug.Log("The TestForVC script works!");
+        //Debug.Log("The TestForVC script works!");
 	}
 	
 	// Update is called once per frame

@@ -97,7 +97,7 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
             yield return null;
         }
 
-                Debug.Log("here");
+                //Debug.Log("here");
         Egnevy.ForcePlayerRotation(4);
         yield return new WaitForSeconds(0.5f);
         Egnevy.ForcePlayerRotation(3);
@@ -148,7 +148,7 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         float t = 0.0f;
         MainCamera.GetComponent<BetterCameraFollow>().enabled = false;
 
-        Debug.Log(new Vector3(publicArenaEntrance.Floor2Door.gameObject.transform.position.x, MainCamera.transform.position.y, publicArenaEntrance.Floor2Door.gameObject.transform.position.z));
+        //Debug.Log(new Vector3(publicArenaEntrance.Floor2Door.gameObject.transform.position.x, MainCamera.transform.position.y, publicArenaEntrance.Floor2Door.gameObject.transform.position.z));
 
         float a = publicArenaEntrance.Floor2Door.gameObject.transform.position.x;
         float c = publicArenaEntrance.Floor2Door.gameObject.transform.position.z;
@@ -157,9 +157,9 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         {
             MainCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, new Vector3(publicArenaEntrance.Floor2Door.gameObject.transform.position.x, MainCamera.transform.position.y, publicArenaEntrance.Floor2Door.gameObject.transform.position.z), t*0.02f);
             MainCamera.GetComponent<Camera>().orthographicSize = Mathf.Lerp(MainCamera.GetComponent<Camera>().orthographicSize, 6f, t*0.02f);
-            Debug.Log(t);
+            //Debug.Log(t);
             t += Time.deltaTime;
-            Debug.Log(MainCamera.transform.position);
+            //Debug.Log(MainCamera.transform.position);
             yield return null;
         }
         EventManager.TriggerEvent("camTargetRefresh");

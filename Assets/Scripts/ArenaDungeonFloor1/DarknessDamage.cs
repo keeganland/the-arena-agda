@@ -26,15 +26,18 @@ public class DarknessDamage : MonoBehaviour {
         //Check if the GameObject is not in the light
 		while(isDarkness == true && isLight == false)
         {
+            Debug.Log("Darkness Damage: In the dark and not the light");
             //If this is the ghoul, heal
             if (this.tag == "Enemy")
             {
+                Debug.Log("DarknessDamage: Tag = Enemy");
                 StartCoroutine("HealGhoul");
             }
 
             //If this is a player, deal damage
             if(this.tag == "Player")
             {
+                Debug.Log("Darkness Damage: Tag = Player");
                 StartCoroutine("DamagePlayer");
             }
         }
@@ -42,6 +45,7 @@ public class DarknessDamage : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
+        //Debug.Log("Darkness Damage: Trigger of " + other.name);
         if(other.tag == "Darkness")
         {
             isDarkness = true;

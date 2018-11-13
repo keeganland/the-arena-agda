@@ -125,11 +125,12 @@ public class InteractiveObjectDungeonFloor1Boss : InteractiveObjectAbstract {
         //}
 
         //Instantiating the colliders required to cause the damage in the dark
-        GameObject[] LightCollidersgo = new GameObject[LightRoomCollidersSpawnPos.Length];
-        for(int i = 0; i < LightRoomCollidersSpawnPos.Length; i++)
-        {
-            LightCollidersgo[0] = Instantiate(LightCollider, LightRoomCollidersSpawnPos[i].transform.position, Quaternion.identity);
-        }
+        //Quite sure I don't want to instantiate the light colliders here
+        //GameObject[] LightCollidersgo = new GameObject[LightRoomCollidersSpawnPos.Length];
+        //for(int i = 0; i < LightRoomCollidersSpawnPos.Length; i++)
+        //{
+        //    LightCollidersgo[0] = Instantiate(LightCollider, LightRoomCollidersSpawnPos[i].transform.position, Quaternion.identity);
+        //}
 
         Darknessgo = Instantiate(DarknessCollider, DarknessColliderSpawnPos.transform.position, Quaternion.identity);
 

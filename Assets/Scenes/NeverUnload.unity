@@ -54117,6 +54117,7 @@ GameObject:
   - component: {fileID: 765572599}
   - component: {fileID: 765572600}
   - component: {fileID: 765572601}
+  - component: {fileID: 765572602}
   m_Layer: 0
   m_Name: Girl
   m_TagString: Player
@@ -54561,6 +54562,19 @@ MonoBehaviour:
   InteractionSlider: {fileID: 889151734}
   Casting: {fileID: 455790700}
   CastingTime: {fileID: 496050089}
+--- !u!114 &765572602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 765572580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efa1d481519187246800eb0b01245078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DamageColor: {r: 0.9811321, g: 0.06941971, b: 0.06941971, a: 0}
+  _HealColor: {r: 0.057849795, g: 0.9433962, b: 0.19165346, a: 0}
 --- !u!1 &775352696
 GameObject:
   m_ObjectHideFlags: 0
@@ -104790,6 +104804,7 @@ GameObject:
   - component: {fileID: 1762563048}
   - component: {fileID: 1762563049}
   - component: {fileID: 1762563050}
+  - component: {fileID: 1762563051}
   m_Layer: 0
   m_Name: Boy
   m_TagString: Player
@@ -105247,6 +105262,19 @@ MonoBehaviour:
   InteractionSlider: {fileID: 1550275394}
   Casting: {fileID: 1253268314}
   CastingTime: {fileID: 100274139}
+--- !u!114 &1762563051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1762563028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efa1d481519187246800eb0b01245078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DamageColor: {r: 0.9622642, g: 0.031772893, b: 0.031772893, a: 0}
+  _HealColor: {r: 0.031149892, g: 0.9433962, b: 0.1634952, a: 0}
 --- !u!1 &1784888808
 GameObject:
   m_ObjectHideFlags: 0

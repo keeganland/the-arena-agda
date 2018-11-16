@@ -8,18 +8,22 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
     
     public Image icon;
     public Image Foreground;
-    public int ItemIsForBoy;
+    public int ItemIsForBoy; // = 2 if it's the boy's slot, = 1 if it's the girl's slot, = 0 if it is inventory slot. It groups the slots as set such as : set inventory, set boy (head, hand, ...), set girl. 
     private Sprite initialIconSprite;
     private Color initialIconColor;
 
-    public enum SlotType {INVENTORYSLOT ,WEAPON, HEAD, HAND, CHEST, PANTS, BOOTS};
+    public enum SlotType {INVENTORYSLOT ,WEAPON, HEAD, HAND, CHEST, PANTS, BOOTS}; //This gives the type of slot for the inventory slot. It will prevent the player to equip a ring as a head armor. 
     public SlotType slotType;
 
-    public bool isEmpty = true;
+    public bool isEmpty = true; //if the slot if empty
 
-    [SerializeField] WeaponObject item;
+    public GameObject StatsTextHolder; //This section contains the data for the mouse "hovering" part of the inventory. 
+    public Text NameItem;
+    public Text DescriptionItem; 
 
-    Vector3 initialPos;
+    [SerializeField] WeaponObject item; //What item does the slot contains? 
+
+    Vector3 initialPos; //Pos of the slot before dragging the item to another. It will reset once the player release the mouse. 
 
     private void Start()
     {
@@ -27,7 +31,7 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
         initialIconColor = icon.color;
     }
 
-    public void AddItem(WeaponObject newItem)
+    public void AddItem(WeaponObject newItem) //used to add an item, it gets the icen as WeaponObject and updates UI accordingly. 
     {
         item = newItem;
         icon.sprite = item.Icon;
@@ -42,7 +46,7 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
 
     }
 
-    public void ClearSlot()
+    public void ClearSlot() //clear existing item.
     {
         item = null;
         icon.sprite = initialIconSprite;
@@ -57,19 +61,38 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
 
     }
 
-    public void ShowStats()
+    public void ShowStats() //When the mouse is hovered, we show the stats of the item such as the name, and the description.
     {
-       
+        NameItem.text = item.weaponName;
+        DescriptionItem.text = item.description;
+        StatsTextHolder.transform.position = Input.mousePosition;
+        StatsTextHolder.SetActive(true);
     }
 
-    public void OnDrag()
+    public void MoveStatsText() //When we move the mouse over the inventoryslot, the "Text" stats follow the mouse. (optional?) 
+    {
+        StatsTextHolder.transform.position = Input.mousePosition;
+    }
+
+    public void HiddeStats() //When the mouse leaves the inventoryslot, the stats disapear. Alex : maybe we can make it disapear when we start dragging the inventorySlot. 
+    {
+        StatsTextHolder.SetActive(false);
+    }
+
+    public void OnDrag() //move the item. 
     {
         gameObject.transform.position = Input.mousePosition;
         Foreground.transform.position = Input.mousePosition;
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    //if the item is moved, where to and what happen on release ? If a WeaponObject.HEAD is moved toward a HEAD.inventory slot, it will be equiped is the slot is empty, 
+    //and replace the existing object if the slot is not empty. 
+
+    public void OnPointerUp(PointerEventData eventData) 
     {
+
+        //I use a GraphicRaycaster to interact with the UI slots. 
+        //Results store all UI's the mouse see when it's been released (after a drag).
         GraphicRaycaster ray = GetComponentInParent<GraphicRaycaster>();
         List<RaycastResult> results = new List<RaycastResult>();
 
@@ -116,6 +139,22 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
                                     InventoryManager.EquipItem(item.weaponName, 1);
                                 }
                             }
+                            else if((slotType != SlotType.INVENTORYSLOT && ItemIsForBoy == 2) && ((result.gameObject.GetComponent<InventorySlot>().slotType != SlotType.INVENTORYSLOT) && 
+                                                                                                  result.gameObject.GetComponent<InventorySlot>().ItemIsForBoy == 1))
+                            {
+                                    Debug.Log("Transfer Item from Boy to Girl");
+                                    InventoryManager.UnEquipItem(item.weaponName, 2);
+                                    InventoryManager.EquipItem(item.weaponName, 1);                           
+                            }
+
+                            else if ((slotType != SlotType.INVENTORYSLOT && ItemIsForBoy == 1) && ((result.gameObject.GetComponent<InventorySlot>().slotType != SlotType.INVENTORYSLOT) &&
+                                                                                         result.gameObject.GetComponent<InventorySlot>().ItemIsForBoy == 2))
+                            {
+                                Debug.Log("Transfer Item from Boy to Girl");
+                                InventoryManager.UnEquipItem(item.weaponName, 1);
+                                InventoryManager.EquipItem(item.weaponName, 2);
+                            }
+
                             ClearSlot();
                         }
                         else
@@ -123,16 +162,33 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
                             WeaponObject olditem = result.gameObject.GetComponent<InventorySlot>().item;
                             result.gameObject.GetComponent<InventorySlot>().AddItem(item);
 
-                            if (result.gameObject.GetComponent<InventorySlot>().ItemIsForBoy == 2)
+                            if ((result.gameObject.GetComponent<InventorySlot>().ItemIsForBoy == 2 && slotType == SlotType.INVENTORYSLOT))
                             {
                                 InventoryManager.UnEquipItem(olditem.weaponName, 2);
                                 InventoryManager.EquipItem(item.weaponName, 2);          
                             }
-                            else if(result.gameObject.GetComponent<InventorySlot>().ItemIsForBoy == 1)
+                            else if(result.gameObject.GetComponent<InventorySlot>().ItemIsForBoy == 1 && slotType == SlotType.INVENTORYSLOT)
                             {
                                 InventoryManager.UnEquipItem(olditem.weaponName, 1);
                                 InventoryManager.EquipItem(item.weaponName, 1);
                             }
+                            else if(result.gameObject.GetComponent<InventorySlot>().ItemIsForBoy == 1 && ItemIsForBoy == 2)
+                            {
+                                InventoryManager.UnEquipItem(item.weaponName, 2);
+                                InventoryManager.UnEquipItem(olditem.weaponName, 1);
+
+                                InventoryManager.EquipItem(olditem.weaponName, 2);
+                                InventoryManager.EquipItem(item.weaponName, 1);
+                            }
+                            else if (result.gameObject.GetComponent<InventorySlot>().ItemIsForBoy == 2 && ItemIsForBoy == 1)
+                            {
+                                InventoryManager.UnEquipItem(item.weaponName, 1);
+                                InventoryManager.UnEquipItem(olditem.weaponName, 2);
+
+                                InventoryManager.EquipItem(olditem.weaponName, 1);
+                                InventoryManager.EquipItem(item.weaponName, 2);
+                            }
+
                             AddItem(olditem);
                         }
                     }

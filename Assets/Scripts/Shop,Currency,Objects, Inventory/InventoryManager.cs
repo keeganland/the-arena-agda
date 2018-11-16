@@ -51,6 +51,8 @@ public class InventoryManager : MonoBehaviour
 
     static int BoyHealthBonusFromItems;
     static int GirlHealthBonusFromItems;
+    static int BoyDamagesBonusFromItems;
+    static int GirlDamagesBonusFromItems;
 
     public static GameObject Boy;
     public static GameObject Girl;
@@ -88,7 +90,7 @@ public class InventoryManager : MonoBehaviour
             return inventoryManager;
         }
     }
-
+   
     void Init()
     {
         if (!Boy)
@@ -299,6 +301,9 @@ public class InventoryManager : MonoBehaviour
         int BoyBonusHealth = 0;
         int GirlBonusHealth = 0;
 
+        int BoyBonusDamages = 0;
+        int GirlBonusDamages = 0;
+
         if (EquipedItemsBoy.Count != 0 && BoyItemChanged)
         {
             foreach (KeyValuePair<string, WeaponObject> EquipedPair in EquipedItemsBoy)
@@ -315,17 +320,19 @@ public class InventoryManager : MonoBehaviour
                             Boy.GetComponent<MeleeDamage>().AttackSpeed = BoyFireRate;
                         }
 
-                        BoyDamage += equipedWeapon.bonusDamage;
+                        BoyBonusDamages += equipedWeapon.bonusDamage;
                         BoyBonusHealth += equipedWeapon.bonusHealth;
 
                     }
                 }
             }
+
+            BoyDamagesBonusFromItems = BoyBonusDamages;
             BoyHealthBonusFromItems = BoyBonusHealth;
 
             Boy.GetComponent<HealthController>().totalHealth = BoyHealth + BoyBonusHealth;
             Boy.GetComponent<HealthController>().currentHealth += BoyBonusHealth;
-            Boy.GetComponent<MeleeDamage>().Damage = BoyDamage;
+            Boy.GetComponent<MeleeDamage>().Damage = BoyDamage + BoyBonusDamages;
         }
         else if(BoyItemChanged && EquipedItemsBoy.Count == 0)
         {
@@ -334,6 +341,7 @@ public class InventoryManager : MonoBehaviour
             Boy.GetComponent<MeleeDamage>().Damage = BoyDamageInitial;
 
             BoyHealthBonusFromItems = 0;
+            BoyDamagesBonusFromItems = 0;
         }
 
         if (EquipedItemsGirl.Count != 0 && GirlItemChanged)
@@ -352,16 +360,17 @@ public class InventoryManager : MonoBehaviour
                             Girl.GetComponent<MeleeDamage>().AttackSpeed = GirlFireRate;
                         }
 
-                        GirlDamage += equipedWeapon.bonusDamage;
+                        GirlBonusDamages += equipedWeapon.bonusDamage;
                         GirlBonusHealth += equipedWeapon.bonusHealth;
                     }
                 }
             }
             GirlHealthBonusFromItems = GirlBonusHealth;
+            GirlDamagesBonusFromItems = GirlBonusDamages;
 
             Girl.GetComponent<HealthController>().totalHealth = GirlHealth + GirlBonusHealth;
             Girl.GetComponent<HealthController>().currentHealth += GirlBonusHealth;
-            Girl.GetComponent<MeleeDamage>().Damage = GirlDamage;
+            Girl.GetComponent<MeleeDamage>().Damage = GirlDamage + GirlBonusDamages;
         }
         else if(EquipedItemsGirl.Count == 0 && GirlItemChanged)
         {
@@ -370,6 +379,7 @@ public class InventoryManager : MonoBehaviour
             Girl.GetComponent<MeleeDamage>().Damage = GirlDamageInitial;
 
             GirlHealthBonusFromItems = 0;
+            GirlDamagesBonusFromItems = 0;
         }
 
         EventManager.TriggerEvent("refreshUI");

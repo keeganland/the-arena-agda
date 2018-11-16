@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 136195532808530268}
   m_Layer: 0
   m_Name: LightTorchCollider
-  m_TagString: Torches
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1123703310517950}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 5
   m_Height: 20
   m_Direction: 1

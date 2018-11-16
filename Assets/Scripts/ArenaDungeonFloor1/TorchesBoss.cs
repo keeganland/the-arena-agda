@@ -13,6 +13,8 @@ using UnityEngine.UI;
 
 public class TorchesBoss : MonoBehaviour {
 
+    public PublicVariableHolderArenaEntrance publicVariableHolderArenaEntrance;
+
     public Slider TorchSlider;
     public Light Light;
     public ParticleSystem LightInteractionParticle;
@@ -24,6 +26,9 @@ public class TorchesBoss : MonoBehaviour {
     bool lightdown;
     bool lightup;
 
+    private GameObject LightCollider;
+    private GameObject LightCollidergo;
+
     public float _Timeup;
     public float _Timedown;
 
@@ -31,7 +36,7 @@ public class TorchesBoss : MonoBehaviour {
 
     [SerializeField] int LightingTime = 2;
 
-	void Update ()
+    void Update ()
     {
         if (lightup)
         {
@@ -86,6 +91,8 @@ public class TorchesBoss : MonoBehaviour {
 
         lightup = true;
         lightdown = false;
+        gameObject.GetComponentInChildren<CapsuleCollider>().enabled = true; //turns on collider for dark damam
+        Debug.Log(gameObject.GetComponentInChildren<CapsuleCollider>().gameObject.name);
     }
 
     private void LightDown()
@@ -99,11 +106,12 @@ public class TorchesBoss : MonoBehaviour {
     
         lightup = false;
         lightdown = true;
+        gameObject.GetComponentInChildren<CapsuleCollider>().enabled = false; //Turns off collider for dark damage
     }
 
     private void LightWaiting()
     {
-        gameObject.GetComponent<Collider>().enabled = true;
+        gameObject.GetComponent<BoxCollider>().enabled = true;
         Text.text = "";
         PointLight.SetActive(true);
         PointLight.GetComponent<Animator>().SetBool("FadeIn", true);
@@ -118,7 +126,7 @@ public class TorchesBoss : MonoBehaviour {
 
     public IEnumerator LightUpCoroutine(GameObject sender)
     {
-        gameObject.GetComponent<Collider>().enabled = false;
+        gameObject.GetComponent<BoxCollider>().enabled = false;
 
         sender.GetComponent<SpriteInteractionSlider>().SetUpInteractionSlider("Lighting", (float)LightingTime);
 

@@ -13,8 +13,8 @@ using UnityEngine.UI;
 
     public Sprite Icon;
 
-    public enum ObjectType {WEAPON, HEAD, HAND, CHEST, BOOTS, PASSIVE};
-    public ObjectType Object;
+    public enum ObjectType {WEAPON, HEAD, HAND, CHEST, BOOTS, PANTS, PASSIVE};
+    public ObjectType slotType;
 
     public bool forBoy;
     public bool forGirl;

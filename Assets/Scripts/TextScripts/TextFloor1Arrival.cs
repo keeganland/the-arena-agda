@@ -15,9 +15,9 @@ public class TextFloor1Arrival : ActivateTextAtLine
     {
         base.Start();
 
-        if (SaveManager.EquipedItems.Count != 0)
+        if (SaveManager.EquipedItemsBoy.Count != 0)
         {
-            ThirdPerson = SaveManager.EquipedItems[0];
+            ThirdPerson = SaveManager.EquipedItemsBoy[0];
         }
     }
 

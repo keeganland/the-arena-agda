@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Health Ring
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300012, guid: 6f428df1aa43645daaebd74f9e4ab89a, type: 3}
-  Object: 5
+  slotType: 2
   forBoy: 1
   forGirl: 1
   weaponName: Basic Health Ring

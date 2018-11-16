@@ -25,6 +25,7 @@ TagManager:
   - ObjectRange
   - Darkness
   - Torches
+  - InventorySlot
   layers:
   - Default
   - TransparentFX

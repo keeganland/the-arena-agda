@@ -198,6 +198,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                    }
                    else if (hit.collider.tag == "Objects")
                    {
+                        //Debug.Log(hit.collider.gameObject.name + " Is an object");
                         curTarget = hit.collider.gameObject;
                         ObjectInteraction = hit.collider.gameObject;
                      // hit.collider.GetComponent<InteractiveObjects>().DoAction();
@@ -446,7 +447,6 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
                 if (other.CompareTag("Objects") && GetComponentInChildren<ObjectChecker>().InRange(other.gameObject))
                 {
-                    Debug.Log("here for Lights");
                     curTarget.GetComponent<InteractiveObjectAbstract>().DoAction(this.gameObject);
                     UndoCurTarget();
                 }

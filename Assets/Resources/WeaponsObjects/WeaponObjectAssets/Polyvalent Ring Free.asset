@@ -9,14 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00c6d78e3df684cfdbcc85c30320526e, type: 3}
-  m_Name: Polyvalent Ring
+  m_Name: Polyvalent Ring Free
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300004, guid: 6f428df1aa43645daaebd74f9e4ab89a, type: 3}
   slotType: 2
   forBoy: 1
   forGirl: 1
-  weaponName: Basic Polyvalent Ring
-  cost: 69
+  weaponName: Free Basic Polyvalent Ring
+  cost: 0
   description: Empowers Attack and HP
   description2: +16 HP and +5 Damages
   fireRate: 0

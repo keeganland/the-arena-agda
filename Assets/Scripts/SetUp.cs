@@ -49,7 +49,6 @@ public class SetUp : MonoBehaviour {
 
     public void SetUpCharacterHealth()
     {
-        Debug.Log("here");
         /*TODO reset the players' health here*/
         foreach (GameObject players in PlayersGameObject)
         {

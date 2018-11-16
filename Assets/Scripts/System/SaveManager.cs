@@ -46,7 +46,9 @@ public class SaveManager : MonoBehaviour
 
     public static List<WeaponObject> AvailableItems = new List<WeaponObject>();
     public static List<WeaponObject> StoredItems = new List<WeaponObject>();
-    public static List<WeaponObject> EquipedItems = new List<WeaponObject>();
+    public static List<WeaponObject> EquipedItemsBoy = new List<WeaponObject>();
+    public static List<WeaponObject> EquipedItemsGirl = new List<WeaponObject>();
+
     public static int CurrentMoney;
 
     public static SaveManager Instance

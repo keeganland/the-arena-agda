@@ -34,19 +34,19 @@ public class InventoryManager : MonoBehaviour
     public static int itemsMax = 20;
     public static InventoryUI inventoryUI;
 
-    static float BoyFireRate = 5;
-    static int BoyDamage = 50;
+    static float BoyFireRate = 0;
+    static int BoyDamage = 0;
     static float BoyRange;
     static int BoyHealth = 60;
 
-    static float GirlFireRate = 1.5f;
-    static int GirlDamage = 10;
+    static float GirlFireRate = 0;
+    static int GirlDamage = 0;
     static float GirlRange;
     static int GirlHealth = 40;
 
-    static int BoyDamageInitial = 50;
+    static int BoyDamageInitial = 0;
     static int BoyHealthInitial = 60;
-    static int GirlDamageInitial = 10;
+    static int GirlDamageInitial = 0;
     static int GirlHealthInitial = 40;
 
     static int BoyHealthBonusFromItems;
@@ -63,6 +63,9 @@ public class InventoryManager : MonoBehaviour
     static bool GirlItemChanged = true;
 
     public static int CurrentMoney = 0;
+
+    public WeaponObject initialgirlweapon;
+    public WeaponObject initialboyweapon;
 
     /*Alex : What CURRENTLY DOESN'T WORK : 
      * 
@@ -106,15 +109,32 @@ public class InventoryManager : MonoBehaviour
 
     private void Start() //Alex : I don't understand the "Init" part, so I put that in Awake. It needs to be run before everything else.
     {
-        InventoryTab.SetActive(false);
+        LoadWeaponsSave();
 
         if (!Boy)
             Boy = GameObject.Find("Boy");
         if (!Girl)
             Girl = GameObject.Find("Girl");
 
+        AquireItem(initialgirlweapon.weaponName);
+        EquipItem(initialgirlweapon.weaponName, 1);
+
+        AquireItem(initialboyweapon.weaponName);
+        EquipItem(initialboyweapon.weaponName, 2);
+
+        GameObject.Find("/Inventory/CharacterBackgroundimage/GirlWeapon").GetComponent<InventorySlot>().AddItem(initialgirlweapon);
+        GameObject.Find("/Inventory/CharacterBackgroundimage/BoyWeapon").GetComponent<InventorySlot>().AddItem(initialboyweapon);
+
+        InventorySlot[] inventoryslots = GameObject.Find("/Inventory/ObjectsBackgroundimage/InventoryBackground").GetComponentsInChildren<InventorySlot>();
+
+        foreach (InventorySlot slots in inventoryslots)
+        {
+            slots.ClearSlot();
+        }
+
+        InventoryTab.SetActive(false);
+
         //Get all items, equiped items, and available items from SaveManager? 
-        LoadWeaponsSave();
         CalculateBonuses();
         inventoryUI = GetComponent<InventoryUI>();
     }
@@ -298,6 +318,7 @@ public class InventoryManager : MonoBehaviour
     {
         Debug.Log("Let's Calculate some bonuses!" + EquipedItemsBoy.Count + " with this many item equiped in Calculation() for the Boy");
         Debug.Log("Let's Calculate some bonuses!" + EquipedItemsGirl.Count + " with this many item equiped in Calculation() for the Girl");
+
         int BoyBonusHealth = 0;
         int GirlBonusHealth = 0;
 
@@ -316,8 +337,9 @@ public class InventoryManager : MonoBehaviour
                     {
                         if (equipedWeapon.slotType == WeaponObject.ObjectType.WEAPON)
                         {
-                            BoyFireRate = equipedWeapon.fireRate;
+                            BoyFireRate = 5/equipedWeapon.fireRate;
                             Boy.GetComponent<MeleeDamage>().AttackSpeed = BoyFireRate;
+                            Boy.GetComponentInChildren<RangeChecker>().GetComponent<SphereCollider>().radius = equipedWeapon.range;
                         }
 
                         BoyBonusDamages += equipedWeapon.bonusDamage;
@@ -333,6 +355,12 @@ public class InventoryManager : MonoBehaviour
             Boy.GetComponent<HealthController>().totalHealth = BoyHealth + BoyBonusHealth;
             Boy.GetComponent<HealthController>().currentHealth += BoyBonusHealth;
             Boy.GetComponent<MeleeDamage>().Damage = BoyDamage + BoyBonusDamages;
+
+            if (Boy.GetComponent<HealthController>().currentHealth > Boy.GetComponent<HealthController>().totalHealth)
+            {
+                Boy.GetComponent<HealthController>().currentHealth = Boy.GetComponent<HealthController>().totalHealth;
+            }
+
         }
         else if(BoyItemChanged && EquipedItemsBoy.Count == 0)
         {
@@ -346,6 +374,7 @@ public class InventoryManager : MonoBehaviour
 
         if (EquipedItemsGirl.Count != 0 && GirlItemChanged)
         {
+            Debug.Log("Here for Girl");
             foreach (KeyValuePair<string, WeaponObject> EquipedPair in EquipedItemsGirl)
             {
                 WeaponObject equipedWeapon = EquipedPair.Value;
@@ -356,8 +385,9 @@ public class InventoryManager : MonoBehaviour
                     {
                         if (equipedWeapon.slotType == WeaponObject.ObjectType.WEAPON)
                         {
-                            GirlFireRate = equipedWeapon.fireRate;
+                            GirlFireRate = 5/equipedWeapon.fireRate;
                             Girl.GetComponent<MeleeDamage>().AttackSpeed = GirlFireRate;
+                            Girl.GetComponentInChildren<RangeChecker>().GetComponent<SphereCollider>().radius = equipedWeapon.range;
                         }
 
                         GirlBonusDamages += equipedWeapon.bonusDamage;
@@ -365,12 +395,18 @@ public class InventoryManager : MonoBehaviour
                     }
                 }
             }
+
             GirlHealthBonusFromItems = GirlBonusHealth;
             GirlDamagesBonusFromItems = GirlBonusDamages;
 
             Girl.GetComponent<HealthController>().totalHealth = GirlHealth + GirlBonusHealth;
             Girl.GetComponent<HealthController>().currentHealth += GirlBonusHealth;
             Girl.GetComponent<MeleeDamage>().Damage = GirlDamage + GirlBonusDamages;
+
+            if(Girl.GetComponent<HealthController>().currentHealth > Girl.GetComponent<HealthController>().totalHealth)
+            {
+                Girl.GetComponent<HealthController>().currentHealth = Girl.GetComponent<HealthController>().totalHealth;
+            }
         }
         else if(EquipedItemsGirl.Count == 0 && GirlItemChanged)
         {

@@ -5640,6 +5640,9 @@ MonoBehaviour:
   ItemIsForBoy: 1
   slotType: 2
   isEmpty: 1
+  StatsTextHolder: {fileID: 0}
+  NameItem: {fileID: 0}
+  DescriptionItem: {fileID: 0}
   item: {fileID: 0}
 --- !u!114 &97743514
 MonoBehaviour:
@@ -10599,6 +10602,82 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 110355196}
+  m_CullTransparentMesh: 0
+--- !u!1 &112588803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 112588804}
+  - component: {fileID: 112588806}
+  - component: {fileID: 112588805}
+  m_Layer: 5
+  m_Name: ATTACK SPEED
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &112588804
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 112588803}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 229343317}
+  m_Father: {fileID: 1603060519}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -93.20001}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &112588805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 112588803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'ATTACK SPEED : 25'
+--- !u!222 &112588806
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 112588803}
   m_CullTransparentMesh: 0
 --- !u!1 &115768438
 GameObject:
@@ -15583,6 +15662,9 @@ MonoBehaviour:
   ItemIsForBoy: 2
   slotType: 5
   isEmpty: 1
+  StatsTextHolder: {fileID: 0}
+  NameItem: {fileID: 0}
+  DescriptionItem: {fileID: 0}
   item: {fileID: 0}
 --- !u!114 &146973409
 MonoBehaviour:
@@ -15637,7 +15719,7 @@ GameObject:
   - component: {fileID: 159163508}
   - component: {fileID: 159163507}
   m_Layer: 5
-  m_Name: HEALING
+  m_Name: ATTACK SPEED
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15694,7 +15776,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'HEALING : 25'
+  m_Text: 'ATTACK SPEED : 25'
 --- !u!222 &159163508
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21585,6 +21667,81 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 209904518}
+  m_CullTransparentMesh: 0
+--- !u!1 &229343316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 229343317}
+  - component: {fileID: 229343319}
+  - component: {fileID: 229343318}
+  m_Layer: 5
+  m_Name: Text (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &229343317
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 229343316}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 112588804}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.000038146973, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &229343318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 229343316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'ATTACK SPEED : 25'
+--- !u!222 &229343319
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 229343316}
   m_CullTransparentMesh: 0
 --- !u!1 &230589778
 GameObject:
@@ -32263,6 +32420,9 @@ MonoBehaviour:
   ItemIsForBoy: 2
   slotType: 5
   isEmpty: 1
+  StatsTextHolder: {fileID: 0}
+  NameItem: {fileID: 0}
+  DescriptionItem: {fileID: 0}
   item: {fileID: 0}
 --- !u!114 &365887919
 MonoBehaviour:
@@ -34171,6 +34331,9 @@ MonoBehaviour:
   ItemIsForBoy: 1
   slotType: 4
   isEmpty: 1
+  StatsTextHolder: {fileID: 0}
+  NameItem: {fileID: 0}
+  DescriptionItem: {fileID: 0}
   item: {fileID: 0}
 --- !u!114 &458429268
 MonoBehaviour:
@@ -45794,6 +45957,9 @@ MonoBehaviour:
   ItemIsForBoy: 1
   slotType: 1
   isEmpty: 1
+  StatsTextHolder: {fileID: 0}
+  NameItem: {fileID: 0}
+  DescriptionItem: {fileID: 0}
   item: {fileID: 0}
 --- !u!114 &641463357
 MonoBehaviour:
@@ -46460,6 +46626,9 @@ MonoBehaviour:
   ItemIsForBoy: 2
   slotType: 2
   isEmpty: 1
+  StatsTextHolder: {fileID: 0}
+  NameItem: {fileID: 0}
+  DescriptionItem: {fileID: 0}
   item: {fileID: 0}
 --- !u!114 &657916770
 MonoBehaviour:
@@ -56636,6 +56805,9 @@ MonoBehaviour:
   ItemIsForBoy: 1
   slotType: 5
   isEmpty: 1
+  StatsTextHolder: {fileID: 0}
+  NameItem: {fileID: 0}
+  DescriptionItem: {fileID: 0}
   item: {fileID: 0}
 --- !u!114 &731974991
 MonoBehaviour:
@@ -56767,6 +56939,9 @@ MonoBehaviour:
   ItemIsForBoy: 2
   slotType: 1
   isEmpty: 1
+  StatsTextHolder: {fileID: 0}
+  NameItem: {fileID: 0}
+  DescriptionItem: {fileID: 0}
   item: {fileID: 0}
 --- !u!114 &737114100
 MonoBehaviour:
@@ -56908,7 +57083,7 @@ RectTransform:
   m_Children:
   - {fileID: 1725286127}
   m_Father: {fileID: 1603060519}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -57022,7 +57197,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'HEALING : 25'
+  m_Text: 'ATTACK SPEED : 25'
 --- !u!222 &752383763
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -58870,6 +59045,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryTab: {fileID: 1197082810}
+  initialgirlweapon: {fileID: 11400000, guid: b1a2267d272006442a6efdbe596bafc0, type: 2}
+  initialboyweapon: {fileID: 11400000, guid: ec5ac18b3eaaead419788cbad75ebe78, type: 2}
 --- !u!114 &882622118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58970,6 +59147,9 @@ MonoBehaviour:
   ItemIsForBoy: 2
   slotType: 3
   isEmpty: 1
+  StatsTextHolder: {fileID: 0}
+  NameItem: {fileID: 0}
+  DescriptionItem: {fileID: 0}
   item: {fileID: 0}
 --- !u!114 &886564653
 MonoBehaviour:
@@ -64903,11 +65083,11 @@ MonoBehaviour:
   HP: {fileID: 1336516303}
   DAMAGES: {fileID: 1423316501}
   RANGE: {fileID: 1466629962}
-  HEALING: {fileID: 159163507}
+  ATTACKSPEED: {fileID: 159163507}
   HP2: {fileID: 1329182943}
   DAMAGES2: {fileID: 946168388}
   RANGE2: {fileID: 410017942}
-  HEALING2: {fileID: 752383762}
+  ATTACKSPEED2: {fileID: 752383762}
 --- !u!1 &954810398
 GameObject:
   m_ObjectHideFlags: 0
@@ -85876,7 +86056,7 @@ RectTransform:
   m_Children:
   - {fileID: 159645459}
   m_Father: {fileID: 1603060519}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -86103,6 +86283,9 @@ MonoBehaviour:
   ItemIsForBoy: 1
   slotType: 3
   isEmpty: 1
+  StatsTextHolder: {fileID: 0}
+  NameItem: {fileID: 0}
+  DescriptionItem: {fileID: 0}
   item: {fileID: 0}
 --- !u!114 &1263748554
 MonoBehaviour:
@@ -86244,7 +86427,7 @@ RectTransform:
   m_Children:
   - {fileID: 975427051}
   m_Father: {fileID: 1603060519}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -103335,6 +103518,9 @@ MonoBehaviour:
   ItemIsForBoy: 1
   slotType: 5
   isEmpty: 1
+  StatsTextHolder: {fileID: 0}
+  NameItem: {fileID: 0}
+  DescriptionItem: {fileID: 0}
   item: {fileID: 0}
 --- !u!114 &1593318609
 MonoBehaviour:
@@ -103407,6 +103593,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 87595324}
+  - {fileID: 112588804}
   - {fileID: 1250408512}
   - {fileID: 1301464274}
   - {fileID: 751748111}
@@ -103473,11 +103660,11 @@ MonoBehaviour:
   HP: {fileID: 1301464275}
   DAMAGES: {fileID: 751748112}
   RANGE: {fileID: 1250408513}
-  HEALING: {fileID: 0}
+  ATTACKSPEED: {fileID: 112588805}
   HP2: {fileID: 975427052}
   DAMAGES2: {fileID: 1725286128}
   RANGE2: {fileID: 159645460}
-  HEALING2: {fileID: 0}
+  ATTACKSPEED2: {fileID: 229343318}
 --- !u!1 &1605325082
 GameObject:
   m_ObjectHideFlags: 0
@@ -117468,6 +117655,9 @@ MonoBehaviour:
   ItemIsForBoy: 2
   slotType: 4
   isEmpty: 1
+  StatsTextHolder: {fileID: 0}
+  NameItem: {fileID: 0}
+  DescriptionItem: {fileID: 0}
   item: {fileID: 0}
 --- !u!114 &1991423820
 MonoBehaviour:

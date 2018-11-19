@@ -28177,6 +28177,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialScreen: {fileID: 0}
+  initialgirlweapon: {fileID: 0}
+  initialboyweapon: {fileID: 0}
 --- !u!224 &1606365678
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33009,6 +33011,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialScreen: {fileID: 723151306}
+  initialgirlweapon: {fileID: 11400000, guid: b1a2267d272006442a6efdbe596bafc0, type: 2}
+  initialboyweapon: {fileID: 11400000, guid: ec5ac18b3eaaead419788cbad75ebe78, type: 2}
 --- !u!114 &1686626928
 MonoBehaviour:
   m_ObjectHideFlags: 0

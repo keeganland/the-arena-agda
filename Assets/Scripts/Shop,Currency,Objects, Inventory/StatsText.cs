@@ -10,12 +10,12 @@ public class StatsText : MonoBehaviour {
     public Text HP;
     public Text DAMAGES;
     public Text RANGE;
-    public Text HEALING;
+    public Text ATTACKSPEED;
 
     public Text HP2;
     public Text DAMAGES2;
     public Text RANGE2;
-    public Text HEALING2;
+    public Text ATTACKSPEED2;
 
     // Use this for initialization
     private void OnEnable () 
@@ -48,10 +48,10 @@ public class StatsText : MonoBehaviour {
             RANGE2.text = RANGE.text;
 
         }
-        if(HEALING)
+        if(ATTACKSPEED)
         {
-            HEALING.text = "Healing : " + Player.GetComponent<SpellCommand>().Healing;
-            HEALING2.text = HEALING.text;
+            ATTACKSPEED.text = "Attack Speed : " + 5/Player.GetComponent<MeleeDamage>().AttackSpeed;
+            ATTACKSPEED2.text = ATTACKSPEED.text;
 
         }
     }

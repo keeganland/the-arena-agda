@@ -18,8 +18,6 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
     public bool isEmpty = true; //if the slot if empty
 
     public GameObject StatsTextHolder; //This section contains the data for the mouse "hovering" part of the inventory. 
-    public Text NameItem;
-    public Text DescriptionItem; 
 
     [SerializeField] WeaponObject item; //What item does the slot contains? 
 
@@ -63,15 +61,12 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
 
     public void ShowStats() //When the mouse is hovered, we show the stats of the item such as the name, and the description.
     {
-        NameItem.text = item.weaponName;
-        DescriptionItem.text = item.description;
-        StatsTextHolder.transform.position = Input.mousePosition;
-        StatsTextHolder.SetActive(true);
-    }
-
-    public void MoveStatsText() //When we move the mouse over the inventoryslot, the "Text" stats follow the mouse. (optional?) 
-    {
-        StatsTextHolder.transform.position = Input.mousePosition;
+        if (item)
+        {
+            StatsTextHolder.transform.position = Input.mousePosition;
+            StatsTextHolder.GetComponent<StatsItemHolder>().GetWeaponObject(item);
+            StatsTextHolder.SetActive(true);
+        }
     }
 
     public void HiddeStats() //When the mouse leaves the inventoryslot, the stats disapear. Alex : maybe we can make it disapear when we start dragging the inventorySlot. 

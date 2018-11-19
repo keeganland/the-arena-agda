@@ -5640,9 +5640,7 @@ MonoBehaviour:
   ItemIsForBoy: 1
   slotType: 2
   isEmpty: 1
-  StatsTextHolder: {fileID: 0}
-  NameItem: {fileID: 0}
-  DescriptionItem: {fileID: 0}
+  StatsTextHolder: {fileID: 2041009246}
   item: {fileID: 0}
 --- !u!114 &97743514
 MonoBehaviour:
@@ -5659,13 +5657,35 @@ MonoBehaviour:
   - eventID: 0
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 97743513}
+          m_MethodName: ShowStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 97743513}
+          m_MethodName: HiddeStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 5
@@ -15571,6 +15591,11 @@ Prefab:
       propertyPath: Foreground
       value: 
       objectReference: {fileID: 267074459}
+    - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
+        type: 2}
+      propertyPath: StatsTextHolder
+      value: 
+      objectReference: {fileID: 2041009246}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21be62f989f14b2799eb70317e65040, type: 2}
   m_IsPrefabAsset: 0
@@ -15662,9 +15687,7 @@ MonoBehaviour:
   ItemIsForBoy: 2
   slotType: 5
   isEmpty: 1
-  StatsTextHolder: {fileID: 0}
-  NameItem: {fileID: 0}
-  DescriptionItem: {fileID: 0}
+  StatsTextHolder: {fileID: 2041009246}
   item: {fileID: 0}
 --- !u!114 &146973409
 MonoBehaviour:
@@ -15681,13 +15704,35 @@ MonoBehaviour:
   - eventID: 0
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 146973408}
+          m_MethodName: ShowStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 146973408}
+          m_MethodName: HiddeStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 5
@@ -20834,6 +20879,11 @@ Prefab:
       propertyPath: Foreground
       value: 
       objectReference: {fileID: 267074459}
+    - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
+        type: 2}
+      propertyPath: StatsTextHolder
+      value: 
+      objectReference: {fileID: 2041009246}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21be62f989f14b2799eb70317e65040, type: 2}
   m_IsPrefabAsset: 0
@@ -22069,6 +22119,11 @@ Prefab:
       propertyPath: Foreground
       value: 
       objectReference: {fileID: 267074459}
+    - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
+        type: 2}
+      propertyPath: StatsTextHolder
+      value: 
+      objectReference: {fileID: 2041009246}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21be62f989f14b2799eb70317e65040, type: 2}
   m_IsPrefabAsset: 0
@@ -32420,9 +32475,7 @@ MonoBehaviour:
   ItemIsForBoy: 2
   slotType: 5
   isEmpty: 1
-  StatsTextHolder: {fileID: 0}
-  NameItem: {fileID: 0}
-  DescriptionItem: {fileID: 0}
+  StatsTextHolder: {fileID: 2041009246}
   item: {fileID: 0}
 --- !u!114 &365887919
 MonoBehaviour:
@@ -32439,13 +32492,35 @@ MonoBehaviour:
   - eventID: 0
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 365887918}
+          m_MethodName: ShowStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 365887918}
+          m_MethodName: HiddeStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 5
@@ -32573,6 +32648,11 @@ Prefab:
       propertyPath: Foreground
       value: 
       objectReference: {fileID: 267074459}
+    - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
+        type: 2}
+      propertyPath: StatsTextHolder
+      value: 
+      objectReference: {fileID: 2041009246}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21be62f989f14b2799eb70317e65040, type: 2}
   m_IsPrefabAsset: 0
@@ -34006,6 +34086,11 @@ Prefab:
       propertyPath: Foreground
       value: 
       objectReference: {fileID: 267074459}
+    - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
+        type: 2}
+      propertyPath: StatsTextHolder
+      value: 
+      objectReference: {fileID: 2041009246}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21be62f989f14b2799eb70317e65040, type: 2}
   m_IsPrefabAsset: 0
@@ -34331,9 +34416,7 @@ MonoBehaviour:
   ItemIsForBoy: 1
   slotType: 4
   isEmpty: 1
-  StatsTextHolder: {fileID: 0}
-  NameItem: {fileID: 0}
-  DescriptionItem: {fileID: 0}
+  StatsTextHolder: {fileID: 2041009246}
   item: {fileID: 0}
 --- !u!114 &458429268
 MonoBehaviour:
@@ -34350,13 +34433,35 @@ MonoBehaviour:
   - eventID: 0
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 458429267}
+          m_MethodName: ShowStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 458429267}
+          m_MethodName: HiddeStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 5
@@ -34959,6 +35064,80 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &558088485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 558088486}
+  - component: {fileID: 558088488}
+  - component: {fileID: 558088487}
+  m_Layer: 5
+  m_Name: StatsSubholder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &558088486
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 558088485}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1258449731}
+  - {fileID: 1327865101}
+  - {fileID: 1797783808}
+  - {fileID: 768778624}
+  - {fileID: 881939969}
+  m_Father: {fileID: 2041009247}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -100, y: -100}
+  m_SizeDelta: {x: 250, y: 150}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &558088487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 558088485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 314cea4c22ca209449ec42371975d74a, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &558088488
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 558088485}
+  m_CullTransparentMesh: 0
 --- !u!1 &558585964
 GameObject:
   m_ObjectHideFlags: 0
@@ -36025,6 +36204,11 @@ Prefab:
       propertyPath: Foreground
       value: 
       objectReference: {fileID: 267074459}
+    - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
+        type: 2}
+      propertyPath: StatsTextHolder
+      value: 
+      objectReference: {fileID: 2041009246}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21be62f989f14b2799eb70317e65040, type: 2}
   m_IsPrefabAsset: 0
@@ -36139,6 +36323,11 @@ Prefab:
       propertyPath: Foreground
       value: 
       objectReference: {fileID: 267074459}
+    - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
+        type: 2}
+      propertyPath: StatsTextHolder
+      value: 
+      objectReference: {fileID: 2041009246}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21be62f989f14b2799eb70317e65040, type: 2}
   m_IsPrefabAsset: 0
@@ -40918,6 +41107,11 @@ Prefab:
       propertyPath: Foreground
       value: 
       objectReference: {fileID: 267074459}
+    - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
+        type: 2}
+      propertyPath: StatsTextHolder
+      value: 
+      objectReference: {fileID: 2041009246}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21be62f989f14b2799eb70317e65040, type: 2}
   m_IsPrefabAsset: 0
@@ -45957,9 +46151,7 @@ MonoBehaviour:
   ItemIsForBoy: 1
   slotType: 1
   isEmpty: 1
-  StatsTextHolder: {fileID: 0}
-  NameItem: {fileID: 0}
-  DescriptionItem: {fileID: 0}
+  StatsTextHolder: {fileID: 2041009246}
   item: {fileID: 0}
 --- !u!114 &641463357
 MonoBehaviour:
@@ -45976,13 +46168,35 @@ MonoBehaviour:
   - eventID: 0
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 641463356}
+          m_MethodName: ShowStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 641463356}
+          m_MethodName: HiddeStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 5
@@ -46209,6 +46423,11 @@ Prefab:
       propertyPath: Foreground
       value: 
       objectReference: {fileID: 267074459}
+    - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
+        type: 2}
+      propertyPath: StatsTextHolder
+      value: 
+      objectReference: {fileID: 2041009246}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21be62f989f14b2799eb70317e65040, type: 2}
   m_IsPrefabAsset: 0
@@ -46626,9 +46845,7 @@ MonoBehaviour:
   ItemIsForBoy: 2
   slotType: 2
   isEmpty: 1
-  StatsTextHolder: {fileID: 0}
-  NameItem: {fileID: 0}
-  DescriptionItem: {fileID: 0}
+  StatsTextHolder: {fileID: 2041009246}
   item: {fileID: 0}
 --- !u!114 &657916770
 MonoBehaviour:
@@ -46645,13 +46862,35 @@ MonoBehaviour:
   - eventID: 0
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 657916769}
+          m_MethodName: ShowStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 657916769}
+          m_MethodName: HiddeStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 5
@@ -56805,9 +57044,7 @@ MonoBehaviour:
   ItemIsForBoy: 1
   slotType: 5
   isEmpty: 1
-  StatsTextHolder: {fileID: 0}
-  NameItem: {fileID: 0}
-  DescriptionItem: {fileID: 0}
+  StatsTextHolder: {fileID: 2041009246}
   item: {fileID: 0}
 --- !u!114 &731974991
 MonoBehaviour:
@@ -56824,13 +57061,35 @@ MonoBehaviour:
   - eventID: 0
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 731974990}
+          m_MethodName: ShowStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 731974990}
+          m_MethodName: HiddeStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 5
@@ -56939,9 +57198,7 @@ MonoBehaviour:
   ItemIsForBoy: 2
   slotType: 1
   isEmpty: 1
-  StatsTextHolder: {fileID: 0}
-  NameItem: {fileID: 0}
-  DescriptionItem: {fileID: 0}
+  StatsTextHolder: {fileID: 2041009246}
   item: {fileID: 0}
 --- !u!114 &737114100
 MonoBehaviour:
@@ -56958,13 +57215,35 @@ MonoBehaviour:
   - eventID: 0
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 737114099}
+          m_MethodName: ShowStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 737114099}
+          m_MethodName: HiddeStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 5
@@ -58004,6 +58283,81 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224352580746649308, guid: e21be62f989f14b2799eb70317e65040,
     type: 2}
   m_PrefabInternal: {fileID: 1480088243}
+--- !u!1 &768778623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 768778624}
+  - component: {fileID: 768778626}
+  - component: {fileID: 768778625}
+  m_Layer: 5
+  m_Name: Attack Speed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &768778624
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 768778623}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 558088486}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -20, y: -32}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &768778625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 768778623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 16
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &768778626
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 768778623}
+  m_CullTransparentMesh: 0
 --- !u!1 &775352696
 GameObject:
   m_ObjectHideFlags: 0
@@ -58156,6 +58510,11 @@ Prefab:
       propertyPath: Foreground
       value: 
       objectReference: {fileID: 267074459}
+    - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
+        type: 2}
+      propertyPath: StatsTextHolder
+      value: 
+      objectReference: {fileID: 2041009246}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21be62f989f14b2799eb70317e65040, type: 2}
   m_IsPrefabAsset: 0
@@ -59003,6 +59362,81 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 879576165}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &881939968
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 881939969}
+  - component: {fileID: 881939971}
+  - component: {fileID: 881939970}
+  m_Layer: 5
+  m_Name: Attack Range
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &881939969
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 881939968}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 558088486}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -20, y: -50}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &881939970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 881939968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 16
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &881939971
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 881939968}
+  m_CullTransparentMesh: 0
 --- !u!1 &882622115
 GameObject:
   m_ObjectHideFlags: 0
@@ -59047,6 +59481,7 @@ MonoBehaviour:
   InventoryTab: {fileID: 1197082810}
   initialgirlweapon: {fileID: 11400000, guid: b1a2267d272006442a6efdbe596bafc0, type: 2}
   initialboyweapon: {fileID: 11400000, guid: ec5ac18b3eaaead419788cbad75ebe78, type: 2}
+  StatsHolder: {fileID: 2041009246}
 --- !u!114 &882622118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59147,9 +59582,7 @@ MonoBehaviour:
   ItemIsForBoy: 2
   slotType: 3
   isEmpty: 1
-  StatsTextHolder: {fileID: 0}
-  NameItem: {fileID: 0}
-  DescriptionItem: {fileID: 0}
+  StatsTextHolder: {fileID: 2041009246}
   item: {fileID: 0}
 --- !u!114 &886564653
 MonoBehaviour:
@@ -59166,13 +59599,35 @@ MonoBehaviour:
   - eventID: 0
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 886564652}
+          m_MethodName: ShowStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 886564652}
+          m_MethodName: HiddeStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 5
@@ -65490,6 +65945,11 @@ Prefab:
       propertyPath: Foreground
       value: 
       objectReference: {fileID: 267074459}
+    - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
+        type: 2}
+      propertyPath: StatsTextHolder
+      value: 
+      objectReference: {fileID: 2041009246}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21be62f989f14b2799eb70317e65040, type: 2}
   m_IsPrefabAsset: 0
@@ -75633,18 +76093,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
         type: 2}
-      propertyPath: ForegroundIcon
+      propertyPath: Foreground
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 267074459}
+    - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
+        type: 2}
+      propertyPath: StatsTextHolder
+      value: 
+      objectReference: {fileID: 2041009246}
     - target: {fileID: 1607976477688964, guid: e21be62f989f14b2799eb70317e65040, type: 2}
       propertyPath: m_Name
       value: IventorySlot (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
-        type: 2}
-      propertyPath: Foreground
-      value: 
-      objectReference: {fileID: 267074459}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21be62f989f14b2799eb70317e65040, type: 2}
   m_IsPrefabAsset: 0
@@ -86195,6 +86655,81 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1253268311}
   m_CullTransparentMesh: 0
+--- !u!1 &1258449730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1258449731}
+  - component: {fileID: 1258449733}
+  - component: {fileID: 1258449732}
+  m_Layer: 5
+  m_Name: NameItem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1258449731
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1258449730}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 558088486}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -20, y: 30}
+  m_SizeDelta: {x: 160, y: 60}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1258449732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1258449730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 1, b: 0.9623866, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 18
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 198
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &1258449733
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1258449730}
+  m_CullTransparentMesh: 0
 --- !u!1 &1263748549
 GameObject:
   m_ObjectHideFlags: 0
@@ -86283,9 +86818,7 @@ MonoBehaviour:
   ItemIsForBoy: 1
   slotType: 3
   isEmpty: 1
-  StatsTextHolder: {fileID: 0}
-  NameItem: {fileID: 0}
-  DescriptionItem: {fileID: 0}
+  StatsTextHolder: {fileID: 2041009246}
   item: {fileID: 0}
 --- !u!114 &1263748554
 MonoBehaviour:
@@ -86302,13 +86835,35 @@ MonoBehaviour:
   - eventID: 0
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1263748553}
+          m_MethodName: ShowStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1263748553}
+          m_MethodName: HiddeStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 5
@@ -91368,6 +91923,81 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1318802733}
+  m_CullTransparentMesh: 0
+--- !u!1 &1327865100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1327865101}
+  - component: {fileID: 1327865103}
+  - component: {fileID: 1327865102}
+  m_Layer: 5
+  m_Name: HP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1327865101
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1327865100}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 558088486}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -20, y: 4}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1327865102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1327865100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 16
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &1327865103
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1327865100}
   m_CullTransparentMesh: 0
 --- !u!1 &1329182941
 GameObject:
@@ -97843,6 +98473,11 @@ Prefab:
       propertyPath: Foreground
       value: 
       objectReference: {fileID: 267074459}
+    - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
+        type: 2}
+      propertyPath: StatsTextHolder
+      value: 
+      objectReference: {fileID: 2041009246}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21be62f989f14b2799eb70317e65040, type: 2}
   m_IsPrefabAsset: 0
@@ -103340,6 +103975,83 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ed29f8bda015dd458d0002314112583, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1587186987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1587186989}
+  - component: {fileID: 1587186988}
+  - component: {fileID: 1587186990}
+  m_Layer: 5
+  m_Name: StatsCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!223 &1587186988
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1587186987}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 274857893}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
+--- !u!224 &1587186989
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1587186987}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 2041009247}
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &1587186990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1587186987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 50
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
 --- !u!1 &1587741427
 GameObject:
   m_ObjectHideFlags: 0
@@ -103518,9 +104230,7 @@ MonoBehaviour:
   ItemIsForBoy: 1
   slotType: 5
   isEmpty: 1
-  StatsTextHolder: {fileID: 0}
-  NameItem: {fileID: 0}
-  DescriptionItem: {fileID: 0}
+  StatsTextHolder: {fileID: 2041009246}
   item: {fileID: 0}
 --- !u!114 &1593318609
 MonoBehaviour:
@@ -103537,13 +104247,35 @@ MonoBehaviour:
   - eventID: 0
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1593318608}
+          m_MethodName: ShowStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1593318608}
+          m_MethodName: HiddeStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 5
@@ -109296,6 +110028,11 @@ Prefab:
       propertyPath: Foreground
       value: 
       objectReference: {fileID: 267074459}
+    - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
+        type: 2}
+      propertyPath: StatsTextHolder
+      value: 
+      objectReference: {fileID: 2041009246}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21be62f989f14b2799eb70317e65040, type: 2}
   m_IsPrefabAsset: 0
@@ -111578,6 +112315,81 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1794827580}
+  m_CullTransparentMesh: 0
+--- !u!1 &1797783807
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1797783808}
+  - component: {fileID: 1797783810}
+  - component: {fileID: 1797783809}
+  m_Layer: 5
+  m_Name: Damages
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1797783808
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1797783807}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 558088486}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -20, y: -14}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1797783809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1797783807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 16
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &1797783810
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1797783807}
   m_CullTransparentMesh: 0
 --- !u!1 &1810121427
 GameObject:
@@ -117655,9 +118467,7 @@ MonoBehaviour:
   ItemIsForBoy: 2
   slotType: 4
   isEmpty: 1
-  StatsTextHolder: {fileID: 0}
-  NameItem: {fileID: 0}
-  DescriptionItem: {fileID: 0}
+  StatsTextHolder: {fileID: 2041009246}
   item: {fileID: 0}
 --- !u!114 &1991423820
 MonoBehaviour:
@@ -117674,13 +118484,35 @@ MonoBehaviour:
   - eventID: 0
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1991423819}
+          m_MethodName: ShowStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1991423819}
+          m_MethodName: HiddeStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 5
@@ -118170,6 +119002,52 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2040860663}
   m_CullTransparentMesh: 0
+--- !u!1 &2041009246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2041009247}
+  - component: {fileID: 2041009248}
+  m_Layer: 5
+  m_Name: StatsHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2041009247
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2041009246}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 558088486}
+  m_Father: {fileID: 1587186989}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2041009248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2041009246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20016100113f7d944a4ea35fc5206239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2049069599
 Prefab:
   m_ObjectHideFlags: 0
@@ -128157,6 +129035,11 @@ Prefab:
       propertyPath: Foreground
       value: 
       objectReference: {fileID: 267074459}
+    - target: {fileID: 114784567929633390, guid: e21be62f989f14b2799eb70317e65040,
+        type: 2}
+      propertyPath: StatsTextHolder
+      value: 
+      objectReference: {fileID: 2041009246}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21be62f989f14b2799eb70317e65040, type: 2}
   m_IsPrefabAsset: 0

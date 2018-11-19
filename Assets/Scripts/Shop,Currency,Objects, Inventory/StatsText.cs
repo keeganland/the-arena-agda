@@ -33,24 +33,24 @@ public class StatsText : MonoBehaviour {
     {
         if(HP)
         {
-            HP.text = "HP : " + Player.GetComponent<HealthController>().currentHealth + "/" + Player.GetComponent<HealthController>().totalHealth;
+            HP.text = "HP : " + ("<color=lime>" + Player.GetComponent<HealthController>().currentHealth + "/" + Player.GetComponent<HealthController>().totalHealth + "</color>");
             HP2.text = HP.text;
         }
         if(DAMAGES)
         {
-            DAMAGES.text = "Damages : " + Player.GetComponent<MeleeDamage>().Damage;
+            DAMAGES.text = "Damages : " + ("<color=lime>" + Player.GetComponent<MeleeDamage>().Damage + "</color>");
             DAMAGES2.text = DAMAGES.text;
 
         }
         if(RANGE)
         {
-            RANGE.text = "Range : " + Player.GetComponentInChildren<RangeChecker>().gameObject.GetComponent<SphereCollider>().radius.ToString();
+            RANGE.text = "Range : " + ("<color=lime>" + Player.GetComponentInChildren<RangeChecker>().gameObject.GetComponent<SphereCollider>().radius.ToString() + "</color>");
             RANGE2.text = RANGE.text;
 
         }
         if(ATTACKSPEED)
         {
-            ATTACKSPEED.text = "Attack Speed : " + 5/Player.GetComponent<MeleeDamage>().AttackSpeed;
+            ATTACKSPEED.text = "Attack Speed : " + ("<color=lime>" + 5 /Player.GetComponent<MeleeDamage>().AttackSpeed + "</color>");
             ATTACKSPEED2.text = ATTACKSPEED.text;
 
         }

@@ -67,6 +67,8 @@ public class InventoryManager : MonoBehaviour
     public WeaponObject initialgirlweapon;
     public WeaponObject initialboyweapon;
 
+    public GameObject StatsHolder;
+
     /*Alex : What CURRENTLY DOESN'T WORK : 
      * 
      *  we only have an "EquipedItems" array for the girl AND the boy, which means that only one HELMET, CHEST, PASSIVE, etc... WeaponObject can be equiped for both. 
@@ -479,6 +481,7 @@ public class InventoryManager : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.I) && InventoryTabActive)
         {
+            StatsHolder.SetActive(false);
             InventoryTab.SetActive(false);
             InventoryTabActive = false;
         }

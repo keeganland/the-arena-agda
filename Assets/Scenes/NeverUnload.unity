@@ -58246,6 +58246,7 @@ MonoBehaviour:
   curTarget: {fileID: 0}
   selectionBoxImage: {fileID: 0}
   Footsteps: {fileID: 8300000, guid: 8f44c09e4e22545e69e89091b59f1e50, type: 3}
+  volumeScaleFactor: 0.05
 --- !u!82 &765572584
 AudioSource:
   m_ObjectHideFlags: 0
@@ -87625,7 +87626,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.15
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -87724,6 +87725,7 @@ MonoBehaviour:
   SFXVolumeSlider: {fileID: 1689148760}
   backgroundMusicSliderText: {fileID: 11133385}
   sfxVolumeText: {fileID: 433911750}
+  ScaleFactor: 0.1
 --- !u!1 &1301464273
 GameObject:
   m_ObjectHideFlags: 0
@@ -112693,6 +112695,7 @@ MonoBehaviour:
   curTarget: {fileID: 0}
   selectionBoxImage: {fileID: 0}
   Footsteps: {fileID: 0}
+  volumeScaleFactor: 0.075
 --- !u!82 &1762563034
 AudioSource:
   m_ObjectHideFlags: 0

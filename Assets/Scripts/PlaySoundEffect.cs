@@ -23,7 +23,18 @@ public class PlaySoundEffect : MonoBehaviour {
         m_audioSource = GetComponent<AudioSource>();
 
         SoundManager.onSoundChangedCallback += UpdateSound;
-	}
+    }
+    private void Start()
+    {
+        if (isSFX)
+        {
+            m_audioSource.volume = (SoundManager.SFXVolume * ScaleFactor) / 100;
+        }
+        if (isBackgroundMusic)
+        {
+            m_audioSource.volume = (SoundManager.BackgroundMusicVolume * ScaleFactor) / 100;
+        }
+    }
 
     private void OnEnable()
     {

@@ -40,6 +40,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
     private Vector2 newMousePosition;
 
     public AudioClip Footsteps;
+    public float volumeScaleFactor;
     private AudioSource m_audioSource;
     private float footstepsSoundCd;
 
@@ -71,6 +72,8 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
         m_audioSource = GetComponent<AudioSource>();
         m_agent = GetComponent<NavMeshAgent>();
+
+        SoundManager.onSoundChangedCallback += UpdateSound;
 
         _UISpells = _PublicVariableHolder._UISpells;
         _BoySelected = _PublicVariableHolder._BoySelected;
@@ -541,5 +544,10 @@ public class BetterPlayer_Movement : MonoBehaviour {
     public void startPlayerAgent()
     {
         m_agent.isStopped = false;
+    }
+
+    void UpdateSound()
+    {
+        m_audioSource.volume = (SoundManager.SFXVolume * volumeScaleFactor) / 100;
     }
 }

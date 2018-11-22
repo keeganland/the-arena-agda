@@ -148,7 +148,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -316,11 +316,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71fb79714d42a340b2217bb3bfe10ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SFXOnInstentiate: {fileID: 8300000, guid: 8019e196601cafe4082da0c3f9f2e0fd, type: 3}
+  _SFXOnInstentiate: {fileID: 8300000, guid: 807b2e1d486bde9428c8ae9261dd74e9, type: 3}
   _SFXOnLoop: {fileID: 0}
   _SFXOnHitEnemy: {fileID: 0}
   _SFXOnHitObject: {fileID: 0}
   PlayLoop: 0
+  isSFX: 1
+  isBackgroundMusic: 0
+  ScaleFactor: 0.05
 --- !u!114 &114868993781176364
 MonoBehaviour:
   m_ObjectHideFlags: 1

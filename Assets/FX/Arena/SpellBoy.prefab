@@ -315,7 +315,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -451,6 +451,9 @@ MonoBehaviour:
   _SFXOnHitEnemy: {fileID: 0}
   _SFXOnHitObject: {fileID: 0}
   PlayLoop: 0
+  isSFX: 1
+  isBackgroundMusic: 0
+  ScaleFactor: 0.25
 --- !u!114 &114829734670153858
 MonoBehaviour:
   m_ObjectHideFlags: 1

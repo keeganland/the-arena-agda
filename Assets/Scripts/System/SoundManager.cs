@@ -10,8 +10,8 @@ public class SoundManager : MonoBehaviour {
     private static AudioClip backgroundMusic;
     private static bool backgroundMusicChanged;
 
-    public static int BackgroundMusicVolume;
-    public static int SFXVolume;
+    public static int BackgroundMusicVolume = 70;
+    public static int SFXVolume = 70;
 
     public Slider BackgroundMusicSlider;
     public Slider SFXVolumeSlider;
@@ -21,6 +21,8 @@ public class SoundManager : MonoBehaviour {
 
     public delegate void OnSoundChanged();
     public static OnSoundChanged onSoundChangedCallback;
+
+    public float ScaleFactor = 0.65f;
 
     public static SoundManager Instance
     {
@@ -47,6 +49,14 @@ public class SoundManager : MonoBehaviour {
     {
     }
 
+    private void Start()
+    {
+        if (onSoundChangedCallback != null)
+        {
+            onSoundChangedCallback.Invoke();
+        }
+    }
+
     private void Update()
     {
         if(backgroundMusicChanged)
@@ -58,6 +68,9 @@ public class SoundManager : MonoBehaviour {
         {
             BackgroundMusicVolume = (int) BackgroundMusicSlider.value;
             backgroundMusicSliderText.text = BackgroundMusicSlider.value.ToString();
+
+            AudioSource backgroundMusicSource = gameObject.GetComponent<AudioSource>();
+            backgroundMusicSource.volume = (BackgroundMusicVolume * ScaleFactor) / 100;
             if (onSoundChangedCallback != null)
             {
                 onSoundChangedCallback.Invoke();

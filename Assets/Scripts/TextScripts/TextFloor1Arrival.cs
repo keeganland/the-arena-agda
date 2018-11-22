@@ -15,10 +15,10 @@ public class TextFloor1Arrival : ActivateTextAtLine
     {
         base.Start();
 
-        if (SaveManager.EquipedItemsBoy.Count != 0)
-        {
-            ThirdPerson = SaveManager.EquipedItemsBoy[0];
-        }
+        //if (SaveManager.EquipedItemsBoy.Count != 0)
+        //{
+        //    ThirdPerson = SaveManager.EquipedItemsBoy[0];
+        //}
     }
 
     public override void ResetCue()

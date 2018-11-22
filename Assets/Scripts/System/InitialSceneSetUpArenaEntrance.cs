@@ -16,9 +16,13 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
     public Text moneyWon;
     public GameObject moneyTextGameObject;
 
+    public AudioClip BackgroundMusic;
+
     new void Start()
     {
         base.Start();
+
+        SoundManager.SetBackgroundMusic(BackgroundMusic);
 
         ReturnFromArenaBoyPos = publicArenaEntrance.ReturnFromArenaBoyPos;
         ReturnFromArenaGirlPos = publicArenaEntrance.ReturnFromArenaGirlPos;

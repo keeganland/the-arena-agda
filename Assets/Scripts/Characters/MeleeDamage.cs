@@ -13,20 +13,12 @@ public class MeleeDamage : MonoBehaviour {
     public GameObject m_target;
     public Color _Color;
 
-    public AudioClip _SpellAudio;
-    public AudioClip _InvinsibleSFX;
-    private AudioSource m_audioSource;
-
     public Slider AutoAttackslider;
 
     //-----------------Alex Modifications-----------//
     [SerializeField]
     private GameObject[] spellPrefab;
-	// Use this for initialization
-	void Start () {
-        m_audioSource = GetComponent<AudioSource>();
-	}
-	
+
 	// Update is called once per frame
 	void Update () {
         //Debug.Log("MeleeDamage: Damage Target" + m_target.name);
@@ -86,7 +78,7 @@ public class MeleeDamage : MonoBehaviour {
                 {
                     if(m_target.GetComponent<BattleEnemy>().isInvincible == true)
                     {
-                        m_audioSource.PlayOneShot(_InvinsibleSFX);
+                        //m_audioSource.PlayOneShot(_InvinsibleSFX);
                         return;
                     }
                 }
@@ -136,7 +128,6 @@ public class MeleeDamage : MonoBehaviour {
         }
 
         GameObject go = Instantiate(spellPrefab[0], transform.position, Quaternion.Euler(0, -angle, 0));
-        m_audioSource.PlayOneShot(_SpellAudio);
 
         go.gameObject.GetComponent<Spell>().SetTarget(m_target);
         //go.gameObject.GetComponent<Bullet>().GetAggro(Aggro);

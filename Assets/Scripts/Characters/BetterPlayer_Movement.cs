@@ -39,8 +39,9 @@ public class BetterPlayer_Movement : MonoBehaviour {
     private Vector2 oldMousePosition;
     private Vector2 newMousePosition;
 
-
-
+    public AudioClip Footsteps;
+    private AudioSource m_audioSource;
+    private float footstepsSoundCd;
 
     /* Keegan note 2018/6/6
      * 
@@ -68,6 +69,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        m_audioSource = GetComponent<AudioSource>();
         m_agent = GetComponent<NavMeshAgent>();
 
         _UISpells = _PublicVariableHolder._UISpells;
@@ -77,7 +79,6 @@ public class BetterPlayer_Movement : MonoBehaviour {
         _GirlSelectedParticle = _PublicVariableHolder._GirlSelectedParticle;
         Boy = _PublicVariableHolder.Boy;
         Girl = _PublicVariableHolder.Girl;
-
     }
 	
     /* Keegan note 2018/6/6
@@ -86,6 +87,25 @@ public class BetterPlayer_Movement : MonoBehaviour {
      */
 	// Update is called once per frame
 	void Update () {
+        
+        if (Footsteps)
+        {
+            footstepsSoundCd += Time.deltaTime;
+
+            if (m_agent.velocity != new Vector3(0, 0, 0))
+            {
+                Debug.Log("here");
+                if (!m_audioSource.isPlaying && footstepsSoundCd >= 0.5)
+                {
+                    m_audioSource.PlayOneShot(Footsteps);
+                    footstepsSoundCd = 0;
+                }
+            }
+            else
+            {
+                m_audioSource.Stop();
+            }
+        }
 
         if (PauseMenu.gameIsPaused)
         {

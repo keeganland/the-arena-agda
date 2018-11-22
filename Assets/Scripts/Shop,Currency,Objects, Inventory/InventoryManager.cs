@@ -193,8 +193,8 @@ public class InventoryManager : MonoBehaviour
 
     public static void EquipItem(string itemName, int boy) //Boy = true, Girl = false; 
     {
-        Debug.Log("How many times do I try to equip?");
-        Debug.Log("Is my object stored ? " + StoredItems.ContainsKey(itemName));
+        //Debug.Log("How many times do I try to equip?");
+        //Debug.Log("Is my object stored ? " + StoredItems.ContainsKey(itemName));
 
         if (StoredItems.ContainsKey(itemName))
         {
@@ -204,7 +204,7 @@ public class InventoryManager : MonoBehaviour
 
         if(boy == 2)
         {
-            Debug.Log("Here with the 2 boy");
+            //Debug.Log("Here with the 2 boy");
             List<string> Keys = new List<string>(EquipedItemsBoy.Keys);
 
             if(EquipedItemsBoy.Count != 0)
@@ -225,7 +225,7 @@ public class InventoryManager : MonoBehaviour
                     {
                         EquipedItemsBoy.Add(weaponToEquip.weaponName, weaponToEquip);
                         SaveManager.EquipedItemsBoy.Add(weaponToEquip);
-                        Debug.Log("You Equiped The Item for the boy");
+                        //Debug.Log("You Equiped The Item for the boy");
                     }
                 } 
             }
@@ -233,14 +233,14 @@ public class InventoryManager : MonoBehaviour
             {
                 EquipedItemsBoy.Add(weaponToEquip.weaponName, weaponToEquip);
                 SaveManager.EquipedItemsBoy.Add(weaponToEquip);
-                Debug.Log("You Equiped The Item for the boy");
+                //Debug.Log("You Equiped The Item for the boy");
             }
             BoyItemChanged = true;
-            Debug.Log(EquipedItemsBoy.ContainsKey(itemName));
+            //Debug.Log(EquipedItemsBoy.ContainsKey(itemName));
         }
         if(boy == 1)
         {
-            Debug.Log("Here with the 1st boy");
+            //Debug.Log("Here with the 1st boy");
             List<string> Keys = new List<string>(EquipedItemsGirl.Keys);
 
             if (EquipedItemsGirl.Count != 0)
@@ -261,7 +261,7 @@ public class InventoryManager : MonoBehaviour
                     {
                         EquipedItemsGirl.Add(weaponToEquip.weaponName, weaponToEquip);
                         SaveManager.EquipedItemsGirl.Add(weaponToEquip);
-                        Debug.Log("You Equiped The Item for the boy");
+                        //Debug.Log("You Equiped The Item for the boy");
                     }
                 }
             }
@@ -270,7 +270,7 @@ public class InventoryManager : MonoBehaviour
             {
                 EquipedItemsGirl.Add(weaponToEquip.weaponName, weaponToEquip);
                 SaveManager.EquipedItemsGirl.Add(weaponToEquip);
-                Debug.Log("You Equiped The Item for the boy");
+                //Debug.Log("You Equiped The Item for the boy");
             }
             GirlItemChanged = true;
         }
@@ -281,19 +281,19 @@ public class InventoryManager : MonoBehaviour
     {
         if (boy == 2)
         {
-            Debug.Log(EquipedItemsBoy.ContainsKey(itemName));
+            //Debug.Log(EquipedItemsBoy.ContainsKey(itemName));
             WeaponObject weaponToRemove;
             EquipedItemsBoy.TryGetValue(itemName, out weaponToRemove);
 
 
-            Debug.Log(EquipedItemsBoy.Count + " Equiped Count");
+            //Debug.Log(EquipedItemsBoy.Count + " Equiped Count");
             EquipedItemsBoy.Remove(weaponToRemove.weaponName);
             SaveManager.EquipedItemsBoy.Remove(weaponToRemove);
 
-            Debug.Log(EquipedItemsBoy.Count + " Equiped Count 2");
+            //Debug.Log(EquipedItemsBoy.Count + " Equiped Count 2");
 
-            Debug.Log(SaveManager.EquipedItemsBoy.Count + " Save manager saved");
-            Debug.Log("Unequip");
+            //Debug.Log(SaveManager.EquipedItemsBoy.Count + " Save manager saved");
+            //Debug.Log("Unequip");
             BoyItemChanged = true;
         }
         else if(boy == 1)
@@ -302,14 +302,14 @@ public class InventoryManager : MonoBehaviour
             EquipedItemsGirl.TryGetValue(itemName, out weaponToRemove);
             Debug.Log(weaponToRemove.weaponName);
 
-            Debug.Log(EquipedItemsGirl.Count + " Equiped Count");
+            //Debug.Log(EquipedItemsGirl.Count + " Equiped Count");
             EquipedItemsGirl.Remove(weaponToRemove.weaponName);
             SaveManager.EquipedItemsGirl.Remove(weaponToRemove);
 
-            Debug.Log(EquipedItemsGirl.Count + " Equiped Count 2");
+            //Debug.Log(EquipedItemsGirl.Count + " Equiped Count 2");
 
-            Debug.Log(SaveManager.EquipedItemsGirl.Count + " Save manager saved");
-            Debug.Log("Unequip");
+            //Debug.Log(SaveManager.EquipedItemsGirl.Count + " Save manager saved");
+            //Debug.Log("Unequip");
             GirlItemChanged = true;
         }
 
@@ -318,8 +318,8 @@ public class InventoryManager : MonoBehaviour
 
     private static void CalculateBonuses()
     {
-        Debug.Log("Let's Calculate some bonuses!" + EquipedItemsBoy.Count + " with this many item equiped in Calculation() for the Boy");
-        Debug.Log("Let's Calculate some bonuses!" + EquipedItemsGirl.Count + " with this many item equiped in Calculation() for the Girl");
+        //Debug.Log("Let's Calculate some bonuses!" + EquipedItemsBoy.Count + " with this many item equiped in Calculation() for the Boy");
+        //Debug.Log("Let's Calculate some bonuses!" + EquipedItemsGirl.Count + " with this many item equiped in Calculation() for the Girl");
 
         int BoyBonusHealth = 0;
         int GirlBonusHealth = 0;

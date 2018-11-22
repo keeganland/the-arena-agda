@@ -27962,6 +27962,7 @@ MonoBehaviour:
   moneyGainedperFight: 0500000040000000
   moneyWon: {fileID: 0}
   moneyTextGameObject: {fileID: 0}
+  BackgroundMusic: {fileID: 8300000, guid: eaabc35d134c1401fb162ad0b6da938a, type: 3}
 --- !u!4 &1456509848
 Transform:
   m_ObjectHideFlags: 0

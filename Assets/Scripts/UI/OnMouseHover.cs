@@ -6,20 +6,32 @@ using UnityEngine.UI;
 public class OnMouseHover : MonoBehaviour {
 
     Image image;
+    AudioSource m_audioSource;
 
+    public AudioClip MouseHover;
+
+    public float ScaleFactor;
 	// Use this for initialization
 	void Start () 
     {
         image = GetComponent<Image>();
-	}
+        m_audioSource = GetComponent<AudioSource>();
+        SoundManager.onSoundChangedCallback += UpdateSound;
+    }
 
     public void MouseOver()
     {
         image.enabled = true;
+        m_audioSource.PlayOneShot(MouseHover);
     }
 
     public void MouseExit()
     {
         image.enabled = false;
+    }
+
+    void UpdateSound()
+    {
+       m_audioSource.volume = (SoundManager.SFXVolume * ScaleFactor) / 100;
     }
 }

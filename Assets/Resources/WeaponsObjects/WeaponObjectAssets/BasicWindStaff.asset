@@ -23,3 +23,5 @@ MonoBehaviour:
   bonusDamage: 10
   range: 5
   bonusHealth: 0
+  ItemSFXEquip: {fileID: 8300000, guid: 26479a74401bae34c8a441ffab923089, type: 3}
+  ItemSFXUnequip: {fileID: 8300000, guid: 23865c158f349de4fac3791c423f90fb, type: 3}

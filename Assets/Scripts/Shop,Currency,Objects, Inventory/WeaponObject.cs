@@ -32,5 +32,8 @@ using UnityEngine.UI;
 
     //Basic Stats for Armors;
     public int bonusHealth;
+
+    public AudioClip ItemSFXEquip;
+    public AudioClip ItemSFXUnequip;
 }
  

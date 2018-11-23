@@ -19,6 +19,8 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
 
     public GameObject StatsTextHolder; //This section contains the data for the mouse "hovering" part of the inventory. 
 
+    private AudioSource m_audioSource;
+    public float SoundScaleFactor;
     [SerializeField] WeaponObject item; //What item does the slot contains? 
 
     Vector3 initialPos; //Pos of the slot before dragging the item to another. It will reset once the player release the mouse. 
@@ -27,6 +29,9 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
     {
         initialIconSprite = icon.sprite;
         initialIconColor = icon.color;
+
+        m_audioSource = GetComponent<AudioSource>();
+        SoundManager.onSoundChangedCallback += UpdateSound;
     }
 
     public void AddItem(WeaponObject newItem) //used to add an item, it gets the icen as WeaponObject and updates UI accordingly. 
@@ -36,7 +41,9 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
         //Debug.Log(slotType);
         if(slotType != SlotType.INVENTORYSLOT)
         {
-            icon.color = Color.white;
+            icon.color = Color.white;  
+            if(m_audioSource)
+            m_audioSource.PlayOneShot(item.ItemSFXEquip);
         }
 
         icon.enabled = true;
@@ -46,6 +53,8 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
 
     public void ClearSlot() //clear existing item.
     {
+        if (m_audioSource)
+            m_audioSource.PlayOneShot(item.ItemSFXUnequip);
         item = null;
         icon.sprite = initialIconSprite;
         icon.color = initialIconColor;
@@ -206,5 +215,10 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
             Foreground.sprite = icon.sprite;
             Foreground.enabled = true;
         }
+    }
+
+    void UpdateSound()
+    {
+        m_audioSource.volume = (SoundManager.SFXVolume * SoundScaleFactor) / 100;
     }
 }

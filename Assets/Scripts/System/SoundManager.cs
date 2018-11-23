@@ -21,6 +21,7 @@ public class SoundManager : MonoBehaviour {
 
     public delegate void OnSoundChanged();
     public static OnSoundChanged onSoundChangedCallback;
+    public static bool ExitScene;
 
     public float ScaleFactor = 0.65f;
 
@@ -84,6 +85,24 @@ public class SoundManager : MonoBehaviour {
             if (onSoundChangedCallback != null)
             {
                 onSoundChangedCallback.Invoke();
+            }
+        }
+
+        if(ExitScene)
+        {
+            float time = 1;
+            AudioSource backgroundMusicSource = gameObject.GetComponent<AudioSource>();
+
+            while (time > 0)
+            {
+                time -= Time.deltaTime;
+                backgroundMusicSource.volume = time;
+            }
+            if(backgroundMusicSource.volume <= 0)
+            {
+                backgroundMusicSource.Stop();
+                backgroundMusicSource.volume = ScaleFactor;
+                ExitScene = false;
             }
         }
     }

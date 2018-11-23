@@ -7,9 +7,16 @@ public class TitleScreenMainMenu : MonoBehaviour {
 
     public GameObject tutorialScreen;
 
+    public AudioClip MouseConfirm;
+    public float ScaleFactor;
+
+    private AudioSource m_audioSource;
+
     private void Awake()
     {
         EventManager.TriggerEvent("HideUI");
+        m_audioSource = GetComponent<AudioSource>();
+        SoundManager.onSoundChangedCallback += UpdateSound;
     }
 
     private void OnDisable()
@@ -23,24 +30,28 @@ public class TitleScreenMainMenu : MonoBehaviour {
 
     public void PlayGame()
     {
+        m_audioSource.PlayOneShot(MouseConfirm);
         LoadingScreen.LoadScene("Introduction (1)", "TitleScreen");
         EventManager.TriggerEvent("setup");
     }
 
     public void PlayArenaEntrance()
     {
+        m_audioSource.PlayOneShot(MouseConfirm);
         LoadingScreen.LoadScene("ArenaEntrance", "TitleScreen");
         EventManager.TriggerEvent("setup");
     }
 
     public void PlayArena()
     {
+        m_audioSource.PlayOneShot(MouseConfirm);
         LoadingScreen.LoadScene("Arena", "TitleScreen");
         EventManager.TriggerEvent("setup");
     }
 
     public void PlayBoss()
     {
+        m_audioSource.PlayOneShot(MouseConfirm);
         //SceneManager.LoadScene("Gameplay - BossBattle");
         SceneManager.UnloadSceneAsync("TitleScreen");
         SceneManager.LoadSceneAsync("Gameplay - BossBattle", LoadSceneMode.Additive);
@@ -49,6 +60,7 @@ public class TitleScreenMainMenu : MonoBehaviour {
 
     public void PlayNPC()
     {
+        m_audioSource.PlayOneShot(MouseConfirm);
         //SceneManager.LoadScene("Dialog - Prototype");
         SceneManager.UnloadSceneAsync("TitleScreen");
         //SceneManager.UnloadSceneAsync("NeverUnload");
@@ -58,12 +70,14 @@ public class TitleScreenMainMenu : MonoBehaviour {
 
     public void PlayHowToPlay()
     {
-        if(tutorialScreen)
+        m_audioSource.PlayOneShot(MouseConfirm);
+        if (tutorialScreen)
         tutorialScreen.SetActive(true);
     }
 
     public void QuitGame ()
     {
+        m_audioSource.PlayOneShot(MouseConfirm);
         Debug.Log("Game Quit!");
         Application.Quit();
     }
@@ -79,5 +93,10 @@ public class TitleScreenMainMenu : MonoBehaviour {
                 Debug.Log(hit.collider.name);
             }
         }   
+    }
+
+    void UpdateSound()
+    {
+        m_audioSource.volume = (SoundManager.SFXVolume * ScaleFactor) / 100;
     }
 }

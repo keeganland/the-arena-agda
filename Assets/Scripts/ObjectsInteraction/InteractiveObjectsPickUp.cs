@@ -5,18 +5,26 @@ using UnityEngine;
 public class InteractiveObjectsPickUp : InteractiveObjectAbstract {
 
     public WeaponObject item;
+    public AudioClip PickUpItem;
+    private AudioSource m_audioSource;
+
+    public float SoundScaleFactor;
 
     new void Start()
     {
         base.Start();
+
+        m_audioSource = GetComponent<AudioSource>();
+        SoundManager.onSoundChangedCallback += UpdateSound;
     }
 
     public override void ActionFunction(GameObject sender)
     {
-        //Debug.Log("You aquiring : " + item.weaponName);
+        //Debug.Log("You aquiring : " + item.weaponName);   
         InventoryManager.AquireItem(item.weaponName);
         //Debug.Log(SaveManager.StoredItems.Count + "Has been stored?");
-        Destroy(this.gameObject, 1f);
+        m_audioSource.PlayOneShot(PickUpItem);
+        Destroy(this.gameObject, 0.5f);
     }
 
     public override void DoAction(GameObject sender)
@@ -35,5 +43,8 @@ public class InteractiveObjectsPickUp : InteractiveObjectAbstract {
         throw new System.NotImplementedException();
     }
 
-
+    void UpdateSound()
+    {
+        m_audioSource.volume = (SoundManager.SFXVolume * SoundScaleFactor) / 100;
+    }
 }

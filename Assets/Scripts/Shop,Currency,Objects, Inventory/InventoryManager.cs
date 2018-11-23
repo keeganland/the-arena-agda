@@ -69,6 +69,11 @@ public class InventoryManager : MonoBehaviour
 
     public GameObject StatsHolder;
 
+    private AudioSource m_audioSource;
+    public float SoundScaleFactor;
+    public AudioClip OpenBagSFX;
+    public AudioClip CloseBagSFX;
+
     /*Alex : What CURRENTLY DOESN'T WORK : 
      * 
      *  we only have an "EquipedItems" array for the girl AND the boy, which means that only one HELMET, CHEST, PASSIVE, etc... WeaponObject can be equiped for both. 
@@ -139,6 +144,9 @@ public class InventoryManager : MonoBehaviour
         //Get all items, equiped items, and available items from SaveManager? 
         CalculateBonuses();
         inventoryUI = GetComponent<InventoryUI>();
+
+        m_audioSource = GetComponent<AudioSource>();
+        SoundManager.onSoundChangedCallback += UpdateSound;
     }
 
     private void Update()
@@ -478,12 +486,19 @@ public class InventoryManager : MonoBehaviour
         {
             InventoryTab.SetActive(true);
             InventoryTabActive = true;
+            m_audioSource.PlayOneShot(OpenBagSFX);
         }
         else if(Input.GetKeyDown(KeyCode.I) && InventoryTabActive)
         {
             StatsHolder.SetActive(false);
             InventoryTab.SetActive(false);
             InventoryTabActive = false;
+            m_audioSource.PlayOneShot(CloseBagSFX);
         }
+    }
+
+    void UpdateSound()
+    {
+        m_audioSource.volume = (SoundManager.SFXVolume * SoundScaleFactor) / 100;
     }
 }

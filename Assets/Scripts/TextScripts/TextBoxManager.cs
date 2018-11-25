@@ -78,6 +78,12 @@ public class TextBoxManager : MonoBehaviour
 
     PauseMenu pauseMenu;
 
+    //AleX : SOUND EFFECT : Just call m_audioSource.PlayOneShot(TextScrollSFX); where it is needed ! Thanks :)
+
+    public AudioClip TextScrollSFX;
+    public float SoundScaleFactor;
+    private AudioSource m_audioSource;
+
 
     //Holds the single object for singleton design pattern
     public static TextBoxManager textBoxManager;
@@ -116,11 +122,14 @@ public class TextBoxManager : MonoBehaviour
     void Start()
     {
         //pauseMenu = FindObjectOfType<PauseMenu>(); // moved to Init
-		/**
+        /**
 		 * Keegan NTS: Initialize the script. Lots of redundancy with the Reload method. Revisit plz
 		 */
 
-		textQueue = new Queue<string> ();
+        m_audioSource = GetComponent<AudioSource>();
+        SoundManager.onSoundChangedCallback += UpdateSound;
+
+        textQueue = new Queue<string> ();
 
 		//to be replaced with something that parses XML
 
@@ -458,5 +467,10 @@ public class TextBoxManager : MonoBehaviour
         Debug.Log("Player clicked No!");
         this.DisableDialogPrompt();
         EventManager.TriggerEvent("answersNo");
+    }
+
+    void UpdateSound()
+    {
+        m_audioSource.volume = (SoundManager.SFXVolume * SoundScaleFactor) / 100;
     }
 }

@@ -219,6 +219,7 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
 
     void UpdateSound()
     {
+        if(m_audioSource)
         m_audioSource.volume = (SoundManager.SFXVolume * SoundScaleFactor) / 100;
     }
 }

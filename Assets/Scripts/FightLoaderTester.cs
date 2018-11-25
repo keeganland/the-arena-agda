@@ -18,9 +18,6 @@ public class FightLoaderTester : MonoBehaviour {
     public static bool gameIsPaused = false;
     public GameObject fightMenuUI;
 
-    public AudioClip SelectFight;
-    public float SoundScaleFactor;
-    private AudioSource m_audioSource;
     //public bool testSpecificFight;
     public int specificFightToTest = 0;
 
@@ -28,8 +25,6 @@ public class FightLoaderTester : MonoBehaviour {
     {
         specificFightToTest = SetUp.Instance.GetFightToLoad();
 
-        m_audioSource = GetComponent<AudioSource>();
-        SoundManager.onSoundChangedCallback += UpdateSound;
         //if(testSpecificFight)
         //{
         switch (specificFightToTest)
@@ -99,7 +94,6 @@ public class FightLoaderTester : MonoBehaviour {
         }
         finally
         {
-            m_audioSource.PlayOneShot(SelectFight);
             EventManager.TriggerEvent("cleanup");
             ft.activateFight(0);
             Resume();
@@ -118,8 +112,7 @@ public class FightLoaderTester : MonoBehaviour {
             Debug.Log(e.Message);
         }
         finally
-        {
-            m_audioSource.PlayOneShot(SelectFight);
+        {   
             EventManager.TriggerEvent("cleanup");
             ft.activateFight(1);
             Resume();
@@ -139,16 +132,10 @@ public class FightLoaderTester : MonoBehaviour {
         }
         finally
         {
-            m_audioSource.PlayOneShot(SelectFight);
             EventManager.TriggerEvent("cleanup");
             ft.activateFight(2);
             Resume();
             EventManager.TriggerEvent("enterArenaFight3");
         }
-    }
-
-    void UpdateSound()
-    {
-        m_audioSource.volume = (SoundManager.SFXVolume * SoundScaleFactor) / 100;
     }
 }

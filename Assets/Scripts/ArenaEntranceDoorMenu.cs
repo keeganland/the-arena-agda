@@ -18,11 +18,18 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
     public GameObject fightMenuUI;
     private bool doorClicked = false;
 
+    public AudioClip SelectFight;
+    public float SoundScaleFactor;
+    private AudioSource m_audioSource;
+
     private void Start()
     {
         Boy = publicVariableHolderArenaEntrance.Boy;
         Girl = publicVariableHolderArenaEntrance.Girl;
         GirlDoorPos = publicVariableHolderArenaEntrance.GirlDoorPos;
+
+        m_audioSource = GetComponent<AudioSource>();
+        SoundManager.onSoundChangedCallback += UpdateSound;
     }
     // Update is called once per frame
     void Update () {
@@ -60,16 +67,19 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
     public void ArenaEntranceFight1()
     {
         FindObjectOfType<EnableFight>().EnableNextFight(1);
+        m_audioSource.PlayOneShot(SelectFight);
         Debug.Log("here");
         StartCoroutine(Fight1());
     }
     public void ArenaEntranceFight2()
     {
         FindObjectOfType<EnableFight>().EnableNextFight(2);
+        m_audioSource.PlayOneShot(SelectFight);
         StartCoroutine(Fight2());
     }
     public void ArenaEntranceFight3()
     {
+        m_audioSource.PlayOneShot(SelectFight);
         StartCoroutine(Fight3());     
     }
 
@@ -95,6 +105,7 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
 
         yield return new WaitForSeconds(2f);
 
+        SoundManager.ExitScene = true;
         ScreenFader.fadeOut();
 
         yield return new WaitForSeconds(2f);
@@ -119,6 +130,7 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
 
         yield return new WaitForSeconds(2f);
 
+        SoundManager.ExitScene = true;
         ScreenFader.fadeOut();
 
         yield return new WaitForSeconds(2f);
@@ -145,11 +157,17 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
         yield return new WaitForSeconds(2f);
 
         ScreenFader.fadeOut();
+        SoundManager.ExitScene = true;
 
         yield return new WaitForSeconds(2f);
 
         LoadingScreen.LoadScene("Arena", "ArenaEntrance");
 
         yield return new WaitForSeconds(1f);
+    }
+
+    void UpdateSound()
+    {
+        m_audioSource.volume = (SoundManager.SFXVolume * SoundScaleFactor) / 100;
     }
 }

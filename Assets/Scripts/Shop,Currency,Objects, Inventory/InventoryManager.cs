@@ -484,21 +484,31 @@ public class InventoryManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.I) && !InventoryTabActive)
         {
-            InventoryTab.SetActive(true);
-            InventoryTabActive = true;
-            m_audioSource.PlayOneShot(OpenBagSFX);
+            OpenInventory();
         }
         else if(Input.GetKeyDown(KeyCode.I) && InventoryTabActive)
         {
-            StatsHolder.SetActive(false);
-            InventoryTab.SetActive(false);
-            InventoryTabActive = false;
-            m_audioSource.PlayOneShot(CloseBagSFX);
+            CloseInventory();
         }
     }
 
     void UpdateSound()
     {
         m_audioSource.volume = (SoundManager.SFXVolume * SoundScaleFactor) / 100;
+    }
+
+    public void OpenInventory()
+    {
+        InventoryTab.SetActive(true);
+        InventoryTabActive = true;
+        m_audioSource.PlayOneShot(OpenBagSFX);
+    }
+
+    public void CloseInventory()
+    {
+        StatsHolder.SetActive(false);
+        InventoryTab.SetActive(false);
+        InventoryTabActive = false;
+        m_audioSource.PlayOneShot(CloseBagSFX);
     }
 }

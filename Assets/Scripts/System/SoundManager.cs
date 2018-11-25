@@ -22,8 +22,11 @@ public class SoundManager : MonoBehaviour {
     public delegate void OnSoundChanged();
     public static OnSoundChanged onSoundChangedCallback;
     public static bool ExitScene;
+    public static bool EnterScene;
 
     public float ScaleFactor = 0.65f;
+    public float ExitSpeed = 0.1f;
+    private float time = 0;
 
     public static SoundManager Instance
     {
@@ -88,21 +91,38 @@ public class SoundManager : MonoBehaviour {
             }
         }
 
+
         if(ExitScene)
         {
-            float time = 1;
             AudioSource backgroundMusicSource = gameObject.GetComponent<AudioSource>();
 
-            while (time > 0)
-            {
-                time -= Time.deltaTime;
-                backgroundMusicSource.volume = time;
+            if (time < 1)
+            {             
+                backgroundMusicSource.volume = Mathf.Lerp(backgroundMusicSource.volume, 0, time);
+                Debug.Log(time);
+                time += Time.deltaTime * ExitSpeed;
             }
-            if(backgroundMusicSource.volume <= 0)
+            if(backgroundMusicSource.volume <= Mathf.Pow(10, -4))
             {
                 backgroundMusicSource.Stop();
                 backgroundMusicSource.volume = ScaleFactor;
+                time = 0;
                 ExitScene = false;
+            }
+        }
+        if (EnterScene)
+        {
+            AudioSource backgroundMusicSource = gameObject.GetComponent<AudioSource>();
+
+            if (time < 1)
+            {
+                backgroundMusicSource.volume = Mathf.Lerp(0, ScaleFactor, time);           
+                time += Time.deltaTime * ExitSpeed;
+            }
+            else
+            {
+                EnterScene = false;
+                time = 0;
             }
         }
     }

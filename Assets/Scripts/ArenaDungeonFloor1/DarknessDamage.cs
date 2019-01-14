@@ -24,6 +24,9 @@ public class DarknessDamage : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Check if the GameObject is not in the light
+        Debug.Log("DarknessDamage: isLight = " + isLight);
+        Debug.Log("DarknessDamage: isDarkness = " + isDarkness);
+        Debug.Log("Darkness Damage: " + this.gameObject.name);
 		while(isDarkness == true && isLight == false)
         {
             Debug.Log("Darkness Damage: In the dark and not the light");
@@ -46,13 +49,13 @@ public class DarknessDamage : MonoBehaviour {
     private void OnTriggerStay(Collider other)
     {
         //Debug.Log("Darkness Damage: Trigger of " + other.name);
+        if(other.tag == "Torches")
+        {
+            isLight = true;
+        }
         if(other.tag == "Darkness")
         {
             isDarkness = true;
-        }
-        if(other.tag == "Torch")
-        {
-            isLight = true;
         }
     }
 

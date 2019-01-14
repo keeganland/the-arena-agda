@@ -92,7 +92,7 @@ public class TorchesBoss : MonoBehaviour {
         lightup = true;
         lightdown = false;
         gameObject.GetComponentInChildren<CapsuleCollider>().enabled = true; //turns on collider for dark damam
-        Debug.Log(gameObject.GetComponentInChildren<CapsuleCollider>().gameObject.name);
+        //Debug.Log(gameObject.GetComponentInChildren<CapsuleCollider>().gameObject.name);
     }
 
     private void LightDown()

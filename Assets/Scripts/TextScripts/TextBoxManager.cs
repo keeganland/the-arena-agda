@@ -241,6 +241,7 @@ public class TextBoxManager : MonoBehaviour
         while (isTyping && !cancelTyping && (letter < lineOfText.Length - 1))
         {
             boxContent.text += lineOfText[letter];
+            m_audioSource.PlayOneShot(TextScrollSFX);
             letter += 1;
             yield return new WaitForSeconds(typeSpeed);
         }

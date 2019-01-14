@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Alex : refactor 01/13
 public class HealthUI : MonoBehaviour
 {
-    public Slider slider;
+    [SerializeField] private Slider slider;
 
     private int m_curHealth;
     private int m_maxHealth;
 
     void Awake()
     {
-        m_maxHealth = this.gameObject.GetComponent<HealthController>().totalHealth;
+        m_maxHealth = this.gameObject.GetComponent<HealthController>().TotalHealth;
         m_curHealth = m_maxHealth;
         MessageHandler msgHandler = GetComponent<MessageHandler>();
 

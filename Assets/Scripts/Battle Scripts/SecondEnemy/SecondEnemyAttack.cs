@@ -161,17 +161,17 @@ public class SecondEnemyAttack : BasicEnemyBehaviour {
         sheep2.transform.SetParent(null);
         sheep3.transform.SetParent(null);
 
-        sheep1.GetComponentInChildren<HealthController>().currentHealth = Sheephealth;
-        sheep2.GetComponentInChildren<HealthController>().currentHealth = Sheephealth;
-        sheep3.GetComponentInChildren<HealthController>().currentHealth = RedSheephealth;
+        sheep1.GetComponentInChildren<HealthController>().CurrentHealth = Sheephealth;
+        sheep2.GetComponentInChildren<HealthController>().CurrentHealth = Sheephealth;
+        sheep3.GetComponentInChildren<HealthController>().CurrentHealth = RedSheephealth;
 
-        sheep1.GetComponentInChildren<HealthController>().totalHealth = Sheephealth;
-        sheep2.GetComponentInChildren<HealthController>().totalHealth = Sheephealth;
-        sheep3.GetComponentInChildren<HealthController>().totalHealth = RedSheephealth;
+        sheep1.GetComponentInChildren<HealthController>().TotalHealth = Sheephealth;
+        sheep2.GetComponentInChildren<HealthController>().TotalHealth = Sheephealth;
+        sheep3.GetComponentInChildren<HealthController>().TotalHealth = RedSheephealth;
 
-        sheep1.GetComponentInChildren<HealthController>().GameObjectName = "Small Sheep";
-        sheep2.GetComponentInChildren<HealthController>().GameObjectName = "Small Sheep";
-        sheep3.GetComponentInChildren<HealthController>().GameObjectName = "Red Sheep";
+        sheep1.GetComponentInChildren<HealthController>().gameObjectName = "Small Sheep";
+        sheep2.GetComponentInChildren<HealthController>().gameObjectName = "Small Sheep";
+        sheep3.GetComponentInChildren<HealthController>().gameObjectName = "Red Sheep";
 
         sheep3.GetComponentInChildren<SpriteRenderer>().color = RedSheepcolor;
 
@@ -179,9 +179,9 @@ public class SecondEnemyAttack : BasicEnemyBehaviour {
         sheep2.GetComponentInChildren<HealthUI>().UpdateUi(Sheephealth, Sheephealth);
         sheep3.GetComponentInChildren<HealthUI>().UpdateUi(RedSheephealth, RedSheephealth);
 
-        sheep1.GetComponentInChildren<HealthController>().isBoss = false;
-        sheep2.GetComponentInChildren<HealthController>().isBoss = false;
-        sheep3.GetComponentInChildren<HealthController>().isBoss = false;
+        sheep1.GetComponentInChildren<HealthController>().IsBoss = false;
+        sheep2.GetComponentInChildren<HealthController>().IsBoss = false;
+        sheep3.GetComponentInChildren<HealthController>().IsBoss = false;
 
         Destroy(spawnparticle1, 2f);
         Destroy(spawnparticle2, 2f);

@@ -13,7 +13,6 @@ public class FightTracker : MonoBehaviour {
     protected void OnEnable()
     {
         enemies = new List<GameObject>();
-
     }
 
     // Use this for initialization

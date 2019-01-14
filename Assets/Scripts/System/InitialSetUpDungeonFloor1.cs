@@ -54,8 +54,7 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
 
         MainCamera = publicArenaEntrance.MainCamera;
 
-        MainCamera.GetComponent<BetterCameraFollow>()._FieldOfViewMin = MainCameraFieldOfViewMin;
-        MainCamera.GetComponent<BetterCameraFollow>()._FieldOfViewMax = MainCameraFieldOfViewMax;
+        MainCamera.GetComponent<BetterCameraFollow>().SetFieldOfView(MainCameraFieldOfViewMin, MainCameraFieldOfViewMax);
 
         publicArenaEntrance.publicVariableHolderNeverUnload.fader.StartCoroutine("FadeIn");
 

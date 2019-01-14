@@ -48,9 +48,7 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
         Girl.GetComponent<BoxCollider>().enabled = false;
 
         MainCamera = publicArenaEntrance.MainCamera;
-
-        MainCamera.GetComponent<BetterCameraFollow>()._FieldOfViewMin = MainCameraFieldOfViewMin;
-        MainCamera.GetComponent<BetterCameraFollow>()._FieldOfViewMax = MainCameraFieldOfViewMax;
+        MainCamera.GetComponent<BetterCameraFollow>().SetFieldOfView(MainCameraFieldOfViewMin, MainCameraFieldOfViewMax);
 
         EventManager.TriggerEvent("setup");
 
@@ -70,6 +68,7 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
 
         yield return new WaitForSeconds(2f);
 
+        //TODO keegan you removed all dialogue boxes so "MoneyWon" doesn't have a reference anymore
         InventoryManager.AddMoney(moneyGainedperFight[FindObjectOfType<SaveManager>().currentFight]);
         moneyWon.text = "You won : $" + moneyGainedperFight[FindObjectOfType<SaveManager>().currentFight].ToString() + "!   Next fight unlocked";
         moneyTextGameObject.SetActive(true);

@@ -26,6 +26,8 @@ TagManager:
   - Darkness
   - Torches
   - InventorySlot
+  - Player/Girl
+  - Player/Boy
   layers:
   - Default
   - TransparentFX

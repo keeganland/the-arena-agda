@@ -64,7 +64,7 @@ public abstract class ActivateTextAtLine : MonoBehaviour
     private Player_Movement playerMover;
 
     public bool OnlyTriggerDialogueOnce; //Alex : To allow the player to trgger the dialogue only once, then has to click on NPC to trigger dialogue manually
-    private bool DialoguehasbeenTriggered; //2nd bool that helps that;
+    private bool DialoguehasbeenTriggered = false; //2nd bool that helps that;
     public bool HasDifferentDialogue; //Alex : This is... to start the dialogue on another line after talking it to once. If the NPC already introduced itself, we don't want it to introduce itself again.
 
     public GameObject InteractivityCue;

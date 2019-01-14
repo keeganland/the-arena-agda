@@ -99,7 +99,6 @@ public class SoundManager : MonoBehaviour {
             if (time < 1)
             {             
                 backgroundMusicSource.volume = Mathf.Lerp(backgroundMusicSource.volume, 0, time);
-                Debug.Log(time);
                 time += Time.deltaTime * ExitSpeed;
             }
             if(backgroundMusicSource.volume <= Mathf.Pow(10, -4))

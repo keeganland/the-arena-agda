@@ -98,7 +98,7 @@ public class PlayerAI : MonoBehaviour {
 
         for (int i = 0; i < validTargets.Length; i++)
         {
-            int maxHp = validTargets[i].GetComponent<HealthController>().totalHealth;
+            int maxHp = validTargets[i].GetComponent<HealthController>().TotalHealth;
 
             if (!curTarget || maxHp < lowestHealth)
             {
@@ -118,7 +118,7 @@ public class PlayerAI : MonoBehaviour {
 
         for (int i = 0; i < validTargets.Length; i++)
         {
-            int maxHp = validTargets[i].GetComponent<HealthController>().totalHealth;
+            int maxHp = validTargets[i].GetComponent<HealthController>().TotalHealth;
 
             if (!curTarget || maxHp > highestHealth)
             {

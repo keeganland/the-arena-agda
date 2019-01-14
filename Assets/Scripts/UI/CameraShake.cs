@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour {
 
-    private float m_magnitude;
-    private float m_duration;
-    private float shakeIntensity;
+    private float m_magnitude = 0.1f;
+    private float shakeIntensity = 0.1f;
     private bool isCoroutineStarted;
-    public float speed; //must be less than 1
+    [SerializeField] private float speed = 0.7f; //must be less than 1
 
     private void Update()
     {
@@ -32,7 +31,6 @@ public class CameraShake : MonoBehaviour {
     {
         isCoroutineStarted = true;
         m_magnitude = magnitude;
-        m_duration = duration;
         Vector3 originalPos = transform.localPosition;
         float elapsed = 0.0f;
 

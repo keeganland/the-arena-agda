@@ -57,7 +57,7 @@ public class SetUp : MonoBehaviour {
     {
         foreach (GameObject players in PlayersGameObject)
         {
-            players.GetComponent<HealthController>().currentHealth = players.GetComponent<HealthController>().totalHealth;
+            players.GetComponent<HealthController>().CurrentHealth = players.GetComponent<HealthController>().TotalHealth;
             players.GetComponent<HealthController>().UndoDeath();
         }
 

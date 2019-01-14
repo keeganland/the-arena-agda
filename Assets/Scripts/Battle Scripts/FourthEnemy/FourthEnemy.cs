@@ -57,7 +57,7 @@ public class FourthEnemy : BasicEnemyBehaviour{
 
     private void CancelAttack() //opening in case the attack needs to stop halfway through (shield, stun, etc...)
     {
-        if (gameObject.GetComponent<HealthController>().currentHealth == 0)
+        if (gameObject.GetComponent<HealthController>().CurrentHealth == 0)
         {
         }
     }

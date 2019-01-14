@@ -33,7 +33,7 @@ public class StatsText : MonoBehaviour {
     {
         if(HP)
         {
-            HP.text = "HP : " + ("<color=lime>" + Player.GetComponent<HealthController>().currentHealth + "/" + Player.GetComponent<HealthController>().totalHealth + "</color>");
+            HP.text = "HP : " + ("<color=lime>" + Player.GetComponent<HealthController>().CurrentHealth + "/" + Player.GetComponent<HealthController>().TotalHealth + "</color>");
             HP2.text = HP.text;
         }
         if(DAMAGES)

@@ -113,7 +113,7 @@ public class VictoryReferee : MonoBehaviour {
             EventManager.TriggerEvent("victory");
         }
 
-        if(Boy.currentHealth <= 0 && Girl.currentHealth <=0)
+        if(Boy.CurrentHealth <= 0 && Girl.CurrentHealth <=0)
         {
             StartCoroutine(Lost());
         }

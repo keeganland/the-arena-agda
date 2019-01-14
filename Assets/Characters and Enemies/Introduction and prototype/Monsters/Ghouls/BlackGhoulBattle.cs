@@ -270,11 +270,11 @@ public class BlackGhoulBattle : BasicEnemyBehaviour
         //Implementing to move towards and follow target
         if (!isCollided)
         {
-            if (i == 1 && _Target[_BoyOrGirl].GetComponent<HealthController>().currentHealth == 0)
+            if (i == 1 && _Target[_BoyOrGirl].GetComponent<HealthController>().CurrentHealth == 0)
             {
                 i = 0;
             }
-            else if (i == 0 && _Target[_BoyOrGirl].GetComponent<HealthController>().currentHealth == 0)
+            else if (i == 0 && _Target[_BoyOrGirl].GetComponent<HealthController>().CurrentHealth == 0)
             {
                 i = 1;
             }
@@ -325,7 +325,7 @@ public class BlackGhoulBattle : BasicEnemyBehaviour
     //Definitely keep this. This ends attacks when the boss/enemy is dead
     private void CancelAttack()
     {
-        if (gameObject.GetComponent<HealthController>().currentHealth == 0)
+        if (gameObject.GetComponent<HealthController>().CurrentHealth == 0)
         {
             StopAllCoroutines();
         }

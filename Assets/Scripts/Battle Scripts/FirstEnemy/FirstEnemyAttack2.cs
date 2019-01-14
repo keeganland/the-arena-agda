@@ -79,7 +79,7 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
 
     private void CancelAttack()
     {
-        if(gameObject.GetComponent<HealthController>().currentHealth == 0)
+        if(gameObject.GetComponent<HealthController>().CurrentHealth == 0)
         {
             Destroy(go);
             Destroy(fx);

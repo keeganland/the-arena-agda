@@ -93,11 +93,11 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
         
         if (!isCollided)
         {
-            if (_BoyOrGirl == 1 && _Target[_BoyOrGirl].GetComponent<HealthController>().currentHealth == 0)
+            if (_BoyOrGirl == 1 && _Target[_BoyOrGirl].GetComponent<HealthController>().CurrentHealth == 0)
             {
                 _BoyOrGirl = 0;
             }
-            else if (_BoyOrGirl == 0 && _Target[_BoyOrGirl].GetComponent<HealthController>().currentHealth == 0)
+            else if (_BoyOrGirl == 0 && _Target[_BoyOrGirl].GetComponent<HealthController>().CurrentHealth == 0)
             {
                 _BoyOrGirl = 1;
             }

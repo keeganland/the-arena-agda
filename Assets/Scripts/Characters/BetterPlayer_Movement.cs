@@ -32,8 +32,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
     /* Alex : Drag Box Variables
      */
-    [SerializeField]
-    Image selectionBoxImage;
+    [SerializeField] Image selectionBoxImage;
     Rect selectrionRect;
 
     private Vector2 oldMousePosition;
@@ -97,7 +96,6 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
             if (m_agent.velocity != new Vector3(0, 0, 0))
             {
-                Debug.Log("here");
                 if (!m_audioSource.isPlaying && footstepsSoundCd >= 0.5)
                 {
                     m_audioSource.PlayOneShot(Footsteps);
@@ -120,14 +118,14 @@ public class BetterPlayer_Movement : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                if (Boy.activeSelf == true && Boy.GetComponent<HealthController>().currentHealth > 0)
+                if (Boy.activeSelf == true && Boy.GetComponent<HealthController>().CurrentHealth > 0)
                 {
                     SwapBoy();
                 }
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                if (Girl.activeSelf == true && Boy.GetComponent<HealthController>().currentHealth > 0)
+                if (Girl.activeSelf == true && Boy.GetComponent<HealthController>().CurrentHealth > 0)
                 {
                     SwapGirl();
                 }
@@ -145,7 +143,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
                         SwapBoy();
 
-                        if (hit.collider.GetComponent<HealthController>().currentHealth <= 0)
+                        if (hit.collider.GetComponent<HealthController>().CurrentHealth <= 0)
                         {
                             Death();
                         }
@@ -155,7 +153,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
                         SwapGirl();
 
-                        if (hit.collider.GetComponent<HealthController>().currentHealth <= 0)
+                        if (hit.collider.GetComponent<HealthController>().CurrentHealth <= 0)
                         {
                             Death();
                         }
@@ -236,7 +234,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                       curTarget = hit.collider.gameObject;
                    }
                 }
-                if (gameObject.GetComponent<HealthController>().m_reviveCoroutine == true)
+                if (gameObject.GetComponent<HealthController>().reviveCoroutine == true)
                 {
                    gameObject.GetComponent<HealthController>().StopReviveCoroutine();
                 }
@@ -331,7 +329,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
     public void SwapBoy()
     {
-        if (_PublicVariableHolder.Boy.GetComponent<HealthController>().currentHealth > 0 && !_PublicVariableHolder.StopAllActions)
+        if (_PublicVariableHolder.Boy.GetComponent<HealthController>().CurrentHealth > 0 && !_PublicVariableHolder.StopAllActions)
         {
             boyActive = true;
 
@@ -364,7 +362,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
     public void SwapGirl()
     {
-        if (_PublicVariableHolder.Girl.GetComponent<HealthController>().currentHealth > 0 && !_PublicVariableHolder.StopAllActions)
+        if (_PublicVariableHolder.Girl.GetComponent<HealthController>().CurrentHealth > 0 && !_PublicVariableHolder.StopAllActions)
         {
             boyActive = false;
             _BoySelected.enabled = false;
@@ -424,7 +422,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
                 if (ReviveStart == true)
                 {
-                    gameObject.GetComponent<HealthController>().m_reviveCoroutine = true;
+                    gameObject.GetComponent<HealthController>().reviveCoroutine = true;
                     ReviveStart = false;
                 }
 
@@ -464,7 +462,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
                 if (ReviveStart == true)
                 {
-                    gameObject.GetComponent<HealthController>().m_reviveCoroutine = true;
+                    gameObject.GetComponent<HealthController>().reviveCoroutine = true;
                     ReviveStart = false;
                 }
 

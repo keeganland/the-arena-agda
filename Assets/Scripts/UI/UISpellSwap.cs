@@ -53,7 +53,8 @@ public class UISpellSwap : MonoBehaviour {
     private Text CurrentEnemyHPUI;
     private Slider SliderEnemyHPUI;
     public GameObject currentEnemy;
-    private bool iscurrentEnemy;
+    //TODO might remove the variable
+    //private bool iscurrentEnemy;
 
     private int m_bigQcooldowntext;
     private int m_bigWcooldowntext;
@@ -175,16 +176,16 @@ public class UISpellSwap : MonoBehaviour {
                 {
                     EnemyUI.SetActive(true);
                     currentEnemy = hit.collider.gameObject;
-                    iscurrentEnemy = true;
-                    EnemyNameUI.text = currentEnemy.GetComponent<HealthController>().GameObjectName;
+                    //iscurrentEnemy = true;
+                    EnemyNameUI.text = currentEnemy.GetComponent<HealthController>().gameObjectName;
                 }
             }
         }
 
         if(currentEnemy)
         {
-            CurrentEnemyHPUI.text = currentEnemy.GetComponent<HealthController>().currentHealth.ToString() +  " / "  + currentEnemy.GetComponent<HealthController>().totalHealth.ToString();
-            SliderEnemyHPUI.value = (1.0f / (float) currentEnemy.GetComponent<HealthController>().totalHealth) *(float) currentEnemy.GetComponent<HealthController>().currentHealth;
+            CurrentEnemyHPUI.text = currentEnemy.GetComponent<HealthController>().CurrentHealth.ToString() +  " / "  + currentEnemy.GetComponent<HealthController>().TotalHealth.ToString();
+            SliderEnemyHPUI.value = (1.0f / (float) currentEnemy.GetComponent<HealthController>().TotalHealth) *(float) currentEnemy.GetComponent<HealthController>().CurrentHealth;
         }
         if (!currentEnemy)
         {
@@ -195,7 +196,7 @@ public class UISpellSwap : MonoBehaviour {
 
     private void DisableEnemyUI()
     {
-        iscurrentEnemy = false;
+       // iscurrentEnemy = false;
         EnemyUI.SetActive(false);            
     }
 
@@ -226,11 +227,11 @@ public class UISpellSwap : MonoBehaviour {
 
     private void GirlSlider()
     {
-        _BigSlider.value = (1.0f / _GirlHealthUI.totalHealth) * _GirlHealthUI.currentHealth;
-        _SmallSlider.value = (1.0f / _BoyHealthUI.totalHealth) * _BoyHealthUI.currentHealth;
+        _BigSlider.value = (1.0f / _GirlHealthUI.TotalHealth) * _GirlHealthUI.CurrentHealth;
+        _SmallSlider.value = (1.0f / _BoyHealthUI.TotalHealth) * _BoyHealthUI.CurrentHealth;
 
-        _BigTextHP.text = "HP : " + _GirlHealthUI.currentHealth.ToString() + " /  " + _GirlHealthUI.totalHealth.ToString();
-        _SmallTextHP.text = "HP : " + _BoyHealthUI.currentHealth.ToString() + " /  " + _BoyHealthUI.totalHealth.ToString();
+        _BigTextHP.text = "HP : " + _GirlHealthUI.CurrentHealth.ToString() + " /  " + _GirlHealthUI.TotalHealth.ToString();
+        _SmallTextHP.text = "HP : " + _BoyHealthUI.CurrentHealth.ToString() + " /  " + _BoyHealthUI.TotalHealth.ToString();
 
         m_smallQcooldowntext = (int) _BoySpellCommandScript._ShieldUITimer;
         m_smallWcooldowntext = (int)_BoySpellCommandScript._StunUITimer;
@@ -270,11 +271,11 @@ public class UISpellSwap : MonoBehaviour {
     }
     private void BoySlider()
     {
-        _BigSlider.value = (1.0f / _BoyHealthUI.totalHealth) * _BoyHealthUI.currentHealth;
-        _SmallSlider.value = (1.0f / _GirlHealthUI.totalHealth) * _GirlHealthUI.currentHealth;
+        _BigSlider.value = (1.0f / _BoyHealthUI.TotalHealth) * _BoyHealthUI.CurrentHealth;
+        _SmallSlider.value = (1.0f / _GirlHealthUI.TotalHealth) * _GirlHealthUI.CurrentHealth;
 
-        _SmallTextHP.text = "HP : " + _GirlHealthUI.currentHealth.ToString() + " /  " + _GirlHealthUI.totalHealth.ToString();
-        _BigTextHP.text = "HP : " + _BoyHealthUI.currentHealth.ToString() + " /  " + _BoyHealthUI.totalHealth.ToString();
+        _SmallTextHP.text = "HP : " + _GirlHealthUI.CurrentHealth.ToString() + " /  " + _GirlHealthUI.TotalHealth.ToString();
+        _BigTextHP.text = "HP : " + _BoyHealthUI.CurrentHealth.ToString() + " /  " + _BoyHealthUI.TotalHealth.ToString();
 
         m_smallQcooldowntext = (int)_GirlSpellCommandScript._HealUITimer;
         m_smallWcooldowntext = (int)_GirlSpellCommandScript._AOEUITimer;

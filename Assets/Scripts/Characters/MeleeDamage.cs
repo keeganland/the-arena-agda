@@ -16,9 +16,9 @@ public class MeleeDamage : MonoBehaviour {
     [SerializeField] Color color;
 
     //Cached component  references
-    [SerializeField] GameObject sprite;
-    [SerializeField] private List<GameObject> spellPrefab;
-    [SerializeField] private Slider autoAttackslider;
+    GameObject sprite;
+    private List<GameObject> spellPrefab = new List<GameObject>();
+    private Slider autoAttackslider;
     [SerializeField] GameObject target;
 
     #region Getters and Setters
@@ -69,14 +69,14 @@ public class MeleeDamage : MonoBehaviour {
         }
         attackTimer += Time.deltaTime;
         if (attackTimer >= attackSpeed && (this.GetComponentInChildren<RangeChecker>().InRange(target)) && target != null
-            && gameObject.GetComponent<HealthController>().currentHealth > 0)
+            && gameObject.GetComponent<HealthController>().CurrentHealth > 0)
         {
             if (target.CompareTag("Objects") && target.GetComponent<HealthController>() == false)
             {
                 return;
             }
 
-            if (target.GetComponent<HealthController>().currentHealth <= 0)
+            if (target.GetComponent<HealthController>().CurrentHealth <= 0)
             {
                 return;
             }

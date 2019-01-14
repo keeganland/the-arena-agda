@@ -52,8 +52,8 @@ public class InteractiveObjects : MonoBehaviour {
 
         if (GetComponent<HealthController>() == true)
         {
-            totalHealth = GetComponent<HealthController>().totalHealth;
-            currentHealth = GetComponent<HealthController>().currentHealth;
+            totalHealth = GetComponent<HealthController>().TotalHealth;
+            currentHealth = GetComponent<HealthController>().CurrentHealth;
         }
 
         Boy = publicVariableHolderArenaEntrance.Boy;

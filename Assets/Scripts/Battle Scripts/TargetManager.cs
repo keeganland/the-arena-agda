@@ -125,7 +125,7 @@ public class TargetManager : MonoBehaviour
 
         for(int i = 0; i < validTargets.Count; i++)
         {
-            int hp = validTargets[i].GetComponent<HealthController>().totalHealth;
+            int hp = validTargets[i].GetComponent<HealthController>().TotalHealth;
             if(!curTarget || hp > highestHealth)
             {
                 highestHealth = hp;
@@ -143,7 +143,7 @@ public class TargetManager : MonoBehaviour
 
         for (int i = 0; i < validTargets.Count; i++)
         {
-            int hp = validTargets[i].GetComponent<HealthController>().totalHealth;
+            int hp = validTargets[i].GetComponent<HealthController>().TotalHealth;
             if (!curTarget || hp < lowestHealth)
             {
                 lowestHealth = hp;

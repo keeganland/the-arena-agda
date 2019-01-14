@@ -31,11 +31,11 @@ public class ChevreBattleScript : MonoBehaviour {
         m_soundFX += Time.deltaTime;
         if (!isCollided)
         {
-            if (i == 1 && _Targets[i].GetComponent<HealthController>().currentHealth == 0 )
+            if (i == 1 && _Targets[i].GetComponent<HealthController>().CurrentHealth == 0 )
             {
                 i = 0;
             }
-            else if (i == 0 && _Targets[i].GetComponent<HealthController>().currentHealth == 0)
+            else if (i == 0 && _Targets[i].GetComponent<HealthController>().CurrentHealth == 0)
             {
                 i = 1;
             }

@@ -362,20 +362,20 @@ public class InventoryManager : MonoBehaviour
             BoyDamagesBonusFromItems = BoyBonusDamages;
             BoyHealthBonusFromItems = BoyBonusHealth;
 
-            Boy.GetComponent<HealthController>().totalHealth = BoyHealth + BoyBonusHealth;
-            Boy.GetComponent<HealthController>().currentHealth += BoyBonusHealth;
+            Boy.GetComponent<HealthController>().TotalHealth = BoyHealth + BoyBonusHealth;
+            Boy.GetComponent<HealthController>().CurrentHealth += BoyBonusHealth;
             Boy.GetComponent<MeleeDamage>().Damage = BoyDamage + BoyBonusDamages;
 
-            if (Boy.GetComponent<HealthController>().currentHealth > Boy.GetComponent<HealthController>().totalHealth)
+            if (Boy.GetComponent<HealthController>().CurrentHealth > Boy.GetComponent<HealthController>().TotalHealth)
             {
-                Boy.GetComponent<HealthController>().currentHealth = Boy.GetComponent<HealthController>().totalHealth;
+                Boy.GetComponent<HealthController>().CurrentHealth = Boy.GetComponent<HealthController>().TotalHealth;
             }
 
         }
         else if(BoyItemChanged && EquipedItemsBoy.Count == 0)
         {
-            Boy.GetComponent<HealthController>().totalHealth = BoyHealthInitial;
-            Boy.GetComponent<HealthController>().currentHealth -= BoyHealthBonusFromItems;
+            Boy.GetComponent<HealthController>().TotalHealth = BoyHealthInitial;
+            Boy.GetComponent<HealthController>().CurrentHealth -= BoyHealthBonusFromItems;
             Boy.GetComponent<MeleeDamage>().Damage = BoyDamageInitial;
 
             BoyHealthBonusFromItems = 0;
@@ -409,19 +409,19 @@ public class InventoryManager : MonoBehaviour
             GirlHealthBonusFromItems = GirlBonusHealth;
             GirlDamagesBonusFromItems = GirlBonusDamages;
 
-            Girl.GetComponent<HealthController>().totalHealth = GirlHealth + GirlBonusHealth;
-            Girl.GetComponent<HealthController>().currentHealth += GirlBonusHealth;
+            Girl.GetComponent<HealthController>().TotalHealth = GirlHealth + GirlBonusHealth;
+            Girl.GetComponent<HealthController>().CurrentHealth += GirlBonusHealth;
             Girl.GetComponent<MeleeDamage>().Damage = GirlDamage + GirlBonusDamages;
 
-            if(Girl.GetComponent<HealthController>().currentHealth > Girl.GetComponent<HealthController>().totalHealth)
+            if(Girl.GetComponent<HealthController>().CurrentHealth > Girl.GetComponent<HealthController>().TotalHealth)
             {
-                Girl.GetComponent<HealthController>().currentHealth = Girl.GetComponent<HealthController>().totalHealth;
+                Girl.GetComponent<HealthController>().CurrentHealth = Girl.GetComponent<HealthController>().TotalHealth;
             }
         }
         else if(EquipedItemsGirl.Count == 0 && GirlItemChanged)
         {
-            Girl.GetComponent<HealthController>().totalHealth = GirlHealthInitial;
-            Girl.GetComponent<HealthController>().currentHealth -= GirlHealthBonusFromItems;
+            Girl.GetComponent<HealthController>().TotalHealth = GirlHealthInitial;
+            Girl.GetComponent<HealthController>().CurrentHealth -= GirlHealthBonusFromItems;
             Girl.GetComponent<MeleeDamage>().Damage = GirlDamageInitial;
 
             GirlHealthBonusFromItems = 0;

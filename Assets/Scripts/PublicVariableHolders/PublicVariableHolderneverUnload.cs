@@ -95,7 +95,6 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     [Header("NeverUnload/Loading Screen")]
     public GameObject loadingScreen;
     public Slider loadingScreenSlider;
-    public LoadingScreen loadingScreenControler;
 
     private void OnEnable()
     {

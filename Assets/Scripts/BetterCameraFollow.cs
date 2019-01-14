@@ -3,33 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+//Alex : Refactored 01/13 - 
+//TODO:Keegan can you valid the changes for the Camera script Refactoring?
+
 public class BetterCameraFollow : MonoBehaviour
 {
-    public PublicVariableHolderneverUnload _PublicVariableHolder;
+    //Config
+    [SerializeField] private int cameraTargetIndex = 0; //The camera choose between the List<Transform> targets;
 
-    public List<Transform> targets;
-    public float _Speed = 1.0f;
-    public Transform target;
-    public float _FieldOfViewMin = 2.1f;
-    public float _FieldOfViewMax = 3f;
+    [SerializeField] private float _Speed = 1.0f;
+    [SerializeField] private float _FieldOfViewMin = 2.1f;
+    [SerializeField] private float _FieldOfViewMax = 3f;
 
-    [SerializeField]
-    private int m_number = 0;
-    private Vector3 m_new_Pos;
+    //State
     private bool m_manualCamera;
-
-    //private CameraTarget[] m_potentialcameraTargets; //Array that carry all potential targets in the scene at the start (won't count spawned enemies)
-
-    public List<CameraTarget> potentialCameraTargetList;
-
-
-    private List<GameObject> m_currentcameraTargets = new List<GameObject>(); //Array that carry the "actual" targets
-    private List<GameObject> m_currentcameraTargetsTooFar = new List<GameObject>(); //Array that carry the targets that are not centered
-    private Camera m_cam;
+    private bool cutSceneMode = false;
     private bool targetsTooFar; //variable created to carry the "neutral area" value
 
-    private bool cutSceneMode = false;
+    //Cached component  references
+    public PublicVariableHolderneverUnload _PublicVariableHolder;
+    [SerializeField] private List<Transform> targets;
+    [SerializeField] private List<CameraTarget> potentialCameraTargetList;
+    private List<GameObject> m_currentcameraTargets = new List<GameObject>(); //Array that carry the "actual" targets
+    private List<GameObject> m_currentcameraTargetsTooFar = new List<GameObject>(); //Array that carry the targets that are not centered
 
+    [SerializeField] private Transform target;
+    private Camera m_cam;
+
+    //Messages then methods
 
     private void Awake()
     {
@@ -47,10 +48,21 @@ public class BetterCameraFollow : MonoBehaviour
 
         ReinitializePotentialTargets();
 
-        target = targets[m_number];
+        target = targets[cameraTargetIndex];
         m_cam = GetComponent<Camera>();
     }
 
+    public void ReinitializePotentialTargets()
+    {
+        CameraTarget[] potentialCameraTargetArray = (CameraTarget[])Object.FindObjectsOfType(typeof(CameraTarget));
+        m_currentcameraTargets.Clear();
+        potentialCameraTargetList = new List<CameraTarget>();
+        for (int i = 0; i < potentialCameraTargetArray.Length; i++)
+        {
+            //Debug.Log("Potential camera target # " + i + ": " + potentialCameraTargetArray[i].name);
+            potentialCameraTargetList.Add(potentialCameraTargetArray[i]);
+        }
+    }
 
     private void Update()
     {
@@ -66,7 +78,6 @@ public class BetterCameraFollow : MonoBehaviour
             ManualCamera();
             ChangeCharacters();
             AutomaticCamera();
-
 
             if (m_currentcameraTargetsTooFar.Count >=1) //if more at least 1 enemy is too far from the center
             {
@@ -84,30 +95,27 @@ public class BetterCameraFollow : MonoBehaviour
 
     void ChangeCharacters()
     {
-
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            m_number = 0;
+            cameraTargetIndex = 0;
             TargetChangeInRange();
         }
 
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            m_number = 1;
+            cameraTargetIndex = 1;
             TargetChangeInRange();
         }
 
-        target = targets[m_number];
+        target = targets[cameraTargetIndex];
     }
-
     void TargetChangeInRange()
     {
         targets.ForEach(x =>                                                   //hard to explain but basically an if function in a foreach loop... it triggers the movement if one target in not in view
         { if (IsInView(m_cam.gameObject, x.gameObject) == false)                //DOESN'T work if two targets are on screen but one is out of view (it will move no matter what).
-               transform.position = new Vector3(targets[m_number].position.x, this.transform.position.y, targets[m_number].position.z);  
+               transform.position = new Vector3(targets[cameraTargetIndex].position.x, this.transform.position.y, targets[cameraTargetIndex].position.z);  
         });
     }
-
     void AutomaticCamera()
     {
         //Alex's old version.
@@ -155,7 +163,6 @@ public class BetterCameraFollow : MonoBehaviour
         ClearTargetTooFar();
 
     }
-
     void ManualCamera()
     {
             if (Input.GetKey(KeyCode.Space))
@@ -199,7 +206,6 @@ public class BetterCameraFollow : MonoBehaviour
         //}
         return true;
     }
-
     private bool IsTooFar(GameObject origin, GameObject toCheck) //Check if the enemy is on the border of the screen
     {
         Vector3 pointOnScreen = m_cam.WorldToScreenPoint(toCheck.GetComponentInChildren<Renderer>().bounds.center); 
@@ -217,10 +223,8 @@ public class BetterCameraFollow : MonoBehaviour
         }
         else return targetsTooFar; //neutral area that allows the coroutine to operate without problem
     }
-
     private void AdjustCamera(List<GameObject> currentTargets) //set the camera in the middle of all "viewed enemies" (using vector calculations)
     {
-
             Vector3 CameraNewpos = new Vector3(0, this.transform.position.y, 0);
             int count = 0; 
             for (int i = 0; i < currentTargets.Count; i++)
@@ -241,7 +245,7 @@ public class BetterCameraFollow : MonoBehaviour
 
             if (m_currentcameraTargets.Count == 0 || m_manualCamera == true)
             {
-                Vector3 m_pos = new Vector3(targets[m_number].transform.position.x, this.transform.position.y, targets[m_number].transform.position.z);
+                Vector3 m_pos = new Vector3(targets[cameraTargetIndex].transform.position.x, this.transform.position.y, targets[cameraTargetIndex].transform.position.z);
                 transform.position = Vector3.Lerp(transform.position, m_pos, _Speed * Time.deltaTime);
                 return;
             }
@@ -250,15 +254,6 @@ public class BetterCameraFollow : MonoBehaviour
                 transform.position = Vector3.Lerp(transform.position, CameraNewpos, _Speed * Time.deltaTime);
             }
     }
-
-    private IEnumerator ChangeFieldofView(float _FieldofViewValue) //Coroutine to zoom in or out
-    {
-
-        m_cam.orthographicSize = Mathf.Lerp(m_cam.orthographicSize, _FieldofViewValue, _Speed * Time.fixedDeltaTime);
-        yield return new WaitWhile(() => ((m_cam.orthographicSize <= .9f * _FieldofViewValue || m_cam.orthographicSize>= 1.1f*_FieldofViewValue))); //Wait a certain "value" before canceling reuturning 
-        //we can't wait the size to feet perfectly the new value because Mathf.Lerp will never reach it (but tend to reach it... thanks taylor series...).
-    }
-
     private void ClearTargetTooFar()
     {
         if (m_currentcameraTargets.Count >= 2) //if there is a least two current targets
@@ -270,7 +265,6 @@ public class BetterCameraFollow : MonoBehaviour
                 if (isFar == true && !m_currentcameraTargetsTooFar.Contains(m_currentcameraTargets[i])) //if at least one of them is too far, add them to the "Far" array
                 {
                     m_currentcameraTargetsTooFar.Add(m_currentcameraTargets[i]);
-
                 }
                 else if (isFar == false && m_currentcameraTargetsTooFar.Contains(m_currentcameraTargets[i])) //if not, remove them from the "Far" array
                 {
@@ -280,43 +274,38 @@ public class BetterCameraFollow : MonoBehaviour
         }
     }
 
-
-    /*
-    public void FindNewTargets()
+    private IEnumerator ChangeFieldofView(float _FieldofViewValue) //Coroutine to zoom in or out
     {
-        m_potentialcameraTargets = (CameraTarget[])Object.FindObjectsOfType(typeof(CameraTarget));
+
+        m_cam.orthographicSize = Mathf.Lerp(m_cam.orthographicSize, _FieldofViewValue, _Speed * Time.fixedDeltaTime);
+        yield return new WaitWhile(() => ((m_cam.orthographicSize <= .9f * _FieldofViewValue || m_cam.orthographicSize>= 1.1f*_FieldofViewValue))); //Wait a certain "value" before canceling reuturning 
+        //we can't wait the size to feet perfectly the new value because Mathf.Lerp will never reach it (but tend to reach it... thanks taylor series...).
     }
-    */
 
     /* Creates a LIST (not an array) of every potential target
      * 
      * Not especially space efficient but shouldn't be a huge issue.
      * Takes advantage of the fact that FindObjectsOfType is an existing library func that returns arrays. Just reallocates the 
      */
-    public void ReinitializePotentialTargets()
-    {
-        CameraTarget[] potentialCameraTargetArray = (CameraTarget[])Object.FindObjectsOfType(typeof(CameraTarget));
-        m_currentcameraTargets.Clear();
-        potentialCameraTargetList = new List<CameraTarget>();
-        for (int i = 0; i < potentialCameraTargetArray.Length; i++)
-        {
-            //Debug.Log("Potential camera target # " + i + ": " + potentialCameraTargetArray[i].name);
-            potentialCameraTargetList.Add(potentialCameraTargetArray[i]);
-        }
-    }
 
     /*
      * Keegan NTS: the below might never be used? 
      * 
      */
 
-    public bool getCutsceneMode()
+    public bool GetCutsceneMode()
     {
         return cutSceneMode;
     }
 
-    public void setCutsceneMode(bool x)
+    public void SetCutsceneMode(bool x)
     {
         cutSceneMode = x;
+    }
+
+    public void SetFieldOfView(float fieldOfViewMin, float fieldOfViewMax)
+    {
+        _FieldOfViewMin = fieldOfViewMin;
+        _FieldOfViewMax = fieldOfViewMax;
     }
 }

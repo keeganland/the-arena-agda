@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Alex Regactor : 01/13
+//TODO:Keegan can you valid the changes for the SetUp script Refactoring?
+
 public class SetUp : MonoBehaviour {
 
-    private static SetUp setUp;
-    [SerializeField]
-    private int fightToLoad;
+    //Config
+    [SerializeField] private int fightToLoad;
 
-    public GameObject[] PlayersGameObject;
+    //Cached component  references
+    [SerializeField] private GameObject[] PlayersGameObject;
+    private static SetUp setUp;
+
 
     public static SetUp Instance
     {
@@ -39,6 +44,7 @@ public class SetUp : MonoBehaviour {
     // Use this for initialization
     private void OnEnable () 
     {
+        PlayersGameObject = GameObject.FindGameObjectsWithTag("Player");
         EventManager.StartListening("setup", SetUpCharacterHealth);
 	}
 
@@ -49,7 +55,6 @@ public class SetUp : MonoBehaviour {
 
     public void SetUpCharacterHealth()
     {
-        /*TODO reset the players' health here*/
         foreach (GameObject players in PlayersGameObject)
         {
             players.GetComponent<HealthController>().currentHealth = players.GetComponent<HealthController>().totalHealth;

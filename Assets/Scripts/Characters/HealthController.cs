@@ -31,7 +31,7 @@ public class HealthController : MonoBehaviour
     private bool invincibility;
     private bool invincibilityHeal;
 
-    //Cached component  references
+    //Cached component references
     [SerializeField] private GameObject sprite;
     [SerializeField] private List<GameObject> enemy;
     [SerializeField] private AudioClip deathSound;

@@ -29,8 +29,8 @@ public class MovementManager : MonoBehaviour {
     
     // Update is called once per frame
     void Update() {
-        playerIsBoy = (boyMover.isTheBoy && boyMover.boyActive);
-        playerIsGirl = (!(girlMover.isTheBoy) && !(girlMover.boyActive)); //redundant? could just use !playerIsBoy in normal gameplay. Is there any disadvantage to this? does this prevent any bugs?
+        playerIsBoy = (boyMover.IsTheBoy && boyMover.BoyActive);
+        playerIsGirl = (!(girlMover.IsTheBoy) && !(girlMover.BoyActive)); //redundant? could just use !playerIsBoy in normal gameplay. Is there any disadvantage to this? does this prevent any bugs?
     }
 
     // Call to stop whichever player happens to be controlled right now.
@@ -39,12 +39,12 @@ public class MovementManager : MonoBehaviour {
 
         if (playerIsBoy)
         {
-            boyMover.stopMoving = true;
+            boyMover.StopMoving = true;
             boyMover.CancelMovement();
         }
         else if (playerIsGirl)
         {
-            girlMover.stopMoving = true;
+            girlMover.StopMoving = true;
             girlMover.CancelMovement();
         }
 
@@ -53,7 +53,7 @@ public class MovementManager : MonoBehaviour {
 
     public void StartPlayerMovement()
     {
-        boyMover.stopMoving = false;
-        girlMover.stopMoving = false;
+        boyMover.StopMoving = false;
+        girlMover.StopMoving = false;
     }
 }

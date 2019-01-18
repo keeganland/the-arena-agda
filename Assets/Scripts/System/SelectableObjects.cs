@@ -58,9 +58,9 @@ public class SelectableObjects : MonoBehaviour, ISelectHandler, IPointerClickHan
         {
             BetterPlayer_Movement movBoy = this.GetComponent<BetterPlayer_Movement>();
 
-            if (movBoy.isCombat == true)
+            if (movBoy.IsCombat == true)
             {
-                movBoy.boyActive = true;
+                movBoy.BoyActive = true;
                 movBoy.SelectedParticleBoy();
             }
         }
@@ -69,9 +69,9 @@ public class SelectableObjects : MonoBehaviour, ISelectHandler, IPointerClickHan
         {
             BetterPlayer_Movement movGirl = this.GetComponent<BetterPlayer_Movement>();
 
-            if (movGirl.isCombat == true)
+            if (movGirl.IsCombat == true)
             {
-                movGirl.boyActive = false;
+                movGirl.BoyActive = false;
                 movGirl.SelectedParticleGirl();
             }
         }

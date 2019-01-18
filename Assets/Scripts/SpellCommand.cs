@@ -420,13 +420,14 @@ public class SpellCommand : MonoBehaviour {
         }
     }
 
-    private int CharacterSelect()//Determines which character is active
+    //Alex : I changed FindWithTag("Player") to FindWithTag("Player/Boy") to see if the boy is active instead of both characters;
+    private int CharacterSelect()//Determines which character is active 
     {
-        if (GameObject.FindWithTag("Player").GetComponent<BetterPlayer_Movement>().boyActive == true)
+        if (GameObject.FindWithTag("Player/Boy").GetComponent<BetterPlayer_Movement>().BoyActive == true)
         {
             return 0;
         }
-        else if (GameObject.FindWithTag("Player").GetComponent<BetterPlayer_Movement>().boyActive == false)
+        else if (GameObject.FindWithTag("Player/Boy").GetComponent<BetterPlayer_Movement>().BoyActive == false)
         {
             return 1;
         }

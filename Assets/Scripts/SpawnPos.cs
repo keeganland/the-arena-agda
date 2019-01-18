@@ -25,8 +25,8 @@ public class SpawnPos : MonoBehaviour {
         Boy.transform.position = SpawnPosBoy.transform.position;
         Girl.transform.position = SpawnPosGirl.transform.position;
 
-        Boy.GetComponent<BetterPlayer_Movement>().isCombat = false;
-        Girl.GetComponent<BetterPlayer_Movement>().isCombat = false;
+        Boy.GetComponent<BetterPlayer_Movement>().IsCombat = false;
+        Girl.GetComponent<BetterPlayer_Movement>().IsCombat = false;
     }
 
 }

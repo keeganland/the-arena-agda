@@ -52,8 +52,8 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
 
         EventManager.TriggerEvent("setup");
 
-        Girl.GetComponent<BetterPlayer_Movement>().boyActive = false;
-        Boy.GetComponent<BetterPlayer_Movement>().boyActive = false;
+        Girl.GetComponent<BetterPlayer_Movement>().BoyActive = false;
+        Boy.GetComponent<BetterPlayer_Movement>().BoyActive = false;
         publicArenaEntrance.publicVariableHolderNeverUnload.fader.StartCoroutine("FadeIn");
 
         if (publicArenaEntrance.ReturnFromArena && saveManager.returnFromArena)

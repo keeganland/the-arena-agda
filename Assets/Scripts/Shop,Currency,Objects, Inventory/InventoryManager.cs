@@ -384,7 +384,7 @@ public class InventoryManager : MonoBehaviour
 
         if (EquipedItemsGirl.Count != 0 && GirlItemChanged)
         {
-            Debug.Log("Here for Girl");
+            //Debug.Log("Here for Girl");
             foreach (KeyValuePair<string, WeaponObject> EquipedPair in EquipedItemsGirl)
             {
                 WeaponObject equipedWeapon = EquipedPair.Value;

@@ -69,7 +69,7 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         Boy.GetComponent<NavMeshAgent>().enabled = true;
         Girl.GetComponent<NavMeshAgent>().enabled = true;
 
-        Girl.GetComponent<BetterPlayer_Movement>().isCombat = false;
+        Girl.GetComponent<BetterPlayer_Movement>().IsCombat = false;
         Girl.GetComponent<BetterPlayer_Movement>().CancelParticles();
 
 
@@ -101,7 +101,7 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         yield return new WaitForSeconds(0.5f);
         Egnevy.ForcePlayerRotation(3);
         yield return new WaitForSeconds(1.5f);
-        Boy.GetComponent<BetterPlayer_Movement>().isCombat = false;
+        Boy.GetComponent<BetterPlayer_Movement>().IsCombat = false;
         yield return new WaitForSeconds(1f);
         Girl.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", false);
         Eva.ForcePlayerRotation(4);

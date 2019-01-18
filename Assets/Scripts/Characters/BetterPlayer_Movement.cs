@@ -9,6 +9,23 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
     public PublicVariableHolderneverUnload _PublicVariableHolder;
 
+    //Config
+    [SerializeField] private float volumeScaleFactor;
+    private float footstepsSoundCd;
+
+    //State
+    [SerializeField] private bool isCombat;
+    [SerializeField] private bool isTheBoy = false;
+    [SerializeField] private bool stopMoving = false;
+    [SerializeField] private bool boyActive = false;
+
+    private bool ReviveStart;
+    public bool NPCisinRange;
+
+    //Cached component references
+    [SerializeField] Image selectionBoxImage;
+    Rect selectrionRect;
+
     private UISpellSwap _UISpells;
     private Image _BoySelected;
     private Image _GirlSelected;
@@ -17,31 +34,15 @@ public class BetterPlayer_Movement : MonoBehaviour {
     private GameObject Boy;
     private GameObject Girl;
     private GameObject ObjectInteraction;
-    public bool NPCisinRange;
-
-    private NavMeshAgent m_agent;
-    public bool isCombat;
-    public bool isTheBoy = false;
-    public bool stopMoving = false;
-    public bool boyActive = false;
-
-    public GameObject MoveClick;
-    [SerializeField] private GameObject curTarget;
-
-    private bool ReviveStart;
-
-    /* Alex : Drag Box Variables
-     */
-    [SerializeField] Image selectionBoxImage;
-    Rect selectrionRect;
 
     private Vector2 oldMousePosition;
     private Vector2 newMousePosition;
 
     public AudioClip Footsteps;
-    public float volumeScaleFactor;
     private AudioSource m_audioSource;
-    private float footstepsSoundCd;
+    private NavMeshAgent m_agent;
+    public GameObject MoveClick;
+    [SerializeField] private GameObject curTarget;
 
     /* Keegan note 2018/6/6
      * 
@@ -51,7 +52,31 @@ public class BetterPlayer_Movement : MonoBehaviour {
      * [Possibly more?]
      * 
      * Remove this note once these changes have been made
+     * 
+     * Alex note 2019/01/18 : Refactor (underway) with adding the Getter/Setter region + other small changes
      */
+
+    #region Getters and Setters
+    public bool BoyActive
+    {
+        get { return boyActive; }
+        set { boyActive = value; }
+    }
+    public bool IsCombat
+    {
+        get { return isCombat; }
+        set { isCombat = value; }
+    }
+    public bool StopMoving
+    {
+        get { return stopMoving; }
+        set { stopMoving = value; }
+    }
+    public bool IsTheBoy
+    {
+        get { return isTheBoy; }
+    }
+    #endregion
 
     private void Awake()
     {

@@ -57,7 +57,7 @@ public class StopMoving : MonoBehaviour {
 
     void StopPlayerMovement()
     {
-        playerMovement.stopMoving = true;
+        playerMovement.StopMoving = true;
         publicVariableHolder.StopAllActions = true;
         Boy.UndoCurTarget();
         Girl.UndoCurTarget();
@@ -67,7 +67,7 @@ public class StopMoving : MonoBehaviour {
 
     void StartPlayerMovement()
     {
-        playerMovement.stopMoving = false;
+        playerMovement.StopMoving = false;
         publicVariableHolder.StopAllActions = false;
 
     }
@@ -75,7 +75,7 @@ public class StopMoving : MonoBehaviour {
     {
         if (gameObject.name == "Girl")
         {
-            playerMovement.stopMoving = true;
+            playerMovement.StopMoving = true;
             Girl.UndoCurTarget(); 
             Girl.GetComponent<NavMeshAgent>().SetDestination(Girl.transform.position);
         }
@@ -85,14 +85,14 @@ public class StopMoving : MonoBehaviour {
     {
         if (gameObject.name == "Girl")
         {
-            playerMovement.stopMoving = false;
+            playerMovement.StopMoving = false;
         }
     }
     void StopPlayerMovementBoy()
     {
         if (gameObject.name == "Boy")
         {
-            playerMovement.stopMoving = true;
+            playerMovement.StopMoving = true;
             Boy.UndoCurTarget();
             Boy.GetComponent<NavMeshAgent>().SetDestination(Boy.transform.position);
         }
@@ -102,26 +102,26 @@ public class StopMoving : MonoBehaviour {
     {
         if (gameObject.name == "Boy")
         {
-            playerMovement.stopMoving = false;
+            playerMovement.StopMoving = false;
         }
     }
 
     void NotInCombat()
     {
-        this.GetComponent<BetterPlayer_Movement>().isCombat = false;
+        this.GetComponent<BetterPlayer_Movement>().IsCombat = false;
         this.GetComponentInChildren<RangeChecker>().ResetList();
         this.GetComponent<BetterPlayer_Movement>().CancelParticles();
     }
     void InCombat()
     {
-        this.GetComponent<BetterPlayer_Movement>().isCombat = true;
+        this.GetComponent<BetterPlayer_Movement>().IsCombat = true;
     }
 
     void GirlInCombat()
     {
         if(gameObject.name == "Girl")
         {
-            GetComponent<BetterPlayer_Movement>().isCombat = true;
+            GetComponent<BetterPlayer_Movement>().IsCombat = true;
         }
     }
 

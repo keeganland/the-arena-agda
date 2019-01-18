@@ -6,8 +6,8 @@ public class CancelAnyCollider : MonoBehaviour
 {
     SaveManager saveManager;
 
-    public bool SphereActivated;
-    public bool CapsuleActivated;
+    [SerializeField] private bool SphereActivated;
+    [SerializeField] private bool CapsuleActivated;
 
     private void Awake()
     {
@@ -40,7 +40,5 @@ public class CancelAnyCollider : MonoBehaviour
             Destroy(GetComponent<SphereCollider>());
         if (GetComponent<CapsuleCollider>())
             GetComponent<CapsuleCollider>().enabled = CapsuleActivated;
-
-
     }
 }

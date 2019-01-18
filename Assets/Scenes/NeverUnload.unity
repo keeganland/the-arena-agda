@@ -44673,7 +44673,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -55137,15 +55137,15 @@ MonoBehaviour:
   isBoss: 0
   totalHealth: 40
   currentHealth: 0
-  enemy: []
-  _DeathSound: {fileID: 8300000, guid: dc19616d39559be4cb2349abb317568a, type: 3}
-  AggroBoy: 0
-  AggroGirl: 0
-  _ReviveCD: 1
-  Sprite: {fileID: 1899480612}
-  m_reviveCoroutine: 0
+  aggroBoy: 0
+  aggroGirl: 0
+  reviveCooldown: 0
+  gameObjectName: 
+  reviveCoroutine: 0
   isTargeted: 0
-  GameObjectName: Eva
+  sprite: {fileID: 0}
+  enemy: []
+  deathSound: {fileID: 0}
   deathTutorial: {fileID: 0}
 --- !u!114 &765572588
 MonoBehaviour:
@@ -55163,9 +55163,6 @@ MonoBehaviour:
   aggro: 0
   attackSpeed: 3
   color: {r: 0, g: 1, b: 0.14509805, a: 0}
-  sprite: {fileID: 0}
-  spellPrefab: []
-  autoAttackslider: {fileID: 0}
   target: {fileID: 0}
 --- !u!114 &765572589
 MonoBehaviour:
@@ -56846,7 +56843,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &925707676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56979,7 +56976,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -106629,9 +106626,6 @@ MonoBehaviour:
   aggro: 0
   attackSpeed: 3
   color: {r: 1, g: 0.31764707, b: 0.8117647, a: 0}
-  sprite: {fileID: 0}
-  spellPrefab: []
-  autoAttackslider: {fileID: 0}
   target: {fileID: 0}
 --- !u!114 &1762563031
 MonoBehaviour:
@@ -106662,15 +106656,15 @@ MonoBehaviour:
   isBoss: 0
   totalHealth: 60
   currentHealth: 0
-  enemy: []
-  _DeathSound: {fileID: 8300000, guid: c5e1c7a9bef26df4c81e70f9eb197bae, type: 3}
-  AggroBoy: 0
-  AggroGirl: 0
-  _ReviveCD: 1
-  Sprite: {fileID: 1312597365}
-  m_reviveCoroutine: 0
+  aggroBoy: 0
+  aggroGirl: 0
+  reviveCooldown: 0
+  gameObjectName: 
+  reviveCoroutine: 0
   isTargeted: 0
-  GameObjectName: Evgeny
+  sprite: {fileID: 0}
+  enemy: []
+  deathSound: {fileID: 0}
   deathTutorial: {fileID: 0}
 --- !u!114 &1762563033
 MonoBehaviour:

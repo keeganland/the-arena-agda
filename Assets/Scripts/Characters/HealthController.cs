@@ -474,6 +474,7 @@ public class HealthController : MonoBehaviour
 
     private void refreshUI()
     {
+        if (!GetComponent<HealthUI>()) { return; }
         GetComponent<HealthUI>().UpdateUi(totalHealth, currentHealth);
     }
 }

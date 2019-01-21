@@ -6,11 +6,11 @@ public class MonsterGorlAtStairs : MonoBehaviour {
 
     public PublicVariableHolderArenaEntrance publicVariableHolderArenaEntrance;
 
-    private GameObject Bella;
+    private GameObject girlSpriteGameobject;
 
     private void Start()
     {
-        Bella = publicVariableHolderArenaEntrance.publicVariableHolderNeverUnload._GirlSpriteGameObject;
+        girlSpriteGameobject = GameObject.FindGameObjectWithTag("Sprite/Girl");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,9 +27,9 @@ public class MonsterGorlAtStairs : MonoBehaviour {
         CameraShake cameraShake = GameObject.FindWithTag("CameraHolder").GetComponent<CameraShake>();
         StartCoroutine(cameraShake.LaserShake(4f, .15f));
         yield return new WaitForSeconds(4f);
-        Bella.GetComponent<SpriteScript2>().ForcePlayerRotation(4);
+        girlSpriteGameobject.GetComponent<SpriteScript2>().ForcePlayerRotation(4);
         yield return new WaitForSeconds(1f);
-        Bella.GetComponent<SpriteScript2>().ForcePlayerRotation(3);
+        girlSpriteGameobject.GetComponent<SpriteScript2>().ForcePlayerRotation(3);
         Destroy(this.gameObject);
     }
 

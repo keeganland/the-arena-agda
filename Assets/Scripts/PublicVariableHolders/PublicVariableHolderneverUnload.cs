@@ -21,8 +21,8 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     public GameObject GirlUIGameObject;
 
     [Header("NeverUnload/Characters : HealthControler")]
-    public GameObject _BoySpriteGameObject; //Goes with "Momo" (neverUnload)
-    public GameObject _GirlSpriteGameObject; //Goes with "Bella" (neverUnload)
+    //public GameObject _BoySpriteGameObject; //Goes with "Momo" (neverUnload)
+    //public GameObject _GirlSpriteGameObject; //Goes with "Bella" (neverUnload)
     public GameObject _BoySlider; //Goes with "BoySlider" (neverUnload)
     public GameObject _GirlSlider; //Goes with "GirlSlider" (neverUnload)
     public GameObject _BoyDeathAnim; //Goes with "BoyDeath" (neverUnload)

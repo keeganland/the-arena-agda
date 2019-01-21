@@ -16,8 +16,8 @@ public class ChangeCameraAngle : MonoBehaviour
     private GameObject MainCamera;
     private Collider collider;
 
-    private GameObject BoySprite;
-    private GameObject GirlSprite;
+    private GameObject boySpriteGameobject;
+    private GameObject girlSpriteGameobject;
     private float m_newAngle;
     private float m_oldAngle;
     private float m_anglestoLerpto;
@@ -27,8 +27,10 @@ public class ChangeCameraAngle : MonoBehaviour
     void Start()
     {
         publicVariableHolderneverUnload = GameObject.Find("/PublicVariableHolderNeverUnload").GetComponent<PublicVariableHolderneverUnload>();
-        BoySprite = publicVariableHolderneverUnload._BoySpriteGameObject;
-        GirlSprite = publicVariableHolderneverUnload._GirlSpriteGameObject;
+
+        girlSpriteGameobject = GameObject.FindGameObjectWithTag("Sprite/Girl");
+        boySpriteGameobject = GameObject.FindGameObjectWithTag("Sprite/Boy");
+
         MainCamera = publicVariableHolderneverUnload.MainCamera;
         collider = GetComponent<Collider>();
 
@@ -63,16 +65,16 @@ public class ChangeCameraAngle : MonoBehaviour
             Counter += Speed * Time.deltaTime;
             x = Mathf.Lerp(m_oldAngle, m_newAngle, Counter);
             MainCamera.transform.localRotation = Quaternion.Euler(0, 0, x);
-            BoySprite.transform.localRotation = Quaternion.Euler(90, 0, x);
-            GirlSprite.transform.localRotation = Quaternion.Euler(90, 0, x);
+            boySpriteGameobject.transform.localRotation = Quaternion.Euler(90, 0, x);
+            girlSpriteGameobject.transform.localRotation = Quaternion.Euler(90, 0, x);
         }
         else if (!CameraChangeAngle)
         {
             Counter += Speed * Time.deltaTime;
             x = Mathf.Lerp(m_newAngle, m_oldAngle, Counter);
             MainCamera.transform.localRotation = Quaternion.Euler(0, 0, x);
-            BoySprite.transform.localRotation = Quaternion.Euler(90, 0, x);
-            GirlSprite.transform.localRotation = Quaternion.Euler(90, 0, x);
+            boySpriteGameobject.transform.localRotation = Quaternion.Euler(90, 0, x);
+            girlSpriteGameobject.transform.localRotation = Quaternion.Euler(90, 0, x);
         }
     }
 }

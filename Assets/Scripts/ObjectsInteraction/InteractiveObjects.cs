@@ -25,8 +25,9 @@ public class InteractiveObjects : MonoBehaviour {
     private GameObject boyPlayer;
     private GameObject girlPlayer;
 
-    private GameObject Momo;
-    private GameObject Bella;
+    private GameObject boySpriteGameobject;
+    private GameObject girlSpriteGameobject;
+
     private GameObject BoyPosBoss;
     private GameObject GirlPosBoss;
     private GameObject BossPos;
@@ -65,8 +66,8 @@ public class InteractiveObjects : MonoBehaviour {
         BoyPosBoss = publicVariableHolderArenaEntrance.BoyPosBoss;
         GirlPosBoss = publicVariableHolderArenaEntrance.GirlPosBoss;
 
-        Momo = publicVariableHolderNeverUnload._BoySpriteGameObject;
-        Bella = publicVariableHolderNeverUnload._GirlSpriteGameObject;
+        girlSpriteGameobject = GameObject.FindGameObjectWithTag("Sprite/Girl");
+        boySpriteGameobject = GameObject.FindGameObjectWithTag("Sprite/Boy");
 
         LightRoom = publicVariableHolderArenaEntrance.LightsBossRoom;
         LightInteractiveParticles = publicVariableHolderArenaEntrance.LightInteractiveParticles;
@@ -213,8 +214,8 @@ public class InteractiveObjects : MonoBehaviour {
         Debug.Log(boynav.velocity);
         yield return new WaitUntil(() => boynav.velocity == Vector3.zero && girlnav.velocity == Vector3.zero);
 
-        Momo.GetComponent<SpriteScript2>().ForcePlayerRotation(1);
-        Bella.GetComponent<SpriteScript2>().ForcePlayerRotation(1);
+        boySpriteGameobject.GetComponent<SpriteScript2>().ForcePlayerRotation(1);
+        girlSpriteGameobject.GetComponent<SpriteScript2>().ForcePlayerRotation(1);
 
         for (int i = 0; i < LightRoom.Length; i++)
         {
@@ -224,12 +225,12 @@ public class InteractiveObjects : MonoBehaviour {
             yield return new WaitForSeconds(0.5f);
         }
 
-        Bella.GetComponent<SpriteScript2>().ForcePlayerRotation(4);
+        girlSpriteGameobject.GetComponent<SpriteScript2>().ForcePlayerRotation(4);
         yield return new WaitForSeconds(0.5f);
-        Momo.GetComponent<SpriteScript2>().ForcePlayerRotation(3);
+        boySpriteGameobject.GetComponent<SpriteScript2>().ForcePlayerRotation(3);
         yield return new WaitForSeconds(1.5f);
-        Bella.GetComponent<SpriteScript2>().ForcePlayerRotation(1);
-        Momo.GetComponent<SpriteScript2>().ForcePlayerRotation(1);
+        girlSpriteGameobject.GetComponent<SpriteScript2>().ForcePlayerRotation(1);
+        boySpriteGameobject.GetComponent<SpriteScript2>().ForcePlayerRotation(1);
         yield return new WaitForSeconds(1f);
         girlPlayer.GetComponent<NavMeshAgent>().SetDestination(BossPos.transform.position);
 

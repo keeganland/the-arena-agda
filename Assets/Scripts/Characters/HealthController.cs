@@ -130,7 +130,7 @@ public class HealthController : MonoBehaviour
             castReviveGameObject = _PublicVariableHolder._BoyCastReviveGameobject;
             reviveSlider = _PublicVariableHolder._BoyReviveSlider;
             reviveTextTimer = _PublicVariableHolder._BoyReviveTextTimer;
-            sprite = _PublicVariableHolder._BoySpriteGameObject;
+            sprite = GameObject.FindGameObjectWithTag("Sprite/Boy");
             slider = _PublicVariableHolder._BoySlider;
             deathAnim = _PublicVariableHolder._BoyDeathAnim;
         }
@@ -139,7 +139,7 @@ public class HealthController : MonoBehaviour
             castReviveGameObject = _PublicVariableHolder._GirlCastReviveGameobject;
             reviveSlider = _PublicVariableHolder._GirlReviveSlider;
             reviveTextTimer = _PublicVariableHolder._GirlReviveTextTimer;
-            sprite = _PublicVariableHolder._GirlSpriteGameObject;
+            sprite = GameObject.FindGameObjectWithTag("Sprite/Girl");
             slider = _PublicVariableHolder._GirlSlider;
             deathAnim = _PublicVariableHolder._GirlDeathAnim;
         }

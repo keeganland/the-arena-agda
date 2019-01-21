@@ -54989,16 +54989,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PublicVariableHolder: {fileID: 1546493861}
-  NPCisinRange: 0
+  volumeScaleFactor: 0.05
   isCombat: 1
   isTheBoy: 0
   stopMoving: 0
   boyActive: 0
-  MoveClick: {fileID: 1911830527996562, guid: e578c9c23bc124b5fbe14848d0673945, type: 3}
-  curTarget: {fileID: 0}
+  NPCisinRange: 0
   selectionBoxImage: {fileID: 0}
   Footsteps: {fileID: 8300000, guid: 8f44c09e4e22545e69e89091b59f1e50, type: 3}
-  volumeScaleFactor: 0.05
+  MoveClick: {fileID: 1911830527996562, guid: e578c9c23bc124b5fbe14848d0673945, type: 3}
+  curTarget: {fileID: 0}
 --- !u!82 &765572584
 AudioSource:
   m_ObjectHideFlags: 0
@@ -99509,8 +99509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29e1b88143d2114ea06d0dfbda42739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Boy: {fileID: 1762563028}
-  Girl: {fileID: 765572580}
   MainCamera: {fileID: 274857888}
   BoynavMeshAgent: {fileID: 1762563040}
   GirlnavMeshAgent: {fileID: 765572593}
@@ -99520,8 +99518,6 @@ MonoBehaviour:
   fader: {fileID: 569749727}
   BoyUIGameObject: {fileID: 1312597365}
   GirlUIGameObject: {fileID: 1899480612}
-  _BoySpriteGameObject: {fileID: 1312597365}
-  _GirlSpriteGameObject: {fileID: 1899480612}
   _BoySlider: {fileID: 1416999798}
   _GirlSlider: {fileID: 924782170}
   _BoyDeathAnim: {fileID: 2055500909}
@@ -106441,7 +106437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1684630263900376, guid: 01d36d0a53eea7d4195de850d0b68eca, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Sprite/Boy
       objectReference: {fileID: 0}
     - target: {fileID: 212750045308732562, guid: 01d36d0a53eea7d4195de850d0b68eca,
         type: 3}
@@ -106679,16 +106675,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PublicVariableHolder: {fileID: 1546493861}
-  NPCisinRange: 0
+  volumeScaleFactor: 0.075
   isCombat: 1
   isTheBoy: 1
   stopMoving: 0
   boyActive: 0
-  MoveClick: {fileID: 1911830527996562, guid: e578c9c23bc124b5fbe14848d0673945, type: 3}
-  curTarget: {fileID: 0}
+  NPCisinRange: 0
   selectionBoxImage: {fileID: 0}
   Footsteps: {fileID: 0}
-  volumeScaleFactor: 0.075
+  MoveClick: {fileID: 1911830527996562, guid: e578c9c23bc124b5fbe14848d0673945, type: 3}
+  curTarget: {fileID: 0}
 --- !u!82 &1762563034
 AudioSource:
   m_ObjectHideFlags: 0
@@ -108841,7 +108837,7 @@ GameObject:
   - component: {fileID: 1899480613}
   m_Layer: 0
   m_Name: Eva
-  m_TagString: Untagged
+  m_TagString: Sprite/Girl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

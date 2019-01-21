@@ -49,7 +49,6 @@ public class ScriptedEvents : MonoBehaviour {
 
     private int roundNumber;
 
-
     private GameObject ReadyText;
     private GameObject FightText;
     private GameObject YouWonText;

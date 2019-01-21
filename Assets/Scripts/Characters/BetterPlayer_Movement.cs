@@ -31,8 +31,8 @@ public class BetterPlayer_Movement : MonoBehaviour {
     private Image _GirlSelected;
     private ParticleSystem _BoySelectedParticle;
     private ParticleSystem _GirlSelectedParticle;
-    private GameObject Boy;
-    private GameObject Girl;
+    private GameObject boyPlayer;
+    private GameObject girlPlayer;
     private GameObject ObjectInteraction;
 
     private Vector2 oldMousePosition;
@@ -104,16 +104,16 @@ public class BetterPlayer_Movement : MonoBehaviour {
         _GirlSelected = _PublicVariableHolder._GirlSelected;
         _BoySelectedParticle = _PublicVariableHolder._BoySelectedParticle;
         _GirlSelectedParticle = _PublicVariableHolder._GirlSelectedParticle;
-        Boy = _PublicVariableHolder.Boy;
-        Girl = _PublicVariableHolder.Girl;
+        girlPlayer = GameObject.FindGameObjectWithTag("Player/Girl");
+        boyPlayer = GameObject.FindGameObjectWithTag("Player/Boy");
     }
-	
+
     /* Keegan note 2018/6/6
      * Codesmell:
      * Overly long Update function. Please review and refactor
      */
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
         
         if (Footsteps)
         {
@@ -143,14 +143,14 @@ public class BetterPlayer_Movement : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                if (Boy.activeSelf == true && Boy.GetComponent<HealthController>().CurrentHealth > 0)
+                if (boyPlayer.activeSelf == true && boyPlayer.GetComponent<HealthController>().CurrentHealth > 0)
                 {
                     SwapBoy();
                 }
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                if (Girl.activeSelf == true && Boy.GetComponent<HealthController>().CurrentHealth > 0)
+                if (girlPlayer.activeSelf == true && boyPlayer.GetComponent<HealthController>().CurrentHealth > 0)
                 {
                     SwapGirl();
                 }
@@ -198,29 +198,29 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 {
                    if (hit.collider.tag == "Ground" || hit.collider.tag == "RangeIndicator")
                    {
-                      this.GetComponent<PlayerAI>().AIavailable = false;
-                      this.GetComponent<PlayerAI>().hasTarget = false;
-                      Boy.GetComponent<SpellCommand>().CancelAOEAttack();
-                      Boy.GetComponent<SpellCommand>().CancelHealAttack();
-                      Boy.GetComponent<SpellCommand>().CancelBoyShield();
-                      Boy.GetComponent<SpellCommand>().CancelBoyStun();
+                        this.GetComponent<PlayerAI>().AIavailable = false;
+                        this.GetComponent<PlayerAI>().hasTarget = false;
+                        boyPlayer.GetComponent<SpellCommand>().CancelAOEAttack();
+                        boyPlayer.GetComponent<SpellCommand>().CancelHealAttack();
+                        boyPlayer.GetComponent<SpellCommand>().CancelBoyShield();
+                        boyPlayer.GetComponent<SpellCommand>().CancelBoyStun();
 
-                      Girl.GetComponent<SpellCommand>().CancelAOEAttack();
-                      Girl.GetComponent<SpellCommand>().CancelHealAttack();
-                      Girl.GetComponent<SpellCommand>().CancelBoyShield();
-                      Girl.GetComponent<SpellCommand>().CancelBoyStun();
+                        girlPlayer.GetComponent<SpellCommand>().CancelAOEAttack();
+                        girlPlayer.GetComponent<SpellCommand>().CancelHealAttack();
+                        girlPlayer.GetComponent<SpellCommand>().CancelBoyShield();
+                        girlPlayer.GetComponent<SpellCommand>().CancelBoyStun();
 
-                      Vector3 newpos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-                      m_agent.SetDestination(newpos);
+                        Vector3 newpos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+                        m_agent.SetDestination(newpos);
                         if (curTarget && !curTarget.CompareTag("NPC") && !curTarget.CompareTag("Objects"))
-                         curTarget.GetComponent<HealthController>().CancelEnemy(this.gameObject);
-                      curTarget = null;
-                      this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
+                            curTarget.GetComponent<HealthController>().CancelEnemy(this.gameObject);
+                        curTarget = null;
+                        this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
 
-                      GameObject move = Instantiate(MoveClick, new Vector3(hit.point.x, transform.position.y, hit.point.z), Quaternion.identity);
-                      Destroy(move, 1f);
-                   }
-                   else if (hit.collider.tag == "Enemy")
+                        GameObject move = Instantiate(MoveClick, new Vector3(hit.point.x, transform.position.y, hit.point.z), Quaternion.identity);
+                        Destroy(move, 1f);
+                    }
+                    else if (hit.collider.tag == "Enemy")
                    {
                        this.GetComponent<PlayerAI>().AIavailable = true;
                        this.GetComponent<PlayerAI>().hasTarget = true;
@@ -259,7 +259,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                       curTarget = hit.collider.gameObject;
                    }
                 }
-                if (gameObject.GetComponent<HealthController>().reviveCoroutine == true)
+                if (gameObject.GetComponent<HealthController>().ReviveCoroutine == true)
                 {
                    gameObject.GetComponent<HealthController>().StopReviveCoroutine();
                 }
@@ -347,31 +347,31 @@ public class BetterPlayer_Movement : MonoBehaviour {
         {
             if (isTheBoy == true)
             {
-                curTarget = Girl;
+                curTarget = girlPlayer;
             }
         }
     }
 
     public void SwapBoy()
     {
-        if (_PublicVariableHolder.Boy.GetComponent<HealthController>().CurrentHealth > 0 && !_PublicVariableHolder.StopAllActions)
+        if (boyPlayer.GetComponent<HealthController>().CurrentHealth > 0 && !_PublicVariableHolder.StopAllActions)
         {
             boyActive = true;
 
             SelectedParticleBoy();
 
-            Boy.GetComponent<SpellCommand>().CancelAOEAttack();
-            Boy.GetComponent<SpellCommand>().CancelHealAttack();
-            Boy.GetComponent<SpellCommand>().CancelBoyStun();
-            Boy.GetComponent<SpellCommand>().CancelBoyShield();
-            Girl.GetComponent<SpellCommand>().CancelAOEAttack();
-            Girl.GetComponent<SpellCommand>().CancelHealAttack();
-            Girl.GetComponent<SpellCommand>().CancelBoyStun();
-            Girl.GetComponent<SpellCommand>().CancelBoyShield();
+            boyPlayer.GetComponent<SpellCommand>().CancelAOEAttack();
+            boyPlayer.GetComponent<SpellCommand>().CancelHealAttack();
+            boyPlayer.GetComponent<SpellCommand>().CancelBoyStun();
+            boyPlayer.GetComponent<SpellCommand>().CancelBoyShield();
+            girlPlayer.GetComponent<SpellCommand>().CancelAOEAttack();
+            girlPlayer.GetComponent<SpellCommand>().CancelHealAttack();
+            girlPlayer.GetComponent<SpellCommand>().CancelBoyStun();
+            girlPlayer.GetComponent<SpellCommand>().CancelBoyShield();
 
 
-            Boy.GetComponent<SpellCommand>().isSmallUI =false;
-            Girl.GetComponent<SpellCommand>().isSmallUI = false;
+            boyPlayer.GetComponent<SpellCommand>().isSmallUI =false;
+            girlPlayer.GetComponent<SpellCommand>().isSmallUI = false;
             _UISpells.BoySpellActive();
             _GirlSelected.enabled = false;
             _GirlSelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
@@ -387,21 +387,21 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
     public void SwapGirl()
     {
-        if (_PublicVariableHolder.Girl.GetComponent<HealthController>().CurrentHealth > 0 && !_PublicVariableHolder.StopAllActions)
+        if (girlPlayer.GetComponent<HealthController>().CurrentHealth > 0 && !_PublicVariableHolder.StopAllActions)
         {
             boyActive = false;
             _BoySelected.enabled = false;
             SelectedParticleGirl();
-            Boy.GetComponent<SpellCommand>().CancelAOEAttack();
-            Boy.GetComponent<SpellCommand>().CancelHealAttack();
-            Boy.GetComponent<SpellCommand>().CancelBoyStun();
-            Boy.GetComponent<SpellCommand>().CancelBoyShield();
-            Girl.GetComponent<SpellCommand>().CancelAOEAttack();
-            Girl.GetComponent<SpellCommand>().CancelHealAttack();
-            Girl.GetComponent<SpellCommand>().CancelBoyStun();
+            boyPlayer.GetComponent<SpellCommand>().CancelAOEAttack();
+            boyPlayer.GetComponent<SpellCommand>().CancelHealAttack();
+            boyPlayer.GetComponent<SpellCommand>().CancelBoyStun();
+            boyPlayer.GetComponent<SpellCommand>().CancelBoyShield();
+            girlPlayer.GetComponent<SpellCommand>().CancelAOEAttack();
+            girlPlayer.GetComponent<SpellCommand>().CancelHealAttack();
+            girlPlayer.GetComponent<SpellCommand>().CancelBoyStun();
 
-            Boy.GetComponent<SpellCommand>().isSmallUI = false;
-            Girl.GetComponent<SpellCommand>().isSmallUI = false;
+            boyPlayer.GetComponent<SpellCommand>().isSmallUI = false;
+            girlPlayer.GetComponent<SpellCommand>().isSmallUI = false;
 
             _UISpells.GirlActive();
             _BoySelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
@@ -426,8 +426,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
     {
         m_agent.SetDestination(m_agent.transform.position);
     }
-
-    
+ 
     private void OnTriggerEnter(Collider other)
     {
         if (curTarget)
@@ -447,7 +446,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
                 if (ReviveStart == true)
                 {
-                    gameObject.GetComponent<HealthController>().reviveCoroutine = true;
+                    gameObject.GetComponent<HealthController>().ReviveCoroutine = true;
                     ReviveStart = false;
                 }
 
@@ -487,7 +486,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
                 if (ReviveStart == true)
                 {
-                    gameObject.GetComponent<HealthController>().reviveCoroutine = true;
+                    gameObject.GetComponent<HealthController>().ReviveCoroutine = true;
                     ReviveStart = false;
                 }
 
@@ -528,12 +527,12 @@ public class BetterPlayer_Movement : MonoBehaviour {
         Debug.Log("Revive");
         if(gameObject.name == "Girl")
         {
-            curTarget = Boy;
+            curTarget = boyPlayer;
             ReviveStart = true;
         }
         if(gameObject.name == "Boy")
         {
-            curTarget = Girl;
+            curTarget = girlPlayer;
             ReviveStart = true;
         }
     }  
@@ -557,7 +556,6 @@ public class BetterPlayer_Movement : MonoBehaviour {
             this.GetComponent<MeleeDamage>().TargetChanges(curTarget);
         }
     }
-
 
     public void stopPlayerAgent()
     {

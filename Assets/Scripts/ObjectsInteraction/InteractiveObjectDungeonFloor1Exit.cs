@@ -7,8 +7,8 @@ public class InteractiveObjectDungeonFloor1Exit : InteractiveObjectAbstract {
 
     public PublicVariableHolderArenaEntrance publicVariableHolderArenaEntrance;
 
-    private GameObject Boy;
-    private GameObject Girl;
+    private GameObject boyPlayer;
+    private GameObject girlPlayer;
 
     private GameObject ExitDoor;
 
@@ -17,8 +17,8 @@ public class InteractiveObjectDungeonFloor1Exit : InteractiveObjectAbstract {
         
         base.Start();
 
-        Boy = publicVariableHolderArenaEntrance.Boy;
-        Girl = publicVariableHolderArenaEntrance.Girl;
+        girlPlayer = GameObject.FindGameObjectWithTag("Player/Girl");
+        boyPlayer = GameObject.FindGameObjectWithTag("Player/Boy");
 
         ExitDoor = publicVariableHolderArenaEntrance.ExitDoor;
 	}
@@ -38,8 +38,8 @@ public class InteractiveObjectDungeonFloor1Exit : InteractiveObjectAbstract {
         EventManager.TriggerEvent("InCombat");
         EventManager.TriggerEvent("StopMoving");
 
-        Boy.GetComponent<NavMeshAgent>().SetDestination(new Vector3(ExitDoor.transform.position.x, Boy.transform.position.y, ExitDoor.transform.position.z));
-        Girl.GetComponent<NavMeshAgent>().SetDestination(new Vector3(ExitDoor.transform.position.x, Girl.transform.position.y, ExitDoor.transform.position.z));
+        boyPlayer.GetComponent<NavMeshAgent>().SetDestination(new Vector3(ExitDoor.transform.position.x, boyPlayer.transform.position.y, ExitDoor.transform.position.z));
+        girlPlayer.GetComponent<NavMeshAgent>().SetDestination(new Vector3(ExitDoor.transform.position.x, girlPlayer.transform.position.y, ExitDoor.transform.position.z));
 
         publicVariableHolderNeverUnload.PlayerUI.SetActive(false);
     }

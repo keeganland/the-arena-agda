@@ -20,14 +20,14 @@ public class HealthController : MonoBehaviour
     private float invincibilityTimer;
     private float invincibilityHealTimer;
     private int tempHealth;
-    public string gameObjectName;
+    [SerializeField] private string gameObjectName;
     private float m_castTime;
 
     //State
     private bool reviveCoroutineisStarted;
     private bool isReviving;
-    public bool reviveCoroutine;
-    public bool isTargeted;
+    [SerializeField] private bool reviveCoroutine;
+    [SerializeField] private bool isTargeted;
     private bool invincibility;
     private bool invincibilityHeal;
 
@@ -44,7 +44,7 @@ public class HealthController : MonoBehaviour
     private GameObject deathAnim; 
     private MessageHandler messageHandler;
 
-    public GameObject deathTutorial;
+    [SerializeField] private GameObject deathTutorial;
     //Messages then methods
 
     #region Getter and Setters
@@ -65,6 +65,16 @@ public class HealthController : MonoBehaviour
     public bool IsBoss
     {
         set { isBoss = value; }
+    }
+    public bool ReviveCoroutine
+    {
+        get { return reviveCoroutine; }
+        set { reviveCoroutine = value; }
+    }
+    public string GameObjectName
+    {
+        get { return gameObjectName; }
+        set { gameObjectName = value; }
     }
     #endregion
 
@@ -192,13 +202,10 @@ public class HealthController : MonoBehaviour
                     }
                 }
                 break;
+
              case MessageTypes.AGGROCHANGED:
-                //Debug.Log("HealthController: changing Aggro");
                 AggroData aggroData = msgData as AggroData;
-                //Debug.Log("Healthcontroller: AGGROCHANGED: go = " + go.name);
-                //Debug.Log("Healthcontroller: AGGROCHANGED on: " + this.name);
-                //Debug.Log(aggroData.aggro);
-                //Debug.Log("Healthcontroller: go name is" + go.name);
+
                 if (go.name == "Boy")
                 {
                     aggroBoy += aggroData.aggro; //Need to establish Aggro for each character on all enemies
@@ -209,6 +216,7 @@ public class HealthController : MonoBehaviour
                     aggroGirl += aggroData.aggro;
                 }
                  break;
+
             case MessageTypes.HEALED: //for healing character
                 RecoverData recoverData = msgData as RecoverData;
                 if(recoverData != null && !invincibilityHeal)
@@ -225,7 +233,6 @@ public class HealthController : MonoBehaviour
     public void ApplyDamage(int damage, GameObject go)
     {
         CurrentHealth -= damage;
-        
 
         //Will need to change this if statement, pretty sure I need to remove the spawn part
         if (CurrentHealth <= 0f /*&& GameObject.Find("Cube-Spawn").GetComponent<HealthController>().currentHealth > 0*/)

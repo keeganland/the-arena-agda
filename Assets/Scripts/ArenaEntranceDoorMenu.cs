@@ -8,8 +8,8 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
 
     public PublicVariableHolderArenaEntrance publicVariableHolderArenaEntrance;
 
-    private GameObject Boy;
-    private GameObject Girl;
+    private GameObject boyPlayer;
+    private GameObject girlPlayer;
 
     private GameObject BoyDoorPos;
     private GameObject GirlDoorPos;
@@ -24,8 +24,8 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
 
     private void Start()
     {
-        Boy = publicVariableHolderArenaEntrance.Boy;
-        Girl = publicVariableHolderArenaEntrance.Girl;
+        girlPlayer = GameObject.FindGameObjectWithTag("Player/Girl");
+        boyPlayer = GameObject.FindGameObjectWithTag("Player/Boy");
         GirlDoorPos = publicVariableHolderArenaEntrance.GirlDoorPos;
 
         m_audioSource = GetComponent<AudioSource>();
@@ -100,8 +100,8 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
         EventManager.TriggerEvent("GirlInCombat");
         EventManager.TriggerEvent("StopMoving");
 
-        Vector3 DoorGirlPos = new Vector3(GirlDoorPos.transform.position.x, Girl.transform.position.y, GirlDoorPos.transform.position.z);
-        Girl.GetComponent<NavMeshAgent>().SetDestination(DoorGirlPos);
+        Vector3 DoorGirlPos = new Vector3(GirlDoorPos.transform.position.x, girlPlayer.transform.position.y, GirlDoorPos.transform.position.z);
+        girlPlayer.GetComponent<NavMeshAgent>().SetDestination(DoorGirlPos);
 
         yield return new WaitForSeconds(2f);
 
@@ -125,8 +125,8 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
         EventManager.TriggerEvent("GirlInCombat");
         EventManager.TriggerEvent("StopMoving");
 
-        Vector3 DoorGirlPos = new Vector3(GirlDoorPos.transform.position.x, Girl.transform.position.y, GirlDoorPos.transform.position.z);
-        Girl.GetComponent<NavMeshAgent>().SetDestination(DoorGirlPos);
+        Vector3 DoorGirlPos = new Vector3(GirlDoorPos.transform.position.x, girlPlayer.transform.position.y, GirlDoorPos.transform.position.z);
+        girlPlayer.GetComponent<NavMeshAgent>().SetDestination(DoorGirlPos);
 
         yield return new WaitForSeconds(2f);
 
@@ -151,8 +151,8 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
         EventManager.TriggerEvent("GirlInCombat");
         EventManager.TriggerEvent("StopMoving");
 
-        Vector3 DoorGirlPos = new Vector3(GirlDoorPos.transform.position.x, Girl.transform.position.y, GirlDoorPos.transform.position.z);
-        Girl.GetComponent<NavMeshAgent>().SetDestination(DoorGirlPos);
+        Vector3 DoorGirlPos = new Vector3(GirlDoorPos.transform.position.x, girlPlayer.transform.position.y, GirlDoorPos.transform.position.z);
+        girlPlayer.GetComponent<NavMeshAgent>().SetDestination(DoorGirlPos);
 
         yield return new WaitForSeconds(2f);
 

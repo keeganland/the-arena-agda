@@ -7,8 +7,8 @@ public class InteractiveObjectDungeonFloor1Boss : InteractiveObjectAbstract {
 
     public PublicVariableHolderArenaEntrance publicVariableHolderArenaEntrance;
 
-    private GameObject Boy;
-    private GameObject Girl;
+    private GameObject boyPlayer;
+    private GameObject girlPlayer;
 
     private GameObject Momo;
     private GameObject Bella;
@@ -36,8 +36,8 @@ public class InteractiveObjectDungeonFloor1Boss : InteractiveObjectAbstract {
     {
         base.Start();
 
-        Boy = publicVariableHolderArenaEntrance.Boy;
-        Girl = publicVariableHolderArenaEntrance.Girl;
+        girlPlayer = GameObject.FindGameObjectWithTag("Player/Girl");
+        boyPlayer = GameObject.FindGameObjectWithTag("Player/Boy");
 
         BoyPosBoss = publicVariableHolderArenaEntrance.BoyPosBoss;
         GirlPosBoss = publicVariableHolderArenaEntrance.GirlPosBoss;
@@ -72,16 +72,16 @@ public class InteractiveObjectDungeonFloor1Boss : InteractiveObjectAbstract {
         EventManager.TriggerEvent("InCombat");
         EventManager.TriggerEvent("StopMoving");
 
-        Vector3 BoyNewPos = new Vector3(BoyPosBoss.transform.position.x, Boy.transform.position.y, BoyPosBoss.transform.position.z);
-        Vector3 GirlNewPos = new Vector3(GirlPosBoss.transform.position.x, Girl.transform.position.y, GirlPosBoss.transform.position.z);
+        Vector3 BoyNewPos = new Vector3(BoyPosBoss.transform.position.x, boyPlayer.transform.position.y, BoyPosBoss.transform.position.z);
+        Vector3 GirlNewPos = new Vector3(GirlPosBoss.transform.position.x, girlPlayer.transform.position.y, GirlPosBoss.transform.position.z);
 
-        Boy.GetComponent<NavMeshAgent>().SetDestination(BoyNewPos);
-        Girl.GetComponent<NavMeshAgent>().SetDestination(GirlNewPos);
+        boyPlayer.GetComponent<NavMeshAgent>().SetDestination(BoyNewPos);
+        girlPlayer.GetComponent<NavMeshAgent>().SetDestination(GirlNewPos);
 
         yield return new WaitForSeconds(1f);
 
-        NavMeshAgent boynav = Boy.GetComponent<NavMeshAgent>();
-        NavMeshAgent girlnav = Girl.GetComponent<NavMeshAgent>();
+        NavMeshAgent boynav = boyPlayer.GetComponent<NavMeshAgent>();
+        NavMeshAgent girlnav = girlPlayer.GetComponent<NavMeshAgent>();
 
         //Debug.Log(boynav.velocity);
         yield return new WaitUntil(() => boynav.velocity == Vector3.zero && girlnav.velocity == Vector3.zero);
@@ -104,7 +104,7 @@ public class InteractiveObjectDungeonFloor1Boss : InteractiveObjectAbstract {
         Bella.GetComponent<SpriteScript2>().ForcePlayerRotation(1);
         Momo.GetComponent<SpriteScript2>().ForcePlayerRotation(1);
         yield return new WaitForSeconds(1f);
-        Girl.GetComponent<NavMeshAgent>().SetDestination(BossPos.transform.position);
+        girlPlayer.GetComponent<NavMeshAgent>().SetDestination(BossPos.transform.position);
 
         ScreenFader.fadeOut();
 

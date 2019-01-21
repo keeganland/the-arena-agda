@@ -7,10 +7,6 @@ public class PublicVariableHolderArenaEntrance : MonoBehaviour
 
     public PublicVariableHolderneverUnload publicVariableHolderNeverUnload;
 
-
-    public GameObject Girl;
-    public GameObject Boy;
-
     [Header("GeneralCharacteristics")]
     public GameObject MainCamera;
 
@@ -52,9 +48,6 @@ public class PublicVariableHolderArenaEntrance : MonoBehaviour
     private void Awake()
     {
         publicVariableHolderNeverUnload = GameObject.Find("/PublicVariableHolderNeverUnload").GetComponent<PublicVariableHolderneverUnload>();
-        Girl = publicVariableHolderNeverUnload.Girl;
-        Boy = publicVariableHolderNeverUnload.Boy;
         MainCamera = publicVariableHolderNeverUnload.MainCamera;
-
     }
 }

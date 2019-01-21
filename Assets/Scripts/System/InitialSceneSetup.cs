@@ -16,8 +16,8 @@ abstract public class InitialSceneSetup : MonoBehaviour {
     public NavMeshAgent BoyNav;
     public NavMeshAgent GirlNav;
 
-    public GameObject Boy;
-    public GameObject Girl;
+    public GameObject boyPlayer;
+    public GameObject girlPlayer;
 
 	public GameObject MainCamera;
 
@@ -31,11 +31,11 @@ abstract public class InitialSceneSetup : MonoBehaviour {
     {
         publicArenaEntrance.publicVariableHolderNeverUnload.PlayerUI.SetActive(false);
 
-                Boy = publicArenaEntrance.Boy;
-        Girl = publicArenaEntrance.Girl;
+        girlPlayer = GameObject.FindGameObjectWithTag("Player/Girl");
+        boyPlayer = GameObject.FindGameObjectWithTag("Player/Boy");
 
-        BoyNav = Boy.GetComponent<NavMeshAgent>();
-        GirlNav = Girl.GetComponent<NavMeshAgent>();
+        BoyNav = boyPlayer.GetComponent<NavMeshAgent>();
+        GirlNav = girlPlayer.GetComponent<NavMeshAgent>();
 
         BoyNav.enabled = false;
         GirlNav.enabled = false;

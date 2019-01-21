@@ -7,9 +7,8 @@ public class InteractiveObjectDoorDungeonFloor1 : InteractiveObjectAbstract {
 
     private GameObject DungeonDoorFloor1Boy;
     private GameObject DungeonDoorFloor1Girl;
-    private GameObject Boy;
-    private GameObject Girl;
-
+    private GameObject boyPlayer;
+    private GameObject girlPlayer;
     public PublicVariableHolderArenaEntrance publicVariableHolderArenaEntrance;
 
     public GameObject _DestroyEffect;
@@ -20,8 +19,8 @@ public class InteractiveObjectDoorDungeonFloor1 : InteractiveObjectAbstract {
     {
         base.Start();
 
-        Boy = publicVariableHolderArenaEntrance.Boy;
-        Girl = publicVariableHolderArenaEntrance.Girl;
+        girlPlayer = GameObject.FindGameObjectWithTag("Player/Girl");
+        boyPlayer = GameObject.FindGameObjectWithTag("Player/Boy");
 
         DungeonDoorFloor1Boy = publicVariableHolderArenaEntrance.DungeonDoorFloor1Boy;
         DungeonDoorFloor1Girl = publicVariableHolderArenaEntrance.DungeonDoorFloor1Girl;
@@ -37,19 +36,19 @@ public class InteractiveObjectDoorDungeonFloor1 : InteractiveObjectAbstract {
         EventManager.TriggerEvent("InCombat");
         EventManager.TriggerEvent("StopMoving");
 
-        Vector3 BoyNewPos = new Vector3(DungeonDoorFloor1Boy.transform.position.x, Boy.transform.position.y, DungeonDoorFloor1Boy.transform.position.z);
-        Vector3 GirlNewPos = new Vector3(DungeonDoorFloor1Girl.transform.position.x, Girl.transform.position.y, DungeonDoorFloor1Girl.transform.position.z);
+        Vector3 BoyNewPos = new Vector3(DungeonDoorFloor1Boy.transform.position.x, boyPlayer.transform.position.y, DungeonDoorFloor1Boy.transform.position.z);
+        Vector3 GirlNewPos = new Vector3(DungeonDoorFloor1Girl.transform.position.x, girlPlayer.transform.position.y, DungeonDoorFloor1Girl.transform.position.z);
 
-        Boy.GetComponent<NavMeshAgent>().SetDestination(DungeonDoorFloor1Boy.transform.position);
-        Girl.GetComponent<NavMeshAgent>().SetDestination(DungeonDoorFloor1Girl.transform.position);
+        boyPlayer.GetComponent<NavMeshAgent>().SetDestination(DungeonDoorFloor1Boy.transform.position);
+        girlPlayer.GetComponent<NavMeshAgent>().SetDestination(DungeonDoorFloor1Girl.transform.position);
 
-        while (Boy.transform.position != BoyNewPos && Girl.transform.position != GirlNewPos)
+        while (boyPlayer.transform.position != BoyNewPos && girlPlayer.transform.position != GirlNewPos)
         {
             yield return null;
         }
 
         yield return new WaitForSeconds(.5f);
-        Boy.GetComponent<BetterPlayer_Movement>().SetCurTarget(this.gameObject);
+        boyPlayer.GetComponent<BetterPlayer_Movement>().SetCurTarget(this.gameObject);
         Debug.Log(currentHealth);
         yield return new WaitUntil(() => currentHealth <= 0);
         Debug.Log("It did work");

@@ -169,9 +169,9 @@ public class SecondEnemyAttack : BasicEnemyBehaviour {
         sheep2.GetComponentInChildren<HealthController>().TotalHealth = Sheephealth;
         sheep3.GetComponentInChildren<HealthController>().TotalHealth = RedSheephealth;
 
-        sheep1.GetComponentInChildren<HealthController>().gameObjectName = "Small Sheep";
-        sheep2.GetComponentInChildren<HealthController>().gameObjectName = "Small Sheep";
-        sheep3.GetComponentInChildren<HealthController>().gameObjectName = "Red Sheep";
+        sheep1.GetComponentInChildren<HealthController>().GameObjectName = "Small Sheep";
+        sheep2.GetComponentInChildren<HealthController>().GameObjectName = "Small Sheep";
+        sheep3.GetComponentInChildren<HealthController>().GameObjectName = "Red Sheep";
 
         sheep3.GetComponentInChildren<SpriteRenderer>().color = RedSheepcolor;
 

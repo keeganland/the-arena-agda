@@ -6,8 +6,8 @@ public class SpawnPos : MonoBehaviour {
 
     public PublicVariableHolderArenaEntrance publicArenaEntrance;
 
-    private GameObject Boy;
-    private GameObject Girl; 
+    private GameObject boyPlayer;
+    private GameObject girlPlayer; 
 
     private GameObject SpawnPosBoy;
     private GameObject SpawnPosGirl;
@@ -16,17 +16,17 @@ public class SpawnPos : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-        Boy = publicArenaEntrance.Boy;
-        Girl = publicArenaEntrance.Girl;
+        girlPlayer = GameObject.FindGameObjectWithTag("Player/Girl");
+        boyPlayer = GameObject.FindGameObjectWithTag("Player/Boy");
 
         SpawnPosBoy = publicArenaEntrance.SpawnPosBoy;
         SpawnPosGirl = publicArenaEntrance.SpawnPosGirl;
 
-        Boy.transform.position = SpawnPosBoy.transform.position;
-        Girl.transform.position = SpawnPosGirl.transform.position;
+        boyPlayer.transform.position = SpawnPosBoy.transform.position;
+        girlPlayer.transform.position = SpawnPosGirl.transform.position;
 
-        Boy.GetComponent<BetterPlayer_Movement>().IsCombat = false;
-        Girl.GetComponent<BetterPlayer_Movement>().IsCombat = false;
+        boyPlayer.GetComponent<BetterPlayer_Movement>().IsCombat = false;
+        girlPlayer.GetComponent<BetterPlayer_Movement>().IsCombat = false;
     }
 
 }

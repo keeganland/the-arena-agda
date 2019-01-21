@@ -42,15 +42,15 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         SpawnPosGirl = publicArenaEntrance.SpawnPosGirl;
         ScriptedPosBoyIntro = publicArenaEntrance.ScriptedPosBoyIntro;
 
-        Boy.transform.position = new Vector3(SpawnPosBoy.transform.position.x, transform.position.y, SpawnPosBoy.transform.position.z);
-        Girl.transform.position = new Vector3(SpawnPosGirl.transform.position.x, transform.position.y, SpawnPosGirl.transform.position.z);
+        boyPlayer.transform.position = new Vector3(SpawnPosBoy.transform.position.x, transform.position.y, SpawnPosBoy.transform.position.z);
+        girlPlayer.transform.position = new Vector3(SpawnPosGirl.transform.position.x, transform.position.y, SpawnPosGirl.transform.position.z);
 
-        Boy.GetComponent<BetterPlayer_Movement>().SwapGirl();
-        Girl.GetComponent<BetterPlayer_Movement>().SwapGirl();
+        boyPlayer.GetComponent<BetterPlayer_Movement>().SwapGirl();
+        girlPlayer.GetComponent<BetterPlayer_Movement>().SwapGirl();
 
 
-        Egnevy = Boy.GetComponent<HealthController>().Sprite.GetComponent<SpriteScript2>();
-        Eva = Girl.GetComponent<HealthController>().Sprite.GetComponent<SpriteScript2>();
+        Egnevy = boyPlayer.GetComponent<HealthController>().Sprite.GetComponent<SpriteScript2>();
+        Eva = girlPlayer.GetComponent<HealthController>().Sprite.GetComponent<SpriteScript2>();
 
         MainCamera = publicArenaEntrance.MainCamera;
 
@@ -66,21 +66,21 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
 
     IEnumerator ArrivalScriptedEvent()
     {
-        Boy.GetComponent<NavMeshAgent>().enabled = true;
-        Girl.GetComponent<NavMeshAgent>().enabled = true;
+        boyPlayer.GetComponent<NavMeshAgent>().enabled = true;
+        girlPlayer.GetComponent<NavMeshAgent>().enabled = true;
 
-        Girl.GetComponent<BetterPlayer_Movement>().IsCombat = false;
-        Girl.GetComponent<BetterPlayer_Movement>().CancelParticles();
+        girlPlayer.GetComponent<BetterPlayer_Movement>().IsCombat = false;
+        girlPlayer.GetComponent<BetterPlayer_Movement>().CancelParticles();
 
 
-        Boy.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", true);
-        Boy.GetComponent<HealthController>().Sprite.GetComponent<Animator>().Play("Death");
-        Girl.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", true);
-        Girl.GetComponent<HealthController>().Sprite.GetComponent<Animator>().Play("Death");
+        boyPlayer.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", true);
+        boyPlayer.GetComponent<HealthController>().Sprite.GetComponent<Animator>().Play("Death");
+        girlPlayer.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", true);
+        girlPlayer.GetComponent<HealthController>().Sprite.GetComponent<Animator>().Play("Death");
 
         yield return new WaitForSeconds(5f);
 
-        Boy.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", false);
+        boyPlayer.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", false);
 
         Egnevy.ForcePlayerRotation(4);
         yield return new WaitForSeconds(0.5f);
@@ -90,8 +90,8 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         yield return new WaitForSeconds(1.5f);
         Egnevy.ForcePlayerRotation(2);
         yield return new WaitForSeconds(1f);
-        Boy.GetComponent<NavMeshAgent>().SetDestination(new Vector3(ScriptedPosBoyIntro.transform.position.x, transform.position.y, ScriptedPosBoyIntro.transform.position.z));
-        while(Boy.transform.position != new Vector3(ScriptedPosBoyIntro.transform.position.x, Boy.transform.position.y, ScriptedPosBoyIntro.transform.position.z))
+        boyPlayer.GetComponent<NavMeshAgent>().SetDestination(new Vector3(ScriptedPosBoyIntro.transform.position.x, transform.position.y, ScriptedPosBoyIntro.transform.position.z));
+        while(boyPlayer.transform.position != new Vector3(ScriptedPosBoyIntro.transform.position.x, boyPlayer.transform.position.y, ScriptedPosBoyIntro.transform.position.z))
         {
             yield return null;
         }
@@ -101,9 +101,9 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         yield return new WaitForSeconds(0.5f);
         Egnevy.ForcePlayerRotation(3);
         yield return new WaitForSeconds(1.5f);
-        Boy.GetComponent<BetterPlayer_Movement>().IsCombat = false;
+        boyPlayer.GetComponent<BetterPlayer_Movement>().IsCombat = false;
         yield return new WaitForSeconds(1f);
-        Girl.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", false);
+        girlPlayer.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", false);
         Eva.ForcePlayerRotation(4);
         yield return new WaitForSeconds(0.5f);
         Eva.ForcePlayerRotation(3);
@@ -128,7 +128,7 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
 
         GameObject.Find("TextBoxManager").GetComponent<TextBoxManager>().eventStart = false;
 
-        Girl.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", false);
+        girlPlayer.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", false);
 
         //yield return new WaitUntil(() => Input.anyKeyDown == true);
     }

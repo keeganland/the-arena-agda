@@ -32,8 +32,8 @@ public class ScriptedEvents : MonoBehaviour {
 
     [SerializeField] private NavMeshAgent boyNavMeshAgent;
     [SerializeField] private NavMeshAgent girlNavMeshAgent;
-    [SerializeField] private GameObject m_boy;
-    [SerializeField] private GameObject m_girl;
+    [SerializeField] private GameObject boyPlayer;
+    [SerializeField] private GameObject girlPlayer;
 
     public GameObject enemy;
     public GameObject enemyUI;
@@ -64,8 +64,8 @@ public class ScriptedEvents : MonoBehaviour {
         boyNavMeshAgent = publicVariableHolder.BoynavMeshAgent;
         girlNavMeshAgent = publicVariableHolder.GirlnavMeshAgent;
 
-        m_boy = publicVariableHolder.Boy;
-        m_girl = publicVariableHolder.Girl;
+        girlPlayer = GameObject.FindGameObjectWithTag("Player/Girl");
+        boyPlayer = GameObject.FindGameObjectWithTag("Player/Boy");
 
         _InitialPositionBoy = _PublicVariableHolderArena._InitialPositionBoy;
         _InitialPositionGirl = _PublicVariableHolderArena._InitialPositionGirl;
@@ -78,7 +78,7 @@ public class ScriptedEvents : MonoBehaviour {
         YouWonText = _PublicVariableHolderArena.YouWonText;
         PlayerUI = publicVariableHolder.PlayerUI;
 
-        m_girl.GetComponent<BoxCollider>().enabled = true;
+        girlPlayer.GetComponent<BoxCollider>().enabled = true;
     }
 
     private void Awake()
@@ -144,8 +144,8 @@ public class ScriptedEvents : MonoBehaviour {
 
         yield return new WaitForSeconds(.4f);
 
-        m_boy.transform.position =_InitialPositionBoy.transform.position;
-        m_girl.transform.position = _InitialPositionGirl.transform.position;
+        boyPlayer.transform.position =_InitialPositionBoy.transform.position;
+        girlPlayer.transform.position = _InitialPositionGirl.transform.position;
         enemy.transform.position = _InitialPositionEnemy.transform.position;
 
         publicVariableHolder.BoyUIGameObject.SetActive(true);
@@ -226,8 +226,8 @@ public class ScriptedEvents : MonoBehaviour {
         Camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, Camera.transform.position.y, _InitialPositionBoy.transform.position.z);
 
         yield return new WaitForSeconds(.4f);
-        m_boy.transform.position = _InitialPositionBoy.transform.position;
-        m_girl.transform.position = _InitialPositionGirl.transform.position;
+        boyPlayer.transform.position = _InitialPositionBoy.transform.position;
+        girlPlayer.transform.position = _InitialPositionGirl.transform.position;
         enemy.transform.position = _InitialPositionEnemy.transform.position;
 
         publicVariableHolder.BoyUIGameObject.SetActive(true);
@@ -304,8 +304,8 @@ public class ScriptedEvents : MonoBehaviour {
         Camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, Camera.transform.position.y, _InitialPositionBoy.transform.position.z);
 
         yield return new WaitForSeconds(.4f);
-        m_boy.transform.position = _InitialPositionBoy.transform.position;
-        m_girl.transform.position = _InitialPositionGirl.transform.position;
+        boyPlayer.transform.position = _InitialPositionBoy.transform.position;
+        girlPlayer.transform.position = _InitialPositionGirl.transform.position;
         enemy3.transform.position = _InitialPositionEnemy.transform.position;
 
         publicVariableHolder.BoyUIGameObject.SetActive(true);

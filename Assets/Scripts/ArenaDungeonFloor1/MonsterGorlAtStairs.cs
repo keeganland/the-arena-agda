@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MonsterGorlAtStairs : MonoBehaviour {
 
-    public PublicVariableHolderArenaEntrance publicVariableHolderArenaEntrance;
-
     private GameObject girlSpriteGameobject;
 
     private void Start()

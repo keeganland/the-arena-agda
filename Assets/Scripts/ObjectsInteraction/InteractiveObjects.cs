@@ -60,14 +60,15 @@ public class InteractiveObjects : MonoBehaviour {
         girlPlayer = GameObject.FindGameObjectWithTag("Player/Girl");
         boyPlayer = GameObject.FindGameObjectWithTag("Player/Boy");
 
+        girlSpriteGameobject = GameObject.FindGameObjectWithTag("Sprite/Girl");
+        boySpriteGameobject = GameObject.FindGameObjectWithTag("Sprite/Boy");
+
         DungeonDoorFloor1Boy = publicVariableHolderArenaEntrance.DungeonDoorFloor1Boy;
         DungeonDoorFloor1Girl = publicVariableHolderArenaEntrance.DungeonDoorFloor1Girl;
 
         BoyPosBoss = publicVariableHolderArenaEntrance.BoyPosBoss;
         GirlPosBoss = publicVariableHolderArenaEntrance.GirlPosBoss;
 
-        girlSpriteGameobject = GameObject.FindGameObjectWithTag("Sprite/Girl");
-        boySpriteGameobject = GameObject.FindGameObjectWithTag("Sprite/Boy");
 
         LightRoom = publicVariableHolderArenaEntrance.LightsBossRoom;
         LightInteractiveParticles = publicVariableHolderArenaEntrance.LightInteractiveParticles;

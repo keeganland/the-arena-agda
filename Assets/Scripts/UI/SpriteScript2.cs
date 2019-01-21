@@ -22,7 +22,7 @@ public class SpriteScript2 : MonoBehaviour
         
         m_anim = GetComponent<Animator>();
 
-        mainCamera = publicVariableHolderneverUnload.MainCamera;
+        mainCamera = Camera.main.gameObject;
 
         Vector3 rotation = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, mainCamera.transform.localEulerAngles.z);
         this.gameObject.transform.localRotation = Quaternion.Euler(rotation);
@@ -35,7 +35,7 @@ public class SpriteScript2 : MonoBehaviour
 
         transform.position = new Vector3(m_newx, _DistanceFromSprite, m_newy);   
 
-        if (publicVariableHolderneverUnload.MainCamera.transform.localRotation == Quaternion.Euler(0,0,0))
+        if (mainCamera.transform.localRotation == Quaternion.Euler(0,0,0))
         {
             if (m_anim)
             {
@@ -61,7 +61,7 @@ public class SpriteScript2 : MonoBehaviour
                 }
             }
         }
-        else if(publicVariableHolderneverUnload.MainCamera.transform.localRotation == Quaternion.Euler(0,0,-90))
+        else if(mainCamera.transform.localRotation == Quaternion.Euler(0,0,-90))
         {
             if (m_anim)
             {

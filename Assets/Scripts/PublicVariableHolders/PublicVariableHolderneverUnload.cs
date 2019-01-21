@@ -7,9 +7,7 @@ using UnityEngine.AI;
 public class PublicVariableHolderneverUnload : MonoBehaviour {
 
     [Header("NeverUnload/Characters : General Usefull Variables")]
-    //public GameObject Boy; //Goes with "Boy" (neverUnload)
-    //public GameObject Girl; //Goes with "Girl" (neverUnload)
-    public GameObject MainCamera; //Goes with "Main Camera" (neverUnload)
+    //public GameObject MainCamera; //Goes with "Main Camera" (neverUnload)
     public NavMeshAgent BoynavMeshAgent;
     public NavMeshAgent GirlnavMeshAgent;
     public GameObject PlayerUI; //The player UI Holder GameObject.
@@ -21,8 +19,6 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     public GameObject GirlUIGameObject;
 
     [Header("NeverUnload/Characters : HealthControler")]
-    //public GameObject _BoySpriteGameObject; //Goes with "Momo" (neverUnload)
-    //public GameObject _GirlSpriteGameObject; //Goes with "Bella" (neverUnload)
     public GameObject _BoySlider; //Goes with "BoySlider" (neverUnload)
     public GameObject _GirlSlider; //Goes with "GirlSlider" (neverUnload)
     public GameObject _BoyDeathAnim; //Goes with "BoyDeath" (neverUnload)

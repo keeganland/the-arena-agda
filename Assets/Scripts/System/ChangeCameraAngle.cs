@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ChangeCameraAngle : MonoBehaviour
 {
-
     public float NewCameraAngle;
     public float OldCameraAngle;
     public float Speed;
@@ -31,7 +30,7 @@ public class ChangeCameraAngle : MonoBehaviour
         girlSpriteGameobject = GameObject.FindGameObjectWithTag("Sprite/Girl");
         boySpriteGameobject = GameObject.FindGameObjectWithTag("Sprite/Boy");
 
-        MainCamera = publicVariableHolderneverUnload.MainCamera;
+        MainCamera = Camera.main.gameObject;
         collider = GetComponent<Collider>();
 
         m_newAngle = NewCameraAngle;

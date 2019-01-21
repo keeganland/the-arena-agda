@@ -48,6 +48,6 @@ public class PublicVariableHolderArenaEntrance : MonoBehaviour
     private void Awake()
     {
         publicVariableHolderNeverUnload = GameObject.Find("/PublicVariableHolderNeverUnload").GetComponent<PublicVariableHolderneverUnload>();
-        MainCamera = publicVariableHolderNeverUnload.MainCamera;
+        MainCamera = Camera.main.gameObject;
     }
 }

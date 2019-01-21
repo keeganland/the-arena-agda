@@ -45,7 +45,7 @@ public class ScriptedEvents : MonoBehaviour {
     public GameObject enemy3;
     public GameObject enemy3UI;
 
-    private GameObject Camera;
+    private GameObject camera;
 
     private int roundNumber;
 
@@ -59,7 +59,7 @@ public class ScriptedEvents : MonoBehaviour {
     {
         publicVariableHolder = GameObject.Find("/PublicVariableHolderNeverUnload").GetComponent<PublicVariableHolderneverUnload>();
 
-        Camera = publicVariableHolder.MainCamera;
+        camera = Camera.main.gameObject;
         boyNavMeshAgent = publicVariableHolder.BoynavMeshAgent;
         girlNavMeshAgent = publicVariableHolder.GirlnavMeshAgent;
 
@@ -139,7 +139,7 @@ public class ScriptedEvents : MonoBehaviour {
         enemy.GetComponentInChildren<FirstEnemyAttack2>().StopAttacking = true;
         
         enemyUI.SetActive(false);
-        Camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, Camera.transform.position.y, _InitialPositionBoy.transform.position.z);
+        camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, camera.transform.position.y, _InitialPositionBoy.transform.position.z);
 
         yield return new WaitForSeconds(.4f);
 
@@ -162,7 +162,7 @@ public class ScriptedEvents : MonoBehaviour {
         ScreenFader.fadeOut();
 
         yield return new WaitForSeconds(2.5f);
-        Camera.transform.position = new Vector3(_InitialPositionEnemy.transform.position.x, Camera.transform.position.y, _InitialPositionEnemy.transform.position.z);
+        camera.transform.position = new Vector3(_InitialPositionEnemy.transform.position.x, camera.transform.position.y, _InitialPositionEnemy.transform.position.z);
 
         ScreenFader.fadeIn();
 
@@ -222,7 +222,7 @@ public class ScriptedEvents : MonoBehaviour {
         EventManager.TriggerEvent("ResetTargets");
 
         enemy2UI.SetActive(false);
-        Camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, Camera.transform.position.y, _InitialPositionBoy.transform.position.z);
+        camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, camera.transform.position.y, _InitialPositionBoy.transform.position.z);
 
         yield return new WaitForSeconds(.4f);
         boyPlayer.transform.position = _InitialPositionBoy.transform.position;
@@ -300,7 +300,7 @@ public class ScriptedEvents : MonoBehaviour {
         enemy3.GetComponentInChildren<ThirdEnemy>().StopAttacking = true;
 
         enemy3UI.SetActive(false);
-        Camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, Camera.transform.position.y, _InitialPositionBoy.transform.position.z);
+        camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, camera.transform.position.y, _InitialPositionBoy.transform.position.z);
 
         yield return new WaitForSeconds(.4f);
         boyPlayer.transform.position = _InitialPositionBoy.transform.position;
@@ -322,7 +322,7 @@ public class ScriptedEvents : MonoBehaviour {
         ScreenFader.fadeOut();
 
         yield return new WaitForSeconds(2.5f);
-        Camera.transform.position = new Vector3(_InitialPositionEnemy.transform.position.x, Camera.transform.position.y, _InitialPositionEnemy.transform.position.z);
+        camera.transform.position = new Vector3(_InitialPositionEnemy.transform.position.x, camera.transform.position.y, _InitialPositionEnemy.transform.position.z);
 
         ScreenFader.fadeIn();
 

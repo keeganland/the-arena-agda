@@ -88,7 +88,6 @@ public class BetterPlayer_Movement : MonoBehaviour {
     {
         EventManager.StopListening("stopForTextbox", stopPlayerAgent);
         EventManager.StopListening("resumeAfterTextbox", startPlayerAgent);
-
     }
 
     // Use this for initialization

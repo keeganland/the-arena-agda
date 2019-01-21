@@ -5412,8 +5412,8 @@ MonoBehaviour:
   _BoyOrGirl: 0
   _Sprite: {fileID: 1352543117010796}
   Damage: 23
-  _AttackCD: 5
-  _WarningtoAttackCD: 5
+  _AttackCD: 7
+  _WarningtoAttackCD: 6
   _WarningDash: {fileID: 1482153681135454}
   _DashSpell: {fileID: 1629631235836830, guid: 35493065e56689d4eae4f0c1b0f41d8e, type: 3}
   _TeleportPosition: {fileID: 1140359294594592}

@@ -47,7 +47,7 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
         EventManager.TriggerEvent("NotInCombat");
         girlPlayer.GetComponent<BoxCollider>().enabled = false;
 
-        MainCamera = publicArenaEntrance.MainCamera;
+        MainCamera = Camera.main.gameObject;
         MainCamera.GetComponent<BetterCameraFollow>().SetFieldOfView(MainCameraFieldOfViewMin, MainCameraFieldOfViewMax);
 
         EventManager.TriggerEvent("setup");

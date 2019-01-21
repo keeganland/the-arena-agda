@@ -99509,7 +99509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29e1b88143d2114ea06d0dfbda42739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainCamera: {fileID: 274857888}
   BoynavMeshAgent: {fileID: 1762563040}
   GirlnavMeshAgent: {fileID: 765572593}
   PlayerUI: {fileID: 925707675}

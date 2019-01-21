@@ -22,7 +22,6 @@ public class ScriptedEvents : MonoBehaviour {
     public GameObject tutorial5;
     public GameObject tutorial6;
 
-
     [SerializeField] private GameObject _InitialPositionBoy;
     [SerializeField] private GameObject _InitialPositionGirl;
     [SerializeField] private GameObject _InitialPositionEnemy;

@@ -123,7 +123,6 @@ public class UISpellSwap : MonoBehaviour {
         BigSpellW = _PublicVariableHolder.BigSpellW;
         SmallSpellQ = _PublicVariableHolder.SmallSpellQ;
         SmallSpellW = _PublicVariableHolder.SmallSpellW;
-
 }
     private void Update()
     {

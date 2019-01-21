@@ -40,7 +40,7 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     public Image _GirlSelected; //Goes with "GirlSelected" (neverUnload)
     public ParticleSystem _BoySelectedParticle; //Goes with "BoySelected" (neverUnload)
     public ParticleSystem _GirlSelectedParticle; //Goes with "GirlSelected" (neverUnload) 
-   
+    
     [Header("NeverUnload/PlayerUI : UISpellSwap")]
     public Text _BigTextHP; //Goes with "BigTextHP" (neverUnload)
     public Text _SmallTextHP; //Goes with "SmallTextHP" (neverUnload)
@@ -84,7 +84,6 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     public GameObject SmallSpellQ;
     public GameObject SmallSpellW;
 
-
     [Header("NeverUnload/VictoryReferee")]
     public GameObject DeathCanvas;
     public GameObject VictoryCanvas;
@@ -109,6 +108,7 @@ public class PublicVariableHolderneverUnload : MonoBehaviour {
     {
         PlayerUI.SetActive(false);
     }
+
     private void ShowUI()
     {
         PlayerUI.SetActive(true);

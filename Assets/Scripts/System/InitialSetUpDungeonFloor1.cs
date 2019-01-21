@@ -52,7 +52,7 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         Egnevy = boyPlayer.GetComponent<HealthController>().Sprite.GetComponent<SpriteScript2>();
         Eva = girlPlayer.GetComponent<HealthController>().Sprite.GetComponent<SpriteScript2>();
 
-        MainCamera = publicArenaEntrance.MainCamera;
+        MainCamera = Camera.main.gameObject;
 
         MainCamera.GetComponent<BetterCameraFollow>().SetFieldOfView(MainCameraFieldOfViewMin, MainCameraFieldOfViewMax);
 
@@ -96,7 +96,7 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
             yield return null;
         }
 
-                //Debug.Log("here");
+        //Debug.Log("here");
         Egnevy.ForcePlayerRotation(4);
         yield return new WaitForSeconds(0.5f);
         Egnevy.ForcePlayerRotation(3);

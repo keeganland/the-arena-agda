@@ -5314,7 +5314,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hp : 40/50'
+  m_Text: 'Hp : 40/40'
 --- !u!222 &70685847
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -44299,20 +44299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee870e03927b89449258ec420e3ac90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textBox: {fileID: 249619582}
-  namePlate: {fileID: 1616137014}
-  interactivityCue: {fileID: 0}
-  dialogPrompt: {fileID: 1644919335}
-  boxContent: {fileID: 367122354}
-  NPCNameTag: {fileID: 604382288}
-  TextBallon: {fileID: 1173212495195382, guid: e5dba29c5add148da8c20370e2af5f05, type: 3}
-  textFile: {fileID: 4900000, guid: 6466355f5d60eb9479cec6e2cb89c06f, type: 3}
-  xmlDialogFile: {fileID: 0}
-  NPCName: 
-  textLines:
-  - 
-  - 
-  useXml: 0
+  textBalloonPrefab: {fileID: 1173212495195382, guid: e5dba29c5add148da8c20370e2af5f05,
+    type: 3}
   movementManager: {fileID: 0}
   theNPCMovementManager: {fileID: 0}
   stopPlayerMovement: 1
@@ -62220,7 +62208,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -67136,7 +67124,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 318.7, y: -95.8}
+  m_AnchoredPosition: {x: 388.5, y: -78}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &990381427
@@ -67160,7 +67148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.08235294, g: 0.9490197, b: 0.011764707, a: 1}
+  m_Color: {r: 0.9343144, g: 0.9622642, b: 0.031772893, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -67180,9 +67168,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-'
+  m_Text: 'HP : 10/10'
 --- !u!114 &990381429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88298,7 +88284,7 @@ GameObject:
   - component: {fileID: 1318802735}
   - component: {fileID: 1318802740}
   m_Layer: 0
-  m_Name: DoorButtonNo
+  m_Name: NoButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105414,7 +105400,7 @@ GameObject:
   - component: {fileID: 1644919338}
   - component: {fileID: 1644919337}
   m_Layer: 0
-  m_Name: DoorCanvas
+  m_Name: DialogYesNoPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107046,7 +107032,7 @@ GameObject:
   - component: {fileID: 1784888813}
   - component: {fileID: 1784888815}
   m_Layer: 0
-  m_Name: DoorButtonYes
+  m_Name: YesButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

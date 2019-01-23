@@ -10,48 +10,32 @@
  */
 
 
- /**
-  * Todo 9/21: turn this into a persistent singleton object for NeverUnload
-  */
-
-
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml;
 using UnityEngine;
 using UnityEngine.UI; //Need this for UI object types (such as Text) from Unity 5+
+using UnityEngine.SceneManagement;
 
 public class TextBoxManager : MonoBehaviour
 {
+    public GameObject textBalloonPrefab;
 
-    //these are game objects and unity stuff
-    public GameObject textBox;
-    public GameObject namePlate;
-    public GameObject interactivityCue;
-    /*
-        //Alex : I don't really know what it does but I suppose it's like a choice box for the player : (Yes/No)??
-        //I will use it as if it is (and create a bool eventAtEndofText too.
-    */
-    public GameObject dialogPrompt;
-
-    public Text boxContent;
-	public Text NPCNameTag;
-
-    public GameObject TextBallon;
-    private GameObject NPCGameObject; //Alex : Get the NPC position to Spawn the "Text" Ballon.
-    private GameObject textBallon;
+    private Scene neverUnload;
+    private GameObject dialogCanvas;
+    private GameObject textBox;
+    private GameObject namePlate;
+    private GameObject interactivityCue;
+    private GameObject dialogPrompt;
+    private Text boxContent;
+	private Text npcNameTag;    
+    private GameObject npcGameObject; //Alex : Get the NPC position to Spawn the "Text" Ballon.
+    private GameObject textBalloon;
 
     //these exist for the management of the external .txt file
-    public TextAsset textFile;
-    public TextAsset xmlDialogFile;
-	public string NPCName;
-	public string[] textLines;
-	public Queue<string> textQueue;
-    public bool useXml;
-
-    //these refer to particular lines in the text file because we're using a string array for some dumb reason
-    //public int currentLine;
-    //public int endAtLine;
+    private TextAsset textFile;
+    private string npcName;
+	private string[] textLines;
+	private Queue<string> textQueue;    
 
     public MovementManager movementManager;
     public NPCMovementManager theNPCMovementManager;
@@ -78,17 +62,14 @@ public class TextBoxManager : MonoBehaviour
 
     PauseMenu pauseMenu;
 
-    //AleX : SOUND EFFECT : Just call m_audioSource.PlayOneShot(TextScrollSFX); where it is needed ! Thanks :)
-
     public AudioClip TextScrollSFX;
     public float SoundScaleFactor;
     private AudioSource m_audioSource;
+    
 
 
-    //Holds the single object for singleton design pattern
+    #region Singleton Stuff
     public static TextBoxManager textBoxManager;
-
-
     public static TextBoxManager Instance
     {
         get
@@ -109,83 +90,46 @@ public class TextBoxManager : MonoBehaviour
             return textBoxManager;
         }
     }
-
-    void Init()
+    private void Init()
     {
         pauseMenu = FindObjectOfType<PauseMenu>();
         //TODO: Move a lot of what was in Start, etc. in here
     }
+    #endregion
 
-
-
-
-    void Start()
+    
+    #region Inherited from MonoBehaviour
+    void Awake()
     {
-        //pauseMenu = FindObjectOfType<PauseMenu>(); // moved to Init
-        /**
-		 * Keegan NTS: Initialize the script. Lots of redundancy with the Reload method. Revisit plz
-		 */
+        //Depends on our hierarchy being laid out just-so. Would be better to do it some other way, but I need to design that.
+        List<GameObject> neverUnloadRootObjects = new List<GameObject>();
+        Scene neverUnload = SceneManager.GetSceneByName("NeverUnload");
+        neverUnload.GetRootGameObjects(neverUnloadRootObjects);
+        dialogCanvas = neverUnloadRootObjects.Find(x => x.name == "DialogCanvas");
+        textBox = dialogCanvas.transform.Find("DialogTextbox").gameObject;
+        namePlate = textBox.transform.Find("NamePlate").gameObject;
+        dialogPrompt = textBox.transform.Find("DialogYesNoPrompt").gameObject;
+        boxContent = textBox.transform.Find("DialogText").GetComponent<Text>();
+        npcNameTag = namePlate.transform.Find("Name").GetComponent<Text>();
+    }
 
+    private void Start()
+    {
+        textQueue = new Queue<string>();
         m_audioSource = GetComponent<AudioSource>();
         SoundManager.onSoundChangedCallback += UpdateSound;
 
-        textQueue = new Queue<string> ();
-
-		//to be replaced with something that parses XML
-
-        if (useXml)
+        if (textFile != null) //ensure that the text file actually exists
         {
-            ReloadScriptXML(xmlDialogFile);
-        }
-        else //deprecate once xml is firmly in place
-        {
-            if (textFile != null) //ensure that the text file actually exists
-            {
-                textLines = (textFile.text.Split('\n')); //Keegan NTS: weird that this is valid syntax- i have never used round brackets () like that?
-            }
-
-            //if (endatline == 0)
-            //{
-            //    endatline = textlines.length - 1;
-            //}
-
+            textLines = (textFile.text.Split('\n')); //Keegan NTS: weird that this is valid syntax- i have never used round brackets () like that?
             for (int i = 0; i < textLines.Length; i++)
             {
                 textQueue.Enqueue(textLines[i]);
             }
-        }
 
-
-        /*
-         * Keegan 2018/9/21- as far as i know, the below existed strictly for testing through the Unity inspector
-         * 
-         * I cannot think of any other circumstance in which they'd actually be relevant
-         */
-
-
-        /*
-        if (isActive)
-        {
-            EnableTextBox();
         }
-        else
-        {
-            DisableTextBox();
-        }
-
-        if (cueActive)
-        {
-            EnableCue();
-        }
-        else
-        {
-            DisableCue();
-        }
-        */
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape) && isActive)
         {
@@ -209,12 +153,10 @@ public class TextBoxManager : MonoBehaviour
                 {
                     DisableTextBox();
                 }
-                //else if (((textQueue.Count == 0 && eventAtEndofText) || (currentLine > endAtLine && eventAtEndofText)))
                 else if (textQueue.Count == 0 && eventAtEndofText)
                 {
                     if (dialogPrompt == null || dialogPrompt.activeSelf == false) 
                     {
-                        //EnableCue();
                         EnableDialogPrompt();
                     }
                     return;
@@ -231,6 +173,7 @@ public class TextBoxManager : MonoBehaviour
             }
         }
     }
+    #endregion
 
     private IEnumerator TextScroll (string lineOfText)
     {
@@ -238,10 +181,20 @@ public class TextBoxManager : MonoBehaviour
         boxContent.text = "";
         isTyping = true;
         cancelTyping = false;
+
+        bool playSound = true; //silly thing to make the sound play less
         while (isTyping && !cancelTyping && (letter < lineOfText.Length - 1))
         {
             boxContent.text += lineOfText[letter];
-            m_audioSource.PlayOneShot(TextScrollSFX);
+            if (playSound)
+            {
+                m_audioSource.PlayOneShot(TextScrollSFX);
+                playSound = false;
+            }
+            else
+            {
+                playSound = true;
+            }            
             letter += 1;
             yield return new WaitForSeconds(typeSpeed);
         }
@@ -253,15 +206,15 @@ public class TextBoxManager : MonoBehaviour
     public void EnableTextBox()
     {
         textBox.SetActive(true);
-        if(!textBallon)
-            textBallon = Instantiate(TextBallon, NPCGameObject.transform.position + new Vector3(0,0,1.36f), Quaternion.Euler(90, 0, 0));
+        if(!textBalloon)
+            textBalloon = Instantiate(textBalloonPrefab, npcGameObject.transform.position + new Vector3(0,0,1.36f), Quaternion.Euler(90, 0, 0));
 
-		if (NPCNameTag != null) {   
+		if (npcNameTag != null) {
 
-            NPCNameTag.text = NPCName;
+            npcNameTag.text = NpcName;
 
             //The nameplate background for the name text only shows up if it exists as a gameobject, obviously, but also only if the NPC name isn't a blank string
-            if (namePlate != null && NPCNameTag.text != "")
+            if (namePlate != null && npcNameTag.text != "")
             {
                 namePlate.SetActive(true);
             }
@@ -283,13 +236,10 @@ public class TextBoxManager : MonoBehaviour
         {
             SpriteHolderGameObject.SetActive(true);
             Sprite[] sprites = Resources.LoadAll<Sprite>(SpriteSheet);
-            Debug.Log(sprites.Length);
             foreach(Sprite sp in sprites)
             {
-                Debug.Log(SpriteNameInSheet);
                 if(sp.name == SpriteNameInSheet)
                 {
-                    Debug.Log(sp.name);
                     SpriteHolder.sprite = sp;
                 }
             }
@@ -307,7 +257,7 @@ public class TextBoxManager : MonoBehaviour
     {
         textBox.SetActive(false);
         isActive = false;
-        Destroy(textBallon);
+        Destroy(textBalloon);
 
         /*
         if(NPCGameObject)
@@ -336,25 +286,15 @@ public class TextBoxManager : MonoBehaviour
         {
             textLines = new string[1];
             textLines = (theText.text.Split('\n'));
+
+
+            textQueue.Clear();
+            for (int i = 0; i < textLines.Length; i++)
+            {
+                textQueue.Enqueue(textLines[i]);
+            }
         }
-
-		textQueue.Clear();
-		for (int i = 0; i < textLines.Length; i++) 
-		{
-			textQueue.Enqueue(textLines[i]);
-		}	
 	}
-
-	public void setNPCName(string newName)
-	{
-		NPCName = newName;
-	}
-
-    public void setNPCGameObject(GameObject NPC)
-    {
-        NPCGameObject = NPC;
-    }
-
 
     /*
      * 2018/10/13 - Should to be turned back into providing "Press Enter" type cues in order to defend against some possible regressions. Leave for now.
@@ -387,14 +327,6 @@ public class TextBoxManager : MonoBehaviour
         }
     }
 
-
-
-    public void SetInteractivityCue(GameObject cue)
-    {
-        interactivityCue = cue;
-    }
-    //Alex : I'll just put the exit of the Text (if eventAtEndOfText) here and I'll disable it with the "button"
-
     public void DisableCue()
     {
         if (interactivityCue)
@@ -411,67 +343,98 @@ public class TextBoxManager : MonoBehaviour
             dialogPrompt.SetActive(false);
         }
     }
-
-
-
-    public bool getIsActive()
-	{
-		return isActive;
-	}
-
-	public void setLastTriggered(string gameObjName)
-	{
-        //Debug.Log (gameObjName + " triggered the TextBoxManager");
-		lastTriggeredBy = gameObjName;
-	}
-
-	public string getLastTriggered()
-	{
-		return lastTriggeredBy;
-	}
-
-    public void ReloadScriptXML(TextAsset xmlFile)
-    {
-        textQueue.Clear();
-        if (xmlFile != null)
-        {
-            XmlDocument xmlDocument = new XmlDocument();
-            xmlDocument.LoadXml(xmlFile.text);
-
-            foreach (XmlNode xmlNode in xmlDocument["scenes"].ChildNodes)
-            {
-                foreach (XmlNode line in xmlNode["lines"].ChildNodes)
-                {
-                    Debug.Log("Enqueuing line: " + line.InnerText);
-                    textQueue.Enqueue(line.InnerText);
-                }
-            }
-        }
-    }
-
     public void SetSprite(string spriteSheetName, string spriteNameInSheet)
     {
         SpriteSheet = spriteSheetName;
         SpriteNameInSheet = spriteNameInSheet;
     }
-
-
     public void PlayerAnswersYes()
     {
         Debug.Log("Player clicked Yes!");
         this.DisableDialogPrompt();
         EventManager.TriggerEvent("answersYes");
     }
-
     public void PlayerAnswersNo()
     {
         Debug.Log("Player clicked No!");
         this.DisableDialogPrompt();
         EventManager.TriggerEvent("answersNo");
     }
-
     void UpdateSound()
     {
         m_audioSource.volume = (SoundManager.SFXVolume * SoundScaleFactor) / 100;
     }
+
+    #region Properties
+    public GameObject InteractivityCue
+    {
+        get
+        {
+            return interactivityCue;
+        }
+        set
+        {
+            interactivityCue = value;
+        }
+    }
+    public GameObject NPCGameObject
+    {
+        get
+        {
+            return npcGameObject;
+        }
+        set
+        {
+            npcGameObject = value;
+        }
+
+    }
+    public string LastTriggered
+    {
+        get
+        {
+            return lastTriggeredBy;
+        }
+        set
+        {
+            lastTriggeredBy = value;
+        }
+    }
+    public bool IsActive
+    {
+        get
+        {
+            return isActive;
+        }
+        set
+        {
+            isActive = value;
+        }
+    }
+    public TextAsset TextFile
+    {
+        get
+        {
+            return textFile;
+        }
+
+        set
+        {
+            textFile = value;
+        }
+    }
+    public string NpcName
+    {
+        get
+        {
+            return npcName;
+        }
+
+        set
+        {
+            npcName = value;
+        }
+    }
+    #endregion
+
 }

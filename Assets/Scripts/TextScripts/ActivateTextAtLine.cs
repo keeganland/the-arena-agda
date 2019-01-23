@@ -135,19 +135,19 @@ public abstract class ActivateTextAtLine : MonoBehaviour
         //Refactor to take into account the queue structure!!!
         //if(theTextManager.currentLine > theTextManager.endAtLine)
         //if (!theTextManager.getIsActive() || (theTextManager.currentLine > theTextManager.endAtLine))
-        if (!theTextManager.getIsActive())
+        if (!theTextManager.IsActive)
         {
             textWasManuallyActivated = false;
             //i.e., if the text isn't even activated any more, ofc it's not manually activated
         }
 
-        if (talkBubble != null && useSpeechBubble && (gameObject.name == theTextManager.getLastTriggered()))
+        if (talkBubble != null && useSpeechBubble && (gameObject.name == theTextManager.LastTriggered))
         {
             //Debug.Log("The text box is active, was last triggered by " + theTextManager.getLastTriggered() + ", so let's turn on the talk bubble");
-            talkBubble.SetActive(theTextManager.getIsActive());
+            talkBubble.SetActive(theTextManager.IsActive);
         }
 
-        if (destroyNextTimeTextboxCloses && !theTextManager.getIsActive())
+        if (destroyNextTimeTextboxCloses && !theTextManager.IsActive)
         {
             talkBubble.SetActive(false);
             Destroy(gameObject);
@@ -223,7 +223,7 @@ public abstract class ActivateTextAtLine : MonoBehaviour
          */
         if(InteractivityCue)
         {
-            theTextManager.SetInteractivityCue(InteractivityCue);   
+            theTextManager.InteractivityCue = InteractivityCue;   
         }
 
 
@@ -279,24 +279,11 @@ public abstract class ActivateTextAtLine : MonoBehaviour
             if (saveManager.dialogueSaver.Contains(name + startLineSecondTime.ToString()))
                 startLine = startLineSecondTime;
         }
-        //Debug.Log("In ActivateTextAtLine.cs's Activate function");
-        theTextManager.setLastTriggered(gameObject.name);
-        theTextManager.setNPCName(NPCName);
-        theTextManager.setNPCGameObject(this.gameObject);
+        theTextManager.LastTriggered = gameObject.name;
+        theTextManager.NpcName = NPCName;
+        theTextManager.NPCGameObject = this.gameObject;
         theTextManager.SetSprite(SpriteSheet, NameInSpriteSheet);
-
-        //Debug.Log("useXml == " + useXml);
-        if (useXml)
-        {
-            theTextManager.ReloadScriptXML(theXml);
-        }
-        else
-        {
-            theTextManager.ReloadScript(theText);
-        }
-        
-        //theTextManager.currentLine = startLine;
-        //theTextManager.endAtLine = endLine;
+        theTextManager.ReloadScript(theText);
         theTextManager.EnableTextBox();
     }
 

@@ -12,41 +12,30 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml;
 using UnityEngine;
 using UnityEngine.UI; //Need this for UI object types (such as Text) from Unity 5+
 using UnityEngine.SceneManagement;
 
 public class TextBoxManager : MonoBehaviour
 {
+    public GameObject textBalloonPrefab;
 
     private Scene neverUnload;
     private GameObject dialogCanvas;
-
-    //these are game objects and unity stuff
     private GameObject textBox;
     private GameObject namePlate;
     private GameObject interactivityCue;
     private GameObject dialogPrompt;
-
-    public Text boxContent;
-	public Text npcNameTag;
-
-    public GameObject TextBallon;
+    private Text boxContent;
+	private Text npcNameTag;    
     private GameObject npcGameObject; //Alex : Get the NPC position to Spawn the "Text" Ballon.
-    private GameObject textBallon;
+    private GameObject textBalloon;
 
     //these exist for the management of the external .txt file
-    public TextAsset textFile;
-    public TextAsset xmlDialogFile;
-	public string npcName;
-	public string[] textLines;
-	public Queue<string> textQueue;
-    public bool useXml;
-
-    //these refer to particular lines in the text file because we're using a string array for some dumb reason
-    //public int currentLine;
-    //public int endAtLine;
+    private TextAsset textFile;
+    private string npcName;
+	private string[] textLines;
+	private Queue<string> textQueue;    
 
     public MovementManager movementManager;
     public NPCMovementManager theNPCMovementManager;
@@ -108,10 +97,10 @@ public class TextBoxManager : MonoBehaviour
     }
     #endregion
 
+    
     #region Inherited from MonoBehaviour
-    private void Awake()
+    void Awake()
     {
-
         //Depends on our hierarchy being laid out just-so. Would be better to do it some other way, but I need to design that.
         List<GameObject> neverUnloadRootObjects = new List<GameObject>();
         Scene neverUnload = SceneManager.GetSceneByName("NeverUnload");
@@ -120,39 +109,24 @@ public class TextBoxManager : MonoBehaviour
         textBox = dialogCanvas.transform.Find("DialogTextbox").gameObject;
         namePlate = textBox.transform.Find("NamePlate").gameObject;
         dialogPrompt = textBox.transform.Find("DialogYesNoPrompt").gameObject;
-        //boxContent = textBox.transform.Find("DialogText").gameObject;
-
-
-
+        boxContent = textBox.transform.Find("DialogText").GetComponent<Text>();
+        npcNameTag = namePlate.transform.Find("Name").GetComponent<Text>();
     }
+
     private void Start()
     {
-        /**
-		 * Keegan NTS: Initialize the script. Lots of redundancy with the Reload method. Revisit plz
-		 */
-
+        textQueue = new Queue<string>();
         m_audioSource = GetComponent<AudioSource>();
         SoundManager.onSoundChangedCallback += UpdateSound;
 
-        textQueue = new Queue<string> ();
-
-		//to be replaced with something that parses XML
-
-        if (useXml)
+        if (textFile != null) //ensure that the text file actually exists
         {
-            ReloadScriptXML(xmlDialogFile);
-        }
-        else
-        {
-            if (textFile != null) //ensure that the text file actually exists
-            {
-                textLines = (textFile.text.Split('\n')); //Keegan NTS: weird that this is valid syntax- i have never used round brackets () like that?
-            }
-
+            textLines = (textFile.text.Split('\n')); //Keegan NTS: weird that this is valid syntax- i have never used round brackets () like that?
             for (int i = 0; i < textLines.Length; i++)
             {
                 textQueue.Enqueue(textLines[i]);
             }
+
         }
     }
     private void Update()
@@ -232,12 +206,12 @@ public class TextBoxManager : MonoBehaviour
     public void EnableTextBox()
     {
         textBox.SetActive(true);
-        if(!textBallon)
-            textBallon = Instantiate(TextBallon, npcGameObject.transform.position + new Vector3(0,0,1.36f), Quaternion.Euler(90, 0, 0));
+        if(!textBalloon)
+            textBalloon = Instantiate(textBalloonPrefab, npcGameObject.transform.position + new Vector3(0,0,1.36f), Quaternion.Euler(90, 0, 0));
 
 		if (npcNameTag != null) {
 
-            npcNameTag.text = NPCName;
+            npcNameTag.text = NpcName;
 
             //The nameplate background for the name text only shows up if it exists as a gameobject, obviously, but also only if the NPC name isn't a blank string
             if (namePlate != null && npcNameTag.text != "")
@@ -283,7 +257,7 @@ public class TextBoxManager : MonoBehaviour
     {
         textBox.SetActive(false);
         isActive = false;
-        Destroy(textBallon);
+        Destroy(textBalloon);
 
         /*
         if(NPCGameObject)
@@ -312,13 +286,14 @@ public class TextBoxManager : MonoBehaviour
         {
             textLines = new string[1];
             textLines = (theText.text.Split('\n'));
-        }
 
-		textQueue.Clear();
-		for (int i = 0; i < textLines.Length; i++) 
-		{
-			textQueue.Enqueue(textLines[i]);
-		}	
+
+            textQueue.Clear();
+            for (int i = 0; i < textLines.Length; i++)
+            {
+                textQueue.Enqueue(textLines[i]);
+            }
+        }
 	}
 
     /*
@@ -352,18 +327,6 @@ public class TextBoxManager : MonoBehaviour
         }
     }
 
-    public GameObject InteractivityCue
-    {
-        get
-        {
-            return interactivityCue;
-        }
-        set
-        {
-            interactivityCue = value;
-        }
-    }
-
     public void DisableCue()
     {
         if (interactivityCue)
@@ -378,26 +341,6 @@ public class TextBoxManager : MonoBehaviour
         if (dialogPrompt)
         {
             dialogPrompt.SetActive(false);
-        }
-    }
-
-
-    public void ReloadScriptXML(TextAsset xmlFile)
-    {
-        textQueue.Clear();
-        if (xmlFile != null)
-        {
-            XmlDocument xmlDocument = new XmlDocument();
-            xmlDocument.LoadXml(xmlFile.text);
-
-            foreach (XmlNode xmlNode in xmlDocument["scenes"].ChildNodes)
-            {
-                foreach (XmlNode line in xmlNode["lines"].ChildNodes)
-                {
-                    Debug.Log("Enqueuing line: " + line.InnerText);
-                    textQueue.Enqueue(line.InnerText);
-                }
-            }
         }
     }
     public void SetSprite(string spriteSheetName, string spriteNameInSheet)
@@ -423,15 +366,15 @@ public class TextBoxManager : MonoBehaviour
     }
 
     #region Properties
-    public string NPCName
+    public GameObject InteractivityCue
     {
         get
         {
-            return npcName;
+            return interactivityCue;
         }
         set
         {
-            npcName = value;
+            interactivityCue = value;
         }
     }
     public GameObject NPCGameObject
@@ -466,6 +409,30 @@ public class TextBoxManager : MonoBehaviour
         set
         {
             isActive = value;
+        }
+    }
+    public TextAsset TextFile
+    {
+        get
+        {
+            return textFile;
+        }
+
+        set
+        {
+            textFile = value;
+        }
+    }
+    public string NpcName
+    {
+        get
+        {
+            return npcName;
+        }
+
+        set
+        {
+            npcName = value;
         }
     }
     #endregion

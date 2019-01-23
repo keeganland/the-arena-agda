@@ -44299,20 +44299,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee870e03927b89449258ec420e3ac90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textBox: {fileID: 249619582}
-  namePlate: {fileID: 1616137014}
-  interactivityCue: {fileID: 0}
-  dialogPrompt: {fileID: 1644919335}
+  namePlate: {fileID: 0}
   boxContent: {fileID: 367122354}
   npcNameTag: {fileID: 0}
-  TextBallon: {fileID: 1173212495195382, guid: e5dba29c5add148da8c20370e2af5f05, type: 3}
-  textFile: {fileID: 4900000, guid: 6466355f5d60eb9479cec6e2cb89c06f, type: 3}
-  xmlDialogFile: {fileID: 0}
+  textBalloonPrefab: {fileID: 1173212495195382, guid: e5dba29c5add148da8c20370e2af5f05,
+    type: 3}
   npcName: 
-  textLines:
-  - 
-  - 
-  useXml: 0
   movementManager: {fileID: 0}
   theNPCMovementManager: {fileID: 0}
   stopPlayerMovement: 1
@@ -88296,7 +88288,7 @@ GameObject:
   - component: {fileID: 1318802735}
   - component: {fileID: 1318802740}
   m_Layer: 0
-  m_Name: DoorButtonNo
+  m_Name: NoButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105412,7 +105404,7 @@ GameObject:
   - component: {fileID: 1644919338}
   - component: {fileID: 1644919337}
   m_Layer: 0
-  m_Name: DoorCanvas
+  m_Name: DialogYesNoPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107044,7 +107036,7 @@ GameObject:
   - component: {fileID: 1784888813}
   - component: {fileID: 1784888815}
   m_Layer: 0
-  m_Name: DoorButtonYes
+  m_Name: YesButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

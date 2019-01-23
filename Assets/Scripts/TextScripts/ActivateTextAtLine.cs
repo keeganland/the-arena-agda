@@ -279,24 +279,11 @@ public abstract class ActivateTextAtLine : MonoBehaviour
             if (saveManager.dialogueSaver.Contains(name + startLineSecondTime.ToString()))
                 startLine = startLineSecondTime;
         }
-        //Debug.Log("In ActivateTextAtLine.cs's Activate function");
         theTextManager.LastTriggered = gameObject.name;
-        theTextManager.NPCName = NPCName;
+        theTextManager.NpcName = NPCName;
         theTextManager.NPCGameObject = this.gameObject;
         theTextManager.SetSprite(SpriteSheet, NameInSpriteSheet);
-
-        //Debug.Log("useXml == " + useXml);
-        if (useXml)
-        {
-            theTextManager.ReloadScriptXML(theXml);
-        }
-        else
-        {
-            theTextManager.ReloadScript(theText);
-        }
-        
-        //theTextManager.currentLine = startLine;
-        //theTextManager.endAtLine = endLine;
+        theTextManager.ReloadScript(theText);
         theTextManager.EnableTextBox();
     }
 

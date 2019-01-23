@@ -71,6 +71,19 @@ public class UISpellSwap : MonoBehaviour {
     private bool m_showGirlSpellsOnly;
     private bool m_spellHidden;
 
+    private void Awake()
+    {
+        // spell button objects
+        BigSpellW.SetActive(true);
+        BigSpellQ.SetActive(true);
+        SmallSpellQ.SetActive(true);
+        SmallSpellQ.SetActive(true);
+
+        // enemy objects
+        currentEnemy.SetActive(true);
+        EnemyUI.SetActive(true);
+    }
+
     private void Start()
     {
         _BigTextHP = _PublicVariableHolder._BigTextHP;

@@ -10,25 +10,24 @@
  */
 
 
- /**
-  * Todo 9/21: turn this into a persistent singleton object for NeverUnload
-  */
-
-
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.UI; //Need this for UI object types (such as Text) from Unity 5+
+using UnityEngine.SceneManagement;
 
 public class TextBoxManager : MonoBehaviour
 {
 
+    private Scene neverUnload;
+    private GameObject dialogCanvas;
+
     //these are game objects and unity stuff
-    public GameObject textBox;
-    public GameObject namePlate;
-    public GameObject interactivityCue;
-    public GameObject dialogPrompt;
+    private GameObject textBox;
+    private GameObject namePlate;
+    private GameObject interactivityCue;
+    private GameObject dialogPrompt;
 
     public Text boxContent;
 	public Text npcNameTag;
@@ -78,6 +77,8 @@ public class TextBoxManager : MonoBehaviour
     public float SoundScaleFactor;
     private AudioSource m_audioSource;
     
+
+
     #region Singleton Stuff
     public static TextBoxManager textBoxManager;
     public static TextBoxManager Instance
@@ -108,6 +109,22 @@ public class TextBoxManager : MonoBehaviour
     #endregion
 
     #region Inherited from MonoBehaviour
+    private void Awake()
+    {
+
+        //Depends on our hierarchy being laid out just-so. Would be better to do it some other way, but I need to design that.
+        List<GameObject> neverUnloadRootObjects = new List<GameObject>();
+        Scene neverUnload = SceneManager.GetSceneByName("NeverUnload");
+        neverUnload.GetRootGameObjects(neverUnloadRootObjects);
+        dialogCanvas = neverUnloadRootObjects.Find(x => x.name == "DialogCanvas");
+        textBox = dialogCanvas.transform.Find("DialogTextbox").gameObject;
+        namePlate = textBox.transform.Find("NamePlate").gameObject;
+        dialogPrompt = textBox.transform.Find("DialogYesNoPrompt").gameObject;
+        //boxContent = textBox.transform.Find("DialogText").gameObject;
+
+
+
+    }
     private void Start()
     {
         /**
@@ -138,7 +155,6 @@ public class TextBoxManager : MonoBehaviour
             }
         }
     }
-    // Update is called once per frame
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape) && isActive)
@@ -336,11 +352,17 @@ public class TextBoxManager : MonoBehaviour
         }
     }
 
-    public void SetInteractivityCue(GameObject cue)
+    public GameObject InteractivityCue
     {
-        interactivityCue = cue;
+        get
+        {
+            return interactivityCue;
+        }
+        set
+        {
+            interactivityCue = value;
+        }
     }
-    //Alex : I'll just put the exit of the Text (if eventAtEndOfText) here and I'll disable it with the "button"
 
     public void DisableCue()
     {

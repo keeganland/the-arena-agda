@@ -18,12 +18,12 @@ public class TextMerchant : ActivateTextAtLine {
 
     public override void ChangeCue()
     {
-        theTextManager.interactivityCue = newCue;
+        theTextManager.InteractivityCue = newCue;
     }
 
     public override void ResetCue()
     {
-        theTextManager.interactivityCue = InteractivityCue;
+        theTextManager.InteractivityCue = InteractivityCue;
         newCue.SetActive(false);
     }
     /*

@@ -44299,12 +44299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee870e03927b89449258ec420e3ac90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  namePlate: {fileID: 0}
-  boxContent: {fileID: 367122354}
-  npcNameTag: {fileID: 0}
   textBalloonPrefab: {fileID: 1173212495195382, guid: e5dba29c5add148da8c20370e2af5f05,
     type: 3}
-  npcName: 
   movementManager: {fileID: 0}
   theNPCMovementManager: {fileID: 0}
   stopPlayerMovement: 1

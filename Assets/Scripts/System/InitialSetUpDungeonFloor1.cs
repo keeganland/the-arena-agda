@@ -119,14 +119,14 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
 
     IEnumerator ArrivalDialogue()
     {
-        GetComponent<TextFloor1Arrival>().PlayerEnableText(true);
-
-        while(GameObject.Find("TextBoxManager").GetComponent<TextBoxManager>().eventStart != true)
+        //GetComponent<TextFloor1Arrival>().PlayerEnableText(true);
+        GetComponent<TextFloor1Arrival>().Activate(); //Why bother with PlayerEnableText? See if this is an acceptable substitute
+        while (TextBoxManager.Instance.EventStart != true)
         {
             yield return null;
         }
 
-        GameObject.Find("TextBoxManager").GetComponent<TextBoxManager>().eventStart = false;
+        TextBoxManager.Instance.EventStart = false;
 
         girlPlayer.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", false);
 

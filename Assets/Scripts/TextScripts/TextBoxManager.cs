@@ -20,40 +20,38 @@ public class TextBoxManager : MonoBehaviour
 {
     public GameObject textBalloonPrefab;
 
+    #region Variables for referring to child objects of DialogCanvas
     private Scene neverUnload;
     private GameObject dialogCanvas;
     private GameObject textBox;
     private GameObject namePlate;
     private GameObject interactivityCue;
-    private GameObject dialogPrompt;
+    private GameObject yesNoPrompt;
     private Text boxContent;
 	private Text npcNameTag;    
     private GameObject npcGameObject; //Alex : Get the NPC position to Spawn the "Text" Ballon.
     private GameObject textBalloon;
-
-    //these exist for the management of the external .txt file
+    #endregion
+    #region Variables for managing the external .txt file containing the dialogue
     private TextAsset textFile;
-    private string npcName;
 	private string[] textLines;
-	private Queue<string> textQueue;    
+	private Queue<string> textQueue;
+    #endregion
 
     public MovementManager movementManager;
-    public NPCMovementManager theNPCMovementManager;
+    //public NPCMovementManager theNPCMovementManager;
 
     //public bool isActive;
     //public bool cueActive = false;
     public bool stopPlayerMovement;
-    public bool stopNPCMovement;
-    public bool eventAtEndofText;
-    public bool eventStart;
 
+
+    #region Variables for the text scrolling visual effect
     private bool isTyping = false;
     private bool cancelTyping = false;
-	private bool isActive = false;
-	//if active, the player may use enter to increment lines and other ways of interacting with the text box. Maybe switch to private
-	private string lastTriggeredBy = "";
 
     public float typeSpeed;
+    #endregion
 
     private string SpriteSheet;
     private string SpriteNameInSheet;
@@ -65,11 +63,71 @@ public class TextBoxManager : MonoBehaviour
     public AudioClip TextScrollSFX;
     public float SoundScaleFactor;
     private AudioSource m_audioSource;
-    
+
+
+
+
+    #region Properties
+    #region Read-Write Properties
+    public GameObject NPCGameObject
+    {
+        get
+        {
+            return npcGameObject;
+        }
+        set
+        {
+            npcGameObject = value;
+        }
+
+    }
+    public TextAsset TextFile
+    {
+        get
+        {
+            return textFile;
+        }
+
+        set
+        {
+            textFile = value;
+        }
+    }
+    public string NpcName { get; set; }
+    public string LastTriggered { get; set; }
+    public bool EventStart { get; set; } //No idea what this is but Alex calls it a lot
+    public bool IsYesNoAtEndOfText { get; set; }
+    public bool IsEventAtEndOfText { get; set; }
+    #endregion
+    #region Read-Only Properties
+    public GameObject YesNoPrompt
+    {
+        get
+        {
+            return yesNoPrompt;
+        }
+    }
+    public GameObject InteractivityCue
+    {
+        get
+        {
+            return interactivityCue;
+        }
+    }
+    public bool IsActive
+    {
+        get
+        {
+            return textBox.activeSelf;
+        }
+    }
+    #endregion
+    #endregion
+
 
 
     #region Singleton Stuff
-    public static TextBoxManager textBoxManager;
+    private static TextBoxManager textBoxManager;
     public static TextBoxManager Instance
     {
         get
@@ -93,52 +151,62 @@ public class TextBoxManager : MonoBehaviour
     private void Init()
     {
         pauseMenu = FindObjectOfType<PauseMenu>();
-        //TODO: Move a lot of what was in Start, etc. in here
-    }
-    #endregion
 
-    
+
+    }
+    #endregion    
     #region Inherited from MonoBehaviour
-    void Awake()
+    private void Awake()
     {
         //Depends on our hierarchy being laid out just-so. Would be better to do it some other way, but I need to design that.
+
+        //Set up references to the root objects of the NeverUnload GameObject hierarchy
+        //This should happen so often it'd probably make sense to make a class that deals with this in future games.
         List<GameObject> neverUnloadRootObjects = new List<GameObject>();
         Scene neverUnload = SceneManager.GetSceneByName("NeverUnload");
         neverUnload.GetRootGameObjects(neverUnloadRootObjects);
+
+        //Get specifically the key text/dialog related GameObjects, use them to assign
         dialogCanvas = neverUnloadRootObjects.Find(x => x.name == "DialogCanvas");
         textBox = dialogCanvas.transform.Find("DialogTextbox").gameObject;
         namePlate = textBox.transform.Find("NamePlate").gameObject;
-        dialogPrompt = textBox.transform.Find("DialogYesNoPrompt").gameObject;
+        yesNoPrompt = textBox.transform.Find("DialogYesNoPrompt").gameObject;
         boxContent = textBox.transform.Find("DialogText").GetComponent<Text>();
         npcNameTag = namePlate.transform.Find("Name").GetComponent<Text>();
-    }
 
-    private void Start()
-    {
+        //Data structures relevant to this class
         textQueue = new Queue<string>();
-        m_audioSource = GetComponent<AudioSource>();
-        SoundManager.onSoundChangedCallback += UpdateSound;
 
+        //Defaults
         if (textFile != null) //ensure that the text file actually exists
         {
-            textLines = (textFile.text.Split('\n')); //Keegan NTS: weird that this is valid syntax- i have never used round brackets () like that?
+            textLines = (textFile.text.Split('\n'));
             for (int i = 0; i < textLines.Length; i++)
             {
                 textQueue.Enqueue(textLines[i]);
             }
-
         }
+        else
+        {
+            textQueue.Enqueue("something has gone horribly wrong if you're seeeing this text in-game");
+        }
+    }
+
+    private void Start()
+    {
+        m_audioSource = GetComponent<AudioSource>();
+        SoundManager.onSoundChangedCallback += UpdateSound;
+
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && isActive)
+        if(Input.GetKeyDown(KeyCode.Escape) && textBox.activeSelf)
         {
-            DisableTextBox();
-            DisableCue();
+            DisableTextUI();
             pauseMenu.Resume();
         }
 
-        if (!isActive)
+        if (!textBox.activeSelf) //used to use a distinct variable for this, but it ended up being logically equivalent to the textBox's active state.
         {
             return;
         }
@@ -147,19 +215,28 @@ public class TextBoxManager : MonoBehaviour
         {
             if (!isTyping)
             {
-                //currentLine += 1; //the way things work at the moment is just increment through the array. should sooner or later be replaced with a queue
-                //if(((textQueue.Count == 0 && !eventAtEndofText) || (currentLine > endAtLine && !eventAtEndofText)))
-                if(textQueue.Count == 0 && !eventAtEndofText)
+                if(textQueue.Count <= 0)
                 {
-                    DisableTextBox();
-                }
-                else if (textQueue.Count == 0 && eventAtEndofText)
-                {
-                    if (dialogPrompt == null || dialogPrompt.activeSelf == false) 
+                    if (IsYesNoAtEndOfText)
                     {
-                        EnableDialogPrompt();
+                        //if (yesNoPrompt == null || yesNoPrompt.activeSelf == false) //This was calling a method that makes reference to the dialog prompt _when the dialog prompt does not exist_.
+                        //When it _did_ exist, So wasteful!
+                        if (yesNoPrompt != null)
+                        {
+                            yesNoPrompt.SetActive(true);
+                            //EnableYesNoPrompt();                        
+                        }
+                        return;
                     }
-                    return;
+                    else if (IsEventAtEndOfText)
+                    {
+                        EventStart = true;
+                        DisableTextUI();
+                    }
+                    else
+                    {
+                        DisableTextUI();
+                    }
                 }
                 else
                 {
@@ -202,15 +279,14 @@ public class TextBoxManager : MonoBehaviour
         isTyping = false;
         cancelTyping = false;
     }
-
-    public void EnableTextBox()
+    public void EnableTextUI()
     {
         textBox.SetActive(true);
         if(!textBalloon)
             textBalloon = Instantiate(textBalloonPrefab, npcGameObject.transform.position + new Vector3(0,0,1.36f), Quaternion.Euler(90, 0, 0));
 
-		if (npcNameTag != null) {
-
+		if (npcNameTag != null)
+        {
             npcNameTag.text = NpcName;
 
             //The nameplate background for the name text only shows up if it exists as a gameobject, obviously, but also only if the NPC name isn't a blank string
@@ -219,19 +295,13 @@ public class TextBoxManager : MonoBehaviour
                 namePlate.SetActive(true);
             }
 		}
-
-        isActive = true;
-
         if (stopPlayerMovement) 
         {
             EventManager.TriggerEvent("StopMoving");
         }
 
-        if (stopNPCMovement)
-        {
-            //theNPCMovementManager.StopNPCMovement();
-        }
-
+        /* Maybe the wrong place for this. I think the intent is for face portraits?
+         * */
         if (SpriteNameInSheet != "" && SpriteHolder)
         {
             SpriteHolderGameObject.SetActive(true);
@@ -248,15 +318,23 @@ public class TextBoxManager : MonoBehaviour
             SpriteHolderGameObject.SetActive(false);
             SpriteHolder.sprite = null; 
         }
- 
-		//StartCoroutine(TextScroll(textLines[currentLine]));
-		StartCoroutine(TextScroll(textQueue.Dequeue()));
+ 		StartCoroutine(TextScroll(textQueue.Dequeue()));
     }
-
-    public void DisableTextBox()
+    public void DisableTextUI()
     {
-        textBox.SetActive(false);
-        isActive = false;
+        if (InteractivityCue)
+        { 
+            InteractivityCue.SetActive(false);
+        }
+        if (YesNoPrompt)
+        {
+            YesNoPrompt.SetActive(false);
+        }
+        if (textBox)
+        {
+            textBox.SetActive(false);
+        }
+        
         Destroy(textBalloon);
 
         /*
@@ -274,12 +352,7 @@ public class TextBoxManager : MonoBehaviour
         {
             EventManager.TriggerEvent("StartMoving");
         }
-        if (theNPCMovementManager != null)
-        {
-            theNPCMovementManager.StartNPCMovement();
-        }
     }
-
     public void ReloadScript(TextAsset theText)
     {
         if (theText != null)
@@ -295,54 +368,6 @@ public class TextBoxManager : MonoBehaviour
             }
         }
 	}
-
-    /*
-     * 2018/10/13 - Should to be turned back into providing "Press Enter" type cues in order to defend against some possible regressions. Leave for now.
-     * Consider restoring cueActive for those purposes
-     */
-    public void EnableCue()
-    {
-        if (interactivityCue)
-        {
-            interactivityCue.SetActive(true);
-            //cueActive = true;
-        }
-        else
-        {
-            eventStart = true;
-            DisableTextBox();
-        } 
-    }
-
-    public void EnableDialogPrompt()
-    {
-        if (dialogPrompt)
-        {
-            dialogPrompt.SetActive(true);
-        }
-        else
-        {
-            eventStart = true;
-            DisableTextBox();
-        }
-    }
-
-    public void DisableCue()
-    {
-        if (interactivityCue)
-        {
-            interactivityCue.SetActive(false);
-            //cueActive = false;
-        }
-    }
-
-    public void DisableDialogPrompt()
-    {
-        if (dialogPrompt)
-        {
-            dialogPrompt.SetActive(false);
-        }
-    }
     public void SetSprite(string spriteSheetName, string spriteNameInSheet)
     {
         SpriteSheet = spriteSheetName;
@@ -351,90 +376,23 @@ public class TextBoxManager : MonoBehaviour
     public void PlayerAnswersYes()
     {
         Debug.Log("Player clicked Yes!");
-        this.DisableDialogPrompt();
+        if (yesNoPrompt)
+        {
+            yesNoPrompt.SetActive(false);
+        }
         EventManager.TriggerEvent("answersYes");
     }
     public void PlayerAnswersNo()
     {
         Debug.Log("Player clicked No!");
-        this.DisableDialogPrompt();
+        if (yesNoPrompt)
+        {
+            yesNoPrompt.SetActive(false);
+        }
         EventManager.TriggerEvent("answersNo");
     }
     void UpdateSound()
     {
         m_audioSource.volume = (SoundManager.SFXVolume * SoundScaleFactor) / 100;
     }
-
-    #region Properties
-    public GameObject InteractivityCue
-    {
-        get
-        {
-            return interactivityCue;
-        }
-        set
-        {
-            interactivityCue = value;
-        }
-    }
-    public GameObject NPCGameObject
-    {
-        get
-        {
-            return npcGameObject;
-        }
-        set
-        {
-            npcGameObject = value;
-        }
-
-    }
-    public string LastTriggered
-    {
-        get
-        {
-            return lastTriggeredBy;
-        }
-        set
-        {
-            lastTriggeredBy = value;
-        }
-    }
-    public bool IsActive
-    {
-        get
-        {
-            return isActive;
-        }
-        set
-        {
-            isActive = value;
-        }
-    }
-    public TextAsset TextFile
-    {
-        get
-        {
-            return textFile;
-        }
-
-        set
-        {
-            textFile = value;
-        }
-    }
-    public string NpcName
-    {
-        get
-        {
-            return npcName;
-        }
-
-        set
-        {
-            npcName = value;
-        }
-    }
-    #endregion
-
 }

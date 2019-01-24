@@ -438,9 +438,9 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 if (other.CompareTag("NPC") && !NPCisinRange)
                 {
                     NPCisinRange = true;
-                    ActivateTextAtLine activateText = curTarget.GetComponent<ActivateTextAtLine>();
-                    if (activateText)
-                        activateText.PlayerEnableText(true);
+                    InteractableNPC interactableNPC = curTarget.GetComponent<InteractableNPC>();
+                    if (interactableNPC)
+                        interactableNPC.PlayerClick(); //replacing PlayerEnableText from ActivateTextAtLine
                 }
 
                 if (ReviveStart == true)
@@ -478,9 +478,9 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 if (other.CompareTag("NPC") && !NPCisinRange)
                 {
                     NPCisinRange = true;
-                    ActivateTextAtLine activateText = curTarget.GetComponent<ActivateTextAtLine>();
-                    if (activateText)
-                        activateText.PlayerEnableText(true);
+                    InteractableNPC interactableNPC = curTarget.GetComponent<InteractableNPC>();
+                    if (interactableNPC)
+                        interactableNPC.PlayerClick();
                 }
 
                 if (ReviveStart == true)

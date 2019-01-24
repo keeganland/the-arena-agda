@@ -68,7 +68,6 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
     {
         FindObjectOfType<EnableFight>().EnableNextFight(1);
         m_audioSource.PlayOneShot(SelectFight);
-        Debug.Log("here");
         StartCoroutine(Fight1());
     }
     public void ArenaEntranceFight2()
@@ -85,8 +84,7 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
 
     public void DoorClicked()
     {
-        FindObjectOfType<TextBoxManager>().DisableCue();
-        FindObjectOfType<TextBoxManager>().DisableTextBox();
+        TextBoxManager.Instance.DisableTextUI();
         doorClicked = true;
     }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TextFloor1Arrival : ActivateTextAtLine 
+public class TextFloor1Arrival : InteractableNPC
 {
     public string SecondSheet;
     public string SecondSpriteName;

@@ -12,7 +12,6 @@ public class NeverUnloadData : MonoBehaviour
     [SerializeField] private GameObject charactersRoot;
     [SerializeField] private List<GameObject> childrenOfCharactersRoot;
     [SerializeField] private static Dictionary<string, GameObject> gameObjectDictionary;
-
     public List<GameObject> NeverUnloadRootObjects
     {
         get
@@ -20,7 +19,6 @@ public class NeverUnloadData : MonoBehaviour
             return neverUnloadRootObjects;
         }
     }
-
     public Dictionary<string, GameObject> GameObjectDictionary
     {
         get
@@ -28,7 +26,6 @@ public class NeverUnloadData : MonoBehaviour
             return gameObjectDictionary;
         }
     }
-
     [Header("NeverUnload/Characters : General Useful Variables")]
     //public GameObject MainCamera; //Goes with "Main Camera" (neverUnload)
     [SerializeField] private NavMeshAgent boyNavMeshAgent;
@@ -57,9 +54,7 @@ public class NeverUnloadData : MonoBehaviour
     [SerializeField] private ParticleSystem _ReviveBoyParticle; //Goes with "ReviveBoyParticle" (neverUnload)
     [SerializeField] private ParticleSystem _ReviveGirlParticle; //Goes with "ReviveGirlParticle" (neverUnload)
 
-
     #region Properties
-
     #region NeverUnload/Characters : General Useful Variables
     public NavMeshAgent BoyNavMeshAgent { get { return boyNavMeshAgent; } }
     public NavMeshAgent GirlNavMeshAgent { get { return girlNavMeshAgent; } }
@@ -94,7 +89,6 @@ public class NeverUnloadData : MonoBehaviour
     #endregion
     
     #endregion
-
     private void Awake()
     {
         Queue<GameObject> gameObjectsQueue = new Queue<GameObject>();

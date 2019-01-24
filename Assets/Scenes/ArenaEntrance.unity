@@ -907,33 +907,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 055b1e13e9df246e7b3149d4506ea994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useXml: 0
-  NPCName: Merchant
-  theText: {fileID: 4900000, guid: fd7863f899b294c0fb1a68bb8262b83b, type: 3}
-  theXml: {fileID: 0}
-  useSpeechBubble: 0
-  startLine: 0
-  startLineSecondTime: 2
-  endLine: 2
-  talkBubble: {fileID: 0}
-  requireButtonPress: 0
-  destroyWhenActivated: 0
-  destroyWhenFinished: 0
-  tagTriggersText: 0
-  activatedByTag: 
-  activatedByName: Girl
-  eventAtEndofText: 1
-  textWasManuallyActivated: 0
-  OnlyTriggerDialogueOnce: 1
-  HasDifferentDialogue: 1
-  InteractivityCue: {fileID: 0}
-  YesText: {fileID: 4900000, guid: 073c724b0ffcc4dcfb005d329a8431c9, type: 3}
-  NoText: {fileID: 4900000, guid: e7a6fe34e82db4a6cbc47f58a307f20c, type: 3}
-  TextBeginning: {fileID: 0}
-  SpriteSheet: 
-  NameInSpriteSheet: 
-  newCue: {fileID: 0}
-  StartText: {fileID: 4900000, guid: aff331572ffde4404af12074741e42c5, type: 3}
+  npcName: Merchant
+  theText: {fileID: 0}
 --- !u!1 &206300840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,9 +1018,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   publicVariableHolderNeverUnload: {fileID: 0}
-  Girl: {fileID: 0}
-  Boy: {fileID: 0}
-  MainCamera: {fileID: 0}
   SpawnPosBoy: {fileID: 60219640}
   SpawnPosGirl: {fileID: 26255390}
   ScriptedPosBoyIntro: {fileID: 0}
@@ -12329,31 +12301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7ab64c9044647fb932e8506cfb80b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useXml: 0
-  NPCName: Bertrand
+  npcName: 
   theText: {fileID: 4900000, guid: 916f20e7474db4ae3b1eb43e458a982f, type: 3}
-  theXml: {fileID: 0}
-  useSpeechBubble: 0
-  startLine: 0
-  startLineSecondTime: 0
-  endLine: 2
-  talkBubble: {fileID: 0}
-  requireButtonPress: 0
-  destroyWhenActivated: 0
-  destroyWhenFinished: 0
-  tagTriggersText: 0
-  activatedByTag: 
-  activatedByName: Girl
-  eventAtEndofText: 1
-  textWasManuallyActivated: 0
-  OnlyTriggerDialogueOnce: 1
-  HasDifferentDialogue: 1
-  InteractivityCue: {fileID: 0}
-  YesText: {fileID: 0}
-  NoText: {fileID: 0}
-  TextBeginning: {fileID: 0}
-  SpriteSheet: 
-  NameInSpriteSheet: 
   fightCanvas: {fileID: 393804666}
 --- !u!135 &620568729
 SphereCollider:
@@ -28169,8 +28118,8 @@ MonoBehaviour:
   MainCameraFieldOfViewMax: 12
   BoyNav: {fileID: 0}
   GirlNav: {fileID: 0}
-  Boy: {fileID: 0}
-  Girl: {fileID: 0}
+  boyPlayer: {fileID: 0}
+  girlPlayer: {fileID: 0}
   MainCamera: {fileID: 0}
   moneyGainedperFight: 0500000040000000
   moneyWon: {fileID: 0}

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TextBertrand: ActivateTextAtLine {
+public class TextBertrand: InteractableNPC
+{
 
     new void Start()
     {
@@ -49,7 +50,7 @@ public class TextBertrand: ActivateTextAtLine {
     {
         base.YesButtonEvent();
         Debug.Log("This is TextBertrand.cs, confirming we're in the YesButtonEvent method");
-        theTextManager.DisableTextBox();
+        TextBoxManager.Instance.DisableTextUI();
         fightCanvas.SetActive(true);
     }
 

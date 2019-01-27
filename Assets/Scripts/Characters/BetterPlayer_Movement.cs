@@ -251,6 +251,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
                    else if (hit.collider.tag == "NPC")
                    {
+                        Debug.Log("here to check why we can't select npc without moving");
                         curTarget = hit.collider.gameObject;                    
                    }
                    else if (hit.collider.tag == "Player")
@@ -435,8 +436,9 @@ public class BetterPlayer_Movement : MonoBehaviour {
                 //Debug.Log("Target in Range " + curTarget.name);
 
 
-                if (other.CompareTag("NPC") && !NPCisinRange)
+                if (other.CompareTag("NPC"))
                 {
+                    if(!NPCisinRange)
                     NPCisinRange = true;
                     InteractableNPC interactableNPC = curTarget.GetComponent<InteractableNPC>();
                     if (interactableNPC)
@@ -475,8 +477,9 @@ public class BetterPlayer_Movement : MonoBehaviour {
             {
                 //Debug.Log("Target in Range " + curTarget.name);
            
-                if (other.CompareTag("NPC") && !NPCisinRange)
+                if (other.CompareTag("NPC"))
                 {
+                    if(!NPCisinRange)
                     NPCisinRange = true;
                     InteractableNPC interactableNPC = curTarget.GetComponent<InteractableNPC>();
                     if (interactableNPC)

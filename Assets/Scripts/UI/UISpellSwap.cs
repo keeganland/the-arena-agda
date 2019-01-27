@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UISpellSwap : MonoBehaviour {
 
@@ -73,6 +74,10 @@ public class UISpellSwap : MonoBehaviour {
 
     private void Awake()
     {
+        List<GameObject> neverUnloadRootObjects = new List<GameObject>();
+        Scene neverUnload = SceneManager.GetSceneByName("NeverUnload");
+        neverUnload.GetRootGameObjects(neverUnloadRootObjects);
+
         // spell button objects
         BigSpellW.SetActive(true);
         BigSpellQ.SetActive(true);
@@ -82,6 +87,8 @@ public class UISpellSwap : MonoBehaviour {
         // enemy objects
         currentEnemy.SetActive(true);
         EnemyUI.SetActive(true);
+
+        BigSpellQ = GameObject.Find("BigSpellQ");
     }
 
     private void Start()

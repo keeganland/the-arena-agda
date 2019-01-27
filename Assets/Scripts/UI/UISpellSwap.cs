@@ -81,14 +81,21 @@ public class UISpellSwap : MonoBehaviour {
         // spell button objects
         BigSpellW.SetActive(true);
         BigSpellQ.SetActive(true);
-        SmallSpellQ.SetActive(true);
+        SmallSpellW.SetActive(true);
         SmallSpellQ.SetActive(true);
 
         // enemy objects
         currentEnemy.SetActive(true);
         EnemyUI.SetActive(true);
 
+        // find game objects
+        BigSpellW = GameObject.Find("BigSpellW");
         BigSpellQ = GameObject.Find("BigSpellQ");
+        SmallSpellW = GameObject.Find("SmallSpellW");
+        SmallSpellQ = GameObject.Find("SmallSpellQ");
+
+        currentEnemy = GameObject.Find("currentEnemy");
+        EnemyUI = GameObject.Find("EnemyUI");
     }
 
     private void Start()

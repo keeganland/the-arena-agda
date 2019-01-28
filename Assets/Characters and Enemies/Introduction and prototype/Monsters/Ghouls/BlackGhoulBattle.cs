@@ -694,7 +694,7 @@ public class BlackGhoulBattle : BasicEnemyBehaviour
 
     public override void OnTriggerStay(Collider other)
     {
-        throw new System.NotImplementedException();
+       // throw new System.NotImplementedException();
     }
 
     public override void OnTriggerExit(Collider other)

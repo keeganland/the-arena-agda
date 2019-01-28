@@ -191,7 +191,7 @@ public class TextBoxManager : MonoBehaviour
         }
         else
         {
-            textQueue.Enqueue("something has gone horribly wrong if you're seeeing this text in-game");
+            textQueue.Enqueue("Error: There is no text file! You should never see this message in actual gameplay.");
         }
     }
 

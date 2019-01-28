@@ -17,6 +17,7 @@ public abstract class InteractableNPC : MonoBehaviour
     public TextAsset theText;
     public bool IsEventAtEndOfText = false;
     public bool IsYesNoAtEndOfText = false;
+    public bool IsMultiCharDialog = false;
     private ActivateText activateText;
 
     #region Properties
@@ -84,6 +85,7 @@ public abstract class InteractableNPC : MonoBehaviour
 
         activateText.IsYesNoAtEndOfText = this.IsYesNoAtEndOfText; //noodly. please consider refactoring, but also - don't break things.
         activateText.IsEventAtEndOfText = this.IsEventAtEndOfText;
+        activateText.IsMultiCharDialog = this.IsMultiCharDialog;
         activateText.Activate();        
     }
 

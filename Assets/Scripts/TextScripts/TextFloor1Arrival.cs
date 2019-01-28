@@ -14,11 +14,6 @@ public class TextFloor1Arrival : InteractableNPC
     new void Start()
     {
         base.Start();
-
-        //if (SaveManager.EquipedItemsBoy.Count != 0)
-        //{
-        //    ThirdPerson = SaveManager.EquipedItemsBoy[0];
-        //}
     }
 
     public override void ResetCue()
@@ -26,22 +21,6 @@ public class TextFloor1Arrival : InteractableNPC
         throw new System.NotImplementedException();
     }
 
-    /*
-    public override void ResetText()
-    {
-        theTextManager = FindObjectOfType<TextBoxManager>();
-
-        theTextManager.eventAtEndofText = eventAtEndofText;
-
-        textWasManuallyActivated = false;
-
-        if (talkBubble != null)
-        {
-            talkBubble.SetActive(false);
-        }
-
-        TextBeginning = theText;
-    }*/
 
     public override void ChangeCue()
     {

@@ -101,6 +101,7 @@ public class TextBoxManager : MonoBehaviour
     public bool EventStart { get; set; } //No idea what this is but Alex calls it a lot
     public bool IsYesNoAtEndOfText { get; set; }
     public bool IsEventAtEndOfText { get; set; }
+    public bool IsMultiCharDialog { get; set; }
     #endregion
     #region Read-Only Properties
     public GameObject YesNoPrompt
@@ -126,8 +127,6 @@ public class TextBoxManager : MonoBehaviour
     }
     #endregion
     #endregion
-
-
 
     #region Singleton Stuff
     private static TextBoxManager textBoxManager;
@@ -181,6 +180,8 @@ public class TextBoxManager : MonoBehaviour
         textQueue = new Queue<string>();
 
         //Defaults
+        IsMultiCharDialog = false;
+
         if (textFile != null) //ensure that the text file actually exists
         {
             textLines = (textFile.text.Split('\n'));
@@ -194,7 +195,6 @@ public class TextBoxManager : MonoBehaviour
             textQueue.Enqueue("Error: There is no text file! You should never see this message in actual gameplay.");
         }
     }
-
     private void Start()
     {
         m_audioSource = GetComponent<AudioSource>();
@@ -244,7 +244,7 @@ public class TextBoxManager : MonoBehaviour
                 }
                 else
                 {
-					StartCoroutine(TextScroll(textQueue.Dequeue()));
+                    this.NextLine();
                 }
             }
 
@@ -255,6 +255,35 @@ public class TextBoxManager : MonoBehaviour
         }
     }
     #endregion
+
+    private void NextLine()
+    {
+        /* Assumes the following formatting:
+         * 
+         * */
+        if (IsMultiCharDialog)
+        {
+            string originalLine = textQueue.Dequeue();
+            string[] parsedLine = (originalLine.Split(':'));
+
+            if (npcNameTag != null)
+            {
+                npcNameTag.text = parsedLine[0];
+
+                //The nameplate background for the name text only shows up if it exists as a gameobject, obviously, but also only if the NPC name isn't a blank string
+                if (namePlate != null && npcNameTag.text != "")
+                {
+                    namePlate.SetActive(true);
+                }
+            }
+
+            StartCoroutine(TextScroll(parsedLine[1]));
+        }
+        else
+        { 
+            StartCoroutine(TextScroll(textQueue.Dequeue()));
+        }
+    }
 
     private IEnumerator TextScroll (string lineOfText)
     {
@@ -291,16 +320,6 @@ public class TextBoxManager : MonoBehaviour
             if (!textBalloon)
                 textBalloon = Instantiate(textBalloonPrefab, npcGameObject.transform.position + new Vector3(0, 0, 1.36f), Quaternion.Euler(90, 0, 0));
         }
-		if (npcNameTag != null)
-        {
-            npcNameTag.text = NpcName;
-
-            //The nameplate background for the name text only shows up if it exists as a gameobject, obviously, but also only if the NPC name isn't a blank string
-            if (namePlate != null && npcNameTag.text != "")
-            {
-                namePlate.SetActive(true);
-            }
-		}
         if (stopPlayerMovement) 
         {
             EventManager.TriggerEvent("StopMoving");
@@ -324,7 +343,8 @@ public class TextBoxManager : MonoBehaviour
             SpriteHolderGameObject.SetActive(false);
             SpriteHolder.sprite = null; 
         }
- 		StartCoroutine(TextScroll(textQueue.Dequeue()));
+
+        this.NextLine();
     }
     public void DisableTextUI()
     {
@@ -363,9 +383,6 @@ public class TextBoxManager : MonoBehaviour
     }
     public void ReloadScript(TextAsset theText)
     {
-        //IsYesNoAtEndOfText = false;
-        //IsEventAtEndOfText = false;
-
         if (theText != null)
         {
             textLines = new string[1];

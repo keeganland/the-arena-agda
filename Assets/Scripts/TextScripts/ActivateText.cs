@@ -19,8 +19,9 @@ public class ActivateText
     public TextAsset TextBeginning { get; set; }
     public bool IsEventAtEndOfText { get; set; }
     public bool IsYesNoAtEndOfText { get; set; }
+    public bool IsMultiCharDialog { get; set; }
     public string ActivatedByTag { get; set; }
-    public string ActivatedByName { get; set; }
+    public string ActivatedByName { get; set; }    
     #endregion
     #endregion
 
@@ -41,6 +42,7 @@ public class ActivateText
         TextBeginning = new TextAsset("default TextBeginning");
         IsEventAtEndOfText = false;
         IsYesNoAtEndOfText = false;
+        IsMultiCharDialog = false;
         ActivatedByTag = "default ActivatedByTag";
         ActivatedByName = "default ActivatedByName";
         #endregion 
@@ -49,6 +51,7 @@ public class ActivateText
     {
         TextBoxManager.Instance.IsEventAtEndOfText = this.IsEventAtEndOfText;
         TextBoxManager.Instance.IsYesNoAtEndOfText = this.IsYesNoAtEndOfText;
+        TextBoxManager.Instance.IsMultiCharDialog = this.IsMultiCharDialog;
         //if (HasDifferentDialogue) //Alex : I tried to do it so Every NPC has a different dialogue BUT we can find it with strings easily without mistakes ! It is supposed to work with EVERYONE ?
         //{
         //    if (saveManager.dialogueSaver.Contains(name + startLineSecondTime.ToString()))

@@ -511,4 +511,13 @@ public class InventoryManager : MonoBehaviour
         InventoryTabActive = false;
         m_audioSource.PlayOneShot(CloseBagSFX);
     }
+
+    public void InventoryFunction()
+    {
+        if (InventoryTabActive)
+        {
+            CloseInventory();
+        }
+        else { OpenInventory(); }
+    }
 }

@@ -25,12 +25,15 @@ public class TextBoxManager : MonoBehaviour
     private GameObject dialogCanvas;
     private GameObject textBox;
     private GameObject namePlate;
-    private GameObject interactivityCue;
+    private GameObject interactivityCue; // auto-property doesn't work for read-only
     private GameObject yesNoPrompt;
     private Text boxContent;
 	private Text npcNameTag;    
     private GameObject npcGameObject; //Alex : Get the NPC position to Spawn the "Text" Ballon.
     private GameObject textBalloon;
+
+
+
     #endregion
     #region Variables for managing the external .txt file containing the dialogue
     private TextAsset textFile;
@@ -217,7 +220,12 @@ public class TextBoxManager : MonoBehaviour
             {
                 if(textQueue.Count <= 0)
                 {
-                    if (IsYesNoAtEndOfText)
+                    if (IsEventAtEndOfText) //Events should take precedence over Yes/No dialog, hence this comes first.
+                    {
+                        EventStart = true;
+                        DisableTextUI();
+                    }
+                    else if (IsYesNoAtEndOfText)
                     {
                         //if (yesNoPrompt == null || yesNoPrompt.activeSelf == false) //This was calling a method that makes reference to the dialog prompt _when the dialog prompt does not exist_.
                         //When it _did_ exist, So wasteful!
@@ -228,11 +236,7 @@ public class TextBoxManager : MonoBehaviour
                         }
                         return;
                     }
-                    else if (IsEventAtEndOfText)
-                    {
-                        EventStart = true;
-                        DisableTextUI();
-                    }
+
                     else
                     {
                         DisableTextUI();
@@ -282,9 +286,11 @@ public class TextBoxManager : MonoBehaviour
     public void EnableTextUI()
     {
         textBox.SetActive(true);
-        if(!textBalloon)
-            textBalloon = Instantiate(textBalloonPrefab, npcGameObject.transform.position + new Vector3(0,0,1.36f), Quaternion.Euler(90, 0, 0));
-
+        if (npcGameObject)
+        {
+            if (!textBalloon)
+                textBalloon = Instantiate(textBalloonPrefab, npcGameObject.transform.position + new Vector3(0, 0, 1.36f), Quaternion.Euler(90, 0, 0));
+        }
 		if (npcNameTag != null)
         {
             npcNameTag.text = NpcName;
@@ -352,9 +358,14 @@ public class TextBoxManager : MonoBehaviour
         {
             EventManager.TriggerEvent("StartMoving");
         }
+
+        EventManager.TriggerEvent("resetNpcs");
     }
     public void ReloadScript(TextAsset theText)
     {
+        //IsYesNoAtEndOfText = false;
+        //IsEventAtEndOfText = false;
+
         if (theText != null)
         {
             textLines = new string[1];

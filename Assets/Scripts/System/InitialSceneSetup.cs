@@ -21,9 +21,9 @@ abstract public class InitialSceneSetup : MonoBehaviour {
 
 	public GameObject MainCamera;
 
-    private void Awake()
+    protected void Awake()
     {
-        saveManager = FindObjectOfType<SaveManager>();
+        saveManager = SaveManager.Instance;
         publicVariableHolderneverUnload = FindObjectOfType<PublicVariableHolderneverUnload>().GetComponent<PublicVariableHolderneverUnload>();
     }
     // Use this for initialization

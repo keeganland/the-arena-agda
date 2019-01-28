@@ -266,36 +266,37 @@ public class UISpellSwap : MonoBehaviour {
     public void BoySpellActive()
     {
         m_isBoy = true;
-        if(_BigSpellQ.IsActive())
+        if(_BigSpellQ)
             _BigSpellQ.sprite = _ShieldImage;
-        if (_BigSpellW.IsActive())
+        if (_BigSpellW)
             _BigSpellW.sprite = _StunImage;
-        if (_SmallSpellQ.IsActive())
+        if (_SmallSpellQ)
             _SmallSpellQ.sprite = _HealImage;
-        if (_SmallSpellW.IsActive())
+        if (_SmallSpellW)
             _SmallSpellW.sprite = _ExplosionImage;
 
-        if (_BigPicture.IsActive())
+        if (_BigPicture)
             _BigPicture.sprite = _BoySprite;
-        if (_SmallPicture.IsActive())
+        if (_SmallPicture)
             _SmallPicture.sprite = _GirlSprite;
     }
 
     public void GirlActive()
     {
         m_isBoy = false;
-        if (_BigSpellQ.IsActive())
+
+        if (_BigSpellQ)
             _BigSpellQ.sprite = _HealImage;
-        if (_BigSpellW.IsActive())
+        if (_BigSpellW)
             _BigSpellW.sprite = _ExplosionImage;
-        if (_SmallSpellQ.IsActive())
+        if (_SmallSpellQ)
             _SmallSpellQ.sprite = _ShieldImage;
-        if (_SmallSpellW.IsActive())
+        if (_SmallSpellW)
             _SmallSpellW.sprite = _StunImage;
 
-        if (_BigPicture.IsActive())
+        if (_BigPicture)
             _BigPicture.sprite = _GirlSprite;
-        if (_SmallPicture.IsActive())
+        if (_SmallPicture)
             _SmallPicture.sprite = _BoySprite;
      
     }

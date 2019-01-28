@@ -8,23 +8,48 @@ public class ColliderDarknessDamage : MonoBehaviour
     private float ActualTime;
     private int HealAmount = 20;
     private int DamageAmount = 10;
+    int i;
+    private GameObject ghoul;
 
     public Color _DamageColor;
     public Color _HealColor;
 
     private List<GameObject> inDarkness = new List<GameObject> { };
-
+    public GameObject Ghoul
+    {
+        set
+        {
+            ghoul = value;
+        }
+    }
 
     // Use this for initialization
     void Start()
     {
         ActualTime = 0.0F;
+        i = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        /*while (i < inDarkness.Count)
+        {
+            if(inDarkness[i].tag == "Player/Girl")
+            {
+                StartCoroutine(DamagePlayer(inDarkness[i]));
+            }
+            else if(inDarkness[i].tag == "Player/Boy")
+            {
+                StartCoroutine(DamagePlayer(inDarkness[i]));
+            }
+            else if(inDarkness[i] = ghoul)
+            {
+                StartCoroutine(HealGhoul(inDarkness[i]));
+            }
+            i++;
+        }
+        i = 0;*/
     }
 
     //Creating a list of the Gameobjects in the Darkness Collider
@@ -44,29 +69,29 @@ public class ColliderDarknessDamage : MonoBehaviour
     }
     
     //Healing the Ghoul
-    private IEnumerator HealGhoul()
+    private IEnumerator HealGhoul(GameObject other)
     {
-        MessageHandler msgHandler = this.GetComponent<MessageHandler>();
+        MessageHandler msgHandler = other.GetComponent<MessageHandler>();
         RecoverData rcvrData = new RecoverData();
         rcvrData.HP_up = HealAmount;
         if (msgHandler)
         {
-            msgHandler.GiveMessage(MessageTypes.HEALED, this.gameObject, rcvrData);
-            DisplayHealing(this.gameObject, _HealColor, HealAmount);
+            msgHandler.GiveMessage(MessageTypes.HEALED, other.gameObject, rcvrData);
+            DisplayHealing(other.gameObject, _HealColor, HealAmount);
         }
         yield return new WaitForSeconds(DarknessTimer);
     }
 
     //Damaging the Players
-    private IEnumerator DamagePlayer()
+    private IEnumerator DamagePlayer(GameObject other)
     {
-        MessageHandler msgHandler = this.GetComponent<MessageHandler>();
+        MessageHandler msgHandler = other.GetComponent<MessageHandler>();
         DamageData dmgData = new DamageData();
         dmgData.damage = DamageAmount;
         if (msgHandler)
         {
-            msgHandler.GiveMessage(MessageTypes.DAMAGED, this.gameObject, dmgData);
-            DisplayDamage(this.gameObject, _DamageColor, DamageAmount);
+            msgHandler.GiveMessage(MessageTypes.DAMAGED, other.gameObject, dmgData);
+            DisplayDamage(other.gameObject, _DamageColor, DamageAmount);
         }
 
         yield return new WaitForSeconds(DarknessTimer);

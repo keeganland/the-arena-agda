@@ -135,6 +135,8 @@ public class InteractiveObjectDungeonFloor1Boss : InteractiveObjectAbstract {
 
         Darknessgo = Instantiate(DarknessCollider, DarknessColliderSpawnPos.transform.position, Quaternion.identity);
 
+        GameObject.FindObjectOfType<ColliderDarknessDamage>().Ghoul = Enemiesgo[0];
+
         for (int i = 0; i < LightRoom.Length; i++)
         {
             LightInteractiveParticles[i].SetActive(true);

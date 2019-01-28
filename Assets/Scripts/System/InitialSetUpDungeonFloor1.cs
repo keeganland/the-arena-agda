@@ -119,8 +119,7 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
 
     IEnumerator ArrivalDialogue()
     {
-        //GetComponent<TextFloor1Arrival>().PlayerEnableText(true);
-        GetComponent<TextFloor1Arrival>().Activate(); //Why bother with PlayerEnableText? See if this is an acceptable substitute
+        GetComponent<TextFloor1Arrival>().StartInteraction();
         while (TextBoxManager.Instance.EventStart != true)
         {
             yield return null;

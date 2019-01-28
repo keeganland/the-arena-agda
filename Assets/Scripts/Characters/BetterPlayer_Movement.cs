@@ -372,6 +372,8 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
             boyPlayer.GetComponent<SpellCommand>().isSmallUI =false;
             girlPlayer.GetComponent<SpellCommand>().isSmallUI = false;
+
+            if(_UISpells)
             _UISpells.BoySpellActive();
             _GirlSelected.enabled = false;
             _GirlSelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
@@ -403,6 +405,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
             boyPlayer.GetComponent<SpellCommand>().isSmallUI = false;
             girlPlayer.GetComponent<SpellCommand>().isSmallUI = false;
 
+            if(_UISpells)
             _UISpells.GirlActive();
             _BoySelectedParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         }

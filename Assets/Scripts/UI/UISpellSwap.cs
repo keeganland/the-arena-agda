@@ -279,7 +279,7 @@ public class UISpellSwap : MonoBehaviour {
             _BigPicture.sprite = _BoySprite;
         if (_SmallPicture)
             _SmallPicture.sprite = _GirlSprite;
-    }
+    } 
 
     public void GirlActive()
     {

@@ -39,9 +39,12 @@ public class Bullet : MonoBehaviour {
         }
 
             //if ((other.gameObject.CompareTag("Player") && _SpellCaster.tag != "Player") || other.gameObject.CompareTag("Enemy"))
-            if ((other.gameObject.CompareTag("Player") && spellCasterTag != "Player") || other.gameObject.CompareTag("Enemy"))
-            {
-                MessageHandler msgHandler = other.GetComponent<MessageHandler>();
+            if (((other.gameObject.CompareTag("Player/Boy") ||other.gameObject.CompareTag("Player/Boy")) && (spellCasterTag != "Player/Boy") || (spellCasterTag != "Player/Girl")) 
+            || other.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("I am here after the sheep attack against : " + other.tag);
+
+            MessageHandler msgHandler = other.GetComponent<MessageHandler>();
                 if (!isHeal)
                 {
                     DamageData dmgData = new DamageData();
@@ -89,7 +92,7 @@ public class Bullet : MonoBehaviour {
                 DisplayDamage(collision.gameObject, _DamageColor, Damage);
             }
         }
-        else if (collision.gameObject.CompareTag("Player") && _SpellCaster.gameObject.tag == "Enemy")
+        else if ((collision.gameObject.CompareTag("Player/Boy") || collision.gameObject.CompareTag("Player/Girl")) && _SpellCaster.gameObject.tag == "Enemy")
         {
             DestroyObject();
             DoSpellFlare();

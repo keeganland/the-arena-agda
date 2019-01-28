@@ -44302,11 +44302,7 @@ MonoBehaviour:
   textBalloonPrefab: {fileID: 1173212495195382, guid: e5dba29c5add148da8c20370e2af5f05,
     type: 3}
   movementManager: {fileID: 0}
-  theNPCMovementManager: {fileID: 0}
   stopPlayerMovement: 1
-  stopNPCMovement: 0
-  eventAtEndofText: 0
-  eventStart: 0
   typeSpeed: 0
   SpriteHolder: {fileID: 0}
   SpriteHolderGameObject: {fileID: 0}

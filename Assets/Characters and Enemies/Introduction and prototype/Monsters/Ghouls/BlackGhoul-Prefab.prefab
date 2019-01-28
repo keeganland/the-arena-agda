@@ -926,7 +926,9 @@ MonoBehaviour:
   m_warningCastTimeBool: 0
   Aggro: 0
   StopAttacking: 0
-  _AttackPrefabs: []
+  _AttackPrefabs:
+  - {fileID: 1684246861521236, guid: 7048647a400fd5a4b96c48d9d4bea627, type: 3}
+  - {fileID: 1536508399150404, guid: 9f7fb4b2fbdfd4b41ad35e2f94af016d, type: 3}
   _AttackCD:
   - 0
   - 0

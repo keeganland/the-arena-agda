@@ -44302,11 +44302,7 @@ MonoBehaviour:
   textBalloonPrefab: {fileID: 1173212495195382, guid: e5dba29c5add148da8c20370e2af5f05,
     type: 3}
   movementManager: {fileID: 0}
-  theNPCMovementManager: {fileID: 0}
   stopPlayerMovement: 1
-  stopNPCMovement: 0
-  eventAtEndofText: 0
-  eventStart: 0
   typeSpeed: 0
   SpriteHolder: {fileID: 0}
   SpriteHolderGameObject: {fileID: 0}
@@ -88413,18 +88409,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 657219890}
-        m_MethodName: DisableTextBox
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 657219890}
-        m_MethodName: DisableCue
+        m_MethodName: PlayerAnswersNo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

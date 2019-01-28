@@ -442,7 +442,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                     NPCisinRange = true;
                     InteractableNPC interactableNPC = curTarget.GetComponent<InteractableNPC>();
                     if (interactableNPC)
-                        interactableNPC.PlayerClick(); //replacing PlayerEnableText from ActivateTextAtLine
+                        interactableNPC.StartInteraction(); //replacing PlayerEnableText from ActivateTextAtLine
                 }
 
                 if (ReviveStart == true)
@@ -483,7 +483,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
                     NPCisinRange = true;
                     InteractableNPC interactableNPC = curTarget.GetComponent<InteractableNPC>();
                     if (interactableNPC)
-                        interactableNPC.PlayerClick();
+                        interactableNPC.StartInteraction();
                 }
 
                 if (ReviveStart == true)

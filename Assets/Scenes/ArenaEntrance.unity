@@ -909,6 +909,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Merchant
   theText: {fileID: 0}
+  IsEventAtEndOfText: 0
+  IsYesNoAtEndOfText: 1
 --- !u!1 &206300840
 GameObject:
   m_ObjectHideFlags: 0
@@ -12301,8 +12303,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7ab64c9044647fb932e8506cfb80b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: 
+  npcName: Bertrand
   theText: {fileID: 4900000, guid: 916f20e7474db4ae3b1eb43e458a982f, type: 3}
+  IsEventAtEndOfText: 0
+  IsYesNoAtEndOfText: 1
   fightCanvas: {fileID: 393804666}
 --- !u!135 &620568729
 SphereCollider:

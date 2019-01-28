@@ -72,34 +72,66 @@ public class UISpellSwap : MonoBehaviour {
     private bool m_showGirlSpellsOnly;
     private bool m_spellHidden;
 
-    private void Awake()
-    {
-        List<GameObject> neverUnloadRootObjects = new List<GameObject>();
-        Scene neverUnload = SceneManager.GetSceneByName("NeverUnload");
-        neverUnload.GetRootGameObjects(neverUnloadRootObjects);
 
-        // spell button objects
-        BigSpellW.SetActive(true);
-        BigSpellQ.SetActive(true);
-        SmallSpellW.SetActive(true);
-        SmallSpellQ.SetActive(true);
+    // when this stuff gets enabled, no gameplay is allowed as of right now
+    //private void Awake()
+    //{
+    //    List<GameObject> neverUnloadRootObjects = new List<GameObject>();
+    //    Scene neverUnload = SceneManager.GetSceneByName("NeverUnload");
+    //    neverUnload.GetRootGameObjects(neverUnloadRootObjects);
 
-        // enemy objects
-        currentEnemy.SetActive(true);
-        EnemyUI.SetActive(true);
+    //    // spell button objects
+    //    BigSpellW.SetActive(true);
+    //    BigSpellQ.SetActive(true);
+    //    SmallSpellW.SetActive(true);
+    //    SmallSpellQ.SetActive(true);
 
-        // find game objects
-        BigSpellW = GameObject.Find("BigSpellW");
-        BigSpellQ = GameObject.Find("BigSpellQ");
-        SmallSpellW = GameObject.Find("SmallSpellW");
-        SmallSpellQ = GameObject.Find("SmallSpellQ");
+    //    // enemy objects
+    //    currentEnemy.SetActive(true);
+    //    EnemyUI.SetActive(true);
 
-        currentEnemy = GameObject.Find("currentEnemy");
-        EnemyUI = GameObject.Find("EnemyUI");
-    }
+    //    // find game objects
+    //    BigSpellW = GameObject.Find("BigSpellW");
+    //    BigSpellQ = GameObject.Find("BigSpellQ");
+    //    SmallSpellW = GameObject.Find("SmallSpellW");
+    //    SmallSpellQ = GameObject.Find("SmallSpellQ");
+
+    //    currentEnemy = GameObject.Find("currentEnemy");
+    //    EnemyUI = GameObject.Find("EnemyUI");
+    //}
 
     private void Start()
     {
+        //List<GameObject> neverUnloadRootObjects = new List<GameObject>();
+        //Scene neverUnload = SceneManager.GetSceneByName("NeverUnload");
+        //neverUnload.GetRootGameObjects(neverUnloadRootObjects);
+
+
+
+        //// enemy objects
+        //currentEnemy.SetActive(true);
+        //EnemyUI.SetActive(true);
+
+        //// find game objects
+        //BigSpellW = GameObject.Find("_PublicVariableHolder.BigSpellW");
+        //BigSpellQ = GameObject.Find("_PublicVariableHolder.BigSpellQ");
+        //SmallSpellW = GameObject.Find("_PublicVariableHolder.SmallSpellW");
+        //SmallSpellQ = GameObject.Find("_PublicVariableHolder.SmallSpellQ");
+
+
+        // spell button objects
+        //BigSpellW.SetActive(true);
+        //BigSpellQ.SetActive(true);
+        //SmallSpellW.SetActive(true);
+        //SmallSpellQ.SetActive(true);
+
+
+
+        //currentEnemy = GameObject.Find("currentEnemy");
+        //EnemyUI = GameObject.Find("EnemyUI");
+
+
+
         _BigTextHP = _PublicVariableHolder._BigTextHP;
         _SmallTextHP = _PublicVariableHolder._SmallTextHP;
 

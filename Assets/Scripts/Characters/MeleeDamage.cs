@@ -130,7 +130,6 @@ public class MeleeDamage : MonoBehaviour {
                     for (int i = 0; i < canvas.Length; i++)
                     {
                         if (canvas[i].GetComponentInChildren<DamageDisplayScript>())
-                            Debug.Log("here");
                         canvas[i].GetComponentInChildren<DamageDisplayScript>().GetDamageText(color, damage);
                     }
                 }
@@ -165,7 +164,6 @@ public class MeleeDamage : MonoBehaviour {
         }
         else
         {
-            Debug.Log("here" + gameObject.name);
             rotation = 1;
         }
 

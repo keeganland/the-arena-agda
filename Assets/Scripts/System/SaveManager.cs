@@ -79,7 +79,7 @@ public class SaveManager : MonoBehaviour
     private void Awake()
     {
         AvailableItems = new List<WeaponObject>(Resources.LoadAll<WeaponObject>("WeaponsObjects/WeaponObjectAssets/"));
-        Debug.Log(AvailableItems.Count + " Available Items");
-        Debug.Log(StoredItems.Count + " Stored Items");
+        //Debug.Log(AvailableItems.Count + " Available Items");
+        //Debug.Log(StoredItems.Count + " Stored Items");
     }
 }

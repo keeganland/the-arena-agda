@@ -5847,16 +5847,16 @@ MonoBehaviour:
   isBoss: 0
   totalHealth: 100
   currentHealth: 0
+  aggroBoy: 0
+  aggroGirl: 0
+  reviveCooldown: 0
+  gameObjectName: 
+  reviveCoroutine: 0
+  isTargeted: 0
+  sprite: {fileID: 0}
   enemy:
   - {fileID: 0}
-  _DeathSound: {fileID: 0}
-  AggroBoy: 0
-  AggroGirl: 0
-  _ReviveCD: 0
-  Sprite: {fileID: 109169976}
-  m_reviveCoroutine: 0
-  isTargeted: 0
-  GameObjectName: 
+  deathSound: {fileID: 0}
   deathTutorial: {fileID: 0}
 --- !u!114 &109169984
 MonoBehaviour:
@@ -6965,9 +6965,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   publicVariableHolderNeverUnload: {fileID: 0}
-  Girl: {fileID: 0}
-  Boy: {fileID: 0}
-  MainCamera: {fileID: 0}
   SpawnPosBoy: {fileID: 625082957}
   SpawnPosGirl: {fileID: 239072847}
   ScriptedPosBoyIntro: {fileID: 1259630129}
@@ -28799,24 +28796,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee870e03927b89449258ec420e3ac90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textBox: {fileID: 834513654}
-  namePlate: {fileID: 410026865}
-  interactivityCue: {fileID: 0}
-  dialogPrompt: {fileID: 0}
-  boxContent: {fileID: 188199588}
-  NPCNameTag: {fileID: 580368529}
-  TextBallon: {fileID: 1173212495195382, guid: e5dba29c5add148da8c20370e2af5f05, type: 3}
-  textFile: {fileID: 4900000, guid: 4b254365abf4b1e4ebd01c770c027b91, type: 3}
-  xmlDialogFile: {fileID: 0}
-  NPCName: 
-  textLines: []
-  useXml: 0
+  textBalloonPrefab: {fileID: 0}
   movementManager: {fileID: 0}
-  theNPCMovementManager: {fileID: 0}
   stopPlayerMovement: 1
-  stopNPCMovement: 0
-  eventAtEndofText: 0
-  eventStart: 0
   typeSpeed: 0
   SpriteHolder: {fileID: 283590050}
   SpriteHolderGameObject: {fileID: 2119263816}
@@ -35390,16 +35372,16 @@ MonoBehaviour:
   isBoss: 0
   totalHealth: 50
   currentHealth: 0
+  aggroBoy: 0
+  aggroGirl: 0
+  reviveCooldown: 0
+  gameObjectName: 
+  reviveCoroutine: 0
+  isTargeted: 0
+  sprite: {fileID: 0}
   enemy:
   - {fileID: 0}
-  _DeathSound: {fileID: 0}
-  AggroBoy: 0
-  AggroGirl: 0
-  _ReviveCD: 0
-  Sprite: {fileID: 1779326655}
-  m_reviveCoroutine: 0
-  isTargeted: 0
-  GameObjectName: The Door
+  deathSound: {fileID: 0}
   deathTutorial: {fileID: 0}
 --- !u!114 &937649409
 MonoBehaviour:
@@ -47481,8 +47463,8 @@ MonoBehaviour:
   MainCameraFieldOfViewMax: 12
   BoyNav: {fileID: 0}
   GirlNav: {fileID: 0}
-  Boy: {fileID: 0}
-  Girl: {fileID: 0}
+  boyPlayer: {fileID: 0}
+  girlPlayer: {fileID: 0}
   MainCamera: {fileID: 0}
 --- !u!114 &1311807284
 MonoBehaviour:
@@ -47496,31 +47478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d5c35c7f83394ca389f152b4e06bbcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useXml: 0
-  NPCName: Evgeny
+  npcName: 
   theText: {fileID: 4900000, guid: 12e0028fdc7aa4761a40f4410b27727d, type: 3}
-  theXml: {fileID: 0}
-  useSpeechBubble: 0
-  startLine: 0
-  startLineSecondTime: 0
-  endLine: 7
-  talkBubble: {fileID: 834513654}
-  requireButtonPress: 0
-  destroyWhenActivated: 0
-  destroyWhenFinished: 0
-  tagTriggersText: 0
-  activatedByTag: 
-  activatedByName: 
-  eventAtEndofText: 0
-  textWasManuallyActivated: 0
-  OnlyTriggerDialogueOnce: 0
-  HasDifferentDialogue: 0
-  InteractivityCue: {fileID: 0}
-  YesText: {fileID: 0}
-  NoText: {fileID: 0}
-  TextBeginning: {fileID: 0}
-  SpriteSheet: Package1
-  NameInSpriteSheet: Package1_0
   SecondSheet: Actor2 copy
   SecondSpriteName: Actor2 copy_3
   SecondCharacterName: Eva
@@ -65770,6 +65729,11 @@ PrefabInstance:
       propertyPath: publicVariableHolderArenaEntrance
       value: 
       objectReference: {fileID: 206583902}
+    - target: {fileID: 114377751617070010, guid: c50f48ea44e3b47d6b3217f58bf20af4,
+        type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 1779326655}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c50f48ea44e3b47d6b3217f58bf20af4, type: 3}
 --- !u!4 &1779326653 stripped
@@ -76510,7 +76474,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 026a2b7cc62044cf88ec134500dcd208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  publicVariableHolderArenaEntrance: {fileID: 206583902}
 --- !u!1 &2056450942
 GameObject:
   m_ObjectHideFlags: 0

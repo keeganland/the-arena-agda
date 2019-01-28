@@ -100,6 +100,8 @@ public class UISpellSwap : MonoBehaviour {
     //    EnemyUI = GameObject.Find("EnemyUI");
     //}
 
+
+        //TODO Alex changement for Keegan : change function from Start to Awake
     private void Awake()
     {
         List<GameObject> neverUnloadRootObjects = new List<GameObject>();
@@ -113,6 +115,7 @@ public class UISpellSwap : MonoBehaviour {
         //EnemyUI.SetActive(true);
 
         //// find game objects
+        ///TODO Alex changements for Keegan, I completed the Find() function.
         BigSpellW = GameObject.Find("PlayerUI/BigUI/BigSpellSlotW");
         BigSpellQ = GameObject.Find("PlayerUI/BigUI/BigSpellSlotQ");
         SmallSpellW = GameObject.Find("PlayerUI/SmallUI/SmallSpellSlotW");
@@ -272,8 +275,10 @@ public class UISpellSwap : MonoBehaviour {
         if (_SmallSpellW.IsActive())
             _SmallSpellW.sprite = _ExplosionImage;
 
-        _BigPicture.sprite = _BoySprite;
-        _SmallPicture.sprite = _GirlSprite;
+        if (_BigPicture.IsActive())
+            _BigPicture.sprite = _BoySprite;
+        if (_SmallPicture.IsActive())
+            _SmallPicture.sprite = _GirlSprite;
     }
 
     public void GirlActive()
@@ -288,8 +293,10 @@ public class UISpellSwap : MonoBehaviour {
         if (_SmallSpellW.IsActive())
             _SmallSpellW.sprite = _StunImage;
 
-        _BigPicture.sprite = _GirlSprite;
-        _SmallPicture.sprite = _BoySprite;
+        if (_BigPicture.IsActive())
+            _BigPicture.sprite = _GirlSprite;
+        if (_SmallPicture.IsActive())
+            _SmallPicture.sprite = _BoySprite;
      
     }
 

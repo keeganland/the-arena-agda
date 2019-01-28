@@ -77,12 +77,13 @@ public abstract class InteractableNPC : MonoBehaviour
         //    activateText.ResetText();
         //}
 
-        TextBoxManager.Instance.IsYesNoAtEndOfText = this.IsYesNoAtEndOfText;
 
         EventManager.StartListening("resetNpcs", resetNpcs);
         EventManager.StartListening("answersYes", yesAnswer);
         EventManager.StartListening("answersNo", noAnswer);
 
+        activateText.IsYesNoAtEndOfText = this.IsYesNoAtEndOfText; //noodly. please consider refactoring, but also - don't break things.
+        activateText.IsEventAtEndOfText = this.IsEventAtEndOfText;
         activateText.Activate();        
     }
 

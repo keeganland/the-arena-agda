@@ -28,12 +28,13 @@ public class ActivateText
                                            //man did i manage to confuse myself with the above variable's name!
     private bool destroyNextTimeTextboxCloses = false;
     private bool DialoguehasbeenTriggered = false; //2nd bool that helps that;
+
     public ActivateText(GameObject npcGameObject)
     {
         this.npcGameObject = npcGameObject;
 
         #region Default values for properties
-        NpcName = "default NpcName";
+        NpcName = "";
         TheText = new TextAsset("default TheText");
         YesText = new TextAsset("default YesText");
         NoText = new TextAsset("default NoText");
@@ -46,14 +47,20 @@ public class ActivateText
     }
     public void Activate()
     {
+        TextBoxManager.Instance.IsEventAtEndOfText = this.IsEventAtEndOfText;
+        TextBoxManager.Instance.IsYesNoAtEndOfText = this.IsYesNoAtEndOfText;
         //if (HasDifferentDialogue) //Alex : I tried to do it so Every NPC has a different dialogue BUT we can find it with strings easily without mistakes ! It is supposed to work with EVERYONE ?
         //{
         //    if (saveManager.dialogueSaver.Contains(name + startLineSecondTime.ToString()))
         //        startLine = startLineSecondTime;
         //}
-        TextBoxManager.Instance.LastTriggered = npcGameObject.name;
+        if (npcGameObject)
+        {
+            TextBoxManager.Instance.LastTriggered = npcGameObject.name;
+            TextBoxManager.Instance.NPCGameObject = this.npcGameObject;
+        }
         TextBoxManager.Instance.NpcName = NpcName;
-        TextBoxManager.Instance.NPCGameObject = this.npcGameObject;
+        
         //TextBoxManager.Instance.SetSprite(SpriteSheet, NameInSpriteSheet);
         TextBoxManager.Instance.ReloadScript(TheText);
         TextBoxManager.Instance.EnableTextUI();

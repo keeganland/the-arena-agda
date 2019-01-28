@@ -157,7 +157,7 @@ public class HealthController : MonoBehaviour
 
     private void Update()
     {
-        if (gameObject.tag == "Player")
+        if (gameObject.tag == "Player/Boy" || gameObject.tag == "Player/Girl")
         {
             if (invincibilityTimer >= 1f)
             {
@@ -185,7 +185,7 @@ public class HealthController : MonoBehaviour
             case MessageTypes.DAMAGED:
                 DamageData dmgData = msgData as DamageData;
 
-                if (gameObject.tag == "Player")
+                if (gameObject.tag == "Player/Boy" || gameObject.tag == "Player/Girl")
                 {
                     if (dmgData != null && !invincibility)
                     {
@@ -257,7 +257,7 @@ public class HealthController : MonoBehaviour
                 }
             }
 
-            if (this.gameObject.tag == "Player")
+            if (gameObject.tag == "Player/Boy" || gameObject.tag == "Player/Girl")
             {
                 DoDeath();
             }

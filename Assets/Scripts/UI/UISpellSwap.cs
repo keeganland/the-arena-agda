@@ -102,9 +102,9 @@ public class UISpellSwap : MonoBehaviour {
 
     private void Start()
     {
-        //List<GameObject> neverUnloadRootObjects = new List<GameObject>();
-        //Scene neverUnload = SceneManager.GetSceneByName("NeverUnload");
-        //neverUnload.GetRootGameObjects(neverUnloadRootObjects);
+        List<GameObject> neverUnloadRootObjects = new List<GameObject>();
+        Scene neverUnload = SceneManager.GetSceneByName("NeverUnload");
+        neverUnload.GetRootGameObjects(neverUnloadRootObjects);
 
 
 

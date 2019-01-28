@@ -100,7 +100,7 @@ public class UISpellSwap : MonoBehaviour {
     //    EnemyUI = GameObject.Find("EnemyUI");
     //}
 
-    private void Start()
+    private void Awake()
     {
         List<GameObject> neverUnloadRootObjects = new List<GameObject>();
         Scene neverUnload = SceneManager.GetSceneByName("NeverUnload");
@@ -113,10 +113,10 @@ public class UISpellSwap : MonoBehaviour {
         //EnemyUI.SetActive(true);
 
         //// find game objects
-        //BigSpellW = GameObject.Find("_PublicVariableHolder.BigSpellW");
-        //BigSpellQ = GameObject.Find("_PublicVariableHolder.BigSpellQ");
-        //SmallSpellW = GameObject.Find("_PublicVariableHolder.SmallSpellW");
-        //SmallSpellQ = GameObject.Find("_PublicVariableHolder.SmallSpellQ");
+        BigSpellW = GameObject.Find("PlayerUI/BigUI/BigSpellSlotW");
+        BigSpellQ = GameObject.Find("PlayerUI/BigUI/BigSpellSlotQ");
+        SmallSpellW = GameObject.Find("PlayerUI/SmallUI/SmallSpellSlotW");
+        SmallSpellQ = GameObject.Find("PlayerUI/SmallUI/SmallSpellSlotQ");
 
 
         // spell button objects
@@ -135,10 +135,12 @@ public class UISpellSwap : MonoBehaviour {
         _BigTextHP = _PublicVariableHolder._BigTextHP;
         _SmallTextHP = _PublicVariableHolder._SmallTextHP;
 
+        /*
         _BigSpellQ = _PublicVariableHolder._BigSpellQ;
         _BigSpellW = _PublicVariableHolder._BigSpellW;
         _SmallSpellQ = _PublicVariableHolder._SmallSpellQ;
         _SmallSpellW = _PublicVariableHolder._SmallSpellW;
+        */
 
         _HealImage = _PublicVariableHolder._HealImage;
         _ExplosionImage = _PublicVariableHolder._ExplosionImage;
@@ -261,10 +263,14 @@ public class UISpellSwap : MonoBehaviour {
     public void BoySpellActive()
     {
         m_isBoy = true;
-        _BigSpellQ.sprite = _ShieldImage;
-        _BigSpellW.sprite = _StunImage;
-        _SmallSpellQ.sprite = _HealImage;
-        _SmallSpellW.sprite = _ExplosionImage;
+        if(_BigSpellQ.IsActive())
+            _BigSpellQ.sprite = _ShieldImage;
+        if (_BigSpellW.IsActive())
+            _BigSpellW.sprite = _StunImage;
+        if (_SmallSpellQ.IsActive())
+            _SmallSpellQ.sprite = _HealImage;
+        if (_SmallSpellW.IsActive())
+            _SmallSpellW.sprite = _ExplosionImage;
 
         _BigPicture.sprite = _BoySprite;
         _SmallPicture.sprite = _GirlSprite;
@@ -273,10 +279,14 @@ public class UISpellSwap : MonoBehaviour {
     public void GirlActive()
     {
         m_isBoy = false;
-        _BigSpellQ.sprite = _HealImage;
-        _BigSpellW.sprite = _ExplosionImage;
-        _SmallSpellQ.sprite = _ShieldImage;
-        _SmallSpellW.sprite = _StunImage;
+        if (_BigSpellQ.IsActive())
+            _BigSpellQ.sprite = _HealImage;
+        if (_BigSpellW.IsActive())
+            _BigSpellW.sprite = _ExplosionImage;
+        if (_SmallSpellQ.IsActive())
+            _SmallSpellQ.sprite = _ShieldImage;
+        if (_SmallSpellW.IsActive())
+            _SmallSpellW.sprite = _StunImage;
 
         _BigPicture.sprite = _GirlSprite;
         _SmallPicture.sprite = _BoySprite;
@@ -462,6 +472,7 @@ public class UISpellSwap : MonoBehaviour {
 
     public void HiddeSpells()
     {
+        Debug.Log("I am trying to Hide!");
         BigSpellW.SetActive(false);
         BigSpellQ.SetActive(false);
         SmallSpellQ.SetActive(false);

@@ -11,6 +11,8 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
     private GameObject ReturnFromArenaGirlPos;
     private GameObject ReturnFromArenaBoyPos;
 
+    private ActivateText activateText;
+
     public int[] moneyGainedperFight;
 
     public Text moneyWon;
@@ -18,6 +20,11 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
 
     public AudioClip BackgroundMusic;
 
+    new void Awake()
+    {
+        base.Awake();
+        activateText = new ActivateText(null);
+    }
     new void Start()
     {
         base.Start();
@@ -70,11 +77,13 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
 
         //TODO keegan you removed all dialogue boxes so "MoneyWon" doesn't have a reference anymore
         InventoryManager.AddMoney(moneyGainedperFight[FindObjectOfType<SaveManager>().currentFight]);
-        moneyWon.text = "You won : $" + moneyGainedperFight[FindObjectOfType<SaveManager>().currentFight].ToString() + "!   Next fight unlocked";
-        moneyTextGameObject.SetActive(true);
+        TextAsset textAsset = new TextAsset("You won : $" + moneyGainedperFight[FindObjectOfType<SaveManager>().currentFight].ToString() + "!   Next fight unlocked");
+        activateText.TheText = textAsset;
+        activateText.Activate();
+        //moneyTextGameObject.SetActive(true);
 
-        yield return new WaitUntil(() => Input.anyKeyDown == true);
+        //yield return new WaitUntil(() => Input.anyKeyDown == true);
 
-        moneyTextGameObject.SetActive(false);
+        //moneyTextGameObject.SetActive(false);
     }
 }

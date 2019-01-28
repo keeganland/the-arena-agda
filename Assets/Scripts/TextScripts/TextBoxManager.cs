@@ -286,9 +286,11 @@ public class TextBoxManager : MonoBehaviour
     public void EnableTextUI()
     {
         textBox.SetActive(true);
-        if(!textBalloon)
-            textBalloon = Instantiate(textBalloonPrefab, npcGameObject.transform.position + new Vector3(0,0,1.36f), Quaternion.Euler(90, 0, 0));
-
+        if (npcGameObject)
+        {
+            if (!textBalloon)
+                textBalloon = Instantiate(textBalloonPrefab, npcGameObject.transform.position + new Vector3(0, 0, 1.36f), Quaternion.Euler(90, 0, 0));
+        }
 		if (npcNameTag != null)
         {
             npcNameTag.text = NpcName;

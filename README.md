@@ -6,6 +6,10 @@ Special thanks to [Gowtham Mohan](https://bitbucket.org/Gowtham100/) for helping
 
 ![](ImagesGitReadme/TheArena.PNG)
 
+![](ImagesGitReadme/TheArena1.PNG)
+
+![](ImagesGitReadme/TheArena2.PNG)
+
 ## Technical Q&A
 
 ### Q: Running _The Arena_ within Unity works fine; why I am getting an error when I try to build the project?

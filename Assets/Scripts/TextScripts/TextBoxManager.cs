@@ -28,7 +28,8 @@ public class TextBoxManager : MonoBehaviour
     private GameObject interactivityCue; // auto-property doesn't work for read-only
     private GameObject yesNoPrompt;
     private Text boxContent;
-	private Text npcNameTag;    
+	private Text npcNameTag;
+    private string npcName;
     private GameObject npcGameObject; //Alex : Get the NPC position to Spawn the "Text" Ballon.
     private GameObject textBalloon;
 
@@ -96,7 +97,23 @@ public class TextBoxManager : MonoBehaviour
             textFile = value;
         }
     }
-    public string NpcName { get; set; }
+    public string NpcName
+    {
+        get
+        {
+            return npcName;
+        }
+
+        set //okay NpcName vs npcNameTag needs refactoring, because I didn't even notice there were two values containing the same string. Hope this quick fix works
+        {
+            npcName = value;
+
+            if (npcNameTag)
+            {
+                npcNameTag.text = value;
+            }
+        }
+    }
     public string LastTriggered { get; set; }
     public bool EventStart { get; set; } //No idea what this is but Alex calls it a lot
     public bool IsYesNoAtEndOfText { get; set; }
@@ -180,6 +197,7 @@ public class TextBoxManager : MonoBehaviour
         textQueue = new Queue<string>();
 
         //Defaults
+        namePlate.SetActive(false);
         IsMultiCharDialog = false;
 
         if (textFile != null) //ensure that the text file actually exists
@@ -258,9 +276,6 @@ public class TextBoxManager : MonoBehaviour
 
     private void NextLine()
     {
-        /* Assumes the following formatting:
-         * 
-         * */
         if (IsMultiCharDialog)
         {
             string originalLine = textQueue.Dequeue();
@@ -315,6 +330,15 @@ public class TextBoxManager : MonoBehaviour
     public void EnableTextUI()
     {
         textBox.SetActive(true);
+        if (namePlate)
+        {
+            if (npcNameTag && npcNameTag.text != "")
+            {
+                namePlate.SetActive(true);
+            }
+        }
+
+
         if (npcGameObject)
         {
             if (!textBalloon)

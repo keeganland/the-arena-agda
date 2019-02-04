@@ -108973,6 +108973,26 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114629390197400268, guid: 200445d4baa23eb4596f0cb70e7ef39f,
+        type: 3}
+      propertyPath: m_Text
+      value: 'DAMAGE : 10'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114895628233438328, guid: 200445d4baa23eb4596f0cb70e7ef39f,
+        type: 3}
+      propertyPath: m_Text
+      value: 'DAMAGE : 50'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114711800408203490, guid: 200445d4baa23eb4596f0cb70e7ef39f,
+        type: 3}
+      propertyPath: m_Text
+      value: 'DAMAGE : 10'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656927833268568, guid: 200445d4baa23eb4596f0cb70e7ef39f,
+        type: 3}
+      propertyPath: m_Text
+      value: 'DAMAGE : 50'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 200445d4baa23eb4596f0cb70e7ef39f, type: 3}
 --- !u!1 &1810121427

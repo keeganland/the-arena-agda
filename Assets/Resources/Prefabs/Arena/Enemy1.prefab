@@ -5044,7 +5044,7 @@ ParticleSystem:
 --- !u!199 &199030192040766228
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -5207,7 +5207,7 @@ MonoBehaviour:
   aggroBoy: 0
   aggroGirl: 0
   reviveCooldown: 0
-  gameObjectName: 
+  gameObjectName: Super Badass Ultimate Sheep
   reviveCoroutine: 0
   isTargeted: 0
   sprite: {fileID: 1352543117010796}

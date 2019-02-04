@@ -124,7 +124,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Start() //Alex : I don't understand the "Init" part, so I put that in Awake. It needs to be run before everything else.
     {
-        LoadWeaponsSave();
+        //LoadWeaponsSave();
 
         if (!Boy)
             Boy = GameObject.Find("Boy");

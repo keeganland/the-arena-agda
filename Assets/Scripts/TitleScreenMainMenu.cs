@@ -7,14 +7,17 @@ public class TitleScreenMainMenu : MonoBehaviour {
 
     public GameObject tutorialScreen;
 
-    public AudioClip MouseConfirm;
-    public float ScaleFactor;
+    [SerializeField] private AudioClip MouseConfirm;
+    [SerializeField] private float ScaleFactor;
 
     private AudioSource m_audioSource;
 
     private void Awake()
     {
         EventManager.TriggerEvent("HideUI");
+        if (this.gameObject.name != "Pause Canvas")
+            EventManager.TriggerEvent("HiddeUIButtons");
+        MouseConfirm = Resources.Load("SFX/ui_menu_button_confirm_15") as AudioClip;
         m_audioSource = GetComponent<AudioSource>();
         SoundManager.onSoundChangedCallback += UpdateSound;
     }
@@ -26,6 +29,8 @@ public class TitleScreenMainMenu : MonoBehaviour {
             if (tutorialScreen.activeSelf == false)
                 EventManager.TriggerEvent("ShowUI");
         }
+
+        SoundManager.onSoundChangedCallback -= UpdateSound;
     }
 
     public void PlayGame()

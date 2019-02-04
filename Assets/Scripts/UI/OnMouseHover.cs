@@ -8,13 +8,14 @@ public class OnMouseHover : MonoBehaviour {
     Image image;
     AudioSource m_audioSource;
 
-    public AudioClip MouseHover;
+    [SerializeField] private AudioClip MouseHover;
 
     public float ScaleFactor;
 	// Use this for initialization
 	void Start () 
     {
         image = GetComponent<Image>();
+        MouseHover = Resources.Load("SFX/ui_button_simple_click_01") as AudioClip;
         m_audioSource = GetComponent<AudioSource>();
         SoundManager.onSoundChangedCallback += UpdateSound;
     }

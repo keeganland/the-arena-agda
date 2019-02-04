@@ -52,6 +52,7 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
         GirlNav.enabled = true;
 
         EventManager.TriggerEvent("NotInCombat");
+        EventManager.TriggerEvent("ShowUIButtons");
         girlPlayer.GetComponent<BoxCollider>().enabled = false;
 
         MainCamera = Camera.main.gameObject;

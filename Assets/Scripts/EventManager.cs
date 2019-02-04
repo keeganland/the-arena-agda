@@ -50,7 +50,10 @@
  * ActivateTextAtLine.cs
  *  "answersYes"
  *  "answersNo"
- *
+ *  
+ * UIButtons.cs
+ *  "HiddeUIButtons"
+ *  "ShowUIButtons"
  */
 
 

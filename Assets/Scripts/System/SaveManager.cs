@@ -44,12 +44,11 @@ public class SaveManager : MonoBehaviour
 
     private WeaponObject[] availableObjects;
 
-    public static List<WeaponObject> AvailableItems = new List<WeaponObject>();
-    public static List<WeaponObject> StoredItems = new List<WeaponObject>();
-    public static List<WeaponObject> EquipedItemsBoy = new List<WeaponObject>();
-    public static List<WeaponObject> EquipedItemsGirl = new List<WeaponObject>();
-
-    public static int CurrentMoney;
+    public List<WeaponObject> AvailableItems { get; set; }
+    public List<WeaponObject> StoredItems { get; set; }
+    public List<WeaponObject> EquipedItemsBoy { get; set; }
+    public List<WeaponObject> EquipedItemsGirl { get; set; }
+    public int CurrentMoney { get; set; }
 
     public static SaveManager Instance
     {
@@ -61,7 +60,7 @@ public class SaveManager : MonoBehaviour
 
                 if (!saveManager)
                 {
-                    Debug.LogError("There needs to be one active EventManger script on a GameObject in your scene.");
+                    Debug.LogError("There needs to be one active SaveManger script on a GameObject in your scene.");
                 }
                 else
                 {
@@ -73,7 +72,10 @@ public class SaveManager : MonoBehaviour
     }
     private void Init()
     {
-        
+        AvailableItems = new List<WeaponObject>();
+        StoredItems = new List<WeaponObject>();
+        EquipedItemsBoy = new List<WeaponObject>();
+        EquipedItemsGirl = new List<WeaponObject>();
     }
 
     private void Awake()

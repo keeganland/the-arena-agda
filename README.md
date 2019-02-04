@@ -8,7 +8,12 @@ Special thanks to [Gowtham Mohan](https://bitbucket.org/Gowtham100/) for helping
 
 ## About _The Arena_
 
-_The Arena_ plays like a Real-Time Strategy/RPG hybrid, along the lines of _Warcraft 3_ or contemporary MOBAs like _League of Legends_. Part of the inspiration comes from games like the _The Legend of Zelda: Four Swords_ sub-series, which involve multiple characters co-operating to fight boss monsters.
+_The Arena_ plays like a Real-Time Strategy/RPG hybrid. The player controls two characters at once in real-time battles. The player needs to clear all battles in order to advance through the story/levels. 
+
+The player has access to four different skills and an auto-attack. The good use of those skills is necessary to successfully complete puzzles and battles. The victory condition is to clear all battles and arrive at the end of the first floor. The failure condition is when both characters die at once. 
+
+We currently have created a series of 3 battles in an arena and a dungeon floor. The arena itself contains a succession of tutorial battles where the player will progressively learn the core mechanics. The outside area of the arena is where the player learns how to interact with the world/NPCs. After completing the arena battles, the characters move on to a dungeon where they will be able to explore battle.
+
 
 ![](ImagesGitReadme/TheArena.PNG)
 

@@ -911,6 +911,8 @@ MonoBehaviour:
   theText: {fileID: 0}
   IsEventAtEndOfText: 0
   IsYesNoAtEndOfText: 1
+  IsMultiCharDialog: 0
+  IsShorterSecondDialog: 0
 --- !u!1 &206300840
 GameObject:
   m_ObjectHideFlags: 0
@@ -12307,6 +12309,8 @@ MonoBehaviour:
   theText: {fileID: 4900000, guid: 916f20e7474db4ae3b1eb43e458a982f, type: 3}
   IsEventAtEndOfText: 0
   IsYesNoAtEndOfText: 1
+  IsMultiCharDialog: 0
+  IsShorterSecondDialog: 1
   fightCanvas: {fileID: 393804666}
 --- !u!135 &620568729
 SphereCollider:

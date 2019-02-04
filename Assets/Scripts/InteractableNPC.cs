@@ -18,7 +18,11 @@ public abstract class InteractableNPC : MonoBehaviour
     public bool IsEventAtEndOfText = false;
     public bool IsYesNoAtEndOfText = false;
     public bool IsMultiCharDialog = false;
+    public bool IsShorterSecondDialog = false;
     private ActivateText activateText;
+
+    private TextAsset secondText;
+    private bool interactedBefore;
 
     #region Properties
     public TextAsset TheText
@@ -40,6 +44,7 @@ public abstract class InteractableNPC : MonoBehaviour
 
     private void Awake()
     {
+        interactedBefore = false;
         activateText = new ActivateText(gameObject);
         resetNpcs = this.ResetNpcs;
         yesAnswer = this.YesButtonEvent;
@@ -78,7 +83,6 @@ public abstract class InteractableNPC : MonoBehaviour
         //    activateText.ResetText();
         //}
 
-
         EventManager.StartListening("resetNpcs", resetNpcs);
         EventManager.StartListening("answersYes", yesAnswer);
         EventManager.StartListening("answersNo", noAnswer);
@@ -86,7 +90,14 @@ public abstract class InteractableNPC : MonoBehaviour
         activateText.IsYesNoAtEndOfText = this.IsYesNoAtEndOfText; //noodly. please consider refactoring, but also - don't break things.
         activateText.IsEventAtEndOfText = this.IsEventAtEndOfText;
         activateText.IsMultiCharDialog = this.IsMultiCharDialog;
-        activateText.Activate();        
+        activateText.IsRepeatingLastLine = interactedBefore && IsShorterSecondDialog;
+        activateText.Activate();
+
+        if (!interactedBefore)
+        {
+            interactedBefore = true;
+        }
+
     }
 
     abstract public void ChangeText(TextAsset NewTextYes, TextAsset NewTextNo);
@@ -113,4 +124,6 @@ public abstract class InteractableNPC : MonoBehaviour
         TextBoxManager.Instance.DisableTextUI();
         TextBoxManager.Instance.ReloadScript(theText);
     }
+
+
 }

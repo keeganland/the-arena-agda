@@ -20,13 +20,14 @@ public class ActivateText
     public bool IsEventAtEndOfText { get; set; }
     public bool IsYesNoAtEndOfText { get; set; }
     public bool IsMultiCharDialog { get; set; }
+    public bool IsRepeatingLastLine { get; set; }
     public string ActivatedByTag { get; set; }
-    public string ActivatedByName { get; set; }    
+    public string ActivatedByName { get; set; }
     #endregion
     #endregion
 
     public bool textWasManuallyActivated; // If the text box has been activated, player should scroll through it before they get to end.
-                                           //man did i manage to confuse myself with the above variable's name!
+                                          //man did i manage to confuse myself with the above variable's name!
     private bool destroyNextTimeTextboxCloses = false;
     private bool DialoguehasbeenTriggered = false; //2nd bool that helps that;
 
@@ -57,15 +58,23 @@ public class ActivateText
         //    if (saveManager.dialogueSaver.Contains(name + startLineSecondTime.ToString()))
         //        startLine = startLineSecondTime;
         //}
+
         if (npcGameObject)
         {
             TextBoxManager.Instance.LastTriggered = npcGameObject.name;
             TextBoxManager.Instance.NPCGameObject = this.npcGameObject;
         }
         TextBoxManager.Instance.NpcName = NpcName;
-        
+
         //TextBoxManager.Instance.SetSprite(SpriteSheet, NameInSpriteSheet);
-        TextBoxManager.Instance.ReloadScript(TheText);
+        if (IsRepeatingLastLine)
+        {
+            TextBoxManager.Instance.ReloadScript(this.LastLineOfDialogue()); // don't like this, but it should work.
+        }
+        else
+        {
+            TextBoxManager.Instance.ReloadScript(TheText);
+        }
         TextBoxManager.Instance.EnableTextUI();
     }
     private void SaveDialogue()
@@ -85,5 +94,23 @@ public class ActivateText
         Activate(); //PlayerEnableText(false);
         TextBoxManager.Instance.IsEventAtEndOfText = false; //SetEventAtEndofText(false);
         TextBoxManager.Instance.YesNoPrompt.SetActive(false);
+    }
+
+    public TextAsset LastLineOfDialogue()
+    {
+        //Redundant!!!! that's major codesmell, but i just want it to work....
+
+        if (TheText != null)
+        {
+            string[] textLines = new string[1];
+            textLines = (TheText.text.Split('\n'));
+
+            return new TextAsset(textLines[textLines.Length - 1]);
+        }
+
+        else
+        {
+            return new TextAsset("Error: No text file associated with this NPC when LastLineOfDialogue was called!");
+        }
     }
 }

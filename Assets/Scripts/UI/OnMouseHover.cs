@@ -10,7 +10,7 @@ public class OnMouseHover : MonoBehaviour {
 
     [SerializeField] private AudioClip MouseHover;
 
-    public float ScaleFactor;
+    public float ScaleFactor = 0.05f;
 	// Use this for initialization
 	void Start () 
     {
@@ -33,6 +33,7 @@ public class OnMouseHover : MonoBehaviour {
 
     void UpdateSound()
     {
+        if(m_audioSource)
        m_audioSource.volume = (SoundManager.SFXVolume * ScaleFactor) / 100;
     }
 }

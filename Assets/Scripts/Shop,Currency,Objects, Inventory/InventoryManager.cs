@@ -74,6 +74,8 @@ public class InventoryManager : MonoBehaviour
     public AudioClip OpenBagSFX;
     public AudioClip CloseBagSFX;
 
+    private static GameObject inventoryIcon;
+
     /*Alex : What CURRENTLY DOESN'T WORK : 
      * 
      *  we only have an "EquipedItems" array for the girl AND the boy, which means that only one HELMET, CHEST, PASSIVE, etc... WeaponObject can be equiped for both. 
@@ -147,6 +149,7 @@ public class InventoryManager : MonoBehaviour
             slots.ClearSlot();
         }
 
+        inventoryIcon = GameObject.Find("/PlayerUIOutsideCombats/Buttons/Inventory");
         InventoryTab.SetActive(false);
 
         //Get all items, equiped items, and available items from SaveManager? 
@@ -528,5 +531,15 @@ public class InventoryManager : MonoBehaviour
             CloseInventory();
         }
         else { OpenInventory(); }
+    }
+
+    public static void HiddeInventoryIcon()
+    {
+        inventoryIcon.SetActive(false);
+    }
+
+    public static void ShowInventoryIcon()
+    {
+        inventoryIcon.SetActive(true);
     }
 }

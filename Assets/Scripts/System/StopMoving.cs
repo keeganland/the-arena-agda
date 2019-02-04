@@ -111,10 +111,12 @@ public class StopMoving : MonoBehaviour {
         this.GetComponent<BetterPlayer_Movement>().IsCombat = false;
         this.GetComponentInChildren<RangeChecker>().ResetList();
         this.GetComponent<BetterPlayer_Movement>().CancelParticles();
+        InventoryManager.ShowInventoryIcon();
     }
     void InCombat()
     {
         this.GetComponent<BetterPlayer_Movement>().IsCombat = true;
+        InventoryManager.HiddeInventoryIcon();
     }
 
     void GirlInCombat()

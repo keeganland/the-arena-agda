@@ -23,9 +23,9 @@ public class InventoryUI : MonoBehaviour {
         }
 
         //Debug.Log("UPDATING UI");
-        for (int i = 0; i < SaveManager.StoredItems.Count; i++)
+        for (int i = 0; i < SaveManager.Instance.StoredItems.Count; i++)
         {
-            if (!SaveManager.EquipedItemsBoy.Contains(SaveManager.StoredItems[i]) && !SaveManager.EquipedItemsGirl.Contains(SaveManager.StoredItems[i]))
+            if (!SaveManager.Instance.EquipedItemsBoy.Contains(SaveManager.Instance.StoredItems[i]) && !SaveManager.Instance.EquipedItemsGirl.Contains(SaveManager.Instance.StoredItems[i]))
             {
                 int b = 1;
                 //Debug.Log(slots.Length + " how many slots?");
@@ -34,7 +34,7 @@ public class InventoryUI : MonoBehaviour {
                     //Debug.Log("Slot number " + a + " is empty");
                     if (slots[a].isEmpty == true && b ==1)
                     {
-                        slots[a].AddItem(SaveManager.StoredItems[i]);
+                        slots[a].AddItem(SaveManager.Instance.StoredItems[i]);
                         b--;
                     }
                 }

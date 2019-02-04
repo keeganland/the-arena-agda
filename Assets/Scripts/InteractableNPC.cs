@@ -65,6 +65,7 @@ public abstract class InteractableNPC : MonoBehaviour
         }
         activateText.NpcName = npcName;
 
+        SaveManager.Instance.NpcsInteractedWith.TryGetValue(npcName, out interactedBefore);
     }
 
     /* Based on the "PlayerEnableText" method I'm getting rid of from ActivateTextAtLine
@@ -96,6 +97,7 @@ public abstract class InteractableNPC : MonoBehaviour
         if (!interactedBefore)
         {
             interactedBefore = true;
+            SaveManager.Instance.NpcsInteractedWith.Add(npcName, true);
         }
 
     }

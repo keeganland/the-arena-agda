@@ -20,7 +20,7 @@ public class WeaponShopButton : MonoBehaviour {
 
     public void OnEnable()
     {
-        currentMoney.text = "$" + SaveManager.CurrentMoney.ToString();
+        currentMoney.text = "$" + SaveManager.Instance.CurrentMoney.ToString();
     }
 
     public void AquireWeapon()

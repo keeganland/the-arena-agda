@@ -114,6 +114,14 @@ public class InventoryManager : MonoBehaviour
         inventoryUI = GetComponent<InventoryUI>();
     }
 
+    private void Awake()
+    {
+        if (this != InventoryManager.Instance)
+        {
+            Debug.LogWarning("There should not be more than one InventoryManager!");
+        }
+    }
+
     private void Start() //Alex : I don't understand the "Init" part, so I put that in Awake. It needs to be run before everything else.
     {
         LoadWeaponsSave();
@@ -158,23 +166,24 @@ public class InventoryManager : MonoBehaviour
     {
         WeaponObject item;
         //string itemKey;
-        AvailableItems.TryGetValue(itemName,out item);
+        bool itemGetSuccess = AvailableItems.TryGetValue(itemName,out item);
+        Debug.Log("Item get success: " + itemGetSuccess);
 
         if (item.weaponName == itemName && !StoredItems.ContainsValue(item) && item.cost <= CurrentMoney)
-         {
-                //Debug.Log("You Bought The Item");
-                StoredItems.Add(item.weaponName, item);
-                SaveManager.StoredItems.Add(item);
-                SubstractMoney(item.cost);
-         }
-       else if (item.weaponName == itemName && item.cost <= CurrentMoney)
-         {
-                return; //Do Item +1, for exemple : Flower in current inventory = 1, then we'll have 2 flowers.
-         }
-       else if (item.weaponName == itemName && item.cost > CurrentMoney)
-         {
-                Debug.Log("You do not have enough money");
-         }
+        {
+            //Debug.Log("You Bought The Item");
+            StoredItems.Add(item.weaponName, item);
+            SaveManager.Instance.StoredItems.Add(item);
+            SubstractMoney(item.cost);
+        }
+        else if (item.weaponName == itemName && item.cost <= CurrentMoney)
+        {
+            return; //Do Item +1, for exemple : Flower in current inventory = 1, then we'll have 2 flowers.
+        }
+        else if (item.weaponName == itemName && item.cost > CurrentMoney)
+        {
+            Debug.Log("You do not have enough money");
+        }
         else return;
 
         if (onItemChangedCallback != null)
@@ -190,7 +199,7 @@ public class InventoryManager : MonoBehaviour
             WeaponObject item;
             StoredItems.TryGetValue(itemName, out item);
             StoredItems.Remove(itemName); //Remove item or decrease item count (-1).
-            SaveManager.StoredItems.Remove(item);
+            SaveManager.Instance.StoredItems.Remove(item);
 
             if (onItemChangedCallback != null)
             {
@@ -226,13 +235,13 @@ public class InventoryManager : MonoBehaviour
                     {
                         EquipedItemsBoy.Remove(item.weaponName);
                         EquipedItemsBoy.Add(weaponToEquip.weaponName, weaponToEquip);
-                        SaveManager.EquipedItemsBoy.Add(weaponToEquip);
-                        SaveManager.EquipedItemsBoy.Remove(item);
+                        SaveManager.Instance.EquipedItemsBoy.Add(weaponToEquip);
+                        SaveManager.Instance.EquipedItemsBoy.Remove(item);
                     }
                     else
                     {
                         EquipedItemsBoy.Add(weaponToEquip.weaponName, weaponToEquip);
-                        SaveManager.EquipedItemsBoy.Add(weaponToEquip);
+                        SaveManager.Instance.EquipedItemsBoy.Add(weaponToEquip);
                         //Debug.Log("You Equiped The Item for the boy");
                     }
                 } 
@@ -240,7 +249,7 @@ public class InventoryManager : MonoBehaviour
             else
             {
                 EquipedItemsBoy.Add(weaponToEquip.weaponName, weaponToEquip);
-                SaveManager.EquipedItemsBoy.Add(weaponToEquip);
+                SaveManager.Instance.EquipedItemsBoy.Add(weaponToEquip);
                 //Debug.Log("You Equiped The Item for the boy");
             }
             BoyItemChanged = true;
@@ -262,13 +271,13 @@ public class InventoryManager : MonoBehaviour
                     {
                         EquipedItemsGirl.Remove(item.weaponName);
                         EquipedItemsGirl.Add(weaponToEquip.weaponName, weaponToEquip);
-                        SaveManager.EquipedItemsGirl.Add(weaponToEquip);
-                        SaveManager.EquipedItemsGirl.Remove(item);
+                        SaveManager.Instance.EquipedItemsGirl.Add(weaponToEquip);
+                        SaveManager.Instance.EquipedItemsGirl.Remove(item);
                     }
                     else
                     {
                         EquipedItemsGirl.Add(weaponToEquip.weaponName, weaponToEquip);
-                        SaveManager.EquipedItemsGirl.Add(weaponToEquip);
+                        SaveManager.Instance.EquipedItemsGirl.Add(weaponToEquip);
                         //Debug.Log("You Equiped The Item for the boy");
                     }
                 }
@@ -277,7 +286,7 @@ public class InventoryManager : MonoBehaviour
             else
             {
                 EquipedItemsGirl.Add(weaponToEquip.weaponName, weaponToEquip);
-                SaveManager.EquipedItemsGirl.Add(weaponToEquip);
+                SaveManager.Instance.EquipedItemsGirl.Add(weaponToEquip);
                 //Debug.Log("You Equiped The Item for the boy");
             }
             GirlItemChanged = true;
@@ -296,7 +305,7 @@ public class InventoryManager : MonoBehaviour
 
             //Debug.Log(EquipedItemsBoy.Count + " Equiped Count");
             EquipedItemsBoy.Remove(weaponToRemove.weaponName);
-            SaveManager.EquipedItemsBoy.Remove(weaponToRemove);
+            SaveManager.Instance.EquipedItemsBoy.Remove(weaponToRemove);
 
             //Debug.Log(EquipedItemsBoy.Count + " Equiped Count 2");
 
@@ -312,7 +321,7 @@ public class InventoryManager : MonoBehaviour
 
             //Debug.Log(EquipedItemsGirl.Count + " Equiped Count");
             EquipedItemsGirl.Remove(weaponToRemove.weaponName);
-            SaveManager.EquipedItemsGirl.Remove(weaponToRemove);
+            SaveManager.Instance.EquipedItemsGirl.Remove(weaponToRemove);
 
             //Debug.Log(EquipedItemsGirl.Count + " Equiped Count 2");
 
@@ -437,47 +446,47 @@ public class InventoryManager : MonoBehaviour
 
     private static void LoadWeaponsSave()
     {
-        if (SaveManager.AvailableItems.Count != 0)
+        if (SaveManager.Instance.AvailableItems.Count != 0)
         {
-            foreach (WeaponObject item in SaveManager.AvailableItems)
+            foreach (WeaponObject item in SaveManager.Instance.AvailableItems)
             {
                 AvailableItems.Add(item.weaponName, item);
             }
         }
-        if (SaveManager.StoredItems.Count != 0)
+        if (SaveManager.Instance.StoredItems.Count != 0)
         {
-            foreach (WeaponObject item in SaveManager.StoredItems)
+            foreach (WeaponObject item in SaveManager.Instance.StoredItems)
             {
                 StoredItems.Add(item.weaponName, item);
             }
         }
-        if (SaveManager.EquipedItemsBoy.Count != 0)
+        if (SaveManager.Instance.EquipedItemsBoy.Count != 0)
         {
-            foreach (WeaponObject item in SaveManager.EquipedItemsBoy)
+            foreach (WeaponObject item in SaveManager.Instance.EquipedItemsBoy)
             {
                 EquipedItemsBoy.Add(item.weaponName, item);
             }
         }
-        if (SaveManager.EquipedItemsGirl.Count != 0)
+        if (SaveManager.Instance.EquipedItemsGirl.Count != 0)
         {
-            foreach (WeaponObject item in SaveManager.EquipedItemsGirl)
+            foreach (WeaponObject item in SaveManager.Instance.EquipedItemsGirl)
             {
                 EquipedItemsGirl.Add(item.weaponName, item);
             }
         }
-        CurrentMoney = SaveManager.CurrentMoney;
+        CurrentMoney = SaveManager.Instance.CurrentMoney;
     }
 
     public static void AddMoney(int addmoney)
     {
         CurrentMoney += addmoney;
-        SaveManager.CurrentMoney = CurrentMoney;
+        SaveManager.Instance.CurrentMoney = CurrentMoney;
     }
 
     public static void SubstractMoney(int substractmoney)
     {
         CurrentMoney -= substractmoney;
-        SaveManager.CurrentMoney = CurrentMoney;
+        SaveManager.Instance.CurrentMoney = CurrentMoney;
     }
 
     private void InventoryUI()

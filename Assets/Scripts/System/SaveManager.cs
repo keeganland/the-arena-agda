@@ -28,6 +28,7 @@ public class SaveManager : MonoBehaviour
     /*Scripts linked but can be used with any scenes
      * "ActivateTextAtLine.cs"
      */
+    public Dictionary<string, bool> npcsInteractedWith;
     public List<string> dialogueSaver; 
     public List<string> cancelColliders; //Alex : I put this here because "CancelAnyShield.cs" is only used in "ArenaEntrance" for now. we'll move it in General if it is used more. "CancelAnyShield.cs" is used to avoid Triggers a second time (for tutorials for example)
     public List<string> tutorials;
@@ -48,6 +49,7 @@ public class SaveManager : MonoBehaviour
     public List<WeaponObject> StoredItems { get; set; }
     public List<WeaponObject> EquipedItemsBoy { get; set; }
     public List<WeaponObject> EquipedItemsGirl { get; set; }
+    public Dictionary<string, bool> NpcsInteractedWith { get; set; }
     public int CurrentMoney { get; set; }
 
     public static SaveManager Instance
@@ -76,10 +78,17 @@ public class SaveManager : MonoBehaviour
         StoredItems = new List<WeaponObject>();
         EquipedItemsBoy = new List<WeaponObject>();
         EquipedItemsGirl = new List<WeaponObject>();
+        NpcsInteractedWith = new Dictionary<string, bool>();
     }
 
     private void Awake()
     {
+        if (this != SaveManager.Instance)
+        {
+            Debug.LogWarning("There should not be more than one SaveManager!");
+        }
+
+
         AvailableItems = new List<WeaponObject>(Resources.LoadAll<WeaponObject>("WeaponsObjects/WeaponObjectAssets/"));
         //Debug.Log(AvailableItems.Count + " Available Items");
         //Debug.Log(StoredItems.Count + " Stored Items");

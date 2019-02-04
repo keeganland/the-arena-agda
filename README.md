@@ -4,6 +4,8 @@ _The Arena_ is an Action RPG developed in Unity by [Ryan Donnelly](https://githu
 
 Special thanks to [Gowtham Mohan](https://bitbucket.org/Gowtham100/) for helping to get this project started.
 
+[See a gameplay demo video here.](https://www.youtube.com/watch?v=tubBAoQIXL0&feature=youtu.be)
+
 ## About _The Arena_
 
 _The Arena_ plays like a Real-Time Strategy/RPG hybrid, along the lines of _Warcraft 3_ or contemporary MOBAs like _League of Legends_. Part of the inspiration comes from games like the _The Legend of Zelda: Four Swords_ sub-series, which involve multiple characters co-operating to fight boss monsters.

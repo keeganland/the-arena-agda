@@ -1,10 +1,11 @@
 # _The Arena_ (previous title: _The Wall_)
 
+[See a gameplay demo video here.](https://www.youtube.com/watch?v=tgpHvAOiN-0)
+[See the wiki for a detailed history of the making of this game](https://github.com/keeganland/the-arena-agda/wiki)
+
 _The Arena_ is an Action RPG developed in Unity by [Ryan Donnelly](https://github.com/ryanfd), [Alexandre Guichet](https://github.com/alexandreguichet), [Keegan Landrigan](https://github.com/keeganland), [Patric McConnell](https://github.com/PatricMc42), and Eloïse Zahabi. It began as a project in association with the [UBC AMS Game Development Association](http://www.amsgda.com/).
 
 Special thanks to [Gowtham Mohan](https://bitbucket.org/Gowtham100/) for helping to get this project started.
-
-[See a gameplay demo video here.](https://www.youtube.com/watch?v=tubBAoQIXL0&feature=youtu.be)
 
 ## About _The Arena_
 

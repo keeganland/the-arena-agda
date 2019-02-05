@@ -391,6 +391,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
     {
         if (girlPlayer.GetComponent<HealthController>().CurrentHealth > 0 && !_PublicVariableHolder.StopAllActions)
         {
+            Debug.Log("I understood that you wanted to swap with the Girl");
             boyActive = false;
             _BoySelected.enabled = false;
             SelectedParticleGirl();

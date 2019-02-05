@@ -114,6 +114,11 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
 
         EventManager.TriggerEvent("StartMoving");
 
+
+        Debug.Log("I am swapping with the Girl");
+        boyPlayer.GetComponent<BetterPlayer_Movement>().SwapGirl();
+        girlPlayer.GetComponent<BetterPlayer_Movement>().SwapGirl();
+
         StartCoroutine(ArrivalDialogue());
     }
 
@@ -128,7 +133,6 @@ public class InitialSetUpDungeonFloor1 : InitialSceneSetup {
         TextBoxManager.Instance.EventStart = false;
 
         girlPlayer.GetComponent<HealthController>().Sprite.GetComponent<Animator>().SetBool("Death", false);
-
         //yield return new WaitUntil(() => Input.anyKeyDown == true);
     }
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+#if (UNITY_EDITOR)
+
 public class MakeWeaponObject 
 {
     [MenuItem("Assets/Create/Weapon Object")]
@@ -15,4 +17,5 @@ public class MakeWeaponObject
         Selection.activeObject = asset;
     }
 }
- 
+
+#endif

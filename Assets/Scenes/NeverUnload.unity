@@ -55535,7 +55535,7 @@ MonoBehaviour:
   currentHealth: 0
   aggroBoy: 0
   aggroGirl: 0
-  reviveCooldown: 0
+  reviveCooldown: 2
   gameObjectName: 
   reviveCoroutine: 0
   isTargeted: 0
@@ -107424,7 +107424,7 @@ MonoBehaviour:
   currentHealth: 0
   aggroBoy: 0
   aggroGirl: 0
-  reviveCooldown: 0
+  reviveCooldown: 5
   gameObjectName: 
   reviveCoroutine: 0
   isTargeted: 0

@@ -11,16 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TitleScreen.unity
     guid: 5734405796eeb5944bf4469105e1e773
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Introduction (1).unity
     guid: 1dbdde31da294014caeaa7a5837d258f
   - enabled: 1
     path: Assets/Scenes/Arena.unity
     guid: 02e6cc1038153664682a36c47acbd6d9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Gameplay - BossBattle.unity
     guid: 60090d8e9f797c54cbd07047f032503a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dialog - Prototype.unity
     guid: 9377f17f71c01b84a8cfe7c6c68b79cd
   - enabled: 1

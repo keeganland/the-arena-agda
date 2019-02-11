@@ -1381,7 +1381,7 @@ Transform:
 --- !u!199 &262576808
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -10642,7 +10642,7 @@ ParticleSystem:
 --- !u!199 &347170596
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 199309025138359138, guid: 1d6f5e1db8f3ac94391b18838f314f09,
     type: 3}
   m_PrefabInstance: {fileID: 0}
@@ -12705,7 +12705,7 @@ Transform:
 --- !u!199 &702328562
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -17383,7 +17383,7 @@ Transform:
 --- !u!199 &793724285
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -28029,7 +28029,7 @@ ParticleSystem:
 --- !u!199 &1454189731
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 199309025138359138, guid: 1d6f5e1db8f3ac94391b18838f314f09,
     type: 3}
   m_PrefabInstance: {fileID: 0}
@@ -28132,7 +28132,7 @@ MonoBehaviour:
   moneyGainedperFight: 0500000040000000
   moneyWon: {fileID: 0}
   moneyTextGameObject: {fileID: 0}
-  BackgroundMusic: {fileID: 8300000, guid: eaabc35d134c1401fb162ad0b6da938a, type: 3}
+  BackgroundMusic: {fileID: 0}
 --- !u!4 &1456509848
 Transform:
   m_ObjectHideFlags: 0
@@ -33270,7 +33270,7 @@ ParticleSystem:
 --- !u!199 &1640784257
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 199309025138359138, guid: 1d6f5e1db8f3ac94391b18838f314f09,
     type: 3}
   m_PrefabInstance: {fileID: 0}

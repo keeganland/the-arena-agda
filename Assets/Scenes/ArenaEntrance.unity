@@ -908,11 +908,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Merchant
-  theText: {fileID: 0}
+  theText: {fileID: 4900000, guid: fd7863f899b294c0fb1a68bb8262b83b, type: 3}
   IsEventAtEndOfText: 0
   IsYesNoAtEndOfText: 1
   IsMultiCharDialog: 0
-  IsShorterSecondDialog: 0
+  IsShorterSecondDialog: 1
 --- !u!1 &206300840
 GameObject:
   m_ObjectHideFlags: 0

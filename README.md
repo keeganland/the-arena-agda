@@ -1,14 +1,21 @@
 # _The Arena_ (previous title: _The Wall_)
 
-_The Arena_ is an Action RPG developed in Unity by [Ryan Donnelly](https://github.com/ryanfd), [Alexandre Guichet](https://github.com/alexandreguichet), [Keegan Landrigan](https://github.com/keeganland), [Patric McConnell](https://github.com/PatricMc42), and Eloïse Zahabi. It began as a project in association with the [UBC AMS Game Development Association](http://www.amsgda.com/).
+[See a gameplay demo video here.](https://www.youtube.com/watch?v=tgpHvAOiN-0)
+
+[See the wiki for a detailed history of the making of this game](https://github.com/keeganland/the-arena-agda/wiki)
+
+_The Arena_ is an Action RPG developed in Unity by [Ryan Donnelly](https://github.com/ryanfd), [Alexandre Guichet](https://github.com/alexandreguichet), [Keegan Landrigan](https://github.com/keeganland), [Patric McConnell](https://github.com/PatricMc42), and EloÃ¯se Zahabi. It began as a project in association with the [UBC AMS Game Development Association](http://www.amsgda.com/).
 
 Special thanks to [Gowtham Mohan](https://bitbucket.org/Gowtham100/) for helping to get this project started.
 
-[See a gameplay demo video here.](https://www.youtube.com/watch?v=tubBAoQIXL0&feature=youtu.be)
-
 ## About _The Arena_
 
-_The Arena_ plays like a Real-Time Strategy/RPG hybrid, along the lines of _Warcraft 3_ or contemporary MOBAs like _League of Legends_. Part of the inspiration comes from games like the _The Legend of Zelda: Four Swords_ sub-series, which involve multiple characters co-operating to fight boss monsters.
+_The Arena_ plays like a Real-Time Strategy/RPG hybrid. The player controls two characters at once in real-time battles. The player needs to clear all battles in order to advance through the story/levels. 
+
+The player has access to four different skills and an auto-attack. The good use of those skills is necessary to successfully complete puzzles and battles. The victory condition is to clear all battles and arrive at the end of the first floor. The failure condition is when both characters die at once. 
+
+We currently have created a series of 3 battles in an arena and a dungeon floor. The arena itself contains a succession of tutorial battles where the player will progressively learn the core mechanics. The outside area of the arena is where the player learns how to interact with the world/NPCs. After completing the arena battles, the characters move on to a dungeon where they will be able to explore battle.
+
 
 ![](ImagesGitReadme/TheArena.PNG)
 
@@ -27,4 +34,4 @@ Artwork in _The Arena_ is largely stock artwork taken from _RPG Maker MV_.
 ## Technical Q&A
 
 ### Q: Running _The Arena_ within Unity works fine; why I am getting an error when I try to build the project?
-A: /Assets/Scripts/MakeWeaponObject.cs is a script necessary for development processes, but causes problems at build time. It may be harmlessly surpressed when you trying to build. 
+A: /Assets/Scripts/MakeWeaponObject.cs is a script necessary for development processes, but causes problems at build time. It may be harmlessly surpressed when trying to build. 

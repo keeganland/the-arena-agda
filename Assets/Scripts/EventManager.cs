@@ -134,9 +134,16 @@ public class EventManager : MonoBehaviour
     public static void TriggerEvent(string eventName)
     {
         UnityEvent thisEvent = null;
-        if (Instance.eventDictionary.TryGetValue(eventName, out thisEvent))
+        try
         {
-            thisEvent.Invoke();
+            if (Instance.eventDictionary.TryGetValue(eventName, out thisEvent))
+            {
+                thisEvent.Invoke();
+            }
+        }
+        catch (System.NullReferenceException e)
+        {
+            Debug.LogWarning("WARNING: Event was not found in the event dictionary!: " + eventName);
         }
     }
 }

@@ -913,6 +913,10 @@ MonoBehaviour:
   IsYesNoAtEndOfText: 1
   IsMultiCharDialog: 0
   IsShorterSecondDialog: 1
+  brokeDialog: {fileID: 4900000, guid: aff331572ffde4404af12074741e42c5, type: 3}
+  normalDialog: {fileID: 4900000, guid: fd7863f899b294c0fb1a68bb8262b83b, type: 3}
+  yesDialog: {fileID: 4900000, guid: 073c724b0ffcc4dcfb005d329a8431c9, type: 3}
+  noDialog: {fileID: 4900000, guid: e7a6fe34e82db4a6cbc47f58a307f20c, type: 3}
 --- !u!1 &206300840
 GameObject:
   m_ObjectHideFlags: 0

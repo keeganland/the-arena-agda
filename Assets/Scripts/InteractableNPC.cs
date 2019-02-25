@@ -19,7 +19,7 @@ public abstract class InteractableNPC : MonoBehaviour
     public bool IsYesNoAtEndOfText = false;
     public bool IsMultiCharDialog = false;
     public bool IsShorterSecondDialog = false;
-    private ActivateText activateText;
+    protected ActivateText activateText;
 
     private TextAsset secondText;
     private bool interactedBefore;
@@ -71,7 +71,7 @@ public abstract class InteractableNPC : MonoBehaviour
     /* Based on the "PlayerEnableText" method I'm getting rid of from ActivateTextAtLine
      * Alex wrote this method and it's really confusing and unplesant.
      * */
-    public void StartInteraction()
+    virtual public void StartInteraction()
     {
         /* Alex's original comment on PlayerEnableText read as follows:
          * //To allow the player to CLICK on the NPC and start dialogue (or pass near it if not clicked, without trigger). The first dialogue, start will be true, if it's an answer to "Yes/No", start will be false.

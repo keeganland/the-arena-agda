@@ -405,6 +405,9 @@ public class TextBoxManager : MonoBehaviour
 
         EventManager.TriggerEvent("resetNpcs");
     }
+
+    /* Called in ActivateText.cs. Calls outside of that particular script cause problems it seems.
+     */
     public void ReloadScript(TextAsset theText)
     {
         if (theText != null)

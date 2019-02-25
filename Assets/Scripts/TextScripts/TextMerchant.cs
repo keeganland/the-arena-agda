@@ -46,13 +46,11 @@ public class TextMerchant : InteractableNPC {
         Debug.Log("This is TextMerchant.cs, confirming we're in the NoButtonEvent method");
 
         activateText.TheText = noDialog;
-
         activateText.IsYesNoAtEndOfText = false;
         activateText.IsEventAtEndOfText = false;
         activateText.IsMultiCharDialog = false;
+
         activateText.Activate();
-        this.ReloadMerchantText();
-        TextBoxManager.Instance.ReloadScript(theText);
     }
 
     private void ReloadMerchantText()

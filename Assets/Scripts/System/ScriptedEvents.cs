@@ -194,9 +194,9 @@ public class ScriptedEvents : MonoBehaviour {
         yield return new WaitForSeconds(2);
         ReadyText.SetActive(false);
         FightText.SetActive(true);
+        SetBackgroundMusic();
         yield return new WaitForSeconds(2);
         FightText.SetActive(false);
-
         PlayerUI.SetActive(true);
         PlayerUI.GetComponent<UISpellSwap>().HiddeSpells();
                 
@@ -377,6 +377,7 @@ public class ScriptedEvents : MonoBehaviour {
             girlNavMeshAgent.SetDestination(_InitialPositionGirl.transform.position);
             yield return new WaitForSeconds(3);
             YouWonText.SetActive(false);
+            SoundManager.ExitScene = true;
             ScreenFader.fadeOut();
             yield return new WaitForSeconds(1.5f);
             saveManager.returnFromArena = true;
@@ -387,6 +388,7 @@ public class ScriptedEvents : MonoBehaviour {
             EventManager.StopListening("victoryEvent", VictoryEvent);
             PlayerUI.SetActive(false);
             EventManager.TriggerEvent("StopMoving");
+            SoundManager.ExitScene = true;
             YouWonText.SetActive(true);
             yield return new WaitForSeconds(4);
             boyNavMeshAgent.SetDestination(_DungeonPositionBoy.transform.position);
@@ -400,4 +402,13 @@ public class ScriptedEvents : MonoBehaviour {
             LoadingScreen.LoadScene("ArenaDungeonFloor1", "Arena");
         }
     }
+
+    private void SetBackgroundMusic()
+    {
+        SoundManager.SetBackgroundMusic(Resources.Load("BackgroundMusic/BattleArena") as AudioClip);
+        SoundManager.Instance.ScaleFactor = 0.05f;
+        SoundManager.Instance.ExitSpeed = 0.05f;
+        SoundManager.EnterScene = true;
+    }
 }
+

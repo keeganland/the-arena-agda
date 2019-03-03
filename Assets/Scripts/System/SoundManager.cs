@@ -91,7 +91,6 @@ public class SoundManager : MonoBehaviour {
             }
         }
 
-
         if(ExitScene)
         {
             AudioSource backgroundMusicSource = gameObject.GetComponent<AudioSource>();
@@ -123,6 +122,11 @@ public class SoundManager : MonoBehaviour {
                 EnterScene = false;
                 time = 0;
             }
+
+            if (backgroundMusicSource.isPlaying == false)
+            {
+                backgroundMusicSource.Play();
+            }
         }
     }
 
@@ -136,7 +140,6 @@ public class SoundManager : MonoBehaviour {
     {
         AudioSource backgroundMusicSource = gameObject.GetComponent<AudioSource>(); 
         backgroundMusicSource.clip = backgroundMusic;
-        backgroundMusicSource.Play();
         backgroundMusicChanged = false;
     }
 }

@@ -21,12 +21,24 @@ public class SoundManager : MonoBehaviour {
 
     public delegate void OnSoundChanged();
     public static OnSoundChanged onSoundChangedCallback;
-    public static bool ExitScene;
-    public static bool EnterScene;
+    private bool exitScene;
+    private bool enterScene;
 
-    public float ScaleFactor = 0.65f;
-    public float ExitSpeed = 0.1f;
+    [SerializeField] private float scaleFactor = 0.65f;
+    [SerializeField] private float exitSpeed = 0.1f;
     private float time = 0;
+
+    #region Getters and Setters
+
+    public float ScaleFactor
+    {
+        set { scaleFactor = value; }
+    }
+    public float ExitSpeed
+    {
+        set { exitSpeed = value; }
+    }
+    #endregion
 
     public static SoundManager Instance
     {
@@ -74,7 +86,7 @@ public class SoundManager : MonoBehaviour {
             backgroundMusicSliderText.text = BackgroundMusicSlider.value.ToString();
 
             AudioSource backgroundMusicSource = gameObject.GetComponent<AudioSource>();
-            backgroundMusicSource.volume = (BackgroundMusicVolume * ScaleFactor) / 100;
+            backgroundMusicSource.volume = (BackgroundMusicVolume * scaleFactor) / 100;
             if (onSoundChangedCallback != null)
             {
                 onSoundChangedCallback.Invoke();
@@ -91,35 +103,34 @@ public class SoundManager : MonoBehaviour {
             }
         }
 
-        if(ExitScene)
+        if(exitScene)
         {
             AudioSource backgroundMusicSource = gameObject.GetComponent<AudioSource>();
 
             if (time < 1)
             {             
                 backgroundMusicSource.volume = Mathf.Lerp(backgroundMusicSource.volume, 0, time);
-                time += Time.deltaTime * ExitSpeed;
+                time += Time.deltaTime * exitSpeed;
             }
-            if(backgroundMusicSource.volume <= Mathf.Pow(10, -4))
+            if(backgroundMusicSource.volume <= Mathf.Pow(10, -6))
             {
                 backgroundMusicSource.Stop();
-                backgroundMusicSource.volume = ScaleFactor;
                 time = 0;
-                ExitScene = false;
+                exitScene = false;
             }
         }
-        if (EnterScene)
+        if (enterScene)
         {
             AudioSource backgroundMusicSource = gameObject.GetComponent<AudioSource>();
 
             if (time < 1)
             {
-                backgroundMusicSource.volume = Mathf.Lerp(0, ScaleFactor, time);           
-                time += Time.deltaTime * ExitSpeed;
+                backgroundMusicSource.volume = Mathf.Lerp(0, scaleFactor, time);           
+                time += Time.deltaTime * exitSpeed;
             }
             else
             {
-                EnterScene = false;
+                enterScene = false;
                 time = 0;
             }
 
@@ -141,5 +152,19 @@ public class SoundManager : MonoBehaviour {
         AudioSource backgroundMusicSource = gameObject.GetComponent<AudioSource>(); 
         backgroundMusicSource.clip = backgroundMusic;
         backgroundMusicChanged = false;
+    }
+
+    public static void ExitScene()
+    {
+        Instance.exitScene = true;
+        Instance.enterScene = false;
+        Instance.time = 0;
+    }
+
+    public static void EnterScene()
+    {
+        Instance.exitScene = false;
+        Instance.enterScene = true;
+        Instance.time = 0;
     }
 }

@@ -18,7 +18,7 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
     public Text moneyWon;
     public GameObject moneyTextGameObject;
 
-    public AudioClip BackgroundMusic;
+    [SerializeField] private AudioClip BackgroundMusic;
 
     new void Awake()
     {
@@ -29,7 +29,7 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
     {
         base.Start();
 
-        SoundManager.SetBackgroundMusic(BackgroundMusic);
+        SetBackgroundMusic();
 
         ReturnFromArenaBoyPos = publicArenaEntrance.ReturnFromArenaBoyPos;
         ReturnFromArenaGirlPos = publicArenaEntrance.ReturnFromArenaGirlPos;
@@ -71,6 +71,9 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
 
     private IEnumerator ArenaArrival()
     {
+        SetBackgroundMusic();  
+        SetUp.Instance.SetUpCharacterHealth();
+
         GirlNav.SetDestination(new Vector3(publicArenaEntrance.ReturnFromArena.transform.position.x, girlPlayer.transform.position.y, publicArenaEntrance.ReturnFromArena.transform.position.z));
         BoyNav.SetDestination(girlPlayer.transform.position);
 
@@ -86,5 +89,13 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
         //yield return new WaitUntil(() => Input.anyKeyDown == true);
 
         //moneyTextGameObject.SetActive(false);
+    }
+
+    private void SetBackgroundMusic()
+    {
+        SoundManager.SetBackgroundMusic(Resources.Load("BackgroundMusic/ArenaEntrance+") as AudioClip);
+        SoundManager.Instance.ScaleFactor = 0.04f;
+        SoundManager.Instance.ExitSpeed = 0.05f;
+        SoundManager.EnterScene();
     }
 }

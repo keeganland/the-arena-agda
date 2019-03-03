@@ -103,7 +103,7 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
 
         yield return new WaitForSeconds(2f);
 
-        SoundManager.ExitScene = true;
+        SoundManager.ExitScene();
         ScreenFader.fadeOut();
 
         yield return new WaitForSeconds(2f);
@@ -128,7 +128,7 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
 
         yield return new WaitForSeconds(2f);
 
-        SoundManager.ExitScene = true;
+        SoundManager.ExitScene();
         ScreenFader.fadeOut();
 
         yield return new WaitForSeconds(2f);
@@ -155,7 +155,7 @@ public class ArenaEntranceDoorMenu : MonoBehaviour {
         yield return new WaitForSeconds(2f);
 
         ScreenFader.fadeOut();
-        SoundManager.ExitScene = true;
+        SoundManager.ExitScene();
 
         yield return new WaitForSeconds(2f);
 

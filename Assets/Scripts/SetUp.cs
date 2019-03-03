@@ -44,7 +44,7 @@ public class SetUp : MonoBehaviour {
     // Use this for initialization
     private void OnEnable () 
     {
-        PlayersGameObject = GameObject.FindGameObjectsWithTag("Player");
+        PlayersGameObject = GameObject.FindGameObjectsWithTag("Player/");
         EventManager.StartListening("setup", SetUpCharacterHealth);
 	}
 
@@ -57,6 +57,7 @@ public class SetUp : MonoBehaviour {
     {
         foreach (GameObject players in PlayersGameObject)
         {
+            Debug.Log("Here");
             players.GetComponent<HealthController>().CurrentHealth = players.GetComponent<HealthController>().TotalHealth;
             players.GetComponent<HealthController>().UndoDeath();
         }

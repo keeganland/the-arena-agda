@@ -217,7 +217,6 @@ public class TextBoxManager : MonoBehaviour
     {
         m_audioSource = GetComponent<AudioSource>();
         SoundManager.onSoundChangedCallback += UpdateSound;
-
     }
     private void Update()
     {
@@ -337,7 +336,6 @@ public class TextBoxManager : MonoBehaviour
                 namePlate.SetActive(true);
             }
         }
-
 
         if (npcGameObject)
         {

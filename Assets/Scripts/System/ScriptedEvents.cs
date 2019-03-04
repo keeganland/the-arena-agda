@@ -270,6 +270,8 @@ public class ScriptedEvents : MonoBehaviour {
         yield return new WaitForSeconds(2);
         ReadyText.SetActive(false);
         FightText.SetActive(true);
+        SetBackgroundMusic();
+
         yield return new WaitForSeconds(2);
         FightText.SetActive(false);
 
@@ -354,6 +356,8 @@ public class ScriptedEvents : MonoBehaviour {
         yield return new WaitForSeconds(2);
         ReadyText.SetActive(false);
         FightText.SetActive(true);
+        SetBackgroundMusic();
+
         yield return new WaitForSeconds(2);
         FightText.SetActive(false);
 
@@ -369,15 +373,23 @@ public class ScriptedEvents : MonoBehaviour {
         if (saveManager.currentFight != 2)
         {
             EventManager.StopListening("victoryEvent", VictoryEvent);
+            SoundManager.ExitScene();
+
             PlayerUI.SetActive(false);
             EventManager.TriggerEvent("StopMoving");
+
+            AudioSource audio = gameObject.AddComponent<AudioSource>();
+            audio.volume = 0.05f;
+            audio.PlayOneShot(Resources.Load("BackgroundMusic/BRPG_Victory_Stinger") as AudioClip);
+
             YouWonText.SetActive(true);
             yield return new WaitForSeconds(4);
             boyNavMeshAgent.SetDestination(_InitialPositionBoy.transform.position);
             girlNavMeshAgent.SetDestination(_InitialPositionGirl.transform.position);
             yield return new WaitForSeconds(3);
+            Destroy(gameObject.GetComponent<AudioSource>());
             YouWonText.SetActive(false);
-            SoundManager.ExitScene();
+
             ScreenFader.fadeOut();
             yield return new WaitForSeconds(1.5f);
             saveManager.returnFromArena = true;

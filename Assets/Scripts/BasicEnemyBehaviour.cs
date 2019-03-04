@@ -18,6 +18,10 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
     public GameObject _Sprite;
     public int Damage;
 
+    [SerializeField] private AudioClip Footsteps;
+    [SerializeField] private float SoundScaleFactor;
+    private AudioSource m_audioSource;
+
     /*
      * Keegan:
      * Whenever any enemy whatsoever comes into being, whether through being present in a loaded scene by default,
@@ -75,6 +79,9 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
         m_nav = GetComponent<NavMeshAgent>();
         _BoyOrGirl = UnityEngine.Random.Range(0, 2); //was complaining about namespace ambiguity between System and UnityEngine
         m_timer = 5;
+
+        m_audioSource = GetComponent<AudioSource>();
+        SoundManager.onSoundChangedCallback += UpdateSound;
 
     }
 
@@ -167,4 +174,10 @@ public abstract class BasicEnemyBehaviour : MonoBehaviour
     abstract public void ResetToDefaults();
 
     abstract public void Stunned(GameObject StunAnim, float StunDuration);
+
+    void UpdateSound()
+    {
+        m_audioSource.volume = (SoundManager.SFXVolume * SoundScaleFactor) / 100;
+    }
+
 }

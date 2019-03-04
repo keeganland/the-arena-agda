@@ -87,11 +87,15 @@ public class SoundManager : MonoBehaviour {
 
             AudioSource backgroundMusicSource = gameObject.GetComponent<AudioSource>();
             backgroundMusicSource.volume = (BackgroundMusicVolume * scaleFactor) / 100;
+
             if (onSoundChangedCallback != null)
             {
                 onSoundChangedCallback.Invoke();
             }
         }
+
+        Debug.Log(SFXVolumeSlider.isActiveAndEnabled);
+
         if (SFXVolumeSlider.isActiveAndEnabled)
         {
             SFXVolume = (int)SFXVolumeSlider.value;

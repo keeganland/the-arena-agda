@@ -84006,8 +84006,8 @@ MonoBehaviour:
   SFXVolumeSlider: {fileID: 1689148760}
   backgroundMusicSliderText: {fileID: 11133385}
   sfxVolumeText: {fileID: 433911750}
-  ScaleFactor: 0.1
-  ExitSpeed: 0.02
+  scaleFactor: 0.65
+  exitSpeed: 0.1
 --- !u!1001 &1282642014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84015,6 +84015,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1564825081014164, guid: ea7605375bcb664489ded4ac94316e60, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224275747516749238, guid: ea7605375bcb664489ded4ac94316e60,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -84159,6 +84163,60 @@ PrefabInstance:
         type: 3}
       propertyPath: ScaleFactor
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1824211492331714, guid: ea7605375bcb664489ded4ac94316e60, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224420378227458566, guid: ea7605375bcb664489ded4ac94316e60,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224420378227458566, guid: ea7605375bcb664489ded4ac94316e60,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224420378227458566, guid: ea7605375bcb664489ded4ac94316e60,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224143194231437734, guid: ea7605375bcb664489ded4ac94316e60,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224143194231437734, guid: ea7605375bcb664489ded4ac94316e60,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224128556631936178, guid: ea7605375bcb664489ded4ac94316e60,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224128556631936178, guid: ea7605375bcb664489ded4ac94316e60,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224844020427588416, guid: ea7605375bcb664489ded4ac94316e60,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224844020427588416, guid: ea7605375bcb664489ded4ac94316e60,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224844020427588416, guid: ea7605375bcb664489ded4ac94316e60,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea7605375bcb664489ded4ac94316e60, type: 3}

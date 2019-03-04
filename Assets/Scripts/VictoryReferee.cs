@@ -19,6 +19,7 @@ public class VictoryReferee : MonoBehaviour {
     private UnityAction bossDeathAction;
     private int bossesKilled;
     private bool playerWon;
+    private bool isLostCoroutineStarted = false;
 
     [SerializeField] private List<GameObject> EnemiesLeft;
     [SerializeField] private bool TriggerKillAllbool = false;
@@ -113,9 +114,14 @@ public class VictoryReferee : MonoBehaviour {
             EventManager.TriggerEvent("victory");
         }
 
-        if(Boy.CurrentHealth <= 0 && Girl.CurrentHealth <=0)
+        if(Boy.CurrentHealth <= 0 && Girl.CurrentHealth <=0 && !isLostCoroutineStarted)
         {
             StartCoroutine(Lost());
+            isLostCoroutineStarted = true;
+        }
+        else if(Boy.CurrentHealth > 0 || Girl.CurrentHealth > 0)
+        {
+            isLostCoroutineStarted = false;
         }
 
         KillAllVictory(); //Check for kill all victory ?
@@ -283,7 +289,15 @@ public class VictoryReferee : MonoBehaviour {
     {
         publicVariableHoldernever.fader.StartCoroutine("FadeOut");
         EventManager.TriggerEvent("HideUI");
-        yield return new WaitForSeconds(1f);
+        SoundManager.ExitScene();
+        yield return new WaitForSeconds(0.5f);
+
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        audio.volume = 0.1f;
+        audio.PlayOneShot(Resources.Load("BackgroundMusic/BRPG_Defeat_Stinger") as AudioClip);
+        Destroy(gameObject.GetComponent<AudioSource>(), (Resources.Load("BackgroundMusic/BRPG_Defeat_Stinger") as AudioClip).length);
+
+        yield return new WaitForSeconds(0.5f);
         publicVariableHoldernever.DeathCanvas.SetActive(true);
     }
 }

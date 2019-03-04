@@ -43,7 +43,6 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
         //isEnemyMoving = true;
     }
 
-
     new void Update ()
     {
         base.Update();
@@ -188,9 +187,20 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
         m_nav.SetDestination(transform.position);
         Destroy(fx,1);
 
-        yield return new WaitForSeconds(_AttackCD);        
+        yield return new WaitForSeconds(_AttackCD);
 
-        _BoyOrGirl = Random.Range(0, 2);
+        if (_Target[0].GetComponent<HealthController>().CurrentHealth <= 0 && _Target[1].GetComponent<HealthController>().CurrentHealth <= 0)
+            //Twerk
+            yield return new WaitForSeconds(0.1f);
+        else if (_Target[0].GetComponent<HealthController>().CurrentHealth <= 0)
+            _BoyOrGirl = 1;
+        else if (_Target[1].GetComponent<HealthController>().CurrentHealth <= 0)
+            _BoyOrGirl = 0;
+        else
+        {
+            _BoyOrGirl = Random.Range(0, 2);
+        }
+
         m_timer = 0;
         isCollided = false;
         m_isDashAttack = false;
@@ -205,5 +215,6 @@ public class FirstEnemyAttack2 : BasicEnemyBehaviour {
     {
         throw new System.NotImplementedException();
     }
+
 }
 

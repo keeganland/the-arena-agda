@@ -9,18 +9,11 @@ public class TextMerchant : InteractableNPC {
     public TextAsset yesDialog;
     public TextAsset noDialog;
 
-    new void Start()
-    {
-        base.Start();
-        this.noAnswer = NoButtonEvent;
-    }
-
     override public void StartInteraction()
     {
         ReloadMerchantText();
         base.StartInteraction();
     }
-
 
     public override void ChangeText(TextAsset NewTextYes, TextAsset NewTextNo)
     {
@@ -43,12 +36,16 @@ public class TextMerchant : InteractableNPC {
 
     override public void YesButtonEvent()
     {
-        activateText.TheText = yesDialog;
+        activateText.TheText = yesDialog;       
 
         activateText.IsYesNoAtEndOfText = true;
         activateText.IsEventAtEndOfText = false;
         activateText.IsMultiCharDialog = false;
         activateText.IsRepeatingLastLine = false;
+
+        EventManager.StopListening("answersYes", yesAnswer);
+        this.yesAnswer = SpecialItemEvent;
+        EventManager.StartListening("answersYes", yesAnswer);
 
         activateText.Activate();
     }
@@ -65,6 +62,9 @@ public class TextMerchant : InteractableNPC {
 
     private void ReloadMerchantText()
     {
+        this.yesAnswer = YesButtonEvent;
+        this.noAnswer = NoButtonEvent;
+
         if (SaveManager.Instance.CurrentMoney > 0)
         {
             this.TheText = normalDialog;
@@ -77,5 +77,13 @@ public class TextMerchant : InteractableNPC {
             activateText.TheText = brokeDialog;
             IsYesNoAtEndOfText = false;
         }
+    }
+
+    /*
+     * Plays Alex's Waluigi item joke
+     */
+    public void SpecialItemEvent()
+    {
+        Debug.Log("And now Alex's Waluigi thing should play");
     }
 }

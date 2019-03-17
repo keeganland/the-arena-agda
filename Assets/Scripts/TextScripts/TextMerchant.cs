@@ -30,21 +30,30 @@ public class TextMerchant : InteractableNPC {
         //    NoText = NewTextNo;
     }
 
-    public override void ChangeCue()
+    override public void ChangeCue()
     {
         //theTextManager.InteractivityCue = newCue;
     }
 
-    public override void ResetCue()
+    override public void ResetCue()
     {
         //theTextManager.InteractivityCue = InteractivityCue;
         //newCue.SetActive(false);
     }
 
-    new void NoButtonEvent()
+    override public void YesButtonEvent()
     {
-        Debug.Log("This is TextMerchant.cs, confirming we're in the NoButtonEvent method");
+        activateText.TheText = yesDialog;
 
+        activateText.IsYesNoAtEndOfText = true;
+        activateText.IsEventAtEndOfText = false;
+        activateText.IsMultiCharDialog = false;
+
+        activateText.Activate();
+    }
+
+    override public void NoButtonEvent()
+    {
         activateText.TheText = noDialog;
         activateText.IsYesNoAtEndOfText = false;
         activateText.IsEventAtEndOfText = false;

@@ -48,6 +48,7 @@ public class TextMerchant : InteractableNPC {
         activateText.IsYesNoAtEndOfText = true;
         activateText.IsEventAtEndOfText = false;
         activateText.IsMultiCharDialog = false;
+        activateText.IsRepeatingLastLine = false;
 
         activateText.Activate();
     }

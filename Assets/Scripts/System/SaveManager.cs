@@ -51,7 +51,7 @@ public class SaveManager : MonoBehaviour
     public List<WeaponObject> EquipedItemsGirl { get; set; }
     public Dictionary<string, bool> NpcsInteractedWith { get; set; }
 
-    public int currentMoney;
+    public int currentMoney; //TODO remove after testing Merchant
     public int CurrentMoney
     {
         get

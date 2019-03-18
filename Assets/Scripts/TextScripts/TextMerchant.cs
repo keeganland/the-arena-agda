@@ -62,6 +62,7 @@ public class TextMerchant : InteractableNPC {
 
     private void ReloadMerchantText()
     {
+        activateText.NpcName = this.npcName;
         this.yesAnswer = YesButtonEvent;
         this.noAnswer = NoButtonEvent;
 
@@ -84,6 +85,18 @@ public class TextMerchant : InteractableNPC {
      */
     public void SpecialItemEvent()
     {
-        Debug.Log("And now Alex's Waluigi thing should play");
+        string specialItemName = "Cool Item";
+
+        TextAsset specialText = new TextAsset("You bought a " + specialItemName);
+        InventoryManager.AquireItem(specialItemName);
+
+        activateText.NpcName = "";
+        activateText.TheText = specialText;
+        activateText.IsYesNoAtEndOfText = false;
+        activateText.IsEventAtEndOfText = false;
+        activateText.IsMultiCharDialog = false;
+
+        TextBoxManager.Instance.ReloadScript(specialText);
+        activateText.Activate();
     }
 }

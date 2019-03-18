@@ -29,7 +29,7 @@ public class TextBoxManager : MonoBehaviour
     private GameObject yesNoPrompt;
     private Text boxContent;
 	private Text npcNameTag;
-    private string npcName;
+    //private string npcName;
     private GameObject npcGameObject; //Alex : Get the NPC position to Spawn the "Text" Ballon.
     private GameObject textBalloon;
 
@@ -101,13 +101,18 @@ public class TextBoxManager : MonoBehaviour
     {
         get
         {
-            return npcName;
+            if (npcNameTag)
+            {
+                return npcNameTag.text;
+            }
+            else
+            {
+                return "";
+            }
         }
 
-        set //okay NpcName vs npcNameTag needs refactoring, because I didn't even notice there were two values containing the same string. Hope this quick fix works
+        set
         {
-            npcName = value;
-
             if (npcNameTag)
             {
                 npcNameTag.text = value;
@@ -285,9 +290,13 @@ public class TextBoxManager : MonoBehaviour
                 npcNameTag.text = parsedLine[0];
 
                 //The nameplate background for the name text only shows up if it exists as a gameobject, obviously, but also only if the NPC name isn't a blank string
-                if (namePlate != null && npcNameTag.text != "")
+                if (npcNameTag.text != "")
                 {
                     namePlate.SetActive(true);
+                }
+                else
+                {
+                    namePlate.SetActive(false);
                 }
             }
 
@@ -331,9 +340,16 @@ public class TextBoxManager : MonoBehaviour
         textBox.SetActive(true);
         if (namePlate)
         {
-            if (npcNameTag && npcNameTag.text != "")
+            if (npcNameTag)
             {
-                namePlate.SetActive(true);
+                if (npcNameTag.text != "")
+                {
+                    namePlate.SetActive(true);
+                }
+                else
+                {
+                    namePlate.SetActive(false);
+                }
             }
         }
 

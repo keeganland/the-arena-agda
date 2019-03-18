@@ -251,7 +251,7 @@ public class BetterPlayer_Movement : MonoBehaviour {
 
                    else if (hit.collider.tag == "NPC")
                    {
-                        Debug.Log("here to check why we can't select npc without moving");
+                        //Debug.Log("here to check why we can't select npc without moving");
                         curTarget = hit.collider.gameObject;                    
                    }
                    else if (hit.collider.tag == "Player")

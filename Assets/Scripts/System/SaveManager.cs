@@ -50,7 +50,19 @@ public class SaveManager : MonoBehaviour
     public List<WeaponObject> EquipedItemsBoy { get; set; }
     public List<WeaponObject> EquipedItemsGirl { get; set; }
     public Dictionary<string, bool> NpcsInteractedWith { get; set; }
-    public int CurrentMoney { get; set; }
+
+    public int currentMoney; //TODO remove after testing Merchant
+    public int CurrentMoney
+    {
+        get
+        {
+            return currentMoney;
+        }
+        set
+        {
+            currentMoney = value;
+        }
+    }
 
     public static SaveManager Instance
     {

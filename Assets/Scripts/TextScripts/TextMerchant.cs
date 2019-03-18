@@ -9,18 +9,11 @@ public class TextMerchant : InteractableNPC {
     public TextAsset yesDialog;
     public TextAsset noDialog;
 
-    new void Start()
-    {
-        base.Start();
-        this.noAnswer = NoButtonEvent;
-    }
-
     override public void StartInteraction()
     {
         ReloadMerchantText();
         base.StartInteraction();
     }
-
 
     public override void ChangeText(TextAsset NewTextYes, TextAsset NewTextNo)
     {
@@ -30,21 +23,35 @@ public class TextMerchant : InteractableNPC {
         //    NoText = NewTextNo;
     }
 
-    public override void ChangeCue()
+    override public void ChangeCue()
     {
         //theTextManager.InteractivityCue = newCue;
     }
 
-    public override void ResetCue()
+    override public void ResetCue()
     {
         //theTextManager.InteractivityCue = InteractivityCue;
         //newCue.SetActive(false);
     }
 
-    new void NoButtonEvent()
+    override public void YesButtonEvent()
     {
-        Debug.Log("This is TextMerchant.cs, confirming we're in the NoButtonEvent method");
+        activateText.TheText = yesDialog;       
 
+        activateText.IsYesNoAtEndOfText = true;
+        activateText.IsEventAtEndOfText = false;
+        activateText.IsMultiCharDialog = false;
+        activateText.IsRepeatingLastLine = false;
+
+        EventManager.StopListening("answersYes", yesAnswer);
+        this.yesAnswer = SpecialItemEvent;
+        EventManager.StartListening("answersYes", yesAnswer);
+
+        activateText.Activate();
+    }
+
+    override public void NoButtonEvent()
+    {
         activateText.TheText = noDialog;
         activateText.IsYesNoAtEndOfText = false;
         activateText.IsEventAtEndOfText = false;
@@ -55,6 +62,9 @@ public class TextMerchant : InteractableNPC {
 
     private void ReloadMerchantText()
     {
+        this.yesAnswer = YesButtonEvent;
+        this.noAnswer = NoButtonEvent;
+
         if (SaveManager.Instance.CurrentMoney > 0)
         {
             this.TheText = normalDialog;
@@ -67,5 +77,13 @@ public class TextMerchant : InteractableNPC {
             activateText.TheText = brokeDialog;
             IsYesNoAtEndOfText = false;
         }
+    }
+
+    /*
+     * Plays Alex's Waluigi item joke
+     */
+    public void SpecialItemEvent()
+    {
+        Debug.Log("And now Alex's Waluigi thing should play");
     }
 }

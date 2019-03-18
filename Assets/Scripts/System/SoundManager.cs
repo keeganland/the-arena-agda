@@ -93,7 +93,7 @@ public class SoundManager : MonoBehaviour {
             }
         }
 
-        Debug.Log(SFXVolumeSlider.isActiveAndEnabled);
+        //Debug.Log(SFXVolumeSlider.isActiveAndEnabled);
 
         if (SFXVolumeSlider.isActiveAndEnabled)
         {

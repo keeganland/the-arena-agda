@@ -428,7 +428,6 @@ public class TextBoxManager : MonoBehaviour
     }
     public void PlayerAnswersYes()
     {
-        Debug.Log("Player clicked Yes!");
         if (yesNoPrompt)
         {
             yesNoPrompt.SetActive(false);
@@ -436,8 +435,7 @@ public class TextBoxManager : MonoBehaviour
         EventManager.TriggerEvent("answersYes");
     }
     public void PlayerAnswersNo()
-    {
-        Debug.Log("Player clicked No!");
+    {        
         if (yesNoPrompt)
         {
             yesNoPrompt.SetActive(false);

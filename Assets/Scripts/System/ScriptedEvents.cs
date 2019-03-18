@@ -140,8 +140,9 @@ public class ScriptedEvents : MonoBehaviour {
         enemyUI.SetActive(false);
         camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, camera.transform.position.y, _InitialPositionBoy.transform.position.z);
 
-        SetBackgroundMusic("BackgroundMusic/BattleArena-Drums only", true);
-
+        SoundManager.SetBackgroundSFX(Resources.Load("BackgroundMusic/Windsound") as AudioClip);
+        SoundManager.FadeInBackgroundSFX();
+        //SetBackgroundMusic("BackgroundMusic/BattleArena-Drums only");
         yield return new WaitForSeconds(.4f);
 
         boyPlayer.transform.position =_InitialPositionBoy.transform.position;
@@ -201,6 +202,7 @@ public class ScriptedEvents : MonoBehaviour {
         FightText.SetActive(true);
         SetBackgroundMusic("BackgroundMusic/BattleArena");
         yield return new WaitForSeconds(2);
+        SoundManager.FadeOutBackgroundSFX();
         FightText.SetActive(false);
         PlayerUI.SetActive(true);
         PlayerUI.GetComponent<UISpellSwap>().HiddeSpells();

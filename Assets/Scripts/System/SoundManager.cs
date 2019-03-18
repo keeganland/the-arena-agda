@@ -8,7 +8,9 @@ public class SoundManager : MonoBehaviour {
     private static SoundManager soundManager;
 
     private static AudioClip backgroundMusic;
+    private static AudioClip backgroundSFX;
     private static bool backgroundMusicChanged;
+    private static bool backgroundSFXChanged;
 
     public static int BackgroundMusicVolume = 70;
     public static int SFXVolume = 70;
@@ -26,6 +28,10 @@ public class SoundManager : MonoBehaviour {
     [SerializeField] private float scaleFactor = 0.65f;
     [SerializeField] private float exitSpeed = 0.1f;
     private float time = 0;
+
+    private float backgroundSFXTime = 0;
+    private bool fadeBackgroundSFXOut = false;
+    private bool fadeBackgroundSFXIn = false;
 
     #region Getters and Setters
 
@@ -78,8 +84,12 @@ public class SoundManager : MonoBehaviour {
         {
             BackgroundMusic();
         }
+        if (backgroundSFXChanged)
+        {
+            BackgroundSFX();
+        }
 
-        if(BackgroundMusicSlider.isActiveAndEnabled)
+        if (BackgroundMusicSlider.isActiveAndEnabled)
         {
             BackgroundMusicVolume = (int) BackgroundMusicSlider.value;
             backgroundMusicSliderText.text = BackgroundMusicSlider.value.ToString();
@@ -142,6 +152,43 @@ public class SoundManager : MonoBehaviour {
                 backgroundMusicSource.Play();
             }
         }
+
+        if (fadeBackgroundSFXOut)
+        {
+            AudioSource[] backgroundSFXSource = gameObject.GetComponentsInChildren<AudioSource>();
+
+            if (backgroundSFXTime < 1)
+            {
+                backgroundSFXSource[1].volume = Mathf.Lerp(backgroundSFXSource[1].volume, 0, backgroundSFXTime);
+                backgroundSFXTime += Time.deltaTime * exitSpeed * 0.1f;
+            }
+            if (backgroundSFXSource[1].volume <= Mathf.Pow(10, -6))
+            {
+                backgroundSFXSource[1].Stop();
+                backgroundSFXTime = 0;
+                fadeBackgroundSFXOut = false;
+            }
+        }
+        if (fadeBackgroundSFXIn)
+        {
+            AudioSource[] backgroundSFXSource = gameObject.GetComponentsInChildren<AudioSource>();
+
+            if (backgroundSFXTime < 1)
+            {
+                backgroundSFXSource[1].volume = Mathf.Lerp(0, 0.005f, backgroundSFXTime);
+                backgroundSFXTime += Time.deltaTime * exitSpeed;
+            }
+            else
+            {
+                fadeBackgroundSFXIn = false;
+                backgroundSFXTime = 0;
+            }
+
+            if (backgroundSFXSource[1].isPlaying == false)
+            {
+                backgroundSFXSource[1].Play();
+            }
+        }
     }
 
     public static void SetBackgroundMusic(AudioClip music)
@@ -174,5 +221,34 @@ public class SoundManager : MonoBehaviour {
     public static void Loop(bool value)
     {
         Instance.GetComponent<AudioSource>().loop = value;
+    }
+
+    public static void SetBackgroundSFX(AudioClip SFX)
+    {
+        backgroundSFX = SFX;
+        backgroundSFXChanged = true;
+    }
+
+    void BackgroundSFX()
+    {
+        AudioSource[] backgroundSFXSource = gameObject.GetComponentsInChildren<AudioSource>();
+        backgroundSFXSource[1].clip = backgroundSFX;
+        backgroundSFXChanged = false;
+    }
+
+    public static void FadeOutBackgroundSFX()
+    {
+        AudioSource[] backgroundSFXSource = Instance.GetComponentsInChildren<AudioSource>();
+        Instance.fadeBackgroundSFXIn = false;
+        Instance.fadeBackgroundSFXOut = true;
+        Instance.backgroundSFXTime = 0;
+    }
+
+    public static void FadeInBackgroundSFX()
+    {
+        AudioSource[] backgroundSFXSource = Instance.GetComponentsInChildren<AudioSource>();
+        Instance.fadeBackgroundSFXIn = true;
+        Instance.fadeBackgroundSFXOut = false;
+        Instance.backgroundSFXTime = 0;
     }
 }

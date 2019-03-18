@@ -44,7 +44,8 @@ public class SetUp : MonoBehaviour {
     // Use this for initialization
     private void OnEnable () 
     {
-        PlayersGameObject = GameObject.FindGameObjectsWithTag("Player/");
+        PlayersGameObject[0] = GameObject.FindGameObjectWithTag("Player/Boy");
+        PlayersGameObject[1] = GameObject.FindGameObjectWithTag("Player/Girl");
         EventManager.StartListening("setup", SetUpCharacterHealth);
 	}
 

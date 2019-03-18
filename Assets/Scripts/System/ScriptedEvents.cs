@@ -140,6 +140,8 @@ public class ScriptedEvents : MonoBehaviour {
         enemyUI.SetActive(false);
         camera.transform.position = new Vector3(_InitialPositionBoy.transform.position.x, camera.transform.position.y, _InitialPositionBoy.transform.position.z);
 
+        SetBackgroundMusic("BackgroundMusic/BattleArena-Drums only", true);
+
         yield return new WaitForSeconds(.4f);
 
         boyPlayer.transform.position =_InitialPositionBoy.transform.position;
@@ -189,12 +191,15 @@ public class ScriptedEvents : MonoBehaviour {
                 yield return null;
             }
         }
-
         ReadyText.SetActive(true);
-        yield return new WaitForSeconds(2);
+
+        yield return new WaitForSeconds(1);
+        SoundManager.ExitScene();
+        yield return new WaitForSeconds(1);
+
         ReadyText.SetActive(false);
         FightText.SetActive(true);
-        SetBackgroundMusic();
+        SetBackgroundMusic("BackgroundMusic/BattleArena");
         yield return new WaitForSeconds(2);
         FightText.SetActive(false);
         PlayerUI.SetActive(true);
@@ -270,7 +275,7 @@ public class ScriptedEvents : MonoBehaviour {
         yield return new WaitForSeconds(2);
         ReadyText.SetActive(false);
         FightText.SetActive(true);
-        SetBackgroundMusic();
+        SetBackgroundMusic("BackgroundMusic/BattleArena");
 
         yield return new WaitForSeconds(2);
         FightText.SetActive(false);
@@ -356,7 +361,7 @@ public class ScriptedEvents : MonoBehaviour {
         yield return new WaitForSeconds(2);
         ReadyText.SetActive(false);
         FightText.SetActive(true);
-        SetBackgroundMusic();
+        SetBackgroundMusic("BackgroundMusic/BattleArena");
 
         yield return new WaitForSeconds(2);
         FightText.SetActive(false);
@@ -415,9 +420,10 @@ public class ScriptedEvents : MonoBehaviour {
         }
     }
 
-    private void SetBackgroundMusic()
+    private void SetBackgroundMusic(string name, bool EnterScene = false)
     {
-        SoundManager.SetBackgroundMusic(Resources.Load("BackgroundMusic/BattleArena") as AudioClip);
+        SoundManager.SetBackgroundMusic(Resources.Load(name) as AudioClip);
+        SoundManager.Loop(true);
         SoundManager.Instance.ScaleFactor = 0.05f;
         SoundManager.Instance.ExitSpeed = 0.05f;
         SoundManager.EnterScene();

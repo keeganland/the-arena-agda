@@ -94,6 +94,7 @@ public class InitialSceneSetUpArenaEntrance : InitialSceneSetup {
     private void SetBackgroundMusic()
     {
         SoundManager.SetBackgroundMusic(Resources.Load("BackgroundMusic/ArenaEntrance+") as AudioClip);
+        SoundManager.Loop(true);
         SoundManager.Instance.ScaleFactor = 0.04f;
         SoundManager.Instance.ExitSpeed = 0.05f;
         SoundManager.EnterScene();

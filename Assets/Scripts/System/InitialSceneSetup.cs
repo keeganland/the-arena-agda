@@ -39,5 +39,6 @@ abstract public class InitialSceneSetup : MonoBehaviour {
 
         BoyNav.enabled = false;
         GirlNav.enabled = false;
+      
     }
 }

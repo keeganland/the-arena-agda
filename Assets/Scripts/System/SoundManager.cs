@@ -23,7 +23,6 @@ public class SoundManager : MonoBehaviour {
     public static OnSoundChanged onSoundChangedCallback;
     private bool exitScene;
     private bool enterScene;
-
     [SerializeField] private float scaleFactor = 0.65f;
     [SerializeField] private float exitSpeed = 0.1f;
     private float time = 0;
@@ -170,5 +169,10 @@ public class SoundManager : MonoBehaviour {
         Instance.exitScene = false;
         Instance.enterScene = true;
         Instance.time = 0;
+    }
+
+    public static void Loop(bool value)
+    {
+        Instance.GetComponent<AudioSource>().loop = value;
     }
 }
